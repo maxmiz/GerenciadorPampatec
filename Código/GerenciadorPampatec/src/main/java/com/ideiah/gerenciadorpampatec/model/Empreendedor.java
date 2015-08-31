@@ -2,6 +2,7 @@ package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
 
+import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +23,10 @@ public class Empreendedor  implements java.io.Serializable {
      private String competencia;
      private String participacaoAcionaria;
      private Set projetos = new HashSet(0);
+     private static EmpreededorDao empreededorDao;
 
     public Empreendedor() {
+        empreededorDao = new EmpreededorDao();
     }
 
 	
@@ -34,6 +37,7 @@ public class Empreendedor  implements java.io.Serializable {
         this.cpf = cpf;
         this.email = email;
         this.formacao = formacao;
+        empreededorDao = new EmpreededorDao();
     }
     public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
        this.idEmpreendedor = idEmpreendedor;
@@ -47,6 +51,7 @@ public class Empreendedor  implements java.io.Serializable {
        this.competencia = competencia;
        this.participacaoAcionaria = participacaoAcionaria;
        this.projetos = projetos;
+       empreededorDao = new EmpreededorDao();
     }
    
     public int getIdEmpreendedor() {
@@ -127,7 +132,9 @@ public class Empreendedor  implements java.io.Serializable {
         this.projetos = projetos;
     }
 
-
+    public boolean salvarProjeto(Projeto projeto){
+        return false;
+    }
 
 
 }
