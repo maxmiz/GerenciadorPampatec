@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/08/2015 13:49:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" table="planofinanceiro" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idPlanoFinanceiro" type="int">
+            <column name="idPlanoFinanceiro" />
+            <generator class="assigned" />
+        </id>
+        <property name="fontesReceita" type="string">
+            <column name="fontesReceita" length="300" not-null="true" />
+        </property>
+        <property name="estruturaCusto" type="string">
+            <column name="estruturaCusto" length="300" not-null="true" />
+        </property>
+        <property name="investimentoInicial" type="string">
+            <column name="investimentoInicial" length="300" />
+        </property>
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
+        </set>
+        <set name="custos" table="custo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Custo" />
+        </set>
+    </class>
+</hibernate-mapping>

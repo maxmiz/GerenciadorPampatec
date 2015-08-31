@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="gerenciadorpampatec"/>
+  <table-filter match-name="endereco"/>
+  <table-filter match-name="negocio"/>
+  <table-filter match-name="produtoouservico"/>
+  <table-filter match-name="planofinanceiro"/>
+  <table-filter match-name="projeto"/>
+  <table-filter match-name="custo"/>
+  <table-filter match-name="projeto_has_empreendedor"/>
+  <table-filter match-name="analiseemprego"/>
+  <table-filter match-name="empreendedor"/>
+</hibernate-reverse-engineering>

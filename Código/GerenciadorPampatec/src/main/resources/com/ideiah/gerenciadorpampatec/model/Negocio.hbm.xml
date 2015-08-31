@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/08/2015 13:49:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.Negocio" table="negocio" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idNegocio" type="int">
+            <column name="idNegocio" />
+            <generator class="assigned" />
+        </id>
+        <property name="segmentoClientes" type="string">
+            <column name="segmentoClientes" length="300" not-null="true" />
+        </property>
+        <property name="propostaValor" type="string">
+            <column name="PropostaValor" length="300" not-null="true" />
+        </property>
+        <property name="atividadesChaves" type="string">
+            <column name="AtividadesChaves" length="300" not-null="true" />
+        </property>
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Negocio_idNegocio" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
+        </set>
+    </class>
+</hibernate-mapping>
