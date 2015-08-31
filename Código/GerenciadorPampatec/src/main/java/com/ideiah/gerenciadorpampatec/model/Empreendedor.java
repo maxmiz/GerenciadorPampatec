@@ -127,6 +127,9 @@ public class Empreendedor  implements java.io.Serializable {
         this.projetos = projetos;
     }
 
+    public void fazLogin(){
+        
+    }
 
 
 
