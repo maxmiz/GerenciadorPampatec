@@ -17,3 +17,13 @@ function proximaDiv() {
 
     document.getElementById("formulario").innerHTML = novoConteudo;
 }
+
+function validacaoCadastro(){
+    var senha = document.forms["cadastroEmpreendedor"]["senha"].value;
+    var confirmaSenha = document.forms["cadastroEmpreendedor"]["senha"].value;
+    if (senha != confirmaSenha) {
+        alert("As senhas inseridas devem ser iguais!");
+        return false;
+    }
+    
+}
