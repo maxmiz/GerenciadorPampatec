@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+        <h:outputScript library="js" name="formulario.js"/>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+        </f:facet>
+
+        <title>Acessar o Sistema - Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-horizontal well bs-component">
+            <h1>Acesse sua conta</h1>
+            <div id="empreendedorLogin">
+                <legend>Realizar Login</legend>
+                <h:form>
+                    <div class="col-md-12">
+                        E-mail<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-12">
+                        Senha<h:inputSecret class="form-control"></h:inputSecret>
+                    </div> 
+                    <div class="col-md-12">
+                        <h:link value="Esqueci minha senha"></h:link>
+                        <br/>
+                    </div> 
+                    <div class="col-md-12" align="center">
+                        <h:button class="btn btn-success" value="Acessar"></h:button>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+
+    </h:body>
+</html>
+

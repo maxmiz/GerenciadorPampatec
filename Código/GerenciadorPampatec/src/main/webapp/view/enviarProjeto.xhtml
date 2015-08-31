@@ -5,6 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
 
+        <h:outputScript library="js" name="formulario.js"/>
+
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
         </f:facet>
@@ -17,35 +19,37 @@
         <div class="col-md-3"></div>
         <div class="col-md-6 form-horizontal well bs-component">
             <h1>Cadastro - Plano de Negócio</h1>
-            <legend>Contatos</legend>
-            <h:form>
-                <div class="col-md-12">
-                    Empresa/Projeto<h:inputText class="form-control"></h:inputText>
-                </div>
-                <div class="col-md-12">
-                    Empreendedores<h:inputText class="form-control"></h:inputText>
-                </div>
-                <div class="col-md-8">
-                    Rua<h:inputText class="form-control"></h:inputText>
-                </div>
-                <div class="col-md-4">
-                    Número<h:inputText class="form-control"></h:inputText>
-                </div>
-                <div class="col-md-8">
-                    E-mail<h:inputText class="form-control"></h:inputText>
-                </div>
-                <div class="col-md-4">
-                    Telefone<h:inputText class="form-control"></h:inputText>
-                </div>
-                
-                <div class="col-md-12">
-                    <ul class="pager">
-                    <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                    <li class="next"><a href="#">Próximo →</a></li>
-                </ul>
-                </div>
-                
-            </h:form>
+            <div id="formulario">
+                <legend>Contatos</legend>
+                <h:form>
+                    <div class="col-md-12">
+                        Empresa/Projeto<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-12">
+                        Empreendedores<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-8">
+                        Rua<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-4">
+                        Número<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-8">
+                        E-mail<h:inputText class="form-control"></h:inputText>
+                    </div>
+                    <div class="col-md-4">
+                        Telefone<h:inputText class="form-control"></h:inputText>
+                    </div>
+
+                    <div class="col-md-12">
+                        <ul class="pager">
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <li class="next"><a href="#" onclick="proximaDiv()">Próximo →</a></li>
+                        </ul>
+                    </div>
+
+                </h:form>
+            </div>
         </div>
         <div class="col-md-3"></div>
 
