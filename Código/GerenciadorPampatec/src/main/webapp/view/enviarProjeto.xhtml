@@ -1,12 +1,54 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+        </f:facet>
+
+        <title>Cadastro Plano de Negócio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-horizontal well bs-component">
+            <h1>Cadastro - Plano de Negócio</h1>
+            <legend>Contatos</legend>
+            <h:form>
+                <div class="col-md-12">
+                    Empresa/Projeto<h:inputText class="form-control"></h:inputText>
+                </div>
+                <div class="col-md-12">
+                    Empreendedores<h:inputText class="form-control"></h:inputText>
+                </div>
+                <div class="col-md-8">
+                    Rua<h:inputText class="form-control"></h:inputText>
+                </div>
+                <div class="col-md-4">
+                    Número<h:inputText class="form-control"></h:inputText>
+                </div>
+                <div class="col-md-8">
+                    E-mail<h:inputText class="form-control"></h:inputText>
+                </div>
+                <div class="col-md-4">
+                    Telefone<h:inputText class="form-control"></h:inputText>
+                </div>
+                
+                <div class="col-md-12">
+                    <ul class="pager">
+                    <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                    <li class="next"><a href="#">Próximo →</a></li>
+                </ul>
+                </div>
+                
+            </h:form>
+        </div>
+        <div class="col-md-3"></div>
+
     </h:body>
 </html>
 
