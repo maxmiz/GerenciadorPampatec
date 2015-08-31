@@ -135,8 +135,10 @@ public class Empreendedor  implements java.io.Serializable {
     public boolean salvarProjeto(Projeto projeto){
         return false;
     }
-
-
+    
+    public void fazLogin(){
+        
+    }
 }
 
 
