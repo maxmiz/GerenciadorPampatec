@@ -6,6 +6,7 @@
     <h:head>
 
         <h:outputScript library="js" name="formulario.js"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
@@ -13,45 +14,78 @@
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <script>
+            $(document).ready(function teste() {
+                $("#ocultar").click(function (event) {
+                    $('#formularioParte01').fadeOut("fast");
+
+                });
+
+                $("#ocultar").click(function (event) {
+                    $("#formularioParte02").fadeIn("slow");
+                });
+            });
+        </script>
+
     </h:head>
     <h:body>
 
-        <div class="col-md-3"></div>
+
+
+        <div class="col-md-3">
+
+        </div>
         <div class="col-md-6 form-horizontal well bs-component">
             <h1>Cadastro - Plano de Negócio</h1>
-            <div id="formulario">
-                <legend>Contatos</legend>
+            <div>
                 <h:form>
-                    <div class="col-md-12">
-                        Empresa/Projeto<h:inputText class="form-control"></h:inputText>
-                    </div>
-                    <div class="col-md-12">
-                        Empreendedores<h:inputText class="form-control"></h:inputText>
-                    </div>
-                    <div class="col-md-8">
-                        Rua<h:inputText class="form-control"></h:inputText>
-                    </div>
-                    <div class="col-md-4">
-                        Número<h:inputText class="form-control"></h:inputText>
-                    </div>
-                    <div class="col-md-8">
-                        E-mail<h:inputText class="form-control"></h:inputText>
-                    </div>
-                    <div class="col-md-4">
-                        Telefone<h:inputText class="form-control"></h:inputText>
+                    <div id="formularioParte01">
+
+                        <legend id="subTitulo">Contatos</legend>
+                        <div class="col-md-12" id="campo01">
+                            Empresa/Projeto<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        <div class="col-md-12" id="campo02">
+                            Empreendedores<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        <div class="col-md-8" id="campo03">
+                            Rua<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        <div class="col-md-4" id="campo04">
+                            Número<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        <div class="col-md-8" id="campo05">
+                            E-mail<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        <div class="col-md-4" id="campo06">
+                            Telefone<h:inputText class="form-control"></h:inputText>
+                        </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <ul class="pager modal-footer">
-                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                            <li class="next"><a href="#" onclick="proximaDiv()">Próximo →</a></li>
-                        </ul>
-                    </div>
 
+                    <div id="formularioParte03" style="display: none">
+
+                        <legend id="subTitulo">O Negócio</legend>
+                        <div class="col-md-12" id="campo01">
+                            Teste<h:inputText class="form-control"></h:inputText>
+                        </div>
+                        
+                    </div>
                 </h:form>
+
+            </div>
+
+            <div class="col-md-12">
+                <ul class="pager modal-footer">
+                    <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                    <li class="next"><button id="ocultar" class="btn btn-default">Próximo →</button></li>
+
+                </ul>
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+        </div>
 
     </h:body>
 </html>
