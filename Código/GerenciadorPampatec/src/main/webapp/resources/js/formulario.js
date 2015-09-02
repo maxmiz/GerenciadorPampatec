@@ -12,41 +12,85 @@ require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
 
+/*
+ * Funções de Retorno de etapas no 
+ * formulário de Envio de Plano de Negócio
+ */
 
-
-function exibePrimeiraParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte02').fadeOut(500)
+function retornaPrimeiraParte() {
+    $("#anterior2").click(function (Event) {
+        $("#formularioParte02").fadeOut(400)
         $("#formularioParte01").fadeIn(2500)
     });
 }
+function retornaSegundaParte() {
+    $("#anterior3").click(function (Event) {
+        $("#formularioParte03").fadeOut(400)
+        $("#formularioParte02").fadeIn(2500)
+    });
+}
+function retornaTerceiraParte() {
+    $("#anterior4").click(function (Event) {
+        $("#formularioParte04").fadeOut(400)
+        $("#formularioParte03").fadeIn(2500)
+    });
+}
+function retornaQuartaParte() {
+    $("#anterior5").click(function (Event) {
+        $("#formularioParte05").fadeOut(400)
+        $("#formularioParte04").fadeIn(2500)
+    });
+}
+function retornaQuintaParte() {
+    $("#anterior6").click(function (Event) {
+        $("#formularioParte06").fadeOut(400)
+        $("#formularioParte05").fadeIn(2500)
+    });
+}
+
+/*
+ * Fim das funções de retorno de etapas do formulário --------------------------
+ */
+
+/*
+ * Início das funções de exibição das próximas
+ * etapas do formulário de Envio do Plano de Negócio
+ */
+
 function exibeSegundaParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte01').fadeOut(500)
+    $("#proximo2").click(function (Event) {
+        $("#formularioParte01").fadeOut(400)
         $("#formularioParte02").fadeIn(2500)
     });
 }
 function exibeTerceiraParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte02').fadeOut(500)
+    $("#proximo3").click(function (Event) {
+        $("#formularioParte02").fadeOut(400)
         $("#formularioParte03").fadeIn(2500)
     });
 }
 function exibeQuartaParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte03').fadeOut(500)
+    $("#proximo4").click(function (Event) {
+        $("#formularioParte03").fadeOut(400)
         $("#formularioParte04").fadeIn(2500)
     });
 }
 function exibeQuintaParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte04').fadeOut(500)
+    $("#proximo5").click(function (Event) {
+        $("#formularioParte04").fadeOut(400)
         $("#formularioParte05").fadeIn(2500)
     });
 }
 function exibeSextaParte() {
-    $("#proximo").click(function (Event) {
-        $('#formularioParte05').fadeOut(500)
+    $("#proximo6").click(function (Event) {
+        $("#formularioParte05").fadeOut(400)
         $("#formularioParte06").fadeIn(2500)
     });
 }
+
+/*
+ * Fim das funções de exibição
+ * das próximas etapas do fomulário
+ * de envio do plano de negócio
+ * -----------------------------------------------------------------
+ */
