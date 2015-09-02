@@ -11,6 +11,9 @@
         <many-to-one name="endereco" class="com.ideiah.gerenciadorpampatec.model.Endereco" fetch="select">
             <column name="Endereco_idEndereco" not-null="true" />
         </many-to-one>
+        <property name="senha" type="string">
+            <column name="senha" length="100" not-null="true" />
+        </property>
         <property name="nome" type="string">
             <column name="nome" length="45" not-null="true" />
         </property>

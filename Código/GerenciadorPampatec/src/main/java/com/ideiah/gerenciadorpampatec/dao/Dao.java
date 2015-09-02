@@ -107,6 +107,13 @@ public abstract class Dao {
         criteria.add(Restrictions.idEq(codigo));
         return getObject(criteria);
     }
+//    METODO PARA BUSCAR QUALQUER OBJETO UNICO EM QUALQUER CLASSE, (PROPRIEDADE CHAVE, VALOR A SER COMPARADO, TABELA)
+    public Object buscarObjetoCriteria(String propriedade ,String valor, Class<?> classe) {
+        Object objeto = null;
+        Criteria criteria = getCriteria(classe);
+        criteria.add(Restrictions.eq(propriedade, valor));
+        return getObject(criteria);
+    }
 
     public Object buscarObjeto(String codigo, Class<?> classe) {
         Criteria criteria = getCriteria(classe);
