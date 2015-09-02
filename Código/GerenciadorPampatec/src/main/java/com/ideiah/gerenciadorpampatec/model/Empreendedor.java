@@ -185,5 +185,16 @@ public class Empreendedor implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    /*
+    *
+    */
+    public void realizarCadastro(){
+        empreededorDao.salvar(this);
+    }
+    
+    public static ArrayList<Empreendedor> buscaEmpreendedores(){
+        return empreededorDao.buscar();
+    }
 
 }

@@ -9,18 +9,23 @@ import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
 
 /**
  *
  * @author AugustoCesar
  */
-@ManagedBean
+@ManagedBean (name = "empreendedorBean")
 @SessionScoped
 public class EmpreendedorBean {
 
     private String outcome = "LoginEmpreendedor";
     private String userInput = "";
     private String senhaInput = "";
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private String email;
 //    private static Empreendedor empreendedor;
     Empreendedor empreendedor = new Empreendedor();
     public String getOutcome() {
@@ -58,7 +63,15 @@ public class EmpreendedorBean {
 //    }
 
     public void chamaCadastro() {
-
+        
+        empreendedor.setNome(nome);
+        empreendedor.setCpf(cpf);
+        empreendedor.setEmail(email);
+        empreendedor.setTelefone(telefone);
+        empreendedor.setSenha(senhaInput);
+        
+        
+        
     }
 
 //    public void chamaLogin() {
@@ -76,5 +89,61 @@ public class EmpreendedorBean {
      */
     public void setSenhaInput(String senhaInput) {
         this.senhaInput = senhaInput;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
+     * @return the telefone
+     */
+    public String getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
