@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 
 import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,9 +25,11 @@ public class Empreendedor  implements java.io.Serializable {
      private String participacaoAcionaria;
      private Set projetos = new HashSet(0);
      private static EmpreededorDao empreededorDao;
+     private static ProjetoDao projetoDao;
 
     public Empreendedor() {
         empreededorDao = new EmpreededorDao();
+        projetoDao = new ProjetoDao();
     }
 
 	
@@ -38,6 +41,7 @@ public class Empreendedor  implements java.io.Serializable {
         this.email = email;
         this.formacao = formacao;
         empreededorDao = new EmpreededorDao();
+        projetoDao = new ProjetoDao();
     }
     public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
        this.idEmpreendedor = idEmpreendedor;
@@ -52,6 +56,7 @@ public class Empreendedor  implements java.io.Serializable {
        this.participacaoAcionaria = participacaoAcionaria;
        this.projetos = projetos;
        empreededorDao = new EmpreededorDao();
+       projetoDao = new ProjetoDao();
     }
    
     public int getIdEmpreendedor() {
@@ -132,7 +137,12 @@ public class Empreendedor  implements java.io.Serializable {
         this.projetos = projetos;
     }
 
-    public boolean salvarProjeto(Projeto projeto){
+    public static boolean salvarProjeto(Projeto projeto){
+        if(false){
+            
+        }else{
+            
+        }
         return false;
     }
     

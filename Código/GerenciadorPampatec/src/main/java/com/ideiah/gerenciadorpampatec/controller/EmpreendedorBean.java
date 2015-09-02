@@ -6,14 +6,18 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author AugustoCesar
  */
+@ManagedBean(name = "candidatoBean")
+@ViewScoped
 public class EmpreendedorBean {
     
-    Empreendedor empreendedor = new Empreendedor();
+    Empreendedor empreendedor = new Empreendedor();//Temporario.
     public void chamaCadastro(){
         
     }
