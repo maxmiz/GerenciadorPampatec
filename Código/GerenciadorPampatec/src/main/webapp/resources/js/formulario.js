@@ -19,32 +19,32 @@ require('../../js/affix.js')
 
 function retornaPrimeiraParte() {
     $("#anterior2").click(function (Event) {
-        $("#formularioParte02").fadeOut(400)
-        $("#formularioParte01").fadeIn(2500)
+        $("#formularioParte02").fadeOut(100)
+        $("#formularioParte01").fadeIn(3200)
     });
 }
 function retornaSegundaParte() {
     $("#anterior3").click(function (Event) {
-        $("#formularioParte03").fadeOut(400)
-        $("#formularioParte02").fadeIn(2500)
+        $("#formularioParte03").fadeOut(100)
+        $("#formularioParte02").fadeIn(3200)
     });
 }
 function retornaTerceiraParte() {
     $("#anterior4").click(function (Event) {
-        $("#formularioParte04").fadeOut(400)
-        $("#formularioParte03").fadeIn(2500)
+        $("#formularioParte04").fadeOut(100)
+        $("#formularioParte03").fadeIn(3200)
     });
 }
 function retornaQuartaParte() {
     $("#anterior5").click(function (Event) {
-        $("#formularioParte05").fadeOut(400)
-        $("#formularioParte04").fadeIn(2500)
+        $("#formularioParte05").fadeOut(100)
+        $("#formularioParte04").fadeIn(3200)
     });
 }
 function retornaQuintaParte() {
     $("#anterior6").click(function (Event) {
-        $("#formularioParte06").fadeOut(400)
-        $("#formularioParte05").fadeIn(2500)
+        $("#formularioParte06").fadeOut(100)
+        $("#formularioParte05").fadeIn(3200)
     });
 }
 
@@ -59,31 +59,31 @@ function retornaQuintaParte() {
 
 function exibeSegundaParte() {
     $("#proximo2").click(function (Event) {
-        $("#formularioParte01").fadeOut(400)
+        $("#formularioParte01").fadeOut(300)
         $("#formularioParte02").fadeIn(2500)
     });
 }
 function exibeTerceiraParte() {
     $("#proximo3").click(function (Event) {
-        $("#formularioParte02").fadeOut(400)
+        $("#formularioParte02").fadeOut(300)
         $("#formularioParte03").fadeIn(2500)
     });
 }
 function exibeQuartaParte() {
     $("#proximo4").click(function (Event) {
-        $("#formularioParte03").fadeOut(400)
+        $("#formularioParte03").fadeOut(300)
         $("#formularioParte04").fadeIn(2500)
     });
 }
 function exibeQuintaParte() {
     $("#proximo5").click(function (Event) {
-        $("#formularioParte04").fadeOut(400)
+        $("#formularioParte04").fadeOut(300)
         $("#formularioParte05").fadeIn(2500)
     });
 }
 function exibeSextaParte() {
     $("#proximo6").click(function (Event) {
-        $("#formularioParte05").fadeOut(400)
+        $("#formularioParte05").fadeOut(300)
         $("#formularioParte06").fadeIn(2500)
     });
 }

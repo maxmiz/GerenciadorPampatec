@@ -25,7 +25,7 @@
             <h1>Cadastro - Plano de Negócio</h1>
             <div>
 
-                <!-- Ínicio da primeira parte do formulário para Envio de Projeto
+                <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto
                 Referente ao CONTATO -->
 
                 <div id="formularioParte01">
@@ -52,7 +52,7 @@
                     </h:form>
                     <div class="col-md-3"></div>
                     <div class="col-md-6"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="proximo2" class="btn btn-default" onclick="exibeSegundaParte()">Próximo →</button>
@@ -61,7 +61,7 @@
 
                 <!-- Fim da primeira parte do formulário -->
 
-                <!-- Ínicio da segunda parte do formulário para Envio de Projeto
+                <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto
                 Referente ao NEGÓCIO -->
 
                 <div id="formularioParte02" style="display: none">
@@ -82,7 +82,7 @@
                         <button id="anterior2" class="btn btn-default" onclick="retornaPrimeiraParte()">← Anterior</button>
                     </div>
                     <div class="col-md-6"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3  text-right">
                         <br/>
                         <button id="proximo3" class="btn btn-default" onclick="exibeTerceiraParte()">Próximo →</button>
                     </div>
@@ -91,20 +91,33 @@
                 <!-- Fim da segunda parte do formulário -->
 
 
-                <!-- Ínicio da terceira parte do formulário para Envio de Projeto
+                <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto
                 Referente a ANÁLISE DE MERCADO -->
 
                 <div id="formularioParte03" style="display: none">
                     <h:form>
                         <legend id="subTitulo">Análise de Mercado</legend>
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            Relações com clientes<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Parcerias chave<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Canais<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Recursos principais<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Concorrentes<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
                     </h:form>
                     <div class="col-md-3"><br />
-                        <br />
-                        <button id="anterior3" class="btn btn-default" onclick=")">← Anterior</button>
+                        <button id="anterior3" class="btn btn-default" onclick="retornaSegundaParte()">← Anterior</button>
                     </div>
                     <div class="col-md-6"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="proximo4" class="btn btn-default" onclick="exibeQuartaParte()">Próximo →</button>
@@ -115,20 +128,41 @@
 
 
 
-                <!-- Ínicio da quarta parte do formulário para Envio de Projeto
+                <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto
                 Referente ao PRODUTO DE SERVIÇO -->
 
                 <div id="formularioParte04" style="display: none">
                     <h:form>
                         <legend id="subTitulo">Produto de Serviço</legend>
                         <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            Tecnologia e processos (não poluentes)<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Potencial de inovação tecnológica<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Aplicações<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Dificuldades esperadas<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Interação entre empresa e Universidade<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Interação entre empresa, comunidade e governo<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Infra-estrutura necessária para o desenvolvimento e produções<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
                     </h:form>
                     <div class="col-md-3">
                         <br />
-                        <button id="anterior4" class="btn btn-default" onclick=")">← Anterior</button>
+                        <button id="anterior4" class="btn btn-default" onclick="retornaTerceiraParte()">← Anterior</button>
                     </div>
                     <div class="col-md-6"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="proximo5" class="btn btn-default" onclick="exibeQuintaParte()">Próximo →</button>
@@ -138,19 +172,33 @@
 
 
 
-                <!-- Ínicio da quinta parte do formulário para Envio de Projeto
+                <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
                 Referente a GESTÃO DE PESSOAS -->
                 <div id="formularioParte05" style="display: none">
                     <h:form>
                         <legend id="subTitulo">Gestão de Pessoas</legend>
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            Formação de sócios<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Experiência profissional dos sócios<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Competências dos sócios nas áreas técnica, administrativa e comercial<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Descrição da participação acionária<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Potencial de geração de emprego e renda<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
                     </h:form>
                     <div class="col-md-3">
                         <br />
-                        <button id="anterior5" class="btn btn-default" onclick=")">← Anterior</button>
+                        <button id="anterior5" class="btn btn-default" onclick="retornaQuartaParte()">← Anterior</button>
                     </div>
                     <div class="col-md-6"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="proximo6" class="btn btn-default" onclick="exibeSextaParte()">Próximo →</button>
@@ -160,13 +208,37 @@
 
 
 
-                <!-- Ínicio da sexta parte do formulário para Envio de Projeto
+                <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
                 Referente ao PLANO FINANCEIRO -->
                 <div id="formularioParte06" style="display: none">
                     <h:form>
                         <legend id="subTitulo">Plano de Financeiro</legend>
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            Fontes de receita<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Estrutura de custos<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Investimento inicial<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Custos fixos<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
+                        <div class="col-md-12">
+                            Custos variáveis<h:inputTextarea class="form-control"></h:inputTextarea>
+                        </div>
                     </h:form>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="anterior6" class="btn btn-default" onclick=")">← Anterior</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-5 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="enviar" class="btn btn-default" onclick="">Enviar Plano de Negócio →</button>
+                    </div>
                 </div>
                 <!-- Fim da sexta parte do formulário -->
 
