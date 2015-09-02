@@ -22,7 +22,6 @@ public class EmpreendedorBean {
     private String userInput = "";
     private String senhaInput = "";
 //    private static Empreendedor empreendedor;
-    Empreendedor empreendedor = new Empreendedor();
     public String getOutcome() {
         return outcome;
     }
@@ -38,18 +37,6 @@ public class EmpreendedorBean {
     public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
-
-    public String submit() {
-        try{
-            System.out.println(getUserInput());
-       empreendedor.fazLogin(getUserInput(), getSenhaInput());
-        }catch(NumberFormatException e){
-            System.out.println("Apenas numeros please");
-        }
-//        this.userInput = "The user has entered \"" + this.userInput + " \"";
-        return "";
-    }
-
     /**
      * @param u usuário que será adicionado na sessão
      */
