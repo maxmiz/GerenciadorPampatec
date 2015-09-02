@@ -14,7 +14,7 @@
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
 
     </h:head>
     <h:body>
@@ -134,7 +134,17 @@
                 <div id="formularioParte04" style="display: none">
                     <h:form>
                         <legend id="subTitulo">Produto de Serviço</legend>
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            Estágio de evolução <br />
+                            <input type="radio" name="estagio" value="" /> Ideia Básica <br/>
+                            <input type="radio" name="estagio" value="" /> Projeto básico <br/>
+                            <input type="radio" name="estagio" value="" /> Projeto detalhado <br/>
+                            <input type="radio" name="estagio" value="" /> Protótipo desenvolvido <br/>
+                            <input type="radio" name="estagio" value="" /> Em teste no mercado <br/>
+                            <input type="radio" name="estagio" value="" /> Clientes Pagando <br/>
+                            <input type="radio" name="estagio" value="" /> Outro:
+                            <h:inputText class="form-control"></h:inputText>
+                        </div>
                         <div class="col-md-12">
                             Tecnologia e processos (não poluentes)<h:inputTextarea class="form-control"></h:inputTextarea>
                         </div>
@@ -237,7 +247,7 @@
                     <div class="col-md-5 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="enviar" class="btn btn-default" onclick="">Enviar Plano de Negócio →</button>
+                        <button id="enviar" class="btn btn-success" onclick="">Enviar Plano de Negócio →</button>
                     </div>
                 </div>
                 <!-- Fim da sexta parte do formulário -->
