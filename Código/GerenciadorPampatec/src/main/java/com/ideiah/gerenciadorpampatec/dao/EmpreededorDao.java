@@ -28,6 +28,10 @@ public class EmpreededorDao extends Dao{
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
+    
+    public Empreendedor buscarPorCpf(String cpf) {
+        return (Empreendedor) buscarObjetoCriteria("cpf",cpf, Empreendedor.class);
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Deletar">
