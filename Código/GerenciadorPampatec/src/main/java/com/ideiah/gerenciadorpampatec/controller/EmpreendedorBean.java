@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
