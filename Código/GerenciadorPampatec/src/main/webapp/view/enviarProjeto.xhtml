@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
         <h:outputScript library="js" name="formulario.js"/>
@@ -10,6 +11,7 @@
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <title>Cadastro Plano de Negócio</title>
@@ -34,14 +36,32 @@
                         <div class="col-md-12" id="">
                             <b>Empresa/Projeto</b><br/>
                             Nome da Empresa ou do Projeto
-                            <h:inputText class="form-control"></h:inputText>
+                            <h:inputText class="form-control" value="#{projetoBean.projeto.nome}"></h:inputText>
                             <br/>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Empreendedores</b><br/>
                             Informe os nomes de quem está propondo o empreendimento:
-                            <h:inputText class="form-control"></h:inputText>
                             <br/>
+                            <p:autoComplete class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}"></p:autoComplete>
+                            <br/><br/>
+                            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{car.id}" />
+                                </p:column>
+
+                                <p:column headerText="Year">
+                                    <h:outputText value="#{car.year}" />
+                                </p:column>
+
+                                <p:column headerText="Brand">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+
+                                <p:column headerText="Color">
+                                    <h:outputText value="#{car.color}" />
+                                </p:column>
+                            </p:dataTable>
                         </div>
                         <div class="col-md-8" id="">
                             <b>Rua</b><h:inputText class="form-control"></h:inputText>
@@ -68,7 +88,7 @@
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="proximo2" class="btn btn-default" onclick="exibeSegundaParte()">Próximo →</button>
-                        </div>
+                    </div>
                 </div>
 
                 <!-- Fim da primeira parte do formulário -->
@@ -121,32 +141,32 @@
                         <div class="col-md-12">
                             <b>Relações com clientes</b><br/>
                             Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Parcerias chave</b><br/>
                             Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Canais</b><br/>
                             Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Recursos principais</b><br/>
                             Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Concorrentes</b><br/>
                             Quem são nossos concorrentes? como trabalham?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                     </h:form>
                     <div class="col-md-3"><br />
@@ -186,44 +206,44 @@
                         <div class="col-md-12">
                             <b>Tecnologia e processos (não poluentes)</b><br/>
                             Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Potencial de inovação tecnológica</b><br/>
                             Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Aplicações</b><br/>
                             A quem se aplica? como? de que maneira?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Dificuldades esperadas</b><br/>
                             Quais são nossas principais limitações?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Interação entre empresa e Universidade</b><br/>
                             Em que sentido seremos parceiros da Universidade? 
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Interação entre empresa, comunidade e governo</b><br/>
                             Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
                             Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                     </h:form>
                     <div class="col-md-3">
@@ -249,32 +269,32 @@
                         <div class="col-md-12">
                             <b>Formação de sócios</b><br/>
                             Cursos, Tecnólogos, Graduação, Pós-graduação, ...
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Experiência profissional dos sócios</b><br/>
                             Já trabalhamos em áreas afim ao projeto?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Competências dos sócios nas áreas técnica, administrativa e comercial</b><br/>
                             Qual a experiência nos produtos ou serviços que serão comercializados? Em formação de equipes? Vendas?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Descrição da participação acionária</b><br/>
                             Haverão sócios? Quanto de participação terão?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Potencial de geração de emprego e renda</b><br/>
                             Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                     </h:form>
                     <div class="col-md-3">
@@ -300,32 +320,32 @@
                         <div class="col-md-12">
                             <b>Fontes de receita</b><br/>
                             Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Estrutura de custos</b><br/>
                             Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Investimento inicial</b><br/>
                             Quanto de recurso será necessário para iniciar?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Custos fixos</b><br/>
                             Salários, Aluguel...
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Custos variáveis</b><br/>
                             Impostos, combustível, matéria-prima... 
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
                         </div>
                     </h:form>
                     <div class="col-md-3">

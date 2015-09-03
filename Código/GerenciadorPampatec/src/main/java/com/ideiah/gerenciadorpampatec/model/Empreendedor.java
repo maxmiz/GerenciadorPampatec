@@ -5,6 +5,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -212,5 +213,14 @@ public class Empreendedor implements java.io.Serializable {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    /**
+     * Busca os empreendedores no banco.
+     * @return lista de empreendedores cadastrados.
+     */
+    public static List<Empreendedor> retornarEmpreendedores(){
+        empreededorDao = new EmpreededorDao();
+        return empreededorDao.buscar();
     }
 }

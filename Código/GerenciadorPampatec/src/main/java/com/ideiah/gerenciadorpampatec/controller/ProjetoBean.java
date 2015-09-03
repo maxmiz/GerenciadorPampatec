@@ -7,11 +7,14 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Endereco;
 import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -19,7 +22,7 @@ import javax.faces.bean.ViewScoped;
  *
  * @author Pedro
  */
-@ManagedBean(name = "candidatoBean")
+@ManagedBean(name = "projetoBean")
 @ViewScoped
 public class ProjetoBean {
     private Projeto projeto;
@@ -29,6 +32,9 @@ public class ProjetoBean {
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
     private Custo custo;
+    private String emailEmpreendedor;
+    private List<Empreendedor> listaEmpreendedor;
+    private List<Empreendedor> empreedendoresAdicionados;
     
     public ProjetoBean(){
         projeto = new Projeto();
@@ -38,6 +44,19 @@ public class ProjetoBean {
         produtoOuSevico = new Produtoouservico();
         planoFinanceiro = new Planofinanceiro();
         custo = new Custo();
+        listaEmpreendedor = Empreendedor.retornarEmpreendedores();
+    }
+    
+    public List<String> completarEmpreendedor(String busca){
+        List<String> listaFiltrada = new ArrayList<>();
+        
+        for (Empreendedor empreendedor : listaEmpreendedor) {
+            if(empreendedor.getEmail().toLowerCase().startsWith(busca)) {
+                listaFiltrada.add(empreendedor.getEmail());
+            }
+        }
+         
+        return listaFiltrada;
     }
 
     /**
@@ -136,5 +155,19 @@ public class ProjetoBean {
      */
     public void setCusto(Custo custo) {
         this.custo = custo;
+    }
+
+    /**
+     * @return the emailEmpreendedor
+     */
+    public String getEmailEmpreendedor() {
+        return emailEmpreendedor;
+    }
+
+    /**
+     * @param emailEmpreendedor the emailEmpreendedor to set
+     */
+    public void setEmailEmpreendedor(String emailEmpreendedor) {
+        this.emailEmpreendedor = emailEmpreendedor;
     }
 }
