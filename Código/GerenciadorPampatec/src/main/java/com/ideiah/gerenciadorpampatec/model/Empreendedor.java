@@ -1,7 +1,7 @@
 package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
-import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,11 +23,12 @@ public class Empreendedor implements java.io.Serializable {
     private String competencia;
     private String participacaoAcionaria;
     private Set projetos = new HashSet(0);
-    private static EmpreededorDao empreededorDao;
+    private static EmpreendedorDao empreendedorDao;
 
     public Empreendedor() {
-        empreededorDao = new EmpreededorDao();
+        empreendedorDao = new EmpreendedorDao();
     }
+    
 
     public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String cpf, String email, String formacao, String senha) {
         this.idEmpreendedor = idEmpreendedor;
@@ -37,7 +38,7 @@ public class Empreendedor implements java.io.Serializable {
         this.email = email;
         this.formacao = formacao;
         this.senha = senha;
-        empreededorDao = new EmpreededorDao();
+        empreendedorDao = new EmpreendedorDao();
 
     }
 
@@ -53,6 +54,14 @@ public class Empreendedor implements java.io.Serializable {
         this.competencia = competencia;
         this.participacaoAcionaria = participacaoAcionaria;
         this.projetos = projetos;
+        this.senha = senha;
+    }
+    
+    public Empreendedor(String nome, String cpf, String email, String telefone, String senha){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
         this.senha = senha;
     }
 
@@ -161,16 +170,23 @@ public class Empreendedor implements java.io.Serializable {
     /*
     *
     */
-    public void realizarCadastro(){
-        empreededorDao.salvar(this);
+    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo){
+        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
+        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
+        if (retorno == true) {
+            empreendedorDao.salvar(empreendedorNovo);
+        }
+        
     }
     
-    public static ArrayList<Empreendedor> buscaEmpreendedores(){
-        return empreededorDao.buscar();
+    public Empreendedor buscarPorEmail(String email) {
+        return null;
+        
     }
+    
     
     public Empreendedor buscarPorCpf(String user){
-        return empreededorDao.buscarPorCpf(user);
+        return empreendedorDao.buscarPorCpf(user);
     }
 
 }

@@ -9,13 +9,13 @@ import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 
 /**
  *
  * @author AugustoCesar
  */
-@ManagedBean (name = "empreendedorBean")
+@ManagedBean(name = "empreendedorBean")
 @SessionScoped
 public class EmpreendedorBean {
 
@@ -26,7 +26,8 @@ public class EmpreendedorBean {
     private String cpf;
     private String telefone;
     private String email;
-//    private static Empreendedor empreendedor;
+    private static Empreendedor empreendedor;
+
     public String getOutcome() {
         return outcome;
     }
@@ -42,6 +43,7 @@ public class EmpreendedorBean {
     public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
+
     /**
      * @param u usuário que será adicionado na sessão
      */
@@ -50,8 +52,12 @@ public class EmpreendedorBean {
 //    }
 
     public void chamaCadastro() {
-       
+        System.out.println("Entrou no CHAMA CADASTRO da Bean");
+        Empreendedor empreendedorNovo = new Empreendedor(nome, cpf, email, telefone, senhaInput);
+        empreendedor = new Empreendedor();
+        empreendedor.cadastrarEmpreendedor(empreendedorNovo);
     }
+    
 
 //    public void chamaLogin() {
 //        empreendedor.fazLogin();

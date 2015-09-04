@@ -17,32 +17,47 @@
             <div class="col-md-6 form-horizontal well bs-component">
                 <h1>Realize seu cadastro</h1>
                 <div id="empreendedorLogin">
-                    <legend>Cadastrar</legend>
+                    <legend>Dados Cadastrais</legend>
                     <h:form title="cadastroEmpreendedor">
                         <div class="col-md-12">
-                            Nome<h:inputText class="form-control"></h:inputText>
+                            Nome<h:inputText class="form-control" value="#{empreendedorBean.nome}"></h:inputText>
                         </div>
                         <div class="col-md-12">
-                            CPF<h:inputText class="form-control"></h:inputText>
+                            CPF<h:inputText class="form-control" value="#{empreendedorBean.cpf}"></h:inputText>
                         </div>
                         <div class="col-md-8">
-                            E-mail<h:inputText class="form-control"></h:inputText>
+                            E-mail<h:inputText class="form-control" value="#{empreendedorBean.email}"></h:inputText>
                         </div>
                         <div class="col-md-4">
-                            Telefone<h:inputText class="form-control"></h:inputText>
+                            Telefone<h:inputText class="form-control" value="#{empreendedorBean.telefone}"></h:inputText>
                         </div>
                         <div class="col-md-6">
-                            Senha<h:inputSecret class="form-control" title="senha"></h:inputSecret>
+                            Senha<h:inputSecret class="form-control" title="senha" value="#{empreendedorBean.senhaInput}"></h:inputSecret>
                         </div> 
                         <div class="col-md-6">
                             Confirme sua senha<h:inputSecret class="form-control" title="confirmaSenha"></h:inputSecret>
                             <br/>
                         </div> 
-                        <div class="col-md-12 modal-footer">
-                            <h:button class="btn btn-danger" value="Voltar"></h:button>
-                            <h:button class="btn btn-success" value="Enviar dados para Cadastro" onclick="#{empreendedorBean.chamaCadastro()}"></h:button>
+                        
+                        <legend>Endereço</legend>
+                        
+                        <div class="col-md-9">
+                            Rua<h:inputText class="form-control" value=""></h:inputText>
                         </div>
-
+                        <div class="col-md-3">
+                            Número<h:inputText class="form-control" value=""></h:inputText>
+                        </div>
+                        <div class="col-md-6">
+                            Bairro<h:inputText class="form-control" value=""></h:inputText>
+                        </div>
+                        <div class="col-md-6">
+                            Complemento<h:inputText class="form-control" value=""></h:inputText>
+                        </div>
+                        
+                        <div class="col-md-12 modal-footer">
+                            <h:button class="btn btn-default" value="Voltar"></h:button>
+                            <h:commandButton class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}"></h:commandButton>
+                        </div>
                     </h:form>
                 </div>
             </div>

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Pedro
  */
-public class EmpreededorDao extends Dao {
+public class EmpreendedorDao extends Dao {
 
 //<editor-fold defaultstate="collapsed" desc="Salvar">
     public boolean salvar(Empreendedor empreendedor) {
@@ -28,7 +28,29 @@ public class EmpreededorDao extends Dao {
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
-
+    
+    /*
+    * Verificação se o email e o nome já estão 
+    * cadastrados no sistema.
+    */
+    public boolean buscarDados(String email, String nome){
+        System.out.println("Entrou na BuscarDados na DAO");
+        boolean resultado = true;
+        //TRUE -> Não está cadastrado
+        //FALSE -> Está cadastrado
+        
+        for (int i = 0; i < this.buscar().size(); i++) {
+            if (this.buscar().get(i).getEmail() == email || this.buscar().get(i).getNome() == nome) {
+                resultado = false;
+            } else {
+                resultado = true;
+            }
+            return resultado;
+        }
+        return resultado;
+    }
+    
+    
     public Empreendedor buscarPorCpf(String cpf) {
 
         System.out.println("ouo");
@@ -43,7 +65,7 @@ public class EmpreededorDao extends Dao {
         }
 
     }
-
+    
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
