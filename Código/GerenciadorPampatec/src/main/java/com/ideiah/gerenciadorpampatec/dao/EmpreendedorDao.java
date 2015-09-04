@@ -20,8 +20,8 @@ public class EmpreendedorDao extends Dao {
         return super.salvar(empreendedor);
     }
 //</editor-fold>
-    
-    public boolean salvarEndereco(Endereco endereco){
+
+    public boolean salvarEndereco(Endereco endereco) {
         return super.salvar(endereco);
     }
 
@@ -33,17 +33,17 @@ public class EmpreendedorDao extends Dao {
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
-    
+
     /*
-    * Verificação se o email e o nome já estão 
-    * cadastrados no sistema.
-    */
-    public boolean buscarDados(String email, String nome){
+     * Verificação se o email e o nome já estão 
+     * cadastrados no sistema.
+     */
+    public boolean buscarDados(String email, String nome) {
         System.out.println("Entrou na BuscarDados na DAO");
         boolean resultado = true;
         //TRUE -> Não está cadastrado
         //FALSE -> Está cadastrado
-        
+
         for (int i = 0; i < this.buscar().size(); i++) {
             if (this.buscar().get(i).getEmail() == email || this.buscar().get(i).getNome() == nome) {
                 resultado = false;
@@ -54,8 +54,7 @@ public class EmpreendedorDao extends Dao {
         }
         return resultado;
     }
-    
-    
+
     public Empreendedor buscarPorCpf(String cpf) {
 
         System.out.println("ouo");
@@ -70,7 +69,13 @@ public class EmpreendedorDao extends Dao {
         }
 
     }
-    
+
+    public Empreendedor buscarPorEmail(String email) {
+
+        return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
+
+    }
+
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
@@ -85,6 +90,7 @@ public class EmpreendedorDao extends Dao {
     }
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
+
     public
             boolean deletar(int codigo) {
         return excluir(codigo, Empreendedor.class

@@ -217,7 +217,7 @@ public class Empreendedor implements java.io.Serializable {
     }
 
     public Empreendedor buscarPorEmail(String email) {
-        return null;
+        return empreendedorDao.buscarPorEmail(email);
 
     }
 

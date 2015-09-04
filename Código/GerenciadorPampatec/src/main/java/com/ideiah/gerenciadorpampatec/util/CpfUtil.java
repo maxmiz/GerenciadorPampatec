@@ -9,7 +9,7 @@ package com.ideiah.gerenciadorpampatec.util;
  *
  * @author AugustoCesar
  */
-public final class Auxiliar {
+public final class CpfUtil {
 
     private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 

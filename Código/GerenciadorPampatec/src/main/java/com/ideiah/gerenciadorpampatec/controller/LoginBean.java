@@ -5,9 +5,10 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.util.Auxiliar;
+import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -38,28 +39,34 @@ public class LoginBean {
     public String fazLogin(String user, String senha) {
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+//            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
             if (soContemNumeros(user)) {
-                if (Auxiliar.isValidCPF(user)) {
+                if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
                     FacesUtil.addErrorMessage("CPF Invalido");
+                    System.out.println("cpf invalido");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
             }
+//            senha = CriptografiaUtil.md5(senha);
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
-                session.setAttribute("empreendedor", empreendedor);
+                System.out.println("Logado");
+//                session.setAttribute("empreendedor", empreendedor);
                 return "success";
 
             } else {
                 FacesUtil.addSuccessMessage("Senha incorreta");
+                System.out.println("senha incorreta");
+                System.out.println(senha);
                 return "failure";
             }
         } catch (NullPointerException nullpointer) {
             FacesUtil.addErrorMessage("Empreendedor não cadastro");
+            System.out.println("Empreendedor não cadastro");
             return "failure";
         }
 
