@@ -6,7 +6,7 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.util.Auxiliar;
-import com.ideiah.gerenciadorpampatec.dao.EmpreededorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.mysql.jdbc.Util;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class LoginBean {
 
-    private static EmpreededorDao empreededorDao;
+    private static EmpreendedorDao empreededorDao;
     private String user; //pode ser email ou senha
     private String senha;
 //    Empreendedor empreendedor = new Empreendedor();

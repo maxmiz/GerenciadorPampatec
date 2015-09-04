@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.Endereco;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,10 @@ public class EmpreendedorDao extends Dao {
         return super.salvar(empreendedor);
     }
 //</editor-fold>
+    
+    public boolean salvarEndereco(Endereco endereco){
+        return super.salvar(endereco);
+    }
 
 //<editor-fold defaultstate="collapsed" desc="Buscar">
     public ArrayList<Empreendedor> buscar() {

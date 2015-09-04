@@ -206,10 +206,11 @@ public class Empreendedor implements java.io.Serializable {
      *
      */
 
-    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
+    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo, Endereco endereco) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         if (retorno == true) {
+            empreendedorDao.salvar(endereco);
             empreendedorDao.salvar(empreendedorNovo);
         }
 

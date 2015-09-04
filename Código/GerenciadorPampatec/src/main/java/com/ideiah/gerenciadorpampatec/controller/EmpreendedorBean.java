@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.model.Endereco;
 
 /**
  *
@@ -54,9 +55,13 @@ public class EmpreendedorBean {
 
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
+        
         Empreendedor empreendedorNovo = new Empreendedor(nome, cpf, email, telefone, senhaInput);
         empreendedor = new Empreendedor();
-        empreendedor.cadastrarEmpreendedor(empreendedorNovo);
+        
+        Endereco endereco = new Endereco();
+        
+        empreendedor.cadastrarEmpreendedor(empreendedorNovo, endereco);
     }
     
 
