@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Pedro
  */
-public class EmpreededorDao extends Dao{
+public class EmpreededorDao extends Dao {
 
 //<editor-fold defaultstate="collapsed" desc="Salvar">
     public boolean salvar(Empreendedor empreendedor) {
@@ -28,16 +28,18 @@ public class EmpreededorDao extends Dao{
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
-    
-    public Empreendedor buscarPorCpf(String cpf) {
-        return (Empreendedor) buscarObjetoCriteria("cpf",cpf, Empreendedor.class);
+
+    public Empreendedor buscarPorCpfOUEmail(String tipo, String valor) {
+        return (Empreendedor) buscarObjetoCriteria(tipo, valor, Empreendedor.class);
+    }
+
+//</editor-fold>
+//<editor-fold defaultstate="collapsed" desc="Deletar">
+    public
+            boolean deletar(int codigo) {
+        return excluir(codigo, Empreendedor.class
+        );
     }
 //</editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="Deletar">
-    public boolean deletar(int codigo) {
-        return excluir(codigo, Empreendedor.class);
-    }
-//</editor-fold>
-    
 }

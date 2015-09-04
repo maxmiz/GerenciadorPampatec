@@ -169,38 +169,6 @@ public class Empreendedor implements java.io.Serializable {
         }
         return false;
     }
-    
-    public void fazLogin(){
-        
-    }
-    
-    public void fazLogin(String cpf, String senha) {
-        try{
-            System.out.println("chegou");
-        
-        Empreendedor empreendedor = empreededorDao.buscarPorCpf(cpf);
-            System.out.println(empreendedor.getEmail() +"   "+ empreendedor.getSenha() );
-        if(empreendedor.getSenha().equals(senha)){
-                System.out.println("senha correta");
-            }
-            else{
-                System.out.println("senha incorreta");
-            }
-        }catch(NullPointerException nullpointer){
-            System.out.println("Esse empreendedor não existe!");
-//            return false;
-        }
-//        ArrayList<Empreendedor> empreendedores = empreededorDao.buscar();
-//        for (int i = 0; i < empreendedores.size(); i++) {
-//            if(empreendedores.get(i).getEmail().equals(login)){
-//                System.out.println("achou");
-//            }
-//        }
-//        System.out.println(login + "   " + senha);
-
-        
-    }
-
     /**
      * @return the senha
      */
@@ -222,5 +190,23 @@ public class Empreendedor implements java.io.Serializable {
     public static List<Empreendedor> retornarEmpreendedores(){
         empreededorDao = new EmpreededorDao();
         return empreededorDao.buscar();
+    }
+    /*
+    *
+    */
+    public void realizarCadastro(){
+        empreededorDao.salvar(this);
+    }
+    
+    public static ArrayList<Empreendedor> buscaEmpreendedores(){
+        return empreededorDao.buscar();
+    }
+    
+    public Empreendedor buscarPorCpf(String user){
+        return empreededorDao.buscarPorCpfOUEmail("cpf",user);
+    }
+
+    public Empreendedor buscarPorEmail(String user) {
+        return empreededorDao.buscarPorCpfOUEmail("email",user);
     }
 }

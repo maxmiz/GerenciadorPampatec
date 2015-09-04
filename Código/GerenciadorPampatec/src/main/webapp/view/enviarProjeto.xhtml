@@ -7,7 +7,6 @@
     <h:head>
 
         <h:outputScript library="js" name="formulario.js"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
@@ -43,7 +42,7 @@
                             <b>Empreendedores</b><br/>
                             Informe os nomes de quem está propondo o empreendimento:
                             <br/>
-                            <p:autoComplete class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}"></p:autoComplete>
+                            <p:autoComplete id="autocomplete" var="c" itemLabel="#{c.query}" itemValue="#{c}" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}"/>
                             <br/><br/>
                             <p:dataTable var="car" value="#{dtBasicView.cars}">
                                 <p:column headerText="Id">
