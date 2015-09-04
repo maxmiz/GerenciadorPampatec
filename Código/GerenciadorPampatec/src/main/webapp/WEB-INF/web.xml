@@ -19,6 +19,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
+        <!--<welcome-file>faces/view/cadastroEmpreendedor.xhtml</welcome-file>-->
         <welcome-file>faces/loginEmpreendedor.xhtml</welcome-file>
     </welcome-file-list>
     <filter>
@@ -29,4 +30,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/faces/view/cadastroEmpreendedor.xhtml</url-pattern>
     </filter-mapping>-->
+        <!--<url-pattern>/faces/view/cadastroEmpreendedor.xhtml</url-pattern>-->
+        <url-pattern>/faces/view/*</url-pattern>
+    </filter-mapping>
 </web-app>

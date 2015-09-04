@@ -7,11 +7,11 @@
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
-        </f:facet>
+        </f:facet>    
 
         <title>Acessar o Sistema - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
     </h:head>
     <h:body>
 
@@ -23,11 +23,8 @@
                 <h:form>
                     <div class="col-md-12">
                         Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
-                        <!--E-mail<h:inputText class="form-control" id="emailInput" value="#//{empreendedorBean.userInput}"></h:inputText>-->
-                        <!--E-mail<h:inputText class="form-control" id="campuserInput" value="#//{loginBean.user}"></h:inputText>-->
                     </div>
                     <div class="col-md-12">
-                        <!--Senha<h:inputSecret class="form-control" id="senhaInput" value="#//{empreendedorBean.senhaInput}"></h:inputSecret>-->
                         Senha<h:inputSecret class="form-control" id="senhaInput" value="#{loginBean.senha}"></h:inputSecret>
                     </div> 
                     <div class="col-md-12">
@@ -35,11 +32,8 @@
                         <br/>
                     </div> 
                     <div class="col-md-12 modal-footer">
-                        <!--<h:commandButton class="btn btn-success" value="Acessar" action="#//{empreendedorBean.submit()}"></h:commandButton>-->
                         <h:commandButton class="btn btn-success" value="Acessar" action="#{loginBean.submit()}"></h:commandButton>
-                        <h:commandButton class="btn btn-verificar" value="verificar" action="#{loginBean.verificar()}"></h:commandButton>
                     </div>
-
                 </h:form>
             </div>
         </div>
