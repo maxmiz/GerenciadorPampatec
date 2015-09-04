@@ -26,8 +26,9 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.LoginFilter</filter-class>
     </filter>
-<!--    <filter-mapping>
+    <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/cadastroEmpreendedor.xhtml</url-pattern>
-    </filter-mapping>-->
+        <!--<url-pattern>/faces/view/cadastroEmpreendedor.xhtml</url-pattern>-->
+        <url-pattern>/faces/view/*</url-pattern>
+    </filter-mapping>
 </web-app>
