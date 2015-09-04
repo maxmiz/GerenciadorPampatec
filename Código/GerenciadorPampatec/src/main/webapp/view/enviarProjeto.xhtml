@@ -42,7 +42,7 @@
                             <b>Empreendedores</b><br/>
                             Informe os nomes de quem está propondo o empreendimento:
                             <br/>
-                            <p:autoComplete id="autocomplete" var="c" itemLabel="#{c.query}" itemValue="#{c}" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}"/>
+                            <p:autoComplete id="autocomplete" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}"/>
                             <br/><br/>
                             <p:dataTable var="car" value="#{dtBasicView.cars}">
                                 <p:column headerText="Id">
