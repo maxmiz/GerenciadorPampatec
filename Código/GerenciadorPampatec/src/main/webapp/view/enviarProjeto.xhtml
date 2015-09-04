@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <h:outputScript library="js" name="formulario.js"/>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
+        </f:facet>
+
+        <title>Cadastro Plano de Negócio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    </h:head>
+    <h:body>
+
+        <div class="col-md-3"> </div>
+
+        <div class="col-md-6 form-horizontal well bs-component">
+            <h1>Cadastro - Plano de Negócio</h1>
+            <div>
+
+                <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto
+                Referente ao CONTATO -->
+
+                <div id="formularioParte01">
+                    <h:form>
+                        <legend id="subTitulo">Contatos</legend>
+                        <div class="col-md-12" id="">
+                            <b>Empresa/Projeto</b><br/>
+                            Nome da Empresa ou do Projeto
+                            <h:inputText class="form-control" value="#{projetoBean.projeto.nome}"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Empreendedores</b><br/>
+                            Informe os nomes de quem está propondo o empreendimento:
+                            <br/>
+                            <p:autoComplete id="autocomplete" var="c" itemLabel="#{c.query}" itemValue="#{c}" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}"/>
+                            <br/><br/>
+                            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{car.id}" />
+                                </p:column>
+
+                                <p:column headerText="Year">
+                                    <h:outputText value="#{car.year}" />
+                                </p:column>
+
+                                <p:column headerText="Brand">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+
+                                <p:column headerText="Color">
+                                    <h:outputText value="#{car.color}" />
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                        <div class="col-md-8" id="">
+                            <b>Rua</b><h:inputText class="form-control"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-4" id="">
+                            <b>Número</b><h:inputText class="form-control"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-8" id="">
+                            <b>E-mail</b>
+                            <h:inputText class="form-control"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-4" id="">
+                            <b>Telefone</b>
+                            <h:inputText class="form-control"></h:inputText>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="proximo2" class="btn btn-default" onclick="exibeSegundaParte()">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Fim da primeira parte do formulário -->
+
+                <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto
+                Referente ao NEGÓCIO -->
+
+                <div id="formularioParte02" style="display: none">
+                    <h:form>
+                        <legend>O Negócio</legend>
+                        <div class="col-md-12" id="">
+                            <b>Segmento de Clientes</b><br/>
+                            Para quem criamos valor? Quais são os nossos clientes mais importantes? 
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Proposta de Valor</b><br/>
+                            Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Atividades Chave</b><br/>
+                            Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="anterior2" class="btn btn-default" onclick="retornaPrimeiraParte()">← Anterior</button>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3  text-right">
+                        <br/>
+                        <button id="proximo3" class="btn btn-default" onclick="exibeTerceiraParte()">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Fim da segunda parte do formulário -->
+
+
+                <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto
+                Referente a ANÁLISE DE MERCADO -->
+
+                <div id="formularioParte03" style="display: none">
+                    <h:form>
+                        <legend id="subTitulo">Análise de Mercado</legend>
+                        <div class="col-md-12">
+                            <b>Relações com clientes</b><br/>
+                            Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Parcerias chave</b><br/>
+                            Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Canais</b><br/>
+                            Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Recursos principais</b><br/>
+                            Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Concorrentes</b><br/>
+                            Quem são nossos concorrentes? como trabalham?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3"><br />
+                        <button id="anterior3" class="btn btn-default" onclick="retornaSegundaParte()">← Anterior</button>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="proximo4" class="btn btn-default" onclick="exibeQuartaParte()">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Fim da terceira parte do formulário -->
+
+
+
+                <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto
+                Referente ao PRODUTO DE SERVIÇO -->
+
+                <div id="formularioParte04" style="display: none">
+                    <h:form>
+                        <legend id="subTitulo">Produto de Serviço</legend>
+                        <div class="col-md-12">
+                            <b>Estágio de evolução </b><br/>
+                            Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                            <input type="radio" name="estagio" value="" /> Ideia Básica <br/>
+                            <input type="radio" name="estagio" value="" /> Projeto básico <br/>
+                            <input type="radio" name="estagio" value="" /> Projeto detalhado <br/>
+                            <input type="radio" name="estagio" value="" /> Protótipo desenvolvido <br/>
+                            <input type="radio" name="estagio" value="" /> Em teste no mercado <br/>
+                            <input type="radio" name="estagio" value="" /> Clientes Pagando <br/>
+                            <input type="radio" name="estagio" value="" /> Outro:
+                            <h:inputText class="form-control"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Tecnologia e processos (não poluentes)</b><br/>
+                            Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Potencial de inovação tecnológica</b><br/>
+                            Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Aplicações</b><br/>
+                            A quem se aplica? como? de que maneira?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Dificuldades esperadas</b><br/>
+                            Quais são nossas principais limitações?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Interação entre empresa e Universidade</b><br/>
+                            Em que sentido seremos parceiros da Universidade? 
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Interação entre empresa, comunidade e governo</b><br/>
+                            Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
+                            Quanto de espaço será necessário? Mobiliário? Equipamentos?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="anterior4" class="btn btn-default" onclick="retornaTerceiraParte()">← Anterior</button>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="proximo5" class="btn btn-default" onclick="exibeQuintaParte()">Próximo →</button>
+                    </div>
+                </div>
+                <!-- Fim da quarta parte do formulário -->
+
+
+
+                <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
+                Referente a GESTÃO DE PESSOAS -->
+                <div id="formularioParte05" style="display: none">
+                    <h:form>
+                        <legend id="subTitulo">Gestão de Pessoas</legend>
+                        <div class="col-md-12">
+                            <b>Formação de sócios</b><br/>
+                            Cursos, Tecnólogos, Graduação, Pós-graduação, ...
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Experiência profissional dos sócios</b><br/>
+                            Já trabalhamos em áreas afim ao projeto?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Competências dos sócios nas áreas técnica, administrativa e comercial</b><br/>
+                            Qual a experiência nos produtos ou serviços que serão comercializados? Em formação de equipes? Vendas?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Descrição da participação acionária</b><br/>
+                            Haverão sócios? Quanto de participação terão?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Potencial de geração de emprego e renda</b><br/>
+                            Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="anterior5" class="btn btn-default" onclick="retornaQuartaParte()">← Anterior</button>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="proximo6" class="btn btn-default" onclick="exibeSextaParte()">Próximo →</button>
+                    </div>
+                </div>
+                <!-- Fim da quinta parte do formulário -->
+
+
+
+                <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
+                Referente ao PLANO FINANCEIRO -->
+                <div id="formularioParte06" style="display: none">
+                    <h:form>
+                        <legend id="subTitulo">Plano de Financeiro</legend>
+                        <div class="col-md-12">
+                            <b>Fontes de receita</b><br/>
+                            Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Estrutura de custos</b><br/>
+                            Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Investimento inicial</b><br/>
+                            Quanto de recurso será necessário para iniciar?
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Custos fixos</b><br/>
+                            Salários, Aluguel...
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Custos variáveis</b><br/>
+                            Impostos, combustível, matéria-prima... 
+                            <h:inputTextarea class="form-control"></h:inputTextarea>
+                            <br/>
+                        </div>
+                    </h:form>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="anterior6" class="btn btn-default" onclick="retornaQuintaParte()">← Anterior</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-5 text-right">
+                        <br/>
+                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                        <button id="enviar" class="btn btn-success" onclick="">Enviar Plano de Negócio</button>
+                    </div>
+                </div>
+                <!-- Fim da sexta parte do formulário -->
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-3"></div>
+
+    </h:body>
+</html>
+

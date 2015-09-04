@@ -77,18 +77,13 @@ public class EmpreendedorDao extends Dao {
             }
         }
         return true;
-
     }
-
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
-
-public 
-
-boolean deletar(int codigo) {
-        return excluir(codigo, Empreendedor.class  
-
-);
+    public
+            boolean deletar(int codigo) {
+        return excluir(codigo, Empreendedor.class
+        );
     }
 //</editor-fold>
 

@@ -1,9 +1,11 @@
 package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,12 +25,14 @@ public class Empreendedor implements java.io.Serializable {
     private String competencia;
     private String participacaoAcionaria;
     private Set projetos = new HashSet(0);
+
     private static EmpreendedorDao empreendedorDao;
+    private static ProjetoDao projetoDao;
 
     public Empreendedor() {
         empreendedorDao = new EmpreendedorDao();
+        projetoDao = new ProjetoDao();
     }
-    
 
     public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String cpf, String email, String formacao, String senha) {
         this.idEmpreendedor = idEmpreendedor;
@@ -39,10 +43,30 @@ public class Empreendedor implements java.io.Serializable {
         this.formacao = formacao;
         this.senha = senha;
         empreendedorDao = new EmpreendedorDao();
-
+        projetoDao = new ProjetoDao();
     }
 
     public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
+        this.idEmpreendedor = idEmpreendedor;
+        this.endereco = endereco;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.email = email;
+        this.formacao = formacao;
+        empreendedorDao = new EmpreendedorDao();
+        projetoDao = new ProjetoDao();
+    }
+
+    public Empreendedor(String nome, String cpf, String email, String telefone, String senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
+
+    public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
         this.idEmpreendedor = idEmpreendedor;
         this.endereco = endereco;
         this.nome = nome;
@@ -54,15 +78,8 @@ public class Empreendedor implements java.io.Serializable {
         this.competencia = competencia;
         this.participacaoAcionaria = participacaoAcionaria;
         this.projetos = projetos;
-        this.senha = senha;
-    }
-    
-    public Empreendedor(String nome, String cpf, String email, String telefone, String senha){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
+        empreendedorDao = new EmpreendedorDao();
+        projetoDao = new ProjetoDao();
     }
 
     public int getIdEmpreendedor() {
@@ -153,6 +170,15 @@ public class Empreendedor implements java.io.Serializable {
         this.projetos = projetos;
     }
 
+    public static boolean salvarProjeto(Projeto projeto) {
+        if (false) {
+
+        } else {
+
+        }
+        return false;
+    }
+
     /**
      * @return the senha
      */
@@ -166,26 +192,35 @@ public class Empreendedor implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
+    /**
+     * Busca os empreendedores no banco.
+     *
+     * @return lista de empreendedores cadastrados.
+     */
+    public static List<Empreendedor> retornarEmpreendedores() {
+        empreendedorDao = new EmpreendedorDao();
+        return empreendedorDao.buscar();
+    }
     /*
-    *
-    */
-    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo){
+     *
+     */
+
+    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         if (retorno == true) {
             empreendedorDao.salvar(empreendedorNovo);
         }
-        
+
     }
-    
+
     public Empreendedor buscarPorEmail(String email) {
         return null;
-        
+
     }
-    
-    
-    public Empreendedor buscarPorCpf(String user){
+
+    public Empreendedor buscarPorCpf(String user) {
         return empreendedorDao.buscarPorCpf(user);
     }
 
