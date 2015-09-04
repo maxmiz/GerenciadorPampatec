@@ -14,6 +14,7 @@ import java.util.Set;
 public class Empreendedor implements java.io.Serializable {
 
     private int idEmpreendedor;
+    private int idEndereco;
     private String senha;
     private Endereco endereco;
     private String nome;
@@ -58,8 +59,9 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(String nome, String cpf, String email, String telefone, String senha) {
+    public Empreendedor(String nome, String formacao, String cpf, String email, String telefone, String senha) {
         this.nome = nome;
+        this.formacao = formacao;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
@@ -209,8 +211,21 @@ public class Empreendedor implements java.io.Serializable {
     public void cadastrarEmpreendedor(Empreendedor empreendedorNovo, Endereco endereco) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
+        int idEndereco = 0;
         if (retorno == true) {
+            
+            String rua = endereco.getRua();
+            int numero = endereco.getNumero();
+            String bairro = endereco.getBairro();
+            String complemento = endereco.getComplemento();
+            
+            empreendedorNovo.setEndereco(endereco);
+            
             empreendedorDao.salvar(endereco);
+            idEndereco = empreendedorDao.buscarIdEndereco(rua, numero, bairro, complemento);
+//            
+            empreendedorNovo.setEndereco(empreendedorDao.buscarInderecoPorId(idEndereco));
+            
             empreendedorDao.salvar(empreendedorNovo);
         }
 
@@ -224,5 +239,20 @@ public class Empreendedor implements java.io.Serializable {
     public Empreendedor buscarPorCpf(String user) {
         return empreendedorDao.buscarPorCpf(user);
     }
+
+    /**
+     * @return the idEndereco
+     */
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    /**
+     * @param idEndereco the idEndereco to set
+     */
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
 
 }

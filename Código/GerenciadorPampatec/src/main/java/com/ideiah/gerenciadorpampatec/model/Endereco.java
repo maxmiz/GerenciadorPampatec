@@ -25,8 +25,15 @@ public class Endereco  implements java.io.Serializable {
     public Endereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
-    public Endereco(int idEndereco, String bairro, String rua, Integer numero, String complemento, Set empreendedors) {
-       this.idEndereco = idEndereco;
+    
+//    public Endereco(String rua, Integer numero, String bairro, String complemento){
+//        this.rua = rua;
+//        this.numero = numero;
+//        this.bairro = bairro;
+//        this.complemento = complemento;
+//    }
+    
+    public Endereco(String bairro, String rua, Integer numero, String complemento, Set empreendedors) {
        this.bairro = bairro;
        this.rua = rua;
        this.numero = numero;

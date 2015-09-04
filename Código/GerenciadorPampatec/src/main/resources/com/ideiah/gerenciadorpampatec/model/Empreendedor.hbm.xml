@@ -40,10 +40,10 @@
         </property>
         <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
-                <column name="Empreendedor_idEmpreendedor" not-null="true" />
+                <column name="Empreendedor_idEmpreendedor" />
             </key>
             <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Projeto">
-                <column name="Projeto_idProjeto" not-null="true" />
+                <column name="Projeto_idProjeto" />
             </many-to-many>
         </set>
     </class>

@@ -20,8 +20,8 @@ public class EmpreendedorDao extends Dao {
         return super.salvar(empreendedor);
     }
 //</editor-fold>
-    
-    public boolean salvarEndereco(Endereco endereco){
+
+    public boolean salvarEndereco(Endereco endereco) {
         return super.salvar(endereco);
     }
 
@@ -30,20 +30,24 @@ public class EmpreendedorDao extends Dao {
         return (ArrayList<Empreendedor>) buscarObjetos(Empreendedor.class);
     }
 
+    public ArrayList<Endereco> buscarEndereco() {
+        return (ArrayList<Endereco>) buscarObjetos(Endereco.class);
+    }
+
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
-    
+
     /*
-    * Verificação se o email e o nome já estão 
-    * cadastrados no sistema.
-    */
-    public boolean buscarDados(String email, String nome){
+     * Verificação se o email e o nome já estão 
+     * cadastrados no sistema.
+     */
+    public boolean buscarDados(String email, String nome) {
         System.out.println("Entrou na BuscarDados na DAO");
         boolean resultado = true;
         //TRUE -> Não está cadastrado
         //FALSE -> Está cadastrado
-        
+
         for (int i = 0; i < this.buscar().size(); i++) {
             if (this.buscar().get(i).getEmail() == email || this.buscar().get(i).getNome() == nome) {
                 resultado = false;
@@ -54,8 +58,28 @@ public class EmpreendedorDao extends Dao {
         }
         return resultado;
     }
+
+    public int buscarIdEndereco(String rua, int numero, String bairro, String complemento) {
+        int id = 0;
+        for (int i = 0; i < this.buscarEndereco().size(); i++) {
+            if ((this.buscarEndereco().get(i).getRua() == rua) && (this.buscarEndereco().get(i).getNumero() == numero) && (this.buscarEndereco().get(i).getBairro() == bairro) && (this.buscarEndereco().get(i).getComplemento() == complemento)) {
+                id = this.buscarEndereco().get(i).getIdEndereco();
+            }
+        }
+        return id;
+    }
     
-    
+    public Endereco buscarInderecoPorId(int id){
+        int i = 0;
+        for (i = 0; i < this.buscarEndereco().size(); i++) {
+            if (this.buscarEndereco().get(i).getIdEndereco() == id) {
+                return buscarEndereco().get(i);
+            }
+            return buscarEndereco().get(i);
+        }
+        return buscarEndereco().get(i);
+    }
+
     public Empreendedor buscarPorCpf(String cpf) {
 
         System.out.println("ouo");
@@ -70,7 +94,7 @@ public class EmpreendedorDao extends Dao {
         }
 
     }
-    
+
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
@@ -85,6 +109,7 @@ public class EmpreendedorDao extends Dao {
     }
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
+
     public
             boolean deletar(int codigo) {
         return excluir(codigo, Empreendedor.class
