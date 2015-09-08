@@ -24,6 +24,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "projetoBean")
 @ViewScoped
 public class ProjetoBean {
+
     private Projeto projeto;
     private Analiseemprego analiseEmprego;
     private Negocio negocio;
@@ -33,8 +34,8 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    
-    public ProjetoBean(){
+
+    public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
         negocio = new Negocio();
@@ -42,22 +43,35 @@ public class ProjetoBean {
         planoFinanceiro = new Planofinanceiro();
         custo = new Custo();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
+        empreedendoresAdicionados = new ArrayList<>();
     }
-    
-    public List<String> completarEmpreendedor(String busca){
+
+    public List<String> completarEmpreendedor(String busca) {
         List<String> listaFiltrada = new ArrayList<>();
-        
+
         for (Empreendedor empreendedor : getListaEmpreendedor()) {
-            if(empreendedor.getEmail().toLowerCase().startsWith(busca)) {
+            if (empreendedor.getEmail().toLowerCase().startsWith(busca)) {
                 listaFiltrada.add(empreendedor.getEmail());
             }
         }
-         
+
         return listaFiltrada;
     }
-    
-    public void adicionarEmpreendedor(){
-        
+
+    /**
+     * Adiciona o Empreendedor ao projeto.
+     */
+    public void adicionarEmpreendedor() {
+        for (Empreendedor empreendedor : listaEmpreendedor) {
+            if (empreendedor.getEmail().equals(emailEmpreendedor)) {
+                getEmpreedendoresAdicionados().add(empreendedor);
+                break;
+            }
+        }
+
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setEmail(emailEmpreendedor);
+        getEmpreedendoresAdicionados().add(empreendedor);
     }
 
     /**
@@ -170,5 +184,19 @@ public class ProjetoBean {
      */
     public void setListaEmpreendedor(List<Empreendedor> listaEmpreendedor) {
         this.listaEmpreendedor = listaEmpreendedor;
+    }
+
+    /**
+     * @return the empreedendoresAdicionados
+     */
+    public List<Empreendedor> getEmpreedendoresAdicionados() {
+        return empreedendoresAdicionados;
+    }
+
+    /**
+     * @param empreedendoresAdicionados the empreedendoresAdicionados to set
+     */
+    public void setEmpreedendoresAdicionados(List<Empreendedor> empreedendoresAdicionados) {
+        this.empreedendoresAdicionados = empreedendoresAdicionados;
     }
 }

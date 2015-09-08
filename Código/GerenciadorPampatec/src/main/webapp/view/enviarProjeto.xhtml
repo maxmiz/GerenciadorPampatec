@@ -50,13 +50,15 @@
                                     </p:autoComplete>
                                 </div>
                                 <div class="col-md-3">
-                                    <h:commandButton class="btn btn-default" value="Adicionar"/>
+                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
                                 </div>
                             </div>
                             <br/><br/>
-                            <h:dataTable var="car" styleClass="tabelaEmpreendedores" value="#{projetoBean.listaEmpreendedor}">
+                            <h:dataTable var="empreendedor" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
                                 <h:column>
-                                    <h:outputText value="#{car.nome}" />
+                                    <h:outputText value="#{empreendedor.email}" />
+                                </h:column>
+                                <h:column>
                                     <button class="btn btn-default">
                                         Deletar
                                     </button>
