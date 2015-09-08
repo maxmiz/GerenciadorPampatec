@@ -39,7 +39,7 @@ public class LoginBean {
     public String fazLogin(String user, String senha) {
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
@@ -51,11 +51,12 @@ public class LoginBean {
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
             }
-//            senha = CriptografiaUtil.md5(senha);
+           senha = CriptografiaUtil.md5(senha);
+            System.out.println(senha);
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-//                session.setAttribute("empreendedor", empreendedor);
+               session.setAttribute("empreendedor", empreendedor);
                 return "success";
 
             } else {
