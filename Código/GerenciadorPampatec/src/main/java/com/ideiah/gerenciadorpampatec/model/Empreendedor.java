@@ -16,7 +16,6 @@ public class Empreendedor implements java.io.Serializable {
     private int idEmpreendedor;
     private int idEndereco;
     private String senha;
-    private Endereco endereco;
     private String nome;
     private String telefone;
     private String cpf;
@@ -25,6 +24,10 @@ public class Empreendedor implements java.io.Serializable {
     private String experiencia;
     private String competencia;
     private String participacaoAcionaria;
+    private String bairro;
+    private String rua;
+    private Integer numero;
+    private String complemento;
     private Set projetos = new HashSet(0);
 
     private static EmpreendedorDao empreendedorDao;
@@ -35,9 +38,36 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String cpf, String email, String formacao, String senha) {
+    /**
+     * @return the empreededorDao
+     */
+    public static EmpreendedorDao getEmpreededorDao() {
+        return empreendedorDao;
+    }
+
+    /**
+     * @param aEmpreededorDao the empreededorDao to set
+     */
+    public static void setEmpreededorDao(EmpreendedorDao aEmpreededorDao) {
+        empreendedorDao = aEmpreededorDao;
+    }
+
+    /**
+     * @return the projetoDao
+     */
+    public static ProjetoDao getProjetoDao() {
+        return projetoDao;
+    }
+
+    /**
+     * @param aProjetoDao the projetoDao to set
+     */
+    public static void setProjetoDao(ProjetoDao aProjetoDao) {
+        projetoDao = aProjetoDao;
+    }
+
+    public Empreendedor(int idEmpreendedor, String nome, String cpf, String email, String formacao, String senha) {
         this.idEmpreendedor = idEmpreendedor;
-        this.endereco = endereco;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -47,9 +77,8 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
+    public Empreendedor(int idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
         this.idEmpreendedor = idEmpreendedor;
-        this.endereco = endereco;
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
@@ -59,18 +88,8 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(String nome, String formacao, String cpf, String email, String telefone, String senha) {
-        this.nome = nome;
-        this.formacao = formacao;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-    }
-
-    public Empreendedor(int idEmpreendedor, Endereco endereco, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
+    public Empreendedor(int idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
         this.idEmpreendedor = idEmpreendedor;
-        this.endereco = endereco;
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
@@ -90,14 +109,6 @@ public class Empreendedor implements java.io.Serializable {
 
     public void setIdEmpreendedor(int idEmpreendedor) {
         this.idEmpreendedor = idEmpreendedor;
-    }
-
-    public Endereco getEndereco() {
-        return this.endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -208,32 +219,26 @@ public class Empreendedor implements java.io.Serializable {
      *
      */
 
-    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo, Endereco endereco) {
+    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         int idEndereco = 0;
         if (retorno == true) {
-            
-            String rua = endereco.getRua();
-            int numero = endereco.getNumero();
-            String bairro = endereco.getBairro();
-            String complemento = endereco.getComplemento();
-            
-            empreendedorNovo.setEndereco(endereco);
-            
-            empreendedorDao.salvar(endereco);
-            idEndereco = empreendedorDao.buscarIdEndereco(rua, numero, bairro, complemento);
-//            
-            empreendedorNovo.setEndereco(empreendedorDao.buscarInderecoPorId(idEndereco));
-            
+
+            //String rua = endereco.getRua();
+            //int numero = endereco.getNumero();
+            //String bairro = endereco.getBairro();
+            //String complemento = endereco.getComplemento();
+            //empreendedorNovo.setEndereco(endereco);
+            //empreendedorDao.salvar(endereco);
+
             empreendedorDao.salvar(empreendedorNovo);
         }
 
     }
 
-    public Empreendedor buscarPorEmail(String email) {
-        return null;
-
+    public Empreendedor buscarPorEmail(String user) {
+        return empreendedorDao.buscarPorEmail(user);
     }
 
     public Empreendedor buscarPorCpf(String user) {
@@ -253,6 +258,72 @@ public class Empreendedor implements java.io.Serializable {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
+    /*
+    *
+     */
 
+    public void realizarCadastro() {
+        getEmpreededorDao().salvar(this);
+    }
+
+    public static ArrayList<Empreendedor> buscaEmpreendedores() {
+        return getEmpreededorDao().buscar();
+    }
+
+    /**
+     * @return the numero
+     */
+    public Integer getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
+     * @param complemento the complemento to set
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the rua
+     */
+    public String getRua() {
+        return rua;
+    }
+
+    /**
+     * @param rua the rua to set
+     */
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
 
 }

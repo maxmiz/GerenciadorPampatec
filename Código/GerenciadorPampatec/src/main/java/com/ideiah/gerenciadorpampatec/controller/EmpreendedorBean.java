@@ -11,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
-import com.ideiah.gerenciadorpampatec.model.Endereco;
 
 /**
  *
@@ -30,13 +29,6 @@ public class EmpreendedorBean {
     private String email;
     private String formacao;
     private Empreendedor empreendedor;
-    private Endereco endereco;
-    
-    
-    public EmpreendedorBean(){
-        endereco = new Endereco();
-    }
-
     
     public String getOutcome() {
         return outcome;
@@ -64,10 +56,10 @@ public class EmpreendedorBean {
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
        
-        Empreendedor empreendedorNovo = new Empreendedor(nome, cpf, formacao, email, telefone, senhaInput);
+        //Empreendedor empreendedorNovo = new Empreendedor(nome, cpf, formacao, email, telefone, senhaInput);
         
         empreendedor = new Empreendedor();
-        empreendedor.cadastrarEmpreendedor(empreendedorNovo, endereco);
+        //empreendedor.cadastrarEmpreendedor(empreendedorNovo, endereco);
     }
     
 
@@ -144,19 +136,6 @@ public class EmpreendedorBean {
         this.email = email;
     }
 
-    /**
-     * @return the endereco
-     */
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
     /**
      * @return the formacao

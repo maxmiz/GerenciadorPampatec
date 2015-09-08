@@ -6,7 +6,6 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
-import com.ideiah.gerenciadorpampatec.model.Endereco;
 import java.util.ArrayList;
 
 /**
@@ -21,17 +20,9 @@ public class EmpreendedorDao extends Dao {
     }
 //</editor-fold>
 
-    public boolean salvarEndereco(Endereco endereco) {
-        return super.salvar(endereco);
-    }
-
 //<editor-fold defaultstate="collapsed" desc="Buscar">
     public ArrayList<Empreendedor> buscar() {
         return (ArrayList<Empreendedor>) buscarObjetos(Empreendedor.class);
-    }
-
-    public ArrayList<Endereco> buscarEndereco() {
-        return (ArrayList<Endereco>) buscarObjetos(Endereco.class);
     }
 
     public Empreendedor buscar(int codigo) {
@@ -59,40 +50,13 @@ public class EmpreendedorDao extends Dao {
         return resultado;
     }
 
-    public int buscarIdEndereco(String rua, int numero, String bairro, String complemento) {
-        int id = 0;
-        for (int i = 0; i < this.buscarEndereco().size(); i++) {
-            if ((this.buscarEndereco().get(i).getRua() == rua) && (this.buscarEndereco().get(i).getNumero() == numero) && (this.buscarEndereco().get(i).getBairro() == bairro) && (this.buscarEndereco().get(i).getComplemento() == complemento)) {
-                id = this.buscarEndereco().get(i).getIdEndereco();
-            }
-        }
-        return id;
-    }
-    
-    public Endereco buscarInderecoPorId(int id){
-        int i = 0;
-        for (i = 0; i < this.buscarEndereco().size(); i++) {
-            if (this.buscarEndereco().get(i).getIdEndereco() == id) {
-                return buscarEndereco().get(i);
-            }
-            return buscarEndereco().get(i);
-        }
-        return buscarEndereco().get(i);
-    }
-
     public Empreendedor buscarPorCpf(String cpf) {
+        return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
 
-        System.out.println("ouo");
-        if (soContemNumeros(cpf)) {
-            System.out.println("passou1");
-            return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
+    }
 
-        } else {
-            System.out.println("passou2");
-            return (Empreendedor) buscarObjetoCriteria("email", cpf, Empreendedor.class);
-
-        }
-
+    public Empreendedor buscarPorEmail(String email) {
+        return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
 
     public static boolean soContemNumeros(String texto) {

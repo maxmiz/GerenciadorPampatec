@@ -38,6 +38,18 @@
         <property name="participacaoAcionaria" type="string">
             <column name="participacaoAcionaria" length="300" />
         </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="45" />
+        </property>
+        <property name="rua" type="string">
+            <column name="rua" length="45" />
+        </property>
+        <property name="numero" type="java.lang.Integer">
+            <column name="numero" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="45" />
+        </property>
         <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Empreendedor_idEmpreendedor" />
