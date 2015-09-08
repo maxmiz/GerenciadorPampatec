@@ -8,9 +8,6 @@
             <column name="idEmpreendedor" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="endereco" class="com.ideiah.gerenciadorpampatec.model.Endereco" fetch="select">
-            <column name="Endereco_idEndereco" not-null="true" />
-        </many-to-one>
         <property name="senha" type="string">
             <column name="senha" length="100" not-null="true" />
         </property>
