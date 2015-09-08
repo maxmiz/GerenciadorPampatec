@@ -28,6 +28,10 @@ public class EmpreendedorBean {
     private String telefone;
     private String email;
     private String formacao;
+    private String bairro;
+    private String rua;
+    private int numero;
+    private String complemento;
     private Empreendedor empreendedor;
     
     public String getOutcome() {
@@ -56,10 +60,10 @@ public class EmpreendedorBean {
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
        
-        //Empreendedor empreendedorNovo = new Empreendedor(nome, cpf, formacao, email, telefone, senhaInput);
+        Empreendedor empreendedorNovo = new Empreendedor(numero, nome, cpf, email, formacao, rua, rua, bairro, numero, complemento);
         
-        empreendedor = new Empreendedor();
-        //empreendedor.cadastrarEmpreendedor(empreendedorNovo, endereco);
+        setEmpreendedor(new Empreendedor());
+        getEmpreendedor().cadastrarEmpreendedor(getEmpreendedor());
     }
     
 
@@ -149,5 +153,75 @@ public class EmpreendedorBean {
      */
     public void setFormacao(String formacao) {
         this.formacao = formacao;
+    }
+
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the rua
+     */
+    public String getRua() {
+        return rua;
+    }
+
+    /**
+     * @param rua the rua to set
+     */
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    /**
+     * @return the numero
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
+     * @param complemento the complemento to set
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    /**
+     * @return the empreendedor
+     */
+    public Empreendedor getEmpreendedor() {
+        return empreendedor;
+    }
+
+    /**
+     * @param empreendedor the empreendedor to set
+     */
+    public void setEmpreendedor(Empreendedor empreendedor) {
+        this.empreendedor = empreendedor;
     }
 }

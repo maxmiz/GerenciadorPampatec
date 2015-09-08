@@ -66,13 +66,17 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = aProjetoDao;
     }
 
-    public Empreendedor(int idEmpreendedor, String nome, String cpf, String email, String formacao, String senha) {
+    public Empreendedor(int idEmpreendedor, String nome, String cpf, String email, String formacao, String senha, String rua, String bairro, int numero, String complemento) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.formacao = formacao;
         this.senha = senha;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.complemento = complemento;
         empreendedorDao = new EmpreendedorDao();
         projetoDao = new ProjetoDao();
     }
@@ -224,14 +228,6 @@ public class Empreendedor implements java.io.Serializable {
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         int idEndereco = 0;
         if (retorno == true) {
-
-            //String rua = endereco.getRua();
-            //int numero = endereco.getNumero();
-            //String bairro = endereco.getBairro();
-            //String complemento = endereco.getComplemento();
-            //empreendedorNovo.setEndereco(endereco);
-            //empreendedorDao.salvar(endereco);
-
             empreendedorDao.salvar(empreendedorNovo);
         }
 
