@@ -7,6 +7,9 @@ package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
