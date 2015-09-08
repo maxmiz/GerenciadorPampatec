@@ -33,7 +33,7 @@ public class EmpreendedorBean {
     private int numero;
     private String complemento;
     private Empreendedor empreendedor;
-    
+
     public String getOutcome() {
         return outcome;
     }
@@ -56,16 +56,24 @@ public class EmpreendedorBean {
 //    public void efetuarLogin(Empreendedor emp) {
 //        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", emp);
 //    }
-
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
-       
-        Empreendedor empreendedorNovo = new Empreendedor(numero, nome, cpf, email, formacao, rua, rua, bairro, numero, complemento);
         
-        setEmpreendedor(new Empreendedor());
-        getEmpreendedor().cadastrarEmpreendedor(getEmpreendedor());
+        empreendedor = new Empreendedor();
+        
+        empreendedor.setNome(nome);
+        empreendedor.setCpf(cpf);
+        empreendedor.setFormacao(formacao);
+        empreendedor.setEmail(email);
+        empreendedor.setTelefone(telefone);
+        empreendedor.setSenha(senhaInput);
+        empreendedor.setRua(rua);
+        empreendedor.setNumero(numero);
+        empreendedor.setBairro(bairro);
+        empreendedor.setComplemento(complemento);
+        
+        empreendedor.cadastrarEmpreendedor(empreendedor);
     }
-    
 
 //    public void chamaLogin() {
 //        empreendedor.fazLogin();
@@ -139,7 +147,6 @@ public class EmpreendedorBean {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     /**
      * @return the formacao
