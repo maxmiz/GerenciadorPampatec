@@ -38,43 +38,48 @@
                             <h:inputText class="form-control" value="#{projetoBean.projeto.nome}"></h:inputText>
                             <br/>
                         </div>
+                        
                         <div class="col-md-12" id="">
                             <b>Empreendedores</b><br/>
-                            Informe os nomes de quem está propondo o empreendimento:
+                            Informe os emails de quem está propondo o empreendimento:
                             <br/>
-                            <p:autoComplete id="autocomplete" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}"/>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:autoComplete>
+                                </div>
+                                <div class="col-md-3">
+                                    <h:commandButton class="btn btn-default" value="Adicionar"/>
+                                </div>
+                            </div>
                             <br/><br/>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Id">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
-
-                                <p:column headerText="Year">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
-
-                                <p:column headerText="Brand">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-
-                                <p:column headerText="Color">
-                                    <h:outputText value="#{car.color}" />
-                                </p:column>
-                            </p:dataTable>
+                            <h:dataTable var="car" styleClass="tabelaEmpreendedores" value="#{projetoBean.listaEmpreendedor}">
+                                <h:column>
+                                    <h:outputText value="#{car.nome}" />
+                                    <button class="btn btn-default">
+                                        Deletar
+                                    </button>
+                                </h:column>
+                            </h:dataTable>
                         </div>
+                        
                         <div class="col-md-8" id="">
                             <b>Rua</b><h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
+                        
                         <div class="col-md-4" id="">
                             <b>Número</b><h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
+                        
                         <div class="col-md-8" id="">
                             <b>E-mail</b>
                             <h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
+                        
                         <div class="col-md-4" id="">
                             <b>Telefone</b>
                             <h:inputText class="form-control"></h:inputText>

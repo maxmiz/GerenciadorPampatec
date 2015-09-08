@@ -22,8 +22,11 @@
                         <div class="col-md-12">
                             Nome<h:inputText class="form-control" value="#{empreendedorBean.nome}"></h:inputText>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             CPF<h:inputText class="form-control" value="#{empreendedorBean.cpf}"></h:inputText>
+                        </div>
+                        <div class="col-md-6">
+                            Formação<h:inputText class="form-control" value="#{empreendedorBean.formacao}"></h:inputText>
                         </div>
                         <div class="col-md-8">
                             E-mail<h:inputText class="form-control" value="#{empreendedorBean.email}"></h:inputText>
@@ -42,16 +45,16 @@
                         <legend>Endereço</legend>
                         
                         <div class="col-md-9">
-                            Rua<h:inputText class="form-control" value=""></h:inputText>
+                            Rua<h:inputText class="form-control" value="#{empreendedorBean.endereco.rua}"></h:inputText>
                         </div>
                         <div class="col-md-3">
-                            Número<h:inputText class="form-control" value=""></h:inputText>
+                            Número<h:inputText class="form-control" value="#{empreendedorBean.endereco.numero}"></h:inputText>
                         </div>
                         <div class="col-md-6">
-                            Bairro<h:inputText class="form-control" value=""></h:inputText>
+                            Bairro<h:inputText class="form-control" value="#{empreendedorBean.endereco.bairro}"></h:inputText>
                         </div>
                         <div class="col-md-6">
-                            Complemento<h:inputText class="form-control" value=""></h:inputText>
+                            Complemento<h:inputText class="form-control" value="#{empreendedorBean.endereco.complemento}"></h:inputText>
                         </div>
                         
                         <div class="col-md-12 modal-footer">

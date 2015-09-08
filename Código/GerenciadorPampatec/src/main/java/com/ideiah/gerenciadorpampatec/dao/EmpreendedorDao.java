@@ -6,7 +6,6 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
-import com.ideiah.gerenciadorpampatec.model.Endereco;
 import java.util.ArrayList;
 
 /**
@@ -20,10 +19,6 @@ public class EmpreendedorDao extends Dao {
         return super.salvar(empreendedor);
     }
 //</editor-fold>
-
-    public boolean salvarEndereco(Endereco endereco) {
-        return super.salvar(endereco);
-    }
 
 //<editor-fold defaultstate="collapsed" desc="Buscar">
     public ArrayList<Empreendedor> buscar() {
@@ -56,24 +51,12 @@ public class EmpreendedorDao extends Dao {
     }
 
     public Empreendedor buscarPorCpf(String cpf) {
-
-        System.out.println("ouo");
-        if (soContemNumeros(cpf)) {
-            System.out.println("passou1");
-            return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
-
-        } else {
-            System.out.println("passou2");
-            return (Empreendedor) buscarObjetoCriteria("email", cpf, Empreendedor.class);
-
-        }
+        return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
 
     }
 
     public Empreendedor buscarPorEmail(String email) {
-
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
-
     }
 
     public static boolean soContemNumeros(String texto) {
