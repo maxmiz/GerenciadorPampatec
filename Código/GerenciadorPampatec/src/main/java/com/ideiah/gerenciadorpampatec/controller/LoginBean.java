@@ -14,6 +14,7 @@ import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.flow.builder.NavigationCaseBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +40,11 @@ public class LoginBean {
             System.out.println("Exceção inesperada" + e);
         }
     }
-
+    
+    public String logar(){  
+        return "/view/homeEmpreendedor.xhtml";  
+    } 
+    
     public String fazLogin(String user, String senha) {
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -49,7 +54,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage("CPF Invalido");
+                    FacesUtil.addErrorMessage(" CPF Invalido ", "formularioDeLogin:botaoLogin");
                     System.out.println("cpf invalido");
                 }
             } else {
@@ -62,17 +67,19 @@ public class LoginBean {
                 System.out.println("Logado");
                 session.setAttribute("empreendedor", empreendedor);
                 return "success";
+//                return this.logar();
+//              return "redirect:homeEmpreendedor.xhtml";
                 
-//              return "redirect:homeEmpreendedor";
+                
                 
             } else {
-                FacesUtil.addSuccessMessage("Senha incorreta");
+                FacesUtil.addSuccessMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
                 System.out.println(senha);
                 return "failure";
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage("Empreendedor não cadastro");
+            FacesUtil.addErrorMessage(" Empreendedor não cadastro ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
             return "failure";
         }
