@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoBean.buscarProjetos}" selectionMode="single" selection="#{dtSelectionView.selectedProjeto}" rowKey="#{projeto.idProjeto}">
+            <f:facet name="header">
+                Single with Row Click
+            </f:facet>
+            <p:column headerText="Id">
+                <h:outputText value="#{projeto.idProjeto}" />
+            </p:column>
+            <p:column headerText="Data de envio">
+                <h:outputText value="#{projeto.dataEnvio}" />
+            </p:column>
+            <p:column headerText="Empreendedores">
+                <h:outputText value="#{projeto.empreendedors}" />
+            </p:column>
+            <p:column headerText="Nome">
+                <h:outputText value="#{projeto.nome}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+
