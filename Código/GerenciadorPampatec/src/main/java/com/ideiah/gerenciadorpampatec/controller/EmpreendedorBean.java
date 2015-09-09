@@ -10,20 +10,30 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 
 /**
  *
  * @author AugustoCesar
  */
-@ManagedBean
+@ManagedBean(name = "empreendedorBean")
 @SessionScoped
 public class EmpreendedorBean {
 
     private String outcome = "LoginEmpreendedor";
     private String userInput = "";
     private String senhaInput = "";
-//    private static Empreendedor empreendedor;
-    Empreendedor empreendedor = new Empreendedor();
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private String email;
+    private String formacao;
+    private String bairro;
+    private String rua;
+    private int numero;
+    private String complemento;
+    private Empreendedor empreendedor;
+    
     public String getOutcome() {
         return outcome;
     }
@@ -40,17 +50,6 @@ public class EmpreendedorBean {
         this.userInput = userInput;
     }
 
-    public String submit() {
-        try{
-            System.out.println(getUserInput());
-       empreendedor.fazLogin(getUserInput(), getSenhaInput());
-        }catch(NumberFormatException e){
-            System.out.println("Apenas numeros please");
-        }
-//        this.userInput = "The user has entered \"" + this.userInput + " \"";
-        return "";
-    }
-
     /**
      * @param u usuário que será adicionado na sessão
      */
@@ -59,8 +58,14 @@ public class EmpreendedorBean {
 //    }
 
     public void chamaCadastro() {
-
+        System.out.println("Entrou no CHAMA CADASTRO da Bean");
+       
+        Empreendedor empreendedorNovo = new Empreendedor(numero, nome, cpf, email, formacao, rua, rua, bairro, numero, complemento);
+        
+        setEmpreendedor(new Empreendedor());
+        getEmpreendedor().cadastrarEmpreendedor(getEmpreendedor());
     }
+    
 
 //    public void chamaLogin() {
 //        empreendedor.fazLogin();
@@ -77,5 +82,146 @@ public class EmpreendedorBean {
      */
     public void setSenhaInput(String senhaInput) {
         this.senhaInput = senhaInput;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
+     * @return the telefone
+     */
+    public String getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    /**
+     * @return the formacao
+     */
+    public String getFormacao() {
+        return formacao;
+    }
+
+    /**
+     * @param formacao the formacao to set
+     */
+    public void setFormacao(String formacao) {
+        this.formacao = formacao;
+    }
+
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the rua
+     */
+    public String getRua() {
+        return rua;
+    }
+
+    /**
+     * @param rua the rua to set
+     */
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    /**
+     * @return the numero
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
+     * @param complemento the complemento to set
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    /**
+     * @return the empreendedor
+     */
+    public Empreendedor getEmpreendedor() {
+        return empreendedor;
+    }
+
+    /**
+     * @param empreendedor the empreendedor to set
+     */
+    public void setEmpreendedor(Empreendedor empreendedor) {
+        this.empreendedor = empreendedor;
     }
 }

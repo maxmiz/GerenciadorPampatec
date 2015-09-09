@@ -8,7 +8,6 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
-import com.ideiah.gerenciadorpampatec.model.Endereco;
 import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
@@ -25,9 +24,9 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "projetoBean")
 @ViewScoped
 public class ProjetoBean {
+
     private Projeto projeto;
     private Analiseemprego analiseEmprego;
-    private Endereco endereco;
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
@@ -35,28 +34,44 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    
-    public ProjetoBean(){
+
+    public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
-        endereco = new Endereco();
         negocio = new Negocio();
         produtoOuSevico = new Produtoouservico();
         planoFinanceiro = new Planofinanceiro();
         custo = new Custo();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
+        empreedendoresAdicionados = new ArrayList<>();
     }
-    
-    public List<String> completarEmpreendedor(String busca){
+
+    public List<String> completarEmpreendedor(String busca) {
         List<String> listaFiltrada = new ArrayList<>();
-        
-        for (Empreendedor empreendedor : listaEmpreendedor) {
-            if(empreendedor.getEmail().toLowerCase().startsWith(busca)) {
+
+        for (Empreendedor empreendedor : getListaEmpreendedor()) {
+            if (empreendedor.getEmail().toLowerCase().startsWith(busca)) {
                 listaFiltrada.add(empreendedor.getEmail());
             }
         }
-         
+
         return listaFiltrada;
+    }
+
+    /**
+     * Adiciona o Empreendedor ao projeto.
+     */
+    public void adicionarEmpreendedor() {
+        for (Empreendedor empreendedor : listaEmpreendedor) {
+            if (empreendedor.getEmail().equals(emailEmpreendedor)) {
+                getEmpreedendoresAdicionados().add(empreendedor);
+                break;
+            }
+        }
+
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setEmail(emailEmpreendedor);
+        getEmpreedendoresAdicionados().add(empreendedor);
     }
 
     /**
@@ -85,20 +100,6 @@ public class ProjetoBean {
      */
     public void setAnaliseEmprego(Analiseemprego analiseEmprego) {
         this.analiseEmprego = analiseEmprego;
-    }
-
-    /**
-     * @return the endereco
-     */
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     /**
@@ -169,5 +170,33 @@ public class ProjetoBean {
      */
     public void setEmailEmpreendedor(String emailEmpreendedor) {
         this.emailEmpreendedor = emailEmpreendedor;
+    }
+
+    /**
+     * @return the listaEmpreendedor
+     */
+    public List<Empreendedor> getListaEmpreendedor() {
+        return listaEmpreendedor;
+    }
+
+    /**
+     * @param listaEmpreendedor the listaEmpreendedor to set
+     */
+    public void setListaEmpreendedor(List<Empreendedor> listaEmpreendedor) {
+        this.listaEmpreendedor = listaEmpreendedor;
+    }
+
+    /**
+     * @return the empreedendoresAdicionados
+     */
+    public List<Empreendedor> getEmpreedendoresAdicionados() {
+        return empreedendoresAdicionados;
+    }
+
+    /**
+     * @param empreedendoresAdicionados the empreedendoresAdicionados to set
+     */
+    public void setEmpreedendoresAdicionados(List<Empreendedor> empreedendoresAdicionados) {
+        this.empreedendoresAdicionados = empreedendoresAdicionados;
     }
 }
