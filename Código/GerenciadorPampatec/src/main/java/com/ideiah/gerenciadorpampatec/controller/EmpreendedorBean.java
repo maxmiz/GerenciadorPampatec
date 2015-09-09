@@ -11,6 +11,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.util.CpfUtil;
+import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 
 /**
  *
@@ -30,7 +33,7 @@ public class EmpreendedorBean {
     private String formacao;
     private String bairro;
     private String rua;
-    private int numero;
+    private String numero;
     private String complemento;
     private Empreendedor empreendedor;
 
@@ -58,21 +61,38 @@ public class EmpreendedorBean {
 //    }
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
-        
+
         empreendedor = new Empreendedor();
-        
+
         empreendedor.setNome(nome);
-        empreendedor.setCpf(cpf);
-        empreendedor.setFormacao(formacao);
-        empreendedor.setEmail(email);
-        empreendedor.setTelefone(telefone);
-        empreendedor.setSenha(senhaInput);
-        empreendedor.setRua(rua);
-        empreendedor.setNumero(numero);
-        empreendedor.setBairro(bairro);
-        empreendedor.setComplemento(complemento);
-        
-        empreendedor.cadastrarEmpreendedor(empreendedor);
+        if (empreendedor.buscarPorCpf(cpf) != null) {
+            FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
+        } else {
+
+            empreendedor.setCpf(cpf);
+            empreendedor.setFormacao(formacao);
+            if (empreendedor.buscarPorEmail(email) != null) {
+                FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
+            } else {
+                if (CpfUtil.isValidCPF(cpf) == false) {
+                    FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
+                } else {
+                    empreendedor.setEmail(email);
+                    empreendedor.setTelefone(telefone);
+                    empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+                    empreendedor.setRua(rua);
+                    empreendedor.setNumero(Integer.parseInt(numero));
+                    empreendedor.setBairro(bairro);
+                    empreendedor.setComplemento(complemento);
+
+                    if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
+                        FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+                    } else {
+                        FacesUtil.addErrorMessage("Cadastro não realizado.!", "formularioCadastro:botaoEnviar");
+                    }
+                }
+            }
+        }
     }
 
 //    public void chamaLogin() {
@@ -193,14 +213,14 @@ public class EmpreendedorBean {
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

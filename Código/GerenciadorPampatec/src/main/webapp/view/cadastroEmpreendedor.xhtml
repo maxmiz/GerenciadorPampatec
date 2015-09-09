@@ -20,7 +20,7 @@
             <h1>Realize seu cadastro</h1>
             <div id="empreendedorLogin">
                 <legend>Dados Cadastrais</legend>
-                <h:form title="cadastroEmpreendedor">
+                <h:form id="formularioCadastro" title="cadastroEmpreendedor">
                     <div class="col-md-12">
 
                         <!--                             <div class="col-lg-8">
@@ -59,7 +59,9 @@
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             value="#{empreendedorBean.email}">
+                                             value="#{empreendedorBean.email}"
+                                             validatorMessage="Email Invalido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         </p:inputText>
                         <h:message class="mensagemErro" for="email"/>
 
@@ -81,11 +83,11 @@
                                            requiredMessage="Insira sua senha"
                                            required="true"
                                            promptLabel="informe sua senha" weakLabel="Fraca"
-                    goodLabel="Mediana" strongLabel="Forte"
+                                           goodLabel="Mediana" strongLabel="Forte"
                                            feedback="true"
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                            value="#{empreendedorBean.senhaInput}"
-                                           match="senhaConfig"></p:password>
+                                           match="senhaConfig" validatorMessage="Senha deve ser igual"></p:password>
                         <h:message class="mensagemErro" for="senha"/>
 
                     </div> 
@@ -120,7 +122,9 @@
                                              requiredMessage="Insira o número do seu endereço"
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             value="#{empreendedorBean.numero}">
+                                             value="#{empreendedorBean.numero}"
+                                             validatorMessage="Número invalido">
+                            <f:validateRegex pattern="[0-9]*" />
                         </p:inputText>
                         <h:message class="mensagemErro" for="numero"/>
 
@@ -145,7 +149,9 @@
 
                     <div class="col-md-12 modal-footer">
                         <h:button class="btn btn-default" value="Voltar"></h:button>
-                        <h:commandButton class="btn btn-success" value="Enviar dados para Cadastro" action="#//{empreendedorBean.chamaCadastro()}"></h:commandButton>
+                        <h:commandButton id="botaoEnviar" class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}"></h:commandButton>
+                        <br/>
+                        <h:message for="botaoEnviar"></h:message>
                     </div>
                 </h:form>
             </div>

@@ -226,16 +226,16 @@ public class Empreendedor implements java.io.Serializable {
      *
      */
 
-    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
+    public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         int idEndereco = 0;
         if (retorno == true) {
-            empreendedorDao.salvar(empreendedorNovo);
+            return empreendedorDao.salvar(empreendedorNovo);
         }
-
+        return false;
     }
-
+    
     public Empreendedor buscarPorEmail(String user) {
         return empreendedorDao.buscarPorEmail(user);
     }

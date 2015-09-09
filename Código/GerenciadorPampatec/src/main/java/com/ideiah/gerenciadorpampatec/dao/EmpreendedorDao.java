@@ -54,6 +54,13 @@ public class EmpreendedorDao extends Dao {
         return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
 
     }
+//    public boolean verificarEmail(String email){
+//        if((Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class)!=null){
+//            return true;
+//        }
+//        else
+//            return false;
+//    }
 
     public Empreendedor buscarPorEmail(String email) {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
