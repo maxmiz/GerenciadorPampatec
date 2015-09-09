@@ -11,6 +11,9 @@ import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -32,6 +35,7 @@ public class LoginBean {
     private static EmpreendedorDao empreededorDao;
     private String user; //pode ser email ou senha
     private String senha;
+    private String nome;
 
     public void submit() {
         try {
@@ -41,9 +45,6 @@ public class LoginBean {
         }
     }
     
-    public String logar(){  
-        return "/view/homeEmpreendedor.xhtml";  
-    } 
     
     public String fazLogin(String user, String senha) {
         try {
@@ -54,7 +55,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" CPF Invalido ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
                     System.out.println("cpf invalido");
                 }
             } else {
@@ -66,9 +67,13 @@ public class LoginBean {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
                 session.setAttribute("empreendedor", empreendedor);
-                return "success";
-//                return this.logar();
-//              return "redirect:homeEmpreendedor.xhtml";
+                this.setNome(empreendedor.getNome());
+                try {
+                    //                return "success";
+                    FacesContext.getCurrentInstance().getExternalContext().dispatch("homeEmpreendedor.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 
                 
@@ -79,10 +84,12 @@ public class LoginBean {
                 return "failure";
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Empreendedor não cadastro ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
             return "failure";
         }
+        
+        return null;
 
     }
 
@@ -126,6 +133,20 @@ public class LoginBean {
      */
     public void setUser(String user) {
         this.user = user;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }
