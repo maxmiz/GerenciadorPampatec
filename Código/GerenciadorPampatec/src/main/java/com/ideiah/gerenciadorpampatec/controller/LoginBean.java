@@ -10,15 +10,19 @@ import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Augusto César Görgen
- * classe usada para realizar login do empreendedor no sistema
+ * @author Augusto César Görgen classe usada para realizar login do empreendedor
+ * no sistema
  */
 @ManagedBean
 @SessionScoped
@@ -51,14 +55,16 @@ public class LoginBean {
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
             }
-           senha = CriptografiaUtil.md5(senha);
+            senha = CriptografiaUtil.md5(senha);
             System.out.println(senha);
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-               session.setAttribute("empreendedor", empreendedor);
+                session.setAttribute("empreendedor", empreendedor);
                 return "success";
-
+                
+//              return "redirect:homeEmpreendedor";
+                
             } else {
                 FacesUtil.addSuccessMessage("Senha incorreta");
                 System.out.println("senha incorreta");
@@ -72,7 +78,7 @@ public class LoginBean {
         }
 
     }
-    
+
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
