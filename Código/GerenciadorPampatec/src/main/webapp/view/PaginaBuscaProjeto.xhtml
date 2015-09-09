@@ -5,24 +5,25 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
         <title>Facelet Title</title>
+        <a href="../../../../../../../../AppData/Local/Temp/Previous Slide.url"></a>
     </h:head>
     <h:body>
-        <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoBean.buscarProjetos}" selectionMode="single" selection="#{dtSelectionView.selectedProjeto}" rowKey="#{projeto.idProjeto}">
+        <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoBean.buscarProjetos()}">
             <f:facet name="header">
-                Single with Row Click
+                Meus Projetos (Empreendedor)
             </f:facet>
-            <p:column headerText="Id">
-                <h:outputText value="#{projeto.idProjeto}" />
+            <p:column headerText="Nome">
+                <h:outputText value="#{projeto.nome}" />
             </p:column>
             <p:column headerText="Data de envio">
                 <h:outputText value="#{projeto.dataEnvio}" />
             </p:column>
-            <p:column headerText="Empreendedores">
-                <h:outputText value="#{projeto.empreendedors}" />
-            </p:column>
-            <p:column headerText="Nome">
-                <h:outputText value="#{projeto.nome}" />
+            <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
+                <p:commandButton icon="ui-icon-pencil" title="View">
+                </p:commandButton>
+                
             </p:column>
         </p:dataTable>
     </h:body>
