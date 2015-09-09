@@ -25,6 +25,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ProjetoBean {
 
+    private Empreendedor empreendedorSelected;
     private Projeto projeto;
     private Analiseemprego analiseEmprego;
     private Negocio negocio;
@@ -58,20 +59,35 @@ public class ProjetoBean {
         return listaFiltrada;
     }
 
+//    Deleta Empreendedor da Lista
+    public void deletarEmpreendedor() {
+        System.out.println(empreendedorSelected);
+        for (Empreendedor empreendedor : listaEmpreendedor) {
+            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
+                getEmpreedendoresAdicionados().remove(empreendedor);
+                break;
+            }
+        }
+    }
+
     /**
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
+        boolean existe = false;
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
                 getEmpreedendoresAdicionados().add(empreendedor);
+                existe = true;
                 break;
             }
         }
-
-        Empreendedor empreendedor = new Empreendedor();
-        empreendedor.setEmail(emailEmpreendedor);
-        getEmpreedendoresAdicionados().add(empreendedor);
+        if (existe == false) {
+            Empreendedor empreendedor = new Empreendedor();
+            empreendedor.setEmail(emailEmpreendedor);
+            getEmpreedendoresAdicionados().add(empreendedor);
+            empreendedor.cadastrarEmpreendedor(empreendedor);
+        }
     }
 
     /**
@@ -198,5 +214,19 @@ public class ProjetoBean {
      */
     public void setEmpreedendoresAdicionados(List<Empreendedor> empreedendoresAdicionados) {
         this.empreedendoresAdicionados = empreedendoresAdicionados;
+    }
+
+    /**
+     * @return the empreendedorSelected
+     */
+    public Empreendedor getEmpreendedorSelected() {
+        return empreendedorSelected;
+    }
+
+    /**
+     * @param empreendedorSelected the empreendedorSelected to set
+     */
+    public void setEmpreendedorSelected(Empreendedor empreendedorSelected) {
+        this.empreendedorSelected = empreendedorSelected;
     }
 }

@@ -38,7 +38,7 @@
                             <h:inputText class="form-control" value="#{projetoBean.projeto.nome}"></h:inputText>
                             <br/>
                         </div>
-                        
+
                         <div class="col-md-12" id="">
                             <b>Empreendedores</b><br/>
                             Informe os emails de quem está propondo o empreendimento:
@@ -54,34 +54,38 @@
                                 </div>
                             </div>
                             <br/><br/>
-                            <h:dataTable var="empreendedor" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
-                                <h:column>
+                            <p:dataTable rowKey="#{empreendedor.idEmpreendedor}" var="empreendedor" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
+                                <p:column>
                                     <h:outputText value="#{empreendedor.email}" />
-                                </h:column>
-                                <h:column>
-                                    <button class="btn btn-default">
-                                        Deletar
-                                    </button>
-                                </h:column>
-                            </h:dataTable>
+                                </p:column>
+                                <p:column>
+                                    <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor}">
+                                        <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}" />
+                                    </h:commandButton>
+
+                                    <!--                                    <button class="btn btn-default">
+                                                                            Deletar
+                                                                        </button>-->
+                                </p:column>
+                            </p:dataTable>
                         </div>
-                        
+
                         <div class="col-md-8" id="">
                             <b>Rua</b><h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
-                        
+
                         <div class="col-md-4" id="">
                             <b>Número</b><h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
-                        
+
                         <div class="col-md-8" id="">
                             <b>E-mail</b>
                             <h:inputText class="form-control"></h:inputText>
                             <br/>
                         </div>
-                        
+
                         <div class="col-md-4" id="">
                             <b>Telefone</b>
                             <h:inputText class="form-control"></h:inputText>
