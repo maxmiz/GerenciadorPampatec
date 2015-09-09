@@ -44,8 +44,7 @@ public class LoginBean {
             System.out.println("Exceção inesperada" + e);
         }
     }
-    
-    
+
     public String fazLogin(String user, String senha) {
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -74,9 +73,7 @@ public class LoginBean {
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
-                
+
             } else {
                 FacesUtil.addSuccessMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
@@ -88,7 +85,7 @@ public class LoginBean {
             System.out.println("Empreendedor não cadastro");
             return "failure";
         }
-        
+
         return null;
 
     }
