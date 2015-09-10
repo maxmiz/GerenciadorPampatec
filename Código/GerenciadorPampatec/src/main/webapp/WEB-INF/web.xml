@@ -20,7 +20,7 @@
     </session-config>
     <welcome-file-list>
         <!--<welcome-file>faces/view/cadastroEmpreendedor.xhtml</welcome-file>-->
-        <welcome-file>faces/view/loginEmpreendedor.xhtml</welcome-file>
+        <welcome-file>faces/loginEmpreendedor.xhtml</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>LoginFilter</filter-name>

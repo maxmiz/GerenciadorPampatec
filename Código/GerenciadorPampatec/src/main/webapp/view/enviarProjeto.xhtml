@@ -12,6 +12,9 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,6 +22,42 @@
     </h:head>
     <h:body>
 
+        <!-- Início do menu superior -->
+        <h:form>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{loginBean.getEnviarProjeto()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink value="Editar meus dados"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </h:form>
+        <!-- Fim do menu superior -->
 
         <div class="col-md-3"> </div>
 
@@ -88,6 +127,12 @@
                             <br/>
                         </div>
                     </h:form>
+                    
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3"></div>
                     <div class="col-md-6"></div>
                     <div class="col-md-3 text-right">
@@ -124,6 +169,11 @@
                             <br/>
                         </div>
                     </h:form>
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <br />
                         <button id="anterior2" class="btn btn-default" onclick="retornaPrimeiraParte()">← Anterior</button>
@@ -175,6 +225,11 @@
                             <br/>
                         </div>
                     </h:form>
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3"><br />
                         <button id="anterior3" class="btn btn-default" onclick="retornaSegundaParte()">← Anterior</button>
                     </div>
@@ -252,6 +307,11 @@
                             <br/>
                         </div>
                     </h:form>
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <br />
                         <button id="anterior4" class="btn btn-default" onclick="retornaTerceiraParte()">← Anterior</button>
@@ -303,6 +363,11 @@
                             <br/>
                         </div>
                     </h:form>
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <br />
                         <button id="anterior5" class="btn btn-default" onclick="retornaQuartaParte()">← Anterior</button>
@@ -354,11 +419,18 @@
                             <br/>
                         </div>
                     </h:form>
+                    <div class="col-md-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" style="width: 83%"></div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <br />
                         <button id="anterior6" class="btn btn-default" onclick="retornaQuintaParte()">← Anterior</button>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        
+                    </div>
                     <div class="col-md-5 text-right">
                         <br/>
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->

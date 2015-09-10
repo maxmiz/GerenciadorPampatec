@@ -55,7 +55,19 @@ public class LoginBean {
         return "/loginEmpreendedor.xhtml";
 
     }
-
+    
+    public String getInicio(){
+        return "homeEmpreendedor.xhtml";
+    }
+    
+    public String getEnviarProjeto(){
+        return "enviarProjeto.xhtml";
+    }
+    
+    public String getVisualizarPlanos(){
+        return "visualizarPlanos.xhtml";
+    }
+    
     public String fazLogin(String user, String senha) {
         try {
 //            FacesContext fc = FacesContext.getCurrentInstance();
