@@ -7,6 +7,7 @@
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
 
         <title>Acessar o Sistema - Login</title>
@@ -19,7 +20,7 @@
             <h1>Acesse sua conta</h1>
             <div id="empreendedorLogin">
                 <legend>Realizar Login</legend>
-                <h:form>
+                <h:form id="formularioDeLogin">
                     <div class="col-md-12">
                         Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
                     </div>
@@ -30,9 +31,15 @@
                         <h:link value="Esqueci minha senha"></h:link>
                         <br/>
                     </div> 
-                    <div class="col-md-12 modal-footer">
-                        <h:commandButton class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
+                    <div class="col-md-7 modal-footer" align="center">
+                        <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
                     </div>
+                    <div class="col-md-5 modal-footer">
+                        <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
+                    </div>
+                    
+                    
+                    
                 </h:form>
             </div>
         </div>

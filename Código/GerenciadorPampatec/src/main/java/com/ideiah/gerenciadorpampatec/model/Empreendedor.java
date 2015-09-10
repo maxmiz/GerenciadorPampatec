@@ -66,17 +66,20 @@ public class Empreendedor implements java.io.Serializable {
         projetoDao = aProjetoDao;
     }
 
-    public Empreendedor(int idEmpreendedor, String nome, String cpf, String email, String formacao, String senha, String rua, String bairro, int numero, String complemento) {
+    public Empreendedor(int idEmpreendedor, String nome, String cpf, String formacao, String email, String senha, String telefone, String rua, int numero, String bairro, String complemento) {
+
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.cpf = cpf;
-        this.email = email;
         this.formacao = formacao;
+        this.email = email;
         this.senha = senha;
+        this.telefone = telefone;
         this.rua = rua;
-        this.bairro = bairro;
         this.numero = numero;
+        this.bairro = bairro;
         this.complemento = complemento;
+
         empreendedorDao = new EmpreendedorDao();
         projetoDao = new ProjetoDao();
     }
@@ -223,16 +226,16 @@ public class Empreendedor implements java.io.Serializable {
      *
      */
 
-    public void cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
+    public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
         System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
         boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
         int idEndereco = 0;
         if (retorno == true) {
-            empreendedorDao.salvar(empreendedorNovo);
+            return empreendedorDao.salvar(empreendedorNovo);
         }
-
+        return false;
     }
-
+    
     public Empreendedor buscarPorEmail(String user) {
         return empreendedorDao.buscarPorEmail(user);
     }
@@ -255,7 +258,7 @@ public class Empreendedor implements java.io.Serializable {
         this.idEndereco = idEndereco;
     }
     /*
-    *
+     *
      */
 
     public void realizarCadastro() {

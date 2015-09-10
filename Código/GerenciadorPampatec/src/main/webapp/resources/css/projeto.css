@@ -3,6 +3,20 @@
     Created on : 02/09/2015, 02/09/2015 17:43:14
     Author     : Pedro
 */
+.mensagemErro{
+    background-color: #fc2f2f;
+    font-weight: bold;
+    padding: 3px;
+    border-width: 10px;
+    color: wheat;
+}
+.campoInvalido{
+    border: #FF0000 solid 1px !important;
+    margin: 1px;
+}
+
+
+
 
 
 .autoCompletar input {

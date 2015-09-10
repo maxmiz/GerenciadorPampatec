@@ -10,15 +10,23 @@ import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.flow.builder.NavigationCaseBuilder;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Augusto César Görgen
- * classe usada para realizar login do empreendedor no sistema
+ * @author Augusto César Görgen classe usada para realizar login do empreendedor
+ * no sistema
  */
 @ManagedBean
 @SessionScoped
@@ -27,6 +35,7 @@ public class LoginBean {
     private static EmpreendedorDao empreededorDao;
     private String user; //pode ser email ou senha
     private String senha;
+    private String nome;
 
     public void submit() {
         try {
@@ -45,34 +54,42 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage("CPF Invalido");
+                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
                     System.out.println("cpf invalido");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
             }
-           senha = CriptografiaUtil.md5(senha);
+            senha = CriptografiaUtil.md5(senha);
             System.out.println(senha);
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-               session.setAttribute("empreendedor", empreendedor);
-                return "success";
+                session.setAttribute("empreendedor", empreendedor);
+                this.setNome(empreendedor.getNome());
+                try {
+                    //                return "success";
+                    FacesContext.getCurrentInstance().getExternalContext().dispatch("homeEmpreendedor.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             } else {
-                FacesUtil.addSuccessMessage("Senha incorreta");
+                FacesUtil.addSuccessMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
                 System.out.println(senha);
                 return "failure";
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage("Empreendedor não cadastro");
+            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
             return "failure";
         }
 
+        return null;
+
     }
-    
+
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
@@ -113,6 +130,20 @@ public class LoginBean {
      */
     public void setUser(String user) {
         this.user = user;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }
