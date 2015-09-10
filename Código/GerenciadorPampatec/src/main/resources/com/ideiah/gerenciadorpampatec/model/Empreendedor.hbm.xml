@@ -9,22 +9,22 @@
             <generator class="assigned" />
         </id>
         <property name="senha" type="string">
-            <column name="senha" length="100" not-null="true" />
+            <column name="senha" length="100"/>
         </property>
         <property name="nome" type="string">
-            <column name="nome" length="45" not-null="true" />
+            <column name="nome" length="45" />
         </property>
         <property name="telefone" type="string">
             <column name="telefone" length="16777215" />
         </property>
         <property name="cpf" type="string">
-            <column name="cpf" length="16777215" not-null="true" />
+            <column name="cpf" length="16777215" />
         </property>
         <property name="email" type="string">
-            <column name="email" length="45" not-null="true" />
+            <column name="email" length="45" />
         </property>
         <property name="formacao" type="string">
-            <column name="formacao" length="300" not-null="true" />
+            <column name="formacao" length="300" />
         </property>
         <property name="experiencia" type="string">
             <column name="experiencia" length="300" />

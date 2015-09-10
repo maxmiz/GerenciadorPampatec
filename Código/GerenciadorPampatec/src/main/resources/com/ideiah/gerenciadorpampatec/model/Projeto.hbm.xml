@@ -9,16 +9,16 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="analiseemprego" class="com.ideiah.gerenciadorpampatec.model.Analiseemprego" fetch="select">
-            <column name="AnaliseEmprego_idAnaliseEmprego" not-null="true" />
+            <column name="AnaliseEmprego_idAnaliseEmprego" />
         </many-to-one>
         <many-to-one name="negocio" class="com.ideiah.gerenciadorpampatec.model.Negocio" fetch="select">
-            <column name="Negocio_idNegocio" not-null="true" />
+            <column name="Negocio_idNegocio" />
         </many-to-one>
         <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select">
-            <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
+            <column name="PlanoFinanceiro_idPlanoFinanceiro" />
         </many-to-one>
         <many-to-one name="produtoouservico" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select">
-            <column name="ProdutoOuServico_idProdutoOuServico" not-null="true" />
+            <column name="ProdutoOuServico_idProdutoOuServico" />
         </many-to-one>
         <property name="nome" type="string">
             <column name="nome" length="45" />
@@ -34,10 +34,10 @@
         </property>
         <set name="empreendedors" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
-                <column name="Projeto_idProjeto" not-null="true" />
+                <column name="Projeto_idProjeto" />
             </key>
             <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Empreendedor">
-                <column name="Empreendedor_idEmpreendedor" not-null="true" />
+                <column name="Empreendedor_idEmpreendedor" />
             </many-to-many>
         </set>
     </class>

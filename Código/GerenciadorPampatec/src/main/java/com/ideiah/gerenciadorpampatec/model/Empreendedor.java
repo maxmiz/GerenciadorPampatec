@@ -191,12 +191,12 @@ public class Empreendedor implements java.io.Serializable {
     }
 
     public static boolean salvarProjeto(Projeto projeto) {
-        if (false) {
-
-        } else {
-
-        }
-        return false;
+        
+        return projetoDao.salvar(projeto);
+    }
+    public static boolean atualizarProjeto(Projeto projeto) {
+        
+        return projetoDao.update(projeto);
     }
 
     /**
@@ -227,15 +227,15 @@ public class Empreendedor implements java.io.Serializable {
      */
 
     public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
-        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
-        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
-        int idEndereco = 0;
-        if (retorno == true) {
-            return empreendedorDao.salvar(empreendedorNovo);
-        }
-        return false;
+//        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
+//        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
+//        int idEndereco = 0;
+//        if (retorno == true) {
+        return empreendedorDao.salvar(empreendedorNovo);
+//        }
+//        return false;
     }
-    
+
     public Empreendedor buscarPorEmail(String user) {
         return empreendedorDao.buscarPorEmail(user);
     }
@@ -324,5 +324,16 @@ public class Empreendedor implements java.io.Serializable {
     public void setRua(String rua) {
         this.rua = rua;
     }
+    public boolean deletarEmpreendedor(Empreendedor empreendedor){
+        return empreendedorDao.deletarPorEmail(empreendedor.getEmail());
+    }
 
+    public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
+        for (Projeto projeto : projetoDao.buscar()) {
+            if (projeto.getEmpreendedors().contains(empreendedor)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

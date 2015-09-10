@@ -36,8 +36,8 @@ public abstract class Dao {
      * @return boolean se salvou ou não
      */
     public boolean salvar(Object obj) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
         boolean salvou = false;
         try {
             tx = session.getTransaction();
@@ -59,8 +59,8 @@ public abstract class Dao {
      * @return Resultado
      */
     protected int salvarComArquivo(Object obj) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
         int result = SALVOU;
         try {
             tx = session.getTransaction();
@@ -78,12 +78,28 @@ public abstract class Dao {
         }
         return result;
     }
+    
+    public boolean update(Object obj){
+        boolean salvou = false;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            session.merge(obj);
+            salvou = true;
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+            salvou = false;
+        }
+        return salvou;
+    }
         // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="DELETE"> 
     public boolean excluir(int codigo, Class type) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
         try {
             tx = session.getTransaction();
             tx.begin();
@@ -98,8 +114,7 @@ public abstract class Dao {
         }
         return true;
     }
-    // </editor-fold>
-
+    
     // <editor-fold defaultstate="collapsed" desc="SEARCH OBJECT"> 
     public Object buscarObjeto(int codigo, Class<?> classe) {
         Object objeto = null;
@@ -109,6 +124,12 @@ public abstract class Dao {
     }
 //    METODO PARA BUSCAR QUALQUER OBJETO UNICO EM QUALQUER CLASSE, (PROPRIEDADE CHAVE, VALOR A SER COMPARADO, TABELA)
     public Object buscarObjetoCriteria(String propriedade ,String valor, Class<?> classe) {
+        Object objeto = null;
+        Criteria criteria = getCriteria(classe);
+        criteria.add(Restrictions.eq(propriedade, valor));
+        return getObject(criteria);
+    }
+    public Object buscarObjetoCriteriaINT(String propriedade ,int valor, Class<?> classe) {
         Object objeto = null;
         Criteria criteria = getCriteria(classe);
         criteria.add(Restrictions.eq(propriedade, valor));
@@ -153,22 +174,22 @@ public abstract class Dao {
 
     private Object getObject(Criteria criteria) {
         Object object = criteria.uniqueResult();
-        tx.commit();
+//        tx.commit();
         return object;
     }
 
     private ArrayList<?> getObjects(Criteria criteria) {
         List list = criteria.list();
         ArrayList<?> lista = (ArrayList<?>) list;
-        tx.commit();
         return lista;
     }
 
     private Criteria getCriteria(Class<?> classe) {
         Criteria criteria = null;
         try {
-            tx = session.beginTransaction();//cria uma transação para o hibernate conectar no banco
+//            tx = session.beginTransaction();//cria uma transação para o hibernate conectar no banco
             criteria = session.createCriteria(classe);
+//            tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();

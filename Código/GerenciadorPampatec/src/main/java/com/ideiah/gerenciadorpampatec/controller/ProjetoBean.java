@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
@@ -62,11 +63,20 @@ public class ProjetoBean {
 //    Deleta Empreendedor da Lista
     public void deletarEmpreendedor() {
         System.out.println(empreendedorSelected);
-        for (Empreendedor empreendedor : listaEmpreendedor) {
+//        for (Empreendedor empreendedor : listaEmpreendedor) {
+        for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
             if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
-                getEmpreedendoresAdicionados().remove(empreendedor);
+                if (empreendedor.getCpf() != null) {
+                    if (empreendedor.verificarProjetoHasEmpreendedor(empreendedor)) {
+                        System.out.println("chegou no if");
+                        break;
+                    }
+                    empreendedor.deletarEmpreendedor(empreendedor);
+                }
+                empreendedor.deletarEmpreendedor(empreendedor);
                 break;
             }
+            getEmpreedendoresAdicionados().remove(empreendedor);
         }
     }
 
@@ -75,10 +85,13 @@ public class ProjetoBean {
      */
     public void adicionarEmpreendedor() {
         boolean existe = false;
+        Empreendedor empreendedorAchado = null;
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
                 getEmpreedendoresAdicionados().add(empreendedor);
+//                listaEmpreendedor.add(empreendedor);
                 existe = true;
+                empreendedorAchado = empreendedor;
                 break;
             }
         }
@@ -87,7 +100,14 @@ public class ProjetoBean {
             empreendedor.setEmail(emailEmpreendedor);
             getEmpreedendoresAdicionados().add(empreendedor);
             empreendedor.cadastrarEmpreendedor(empreendedor);
+            empreendedorAchado = empreendedor;
         }
+        ProjetoDao daoP = new ProjetoDao();
+        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
+
+        projeto.getEmpreendedors().add(empreendedorAchado);
+        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
+        empreendedorAchado.atualizarProjeto(projeto);
     }
 
     /**
