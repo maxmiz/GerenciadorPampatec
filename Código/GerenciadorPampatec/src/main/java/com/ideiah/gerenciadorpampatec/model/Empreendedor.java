@@ -330,9 +330,21 @@ public class Empreendedor implements java.io.Serializable {
 
     public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
         for (Projeto projeto : projetoDao.buscar()) {
-            if (projeto.getEmpreendedors().contains(empreendedor)) {
-                return true;
+            Empreendedor emp;
+            for (Object object : projeto.getEmpreendedors()){
+                emp = (Empreendedor) object;
+                if(emp.getEmail().equals(empreendedor.getEmail())){
+                    return true;
+                    
+                }
+                
             }
+            
+//            if (projeto.getEmpreendedors().equals(empreendedor)) {
+//                System.out.println("true");
+//                return true;
+//                
+//            }
         }
         return false;
     }

@@ -368,6 +368,17 @@
                         <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                         <button id="enviar" class="btn btn-success" onclick="">Enviar Plano de Negócio</button>
                     </div>
+<!--                    botao salvar projeto
+                    <div class="col-md-5 text-right">
+                        <br/>
+                        <p:commandButton id="enviar" class="btn btn-success" onclick="">Enviar Plano de Negócio</p:commandButton>
+                    </div>-->
+                    <div class="col-md-12 modal-footer">
+                        <h:commandButton id="botaoSalvar" class="btn btn-success" value="Salvar dados do projeto"
+                                         action="#{projetoBean.salvarProjeto}"></h:commandButton>
+                        <br/>
+                        <h:message for="botaoSalvar"></h:message>
+                    </div>
                 </div>
                 <!-- Fim da sexta parte do formulário -->
 

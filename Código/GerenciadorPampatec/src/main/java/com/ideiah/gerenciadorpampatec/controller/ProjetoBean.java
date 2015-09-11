@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,7 +38,7 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-
+ 
     public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
@@ -47,7 +49,27 @@ public class ProjetoBean {
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
     }
-
+    public void salvarProjeto(){
+        
+        ProjetoDao daoP = new ProjetoDao();
+        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
+        
+        projeto.setPlanofinanceiro(planoFinanceiro);
+        projeto.setAnaliseemprego(analiseEmprego);
+        projeto.setNegocio(negocio);
+        projeto.setPotencialEmprego(emailEmpreendedor);
+        projeto.setProdutoouservico(produtoOuSevico);
+        projeto.setStatus(Integer.SIZE);
+        
+//        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//        Projeto projeto = (Projeto) sessao.getAttribute("projetoEditado");
+        
+        
+//        projeto.getEmpreendedors().add(empreedendoresAdicionados);
+//        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
+//        empreendedorAchado.atualizarProjeto(projeto);
+        
+    }
     public List<String> completarEmpreendedor(String busca) {
         List<String> listaFiltrada = new ArrayList<>();
 
@@ -64,20 +86,20 @@ public class ProjetoBean {
     public void deletarEmpreendedor() {
         System.out.println(empreendedorSelected);
 //        for (Empreendedor empreendedor : listaEmpreendedor) {
+        Empreendedor empreendedorDeletar = null;
         for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
+            empreendedorDeletar = empreendedor;
             if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
                 if (empreendedor.getCpf() != null) {
-                    if (empreendedor.verificarProjetoHasEmpreendedor(empreendedor)) {
-                        System.out.println("chegou no if");
-                        break;
-                    }
+                    System.out.println("entrou no if 1");
+                    break;
+                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
                     empreendedor.deletarEmpreendedor(empreendedor);
+                    break;
                 }
-                empreendedor.deletarEmpreendedor(empreendedor);
-                break;
             }
-            getEmpreedendoresAdicionados().remove(empreendedor);
         }
+        getEmpreedendoresAdicionados().remove(empreendedorDeletar);
     }
 
     /**
@@ -102,12 +124,12 @@ public class ProjetoBean {
             empreendedor.cadastrarEmpreendedor(empreendedor);
             empreendedorAchado = empreendedor;
         }
-        ProjetoDao daoP = new ProjetoDao();
-        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
-
+//        ProjetoDao daoP = new ProjetoDao();
+//        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
+//
         projeto.getEmpreendedors().add(empreendedorAchado);
-        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
-        empreendedorAchado.atualizarProjeto(projeto);
+//        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
+//        empreendedorAchado.atualizarProjeto(projeto);
     }
 
     /**
