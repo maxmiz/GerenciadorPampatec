@@ -37,6 +37,9 @@ public class LoginBean {
     private String senha;
     private String nome;
 
+    private FacesContext fc = FacesContext.getCurrentInstance();
+    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+
     public void submit() {
         try {
             fazLogin(user, senha);
@@ -45,11 +48,32 @@ public class LoginBean {
         }
     }
 
+    public String fazLogout() {
+
+        session.removeAttribute("empreendedor");
+
+        return "/loginEmpreendedor.xhtml";
+
+    }
+    
+    public String getInicio(){
+        return "homeEmpreendedor.xhtml";
+    }
+    
+    public String getEnviarProjeto(){
+        return "enviarProjeto.xhtml";
+    }
+    
+    public String getVisualizarPlanos(){
+        return "visualizarPlanos.xhtml";
+    }
+    
     public String fazLogin(String user, String senha) {
         try {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+//            FacesContext fc = FacesContext.getCurrentInstance();
+//            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
+
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
@@ -69,7 +93,7 @@ public class LoginBean {
                 this.setNome(empreendedor.getNome());
                 try {
                     //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().dispatch("homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().dispatch("view/homeEmpreendedor.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }

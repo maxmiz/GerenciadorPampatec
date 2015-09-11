@@ -12,7 +12,7 @@
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -21,45 +21,49 @@
     </h:head>
     <body>
         <!-- Início do menu superior -->
+        <h:form>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
 
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="col-md-10">
-                    <ul class="nav navbar-nav navbar-right">
-                        
-                        <li class="dropdown">
-                            <a href="homeEmpreendedor.xhtml" role="button" aria-expanded="false">Início</a>  
-                        </li>
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="enviarProjeto.xhtml">Cadastrar Plano de Negócio</a></li>
-                                <li><a href="visualizarPlanos.xhtml">Ver meus Planos de Negócio</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                            </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Editar meus dados</a></li>
-                                <li><a href="#">Sair</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{loginBean.getEnviarProjeto()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
+                                </ul>
+                            </li>
 
-                    </ul>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink value="Editar meus dados"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <!-- Fim do menu superior -->
-        
-        
+            <!-- Fim do menu superior -->
+
+
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h1>Planos de Negócio</h1>
             <h2> <h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus Planos de Negócio </h2>
         </div>
         <div class="col-md-3"></div>
+        </h:form>
     </body>
 </html>
