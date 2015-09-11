@@ -12,7 +12,7 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -62,387 +62,449 @@
         <div class="col-md-3"> </div>
 
         <div class="col-md-6 form-horizontal well bs-component">
-            <h1>Cadastro - Plano de Negócio</h1>
-            <div>
+            <h:form>
+                <h1>Cadastro - Plano de Negócio</h1>
+                <div>
 
-                <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto
-                Referente ao CONTATO -->
+                    <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto
+                    Referente ao CONTATO -->
 
-                <div id="formularioParte01">
-                    <h:form>
-                        <legend id="subTitulo">Contatos</legend>
-                        <div class="col-md-12" id="">
-                            <b>Empresa/Projeto</b><br/>
-                            Nome da Empresa ou do Projeto
-                            <h:inputText class="form-control" value="#{projetoBean.projeto.nome}"></h:inputText>
-                            <br/>
-                        </div>
+                    <div id="formularioParte01">
+                        <h:form>
+                            <legend id="subTitulo">Contatos</legend>
+                            <div class="col-md-12" id="">
+                                <b>Empresa/Projeto*</b><br/>
+                                Nome da Empresa ou do Projeto
+                                <p:inputText id="empresaProjeto" placeholder="" class="form-control"
+                                             requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
 
-                        <div class="col-md-12" id="">
-                            <b>Empreendedores</b><br/>
-                            Informe os emails de quem está propondo o empreendimento:
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
-                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                                    </p:autoComplete>
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="empresaProjeto"/>
+                                <br/>
+                            </div>
+
+                            <div class="col-md-12" id="">
+                                <b>Empreendedores*</b><br/>
+                                Informe os emails de quem está propondo o empreendimento:
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:autoComplete>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
+                                <br/><br/>
+                                <h:dataTable var="empreendedor" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
+                                    <h:column>
+                                        <h:outputText value="#{empreendedor.email}" />
+                                    </h:column>
+                                    <h:column>
+                                        <button class="btn btn-default">
+                                            Deletar
+                                        </button>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+
+                            <div class="col-md-8" id="">
+                                <b>Rua</b><h:inputText class="form-control"></h:inputText>
+                                <br/>
+                            </div>
+
+                            <div class="col-md-4" id="">
+                                <b>Número</b><h:inputText class="form-control"></h:inputText>
+                                <br/>
+                            </div>
+
+                            <div class="col-md-8" id="">
+                                <b>E-mail</b>
+                                <h:inputText class="form-control"></h:inputText>
+                                <br/>
+                            </div>
+
+                            <div class="col-md-4" id="">
+                                <b>Telefone</b>
+                                <h:inputText class="form-control"></h:inputText>
+                                <br/>
+                            </div>
+                        </h:form>
+
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 text-right">
+                            <br/>
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <button id="proximo2" class="btn btn-default" onclick="exibeSegundaParte()">Próximo →</button>
+                        </div>
+                    </div>
+
+                    <!-- Fim da primeira parte do formulário -->
+
+                    <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto
+                    Referente ao NEGÓCIO -->
+
+                    <div id="formularioParte02" style="display: none">
+                        <h:form>
+                            <legend>O Negócio*</legend>
+                            <div class="col-md-12" id="">
+                                <b>Segmento de Clientes</b><br/>
+                                Para quem criamos valor? Quais são os nossos clientes mais importantes? 
+                                <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
+                                             requiredMessage="Insira o segmento de clientes antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="segmentoDeClientes"/>
+                                <br/>
+                            </div>
+                            <div class="col-md-12" id="">
+                                <b>Proposta de Valor*</b><br/>
+                                Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
+                                <p:inputText id="propostaDeValor" placeholder="" class="form-control"
+                                             requiredMessage="Insira a proposta de valor antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="propostaDeValor"/>
+                                <br/>
+                            </div>
+                            <div class="col-md-12" id="">
+                                <b>Atividades Chave*</b><br/>
+                                Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
+                                <p:inputText id="atividadesChave" placeholder="" class="form-control"
+                                             requiredMessage="Insira as atividades chave antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="atividadesChave"/>
+                                <br/>
+                            </div>
+                        </h:form>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button id="anterior2" class="btn btn-default" onclick="retornaPrimeiraParte()">← Anterior</button>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3  text-right">
+                            <br/>
+                            <button id="proximo3" class="btn btn-default" onclick="exibeTerceiraParte()">Próximo →</button>
+                        </div>
+                    </div>
+
+                    <!-- Fim da segunda parte do formulário -->
+
+
+                    <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto
+                    Referente a ANÁLISE DE MERCADO -->
+
+                    <div id="formularioParte03" style="display: none">
+                        <h:form>
+                            <legend id="subTitulo">Análise de Mercado</legend>
+                            <div class="col-md-12">
+                                <b>Relações com clientes</b><br/>
+                                Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Parcerias chave</b><br/>
+                                Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Canais</b><br/>
+                                Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Recursos principais</b><br/>
+                                Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Concorrentes</b><br/>
+                                Quem são nossos concorrentes? como trabalham?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                        </h:form>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"><br />
+                            <button id="anterior3" class="btn btn-default" onclick="retornaSegundaParte()">← Anterior</button>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 text-right">
+                            <br/>
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <button id="proximo4" class="btn btn-default" onclick="exibeQuartaParte()">Próximo →</button>
+                        </div>
+                    </div>
+
+                    <!-- Fim da terceira parte do formulário -->
+
+
+
+                    <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto
+                    Referente ao PRODUTO DE SERVIÇO -->
+
+                    <div id="formularioParte04" style="display: none">
+                        <h:form>
+                            <legend id="subTitulo">Produto de Serviço</legend>
+                            <div class="col-md-12">
+                                <b>Estágio de evolução*</b><br/>
+                                Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+
+                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection">
+
+                                        <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
+                                        <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
+                                        <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
+                                        <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
+                                        <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
+                                        <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
+                                        <f:selectItem itemLabel="Outro: " itemValue="Outro:" />
+
+
+                                    </p:selectOneRadio>
+
+                                    <br/>
+                                </h:panelGrid>
+
+                            </div>
+                            <div class="col-md-12">
+                                <b>Tecnologia e processos (não poluentes)</b><br/>
+                                Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Potencial de inovação tecnológica</b><br/>
+                                Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Aplicações</b><br/>
+                                A quem se aplica? como? de que maneira?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Dificuldades esperadas</b><br/>
+                                Quais são nossas principais limitações?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Interação entre empresa e Universidade</b><br/>
+                                Em que sentido seremos parceiros da Universidade? 
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Interação entre empresa, comunidade e governo</b><br/>
+                                Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
+                                Quanto de espaço será necessário? Mobiliário? Equipamentos?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                        </h:form>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button id="anterior4" class="btn btn-default" onclick="retornaTerceiraParte()">← Anterior</button>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 text-right">
+                            <br/>
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <button id="proximo5" class="btn btn-default" onclick="exibeQuintaParte()">Próximo →</button>
+                        </div>
+                    </div>
+                    <!-- Fim da quarta parte do formulário -->
+
+
+
+                    <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
+                    Referente a GESTÃO DE PESSOAS -->
+                    <div id="formularioParte05" style="display: none">
+                        <h:form>
+                            <legend id="subTitulo">Gestão de Pessoas</legend>
+                            <div class="col-md-12">
+                                <b>Formação dos sócios*</b><br/>
+                                Cursos, Tecnólogos, Graduação, Pós-graduação, ...
+                                <p:inputText id="formacaoDeSocios" placeholder="" class="form-control"
+                                             requiredMessage="Insira a formação de seus sócios antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="formacaoDeSocios"/>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Experiência profissional dos sócios</b><br/>
+                                Já trabalhamos em áreas afim ao projeto?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Competências dos sócios nas áreas técnica, administrativa e comercial</b><br/>
+                                Qual a experiência nos produtos ou serviços que serão comercializados? Em formação de equipes? Vendas?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Descrição da participação acionária</b><br/>
+                                Haverão sócios? Quanto de participação terão?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Potencial de geração de emprego e renda</b><br/>
+                                Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                        </h:form>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button id="anterior5" class="btn btn-default" onclick="retornaQuartaParte()">← Anterior</button>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 text-right">
+                            <br/>
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <button id="proximo6" class="btn btn-default" onclick="exibeSextaParte()">Próximo →</button>
+                        </div>
+                    </div>
+                    <!-- Fim da quinta parte do formulário -->
+
+
+
+                    <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
+                    Referente ao PLANO FINANCEIRO -->
+                    <div id="formularioParte06" style="display: none">
+                        <h:form>
+                            <legend id="subTitulo">Plano de Financeiro</legend>
+                            <div class="col-md-12">
+                                <b>Fontes de receita*</b><br/>
+                                Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
+                                <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
+                                             requiredMessage="Insira as fontes de receita antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="fontesDeReceita"/>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Estrutura de custos*</b><br/>
+                                Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                                <p:inputText id="estruturaCustos" placeholder="" class="form-control"
+                                             requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
+
+                                </p:inputText>
+                                <h:message class="mensagemErro" for="estruturaCustos"/>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Investimento inicial</b><br/>
+                                Quanto de recurso será necessário para iniciar?
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Custos fixos</b><br/>
+                                Salários, Aluguel...
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Custos variáveis</b><br/>
+                                Impostos, combustível, matéria-prima... 
+                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <br/>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" style="width: 83%"></div>
                                 </div>
                             </div>
-                            <br/><br/>
-                            <h:dataTable var="empreendedor" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
-                                <h:column>
-                                    <h:outputText value="#{empreendedor.email}" />
-                                </h:column>
-                                <h:column>
-                                    <button class="btn btn-default">
-                                        Deletar
-                                    </button>
-                                </h:column>
-                            </h:dataTable>
-                        </div>
+                            <div class="col-md-3">
+                                <br />
+                                <button id="anterior6" class="btn btn-default" onclick="retornaQuintaParte()">← Anterior</button>
+                            </div>
+                            <div class="col-md-4">
 
-                        <div class="col-md-8" id="">
-                            <b>Rua</b><h:inputText class="form-control"></h:inputText>
-                            <br/>
-                        </div>
-
-                        <div class="col-md-4" id="">
-                            <b>Número</b><h:inputText class="form-control"></h:inputText>
-                            <br/>
-                        </div>
-
-                        <div class="col-md-8" id="">
-                            <b>E-mail</b>
-                            <h:inputText class="form-control"></h:inputText>
-                            <br/>
-                        </div>
-
-                        <div class="col-md-4" id="">
-                            <b>Telefone</b>
-                            <h:inputText class="form-control"></h:inputText>
-                            <br/>
-                        </div>
-                    </h:form>
-                    
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
-                        </div>
+                            </div>
+                            <div class="col-md-5 text-right">
+                                <br/>
+                                <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                                <h:commandButton id="botaoEnviar" class="btn btn-success" onclick="" value="Enviar Plano de Negócio"></h:commandButton>
+                                <h:message for="botaoEnviar"></h:message>
+                            </div>
+                        </h:form>
                     </div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 text-right">
-                        <br/>
-                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="proximo2" class="btn btn-default" onclick="exibeSegundaParte()">Próximo →</button>
-                    </div>
+                    <!-- Fim da sexta parte do formulário -->
+
+
                 </div>
 
-                <!-- Fim da primeira parte do formulário -->
-
-                <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto
-                Referente ao NEGÓCIO -->
-
-                <div id="formularioParte02" style="display: none">
-                    <h:form>
-                        <legend>O Negócio</legend>
-                        <div class="col-md-12" id="">
-                            <b>Segmento de Clientes</b><br/>
-                            Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12" id="">
-                            <b>Proposta de Valor</b><br/>
-                            Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12" id="">
-                            <b>Atividades Chave</b><br/>
-                            Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                    </h:form>
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <br />
-                        <button id="anterior2" class="btn btn-default" onclick="retornaPrimeiraParte()">← Anterior</button>
-                    </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3  text-right">
-                        <br/>
-                        <button id="proximo3" class="btn btn-default" onclick="exibeTerceiraParte()">Próximo →</button>
-                    </div>
-                </div>
-
-                <!-- Fim da segunda parte do formulário -->
-
-
-                <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto
-                Referente a ANÁLISE DE MERCADO -->
-
-                <div id="formularioParte03" style="display: none">
-                    <h:form>
-                        <legend id="subTitulo">Análise de Mercado</legend>
-                        <div class="col-md-12">
-                            <b>Relações com clientes</b><br/>
-                            Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Parcerias chave</b><br/>
-                            Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Canais</b><br/>
-                            Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Recursos principais</b><br/>
-                            Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Concorrentes</b><br/>
-                            Quem são nossos concorrentes? como trabalham?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                    </h:form>
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3"><br />
-                        <button id="anterior3" class="btn btn-default" onclick="retornaSegundaParte()">← Anterior</button>
-                    </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 text-right">
-                        <br/>
-                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="proximo4" class="btn btn-default" onclick="exibeQuartaParte()">Próximo →</button>
-                    </div>
-                </div>
-
-                <!-- Fim da terceira parte do formulário -->
-
-
-
-                <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto
-                Referente ao PRODUTO DE SERVIÇO -->
-
-                <div id="formularioParte04" style="display: none">
-                    <h:form>
-                        <legend id="subTitulo">Produto de Serviço</legend>
-                        <div class="col-md-12">
-                            <b>Estágio de evolução </b><br/>
-                            Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
-                            <input type="radio" name="estagio" value="" /> Ideia Básica <br/>
-                            <input type="radio" name="estagio" value="" /> Projeto básico <br/>
-                            <input type="radio" name="estagio" value="" /> Projeto detalhado <br/>
-                            <input type="radio" name="estagio" value="" /> Protótipo desenvolvido <br/>
-                            <input type="radio" name="estagio" value="" /> Em teste no mercado <br/>
-                            <input type="radio" name="estagio" value="" /> Clientes Pagando <br/>
-                            <input type="radio" name="estagio" value="" /> Outro:
-                            <h:inputText class="form-control"></h:inputText>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Tecnologia e processos (não poluentes)</b><br/>
-                            Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Potencial de inovação tecnológica</b><br/>
-                            Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Aplicações</b><br/>
-                            A quem se aplica? como? de que maneira?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Dificuldades esperadas</b><br/>
-                            Quais são nossas principais limitações?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Interação entre empresa e Universidade</b><br/>
-                            Em que sentido seremos parceiros da Universidade? 
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Interação entre empresa, comunidade e governo</b><br/>
-                            Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
-                            Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                    </h:form>
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <br />
-                        <button id="anterior4" class="btn btn-default" onclick="retornaTerceiraParte()">← Anterior</button>
-                    </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 text-right">
-                        <br/>
-                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="proximo5" class="btn btn-default" onclick="exibeQuintaParte()">Próximo →</button>
-                    </div>
-                </div>
-                <!-- Fim da quarta parte do formulário -->
-
-
-
-                <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
-                Referente a GESTÃO DE PESSOAS -->
-                <div id="formularioParte05" style="display: none">
-                    <h:form>
-                        <legend id="subTitulo">Gestão de Pessoas</legend>
-                        <div class="col-md-12">
-                            <b>Formação de sócios</b><br/>
-                            Cursos, Tecnólogos, Graduação, Pós-graduação, ...
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Experiência profissional dos sócios</b><br/>
-                            Já trabalhamos em áreas afim ao projeto?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Competências dos sócios nas áreas técnica, administrativa e comercial</b><br/>
-                            Qual a experiência nos produtos ou serviços que serão comercializados? Em formação de equipes? Vendas?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Descrição da participação acionária</b><br/>
-                            Haverão sócios? Quanto de participação terão?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Potencial de geração de emprego e renda</b><br/>
-                            Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                    </h:form>
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <br />
-                        <button id="anterior5" class="btn btn-default" onclick="retornaQuartaParte()">← Anterior</button>
-                    </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 text-right">
-                        <br/>
-                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="proximo6" class="btn btn-default" onclick="exibeSextaParte()">Próximo →</button>
-                    </div>
-                </div>
-                <!-- Fim da quinta parte do formulário -->
-
-
-
-                <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
-                Referente ao PLANO FINANCEIRO -->
-                <div id="formularioParte06" style="display: none">
-                    <h:form>
-                        <legend id="subTitulo">Plano de Financeiro</legend>
-                        <div class="col-md-12">
-                            <b>Fontes de receita</b><br/>
-                            Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Estrutura de custos</b><br/>
-                            Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Investimento inicial</b><br/>
-                            Quanto de recurso será necessário para iniciar?
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Custos fixos</b><br/>
-                            Salários, Aluguel...
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                        <div class="col-md-12">
-                            <b>Custos variáveis</b><br/>
-                            Impostos, combustível, matéria-prima... 
-                            <h:inputTextarea class="form-control"></h:inputTextarea>
-                            <br/>
-                        </div>
-                    </h:form>
-                    <div class="col-md-12">
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 83%"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <br />
-                        <button id="anterior6" class="btn btn-default" onclick="retornaQuintaParte()">← Anterior</button>
-                    </div>
-                    <div class="col-md-4">
-                        
-                    </div>
-                    <div class="col-md-5 text-right">
-                        <br/>
-                        <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                        <button id="enviar" class="btn btn-success" onclick="">Enviar Plano de Negócio</button>
-                    </div>
-                </div>
-                <!-- Fim da sexta parte do formulário -->
-
-
-            </div>
-
-
+            </h:form>
         </div>
         <div class="col-md-3"></div>
 
