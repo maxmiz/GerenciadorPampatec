@@ -13,6 +13,7 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -84,8 +85,7 @@ public class ProjetoBean {
 
 //    Deleta Empreendedor da Lista
     public void deletarEmpreendedor() {
-        System.out.println(empreendedorSelected);
-//        for (Empreendedor empreendedor : listaEmpreendedor) {
+        System.out.println("Entrou Deletar");
         Empreendedor empreendedorDeletar = null;
         for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
             empreendedorDeletar = empreendedor;
@@ -99,6 +99,8 @@ public class ProjetoBean {
                 }
             }
         }
+        System.out.println("Saiu");
+        projeto.getEmpreendedors().remove(empreendedorDeletar);
         getEmpreedendoresAdicionados().remove(empreendedorDeletar);
     }
 
@@ -110,7 +112,6 @@ public class ProjetoBean {
         Empreendedor empreendedorAchado = null;
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
-                getEmpreedendoresAdicionados().add(empreendedor);
 //                listaEmpreendedor.add(empreendedor);
                 existe = true;
                 empreendedorAchado = empreendedor;
@@ -120,16 +121,32 @@ public class ProjetoBean {
         if (existe == false) {
             Empreendedor empreendedor = new Empreendedor();
             empreendedor.setEmail(emailEmpreendedor);
-            getEmpreedendoresAdicionados().add(empreendedor);
             empreendedor.cadastrarEmpreendedor(empreendedor);
             empreendedorAchado = empreendedor;
         }
-//        ProjetoDao daoP = new ProjetoDao();
-//        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
-//
-        projeto.getEmpreendedors().add(empreendedorAchado);
-//        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
-//        empreendedorAchado.atualizarProjeto(projeto);
+        
+        if(!verificarLista(empreedendoresAdicionados, empreendedorAchado)){
+            System.out.println("");
+            getEmpreedendoresAdicionados().add(empreendedorAchado);
+            projeto.getEmpreendedors().add(empreendedorAchado);
+        }else{
+            FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
+        }
+    }
+    
+    /**
+     * Verifica se o empreendedor disponibilizado está na lista.
+     * @param empreendedores
+     * @param empreendedorAchado 
+     * @return  True se ele está  presente na lista.
+     */
+    public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado){
+        for (Empreendedor empreendedore : empreendedores) {
+            if(empreendedore.getEmail().equals(empreendedorAchado.getEmail())){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
