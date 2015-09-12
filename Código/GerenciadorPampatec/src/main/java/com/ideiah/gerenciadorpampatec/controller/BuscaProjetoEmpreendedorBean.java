@@ -9,14 +9,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 
-@ManagedBean (name="buscaProjetoBean")
+@ManagedBean (name="buscaProjetoEmpreendedorBean")
 @ViewScoped
-public class BuscaProjetoBean {
+public class BuscaProjetoEmpreendedorBean {
 
     private ProjetoDao projeto;
     private Projeto selectedProjeto;
    
-    public BuscaProjetoBean() {
+    public BuscaProjetoEmpreendedorBean() {
         projeto = new ProjetoDao();
     }
 
