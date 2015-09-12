@@ -59,6 +59,9 @@ public class EmpreendedorBean {
 //    public void efetuarLogin(Empreendedor emp) {
 //        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", emp);
 //    }
+    public String voltar(){
+        return "/loginEmpreendedor.xhtml";
+    }
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
 
