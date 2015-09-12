@@ -10,6 +10,7 @@
         <a href="../../../../../../../../AppData/Local/Temp/Previous Slide.url"></a>
     </h:head>
     <h:body>
+        <h:form>
         <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.buscaProjetoPorEmpreendedor()}">
             <f:facet name="header">
                 Meus Projetos (Empreendedor)
@@ -21,11 +22,12 @@
                 <h:outputText value="#{projeto.dataEnvio}" />
             </p:column>
             <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
-                <p:commandButton icon="ui-icon-pencil" title="View">
-                     <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.empreendedorSelecionado}"/>
+                <p:commandButton icon="ui-icon-pencil" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                     <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                 </p:commandButton>                
             </p:column>
         </p:dataTable>
+            </h:form>
     </h:body>
 </html>
 

@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean (name="buscaProjetoEmpreendedorBean")
@@ -19,11 +20,10 @@ import org.primefaces.event.SelectEvent;
 public class BuscaProjetoEmpreendedorBean {
 
     private ProjetoDao projeto;
-    private Projeto selectedProjeto;
-    private Empreendedor empreendedorSelecionado;
+    private Empreendedor projetoSelecionado;
 
-    public Empreendedor getEmpreendedorSelecionado() {
-        return empreendedorSelecionado;
+    public Empreendedor getProjetoSelecionado() {
+        return projetoSelecionado;
     }
    
     public BuscaProjetoEmpreendedorBean() {
@@ -36,14 +36,6 @@ public class BuscaProjetoEmpreendedorBean {
 
     public ProjetoDao getProjeto() {
         return projeto;
-    }
-     
-    public Projeto getSelectedProjeto() {
-        return selectedProjeto;
-    }
-    
-    public void setSelectedProjeto(Projeto selectedProjeto) {
-        this.selectedProjeto = selectedProjeto;
     }
     
     public ArrayList <Projeto> buscaProjetoPorEmpreendedor(){
@@ -60,5 +52,11 @@ public class BuscaProjetoEmpreendedorBean {
         return projetosEmpreendedor;
     }
     
-
+    public String enviaProjetoEditar(){
+         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+         secao.setAttribute("projetoSelecionado", projetoSelecionado);
+         System.out.println("aisdhsuhasuoijdoaijsdfioajsdfosjidafoiasdjfoiasjdoifadsof");
+         return "/enviarProjeto.xhtml";
+        
+    }
 }
