@@ -68,12 +68,12 @@ public class EmpreendedorBean {
         empreendedor = new Empreendedor();
 
         empreendedor.setNome(nome);
+        cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
             FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
         }
         
         else {
-            cpf = FacesUtil.removeCaracteres(cpf);
             empreendedor.setCpf(cpf);
             empreendedor.setFormacao(formacao);
             if (empreendedor.buscarPorEmail(email) != null) {
