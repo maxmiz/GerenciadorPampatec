@@ -55,7 +55,6 @@ public class BuscaProjetoEmpreendedorBean {
     public String enviaProjetoEditar(){
          HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
          secao.setAttribute("projetoSelecionado", projetoSelecionado);
-         System.out.println("aisdhsuhasuoijdoaijsdfioajsdfosjidafoiasdjfoiasjdoifadsof");
          return "/enviarProjeto.xhtml";
         
     }
