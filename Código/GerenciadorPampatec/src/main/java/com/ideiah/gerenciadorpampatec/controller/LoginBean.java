@@ -65,7 +65,7 @@ public class LoginBean {
     }
     
     public String getVisualizarPlanos(){
-        return "visualizarPlanos.xhtml";
+        return "PaginaBuscaProjeto.xhtml";
     }
     
     public String fazLogin(String user, String senha) {

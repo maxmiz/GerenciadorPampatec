@@ -1,12 +1,17 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean (name="buscaProjetoEmpreendedorBean")
@@ -15,6 +20,11 @@ public class BuscaProjetoEmpreendedorBean {
 
     private ProjetoDao projeto;
     private Projeto selectedProjeto;
+    private Empreendedor empreendedorSelecionado;
+
+    public Empreendedor getEmpreendedorSelecionado() {
+        return empreendedorSelecionado;
+    }
    
     public BuscaProjetoEmpreendedorBean() {
         projeto = new ProjetoDao();
@@ -35,5 +45,20 @@ public class BuscaProjetoEmpreendedorBean {
     public void setSelectedProjeto(Projeto selectedProjeto) {
         this.selectedProjeto = selectedProjeto;
     }
+    
+    public ArrayList <Projeto> buscaProjetoPorEmpreendedor(){
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        
+        Projeto selecaoProjeto;
+        ArrayList <Projeto> projetosEmpreendedor = new ArrayList();
+        
+        for (Object projeto : empreendedor.getProjetos().toArray()) {
+            selecaoProjeto = (Projeto) projeto;
+            projetosEmpreendedor.add(selecaoProjeto);
+        }
+        return projetosEmpreendedor;
+    }
+    
 
 }
