@@ -88,5 +88,17 @@ public class FacesUtil {
 
     }
 
+    /**
+     *
+     * Retira caracteres especiais
+     *
+     * @param valor
+     * @return valor convertido
+     */
+    public static String removeCaracteres(String valor) {
+            return valor.replaceAll("\\D", "");
+        
+    }
+
 }
 

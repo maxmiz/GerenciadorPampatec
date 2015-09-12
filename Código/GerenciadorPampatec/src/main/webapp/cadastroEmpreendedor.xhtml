@@ -39,13 +39,14 @@
 
                     </div>
                     <div class="col-md-6">
-                        CPF* <p:inputText id="cpf" class="form-control" 
+                        CPF* <p:inputMask id="cpf" class="form-control" 
                                           placeholder="Digite seu CPF" 
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
+                                          mask="999.999.999.99"
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                           value="#{empreendedorBean.cpf}">
-                        </p:inputText>
+                        </p:inputMask>
                         <h:message class="mensagemErro" for="cpf"/>
                     </div>
                     <div class="col-md-6">
@@ -67,13 +68,17 @@
 
                     </div>
                     <div class="col-md-4">
-                        Telefone* <p:inputText id="telefone" class="form-control" 
+                        Telefone* <p:inputMask id="telefone" class="form-control" 
                                                placeholder="Digite seu contato"
                                                requiredMessage="Insira o seu telefone"
                                                required="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                               value="#{empreendedorBean.telefone}">
-                        </p:inputText>
+                                               value="#{empreendedorBean.telefone}"
+                                               mask="(999) 9999-9999"
+                                               validatorMessage="Número invalido">
+                                               
+                             <!--<f:validateRegex pattern="[0-9]*" />-->
+                        </p:inputMask>
                         <h:message class="mensagemErro" for="telefone"/>
 
                     </div>
