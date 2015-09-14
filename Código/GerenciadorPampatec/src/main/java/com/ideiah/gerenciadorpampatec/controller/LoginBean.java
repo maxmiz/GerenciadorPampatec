@@ -81,8 +81,10 @@ public class LoginBean {
 //            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
 
+            
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
+                    System.out.println("..>"+user);
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
                     FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
