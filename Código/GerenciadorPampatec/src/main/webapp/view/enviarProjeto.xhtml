@@ -13,8 +13,9 @@
             <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <h:outputScript library="js" name="formulario.js" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -141,12 +142,26 @@
                                 <br/>
                             </div>
 
-                         
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="alert alert-dismissible alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
+                                        para que você possa retornar e acabar de preenchê-los em outro momento.
+                                    </div>
+
+                                </div>
+                            </div>
 
                             <div class="col-md-3"></div>
                             <div class="col-md-6 text-center">
                                 <br/>
-                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onmousemove="notificacao()" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                                 <h:message for="botaoSalvar1"></h:message>
                             </div>
                             <div class="col-md-3 text-right">

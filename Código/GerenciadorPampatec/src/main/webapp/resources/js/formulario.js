@@ -13,8 +13,19 @@ require('../../js/tab.js')
 require('../../js/affix.js')
 
 
-function notificacao() {
-    alert("Teste");
+
+
+var x = false;
+
+function verificacaoDoBotao() {
+    
+    alert("Retorno: " + x + ".");
+
+//    if (x == false) {
+//        $("#myModal").modal();
+//        x = true;
+//    } 
+    
 }
 
 /*
