@@ -14,6 +14,14 @@ import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,6 +44,11 @@ public class EmpreendedorBean {
     private String numero;
     private String complemento;
     private Empreendedor empreendedor;
+    private HttpSession session;
+    
+    public EmpreendedorBean(){
+        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    }
 
     public String getOutcome() {
         return outcome;
@@ -53,15 +66,6 @@ public class EmpreendedorBean {
         this.userInput = userInput;
     }
 
-    /**
-     * @param u usuário que será adicionado na sessão
-     */
-//    public void efetuarLogin(Empreendedor emp) {
-//        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", emp);
-//    }
-    public String voltar(){
-        return "/loginEmpreendedor.xhtml";
-    }
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
 
@@ -92,6 +96,15 @@ public class EmpreendedorBean {
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+                        try {
+                            LoginBean.MudarNome(empreendedor.getNome());
+                            LoginBean.MudarSenha(empreendedor.getSenha());
+                            LoginBean.MudarUser(empreendedor.getEmail());
+                            session.setAttribute("empreendedor", empreendedor);
+                            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                        } catch (IOException ex) {
+                            Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     } else {
                         FacesUtil.addErrorMessage("Cadastro não realizado.!", "formularioCadastro:botaoEnviar");
                     }

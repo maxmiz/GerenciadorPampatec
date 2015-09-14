@@ -33,9 +33,9 @@ import javax.servlet.http.HttpSession;
 public class LoginBean {
 
     private static EmpreendedorDao empreededorDao;
-    private String user; //pode ser email ou senha
-    private String senha;
-    private String nome;
+    private static String user; //pode ser email ou senha
+    private static String senha;
+    private static String nome;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -51,6 +51,9 @@ public class LoginBean {
     public String fazLogout() {
 
         session.removeAttribute("empreendedor");
+        LoginBean.MudarNome(null);
+        LoginBean.MudarSenha(null);
+        LoginBean.MudarUser(null);
 
         return "/loginEmpreendedor.xhtml";
 
@@ -66,6 +69,10 @@ public class LoginBean {
     
     public String getVisualizarPlanos(){
         return "PaginaBuscaProjeto.xhtml";
+    }
+    
+    public String voltar(){
+        return "/loginEmpreendedor.xhtml";
     }
     
     public String fazLogin(String user, String senha) {
@@ -168,6 +175,18 @@ public class LoginBean {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public static void MudarNome(String nome){
+        LoginBean.nome = nome;
+    }
+    
+    public static void MudarSenha(String senha){
+        LoginBean.senha = senha;
+    }
+    
+    public static void MudarUser(String user){
+        LoginBean.user = user;
     }
 
 }
