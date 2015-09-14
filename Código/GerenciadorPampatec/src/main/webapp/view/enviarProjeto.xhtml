@@ -14,6 +14,7 @@
         </f:facet>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <h:outputScript library="js" name="formulario.js" />
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,12 +141,12 @@
                                 <br/>
                             </div>
 
-
+                         
 
                             <div class="col-md-3"></div>
                             <div class="col-md-6 text-center">
                                 <br/>
-                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onmousemove="notificacao()" value="Salvar Plano de Negócio"></h:commandButton>
                                 <h:message for="botaoSalvar1"></h:message>
                             </div>
                             <div class="col-md-3 text-right">
@@ -247,31 +248,31 @@
                             <div class="col-md-12">
                                 <b>Relações com clientes</b><br/>
                                 Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.analiseEmprego.relacoesClientes}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Parcerias chave</b><br/>
                                 Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.analiseEmprego.parceriasChaves}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Canais</b><br/>
                                 Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.analiseEmprego.canais}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Recursos principais</b><br/>
                                 Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.analiseEmprego.recursosPrincipais}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Concorrentes</b><br/>
                                 Quem são nossos concorrentes? como trabalham?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.analiseEmprego.concorrentes}"></h:inputTextarea>
                                 <br/>
                             </div>
                         </h:form>
@@ -330,43 +331,43 @@
                             <div class="col-md-12">
                                 <b>Tecnologia e processos (não poluentes)</b><br/>
                                 Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.tecnologiaProcessos}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Potencial de inovação tecnológica</b><br/>
                                 Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.potencialInovacaoTecnologica}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Aplicações</b><br/>
                                 A quem se aplica? como? de que maneira?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.aplicacoes}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Dificuldades esperadas</b><br/>
                                 Quais são nossas principais limitações?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.dificuldadesEsperadas}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Interação entre empresa e Universidade</b><br/>
                                 Em que sentido seremos parceiros da Universidade? 
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.interacaoEmpresaUniversidade}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Interação entre empresa, comunidade e governo</b><br/>
                                 Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.interacaoEmpresaComunidadeGoverno}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
                                 Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.produtoOuSevico.infraestrutura}"></h:inputTextarea>
                                 <br/>
                             </div>
                         </h:form>
@@ -450,6 +451,7 @@
                                              requiredMessage="Insira as fontes de receita antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.planoFinanceiro.fontesReceita}"
                                              >
 
                                 </p:inputText>
@@ -463,6 +465,7 @@
                                              requiredMessage="Insira a estrutura de custos antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.planoFinanceiro.estruturaCusto}"
                                              >
 
                                 </p:inputText>
@@ -472,7 +475,7 @@
                             <div class="col-md-12">
                                 <b>Investimento inicial</b><br/>
                                 Quanto de recurso será necessário para iniciar?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control" value="#{projetoBean.planoFinanceiro.investimentoInicial}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">

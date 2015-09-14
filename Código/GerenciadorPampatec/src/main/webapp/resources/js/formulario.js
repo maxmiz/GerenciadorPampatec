@@ -12,6 +12,11 @@ require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
 
+
+function notificacao() {
+    alert("Teste");
+}
+
 /*
  * Funções de Retorno de etapas no 
  * formulário de Envio de Plano de Negócio
