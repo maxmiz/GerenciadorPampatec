@@ -39,7 +39,7 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
- 
+    
     public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
@@ -49,6 +49,8 @@ public class ProjetoBean {
         custo = new Custo();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
     }
     public void salvarProjeto(){
         
