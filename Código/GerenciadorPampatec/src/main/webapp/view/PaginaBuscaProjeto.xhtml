@@ -13,12 +13,10 @@
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-        <a href="../../../../../../../../AppData/Local/Temp/Previous Slide.url"></a>
-
+      
         <title>Planos de Negócio - Empreendedor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -67,7 +65,8 @@
                 <h1>Lista de projetos</h1>
                 <h2><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h2>
                 
-                <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.buscaProjetoPorEmpreendedor()}">
+                <p:dataTable id="singleDT" class="table table-striped table-hover" var="projeto" value="#{buscaProjetoEmpreendedorBean.buscaProjetoPorEmpreendedor()}">
+
                     <f:facet name="header">
                         Meus Projetos (Empreendedor)
                     </f:facet>
