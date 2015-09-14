@@ -21,7 +21,7 @@
             <div id="empreendedorLogin">
                 <legend>Dados Cadastrais</legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
 
                         <!--                             <div class="col-lg-8">
                                                         <p:inputText id="nome" placeholder="Digite seu nome" required="true" styleClass="#//{not component.valid ? 'form-control campoInvalido' : 'form-control'}" requiredMessage="Insira o seu nome antes de enviar" value="#{candidatoBean.candidato.nome}"/>
@@ -49,7 +49,20 @@
                         </p:inputMask>
                         <h:message class="mensagemErro" for="cpf"/>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
+                        Experiência profissional <p:inputText class="form-control"
+                                                              placeholder="Digite sua experiência"
+                                                              >
+                        </p:inputText>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        Competências nas áreas técnica, administrativa e comercial <p:inputText class="form-control"
+                                                              placeholder="Digite suas competências"
+                                                              >
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-12">
                         Formação <p:inputText class="form-control" 
                                               placeholder="Digite sua formação" 
                                               value="#{empreendedorBean.formacao}">
@@ -154,16 +167,17 @@
 
                     <div class="col-md-12 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
+                        <h:message for="botaoEnviar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
+                        <br/><br/>
+                        <h:commandButton id="botaoEnviar" class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}">
 
-                        <h:commandButton id="botaoEnviar" class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}"></h:commandButton>
-                        <br/>
-                        <h:message for="botaoEnviar" infoClass="alert alert-success" ></h:message>
+                        </h:commandButton>
                     </div>
                 </h:form>
                 <h:form><div class="col-md-12 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
 
-                        <h:commandButton class="btn btn-default" value="Voltar" action="#{empreendedorBean.voltar}"></h:commandButton>
+                        <h:commandButton class="btn btn-default" value="Voltar" action="#{loginBean.voltar}"></h:commandButton>
                         <br/>
                     </div></h:form>
 
