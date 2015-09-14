@@ -39,6 +39,8 @@ public class EmpreendedorBean {
     private String telefone;
     private String email;
     private String formacao;
+    private String experiencia;
+    private String competencia;
     private String bairro;
     private String rua;
     private String numero;
@@ -93,6 +95,8 @@ public class EmpreendedorBean {
                     empreendedor.setNumero(Integer.parseInt(numero));
                     empreendedor.setBairro(bairro);
                     empreendedor.setComplemento(complemento);
+                    empreendedor.setExperiencia(experiencia);
+                    empreendedor.setCompetencia(competencia);
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
@@ -268,5 +272,33 @@ public class EmpreendedorBean {
      */
     public void setEmpreendedor(Empreendedor empreendedor) {
         this.empreendedor = empreendedor;
+    }
+
+    /**
+     * @return the experiencia
+     */
+    public String getExperiencia() {
+        return experiencia;
+    }
+
+    /**
+     * @param experiencia the experiencia to set
+     */
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    /**
+     * @return the competencia
+     */
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    /**
+     * @param competencia the competencia to set
+     */
+    public void setCompetencia(String competencia) {
+        this.competencia = competencia;
     }
 }

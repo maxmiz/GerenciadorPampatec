@@ -23,7 +23,6 @@ public class Empreendedor implements java.io.Serializable {
     private String formacao;
     private String experiencia;
     private String competencia;
-    private String participacaoAcionaria;
     private String bairro;
     private String rua;
     private Integer numero;
@@ -104,7 +103,6 @@ public class Empreendedor implements java.io.Serializable {
         this.formacao = formacao;
         this.experiencia = experiencia;
         this.competencia = competencia;
-        this.participacaoAcionaria = participacaoAcionaria;
         this.projetos = projetos;
         empreendedorDao = new EmpreendedorDao();
         projetoDao = new ProjetoDao();
@@ -174,13 +172,7 @@ public class Empreendedor implements java.io.Serializable {
         this.competencia = competencia;
     }
 
-    public String getParticipacaoAcionaria() {
-        return this.participacaoAcionaria;
-    }
-
-    public void setParticipacaoAcionaria(String participacaoAcionaria) {
-        this.participacaoAcionaria = participacaoAcionaria;
-    }
+ 
 
     public Set getProjetos() {
         return this.projetos;

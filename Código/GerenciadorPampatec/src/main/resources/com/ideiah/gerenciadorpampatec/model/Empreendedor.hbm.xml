@@ -32,9 +32,6 @@
         <property name="competencia" type="string">
             <column name="competencia" length="300" />
         </property>
-        <property name="participacaoAcionaria" type="string">
-            <column name="participacaoAcionaria" length="300" />
-        </property>
         <property name="bairro" type="string">
             <column name="bairro" length="45" />
         </property>
