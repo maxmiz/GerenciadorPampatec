@@ -3,10 +3,13 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -20,9 +23,9 @@ import org.primefaces.event.SelectEvent;
 public class BuscaProjetoEmpreendedorBean {
 
     private ProjetoDao projeto;
-    private Empreendedor projetoSelecionado;
+    private Projeto projetoSelecionado;
 
-    public Empreendedor getProjetoSelecionado() {
+    public Projeto getProjetoSelecionado() {
         return projetoSelecionado;
     }
    
@@ -51,11 +54,19 @@ public class BuscaProjetoEmpreendedorBean {
         }
         return projetosEmpreendedor;
     }
+
+    public void setProjetoSelecionado(Projeto projetoSelecionado) {
+        this.projetoSelecionado = projetoSelecionado;
+    }
     
-    public String enviaProjetoEditar(){
+    public void enviaProjetoEditar(){
+        System.out.println("isajdafiasdfsdioasfd");
          HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
          secao.setAttribute("projetoSelecionado", projetoSelecionado);
-         return "/enviarProjeto.xhtml";
-        
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/enviarProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+        }                 
     }
 }

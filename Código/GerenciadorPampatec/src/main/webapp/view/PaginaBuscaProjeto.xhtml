@@ -64,12 +64,11 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 
-                <h1>Lista de projetos</h1>
-                <h2><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h2>
-                
+                <h1><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+            
                 <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.buscaProjetoPorEmpreendedor()}">
                     <f:facet name="header">
-                        Meus Projetos (Empreendedor)
+                        Tabela de projetos
                     </f:facet>
                     <p:column headerText="Nome">
                         <h:outputText value="#{projeto.nome}" />
@@ -78,9 +77,11 @@
                         <h:outputText value="#{projeto.dataEnvio}" />
                     </p:column>
                     <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
-                        <p:commandButton icon="ui-icon-pencil" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                        <div class="col-md-5 modal-footer">
+                        <h:commandButton class="btn btn-default" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                        </p:commandButton>                
+                        </h:commandButton>
+                        </div>
                     </p:column>
                 </p:dataTable>
             </div>
