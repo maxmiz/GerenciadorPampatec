@@ -83,6 +83,7 @@
                                              requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.projeto.nome}"
                                              >
 
                                 </p:inputText>
@@ -142,7 +143,11 @@
 
 
                             <div class="col-md-3"></div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-6 text-center">
+                                <br/>
+                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:message for="botaoSalvar1"></h:message>
+                            </div>
                             <div class="col-md-3 text-right">
                                 <br/>
                                 <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
@@ -173,6 +178,7 @@
                                              requiredMessage="Insira o segmento de clientes antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.negocio.segmentoClientes}"
                                              >
 
                                 </p:inputText>
@@ -186,6 +192,7 @@
                                              requiredMessage="Insira a proposta de valor antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.negocio.propostaValor}"
                                              >
 
                                 </p:inputText>
@@ -199,6 +206,7 @@
                                              requiredMessage="Insira as atividades chave antes de enviar" 
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{projetoBean.negocio.atividadesChaves}"
                                              >
 
                                 </p:inputText>
@@ -211,7 +219,11 @@
                             <br />
                             <button id="anterior2" class="btn btn-default" type="button" onclick="retornaPrimeiraParte()">← Anterior</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-6 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:message for="botaoSalvar2"></h:message>
+                        </div>
                         <div class="col-md-3  text-right">
                             <br/>
                             <button id="proximo3" class="btn btn-default" type="button" onclick="exibeTerceiraParte()">Próximo →</button>
@@ -267,7 +279,11 @@
                         <div class="col-md-3"><br />
                             <button id="anterior3" class="btn btn-default" type="button" onclick="retornaSegundaParte()">← Anterior</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-6 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:message for="botaoSalvar3"></h:message>
+                        </div>
                         <div class="col-md-3 text-right">
                             <br/>
                             <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
@@ -359,7 +375,11 @@
                             <br />
                             <button id="anterior4" class="btn btn-default" type="button" onclick="retornaTerceiraParte()">← Anterior</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-6 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:message for="botaoSalvar4"></h:message>
+                        </div>
                         <div class="col-md-3 text-right">
                             <br/>
                             <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
@@ -381,31 +401,6 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <b>Formação dos sócios*</b><br/>
-                                Cursos, Tecnólogos, Graduação, Pós-graduação, ...
-                                <p:inputText id="formacaoDeSocios" placeholder="" class="form-control"
-                                             requiredMessage="Insira a formação de seus sócios antes de enviar" 
-                                             required="true" 
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
-
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="formacaoDeSocios"/>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Experiência profissional dos sócios</b><br/>
-                                Já trabalhamos em áreas afim ao projeto?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Competências dos sócios nas áreas técnica, administrativa e comercial</b><br/>
-                                Qual a experiência nos produtos ou serviços que serão comercializados? Em formação de equipes? Vendas?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
                                 <b>Descrição da participação acionária</b><br/>
                                 Haverão sócios? Quanto de participação terão?
                                 <h:inputTextarea class="form-control"></h:inputTextarea>
@@ -423,7 +418,11 @@
                             <br />
                             <button id="anterior5" class="btn btn-default" type="button" onclick="retornaQuartaParte()">← Anterior</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-6 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:message for="botaoSalvar5"></h:message>
+                        </div>
                         <div class="col-md-3 text-right">
                             <br/>
                             <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
@@ -494,13 +493,12 @@
                                 <br />
                                 <button id="anterior6" class="btn btn-default" type="button" onclick="retornaQuintaParte()">← Anterior</button>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
 
                             </div>
-                            <div class="col-md-5 text-right">
+                            <div class="col-md-6 text-right">
                                 <br/>
-                                <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
-                                <h:commandButton id="botaoEnviar" class="btn btn-success" onclick="" value="Enviar Plano de Negócio"></h:commandButton>
+                                <h:commandButton id="botaoEnviar" class="btn btn-success" onclick="" value="Terminar e Enviar Plano de Negócio"></h:commandButton>
                                 <h:message for="botaoEnviar"></h:message>
                             </div>
                         </h:form>
