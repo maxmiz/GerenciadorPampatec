@@ -110,17 +110,22 @@ public class ProjetoBean {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
+        System.out.println("------ 0000 -----");
         boolean existe = false;
         Empreendedor empreendedorAchado = null;
+        System.out.println("----- 1111 -----");
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
 //                listaEmpreendedor.add(empreendedor);
+                System.out.println("--- 2 -----");
                 existe = true;
                 empreendedorAchado = empreendedor;
                 break;
             }
         }
+        
         if (existe == false) {
+            System.out.println("---- 3 -----");
             Empreendedor empreendedor = new Empreendedor();
             empreendedor.setEmail(emailEmpreendedor);
             empreendedor.cadastrarEmpreendedor(empreendedor);
@@ -128,12 +133,13 @@ public class ProjetoBean {
         }
         
         if(!verificarLista(empreedendoresAdicionados, empreendedorAchado)){
-            System.out.println("");
+            System.out.println("------ 4 ------");
             getEmpreedendoresAdicionados().add(empreendedorAchado);
             projeto.getEmpreendedors().add(empreendedorAchado);
         }else{
             FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
         }
+        System.out.println("----- 5 -------");
     }
     
     /**

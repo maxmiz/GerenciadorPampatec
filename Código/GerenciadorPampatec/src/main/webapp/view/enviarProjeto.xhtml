@@ -14,7 +14,7 @@
         </f:facet>
 
         <h:outputScript library="js" name="formulario.js" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Cadastro Plano de Negócio</title>
@@ -169,9 +169,11 @@
                                     </div>
                                 </div>
                                 <br/><br/>
-                                <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.empreedendoresAdicionados}">
+                                <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedors}">
                                     <p:column>
                                         <h:outputText value="#{empreendedor.email}" />
+                                        <!--<h:outputText value="" />-->
+                                        <!--<h:outputText value="#//{projetoBean.projeto.empreendedors}" />-->
                                     </p:column>
                                     <p:column>
                                         <button class="btn btn-default">
@@ -211,9 +213,9 @@
                             </div>
                             <div class="col-md-3 text-right">
                                 <br/>
-                                <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                                 <li class="previous disabled"><a href="#">← Older</a></li> 
                                 <button id="proximo2" class="btn btn-default" type="button" onclick="exibeSegundaParte()">Próximo →</button>
-                                <h:message for="proximo2"></h:message>
+                                <!--<h:message for="/proximo2"></h:message>-->
 
                             </div>
                         </h:form>
