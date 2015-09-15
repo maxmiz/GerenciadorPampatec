@@ -77,10 +77,10 @@
                     </p:column>
                     <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
                         <div class="col-md-3 modal-footer">
-                            <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status != 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                            <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                 <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                             </h:commandButton>
-                            <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                            <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                 <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                             </h:commandButton>
                         </div>
