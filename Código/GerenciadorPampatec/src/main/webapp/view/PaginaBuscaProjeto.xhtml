@@ -16,7 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-      
+
         <title>Planos de Negócio - Empreendedor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -58,12 +58,12 @@
         </h:form>
 
         <h:form>
-            
+
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                
+
                 <h1><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
-            
+
                 <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.buscaProjetoPorEmpreendedor()}">
 
                     <f:facet name="header">
@@ -76,11 +76,17 @@
                         <h:outputText value="#{projeto.dataEnvio}" />
                     </p:column>
                     <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
-                        <div class="col-md-5 modal-footer">
-                        <h:commandButton class="btn btn-default" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                        </h:commandButton>
+                        <div class="col-md-3 modal-footer">
+                            <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status != 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
+                            <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
                         </div>
+                    </p:column>
+                    <p:column headerText="Status" style="width:150px;text-align: center">
+                        <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                     </p:column>
                 </p:dataTable>
             </div>
