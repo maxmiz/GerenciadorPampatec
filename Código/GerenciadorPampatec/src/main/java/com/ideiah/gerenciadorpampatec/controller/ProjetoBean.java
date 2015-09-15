@@ -14,8 +14,11 @@ import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -39,7 +42,8 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
- 
+    private Projeto novoProjeto;
+
     public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
@@ -50,27 +54,26 @@ public class ProjetoBean {
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
     }
-    public void salvarProjeto(){
-        
+
+    public void salvarProjeto() {
+
         ProjetoDao daoP = new ProjetoDao();
         projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
-        
+
         projeto.setPlanofinanceiro(planoFinanceiro);
         projeto.setAnaliseemprego(analiseEmprego);
         projeto.setNegocio(negocio);
         projeto.setPotencialEmprego(emailEmpreendedor);
         projeto.setProdutoouservico(produtoOuSevico);
         projeto.setStatus(Integer.SIZE);
-        
+
 //        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 //        Projeto projeto = (Projeto) sessao.getAttribute("projetoEditado");
-        
-        
 //        projeto.getEmpreendedors().add(empreedendoresAdicionados);
 //        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
 //        empreendedorAchado.atualizarProjeto(projeto);
-        
     }
+
     public List<String> completarEmpreendedor(String busca) {
         List<String> listaFiltrada = new ArrayList<>();
 
@@ -124,25 +127,26 @@ public class ProjetoBean {
             empreendedor.cadastrarEmpreendedor(empreendedor);
             empreendedorAchado = empreendedor;
         }
-        
-        if(!verificarLista(empreedendoresAdicionados, empreendedorAchado)){
+
+        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
             System.out.println("");
             getEmpreedendoresAdicionados().add(empreendedorAchado);
             projeto.getEmpreendedors().add(empreendedorAchado);
-        }else{
+        } else {
             FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
         }
     }
-    
+
     /**
      * Verifica se o empreendedor disponibilizado está na lista.
+     *
      * @param empreendedores
-     * @param empreendedorAchado 
-     * @return  True se ele está  presente na lista.
+     * @param empreendedorAchado
+     * @return True se ele está presente na lista.
      */
-    public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado){
+    public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
         for (Empreendedor empreendedore : empreendedores) {
-            if(empreendedore.getEmail().equals(empreendedorAchado.getEmail())){
+            if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
                 return true;
             }
         }
@@ -287,5 +291,16 @@ public class ProjetoBean {
      */
     public void setEmpreendedorSelected(Empreendedor empreendedorSelected) {
         this.empreendedorSelected = empreendedorSelected;
+    }
+
+    public String enviaNovoProjetoCadastrar() {
+        Projeto pjto = new Projeto();
+        ProjetoDao daoP = new ProjetoDao();
+        daoP.salvar(pjto);
+    
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        secao.setAttribute("projetoSelecionado", pjto);
+        return "/faces/view/enviarProjeto.xhtml";
+      
     }
 }

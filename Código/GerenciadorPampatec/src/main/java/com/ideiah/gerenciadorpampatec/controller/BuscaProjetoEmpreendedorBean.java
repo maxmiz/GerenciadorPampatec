@@ -60,7 +60,6 @@ public class BuscaProjetoEmpreendedorBean {
     }
     
     public void enviaProjetoEditar(){
-        System.out.println("isajdafiasdfsdioasfd");
          HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
          secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
