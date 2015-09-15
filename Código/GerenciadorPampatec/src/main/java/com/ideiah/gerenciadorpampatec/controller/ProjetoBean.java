@@ -42,7 +42,6 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    private Projeto novoProjeto;
 
     public ProjetoBean() {
         projeto = new Projeto();
@@ -53,6 +52,8 @@ public class ProjetoBean {
         custo = new Custo();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
     }
 
     public void salvarProjeto() {
@@ -111,17 +112,22 @@ public class ProjetoBean {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
+        System.out.println("------ 0000 -----");
         boolean existe = false;
         Empreendedor empreendedorAchado = null;
+        System.out.println("----- 1111 -----");
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
 //                listaEmpreendedor.add(empreendedor);
+                System.out.println("--- 2 -----");
                 existe = true;
                 empreendedorAchado = empreendedor;
                 break;
             }
         }
+
         if (existe == false) {
+            System.out.println("---- 3 -----");
             Empreendedor empreendedor = new Empreendedor();
             empreendedor.setEmail(emailEmpreendedor);
             empreendedor.cadastrarEmpreendedor(empreendedor);
@@ -130,20 +136,24 @@ public class ProjetoBean {
 
         if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
             System.out.println("");
-            getEmpreedendoresAdicionados().add(empreendedorAchado);
-            projeto.getEmpreendedors().add(empreendedorAchado);
-        } else {
-            FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
+
+            if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
+                System.out.println("------ 4 ------");
+                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                projeto.getEmpreendedors().add(empreendedorAchado);
+            } else {
+                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
+            }
+            System.out.println("----- 5 -------");
         }
     }
-
-    /**
-     * Verifica se o empreendedor disponibilizado está na lista.
-     *
-     * @param empreendedores
-     * @param empreendedorAchado
-     * @return True se ele está presente na lista.
-     */
+        /**
+         * Verifica se o empreendedor disponibilizado está na lista.
+         *
+         * @param empreendedores
+         * @param empreendedorAchado
+         * @return True se ele está presente na lista.
+         */
     public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
         for (Empreendedor empreendedore : empreendedores) {
             if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
@@ -297,10 +307,10 @@ public class ProjetoBean {
         Projeto pjto = new Projeto();
         ProjetoDao daoP = new ProjetoDao();
         daoP.salvar(pjto);
-    
+
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", pjto);
         return "/faces/view/enviarProjeto.xhtml";
-      
+
     }
 }

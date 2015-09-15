@@ -13,9 +13,12 @@ require('../../js/tab.js')
 require('../../js/affix.js')
 
 
-function notificacao() {
-    alert("Teste");
-}
+/*
+ * Funções de exibição de Informações
+ * relativa as funcionalidades dos botões
+ */
+
+
 
 /*
  * Funções de Retorno de etapas no 
