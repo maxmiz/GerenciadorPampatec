@@ -60,6 +60,67 @@
         </h:form>
         <!-- Fim do menu superior -->
 
+        <!-- Script para exibição da info do botão SALVAR -->
+        <script>
+            var x = false;
+            var y = 1;
+
+            function verificacaoDoBotao() {
+
+                if (x == false) {
+                    $("#modalInfoSalvar").modal();
+                    x = true;
+                }
+            }
+
+            function confirmacaoDeEnvio() {
+                $("#modalInfoDeEnvio").modal();
+            }
+        </script>
+        <!-- Fim do Script de informação -->
+
+        <!-- Início dos MODAIS exibidos no formulário -->
+
+        <!-- Modal com a Informação do botão SALVAR -->
+        <div class="modal fade" id="modalInfoSalvar" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Conteúdo do Modal -->
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
+                    para que você possa retornar e acabar de preenchê-los em outro momento.
+                </div>
+
+            </div>
+        </div>
+        <!-- Fim do Modal de informação do botão Salvar -->
+
+        <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
+        <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Conteúdo do Modal -->
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
+                    para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
+                    <div class="alert alert-dismissible alert-warning text-center"> 
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                        </div>
+                        <div class="col-md-6">
+                            <h:commandButton type="button" class="btn btn-success" value="Confirmar Envio"></h:commandButton>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Fim do Modal de informação do botão Salvar -->
+
+        <!-- Fim dos MODAIS exibidos no formulário -->
+
         <div class="col-md-3"> </div>
 
         <div class="col-md-6 form-horizontal well bs-component">
@@ -142,22 +203,6 @@
                                 <br/>
                             </div>
 
-
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-                                    <div class="alert alert-dismissible alert-success">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                                        para que você possa retornar e acabar de preenchê-los em outro momento.
-                                    </div>
-
-                                </div>
-                            </div>
-
                             <div class="col-md-3"></div>
                             <div class="col-md-6 text-center">
                                 <br/>
@@ -237,7 +282,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                             <h:message for="botaoSalvar2"></h:message>
                         </div>
                         <div class="col-md-3  text-right">
@@ -273,7 +318,7 @@
                                 Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.analiseemprego.parceriasChaves}">
-                                                          </h:inputTextarea>
+                                </h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
@@ -288,7 +333,7 @@
                                 <b>Recursos principais</b><br/>
                                 Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                 <h:inputTextarea class="form-control"
-                                                 
+
                                                  value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
                                 </h:inputTextarea>
                                 <br/>
@@ -307,7 +352,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                             <h:message for="botaoSalvar3"></h:message>
                         </div>
                         <div class="col-md-3 text-right">
@@ -417,7 +462,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                             <h:message for="botaoSalvar4"></h:message>
                         </div>
                         <div class="col-md-3 text-right">
@@ -461,7 +506,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" value="Salvar Plano de Negócio"></h:commandButton>
+                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                             <h:message for="botaoSalvar5"></h:message>
                         </div>
                         <div class="col-md-3 text-right">
@@ -537,13 +582,14 @@
                                 <br />
                                 <button id="anterior6" class="btn btn-default" type="button" onclick="retornaQuintaParte()">← Anterior</button>
                             </div>
-                            <div class="col-md-3">
-
-                            </div>
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-5 text-center">
                                 <br/>
-                                <h:commandButton id="botaoEnviar" class="btn btn-success" onclick="" value="Terminar e Enviar Plano de Negócio"></h:commandButton>
-                                <h:message for="botaoEnviar"></h:message>
+                                <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:message for="botaoSalvar6"></h:message>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <br/>
+                                <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"></h:commandButton>
                             </div>
                         </h:form>
                     </div>

@@ -13,20 +13,12 @@ require('../../js/tab.js')
 require('../../js/affix.js')
 
 
+/*
+ * Funções de exibição de Informações
+ * relativa as funcionalidades dos botões
+ */
 
 
-var x = false;
-
-function verificacaoDoBotao() {
-    
-    alert("Retorno: " + x + ".");
-
-//    if (x == false) {
-//        $("#myModal").modal();
-//        x = true;
-//    } 
-    
-}
 
 /*
  * Funções de Retorno de etapas no 
