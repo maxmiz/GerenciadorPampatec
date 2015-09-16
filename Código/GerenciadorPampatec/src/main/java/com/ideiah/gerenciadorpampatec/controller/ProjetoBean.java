@@ -147,13 +147,14 @@ public class ProjetoBean {
             System.out.println("----- 5 -------");
         }
     }
-        /**
-         * Verifica se o empreendedor disponibilizado está na lista.
-         *
-         * @param empreendedores
-         * @param empreendedorAchado
-         * @return True se ele está presente na lista.
-         */
+
+    /**
+     * Verifica se o empreendedor disponibilizado está na lista.
+     *
+     * @param empreendedores
+     * @param empreendedorAchado
+     * @return True se ele está presente na lista.
+     */
     public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
         for (Empreendedor empreendedore : empreendedores) {
             if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
@@ -312,5 +313,11 @@ public class ProjetoBean {
         secao.setAttribute("projetoSelecionado", pjto);
         return "/faces/view/enviarProjeto.xhtml";
 
+    }
+
+    public boolean verificaCadastroProjeto() {
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+        return emp.getProjetos().isEmpty();
     }
 }

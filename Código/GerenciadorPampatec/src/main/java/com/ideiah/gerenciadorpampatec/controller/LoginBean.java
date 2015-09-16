@@ -58,33 +58,32 @@ public class LoginBean {
         return "/loginEmpreendedor.xhtml";
 
     }
-    
-    public String getInicio(){
+
+    public String getInicio() {
         return "homeEmpreendedor.xhtml";
     }
-    
-    public String getEnviarProjeto(){
+
+    public String getEnviarProjeto() {
         return "enviarProjeto.xhtml";
     }
-    
-    public String getVisualizarPlanos(){
+
+    public String getVisualizarPlanos() {
         return "PaginaBuscaProjeto.xhtml";
     }
-    
-    public String voltar(){
+
+    public String voltar() {
         return "/loginEmpreendedor.xhtml";
     }
-    
+
     public String fazLogin(String user, String senha) {
         try {
 //            FacesContext fc = FacesContext.getCurrentInstance();
 //            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
 
-            
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
-                    System.out.println("..>"+user);
+                    System.out.println("..>" + user);
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
                     FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
@@ -178,17 +177,20 @@ public class LoginBean {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public static void MudarNome(String nome){
+
+    public static void MudarNome(String nome) {
         LoginBean.nome = nome;
     }
-    
-    public static void MudarSenha(String senha){
+
+    public static void MudarSenha(String senha) {
         LoginBean.senha = senha;
     }
-    
-    public static void MudarUser(String user){
+
+    public static void MudarUser(String user) {
         LoginBean.user = user;
     }
 
+    public String enviaBuscaProjeto() {
+        return "/faces/view/PaginaBuscaProjeto.xhtml";
+    }
 }
