@@ -63,13 +63,21 @@
         <!-- Script para exibição da info do botão SALVAR -->
         <script>
             var x = false;
-            var y = 1;
+            var y = false;
 
             function verificacaoDoBotao() {
 
                 if (x == false) {
                     $("#modalInfoSalvar").modal();
                     x = true;
+                }
+            }
+            
+            function ajuda() {
+
+                if (y == false) {
+                    $("#modalInfoAjuda").modal();
+                    y = true;
                 }
             }
 
@@ -132,7 +140,7 @@
                     Referente ao CONTATO -->
 
                     <div id="formularioParte01">
-                        
+                        <h:form id="form1">
                             <legend id="subTitulo">Contatos</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -140,7 +148,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12" id="">
-                                <b>Empresa/Projeto*</b><br/>
+                                
+                                <b>Empresa/Projeto* <h:link value="(?)"></h:link></b><br/>
                                 Nome da Empresa ou do Projeto
                                 <p:inputText id="empresaProjeto" placeholder="" class="form-control"
                                              requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
@@ -155,7 +164,7 @@
                             </div>
 
                             <div class="col-md-12" id="">
-                                <b>Empreendedores*</b><br/>
+                                <b>Empreendedores* <h:link value="(?)"></h:link></b><br/>
                                 Informe os emails de quem está propondo o empreendimento:
                                 <br/>
                                 <div class="row">
@@ -165,9 +174,7 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" type="button" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}">
-                                            <f:actionListener/>
-                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.enviaProjetoEditar()}"/>
                                     </div>
                                 </div>
                                 <br/><br/>
@@ -215,11 +222,11 @@
                             </div>
                             <div class="col-md-3 text-right">
                                 <br/>
-                                 
                                 <button id="proximo2" class="btn btn-default" type="button" onclick="exibeSegundaParte()">Próximo →</button>
                                 <!--<h:message for="/proximo2"></h:message>-->
 
                             </div>
+                        </h:form>
                     </div>
 
                     <!-- Fim da primeira parte do formulário -->
@@ -228,6 +235,7 @@
                     Referente ao NEGÓCIO -->
 
                     <div id="formularioParte02" style="display: none">
+                        <h:form>
                             <legend>O Negócio</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -235,7 +243,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12" id="">
-                                <b>Segmento de Clientes</b><br/>
+                                <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
                                 Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                 <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
                                              requiredMessage="Insira o segmento de clientes antes de enviar" 
@@ -249,7 +257,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12" id="">
-                                <b>Proposta de Valor*</b><br/>
+                                <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
                                 Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                 <p:inputText id="propostaDeValor" placeholder="" class="form-control"
                                              requiredMessage="Insira a proposta de valor antes de enviar" 
@@ -263,7 +271,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12" id="">
-                                <b>Atividades Chave*</b><br/>
+                                <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
                                 Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                 <p:inputText id="atividadesChave" placeholder="" class="form-control"
                                              requiredMessage="Insira as atividades chave antes de enviar" 
@@ -276,6 +284,7 @@
                                 <h:message class="mensagemErro" for="atividadesChave"/>
                                 <br/>
                             </div>
+                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -299,6 +308,7 @@
                     Referente a ANÁLISE DE MERCADO -->
 
                     <div id="formularioParte03" style="display: none">
+                        <h:form>
                             <legend id="subTitulo">Análise de Mercado</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -306,7 +316,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <b>Relações com clientes</b><br/>
+                                <b>Relações com clientes <h:link value="(?)"></h:link></b><br/>
                                 Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.analiseemprego.relacoesClientes}">                 
@@ -314,7 +324,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Parcerias chave</b><br/>
+                                <b>Parcerias chave <h:link value="(?)"></h:link></b><br/>
                                 Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.analiseemprego.parceriasChaves}">
@@ -322,7 +332,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Canais</b><br/>
+                                <b>Canais <h:link value="(?)"></h:link></b><br/>
                                 Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.analiseemprego.canais}">
@@ -330,7 +340,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Recursos principais</b><br/>
+                                <b>Recursos principais <h:link value="(?)"></h:link></b><br/>
                                 Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                 <h:inputTextarea class="form-control"
 
@@ -339,12 +349,13 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Concorrentes</b><br/>
+                                <b>Concorrentes <h:link value="(?)"></h:link></b><br/>
                                 Quem são nossos concorrentes? como trabalham?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.analiseemprego.concorrentes}"></h:inputTextarea>
                                 <br/>
                             </div>
+                        </h:form>
 
                         <div class="col-md-3"><br />
                             <button id="anterior3" class="btn btn-default" type="button" onclick="retornaSegundaParte()">← Anterior</button>
@@ -356,7 +367,7 @@
                         </div>
                         <div class="col-md-3 text-right">
                             <br/>
-                            <!-- <li class="previous disabled"><a href="#">← //Older</a></li> -->
+                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
                             <button id="proximo4" class="btn btn-default" type="button" onclick="exibeQuartaParte()">Próximo →</button>
                         </div>
                     </div>
@@ -369,6 +380,7 @@
                     Referente ao PRODUTO DE SERVIÇO -->
 
                     <div id="formularioParte04" style="display: none">
+                        <h:form>
                             <legend id="subTitulo">Produto de Serviço</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -376,7 +388,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <b>Estágio de evolução*</b><br/>
+                                <b>Estágio de evolução* <h:link value="(?)"></h:link></b><br/>
                                 Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
 
                                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
@@ -397,7 +409,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Tecnologia e processos (não poluentes)</b><br/>
+                                <b>Tecnologia e processos (não poluentes) <h:link value="(?)"></h:link></b><br/>
                                 Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
@@ -405,7 +417,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Potencial de inovação tecnológica</b><br/>
+                                <b>Potencial de inovação tecnológica <h:link value="(?)"></h:link></b><br/>
                                 Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
@@ -413,7 +425,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Aplicações</b><br/>
+                                <b>Aplicações <h:link value="(?)"></h:link></b><br/>
                                 A quem se aplica? como? de que maneira?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
@@ -421,7 +433,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Dificuldades esperadas</b><br/>
+                                <b>Dificuldades esperadas <h:link value="(?)"></h:link></b><br/>
                                 Quais são nossas principais limitações?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
@@ -429,7 +441,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Interação entre empresa e Universidade</b><br/>
+                                <b>Interação entre empresa e Universidade <h:link value="(?)"></h:link></b><br/>
                                 Em que sentido seremos parceiros da Universidade? 
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
@@ -437,7 +449,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Interação entre empresa, comunidade e governo</b><br/>
+                                <b>Interação entre empresa, comunidade e governo <h:link value="(?)"></h:link></b><br/>
                                 Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
@@ -445,13 +457,14 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Infra-estrutura necessária para o desenvolvimento e produção</b><br/>
+                                <b>Infra-estrutura necessária para o desenvolvimento e produção <h:link value="(?)"></h:link></b><br/>
                                 Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
                                                  ></h:inputTextarea>
                                 <br/>
                             </div>
+                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -475,6 +488,7 @@
                     <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
                     Referente a GESTÃO DE PESSOAS -->
                     <div id="formularioParte05" style="display: none">
+                        <h:form>
                             <legend id="subTitulo">Gestão de Pessoas</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -482,18 +496,19 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <b>Descrição da participação acionária</b><br/>
+                                <b>Descrição da participação acionária <h:link value="(?)"></h:link></b><br/>
                                 Haverão sócios? Quanto de participação terão?
                                 <h:inputTextarea class="form-control"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Potencial de geração de emprego e renda</b><br/>
+                                <b>Potencial de geração de emprego e renda <h:link value="(?)"></h:link></b><br/>
                                 Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.potencialEmprego}"></h:inputTextarea>
                                 <br/>
                             </div>
+                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -517,6 +532,7 @@
                     <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
                     Referente ao PLANO FINANCEIRO -->
                     <div id="formularioParte06" style="display: none">
+                        <h:form>
                             <legend id="subTitulo">Plano de Financeiro</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -524,7 +540,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <b>Fontes de receita*</b><br/>
+                                <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
                                 Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                 <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
                                              requiredMessage="Insira as fontes de receita antes de enviar" 
@@ -538,7 +554,7 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Estrutura de custos*</b><br/>
+                                <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
                                 Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                 <p:inputText id="estruturaCustos" placeholder="" class="form-control"
                                              requiredMessage="Insira a estrutura de custos antes de enviar" 
@@ -552,20 +568,20 @@
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Investimento inicial</b><br/>
+                                <b>Investimento inicial <h:link value="(?)"></h:link></b><br/>
                                 Quanto de recurso será necessário para iniciar?
                                 <h:inputTextarea class="form-control"
                                                  value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Custos fixos</b><br/>
+                                <b>Custos fixos <h:link value="(?)"></h:link></b><br/>
                                 Salários, Aluguel...
                                 <h:inputTextarea class="form-control"></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
-                                <b>Custos variáveis</b><br/>
+                                <b>Custos variáveis <h:link value="(?)"></h:link></b><br/>
                                 Impostos, combustível, matéria-prima... 
                                 <h:inputTextarea class="form-control"></h:inputTextarea>
                                 <br/>
@@ -578,13 +594,14 @@
                             </div>
                             <div class="col-md-5 text-center">
                                 <br/>
-                                <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                                 <h:message for="botaoSalvar6"></h:message>
                             </div>
                             <div class="col-md-4 text-right">
                                 <br/>
                                 <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"></h:commandButton>
                             </div>
+                        </h:form>
                     </div>
                     <!-- Fim da sexta parte do formulário -->
 
