@@ -58,8 +58,8 @@ public class ProjetoBean {
 
     public void salvarProjeto() {
 
-        ProjetoDao daoP = new ProjetoDao();
-        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
+//        ProjetoDao daoP = new ProjetoDao();
+//        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
 
         projeto.setPlanofinanceiro(planoFinanceiro);
         projeto.setAnaliseemprego(analiseEmprego);
