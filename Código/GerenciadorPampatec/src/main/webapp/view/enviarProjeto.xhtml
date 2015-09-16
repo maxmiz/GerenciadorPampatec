@@ -132,7 +132,7 @@
                     Referente ao CONTATO -->
 
                     <div id="formularioParte01">
-                        <h:form id="form1">
+                        
                             <legend id="subTitulo">Contatos</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -165,7 +165,9 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
+                                        <h:commandButton class="btn btn-default" type="button" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}">
+                                            <f:actionListener/>
+                                        </h:commandButton>
                                     </div>
                                 </div>
                                 <br/><br/>
@@ -213,12 +215,11 @@
                             </div>
                             <div class="col-md-3 text-right">
                                 <br/>
-                                 <li class="previous disabled"><a href="#">← Older</a></li> 
+                                 
                                 <button id="proximo2" class="btn btn-default" type="button" onclick="exibeSegundaParte()">Próximo →</button>
                                 <!--<h:message for="/proximo2"></h:message>-->
 
                             </div>
-                        </h:form>
                     </div>
 
                     <!-- Fim da primeira parte do formulário -->
@@ -227,7 +228,6 @@
                     Referente ao NEGÓCIO -->
 
                     <div id="formularioParte02" style="display: none">
-                        <h:form>
                             <legend>O Negócio</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -276,7 +276,6 @@
                                 <h:message class="mensagemErro" for="atividadesChave"/>
                                 <br/>
                             </div>
-                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -300,7 +299,6 @@
                     Referente a ANÁLISE DE MERCADO -->
 
                     <div id="formularioParte03" style="display: none">
-                        <h:form>
                             <legend id="subTitulo">Análise de Mercado</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -347,7 +345,6 @@
                                                  value="#{projetoBean.projeto.analiseemprego.concorrentes}"></h:inputTextarea>
                                 <br/>
                             </div>
-                        </h:form>
 
                         <div class="col-md-3"><br />
                             <button id="anterior3" class="btn btn-default" type="button" onclick="retornaSegundaParte()">← Anterior</button>
@@ -359,7 +356,7 @@
                         </div>
                         <div class="col-md-3 text-right">
                             <br/>
-                            <!-- <li class="previous disabled"><a href="#">← Older</a></li> -->
+                            <!-- <li class="previous disabled"><a href="#">← //Older</a></li> -->
                             <button id="proximo4" class="btn btn-default" type="button" onclick="exibeQuartaParte()">Próximo →</button>
                         </div>
                     </div>
@@ -372,7 +369,6 @@
                     Referente ao PRODUTO DE SERVIÇO -->
 
                     <div id="formularioParte04" style="display: none">
-                        <h:form>
                             <legend id="subTitulo">Produto de Serviço</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -456,7 +452,6 @@
                                                  ></h:inputTextarea>
                                 <br/>
                             </div>
-                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -480,7 +475,6 @@
                     <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
                     Referente a GESTÃO DE PESSOAS -->
                     <div id="formularioParte05" style="display: none">
-                        <h:form>
                             <legend id="subTitulo">Gestão de Pessoas</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -500,7 +494,6 @@
                                                  value="#{projetoBean.projeto.potencialEmprego}"></h:inputTextarea>
                                 <br/>
                             </div>
-                        </h:form>
 
                         <div class="col-md-3">
                             <br />
@@ -524,7 +517,6 @@
                     <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
                     Referente ao PLANO FINANCEIRO -->
                     <div id="formularioParte06" style="display: none">
-                        <h:form>
                             <legend id="subTitulo">Plano de Financeiro</legend>
                             <div class="col-md-12">
                                 <div class="progress progress-striped active">
@@ -586,14 +578,13 @@
                             </div>
                             <div class="col-md-5 text-center">
                                 <br/>
-                                <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
+                                <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"></h:commandButton>
                                 <h:message for="botaoSalvar6"></h:message>
                             </div>
                             <div class="col-md-4 text-right">
                                 <br/>
                                 <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"></h:commandButton>
                             </div>
-                        </h:form>
                     </div>
                     <!-- Fim da sexta parte do formulário -->
 

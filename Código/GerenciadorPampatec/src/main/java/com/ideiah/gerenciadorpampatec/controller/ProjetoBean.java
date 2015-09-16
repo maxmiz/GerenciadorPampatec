@@ -30,15 +30,15 @@ import javax.servlet.http.HttpSession;
 public class ProjetoBean {
 
     private Empreendedor empreendedorSelected;
-    private Projeto projeto;
+    private static Projeto projeto;
     private Analiseemprego analiseEmprego;
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
     private Custo custo;
-    private String emailEmpreendedor;
-    private List<Empreendedor> listaEmpreendedor;
-    private List<Empreendedor> empreedendoresAdicionados;
+    private static String emailEmpreendedor;
+    private static List<Empreendedor> listaEmpreendedor;
+    private static List<Empreendedor> empreedendoresAdicionados;
     
     public ProjetoBean() {
         projeto = new Projeto();
@@ -244,7 +244,7 @@ public class ProjetoBean {
     /**
      * @return the emailEmpreendedor
      */
-    public String getEmailEmpreendedor() {
+    public static String getEmailEmpreendedor() {
         return emailEmpreendedor;
     }
 
