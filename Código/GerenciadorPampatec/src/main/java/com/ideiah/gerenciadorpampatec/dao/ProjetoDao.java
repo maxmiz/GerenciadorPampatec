@@ -30,17 +30,17 @@ public class ProjetoDao extends Dao {
         return (Projeto) buscarObjeto(codigo, Projeto.class);
     }
 
-    public ArrayList<Projeto> buscarPorEmpreendedor(Empreendedor empreendedor) {
-        ArrayList<Projeto> novaLista = new ArrayList();
-        ArrayList<Projeto> listaOriginal;
-        listaOriginal = (ArrayList<Projeto>) buscarObjetos(Projeto.class);
+    public boolean verificaEmpreendedor(Empreendedor empreendedor, Projeto projeto) {
+//        Projeto[] listaOriginal = (Projeto[]) empreendedor.getProjetos().toArray();
+//        ArrayList<Projeto> listaOriginal = (ArrayList<Projeto>) empreendedor.getProjetos().toArray();
         
-        for (Projeto projeto : listaOriginal) {
-           if(projeto.getEmpreendedores().contains(empreendedor)){
-               novaLista.add(projeto);
-           }
-        }
-        return novaLista;
+        for (Object obj : empreendedor.getProjetos().toArray()) {
+            Projeto proj = (Projeto) obj;
+            if(proj.getIdProjeto() == projeto.getIdProjeto()){
+                return false;
+            }
+        }   
+        return true;
     }
 //</editor-fold>
 

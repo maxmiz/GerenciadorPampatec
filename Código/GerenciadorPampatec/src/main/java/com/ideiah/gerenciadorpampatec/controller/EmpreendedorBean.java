@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
@@ -70,6 +71,13 @@ public class EmpreendedorBean {
 
     public void setUserInput(String userInput) {
         this.userInput = userInput;
+    }
+    public boolean verificaProjetoEmpreededor(Empreendedor emp){
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
+        System.out.println("projeto="+projeto);
+        System.out.println("empreendedor="+emp);
+        return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
     public void chamaCadastro() {

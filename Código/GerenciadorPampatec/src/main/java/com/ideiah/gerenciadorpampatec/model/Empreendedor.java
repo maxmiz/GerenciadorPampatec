@@ -333,6 +333,7 @@ public class Empreendedor implements java.io.Serializable {
     public boolean deletarEmpreendedor(Empreendedor empreendedor) {
         return empreendedorDao.deletarPorEmail(empreendedor.getEmail());
     }
+//VERIFICA SE O EMPREENDEDOR EXISTE EM ALGUM PROJETO DO BANCO
 
     public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
         for (Projeto projeto : projetoDao.buscar()) {
@@ -353,6 +354,11 @@ public class Empreendedor implements java.io.Serializable {
 //            }
         }
         return false;
+    }
+
+//VERIFICA SE O EMPREENDEDOR ESTA CONTIDO NO PROJETO PASSADO
+    public boolean verificaProjetoEmpreendedor(Empreendedor empreendedor, Projeto proj) {
+        return projetoDao.verificaEmpreendedor(empreendedor, proj);
     }
 
     public static Empreendedor buscaEmpreendedorID(String id) {

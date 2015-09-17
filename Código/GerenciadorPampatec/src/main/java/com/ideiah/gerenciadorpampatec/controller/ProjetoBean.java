@@ -42,7 +42,7 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-
+    
     public ProjetoBean() {
         projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
@@ -326,4 +326,6 @@ public class ProjetoBean {
         Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
         return emp.getProjetos().isEmpty();
     }
+
+    
 }
