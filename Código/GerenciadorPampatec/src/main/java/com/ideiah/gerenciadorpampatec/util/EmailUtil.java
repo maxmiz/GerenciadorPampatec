@@ -58,7 +58,7 @@ public class EmailUtil {
             emailHtml.setSSLOnConnect(true);
             emailHtml.addTo(email);
             emailHtml.setFrom("contato@ideah.com", "Ideiah");
-            emailHtml.setSubject("EMAIL TESTE");
+            emailHtml.setSubject("PampaTec - Gerenciados de Projetos");
 
             StringBuffer msg = new StringBuffer();
 
