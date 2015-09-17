@@ -76,7 +76,6 @@ public class EmpreendedorBean {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
 
         empreendedor = new Empreendedor();
-
         empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
@@ -117,6 +116,46 @@ public class EmpreendedorBean {
                 }
             }
         }
+    }
+
+    public void terminarCadastro() {
+        this.empreendedor.setIdUnico(null);
+        this.empreendedor.setNome(nome);
+        cpf = FacesUtil.removeCaracteres(cpf);
+        if (empreendedor.buscarPorCpf(cpf) != null) {
+            FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
+        } else {
+            empreendedor.setCpf(cpf);
+            empreendedor.setFormacao(formacao);
+            if (CpfUtil.isValidCPF(cpf) == false) {
+                FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
+            } else {
+                empreendedor.setTelefone(telefone);
+                empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+                empreendedor.setRua(rua);
+                empreendedor.setNumero(Integer.parseInt(numero));
+                empreendedor.setBairro(bairro);
+                empreendedor.setComplemento(complemento);
+                empreendedor.setExperiencia(experiencia);
+                empreendedor.setCompetencia(competencia);
+
+                if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                    FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
+                    try {
+                        LoginBean.MudarNome(empreendedor.getNome());
+                        LoginBean.MudarSenha(empreendedor.getSenha());
+                        LoginBean.MudarUser(empreendedor.getEmail());
+                        session.setAttribute("empreendedor", empreendedor);
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    FacesUtil.addErrorMessage("Cadastro não realizado!", "formularioCadastro:botaoEnviar");
+                }
+            }
+        }
+
     }
 
 //    public void chamaLogin() {
@@ -303,4 +342,5 @@ public class EmpreendedorBean {
     public void setCompetencia(String competencia) {
         this.competencia = competencia;
     }
+
 }

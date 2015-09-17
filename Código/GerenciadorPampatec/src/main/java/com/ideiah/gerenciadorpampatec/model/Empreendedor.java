@@ -26,7 +26,6 @@ public class Empreendedor implements java.io.Serializable {
     private String bairro;
     private String rua;
 
-    
     private Integer numero;
     private String complemento;
     private String idUnico;
@@ -53,14 +52,14 @@ public class Empreendedor implements java.io.Serializable {
     public static void setEmpreededorDao(EmpreendedorDao aEmpreededorDao) {
         empreendedorDao = aEmpreededorDao;
     }
-    
+
     public void setIdUnico(String idUnico) {
         this.idUnico = idUnico;
     }
 
     public String getIdUnico() {
         return idUnico;
-    }    
+    }
 
     /**
      * @return the projetoDao
@@ -236,6 +235,10 @@ public class Empreendedor implements java.io.Serializable {
         return empreendedorDao.salvar(empreendedorNovo);
 //        }
 //        return false;
+    }
+
+    public boolean atualizarEmpreendedor(Empreendedor emp) {
+        return empreendedorDao.update(emp);
     }
 
     public Empreendedor buscarPorEmail(String user) {
