@@ -104,7 +104,7 @@ public class ProjetoBean {
             }
         }
         System.out.println("Saiu");
-        projeto.getEmpreendedors().remove(empreendedorDeletar);
+        projeto.getEmpreendedores().remove(empreendedorDeletar);
         getEmpreedendoresAdicionados().remove(empreendedorDeletar);
     }
 
@@ -140,7 +140,7 @@ public class ProjetoBean {
             if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
                 System.out.println("------ 4 ------");
                 getEmpreedendoresAdicionados().add(empreendedorAchado);
-                projeto.getEmpreendedors().add(empreendedorAchado);
+                projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
             }

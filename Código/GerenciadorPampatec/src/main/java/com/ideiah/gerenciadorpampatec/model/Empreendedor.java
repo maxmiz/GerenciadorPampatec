@@ -323,7 +323,7 @@ public class Empreendedor implements java.io.Serializable {
     public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
         for (Projeto projeto : projetoDao.buscar()) {
             Empreendedor emp;
-            for (Object object : projeto.getEmpreendedors()){
+            for (Object object : projeto.getEmpreendedores()){
                 emp = (Empreendedor) object;
                 if(emp.getEmail().equals(empreendedor.getEmail())){
                     return true;

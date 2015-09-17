@@ -44,6 +44,9 @@
         <property name="complemento" type="string">
             <column name="complemento" length="45" />
         </property>
+        <property name="idUnico" type="string">
+            <column name="idUnico" length="300" />
+        </property>
         <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Empreendedor_idEmpreendedor" />
