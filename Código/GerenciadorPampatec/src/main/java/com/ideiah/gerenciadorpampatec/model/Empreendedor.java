@@ -25,8 +25,11 @@ public class Empreendedor implements java.io.Serializable {
     private String competencia;
     private String bairro;
     private String rua;
+
+    
     private Integer numero;
     private String complemento;
+    private String idUnico;
     private Set projetos = new HashSet(0);
 
     private static EmpreendedorDao empreendedorDao;
@@ -50,6 +53,14 @@ public class Empreendedor implements java.io.Serializable {
     public static void setEmpreededorDao(EmpreendedorDao aEmpreededorDao) {
         empreendedorDao = aEmpreededorDao;
     }
+    
+    public void setIdUnico(String idUnico) {
+        this.idUnico = idUnico;
+    }
+
+    public String getIdUnico() {
+        return idUnico;
+    }    
 
     /**
      * @return the projetoDao
@@ -172,8 +183,6 @@ public class Empreendedor implements java.io.Serializable {
         this.competencia = competencia;
     }
 
- 
-
     public Set getProjetos() {
         return this.projetos;
     }
@@ -183,11 +192,12 @@ public class Empreendedor implements java.io.Serializable {
     }
 
     public static boolean salvarProjeto(Projeto projeto) {
-        
+
         return projetoDao.salvar(projeto);
     }
+
     public static boolean atualizarProjeto(Projeto projeto) {
-        
+
         return projetoDao.update(projeto);
     }
 
@@ -316,22 +326,23 @@ public class Empreendedor implements java.io.Serializable {
     public void setRua(String rua) {
         this.rua = rua;
     }
-    public boolean deletarEmpreendedor(Empreendedor empreendedor){
+
+    public boolean deletarEmpreendedor(Empreendedor empreendedor) {
         return empreendedorDao.deletarPorEmail(empreendedor.getEmail());
     }
 
     public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
         for (Projeto projeto : projetoDao.buscar()) {
             Empreendedor emp;
-            for (Object object : projeto.getEmpreendedors()){
+            for (Object object : projeto.getEmpreendedors()) {
                 emp = (Empreendedor) object;
-                if(emp.getEmail().equals(empreendedor.getEmail())){
+                if (emp.getEmail().equals(empreendedor.getEmail())) {
                     return true;
-                    
+
                 }
-                
+
             }
-            
+
 //            if (projeto.getEmpreendedors().equals(empreendedor)) {
 //                System.out.println("true");
 //                return true;
@@ -339,5 +350,10 @@ public class Empreendedor implements java.io.Serializable {
 //            }
         }
         return false;
+    }
+
+    public static Empreendedor buscaEmpreendedorID(String id) {
+        empreendedorDao = new EmpreendedorDao();
+        return empreendedorDao.buscarPorIdUnico(id);
     }
 }

@@ -47,9 +47,10 @@ public class EmpreendedorBean {
     private String complemento;
     private Empreendedor empreendedor;
     private HttpSession session;
-    
-    public EmpreendedorBean(){
+
+    public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
     }
 
     public String getOutcome() {
@@ -77,9 +78,7 @@ public class EmpreendedorBean {
         cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
             FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
-        }
-        
-        else {
+        } else {
             empreendedor.setCpf(cpf);
             empreendedor.setFormacao(formacao);
             if (empreendedor.buscarPorEmail(email) != null) {
@@ -180,7 +179,7 @@ public class EmpreendedorBean {
      * @return the email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**

@@ -28,6 +28,11 @@ public class EmpreendedorDao extends Dao {
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
+    
+     public Empreendedor buscarPorIdUnico(String idUnico) {
+        return (Empreendedor) buscarObjetoCriteria("idUnico", idUnico, Empreendedor.class);
+        
+    }
 
     /*
      * Verificação se o email e o nome já estão 
@@ -65,6 +70,8 @@ public class EmpreendedorDao extends Dao {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
     
+    
+    
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
@@ -77,6 +84,7 @@ public class EmpreendedorDao extends Dao {
         }
         return true;
     }
+    
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
 

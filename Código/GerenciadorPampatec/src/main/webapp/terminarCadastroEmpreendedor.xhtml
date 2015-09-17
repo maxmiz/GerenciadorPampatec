@@ -17,7 +17,7 @@
     <h:body>
         <div class="col-md-3"></div>
         <div class="col-md-6 form-horizontal well bs-component">
-            <h1>Realize seu cadastro</h1>
+            <h1>Complete seu cadastro!</h1>
             <div id="empreendedorLogin">
                 <legend>Dados Cadastrais</legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
@@ -56,13 +56,8 @@
                         </p:inputText>
                     </div>
                     <div class="col-md-8">
-                        E-mail* <p:inputText id="email" placeholder="Digite seu E-mail" class="form-control" 
-                                             requiredMessage="Insira o seu E-mail antes de enviar"
-                                             required="true"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             value="#{empreendedorBean.email}"
-                                             validatorMessage="Email Invalido">
-                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        E-mail* <p:inputText id="email" placeholder="#{empreendedorBean.email}" class="form-control"> 
+                                             
                         </p:inputText>
                         <h:message class="mensagemErro" for="email"/>
 
