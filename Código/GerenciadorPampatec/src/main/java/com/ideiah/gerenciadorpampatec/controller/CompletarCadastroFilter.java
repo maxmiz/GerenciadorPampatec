@@ -58,11 +58,16 @@ public class CompletarCadastroFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
+        Empreendedor emp;
         HttpSession session = ((HttpServletRequest) request).getSession();
         String id = request.getParameter("id");
-        session.setAttribute("empreendedor", Empreendedor.buscaEmpreendedorID(id));
-        request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.xhtml").forward(request, response);
-
+        emp = Empreendedor.buscaEmpreendedorID(id);
+        if (emp != null) {
+            session.setAttribute("empreendedor", emp);
+            request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.xhtml").forward(request, response);
+        } else {
+            request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
+        }
     }
 
     /**
