@@ -26,6 +26,9 @@
         <property name="formacao" type="string">
             <column name="formacao" length="300" />
         </property>
+        <property name="idUnico" type="string">
+            <column name="idUnico" length="300" />
+        </property>
         <property name="experiencia" type="string">
             <column name="experiencia" length="300" />
         </property>
