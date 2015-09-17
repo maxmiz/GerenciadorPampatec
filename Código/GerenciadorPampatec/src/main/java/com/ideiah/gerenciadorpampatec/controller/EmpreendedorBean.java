@@ -51,6 +51,7 @@ public class EmpreendedorBean {
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        empreendedor.getEmail();
     }
 
     public String getOutcome() {
