@@ -134,19 +134,20 @@ public class ProjetoBean {
             empreendedorAchado = empreendedor;
         }
 
-        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-            System.out.println("");
+//        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
+//            System.out.println("");
 
             if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
                 System.out.println("------ 4 ------");
                 getEmpreedendoresAdicionados().add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
+                
             } else {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
             }
             System.out.println("----- 5 -------");
         }
-    }
+//    }
 
     /**
      * Verifica se o empreendedor disponibilizado está na lista.
