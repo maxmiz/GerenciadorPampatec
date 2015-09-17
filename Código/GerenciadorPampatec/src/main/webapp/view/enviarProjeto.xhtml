@@ -185,9 +185,9 @@
                                         <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
                                     </p:column>
                                     <p:column>
-                                        <button class="btn btn-default">
-                                            Deletar
-                                        </button>
+                                        <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}">
+                                         
+                                        </h:commandButton>
                                     </p:column>
                                 </p:dataTable>
                             </div>

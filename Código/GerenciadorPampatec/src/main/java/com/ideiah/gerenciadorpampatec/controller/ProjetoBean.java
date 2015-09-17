@@ -60,7 +60,6 @@ public class ProjetoBean {
 
 //        ProjetoDao daoP = new ProjetoDao();
 //        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
-
         projeto.setPlanofinanceiro(planoFinanceiro);
         projeto.setAnaliseemprego(analiseEmprego);
         projeto.setNegocio(negocio);
@@ -92,20 +91,27 @@ public class ProjetoBean {
         System.out.println("Entrou Deletar");
         Empreendedor empreendedorDeletar = null;
         for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
+            System.out.println("deletar 111");
             empreendedorDeletar = empreendedor;
-            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
+            System.out.println("deletar 222" + empreendedor.getEmail());
+
+//            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
+            System.out.println("xii");
                 if (empreendedor.getCpf() != null) {
                     System.out.println("entrou no if 1");
                     break;
-                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
-                    empreendedor.deletarEmpreendedor(empreendedor);
-                    break;
-                }
+//                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
+                }else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
+                System.out.println("entrou no has");
+                empreendedor.deletarEmpreendedor(empreendedor);
+                break;
             }
         }
-        System.out.println("Saiu");
+//        }
+
         projeto.getEmpreendedores().remove(empreendedorDeletar);
         getEmpreedendoresAdicionados().remove(empreendedorDeletar);
+        System.out.println("Saiu");
     }
 
     /**
@@ -136,17 +142,16 @@ public class ProjetoBean {
 
 //        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
 //            System.out.println("");
+        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
+            System.out.println("------ 4 ------");
+            getEmpreedendoresAdicionados().add(empreendedorAchado);
+            projeto.getEmpreendedores().add(empreendedorAchado);
 
-            if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-                System.out.println("------ 4 ------");
-                getEmpreedendoresAdicionados().add(empreendedorAchado);
-                projeto.getEmpreendedores().add(empreendedorAchado);
-                
-            } else {
-                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
-            }
-            System.out.println("----- 5 -------");
+        } else {
+            FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
         }
+        System.out.println("----- 5 -------");
+    }
 //    }
 
     /**
