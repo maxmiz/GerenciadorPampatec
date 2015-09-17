@@ -69,7 +69,7 @@
                                                required="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                value="#{empreendedorBean.telefone}"
-                                               mask="(999) 9999-9999"
+                                               mask="(99) 9999-9999"
                                                validatorMessage="Número invalido">
 
                             <!--<f:validateRegex pattern="[0-9]*" />-->
@@ -151,7 +151,7 @@
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
                         <h:message for="botaoEnviar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
                         <br/><br/>
-                        <h:commandButton id="botaoEnviar" class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}">
+                        <h:commandButton id="botaoTerminarCadastro" class="btn btn-success" value="Finalizar Cadastro" action="#{empreendedorBean.terminarCadastro()}">
 
                         </h:commandButton>
                     </div>
