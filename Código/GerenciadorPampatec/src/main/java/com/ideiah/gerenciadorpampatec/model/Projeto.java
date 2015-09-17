@@ -25,7 +25,7 @@ public class Projeto implements java.io.Serializable {
     private Date dataEnvio;
     private Integer status;
     private String potencialEmprego;
-    private Set empreendedors = new HashSet(0);
+    private Set empreendedores = new HashSet(0);
 
     public Projeto() {
     }
@@ -48,7 +48,7 @@ public class Projeto implements java.io.Serializable {
         this.dataEnvio = dataEnvio;
         this.status = status;
         this.potencialEmprego = potencialEmprego;
-        this.empreendedors = empreendedors;
+        this.empreendedores = empreendedors;
     }
 
     public int getIdProjeto() {
@@ -148,12 +148,12 @@ public class Projeto implements java.io.Serializable {
         this.potencialEmprego = potencialEmprego;
     }
 
-    public Set getEmpreendedors() {
-        return this.empreendedors;
+    public Set getEmpreendedores() {
+        return this.empreendedores;
     }
 
-    public void setEmpreendedors(Set empreendedors) {
-        this.empreendedors = empreendedors;
+    public void setEmpreendedores(Set empreendedors) {
+        this.empreendedores = empreendedors;
     }
 
 }

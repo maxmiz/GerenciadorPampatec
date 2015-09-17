@@ -32,7 +32,7 @@
         <property name="potencialEmprego" type="string">
             <column name="potencialEmprego" length="45" />
         </property>
-        <set name="empreendedors" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
+        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Projeto_idProjeto" />
             </key>

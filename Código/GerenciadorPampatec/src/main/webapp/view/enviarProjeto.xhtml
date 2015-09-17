@@ -174,15 +174,15 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.enviaProjetoEditar()}"/>
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
                                     </div>
                                 </div>
                                 <br/><br/>
-                                <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedors}">
+                                <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
                                     <p:column>
                                         <h:outputText value="#{empreendedor.email}" />
                                         <!--<h:outputText value="" />-->
-                                        <!--<h:outputText value="#//{projetoBean.projeto.empreendedors}" />-->
+                                        <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
                                     </p:column>
                                     <p:column>
                                         <button class="btn btn-default">
@@ -190,28 +190,6 @@
                                         </button>
                                     </p:column>
                                 </p:dataTable>
-                            </div>
-
-                            <div class="col-md-8" id="">
-                                <b>Rua</b><h:inputText id="rua" class="form-control" required="true"></h:inputText>
-                                <br/>
-                            </div>
-
-                            <div class="col-md-4" id="">
-                                <b>Número</b><h:inputText class="form-control"></h:inputText>
-                                <br/>
-                            </div>
-
-                            <div class="col-md-8" id="">
-                                <b>E-mail</b>
-                                <h:inputText class="form-control"></h:inputText>
-                                <br/>
-                            </div>
-
-                            <div class="col-md-4" id="">
-                                <b>Telefone</b>
-                                <h:inputText class="form-control"></h:inputText>
-                                <br/>
                             </div>
 
                             <div class="col-md-3"></div>

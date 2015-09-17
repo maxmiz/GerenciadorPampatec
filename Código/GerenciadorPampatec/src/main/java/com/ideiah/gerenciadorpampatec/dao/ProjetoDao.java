@@ -36,7 +36,7 @@ public class ProjetoDao extends Dao {
         listaOriginal = (ArrayList<Projeto>) buscarObjetos(Projeto.class);
         
         for (Projeto projeto : listaOriginal) {
-           if(projeto.getEmpreendedors().contains(empreendedor)){
+           if(projeto.getEmpreendedores().contains(empreendedor)){
                novaLista.add(projeto);
            }
         }
