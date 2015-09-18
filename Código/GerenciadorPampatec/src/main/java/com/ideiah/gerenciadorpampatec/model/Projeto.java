@@ -27,6 +27,7 @@ public class Projeto implements java.io.Serializable {
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
     private String participacaoacionaria;
+    
     public Projeto() {
     }
 
