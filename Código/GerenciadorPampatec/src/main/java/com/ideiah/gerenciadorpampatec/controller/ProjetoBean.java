@@ -42,7 +42,6 @@ public class ProjetoBean {
     private List<Empreendedor> empreedendoresAdicionados;
     
     public ProjetoBean() {
-        projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
         negocio = new Negocio();
         produtoOuSevico = new Produtoouservico();
@@ -309,5 +308,12 @@ public class ProjetoBean {
         return emp.getProjetos().isEmpty();
     }
 
-    
+    /**
+     * Envia o projeto para a avaliação.
+     */
+    public void enviarProjeto(){
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+        emp.enviarProjeto(projeto);
+    }
 }
