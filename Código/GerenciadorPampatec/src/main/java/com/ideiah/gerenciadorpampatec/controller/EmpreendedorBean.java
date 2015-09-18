@@ -351,5 +351,9 @@ public class EmpreendedorBean {
     public void setCompetencia(String competencia) {
         this.competencia = competencia;
     }
+    
+    public void trocarSenha(){
+        
+    }
 
 }

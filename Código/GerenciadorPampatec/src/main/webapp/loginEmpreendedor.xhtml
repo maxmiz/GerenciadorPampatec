@@ -75,7 +75,7 @@
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
-                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail"></p:inputText>
+                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
                                 </div>
                                 <div class="text-right col-md-12"> 
@@ -83,7 +83,7 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
                                     </div>
                                         
-                                    <h:commandButton type="button" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
+                                    <h:commandButton class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
                                     
                                 </div>
                             </fieldset>
@@ -94,6 +94,8 @@
             </div>
         </div>
         <!-- Fim do Modal de Recuperação de Senha -->
+        
+        
 
     </h:body>
 </html>
