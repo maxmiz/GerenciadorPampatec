@@ -369,7 +369,7 @@
                                 Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
 
                                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection">
+                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}">
 
                                         <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
                                         <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
@@ -382,7 +382,7 @@
 
                                 </h:panelGrid>
 
-                                <h:inputText class="form-control"></h:inputText>
+                                <h:inputText class="form-control" value="#{projetoBean.descricaoButtonOutro}"></h:inputText>
                                 <br/>
                             </div>
                             <div class="col-md-12">

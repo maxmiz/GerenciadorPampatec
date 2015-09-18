@@ -40,9 +40,10 @@ public class ProjetoBean {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    
+    private String selectedButton;
+    private String descricaoButtonOutro;
+
     public ProjetoBean() {
-        projeto = new Projeto();
         analiseEmprego = new Analiseemprego();
         negocio = new Negocio();
         produtoOuSevico = new Produtoouservico();
@@ -51,6 +52,15 @@ public class ProjetoBean {
         empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
+        if (projeto != null) {
+//          
+            if (produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
+                selectedButton = produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
+            } else {
+                selectedButton = produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+            }
+        }
     }
 
     public void salvarProjeto() {
@@ -94,11 +104,11 @@ public class ProjetoBean {
 
 //            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
             System.out.println("xii");
-                if (empreendedor.getCpf() != null) {
-                    System.out.println("entrou no if 1");
-                    break;
+            if (empreendedor.getCpf() != null) {
+                System.out.println("entrou no if 1");
+                break;
 //                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
-                }else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
+            } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
                 System.out.println("entrou no has");
                 empreendedor.deletarEmpreendedor(empreendedor);
                 break;
@@ -236,6 +246,7 @@ public class ProjetoBean {
     public void setPlanoFinanceiro(Planofinanceiro planoFinanceiro) {
         this.planoFinanceiro = planoFinanceiro;
     }
+
     /**
      * @return the emailEmpreendedor
      */
@@ -309,5 +320,32 @@ public class ProjetoBean {
         return emp.getProjetos().isEmpty();
     }
 
-    
+    /**
+     * @return the selectedButton
+     */
+    public String getSelectedButton() {
+        return selectedButton;
+    }
+
+    /**
+     * @param selectedButton the selectedButton to set
+     */
+    public void setSelectedButton(String selectedButton) {
+        this.selectedButton = selectedButton;
+    }
+
+    /**
+     * @return the descricaoButtonOutro
+     */
+    public String getDescricaoButtonOutro() {
+        return descricaoButtonOutro;
+    }
+
+    /**
+     * @param descricaoButtonOutro the descricaoButtonOutro to set
+     */
+    public void setDescricaoButtonOutro(String descricaoButtonOutro) {
+        this.descricaoButtonOutro = descricaoButtonOutro;
+    }
+
 }
