@@ -10,4 +10,5 @@
   <table-filter match-name="projeto_has_empreendedor"/>
   <table-filter match-name="analiseemprego"/>
   <table-filter match-name="empreendedor"/>
+  <table-filter match-name="empreendedorEmail"/>
 </hibernate-reverse-engineering>

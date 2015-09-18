@@ -70,6 +70,7 @@ public class ProjetoBean {
     }
 
     public void salvarProjeto() {
+        System.out.println("entrou no salvar");
 
 //        ProjetoDao daoP = new ProjetoDao();
 //        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
@@ -79,7 +80,15 @@ public class ProjetoBean {
         projeto.setPotencialEmprego(emailEmpreendedor);
         projeto.setProdutoouservico(produtoOuSevico);
         projeto.setStatus(Integer.SIZE);
-
+        
+//        if (produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
+//            projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
+//        } else {
+//            projeto.getProdutoouservico().setEstagioEvolucao(selectedButton);
+//        }
+        
+        projeto.SalvarProjeto(projeto);
+        System.out.println("Salvou o Projeto");
 //        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 //        Projeto projeto = (Projeto) sessao.getAttribute("projetoEditado");
 //        projeto.getEmpreendedors().add(empreedendoresAdicionados);
@@ -329,12 +338,12 @@ public class ProjetoBean {
     /**
      * Envia o projeto para a avaliação.
      */
-    public void enviarProjeto(){
+    public void enviarProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
         emp.enviarProjeto(projeto);
     }
-    
+
     /**
      * @return the selectedButton
      */
