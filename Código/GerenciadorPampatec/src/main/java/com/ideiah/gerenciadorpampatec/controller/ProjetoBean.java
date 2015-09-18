@@ -52,8 +52,14 @@ public class ProjetoBean {
         empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
-        if (projeto != null) {
-//          
+        preecheRadioButton();
+    }
+    
+    /**
+     * Preeche o radio button se o projeto já estiver com ele preenchido
+     */
+    public void preecheRadioButton(){
+        if (projeto != null) {         
             if (produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
                 selectedButton = produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
