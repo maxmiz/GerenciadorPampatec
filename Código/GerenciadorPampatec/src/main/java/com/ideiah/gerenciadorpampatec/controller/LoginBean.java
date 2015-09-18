@@ -9,6 +9,7 @@ import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
@@ -120,6 +121,11 @@ public class LoginBean {
 
         return null;
 
+    }
+    
+    //RECUPERAÇÃO DE SENHA
+    public void recuperarSenha(String email){
+        EmailUtil.emailRecuperarSenha(email);
     }
 
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS

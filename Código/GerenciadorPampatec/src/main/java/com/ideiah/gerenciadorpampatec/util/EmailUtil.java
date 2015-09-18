@@ -45,13 +45,13 @@ public class EmailUtil {
 //            ex.printStackTrace();
 //        }
 //    }
-    
-
+    /*
+     Envio de email para concluir o cadastro
+     */
     public static void mandarEmailConcluirCadastro(String empreendedorNome, String projetoNome, String email) {
-        
-        
+
         String idUnico = UUID.randomUUID().toString();
-        
+
         emailHtml = new HtmlEmail();
         try {
             emailHtml.setHostName("smtp.googlemail.com");
@@ -76,11 +76,11 @@ public class EmailUtil {
                     + "            <h1 class=\"fonteBranca\">Título do E-mail</h1>\n"
                     + "            <form class=\"form-horizontal\">\n"
                     + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
-                    + "                        <a>Olá!</a><br/><br/><a>O empreendedor <strong>" + empreendedorNome +"</strong> adicionou você\n"
+                    + "                        <a>Olá!</a><br/><br/><a>O empreendedor <strong>" + empreendedorNome + "</strong> adicionou você\n"
                     + "                        como sócio no projeto <strong>" + projetoNome + "</strong>.\n"
                     + "                        <br/><br/>Para que você possa utilizar o Sistema de Gerenciamento de Projetos do \n"
                     + "                        PampaTec é necessário confirmar o seu e-mail e realizar o seu cadastro.\n"
-                    + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"http://localhost:8889/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml?id="+ idUnico+" \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
+                    + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"http://localhost:8889/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
                     + "                    </div>\n"
                     + "\n"
                     + "        </form></div>\n"
@@ -99,6 +99,35 @@ public class EmailUtil {
             ex.printStackTrace();
         }
 
+    }
+
+    /*
+     Envio de email para recuperação de senha
+     */
+    public static void emailRecuperarSenha(String email) {
+        String idUnico = UUID.randomUUID().toString();
+
+        emailHtml = new HtmlEmail();
+        try {
+            emailHtml.setHostName("smtp.googlemail.com");
+            emailHtml.setSmtpPort(465);
+            emailHtml.setAuthenticator(new DefaultAuthenticator("contato@ideiah.com", "uniideiahpampa"));
+            emailHtml.setSSLOnConnect(true);
+            emailHtml.addTo(email);
+            emailHtml.setFrom("contato@ideah.com", "Ideiah");
+            emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
+
+            StringBuffer msg = new StringBuffer();
+
+            msg.append("");
+
+            emailHtml.setHtmlMsg(msg.toString());
+
+            emailHtml.send();
+
+        } catch (EmailException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
