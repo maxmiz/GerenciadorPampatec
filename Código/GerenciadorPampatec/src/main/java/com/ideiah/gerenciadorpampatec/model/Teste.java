@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -34,7 +35,9 @@ public class Teste {
         empreendedor.setNumero(32131231);
 
 //        mandarEmail("Este é o assunto", "Esta é a mensagem");
-        mandarHtml();
+//        mandarHtml();
+        
+        EmailUtil.mandarEmailConcluirCadastro("Pedro", "Ideiah", "edisonjhonatan@gmail.com");
 
     }
 
