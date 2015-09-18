@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
+        </f:facet>
+
+        <title>Recuperação de Senha</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-horizontal well bs-component">
+            <h1>Redefinir senha</h1>
+            <div id="empreendedorLogin">
+                <legend></legend>
+                <h:form id="formularioCadastro" title="cadastroEmpreendedor">
+
+                    <div class="col-md-6">
+                        Senha* <p:password id="senha" class="form-control" title="senha"
+                                           placeholder="Digite sua nova senha" 
+                                           requiredMessage="Insira sua senha"
+                                           required="true"
+                                           promptLabel="informe sua senha" weakLabel="Fraca"
+                                           goodLabel="Mediana" strongLabel="Forte"
+                                           feedback="true"
+                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                           value="#{empreendedorBean.senhaInput}"
+                                           match="senhaConfig" validatorMessage="Senha deve ser igual"></p:password>
+                        <h:message class="mensagemErro" for="senha"/>
+
+                    </div> 
+                    <div class="col-md-6">
+                        Confirme sua senha* <p:password id="senhaConfig" class="form-control" 
+                                                        placeholder="Confirme sua senha" 
+                                                        requiredMessage="Confirme sua senha"
+                                                        required="true"
+                                                        styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                        title="confirmaSenha"  
+                                                        value="#{empreendedorBean.senhaInput}"></p:password>
+                        <h:message class="mensagemErro" for="senha"/>
+                        <br/>
+                    </div> 
+
+                    <div class="col-md-12 modal-footer">
+                        <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
+                        <h:message for="botaoSalvar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
+                        <h:commandButton id="botaoSalvar" class="btn btn-success" value="Salvar nova senha" action="#{empreendedorBean.senhaInput}">
+
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </h:body>
+</html>

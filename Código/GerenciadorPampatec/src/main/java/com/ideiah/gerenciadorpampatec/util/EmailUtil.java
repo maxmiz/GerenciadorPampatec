@@ -104,7 +104,7 @@ public class EmailUtil {
     /*
      Envio de email para recuperação de senha
      */
-    public static void emailRecuperarSenha(String email) {
+    public static void enviarEmailRecuperarSenha(String email) {
         String idUnico = UUID.randomUUID().toString();
 
         emailHtml = new HtmlEmail();
@@ -119,7 +119,26 @@ public class EmailUtil {
 
             StringBuffer msg = new StringBuffer();
 
-            msg.append("");
+            msg.append("<html lang=\"pt-br\">\n"
+                    + "  <head>\n"
+                    + "    <meta charset=\"utf-8\"/>\n"
+                    + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
+                    + "  </head>\n"
+                    + "            <div class=\"col-md-4\"></div>-->\n"
+                    + "  <body style=\"margin: 0;padding-top: 10px\"><div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
+                    + "    <div class=\"col-md-4 text-center well\" style=\"text-align: center;width: 66.333333%;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 2px solid #3FB618;border-radius: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)\">\n"
+                    + "        <h1 class=\"fonteBranca\">Título do E-mail</h1>\n"
+                    + "        <form class=\"form-horizontal\">\n"
+                    + "            <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
+                    + "                <a>Olá!</a><br/><br/><a>Verificamos que você esqueceu a sua senha. Por favor, <strong>clique na opção a baixo</strong> para redefinir uma nova senha e continuar.</a><br/><br/>\n"
+                    + "                 <a class=\"btn btn-success focus\" href=\"http://localhost:8889/GerenciadorPampatec/faces/recuperarSenha.xhtml?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
+                    + "                    </div>\n"
+                    + "\n"
+                    + "    </form></div>\n"
+                    + "    <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
+                    + "\n"
+                    + "    </body>\n"
+                    + "</html>");
 
             emailHtml.setHtmlMsg(msg.toString());
 

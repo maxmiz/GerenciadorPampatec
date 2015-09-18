@@ -37,6 +37,7 @@ public class LoginBean {
     private static String user; //pode ser email ou senha
     private static String senha;
     private static String nome;
+    private String emailRecuperarSenha;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -124,8 +125,8 @@ public class LoginBean {
     }
     
     //RECUPERAÇÃO DE SENHA
-    public void recuperarSenha(String email){
-        EmailUtil.emailRecuperarSenha(email);
+    public void recuperarSenha(){
+        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha);
     }
 
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
@@ -198,5 +199,19 @@ public class LoginBean {
 
     public String enviaBuscaProjeto() {
         return "/faces/view/PaginaBuscaProjeto.xhtml";
+    }
+
+    /**
+     * @return the emailRecuperarSenha
+     */
+    public String getEmailRecuperarSenha() {
+        return emailRecuperarSenha;
+    }
+
+    /**
+     * @param emailRecuperarSenha the emailRecuperarSenha to set
+     */
+    public void setEmailRecuperarSenha(String emailRecuperarSenha) {
+        this.emailRecuperarSenha = emailRecuperarSenha;
     }
 }
