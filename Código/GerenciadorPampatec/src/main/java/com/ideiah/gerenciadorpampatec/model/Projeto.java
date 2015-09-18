@@ -26,19 +26,20 @@ public class Projeto implements java.io.Serializable {
     private Integer status;
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
-
+    private String participacaoacionaria;
     public Projeto() {
     }
 
-    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico) {
+    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico,String participacaoacionaria) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
         this.planofinanceiro = planofinanceiro;
         this.produtoouservico = produtoouservico;
+        this.participacaoacionaria = participacaoacionaria;
     }
 
-    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors) {
+    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -49,6 +50,7 @@ public class Projeto implements java.io.Serializable {
         this.status = status;
         this.potencialEmprego = potencialEmprego;
         this.empreendedores = empreendedors;
+        this.participacaoacionaria = participacaoacionaria;
     }
 
     public int getIdProjeto() {
@@ -154,6 +156,20 @@ public class Projeto implements java.io.Serializable {
 
     public void setEmpreendedores(Set empreendedors) {
         this.empreendedores = empreendedors;
+    }
+
+    /**
+     * @return the participacaoacionaria
+     */
+    public String getParticipacaoacionaria() {
+        return participacaoacionaria;
+    }
+
+    /**
+     * @param participacaoacionaria the participacaoacionaria to set
+     */
+    public void setParticipacaoacionaria(String participacaoacionaria) {
+        this.participacaoacionaria = participacaoacionaria;
     }
 
 }

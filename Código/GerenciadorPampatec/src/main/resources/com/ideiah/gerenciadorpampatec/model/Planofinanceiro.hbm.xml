@@ -17,17 +17,17 @@
         <property name="investimentoInicial" type="string">
             <column name="investimentoInicial" length="300" />
         </property>
+        <property name="custosfixos" type="string">
+            <column name="custosfixos" length="500" />
+        </property>
+        <property name="custosvariaveis" type="string">
+            <column name="custosvariaveis" length="500" />
+        </property>
         <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
-        </set>
-        <set name="custos" table="custo" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
-            </key>
-            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Custo" />
         </set>
     </class>
 </hibernate-mapping>

@@ -16,8 +16,9 @@ public class Planofinanceiro  implements java.io.Serializable {
      private String estruturaCusto;
      private String investimentoInicial;
      private Set projetos = new HashSet(0);
-     private Set custos = new HashSet(0);
-
+     private String custosfixos;
+     private String custosvariaveis;
+     
     public Planofinanceiro() {
     }
 
@@ -27,13 +28,13 @@ public class Planofinanceiro  implements java.io.Serializable {
         this.fontesReceita = fontesReceita;
         this.estruturaCusto = estruturaCusto;
     }
-    public Planofinanceiro(int idPlanoFinanceiro, String fontesReceita, String estruturaCusto, String investimentoInicial, Set projetos, Set custos) {
+    public Planofinanceiro(int idPlanoFinanceiro, String fontesReceita, String estruturaCusto, String investimentoInicial, String custosFixos, String custosVariaveis) {
        this.idPlanoFinanceiro = idPlanoFinanceiro;
        this.fontesReceita = fontesReceita;
        this.estruturaCusto = estruturaCusto;
        this.investimentoInicial = investimentoInicial;
        this.projetos = projetos;
-       this.custos = custos;
+       
     }
    
     public int getIdPlanoFinanceiro() {
@@ -71,13 +72,36 @@ public class Planofinanceiro  implements java.io.Serializable {
     public void setProjetos(Set projetos) {
         this.projetos = projetos;
     }
-    public Set getCustos() {
-        return this.custos;
+
+    /**
+     * @return the custosfixos
+     */
+    public String getCustosfixos() {
+        return custosfixos;
     }
+
+    /**
+     * @param custosfixos the custosfixos to set
+     */
+    public void setCustosfixos(String custosfixos) {
+        this.custosfixos = custosfixos;
+    }
+
+    /**
+     * @return the custosvariaveis
+     */
+    public String getCustosvariaveis() {
+        return custosvariaveis;
+    }
+
+    /**
+     * @param custosvariaveis the custosvariaveis to set
+     */
+    public void setCustosvariaveis(String custosvariaveis) {
+        this.custosvariaveis = custosvariaveis;
+    }
+
     
-    public void setCustos(Set custos) {
-        this.custos = custos;
-    }
 
 
 

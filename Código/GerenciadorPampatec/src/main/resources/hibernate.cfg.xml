@@ -8,7 +8,6 @@
     <property name="hibernate.connection.username">root</property>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Planofinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Projeto.hbm.xml"/>
-    <mapping resource="com/ideiah/gerenciadorpampatec/model/Custo.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Empreendedor.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Negocio.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Analiseemprego.hbm.xml"/>

@@ -32,6 +32,9 @@
         <property name="potencialEmprego" type="string">
             <column name="potencialEmprego" length="45" />
         </property>
+        <property name="participacaoacionaria" type="string">
+            <column name="participacaoacionaria" length="500" />
+        </property>
         <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Projeto_idProjeto" />

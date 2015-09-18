@@ -475,7 +475,8 @@
                             <div class="col-md-12">
                                 <b>Descrição da participação acionária <h:link value="(?)"></h:link></b><br/>
                                 Haverão sócios? Quanto de participação terão?
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control"
+                                                 value="#{projetoBean.projeto.participacaoacionaria}" ></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
@@ -554,13 +555,17 @@
                             <div class="col-md-12">
                                 <b>Custos fixos <h:link value="(?)"></h:link></b><br/>
                                 Salários, Aluguel...
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control"
+                                                 value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
+                                                 ></h:inputTextarea>
                                 <br/>
                             </div>
                             <div class="col-md-12">
                                 <b>Custos variáveis <h:link value="(?)"></h:link></b><br/>
                                 Impostos, combustível, matéria-prima... 
-                                <h:inputTextarea class="form-control"></h:inputTextarea>
+                                <h:inputTextarea class="form-control"
+                                                 value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
+                                </h:inputTextarea>
                                 <br/>
                             </div>
 

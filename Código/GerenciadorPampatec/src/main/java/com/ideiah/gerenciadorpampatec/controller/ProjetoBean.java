@@ -7,7 +7,6 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
-import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
@@ -38,7 +37,6 @@ public class ProjetoBean {
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
-    private Custo custo;
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
@@ -49,7 +47,6 @@ public class ProjetoBean {
         negocio = new Negocio();
         produtoOuSevico = new Produtoouservico();
         planoFinanceiro = new Planofinanceiro();
-        custo = new Custo();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -239,21 +236,6 @@ public class ProjetoBean {
     public void setPlanoFinanceiro(Planofinanceiro planoFinanceiro) {
         this.planoFinanceiro = planoFinanceiro;
     }
-
-    /**
-     * @return the custo
-     */
-    public Custo getCusto() {
-        return custo;
-    }
-
-    /**
-     * @param custo the custo to set
-     */
-    public void setCusto(Custo custo) {
-        this.custo = custo;
-    }
-
     /**
      * @return the emailEmpreendedor
      */
