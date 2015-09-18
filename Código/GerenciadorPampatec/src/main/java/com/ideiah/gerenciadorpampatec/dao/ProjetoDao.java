@@ -17,7 +17,11 @@ public class ProjetoDao extends Dao {
 //<editor-fold defaultstate="collapsed" desc="Salvar">
 
     public boolean salvar(Projeto projeto) {
+//        return super.salvar(projeto);
         return super.salvar(projeto);
+    }
+    public boolean update(Projeto projeto){
+        return super.update(projeto);
     }
 //</editor-fold>
 

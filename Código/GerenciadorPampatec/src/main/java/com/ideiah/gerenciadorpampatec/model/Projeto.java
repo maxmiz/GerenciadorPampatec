@@ -1,6 +1,8 @@
 package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,11 +29,12 @@ public class Projeto implements java.io.Serializable {
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
     private String participacaoacionaria;
-    
+    ProjetoDao projetoDao = new ProjetoDao();
+
     public Projeto() {
     }
 
-    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico,String participacaoacionaria) {
+    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -52,6 +55,20 @@ public class Projeto implements java.io.Serializable {
         this.potencialEmprego = potencialEmprego;
         this.empreendedores = empreendedors;
         this.participacaoacionaria = participacaoacionaria;
+    }
+
+    public boolean SalvarProjeto(Projeto projeto) {
+        try {
+            projetoDao.update(projeto.planofinanceiro);
+            projetoDao.update(projeto.analiseemprego);
+            projetoDao.update(projeto.negocio);
+            projetoDao.update(projeto.produtoouservico);
+            projetoDao.update(projeto);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar: " + e);
+        }
+        return false;
     }
 
     public int getIdProjeto() {
