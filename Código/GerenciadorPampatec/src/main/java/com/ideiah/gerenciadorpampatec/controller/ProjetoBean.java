@@ -12,10 +12,12 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -42,58 +44,112 @@ public class ProjetoBean {
     private List<Empreendedor> empreedendoresAdicionados;
     private String selectedButton;
     private String descricaoButtonOutro;
+    private Empreendedor empreendedorSession;
 
     public ProjetoBean() {
-        analiseEmprego = new Analiseemprego();
-        negocio = new Negocio();
-        produtoOuSevico = new Produtoouservico();
-        planoFinanceiro = new Planofinanceiro();
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
+        empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
         preecheRadioButton();
     }
-    
+
+    /**
+     * Atualiza o projeto que está na sessão.
+     */
+    public void atualizarProjetoSessao() {
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        secao.setAttribute("projetoSelecionado", projeto);
+    }
+
     /**
      * Preeche o radio button se o projeto já estiver com ele preenchido
      */
-    public void preecheRadioButton(){
-        if (projeto != null) {         
-            if (produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
-                selectedButton = produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+    public void preecheRadioButton() {
+        if (projeto != null) {
+            if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
+                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
             } else {
-                selectedButton = produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
             }
         }
     }
 
-    public void salvarProjeto() {
-        System.out.println("entrou no salvar");
+    public void pegaValorRadioButton() {
+        switch (selectedButton) {
+            case "Ideia Básica":
+                projeto.getProdutoouservico().setEstagioEvolucao("1");
+                descricaoButtonOutro = null;
+                break;
+            case "Projeto básico":
+                projeto.getProdutoouservico().setEstagioEvolucao("2");
+                descricaoButtonOutro = null;
+                break;
+            case "Projeto detalhado":
+                projeto.getProdutoouservico().setEstagioEvolucao("3");
+                descricaoButtonOutro = null;
+                break;
+            case "Protótipo desenvolvido":
+                projeto.getProdutoouservico().setEstagioEvolucao("4");
+                descricaoButtonOutro = null;
+                break;
+            case "Em teste no mercado":
+                projeto.getProdutoouservico().setEstagioEvolucao("5");
+                descricaoButtonOutro = null;
+                break;
+            case "Clientes Pagando":
+                projeto.getProdutoouservico().setEstagioEvolucao("6");
+                descricaoButtonOutro = null;
+                break;
+            case "Outro:":
+                projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
+                descricaoButtonOutro = null;
+                break;
+            default:
+        }
+    }
 
-//        ProjetoDao daoP = new ProjetoDao();
-//        projeto = (Projeto) daoP.buscarObjetoCriteriaINT("id", 2, Projeto.class);
-        projeto.setPlanofinanceiro(planoFinanceiro);
-        projeto.setAnaliseemprego(analiseEmprego);
-        projeto.setNegocio(negocio);
-        projeto.setPotencialEmprego(emailEmpreendedor);
-        projeto.setProdutoouservico(produtoOuSevico);
-        projeto.setStatus(Integer.SIZE);
-        
-//        if (produtoOuSevico.verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
-//            projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
-//        } else {
-//            projeto.getProdutoouservico().setEstagioEvolucao(selectedButton);
-//        }
-        
+    public void salvarProjeto() {
+        pegaValorRadioButton();
+        EnviaEmails(projeto);
         projeto.SalvarProjeto(projeto);
-        System.out.println("Salvou o Projeto");
-//        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-//        Projeto projeto = (Projeto) sessao.getAttribute("projetoEditado");
-//        projeto.getEmpreendedors().add(empreedendoresAdicionados);
-//        System.out.println("nome" + projeto.getNome() + " id " + projeto.getIdProjeto());
-//        empreendedorAchado.atualizarProjeto(projeto);
+        atualizarProjetoSessao();
+    }
+
+    /**
+     * Envia emails de termino de cadastro para os empreendedores necessários
+     * dentro do projeto e atauliza os empreendedores.
+     *
+     * @param projeto Projeto que contém os empreendedores para se envar os
+     * emails
+     */
+    public void EnviaEmails(Projeto projeto) {
+        Empreendedor empreendedor, empreendedorCadastrado;
+        for (Object object : projeto.getEmpreendedores()) {
+            empreendedor = (Empreendedor) object;
+            empreendedorCadastrado = Empreendedor.buscaEmpreendedorID(empreendedor.getIdUnico());
+            enviarEmailCadastro(empreendedor.getEmail());
+        }
+    }
+
+    /**
+     * Envia um email para que o empreendedor possa terminar o seu cadastro.
+     *
+     * @param emailEmpreendedor email para se enviar
+     */
+    public void enviarEmailCadastro(String emailEmpreendedor) {
+        String idUnico;
+        Empreendedor empreendedor = Empreendedor.buscaPorEmail(emailEmpreendedor);
+        if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
+            if (empreendedor.getIdUnico() == null) {
+                idUnico = UUID.randomUUID().toString();
+                EmailUtil.mandarEmailConcluirCadastro(empreendedorSession.getNome(), projeto.getNome(), empreendedor.getEmail(), idUnico);
+                empreendedor.setIdUnico(idUnico);
+                empreendedor.atualizarEmpreendedor(empreendedor);
+            }
+        }
     }
 
     public List<String> completarEmpreendedor(String busca) {
@@ -140,14 +196,10 @@ public class ProjetoBean {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
-        System.out.println("------ 0000 -----");
         boolean existe = false;
         Empreendedor empreendedorAchado = null;
-        System.out.println("----- 1111 -----");
         for (Empreendedor empreendedor : listaEmpreendedor) {
             if (empreendedor.getEmail().equals(emailEmpreendedor)) {
-//                listaEmpreendedor.add(empreendedor);
-                System.out.println("--- 2 -----");
                 existe = true;
                 empreendedorAchado = empreendedor;
                 break;
@@ -155,26 +207,21 @@ public class ProjetoBean {
         }
 
         if (existe == false) {
-            System.out.println("---- 3 -----");
             Empreendedor empreendedor = new Empreendedor();
             empreendedor.setEmail(emailEmpreendedor);
-            empreendedor.cadastrarEmpreendedor(empreendedor);
             empreendedorAchado = empreendedor;
         }
-
-//        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-//            System.out.println("");
         if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-            System.out.println("------ 4 ------");
+            if(!existe){
+                empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
+                empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
+            }
             getEmpreedendoresAdicionados().add(empreendedorAchado);
             projeto.getEmpreendedores().add(empreendedorAchado);
-
         } else {
             FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
         }
-        System.out.println("----- 5 -------");
     }
-//    }
 
     /**
      * Verifica se o empreendedor disponibilizado está na lista.

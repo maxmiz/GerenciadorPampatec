@@ -33,6 +33,10 @@ public class EmpreendedorDao extends Dao {
         return (Empreendedor) buscarObjetoCriteria("idUnico", idUnico, Empreendedor.class);
         
     }
+     
+     public Empreendedor buscaPorEmail(String email){
+        return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
+    }
 
     /*
      * Verificação se o email e o nome já estão 

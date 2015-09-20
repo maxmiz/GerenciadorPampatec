@@ -59,14 +59,9 @@ public class Projeto implements java.io.Serializable {
 
     public boolean SalvarProjeto(Projeto projeto) {
         try {
-            projetoDao.update(projeto.planofinanceiro);
-            projetoDao.update(projeto.analiseemprego);
-            projetoDao.update(projeto.negocio);
-            projetoDao.update(projeto.produtoouservico);
             projetoDao.update(projeto);
             return true;
         } catch (Exception e) {
-            System.out.println("Erro ao salvar: " + e);
         }
         return false;
     }

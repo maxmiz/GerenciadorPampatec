@@ -284,7 +284,7 @@ public class Empreendedor implements java.io.Serializable {
      * @param empreendedor Empreendedor para se verificar a completude.
      * @return true se ele está completamente cadastrado.
      */
-    public boolean verificaDadosEmpreendedor(Empreendedor empreendedor) {
+    public static boolean verificaDadosEmpreendedor(Empreendedor empreendedor) {
         boolean completo = true;
         if (empreendedor.getCpf() == null) {
             completo = false;
@@ -419,5 +419,10 @@ public class Empreendedor implements java.io.Serializable {
     public static Empreendedor buscaEmpreendedorID(String id) {
         empreendedorDao = new EmpreendedorDao();
         return empreendedorDao.buscarPorIdUnico(id);
+    }
+    
+    public static Empreendedor buscaPorEmail(String email){
+        empreendedorDao = new EmpreendedorDao();
+        return empreendedorDao.buscarPorEmail(email);
     }
 }

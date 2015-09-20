@@ -53,6 +53,7 @@ public class LoginBean {
     public String fazLogout() {
 
         session.removeAttribute("empreendedor");
+        session.removeAttribute("projetoSelecionado");
         LoginBean.MudarNome(null);
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);

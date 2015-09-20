@@ -8,16 +8,16 @@
             <column name="idProjeto" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="analiseemprego" class="com.ideiah.gerenciadorpampatec.model.Analiseemprego" fetch="select">
+        <many-to-one name="analiseemprego" class="com.ideiah.gerenciadorpampatec.model.Analiseemprego" fetch="select" cascade="all">
             <column name="AnaliseEmprego_idAnaliseEmprego" />
         </many-to-one>
-        <many-to-one name="negocio" class="com.ideiah.gerenciadorpampatec.model.Negocio" fetch="select">
+        <many-to-one name="negocio" class="com.ideiah.gerenciadorpampatec.model.Negocio" fetch="select" cascade="all">
             <column name="Negocio_idNegocio" />
         </many-to-one>
-        <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select">
+        <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" cascade="all">
             <column name="PlanoFinanceiro_idPlanoFinanceiro" />
         </many-to-one>
-        <many-to-one name="produtoouservico" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select">
+        <many-to-one name="produtoouservico" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select" cascade="all">
             <column name="ProdutoOuServico_idProdutoOuServico" />
         </many-to-one>
         <property name="nome" type="string">
@@ -35,7 +35,7 @@
         <property name="participacaoacionaria" type="string">
             <column name="participacaoacionaria" length="500" />
         </property>
-        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
+        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
             <key>
                 <column name="Projeto_idProjeto" />
             </key>
