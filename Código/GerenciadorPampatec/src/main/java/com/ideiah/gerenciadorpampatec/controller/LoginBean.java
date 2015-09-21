@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
@@ -36,6 +37,7 @@ import javax.servlet.http.HttpSession;
 public class LoginBean {
 
     private static EmpreendedorDao empreededorDao;
+    private static EmpreendedorEmailDao empreendedorEmailDao;
     private static String user; //pode ser email ou senha
     private static String senha;
     private static String nome;
@@ -163,6 +165,8 @@ public class LoginBean {
         empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
         empreendedorEmail.setIdEmpreendedorEmail(idUnico);
         empreendedorEmail.setTipo("Recuperação de Senha");
+        
+        empreendedorEmailDao.salvar(empreendedorEmail);
         
         EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
         

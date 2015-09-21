@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.primefaces.expression.impl.ThisExpressionResolver;
 
 /**
  *
@@ -51,6 +53,7 @@ public class EmpreendedorBean {
     private String numero;
     private String complemento;
     private Empreendedor empreendedor;
+    private EmpreendedorEmailDao empreendedorEmailDao;
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
     private EmailUtil emailUtil;
@@ -137,10 +140,10 @@ public class EmpreendedorBean {
 
 
     /**
-     * Método para salvar a nova senha do usuário a partir da recupeção pelo
-     * link submetido para o email
+     * Método para salvar a nova senha do usuário a partir da recuperação
+     * pelo link submetido para o email
      */
-    public void salvarSenhaRecuperada() {
+    public void terminarRecuperacaoDeSenha() {
         
         if (empreendedorEmail.getIdEmpreendedorEmail() != null) {
 
@@ -149,7 +152,7 @@ public class EmpreendedorBean {
             this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
 
             try {
-                FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/loginEmpreendedor.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/loginEmpreendedor.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
             }
