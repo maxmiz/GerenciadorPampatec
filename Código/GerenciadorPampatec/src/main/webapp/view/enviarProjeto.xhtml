@@ -215,39 +215,39 @@
                         <div class="col-md-12" id="">
                             <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
                             Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                            <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
+                            <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control"
                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
                             <br/>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
                             Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                            <p:inputText id="propostaDeValor" placeholder="" class="form-control"
+                            <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control"
                                          requiredMessage="Insira a proposta de valor antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="propostaDeValor"/>
                             <br/>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
                             Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                            <p:inputText id="atividadesChave" placeholder="" class="form-control"
+                            <p:inputTextarea id="atividadesChave" placeholder="" class="form-control"
                                          requiredMessage="Insira as atividades chave antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="atividadesChave"/>
                             <br/>
                         </div>
@@ -508,27 +508,27 @@
                         <div class="col-md-12">
                             <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
                             Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                            <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
+                            <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control"
                                          requiredMessage="Insira as fontes de receita antes de enviar" 
 
                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="fontesDeReceita"/>
                             <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
                             Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                            <p:inputText id="estruturaCustos" placeholder="" class="form-control"
+                            <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control"
                                          requiredMessage="Insira a estrutura de custos antes de enviar" 
                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="estruturaCustos"/>
                             <br/>
                         </div>
