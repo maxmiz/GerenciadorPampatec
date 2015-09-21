@@ -128,6 +128,7 @@ public class ProjetoBean {
      */
     public void EnviaEmails(Projeto projeto) {
         Empreendedor empreendedor, empreendedorCadastrado;
+        
         for (Object object : projeto.getEmpreendedores()) {
             empreendedor = (Empreendedor) object;
             empreendedorCadastrado = Empreendedor.buscaEmpreendedorID(empreendedor.getIdUnico());

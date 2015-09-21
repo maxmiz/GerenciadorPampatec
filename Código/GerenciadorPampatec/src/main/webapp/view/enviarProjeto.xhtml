@@ -66,19 +66,11 @@
             var x = false;
             var y = false;
 
-            function verificacaoDoBotao() {
+            function infoSalvar() {
 
                 if (x == false) {
                     $("#modalInfoSalvar").modal();
                     x = true;
-                }
-            }
-
-            function ajuda() {
-
-                if (y == false) {
-                    $("#modalInfoAjuda").modal();
-                    y = true;
                 }
             }
 
@@ -101,7 +93,10 @@
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="modal">×</button>
                         Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                        para que você possa retornar e acabar de preenchê-los em outro momento.
+                        para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
+                        Se você necessitar de ajuda basta ????
+                        
+  
                     </div>
 
                 </div>
@@ -195,7 +190,7 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="btn btn-success" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar1" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
                         </div>
@@ -216,45 +211,45 @@
                         <legend>O Negócio</legend>
                         <div class="col-md-12">
                             <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 22.6%"></div>
                             </div>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
                             Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                            <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
+                            <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control"
                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
                             <br/>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
                             Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                            <p:inputText id="propostaDeValor" placeholder="" class="form-control"
+                            <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control"
                                          requiredMessage="Insira a proposta de valor antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="propostaDeValor"/>
                             <br/>
                         </div>
                         <div class="col-md-12" id="">
                             <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
                             Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                            <p:inputText id="atividadesChave" placeholder="" class="form-control"
+                            <p:inputTextarea id="atividadesChave" placeholder="" class="form-control"
                                          requiredMessage="Insira as atividades chave antes de enviar" 
                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          >
 
-                            </p:inputText>
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="atividadesChave"/>
                             <br/>
                         </div>
@@ -265,7 +260,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar2"></h:message>
@@ -286,7 +281,7 @@
                         <legend id="subTitulo">Análise de Mercado</legend>
                         <div class="col-md-12">
                             <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 40.2%"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -346,7 +341,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar3"></h:message>
                         </div>
@@ -368,7 +363,7 @@
                         <legend id="subTitulo">Produto de Serviço</legend>
                         <div class="col-md-12">
                             <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 63.8%"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -475,7 +470,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio" 
+                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio" 
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar4"></h:message>
                         </div>
@@ -495,7 +490,7 @@
                         <legend id="subTitulo">Gestão de Pessoas</legend>
                         <div class="col-md-12">
                             <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 87.4%"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -523,7 +518,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar5"></h:message>
@@ -544,28 +539,32 @@
                         <legend id="subTitulo">Plano de Financeiro</legend>
                         <div class="col-md-12">
                             <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" style="width: 83%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
                             Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                            <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
+                            <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control"
                                          requiredMessage="Insira as fontes de receita antes de enviar" 
                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
-                            </p:inputText>
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
+
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="fontesDeReceita"/>
                             <br/>
                         </div>
                         <div class="col-md-12">
                             <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
                             Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                            <p:inputText id="estruturaCustos" placeholder="" class="form-control"
+                            <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control"
                                          requiredMessage="Insira a estrutura de custos antes de enviar" 
                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
-                            </p:inputText>
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
+
+                            </p:inputTextarea>
                             <h:message class="mensagemErro" for="estruturaCustos"/>
                             <br/>
                         </div>
@@ -606,7 +605,7 @@
                         </div>
                         <div class="col-md-5 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar6"></h:message>

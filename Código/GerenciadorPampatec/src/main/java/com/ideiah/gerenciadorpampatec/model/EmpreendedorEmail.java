@@ -11,20 +11,21 @@ package com.ideiah.gerenciadorpampatec.model;
  */
 public class EmpreendedorEmail {
     
-    private int idEmpreendedorEmail;
+    private String idEmpreendedorEmail;
     private String tipo;
+    private Integer idEmpreendedor;
 
     /**
      * @return the idEmpreendedorEmail
      */
-    public int getIdEmpreendedorEmail() {
+    public String getIdEmpreendedorEmail() {
         return idEmpreendedorEmail;
     }
 
     /**
      * @param idEmpreendedorEmail the idEmpreendedorEmail to set
      */
-    public void setIdEmpreendedorEmail(int idEmpreendedorEmail) {
+    public void setIdEmpreendedorEmail(String idEmpreendedorEmail) {
         this.idEmpreendedorEmail = idEmpreendedorEmail;
     }
 
@@ -40,6 +41,20 @@ public class EmpreendedorEmail {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the idEmpreendedor
+     */
+    public Integer getIdEmpreendedor() {
+        return idEmpreendedor;
+    }
+
+    /**
+     * @param idEmpreendedor the idEmpreendedor to set
+     */
+    public void setIdEmpreendedor(Integer idEmpreendedor) {
+        this.idEmpreendedor = idEmpreendedor;
     }
     
     

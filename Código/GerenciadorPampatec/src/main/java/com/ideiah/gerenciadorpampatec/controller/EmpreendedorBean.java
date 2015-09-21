@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
@@ -47,6 +48,7 @@ public class EmpreendedorBean {
     private String numero;
     private String complemento;
     private Empreendedor empreendedor;
+    private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
 
     public EmpreendedorBean() {
@@ -167,6 +169,20 @@ public class EmpreendedorBean {
         }
 
     }
+    
+    /**
+     * 
+     * @param email
+     * @param id 
+     */
+    public void recuperarSenha(String email, String id){
+        empreendedor.buscaPorEmail(email);
+        this.empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
+        this.empreendedorEmail.setIdEmpreendedorEmail(id);
+        this.empreendedorEmail.setTipo("Recuperação de Senha");
+    }
+    
+    
 
 //    public void chamaLogin() {
 //        empreendedor.fazLogin();
@@ -353,8 +369,5 @@ public class EmpreendedorBean {
         this.competencia = competencia;
     }
     
-    public void trocarSenha(){
-        
-    }
 
 }
