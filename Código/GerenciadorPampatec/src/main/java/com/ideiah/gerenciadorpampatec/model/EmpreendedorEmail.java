@@ -13,6 +13,7 @@ public class EmpreendedorEmail {
     
     private int idEmpreendedorEmail;
     private String tipo;
+    private Integer idEmpreendedor;
 
     /**
      * @return the idEmpreendedorEmail
@@ -40,6 +41,20 @@ public class EmpreendedorEmail {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the idEmpreendedor
+     */
+    public Integer getIdEmpreendedor() {
+        return idEmpreendedor;
+    }
+
+    /**
+     * @param idEmpreendedor the idEmpreendedor to set
+     */
+    public void setIdEmpreendedor(Integer idEmpreendedor) {
+        this.idEmpreendedor = idEmpreendedor;
     }
     
     
