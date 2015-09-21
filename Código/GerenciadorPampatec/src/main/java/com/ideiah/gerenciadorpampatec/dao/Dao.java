@@ -24,6 +24,7 @@ public abstract class Dao {
     private Transaction tx = null;
     private Session session = null;
 
+    
     public  Dao(){
         session = HibernateUtil.getSessionFactory().openSession();
     }
@@ -36,22 +37,23 @@ public abstract class Dao {
      * @return boolean se salvou ou não
      */
     public boolean salvar(Object obj) {
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        Transaction tx = null;
         boolean salvou = false;
         try {
-            tx = session.getTransaction();
-            tx.begin();
-            session.saveOrUpdate(obj);
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            getSession().merge(obj);
             salvou = true;
-            tx.commit();
+            getTx().commit();
+            System.out.println("Salvou ...... ");
         } catch (HibernateException e) {
             e.printStackTrace();
-            session.getTransaction().rollback();
+            getSession().getTransaction().rollback();
             salvou = false;
         }
         return salvou;
     }
+    
+    // <editor-fold defaultstate="collapsed" desc="INSERT and UPDATE"> 
     
     /**
      * Salva um objeto que contêm um arquivo nele
@@ -63,17 +65,17 @@ public abstract class Dao {
 //        Transaction tx = null;
         int result = SALVOU;
         try {
-            tx = session.getTransaction();
-            tx.begin();
-            session.saveOrUpdate(obj);
-            tx.commit();
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            getSession().saveOrUpdate(obj);
+            getTx().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            session.getTransaction().rollback();
+            getSession().getTransaction().rollback();
             result = ERRO_SALVAR;
         } catch (OutOfMemoryError error){
             error.printStackTrace();
-            session.getTransaction().rollback();
+            getSession().getTransaction().rollback();
             result = ARQUIVO_GRANDE;
         }
         return result;
@@ -82,14 +84,14 @@ public abstract class Dao {
     public boolean update(Object obj){
         boolean salvou = false;
         try {
-            tx = session.getTransaction();
-            tx.begin();
-            session.merge(obj);
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            getSession().merge(obj);
             salvou = true;
-            tx.commit();
+            getTx().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-            session.getTransaction().rollback();
+            getSession().getTransaction().rollback();
             salvou = false;
         }
         return salvou;
@@ -101,15 +103,15 @@ public abstract class Dao {
 //        Session session = HibernateUtil.getSessionFactory().openSession();
 //        Transaction tx = null;
         try {
-            tx = session.getTransaction();
-            tx.begin();
-            Object object = session.get(type, codigo);
-            session.delete(object);
-            tx.commit();
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            Object object = getSession().get(type, codigo);
+            getSession().delete(object);
+            getTx().commit();
 
         } catch (Exception e) {
             e.printStackTrace();
-            session.getTransaction().rollback();
+            getSession().getTransaction().rollback();
             return false;
         }
         return true;
@@ -188,15 +190,43 @@ public abstract class Dao {
         Criteria criteria = null;
         try {
 //            tx = session.beginTransaction();//cria uma transação para o hibernate conectar no banco
-            criteria = session.createCriteria(classe);
+            criteria = getSession().createCriteria(classe);
 //            tx.commit();
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
+            if (getTx() != null) {
+                getTx().rollback();
             }
             e.printStackTrace();
         }
         return criteria;
+    }
+
+    /**
+     * @return the tx
+     */
+    public Transaction getTx() {
+        return tx;
+    }
+
+    /**
+     * @param tx the tx to set
+     */
+    public void setTx(Transaction tx) {
+        this.tx = tx;
+    }
+
+    /**
+     * @return the session
+     */
+    public Session getSession() {
+        return session;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(Session session) {
+        this.session = session;
     }
 }
 

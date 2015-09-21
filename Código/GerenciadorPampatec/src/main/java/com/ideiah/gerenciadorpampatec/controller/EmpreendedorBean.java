@@ -113,6 +113,7 @@ public class EmpreendedorBean {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
+                            empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
                             FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
                         } catch (IOException ex) {

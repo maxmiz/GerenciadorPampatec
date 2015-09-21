@@ -6,7 +6,7 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Analiseemprego" table="analiseemprego" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idAnaliseEmprego" type="int">
             <column name="idAnaliseEmprego" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="relacoesClientes" type="string">
             <column name="relacoesClientes" length="300" />
@@ -23,9 +23,9 @@
         <property name="concorrentes" type="string">
             <column name="concorrentes" length="300" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="AnaliseEmprego_idAnaliseEmprego" not-null="true" />
+                <column name="AnaliseEmprego_idAnaliseEmprego" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

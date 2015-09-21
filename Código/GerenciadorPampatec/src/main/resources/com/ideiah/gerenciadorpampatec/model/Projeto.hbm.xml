@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/08/2015 13:49:29 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20/09/2015 20:03:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ideiah.gerenciadorpampatec.model.Projeto" table="projeto" catalog="gerenciadorpampatec" optimistic-lock="version">
-        <id name="idProjeto" type="int">
+        <id name="idProjeto" type="java.lang.Integer">
             <column name="idProjeto" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="analiseemprego" class="com.ideiah.gerenciadorpampatec.model.Analiseemprego" fetch="select" cascade="all">
             <column name="AnaliseEmprego_idAnaliseEmprego" />
@@ -35,12 +35,12 @@
         <property name="participacaoacionaria" type="string">
             <column name="participacaoacionaria" length="500" />
         </property>
-        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
+        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="Projeto_idProjeto" />
+                <column name="Projeto_idProjeto" not-null="true" />
             </key>
             <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Empreendedor">
-                <column name="Empreendedor_idEmpreendedor" />
+                <column name="Empreendedor_idEmpreendedor" not-null="true" />
             </many-to-many>
         </set>
     </class>

@@ -17,8 +17,7 @@ public class Empreendedor implements java.io.Serializable {
     public static final int ENVIADO = 1;
     public static final int ERRO_AO_SALVAR = 2;
     
-    private int idEmpreendedor;
-    private int idEndereco;
+    private Integer idEmpreendedor;
     private String senha;
     private String nome;
     private String telefone;
@@ -35,26 +34,15 @@ public class Empreendedor implements java.io.Serializable {
     private String idUnico;
     private Set projetos = new HashSet(0);
 
-    private static EmpreendedorDao empreendedorDao;
-    private static ProjetoDao projetoDao;
 
     public Empreendedor() {
-        empreendedorDao = new EmpreendedorDao();
-        projetoDao = new ProjetoDao();
     }
 
     /**
      * @return the empreededorDao
      */
     public static EmpreendedorDao getEmpreededorDao() {
-        return empreendedorDao;
-    }
-
-    /**
-     * @param aEmpreededorDao the empreededorDao to set
-     */
-    public static void setEmpreededorDao(EmpreendedorDao aEmpreededorDao) {
-        empreendedorDao = aEmpreededorDao;
+        return new EmpreendedorDao();
     }
 
     public void setIdUnico(String idUnico) {
@@ -69,17 +57,10 @@ public class Empreendedor implements java.io.Serializable {
      * @return the projetoDao
      */
     public static ProjetoDao getProjetoDao() {
-        return projetoDao;
+        return new ProjetoDao();
     }
 
-    /**
-     * @param aProjetoDao the projetoDao to set
-     */
-    public static void setProjetoDao(ProjetoDao aProjetoDao) {
-        projetoDao = aProjetoDao;
-    }
-
-    public Empreendedor(int idEmpreendedor, String nome, String cpf, String formacao, String email, String senha, String telefone, String rua, int numero, String bairro, String complemento) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String cpf, String formacao, String email, String senha, String telefone, String rua, int numero, String bairro, String complemento) {
 
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
@@ -92,23 +73,18 @@ public class Empreendedor implements java.io.Serializable {
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
-
-        empreendedorDao = new EmpreendedorDao();
-        projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(int idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
         this.email = email;
         this.formacao = formacao;
-        empreendedorDao = new EmpreendedorDao();
-        projetoDao = new ProjetoDao();
     }
 
-    public Empreendedor(int idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.telefone = telefone;
@@ -118,15 +94,13 @@ public class Empreendedor implements java.io.Serializable {
         this.experiencia = experiencia;
         this.competencia = competencia;
         this.projetos = projetos;
-        empreendedorDao = new EmpreendedorDao();
-        projetoDao = new ProjetoDao();
     }
 
-    public int getIdEmpreendedor() {
+    public Integer getIdEmpreendedor() {
         return this.idEmpreendedor;
     }
 
-    public void setIdEmpreendedor(int idEmpreendedor) {
+    public void setIdEmpreendedor(Integer idEmpreendedor) {
         this.idEmpreendedor = idEmpreendedor;
     }
 
@@ -196,12 +170,12 @@ public class Empreendedor implements java.io.Serializable {
 
     public static boolean salvarProjeto(Projeto projeto) {
 
-        return projetoDao.salvar(projeto);
+        return getProjetoDao().salvar(projeto);
     }
 
     public static boolean atualizarProjeto(Projeto projeto) {
 
-        return projetoDao.update(projeto);
+        return getProjetoDao().update(projeto);
     }
 
     /**
@@ -224,8 +198,7 @@ public class Empreendedor implements java.io.Serializable {
      * @return lista de empreendedores cadastrados.
      */
     public static List<Empreendedor> retornarEmpreendedores() {
-        empreendedorDao = new EmpreendedorDao();
-        return empreendedorDao.buscar();
+        return getEmpreededorDao().buscar();
     }
     /*
      *
@@ -236,7 +209,7 @@ public class Empreendedor implements java.io.Serializable {
 //        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
 //        int idEndereco = 0;
 //        if (retorno == true) {
-        return empreendedorDao.salvar(empreendedorNovo);
+        return getEmpreededorDao().salvar(empreendedorNovo);
 //        }
 //        return false;
     }
@@ -253,7 +226,7 @@ public class Empreendedor implements java.io.Serializable {
         }
 
         projeto.setStatus(Projeto.EM_AVALIACAO);
-        if (projetoDao.update(projeto)) {
+        if (getProjetoDao().update(projeto)) {
             return ENVIADO;
         } else {
             return ERRO_AO_SALVAR;
@@ -293,30 +266,17 @@ public class Empreendedor implements java.io.Serializable {
     }
 
     public boolean atualizarEmpreendedor(Empreendedor emp) {
-        return empreendedorDao.update(emp);
+        return getEmpreededorDao().update(emp);
     }
 
     public Empreendedor buscarPorEmail(String user) {
-        return empreendedorDao.buscarPorEmail(user);
+        return getEmpreededorDao().buscarPorEmail(user);
     }
 
     public Empreendedor buscarPorCpf(String user) {
-        return empreendedorDao.buscarPorCpf(user);
+        return getEmpreededorDao().buscarPorCpf(user);
     }
 
-    /**
-     * @return the idEndereco
-     */
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    /**
-     * @param idEndereco the idEndereco to set
-     */
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
-    }
     /*
      *
      */
@@ -386,12 +346,12 @@ public class Empreendedor implements java.io.Serializable {
     }
 
     public boolean deletarEmpreendedor(Empreendedor empreendedor) {
-        return empreendedorDao.deletarPorEmail(empreendedor.getEmail());
+        return getEmpreededorDao().deletarPorEmail(empreendedor.getEmail());
     }
 //VERIFICA SE O EMPREENDEDOR EXISTE EM ALGUM PROJETO DO BANCO
 
     public boolean verificarProjetoHasEmpreendedor(Empreendedor empreendedor) {
-        for (Projeto projeto : projetoDao.buscar()) {
+        for (Projeto projeto : getProjetoDao().buscar()) {
             Empreendedor emp;
             for (Object object : projeto.getEmpreendedores()) {
                 emp = (Empreendedor) object;
@@ -413,16 +373,14 @@ public class Empreendedor implements java.io.Serializable {
 
 //VERIFICA SE O EMPREENDEDOR ESTA CONTIDO NO PROJETO PASSADO
     public boolean verificaProjetoEmpreendedor(Empreendedor empreendedor, Projeto proj) {
-        return projetoDao.verificaEmpreendedor(empreendedor, proj);
+        return getProjetoDao().verificaEmpreendedor(empreendedor, proj);
     }
 
     public static Empreendedor buscaEmpreendedorID(String id) {
-        empreendedorDao = new EmpreendedorDao();
-        return empreendedorDao.buscarPorIdUnico(id);
+        return getEmpreededorDao().buscarPorIdUnico(id);
     }
     
     public static Empreendedor buscaPorEmail(String email){
-        empreendedorDao = new EmpreendedorDao();
-        return empreendedorDao.buscarPorEmail(email);
+        return getEmpreededorDao().buscarPorEmail(email);
     }
 }

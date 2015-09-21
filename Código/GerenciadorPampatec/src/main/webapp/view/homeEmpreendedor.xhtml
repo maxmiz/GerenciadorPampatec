@@ -35,7 +35,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{loginBean.getEnviarProjeto()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
                                     <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
                                 </ul>
                             </li>
@@ -52,6 +52,7 @@
                             </li>
 
                         </ul>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -59,17 +60,8 @@
             <!-- Fim do menu superior -->
 
             <div class="col-md-12">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-
-                    <h1>Bem-vindo <h:outputText value="${loginBean.nome}!"></h:outputText></h1>
-
-                </div>
-                <div class="col-md-3"></div>
-
                 <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
                 </iframe>
-
             </div>
 
 

@@ -67,7 +67,7 @@ public class ProjetoBean {
      * Preeche o radio button se o projeto já estiver com ele preenchido
      */
     public void preecheRadioButton() {
-        if (projeto != null) {
+        if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {
             if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
                 selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
@@ -212,7 +212,7 @@ public class ProjetoBean {
             empreendedorAchado = empreendedor;
         }
         if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-            if(!existe){
+            if (!existe) {
                 empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
                 empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
             }
@@ -367,10 +367,23 @@ public class ProjetoBean {
 
     public String enviaNovoProjetoCadastrar() {
         Projeto pjto = new Projeto();
+        Analiseemprego analiseemprego = new Analiseemprego();
+        Produtoouservico produtoouservico = new Produtoouservico();
+        Negocio negocio = new Negocio();
+        Planofinanceiro planofinanceiro = new Planofinanceiro();
         ProjetoDao daoP = new ProjetoDao();
-        daoP.salvar(pjto);
 
+        pjto.setAnaliseemprego(analiseemprego);
+        pjto.setNegocio(negocio);
+        pjto.setPlanofinanceiro(planofinanceiro);
+        pjto.setProdutoouservico(produtoouservico);
+        pjto.getEmpreendedores().add(empreendedorSession);
+        pjto.setStatus(Projeto.EM_EDICAO);
+        pjto.setNome("Nome do Projeto");
+        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
+        secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
         return "/faces/view/enviarProjeto.xhtml";
 

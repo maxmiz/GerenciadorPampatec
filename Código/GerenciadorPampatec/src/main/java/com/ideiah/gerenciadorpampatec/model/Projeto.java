@@ -1,7 +1,6 @@
 package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
-import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import java.util.Date;
 import java.util.HashSet;
@@ -18,7 +17,7 @@ public class Projeto implements java.io.Serializable {
     public static final int REPROVADO = 3;
     public static final int EM_CORRECAO = 4;
 
-    private int idProjeto;
+    private Integer idProjeto;
     private Analiseemprego analiseemprego;
     private Negocio negocio;
     private Planofinanceiro planofinanceiro;
@@ -29,12 +28,11 @@ public class Projeto implements java.io.Serializable {
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
     private String participacaoacionaria;
-    ProjetoDao projetoDao = new ProjetoDao();
 
     public Projeto() {
     }
 
-    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
+    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -43,7 +41,7 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
     }
 
-    public Projeto(int idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria) {
+    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -58,6 +56,7 @@ public class Projeto implements java.io.Serializable {
     }
 
     public boolean SalvarProjeto(Projeto projeto) {
+        ProjetoDao projetoDao = new ProjetoDao();
         try {
             projetoDao.update(projeto);
             return true;
@@ -66,11 +65,11 @@ public class Projeto implements java.io.Serializable {
         return false;
     }
 
-    public int getIdProjeto() {
+    public Integer getIdProjeto() {
         return this.idProjeto;
     }
 
-    public void setIdProjeto(int idProjeto) {
+    public void setIdProjeto(Integer idProjeto) {
         this.idProjeto = idProjeto;
     }
 

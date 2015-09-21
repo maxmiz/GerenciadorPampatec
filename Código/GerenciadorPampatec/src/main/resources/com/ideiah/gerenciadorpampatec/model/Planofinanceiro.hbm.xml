@@ -6,13 +6,13 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" table="planofinanceiro" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idPlanoFinanceiro" type="int">
             <column name="idPlanoFinanceiro" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="fontesReceita" type="string">
-            <column name="fontesReceita" length="300" not-null="true" />
+            <column name="fontesReceita" length="300" />
         </property>
         <property name="estruturaCusto" type="string">
-            <column name="estruturaCusto" length="300" not-null="true" />
+            <column name="estruturaCusto" length="300" />
         </property>
         <property name="investimentoInicial" type="string">
             <column name="investimentoInicial" length="300" />
@@ -23,9 +23,9 @@
         <property name="custosvariaveis" type="string">
             <column name="custosvariaveis" length="500" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="PlanoFinanceiro_idPlanoFinanceiro" not-null="true" />
+                <column name="PlanoFinanceiro_idPlanoFinanceiro" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

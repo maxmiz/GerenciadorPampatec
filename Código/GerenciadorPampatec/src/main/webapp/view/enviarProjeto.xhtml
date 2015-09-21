@@ -37,7 +37,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{loginBean.getEnviarProjeto()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
                                     <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
                                 </ul>
                             </li>
@@ -54,6 +54,7 @@
                             </li>
 
                         </ul>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -72,7 +73,7 @@
                     x = true;
                 }
             }
-            
+
             function ajuda() {
 
                 if (y == false) {
@@ -86,53 +87,53 @@
             }
         </script>
         <h:form>
-        <!-- Fim do Script de informação -->
+            <!-- Fim do Script de informação -->
 
-        <!-- Início dos MODAIS exibidos no formulário -->
+            <!-- Início dos MODAIS exibidos no formulário -->
 
-        <!-- Modal com a Informação do botão SALVAR -->
-        <div class="modal fade" id="modalInfoSalvar" role="dialog">
-            <div class="modal-dialog">
+            <!-- Modal com a Informação do botão SALVAR -->
+            <div class="modal fade" id="modalInfoSalvar" role="dialog">
+                <div class="modal-dialog">
 
-                <!-- Conteúdo do Modal -->
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                    para que você possa retornar e acabar de preenchê-los em outro momento.
+                    <!-- Conteúdo do Modal -->
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
+                        para que você possa retornar e acabar de preenchê-los em outro momento.
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-        <!-- Fim do Modal de informação do botão Salvar -->
+            <!-- Fim do Modal de informação do botão Salvar -->
 
-        <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
-        <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
-            <div class="modal-dialog">
+            <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
+            <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+                <div class="modal-dialog">
 
-                <!-- Conteúdo do Modal -->
-                <div class="alert alert-dismissible alert-warning">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
-                    para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
-                    <div class="alert alert-dismissible alert-warning text-center"> 
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                        </div>
-                        <div class="col-md-6">
-                            <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
+                    <!-- Conteúdo do Modal -->
+                    <div class="alert alert-dismissible alert-warning">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
+                        para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
+                        <div class="alert alert-dismissible alert-warning text-center"> 
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                            </div>
+                            <div class="col-md-6">
+                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-        <!-- Fim do Modal de informação do botão Salvar -->
+            <!-- Fim do Modal de informação do botão Salvar -->
 
-        <!-- Fim dos MODAIS exibidos no formulário -->
+            <!-- Fim dos MODAIS exibidos no formulário -->
 
-        <div class="col-md-3"> </div>
+            <div class="col-md-3"> </div>
 
-        <div class="col-md-6 form-horizontal well bs-component">
+            <div class="col-md-6 form-horizontal well bs-component">
                 <h1>Cadastro - Plano de Negócio</h1>
                 <div>
 
@@ -140,68 +141,68 @@
                     Referente ao CONTATO -->
 
                     <div id="formularioParte01">
-                            <legend id="subTitulo">Contatos</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
+                        <legend id="subTitulo">Contatos</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="">
+
+                            <b>Empresa/Projeto* <h:link value="(?)"></h:link></b><br/>
+                            Nome da Empresa ou do Projeto
+                            <p:inputText id="empresaProjeto" placeholder="" class="form-control"
+                                         requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         value="#{projetoBean.projeto.nome}"
+                                         >
+
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="empresaProjeto"/>
+                            <br/>
+                        </div>
+
+                        <div class="col-md-12" id="">
+                            <b>Empreendedores* <h:link value="(?)"></h:link></b><br/>
+                            Informe os emails de quem está propondo o empreendimento:
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:autoComplete>
+                                </div>
+                                <div class="col-md-3">
+                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
                                 </div>
                             </div>
-                            <div class="col-md-12" id="">
-                                
-                                <b>Empresa/Projeto* <h:link value="(?)"></h:link></b><br/>
-                                Nome da Empresa ou do Projeto
-                                <p:inputText id="empresaProjeto" placeholder="" class="form-control"
-                                             requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             value="#{projetoBean.projeto.nome}"
-                                             >
+                            <br/><br/>
+                            <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
+                                <p:column>
+                                    <h:outputText value="#{empreendedor.email}" />
+                                    <!--<h:outputText value="" />-->
+                                    <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
+                                </p:column>
+                                <p:column>
+                                    <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" rendered="#{empreendedorBean.verificaProjetoEmpreededor(empreendedor)}">  
+                                    </h:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="empresaProjeto"/>
-                                <br/>
-                            </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar1" class="btn btn-success" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                                             action="#{projetoBean.salvarProjeto()}"></h:commandButton>
+                            <h:message for="botaoSalvar1"></h:message>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <br/>
+                            <button id="proximo2" class="btn btn-default" type="button" onclick="exibeSegundaParte()">Próximo →</button>
+                            <!--<h:message for="/proximo2"></h:message>-->
 
-                            <div class="col-md-12" id="">
-                                <b>Empreendedores* <h:link value="(?)"></h:link></b><br/>
-                                Informe os emails de quem está propondo o empreendimento:
-                                <br/>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
-                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                                        </p:autoComplete>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
-                                    </div>
-                                </div>
-                                <br/><br/>
-                                <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
-                                    <p:column>
-                                        <h:outputText value="#{empreendedor.email}" />
-                                        <!--<h:outputText value="" />-->
-                                        <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
-                                    </p:column>
-                                    <p:column>
-                                        <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" rendered="#{empreendedorBean.verificaProjetoEmpreededor(empreendedor)}">  
-                                        </h:commandButton>
-                                    </p:column>
-                                </p:dataTable>
-                            </div>
-
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6 text-center">
-                                <br/>
-                                <h:commandButton id="botaoSalvar1" class="btn btn-success" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
-                                                 action="#{projetoBean.salvarProjeto()}"></h:commandButton>
-                                <h:message for="botaoSalvar1"></h:message>
-                            </div>
-                            <div class="col-md-3 text-right">
-                                <br/>
-                                <button id="proximo2" class="btn btn-default" type="button" onclick="exibeSegundaParte()">Próximo →</button>
-                                <!--<h:message for="/proximo2"></h:message>-->
-
-                            </div>
+                        </div>
                     </div>
 
                     <!-- Fim da primeira parte do formulário -->
@@ -210,51 +211,51 @@
                     Referente ao NEGÓCIO -->
 
                     <div id="formularioParte02" style="display: none">
-                            <legend>O Negócio</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
-                                </div>
+                        <legend>O Negócio</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 16.6%"></div>
                             </div>
-                            <div class="col-md-12" id="">
-                                <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
-                                Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
-                                             requiredMessage="Insira o segmento de clientes antes de enviar" 
-                                             value="#{projetoBean.projeto.negocio.segmentoClientes}"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
+                            Para quem criamos valor? Quais são os nossos clientes mais importantes? 
+                            <p:inputText id="segmentoDeClientes" placeholder="" class="form-control"
+                                         requiredMessage="Insira o segmento de clientes antes de enviar" 
+                                         value="#{projetoBean.projeto.negocio.segmentoClientes}"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="segmentoDeClientes"/>
-                                <br/>
-                            </div>
-                            <div class="col-md-12" id="">
-                                <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
-                                Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                                <p:inputText id="propostaDeValor" placeholder="" class="form-control"
-                                             requiredMessage="Insira a proposta de valor antes de enviar" 
-                                             value="#{projetoBean.projeto.negocio.propostaValor}"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="segmentoDeClientes"/>
+                            <br/>
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
+                            Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
+                            <p:inputText id="propostaDeValor" placeholder="" class="form-control"
+                                         requiredMessage="Insira a proposta de valor antes de enviar" 
+                                         value="#{projetoBean.projeto.negocio.propostaValor}"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="propostaDeValor"/>
-                                <br/>
-                            </div>
-                            <div class="col-md-12" id="">
-                                <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
-                                Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                                <p:inputText id="atividadesChave" placeholder="" class="form-control"
-                                             requiredMessage="Insira as atividades chave antes de enviar" 
-                                             value="#{projetoBean.projeto.negocio.atividadesChaves}"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="propostaDeValor"/>
+                            <br/>
+                        </div>
+                        <div class="col-md-12" id="">
+                            <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
+                            Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
+                            <p:inputText id="atividadesChave" placeholder="" class="form-control"
+                                         requiredMessage="Insira as atividades chave antes de enviar" 
+                                         value="#{projetoBean.projeto.negocio.atividadesChaves}"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="atividadesChave"/>
-                                <br/>
-                            </div>
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="atividadesChave"/>
+                            <br/>
+                        </div>
 
                         <div class="col-md-3">
                             <br />
@@ -280,52 +281,52 @@
                     Referente a ANÁLISE DE MERCADO -->
 
                     <div id="formularioParte03" style="display: none">
-                            <legend id="subTitulo">Análise de Mercado</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
-                                </div>
+                        <legend id="subTitulo">Análise de Mercado</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 32.2%"></div>
                             </div>
-                            <div class="col-md-12">
-                                <b>Relações com clientes <h:link value="(?)"></h:link></b><br/>
-                                Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.analiseemprego.relacoesClientes}">                 
-                                </h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Parcerias chave <h:link value="(?)"></h:link></b><br/>
-                                Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.analiseemprego.parceriasChaves}">
-                                </h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Canais <h:link value="(?)"></h:link></b><br/>
-                                Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.analiseemprego.canais}">
-                                </h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Recursos principais <h:link value="(?)"></h:link></b><br/>
-                                Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                                <h:inputTextarea class="form-control"
+                        </div>
+                        <div class="col-md-12">
+                            <b>Relações com clientes <h:link value="(?)"></h:link></b><br/>
+                            Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.analiseemprego.relacoesClientes}">                 
+                            </h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Parcerias chave <h:link value="(?)"></h:link></b><br/>
+                            Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.analiseemprego.parceriasChaves}">
+                            </h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Canais <h:link value="(?)"></h:link></b><br/>
+                            Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.analiseemprego.canais}">
+                            </h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Recursos principais <h:link value="(?)"></h:link></b><br/>
+                            Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
+                            <h:inputTextarea class="form-control"
 
-                                                 value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
-                                </h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Concorrentes <h:link value="(?)"></h:link></b><br/>
-                                Quem são nossos concorrentes? como trabalham?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.analiseemprego.concorrentes}"></h:inputTextarea>
-                                <br/>
-                            </div>
+                                             value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
+                            </h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Concorrentes <h:link value="(?)"></h:link></b><br/>
+                            Quem são nossos concorrentes? como trabalham?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.analiseemprego.concorrentes}"></h:inputTextarea>
+                            <br/>
+                        </div>
 
                         <div class="col-md-3"><br />
                             <button id="anterior3" class="btn btn-default" type="button" onclick="retornaSegundaParte()">← Anterior</button>
@@ -351,89 +352,89 @@
                     Referente ao PRODUTO DE SERVIÇO -->
 
                     <div id="formularioParte04" style="display: none">
-                            <legend id="subTitulo">Produto de Serviço</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
-                                </div>
+                        <legend id="subTitulo">Produto de Serviço</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 49.8%"></div>
                             </div>
-                            <div class="col-md-12">
-                                <b>Estágio de evolução* <h:link value="(?)"></h:link></b><br/>
-                                Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Estágio de evolução* <h:link value="(?)"></h:link></b><br/>
+                            Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
 
-                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}">
+                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}">
 
-                                        <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
-                                        <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
-                                        <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
-                                        <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
-                                        <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
-                                        <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                        <f:selectItem itemLabel="Outro: " itemValue="Outro:" />
-                                    </p:selectOneRadio>
+                                    <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
+                                    <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
+                                    <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
+                                    <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
+                                    <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
+                                    <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
+                                    <f:selectItem itemLabel="Outro: " itemValue="Outro:" />
+                                </p:selectOneRadio>
 
-                                </h:panelGrid>
+                            </h:panelGrid>
 
-                                <h:inputText class="form-control" value="#{projetoBean.descricaoButtonOutro}"></h:inputText>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Tecnologia e processos (não poluentes) <h:link value="(?)"></h:link></b><br/>
-                                Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Potencial de inovação tecnológica <h:link value="(?)"></h:link></b><br/>
-                                Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Aplicações <h:link value="(?)"></h:link></b><br/>
-                                A quem se aplica? como? de que maneira?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Dificuldades esperadas <h:link value="(?)"></h:link></b><br/>
-                                Quais são nossas principais limitações?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Interação entre empresa e Universidade <h:link value="(?)"></h:link></b><br/>
-                                Em que sentido seremos parceiros da Universidade? 
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Interação entre empresa, comunidade e governo <h:link value="(?)"></h:link></b><br/>
-                                Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Infra-estrutura necessária para o desenvolvimento e produção <h:link value="(?)"></h:link></b><br/>
-                                Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
+                            <h:inputText class="form-control" value="#{projetoBean.descricaoButtonOutro}"></h:inputText>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Tecnologia e processos (não poluentes) <h:link value="(?)"></h:link></b><br/>
+                            Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Potencial de inovação tecnológica <h:link value="(?)"></h:link></b><br/>
+                            Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Aplicações <h:link value="(?)"></h:link></b><br/>
+                            A quem se aplica? como? de que maneira?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Dificuldades esperadas <h:link value="(?)"></h:link></b><br/>
+                            Quais são nossas principais limitações?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Interação entre empresa e Universidade <h:link value="(?)"></h:link></b><br/>
+                            Em que sentido seremos parceiros da Universidade? 
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Interação entre empresa, comunidade e governo <h:link value="(?)"></h:link></b><br/>
+                            Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Infra-estrutura necessária para o desenvolvimento e produção <h:link value="(?)"></h:link></b><br/>
+                            Quanto de espaço será necessário? Mobiliário? Equipamentos?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
 
                         <div class="col-md-3">
                             <br />
@@ -458,26 +459,26 @@
                     <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto
                     Referente a GESTÃO DE PESSOAS -->
                     <div id="formularioParte05" style="display: none">
-                            <legend id="subTitulo">Gestão de Pessoas</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
-                                </div>
+                        <legend id="subTitulo">Gestão de Pessoas</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 66.4%"></div>
                             </div>
-                            <div class="col-md-12">
-                                <b>Descrição da participação acionária <h:link value="(?)"></h:link></b><br/>
-                                Haverão sócios? Quanto de participação terão?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.participacaoacionaria}" ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Potencial de geração de emprego e renda <h:link value="(?)"></h:link></b><br/>
-                                Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.potencialEmprego}"></h:inputTextarea>
-                                <br/>
-                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Descrição da participação acionária <h:link value="(?)"></h:link></b><br/>
+                            Haverão sócios? Quanto de participação terão?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.participacaoacionaria}" ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Potencial de geração de emprego e renda <h:link value="(?)"></h:link></b><br/>
+                            Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.potencialEmprego}"></h:inputTextarea>
+                            <br/>
+                        </div>
 
                         <div class="col-md-3">
                             <br />
@@ -503,87 +504,87 @@
                     <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto
                     Referente ao PLANO FINANCEIRO -->
                     <div id="formularioParte06" style="display: none">
-                            <legend id="subTitulo">Plano de Financeiro</legend>
-                            <div class="col-md-12">
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" style="width: 83%"></div>
-                                </div>
+                        <legend id="subTitulo">Plano de Financeiro</legend>
+                        <div class="col-md-12">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 83%"></div>
                             </div>
-                            <div class="col-md-12">
-                                <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
-                                Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                                <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
-                                             requiredMessage="Insira as fontes de receita antes de enviar" 
-                                           
-                                             value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
+                        </div>
+                        <div class="col-md-12">
+                            <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
+                            Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
+                            <p:inputText id="fontesDeReceita" placeholder="" class="form-control"
+                                         requiredMessage="Insira as fontes de receita antes de enviar" 
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="fontesDeReceita"/>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
-                                Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                <p:inputText id="estruturaCustos" placeholder="" class="form-control"
-                                             requiredMessage="Insira a estrutura de custos antes de enviar" 
-                                             value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
-                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                             >
+                                         value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
 
-                                </p:inputText>
-                                <h:message class="mensagemErro" for="estruturaCustos"/>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Investimento inicial <h:link value="(?)"></h:link></b><br/>
-                                Quanto de recurso será necessário para iniciar?
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Custos fixos <h:link value="(?)"></h:link></b><br/>
-                                Salários, Aluguel...
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
-                                                 ></h:inputTextarea>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <b>Custos variáveis <h:link value="(?)"></h:link></b><br/>
-                                Impostos, combustível, matéria-prima... 
-                                <h:inputTextarea class="form-control"
-                                                 value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
-                                </h:inputTextarea>
-                                <br/>
-                            </div>
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="fontesDeReceita"/>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
+                            Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                            <p:inputText id="estruturaCustos" placeholder="" class="form-control"
+                                         requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                         value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         >
+
+                            </p:inputText>
+                            <h:message class="mensagemErro" for="estruturaCustos"/>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Investimento inicial <h:link value="(?)"></h:link></b><br/>
+                            Quanto de recurso será necessário para iniciar?
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Custos fixos <h:link value="(?)"></h:link></b><br/>
+                            Salários, Aluguel...
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
+                                             ></h:inputTextarea>
+                            <br/>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Custos variáveis <h:link value="(?)"></h:link></b><br/>
+                            Impostos, combustível, matéria-prima... 
+                            <h:inputTextarea class="form-control"
+                                             value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
+                            </h:inputTextarea>
+                            <br/>
+                        </div>
 
 
-                            <div class="col-md-3">
-                                <br />
-                                <button id="anterior6" class="btn btn-default" type="button" onclick="retornaQuintaParte()">← Anterior</button>
-                            </div>
-                            <div class="col-md-5 text-center">
-                                <br/>
-                                <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
-                                                 action="#{projetoBean.salvarProjeto()}"
-                                                 ></h:commandButton>
-                                <h:message for="botaoSalvar6"></h:message>
-                            </div>
-                            <div class="col-md-4 text-right">
-                                <br/>
-                                <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"></h:commandButton>
-                            </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button id="anterior6" class="btn btn-default" type="button" onclick="retornaQuintaParte()">← Anterior</button>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <br/>
+                            <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                                             action="#{projetoBean.salvarProjeto()}"
+                                             ></h:commandButton>
+                            <h:message for="botaoSalvar6"></h:message>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <br/>
+                            <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"></h:commandButton>
+                        </div>
                     </div>
                     <!-- Fim da sexta parte do formulário -->
 
 
                 </div>
 
-        </div>
-        <div class="col-md-3"></div>
+            </div>
+            <div class="col-md-3"></div>
         </h:form>
     </h:body>
 </html>

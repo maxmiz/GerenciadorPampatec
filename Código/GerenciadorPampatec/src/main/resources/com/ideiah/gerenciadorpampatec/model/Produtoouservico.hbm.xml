@@ -6,10 +6,10 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Produtoouservico" table="produtoouservico" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idProdutoOuServico" type="int">
             <column name="idProdutoOuServico" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="estagioEvolucao" type="string">
-            <column name="estagioEvolucao" length="45" not-null="true" />
+            <column name="estagioEvolucao" length="45" />
         </property>
         <property name="tecnologiaProcessos" type="string">
             <column name="tecnologiaProcessos" length="300" />
@@ -32,9 +32,9 @@
         <property name="infraestrutura" type="string">
             <column name="infraestrutura" length="300" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="ProdutoOuServico_idProdutoOuServico" not-null="true" />
+                <column name="ProdutoOuServico_idProdutoOuServico" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

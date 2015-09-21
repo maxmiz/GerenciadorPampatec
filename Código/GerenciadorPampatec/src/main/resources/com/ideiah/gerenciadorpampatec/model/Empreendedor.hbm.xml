@@ -4,9 +4,9 @@
 <!-- Generated 31/08/2015 13:49:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ideiah.gerenciadorpampatec.model.Empreendedor" table="empreendedor" catalog="gerenciadorpampatec" optimistic-lock="version">
-        <id name="idEmpreendedor" type="int">
+        <id name="idEmpreendedor" type="integer">
             <column name="idEmpreendedor" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="senha" type="string">
             <column name="senha" length="100"/>
@@ -47,7 +47,7 @@
         <property name="complemento" type="string">
             <column name="complemento" length="45" />
         </property>
-        <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select">
+        <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
             <key>
                 <column name="Empreendedor_idEmpreendedor" />
             </key>
