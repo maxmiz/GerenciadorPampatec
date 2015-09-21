@@ -66,19 +66,11 @@
             var x = false;
             var y = false;
 
-            function verificacaoDoBotao() {
+            function infoSalvar() {
 
                 if (x == false) {
                     $("#modalInfoSalvar").modal();
                     x = true;
-                }
-            }
-
-            function ajuda() {
-
-                if (y == false) {
-                    $("#modalInfoAjuda").modal();
-                    y = true;
                 }
             }
 
@@ -99,7 +91,10 @@
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="modal">×</button>
                         Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                        para que você possa retornar e acabar de preenchê-los em outro momento.
+                        para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
+                        Se você necessitar de ajuda basta ????
+                        
+  
                     </div>
 
                 </div>
@@ -193,7 +188,7 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="btn btn-success" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar1" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
                         </div>
@@ -263,7 +258,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar2"></h:message>
@@ -333,7 +328,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar3"></h:message>
                         </div>
@@ -442,7 +437,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio" 
+                            <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio" 
                                              action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                             <h:message for="botaoSalvar4"></h:message>
                         </div>
@@ -486,7 +481,7 @@
                         </div>
                         <div class="col-md-6 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar5"></h:message>
@@ -568,7 +563,7 @@
                         </div>
                         <div class="col-md-5 text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="" onmouseover="verificacaoDoBotao()" value="Salvar Plano de Negócio"
+                            <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                              action="#{projetoBean.salvarProjeto()}"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar6"></h:message>
