@@ -21,7 +21,6 @@
             <div id="empreendedorLogin">
                 <legend></legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-
                     <div class="col-md-6">
                         Senha* <p:password id="senha" class="form-control" title="senha"
                                            placeholder="Digite sua nova senha" 
@@ -51,7 +50,7 @@
                     <div class="col-md-12 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
                         <h:message for="botaoSalvar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
-                        <h:commandButton id="botaoSalvar" class="btn btn-success" value="Salvar nova senha" action="#{empreendedorBean.senhaInput}">
+                        <h:commandButton id="botaoSalvar" class="btn btn-success" value="Salvar nova senha" action="#{empreendedorBean.salvarSenhaRecuperada()}">
 
                         </h:commandButton>
                     </div>

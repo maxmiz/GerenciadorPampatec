@@ -15,9 +15,11 @@ import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -51,6 +53,7 @@ public class EmpreendedorBean {
     private Empreendedor empreendedor;
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
+    private EmailUtil emailUtil;
 
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -79,6 +82,10 @@ public class EmpreendedorBean {
     public boolean verificaProjetoEmpreededor(Empreendedor emp) {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
+
+        System.out.println("projeto=" + projeto);
+        System.out.println("empreendedor=" + emp);
+        
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
@@ -128,6 +135,28 @@ public class EmpreendedorBean {
         }
     }
 
+
+    /**
+     * Método para salvar a nova senha do usuário a partir da recupeção pelo
+     * link submetido para o email
+     */
+    public void salvarSenhaRecuperada() {
+        
+        if (empreendedorEmail.getIdEmpreendedorEmail() != null) {
+
+            this.empreendedorEmail.setIdEmpreendedorEmail(null);
+            this.empreendedor.buscarPorEmail(empreendedorEmail.getIdEmpreendedorEmail());
+            this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/loginEmpreendedor.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
     public void terminarCadastro() {
         this.empreendedor.setIdUnico(null);
         this.empreendedor.setNome(nome);
@@ -167,7 +196,6 @@ public class EmpreendedorBean {
         }
 
     }
-
     /**
      *
      * @param email

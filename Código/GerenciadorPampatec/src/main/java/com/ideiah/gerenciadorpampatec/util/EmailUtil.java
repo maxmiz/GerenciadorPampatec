@@ -1,5 +1,6 @@
 package com.ideiah.gerenciadorpampatec.util;
 
+import com.ideiah.gerenciadorpampatec.controller.EmpreendedorBean;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import java.io.IOException;
 import java.util.UUID;
@@ -103,11 +104,9 @@ public class EmailUtil {
      * @param email
      * Envio de email para recuperação de senha
      */
-    public static void enviarEmailRecuperarSenha(String email) {
-        String idUnico = UUID.randomUUID().toString();
+    public static void enviarEmailRecuperarSenha(String email, String idUnico) {
+//        String idUnico = UUID.randomUUID().toString();
         
-        
-
         emailHtml = new HtmlEmail();
         try {
             emailHtml.setHostName("smtp.googlemail.com");
