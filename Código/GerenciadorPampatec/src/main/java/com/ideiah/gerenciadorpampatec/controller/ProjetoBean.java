@@ -139,7 +139,8 @@ public class ProjetoBean {
     /**
      * Envia um email para que o empreendedor possa terminar o seu cadastro.
      *
-     * @param empreendedor Empreendedor para se colocar o IDUnico e enviar o email.
+     * @param empreendedor Empreendedor para se colocar o IDUnico e enviar o
+     * email.
      * @param projeto Projeto para se adicionar o empreendedor atualizado.
      */
     public void enviarEmailCadastro(Empreendedor empreendedor, Projeto projeto) {
@@ -197,30 +198,35 @@ public class ProjetoBean {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
-        boolean existe = false;
-        Empreendedor empreendedorAchado = null;
-        for (Empreendedor empreendedor : listaEmpreendedor) {
-            if (empreendedor.getEmail().equals(emailEmpreendedor)) {
-                existe = true;
-                empreendedorAchado = empreendedor;
-                break;
-            }
-        }
-
-        if (existe == false) {
-            Empreendedor empreendedor = new Empreendedor();
-            empreendedor.setEmail(emailEmpreendedor);
-            empreendedorAchado = empreendedor;
-        }
-        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-            if (!existe) {
-                empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
-                empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
-            }
-            getEmpreedendoresAdicionados().add(empreendedorAchado);
-            projeto.getEmpreendedores().add(empreendedorAchado);
+        if (emailEmpreendedor.equals("")) {
+            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formulario_cadastro_projeto:autocomplete");
         } else {
-            FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
+
+            boolean existe = false;
+            Empreendedor empreendedorAchado = null;
+            for (Empreendedor empreendedor : listaEmpreendedor) {
+                if (empreendedor.getEmail().equals(emailEmpreendedor)) {
+                    existe = true;
+                    empreendedorAchado = empreendedor;
+                    break;
+                }
+            }
+
+            if (existe == false) {
+                Empreendedor empreendedor = new Empreendedor();
+                empreendedor.setEmail(emailEmpreendedor);
+                empreendedorAchado = empreendedor;
+            }
+            if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
+                if (!existe) {
+                    empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
+                    empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
+                }
+                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                projeto.getEmpreendedores().add(empreendedorAchado);
+            } else {
+                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formulario_cadastro_projeto:autocomplete");
+            }
         }
     }
 
@@ -232,11 +238,20 @@ public class ProjetoBean {
      * @return True se ele está presente na lista.
      */
     public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
+        for (Object emp : projeto.getEmpreendedores()) {
+            Empreendedor empree = (Empreendedor) emp;
+            System.out.println("anjnawdjkw" + empree.getEmail());
+            if (empree.getEmail().equals(empreendedorAchado.getEmail())) {
+                return true;
+            }
+        }
         for (Empreendedor empreendedore : empreendedores) {
             if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
                 return true;
             }
+
         }
+
         return false;
     }
 

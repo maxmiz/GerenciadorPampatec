@@ -95,8 +95,8 @@
                         Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
                         para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
                         Se você necessitar de ajuda basta ????
-                        
-  
+
+
                     </div>
 
                 </div>
@@ -165,7 +165,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-9">
-                                    <p:autoComplete id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                    <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
                                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                                     </p:autoComplete>
                                 </div>
@@ -173,6 +173,7 @@
                                     <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
                                 </div>
                             </div>
+                            <h:message class="mensagemErro" for="autocomplete"/>
                             <br/><br/>
                             <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
                                 <p:column>
@@ -218,10 +219,10 @@
                             <b>Segmento de Clientes <h:link value="(?)"></h:link></b><br/>
                             Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                             <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control"
-                                         requiredMessage="Insira o segmento de clientes antes de enviar" 
-                                         value="#{projetoBean.projeto.negocio.segmentoClientes}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                         >
+                                             requiredMessage="Insira o segmento de clientes antes de enviar" 
+                                             value="#{projetoBean.projeto.negocio.segmentoClientes}"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
 
                             </p:inputTextarea>
                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -231,10 +232,10 @@
                             <b>Proposta de Valor* <h:link value="(?)"></h:link></b><br/>
                             Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                             <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control"
-                                         requiredMessage="Insira a proposta de valor antes de enviar" 
-                                         value="#{projetoBean.projeto.negocio.propostaValor}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                         >
+                                             requiredMessage="Insira a proposta de valor antes de enviar" 
+                                             value="#{projetoBean.projeto.negocio.propostaValor}"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
 
                             </p:inputTextarea>
                             <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -244,10 +245,10 @@
                             <b>Atividades Chave* <h:link value="(?)"></h:link></b><br/>
                             Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                             <p:inputTextarea id="atividadesChave" placeholder="" class="form-control"
-                                         requiredMessage="Insira as atividades chave antes de enviar" 
-                                         value="#{projetoBean.projeto.negocio.atividadesChaves}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                         >
+                                             requiredMessage="Insira as atividades chave antes de enviar" 
+                                             value="#{projetoBean.projeto.negocio.atividadesChaves}"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
 
                             </p:inputTextarea>
                             <h:message class="mensagemErro" for="atividadesChave"/>
@@ -546,10 +547,10 @@
                             <b>Fontes de receita* <h:link value="(?)"></h:link></b><br/>
                             Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                             <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control"
-                                         requiredMessage="Insira as fontes de receita antes de enviar" 
-                                         value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                         >
+                                             requiredMessage="Insira as fontes de receita antes de enviar" 
+                                             value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
 
                             </p:inputTextarea>
                             <h:message class="mensagemErro" for="fontesDeReceita"/>
@@ -559,10 +560,10 @@
                             <b>Estrutura de custos* <h:link value="(?)"></h:link></b><br/>
                             Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                             <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control"
-                                         requiredMessage="Insira a estrutura de custos antes de enviar" 
-                                         value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
-                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                         >
+                                             requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                             value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             >
 
                             </p:inputTextarea>
                             <h:message class="mensagemErro" for="estruturaCustos"/>
