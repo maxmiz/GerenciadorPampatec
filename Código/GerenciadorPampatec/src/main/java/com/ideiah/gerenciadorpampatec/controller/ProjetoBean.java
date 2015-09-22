@@ -130,24 +130,23 @@ public class ProjetoBean {
         for (Object object : projeto.getEmpreendedores()) {
             empreendedor = (Empreendedor) object;
             empreendedorCadastrado = Empreendedor.buscaEmpreendedorID(empreendedor.getIdUnico());
-            enviarEmailCadastro(empreendedor.getEmail());
+            enviarEmailCadastro(empreendedor, projeto);
         }
     }
 
     /**
      * Envia um email para que o empreendedor possa terminar o seu cadastro.
      *
-     * @param emailEmpreendedor email para se enviar
+     * @param empreendedor Empreendedor para se colocar o IDUnico e enviar o email.
+     * @param projeto Projeto para se adicionar o empreendedor atualizado.
      */
-    public void enviarEmailCadastro(String emailEmpreendedor) {
+    public void enviarEmailCadastro(Empreendedor empreendedor, Projeto projeto) {
         String idUnico;
-        Empreendedor empreendedor = Empreendedor.buscaPorEmail(emailEmpreendedor);
         if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
             if (empreendedor.getIdUnico() == null) {
                 idUnico = UUID.randomUUID().toString();
                 EmailUtil.mandarEmailConcluirCadastro(empreendedorSession.getNome(), projeto.getNome(), empreendedor.getEmail(), idUnico);
                 empreendedor.setIdUnico(idUnico);
-                empreendedor.atualizarEmpreendedor(empreendedor);
             }
         }
     }
