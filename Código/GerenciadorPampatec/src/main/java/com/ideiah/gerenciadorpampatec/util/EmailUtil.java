@@ -45,8 +45,8 @@ public class EmailUtil {
 //            ex.printStackTrace();
 //        }
 //    }
-    /*
-     Envio de email para concluir o cadastro
+    /**
+     * Envio de email para concluir o cadastro
      */
     public static void mandarEmailConcluirCadastro(String empreendedorNome, String projetoNome, String email, String idUnico) {
 
@@ -99,11 +99,14 @@ public class EmailUtil {
 
     }
 
-    /*
-     Envio de email para recuperação de senha
+    /**
+     * @param email
+     * Envio de email para recuperação de senha
      */
     public static void enviarEmailRecuperarSenha(String email) {
         String idUnico = UUID.randomUUID().toString();
+        
+        
 
         emailHtml = new HtmlEmail();
         try {
