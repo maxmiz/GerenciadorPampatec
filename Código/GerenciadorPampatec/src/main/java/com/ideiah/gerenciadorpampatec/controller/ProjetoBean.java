@@ -236,12 +236,11 @@ public class ProjetoBean implements Serializable{
      *
      * @param empreendedores
      * @param empreendedorAchado
-     * @return True se ele está presente na lista.
+     * @return True se ele está presente na lista. ou se já esta no projeto!
      */
     public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
         for (Object emp : projeto.getEmpreendedores()) {
             Empreendedor empree = (Empreendedor) emp;
-            System.out.println("anjnawdjkw" + empree.getEmail());
             if (empree.getEmail().equals(empreendedorAchado.getEmail())) {
                 return true;
             }
@@ -250,9 +249,7 @@ public class ProjetoBean implements Serializable{
             if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
                 return true;
             }
-
         }
-
         return false;
     }
 
