@@ -19,6 +19,7 @@ import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -145,14 +146,15 @@ public class EmpreendedorBean {
      */
     public void terminarRecuperacaoDeSenha() {
         
-        if (empreendedorEmail.getIdEmpreendedorEmail() != null) {
+        if (empreendedor != null) {
 
-            this.empreendedorEmail.setIdEmpreendedorEmail(null);
-            this.empreendedor.buscarPorEmail(empreendedorEmail.getIdEmpreendedorEmail());
             this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
-
+            empreendedor.atualizarEmpreendedor(empreendedor);
+            
+            
             try {
-                FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/loginEmpreendedor.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.xhtml");
+                
             } catch (IOException ex) {
                 Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -206,7 +208,7 @@ public class EmpreendedorBean {
      */
     public void recuperarSenha(String email, String id) {
         empreendedor.buscaPorEmail(email);
-        this.empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
+        this.empreendedorEmail.setEmpreendedor(empreendedor);
         this.empreendedorEmail.setIdEmpreendedorEmail(id);
         this.empreendedorEmail.setTipo("Recuperação de Senha");
     }

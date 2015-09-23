@@ -157,17 +157,20 @@ public class LoginBean {
      */
     public void recuperarSenha(){
         
-        Empreendedor empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+        Empreendedor empreendedor;
+        
+        empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+        
         String idUnico = UUID.randomUUID().toString();
         
         EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
         
-        empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
+        empreendedorEmail.setEmpreendedor(empreendedor);
         empreendedorEmail.setIdEmpreendedorEmail(idUnico);
         empreendedorEmail.setTipo("Recuperação de Senha");
         
-        empreendedorEmailDao.salvar(empreendedorEmail);
-        
+        empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+       
         EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
         
     }

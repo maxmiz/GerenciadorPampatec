@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import java.io.IOException;
@@ -104,18 +105,28 @@ public class RecuperarSenhaFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        EmpreendedorEmail emp,emp2;
+        EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+        EmpreendedorEmailDao empDao = new EmpreendedorEmailDao();
+        Empreendedor emp = null,emp2;
         HttpSession session = ((HttpServletRequest) request).getSession();
         String id = request.getParameter("id");
-        emp = EmpreendedorEmail.buscaEmpreendedorMailID(id);
-        emp2 = (EmpreendedorEmail) session.getAttribute("empreendedor");
+        
+        
+        empreendedorEmail = EmpreendedorEmail.buscaEmpreendedorMailID(id);
+        if (empreendedorEmail != null) {
+            emp = empreendedorEmail.getEmpreendedor();
+        }
+        
+        emp2 = (Empreendedor) session.getAttribute("empreendedor");
+        
         if (emp != null) {
             System.out.println("Entrou");
             session.removeAttribute("empreendedor");
             session.setAttribute("empreendedor", emp);
             request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
+            empreendedorEmail.apagarDoBanco(empreendedorEmail);
         }else if((emp2 !=  null)){
-            if(emp2.getIdEmpreendedorEmail()!= null){
+            if(emp2.getIdEmpreendedor()!= null){
                 request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
             }else{
                 request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
@@ -124,6 +135,7 @@ public class RecuperarSenhaFilter implements Filter {
         else{
             request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
         }
+        
     }
 
     /**

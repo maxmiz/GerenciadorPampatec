@@ -92,8 +92,7 @@ public class EmpreendedorDao extends Dao {
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
 
-    public
-            boolean deletar(int codigo) {
+    public boolean deletar(int codigo) {
         return excluir(codigo, Empreendedor.class
         );
     }
