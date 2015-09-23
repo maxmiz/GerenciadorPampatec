@@ -12,7 +12,7 @@
             <column name="senha" length="100"/>
         </property>
         <property name="nome" type="string">
-            <column name="nome" length="45" />
+            <column name="nome" length="100" />
         </property>
         <property name="telefone" type="string">
             <column name="telefone" length="16777215" />
@@ -24,16 +24,16 @@
             <column name="email" length="45" />
         </property>
         <property name="formacao" type="string">
-            <column name="formacao" length="300" />
+            <column name="formacao" length="1000" />
         </property>
         <property name="idUnico" type="string">
             <column name="idUnico" length="300" />
         </property>
         <property name="experiencia" type="string">
-            <column name="experiencia" length="300" />
+            <column name="experiencia" length="1000" />
         </property>
         <property name="competencia" type="string">
-            <column name="competencia" length="300" />
+            <column name="competencia" length="1000" />
         </property>
         <property name="bairro" type="string">
             <column name="bairro" length="45" />

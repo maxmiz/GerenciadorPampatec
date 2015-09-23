@@ -21,7 +21,7 @@
             <column name="ProdutoOuServico_idProdutoOuServico" />
         </many-to-one>
         <property name="nome" type="string">
-            <column name="nome" length="45" />
+            <column name="nome" length="300" />
         </property>
         <property name="dataEnvio" type="date">
             <column name="dataEnvio" length="10" />
@@ -30,10 +30,10 @@
             <column name="status" />
         </property>
         <property name="potencialEmprego" type="string">
-            <column name="potencialEmprego" length="45" />
+            <column name="potencialEmprego" length="1000" />
         </property>
         <property name="participacaoacionaria" type="string">
-            <column name="participacaoacionaria" length="500" />
+            <column name="participacaoacionaria" length="1000" />
         </property>
         <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="all">
             <key>
