@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.dao;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -14,6 +15,7 @@ import org.junit.runners.Suite;
  *
  * @author Peterson
  */
+@Ignore
 @RunWith(Suite.class)
 @Suite.SuiteClasses({com.ideiah.gerenciadorpampatec.dao.EmpreendedorDaoTest.class, com.ideiah.gerenciadorpampatec.dao.ProjetoDaoTest.class, com.ideiah.gerenciadorpampatec.dao.DaoTest.class, com.ideiah.gerenciadorpampatec.dao.HibernateUtilTest.class})
 public class DaoSuite {

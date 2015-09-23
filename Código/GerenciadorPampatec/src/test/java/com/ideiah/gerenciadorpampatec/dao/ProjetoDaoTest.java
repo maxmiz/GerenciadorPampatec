@@ -19,6 +19,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
+@Ignore
 public class ProjetoDaoTest {
     
     public ProjetoDaoTest() {
