@@ -79,8 +79,6 @@ public class EmpreendedorBean {
     public boolean verificaProjetoEmpreededor(Empreendedor emp) {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
-        System.out.println("projeto=" + projeto);
-        System.out.println("empreendedor=" + emp);
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
@@ -118,7 +116,7 @@ public class EmpreendedorBean {
                             LoginBean.MudarUser(empreendedor.getEmail());
                             empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
                         } catch (IOException ex) {
                             Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                         }

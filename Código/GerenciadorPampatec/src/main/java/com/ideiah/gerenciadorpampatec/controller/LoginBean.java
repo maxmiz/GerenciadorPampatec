@@ -50,7 +50,7 @@ public class LoginBean {
         }
     }
 
-    public String fazLogout() {
+    public void fazLogout() {
 
         session.removeAttribute("empreendedor");
         session.removeAttribute("projetoSelecionado");
@@ -58,30 +58,48 @@ public class LoginBean {
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
 
-        return "/loginEmpreendedor.xhtml";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    public String getInicio() {
-        return "homeEmpreendedor.xhtml";
+    public void getInicio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String getEnviarProjeto() {
-        return "enviarProjeto.xhtml";
+    public void getEnviarProjeto() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String getVisualizarPlanos() {
-        return "PaginaBuscaProjeto.xhtml";
+    public void getVisualizarPlanos() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String voltar() {
-        return "/loginEmpreendedor.xhtml";
+    public void voltar() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String fazLogin(String user, String senha) {
         try {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
 
             if (soContemNumeros(user)) {
@@ -104,7 +122,7 @@ public class LoginBean {
                 this.setNome(empreendedor.getNome());
                 try {
                     //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().dispatch("view/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -198,8 +216,12 @@ public class LoginBean {
         LoginBean.user = user;
     }
 
-    public String enviaBuscaProjeto() {
-        return "/faces/view/PaginaBuscaProjeto.xhtml";
+    public void enviaBuscaProjeto() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

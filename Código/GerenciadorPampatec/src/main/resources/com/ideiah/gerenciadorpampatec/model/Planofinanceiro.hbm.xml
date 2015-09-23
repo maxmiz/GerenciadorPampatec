@@ -9,19 +9,19 @@
             <generator class="identity" />
         </id>
         <property name="fontesReceita" type="string">
-            <column name="fontesReceita" length="300" />
+            <column name="fontesReceita" length="1000" />
         </property>
         <property name="estruturaCusto" type="string">
-            <column name="estruturaCusto" length="300" />
+            <column name="estruturaCusto" length="1000" />
         </property>
         <property name="investimentoInicial" type="string">
-            <column name="investimentoInicial" length="300" />
+            <column name="investimentoInicial" length="1000" />
         </property>
         <property name="custosfixos" type="string">
-            <column name="custosfixos" length="500" />
+            <column name="custosfixos" length="1000" />
         </property>
         <property name="custosvariaveis" type="string">
-            <column name="custosvariaveis" length="500" />
+            <column name="custosvariaveis" length="1000" />
         </property>
         <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
