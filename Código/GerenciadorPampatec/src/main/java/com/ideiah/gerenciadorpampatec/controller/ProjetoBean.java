@@ -15,6 +15,7 @@ import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean(name = "projetoBean")
 @ViewScoped
-public class ProjetoBean {
+public class ProjetoBean implements Serializable{
 
     private Empreendedor empreendedorSelected;
     private Projeto projeto;
@@ -381,7 +382,7 @@ public class ProjetoBean {
         this.empreendedorSelected = empreendedorSelected;
     }
 
-    public String enviaNovoProjetoCadastrar() {
+    public void enviaNovoProjetoCadastrar() {
         Projeto pjto = new Projeto();
         Analiseemprego analiseemprego = new Analiseemprego();
         Produtoouservico produtoouservico = new Produtoouservico();
@@ -401,7 +402,11 @@ public class ProjetoBean {
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
-        return "/faces/view/enviarProjeto.xhtml";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

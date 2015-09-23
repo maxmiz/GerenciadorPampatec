@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -34,7 +35,7 @@ public class ProjetoDaoTest {
     /**
      * Test of salvar method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testSalvar() {
         System.out.println("salvar");
         Projeto projeto = null;
@@ -49,7 +50,7 @@ public class ProjetoDaoTest {
     /**
      * Test of salvarRetornandoProjeto method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testSalvarRetornandoProjeto() {
         System.out.println("salvarRetornandoProjeto");
         Projeto projeto = null;
@@ -64,7 +65,7 @@ public class ProjetoDaoTest {
     /**
      * Test of update method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testUpdate() {
         System.out.println("update");
         Projeto projeto = null;
@@ -79,7 +80,7 @@ public class ProjetoDaoTest {
     /**
      * Test of buscar method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testBuscar_0args() {
         System.out.println("buscar");
         ProjetoDao instance = new ProjetoDao();
@@ -93,7 +94,7 @@ public class ProjetoDaoTest {
     /**
      * Test of buscar method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testBuscar_int() {
         System.out.println("buscar");
         int codigo = 0;
@@ -108,7 +109,7 @@ public class ProjetoDaoTest {
     /**
      * Test of verificaEmpreendedor method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testVerificaEmpreendedor() {
         System.out.println("verificaEmpreendedor");
         Empreendedor empreendedor = null;
@@ -124,7 +125,7 @@ public class ProjetoDaoTest {
     /**
      * Test of retornarUltimoId method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testRetornarUltimoId() {
         System.out.println("retornarUltimoId");
         ProjetoDao instance = new ProjetoDao();
@@ -138,7 +139,7 @@ public class ProjetoDaoTest {
     /**
      * Test of deletar method, of class ProjetoDao.
      */
-    @Test
+    @Ignore
     public void testDeletar() {
         System.out.println("deletar");
         int codigo = 0;

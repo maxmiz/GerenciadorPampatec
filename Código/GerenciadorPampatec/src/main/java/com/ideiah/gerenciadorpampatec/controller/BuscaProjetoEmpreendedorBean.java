@@ -4,6 +4,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,7 @@ import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name = "buscaProjetoEmpreendedorBean")
 @ViewScoped
-public class BuscaProjetoEmpreendedorBean {
+public class BuscaProjetoEmpreendedorBean implements Serializable{
     private ArrayList<Projeto> listaProjetos;
     private ProjetoDao projeto;
     private Projeto projetoSelecionado;
@@ -74,7 +75,7 @@ public class BuscaProjetoEmpreendedorBean {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
