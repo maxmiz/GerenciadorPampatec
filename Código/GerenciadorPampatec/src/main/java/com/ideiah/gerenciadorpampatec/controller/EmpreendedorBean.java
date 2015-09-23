@@ -16,6 +16,7 @@ import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,17 +75,17 @@ public class EmpreendedorBean {
     public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
-    public boolean verificaProjetoEmpreededor(Empreendedor emp){
+
+    public boolean verificaProjetoEmpreededor(Empreendedor emp) {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
-        System.out.println("projeto="+projeto);
-        System.out.println("empreendedor="+emp);
+        System.out.println("projeto=" + projeto);
+        System.out.println("empreendedor=" + emp);
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
-
         empreendedor = new Empreendedor();
         empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);
@@ -100,7 +101,7 @@ public class EmpreendedorBean {
                     FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
                 } else {
                     empreendedor.setEmail(email);
-                    empreendedor.setTelefone(telefone);
+                    empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
                     empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
                     empreendedor.setRua(rua);
                     empreendedor.setNumero(Integer.parseInt(numero));
@@ -128,8 +129,7 @@ public class EmpreendedorBean {
             }
         }
     }
-    
-    
+
     public void terminarCadastro() {
         this.empreendedor.setIdUnico(null);
         this.empreendedor.setNome(nome);
@@ -142,7 +142,7 @@ public class EmpreendedorBean {
             if (CpfUtil.isValidCPF(cpf) == false) {
                 FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
             } else {
-                empreendedor.setTelefone(telefone);
+                empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
                 empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
                 empreendedor.setRua(rua);
                 empreendedor.setNumero(Integer.parseInt(numero));
@@ -169,20 +169,18 @@ public class EmpreendedorBean {
         }
 
     }
-    
+
     /**
-     * 
+     *
      * @param email
-     * @param id 
+     * @param id
      */
-    public void recuperarSenha(String email, String id){
+    public void recuperarSenha(String email, String id) {
         empreendedor.buscaPorEmail(email);
         this.empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
         this.empreendedorEmail.setIdEmpreendedorEmail(id);
         this.empreendedorEmail.setTipo("Recuperação de Senha");
     }
-    
-    
 
 //    public void chamaLogin() {
 //        empreendedor.fazLogin();
@@ -368,6 +366,6 @@ public class EmpreendedorBean {
     public void setCompetencia(String competencia) {
         this.competencia = competencia;
     }
-    
 
+    
 }
