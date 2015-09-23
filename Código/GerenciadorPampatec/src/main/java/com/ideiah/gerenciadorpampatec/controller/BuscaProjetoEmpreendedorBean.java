@@ -84,11 +84,13 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
     public void deletarProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
+        Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         this.projeto.deletar(projetoSelecionado.getAnaliseemprego().getIdAnaliseEmprego());
         this.projeto.deletar(projetoSelecionado.getPlanofinanceiro().getIdPlanoFinanceiro());
         this.projeto.deletar(projetoSelecionado.getProdutoouservico().getIdProdutoOuServico());
         this.projeto.deletar(projetoSelecionado.getNegocio().getIdNegocio());
         this.projeto.deletar(projetoSelecionado.getIdProjeto());
         listaProjetos.remove(projetoSelecionado);
+        secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
     }
 }

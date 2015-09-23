@@ -35,7 +35,7 @@
         <property name="participacaoacionaria" type="string">
             <column name="participacaoacionaria" length="1000" />
         </property>
-        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="all">
+        <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
             <key>
                 <column name="Projeto_idProjeto" not-null="true" />
             </key>
