@@ -17,18 +17,18 @@
     <h:body>
         <div class="col-md-3"></div>
         <div class="col-md-6 form-horizontal well bs-component">
-            <h1>Realize seu cadastro</h1>
+            <div align="center"><h1>Realize seu cadastro</h1></div>
             <div id="empreendedorLogin">
-                <legend>Dados Cadastrais</legend>
+                <legend>Dados Cadastrais:</legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
 
                         <!--                             <div class="col-lg-8">
                                                         <p:inputText id="nome" placeholder="Digite seu nome" required="true" styleClass="#//{not component.valid ? 'form-control campoInvalido' : 'form-control'}" requiredMessage="Insira o seu nome antes de enviar" value="#{candidatoBean.candidato.nome}"/>
                                                         <h:message class="mensagemErro" for="nome"/>
                                                     </div>-->
 
-                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
+                        Nome* <p:inputText id="nome" placeholder="Insira o seu nome completo (Ex.: José da Silva Lopes)" class="form-control"
                                            requiredMessage="Insira o seu nome antes de enviar" 
                                            required="true" 
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -38,9 +38,9 @@
                         <h:message class="mensagemErro" for="nome"/>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         CPF* <p:inputText id="cpf" class="form-control" 
-                                          placeholder="Digite seu CPF" 
+                                          placeholder="Insira o seu CPF" 
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -48,14 +48,14 @@
                         </p:inputText>
                         <h:message class="mensagemErro" for="cpf"/>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         Formação <p:inputText class="form-control" 
-                                              placeholder="Digite sua formação" 
+                                              placeholder="Insira a sua formação (Ex.: Bacharel em Administração de Empresas)" 
                                               value="#{empreendedorBean.formacao}">
                         </p:inputText>
                     </div>
                     <div class="col-md-8">
-                        E-mail* <p:inputText id="email" placeholder="Digite seu E-mail" class="form-control" 
+                        E-mail* <p:inputText id="email" placeholder="Insira o seu e-mail" class="form-control" 
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-4">
                         Telefone* <p:inputText id="telefone" class="form-control" 
-                                               placeholder="Digite seu contato"
+                                               placeholder="Insira o número de seu telefone ou celular"
                                                requiredMessage="Insira o seu telefone"
                                                required="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -103,7 +103,7 @@
                         <br/>
                     </div> 
 
-                    <legend>Endereço</legend>
+                    <legend>Endereço:</legend>
 
                     <div class="col-md-9">
                         Rua* <p:inputText id="rua" class="form-control"
@@ -148,10 +148,14 @@
                     </div>
 
                     <div class="col-md-12 modal-footer">
-                        <h:button class="btn btn-default" value="Voltar"></h:button>
-                        <h:commandButton id="botaoEnviar" class="btn btn-success" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}"></h:commandButton>
-                        <br/>
-                        <h:message for="botaoEnviar"></h:message>
+                        <div class="col-md-6" align="left">
+                            <h:button class="btn btn-default" value="Voltar"></h:button>
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <h:commandButton id="botaoEnviar" class="btn btn-success" value="Efetuar Cadastro" action="#{empreendedorBean.chamaCadastro()}"></h:commandButton>
+                            <br/>
+                            <h:message for="botaoEnviar"></h:message>
+                        </div>
                     </div>
                 </h:form>
             </div>
