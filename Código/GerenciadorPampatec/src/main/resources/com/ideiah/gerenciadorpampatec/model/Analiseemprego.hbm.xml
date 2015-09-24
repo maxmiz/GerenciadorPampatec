@@ -6,26 +6,26 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Analiseemprego" table="analiseemprego" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idAnaliseEmprego" type="int">
             <column name="idAnaliseEmprego" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="relacoesClientes" type="string">
-            <column name="relacoesClientes" length="300" />
+            <column name="relacoesClientes" length="1000" />
         </property>
         <property name="parceriasChaves" type="string">
-            <column name="parceriasChaves" length="300" />
+            <column name="parceriasChaves" length="1000" />
         </property>
         <property name="canais" type="string">
-            <column name="canais" length="300" />
+            <column name="canais" length="1000" />
         </property>
         <property name="recursosPrincipais" type="string">
-            <column name="recursosPrincipais" length="300" />
+            <column name="recursosPrincipais" length="1000" />
         </property>
         <property name="concorrentes" type="string">
-            <column name="concorrentes" length="300" />
+            <column name="concorrentes" length="1000" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="AnaliseEmprego_idAnaliseEmprego" not-null="true" />
+                <column name="AnaliseEmprego_idAnaliseEmprego" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

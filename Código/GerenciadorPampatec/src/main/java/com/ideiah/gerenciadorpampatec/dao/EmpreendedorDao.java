@@ -24,35 +24,43 @@ public class EmpreendedorDao extends Dao {
     public ArrayList<Empreendedor> buscar() {
         return (ArrayList<Empreendedor>) buscarObjetos(Empreendedor.class);
     }
-
+    
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
+    }
+    
+     public Empreendedor buscarPorIdUnico(String idUnico) {
+        return (Empreendedor) buscarObjetoCriteria("idUnico", idUnico, Empreendedor.class);
+        
+    }
+     
+     public Empreendedor buscaPorEmail(String email){
+        return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
 
     /*
      * Verificação se o email e o nome já estão 
      * cadastrados no sistema.
      */
-    public boolean buscarDados(String email, String nome) {
-        System.out.println("Entrou na BuscarDados na DAO");
-        boolean resultado = true;
-        //TRUE -> Não está cadastrado
-        //FALSE -> Está cadastrado
-
-        for (int i = 0; i < this.buscar().size(); i++) {
-            if (this.buscar().get(i).getEmail() == email || this.buscar().get(i).getNome() == nome) {
-                resultado = false;
-            } else {
-                resultado = true;
-            }
-            return resultado;
-        }
-        return resultado;
-    }
-
+//    public boolean buscarDados(String email, String nome) {
+//        System.out.println("Entrou na BuscarDados na DAO");
+//        boolean resultado = true;
+//        //TRUE -> Não está cadastrado
+//        //FALSE -> Está cadastrado
+//
+//        for (int i = 0; i < this.buscar().size(); i++) {
+//            if (this.buscar().get(i).getEmail() == email || this.buscar().get(i).getNome() == nome) {
+//                resultado = false;
+//            } else {
+//                resultado = true;
+//            }
+//            return resultado;
+//        }
+//        return resultado;
+//    }
     public Empreendedor buscarPorCpf(String cpf) {
         return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
-
+        
     }
 //    public boolean verificarEmail(String email){
 //        if((Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class)!=null){
@@ -65,7 +73,9 @@ public class EmpreendedorDao extends Dao {
     public Empreendedor buscarPorEmail(String email) {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
-
+    
+    
+    
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
@@ -78,13 +88,18 @@ public class EmpreendedorDao extends Dao {
         }
         return true;
     }
+    
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
 
-    public
-            boolean deletar(int codigo) {
+    public boolean deletar(int codigo) {
         return excluir(codigo, Empreendedor.class
         );
+    }
+    
+    public boolean deletarPorEmail(String email) {
+        Empreendedor empreendedorEmail = (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
+        return deletar(empreendedorEmail.getIdEmpreendedor());
     }
 //</editor-fold>
 

@@ -5,17 +5,39 @@
  */
 package com.ideiah.gerenciadorpampatec.dao;
 
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
 
 /**
  *
  * @author Pedro
  */
-public class ProjetoDao extends Dao{
+public class ProjetoDao extends Dao {
 //<editor-fold defaultstate="collapsed" desc="Salvar">
+
     public boolean salvar(Projeto projeto) {
         return super.salvar(projeto);
+    }
+
+    public Projeto salvarRetornandoProjeto(Projeto projeto) {
+        try {
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            projeto = (Projeto) getSession().merge(projeto);
+            getTx().commit();
+            return projeto;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            getSession().getTransaction().rollback();
+        }
+        return null;
+    }
+
+    public boolean update(Projeto projeto) {
+        return super.update(projeto);
     }
 //</editor-fold>
 
@@ -26,6 +48,23 @@ public class ProjetoDao extends Dao{
 
     public Projeto buscar(int codigo) {
         return (Projeto) buscarObjeto(codigo, Projeto.class);
+    }
+
+    public boolean verificaEmpreendedor(Empreendedor empreendedor, Projeto projeto) {
+//        Projeto[] listaOriginal = (Projeto[]) empreendedor.getProjetos().toArray();
+//        ArrayList<Projeto> listaOriginal = (ArrayList<Projeto>) empreendedor.getProjetos().toArray();
+
+        for (Object obj : empreendedor.getProjetos().toArray()) {
+            Projeto proj = (Projeto) obj;
+            if (proj.getIdProjeto() == projeto.getIdProjeto()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public BigInteger retornarUltimoId(){
+        return (BigInteger) getSession().createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult();
     }
 //</editor-fold>
 

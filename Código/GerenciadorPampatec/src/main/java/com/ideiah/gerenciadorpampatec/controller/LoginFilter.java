@@ -46,17 +46,17 @@ public class LoginFilter implements Filter {
             ((HttpServletResponse) response).sendRedirect(contextPath + "/faces/loginEmpreendedor.xhtml");
             
         } else {
-            chain.doFilter(request, response);
+            try{
+                chain.doFilter(request, response);
+            }catch (NullPointerException e){
+                System.out.println("chain = null");
+            }
         }
     }
 
     @Override
     public void init(FilterConfig arg0) throws ServletException { // TODO Auto-generated method stub 
 
-    }
-
-    public boolean isLoggable(LogRecord record) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

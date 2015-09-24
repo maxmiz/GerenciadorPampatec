@@ -6,18 +6,18 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Negocio" table="negocio" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idNegocio" type="int">
             <column name="idNegocio" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="segmentoClientes" type="string">
-            <column name="segmentoClientes" length="300" not-null="true" />
+            <column name="segmentoClientes" length="1000" />
         </property>
         <property name="propostaValor" type="string">
-            <column name="PropostaValor" length="300" not-null="true" />
+            <column name="PropostaValor" length="1000" />
         </property>
         <property name="atividadesChaves" type="string">
-            <column name="AtividadesChaves" length="300" not-null="true" />
+            <column name="AtividadesChaves" length="1000" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="Negocio_idNegocio" not-null="true" />
             </key>

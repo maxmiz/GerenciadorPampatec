@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+        </f:facet>
+
+        <h:outputScript library="js" name="bootstrap.js"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+        <title>Planos de Negócio - Empreendedor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- Início do menu superior -->
+        <h:form>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink value="Editar meus dados"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Fim do menu superior -->
+        </h:form>
+
+        <h:form>
+
+            <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+
+                <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+
+                    <f:facet name="header">
+                        Tabela de projetos
+                    </f:facet>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{projeto.nome}" />
+                    </p:column>
+                    <p:column headerText="Data de envio">
+                        <h:outputText value="#{projeto.dataEnvio}" />
+                    </p:column>
+                    <p:column headerText="Editar Projeto" style="width:150px;text-align: center">
+                            <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
+                            <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Editar" title="View">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
+                    </p:column>
+                    
+                    <p:column headerText="Deletar Projeto" style="width:150px;text-align: center">
+                            <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
+                            <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                            </h:commandButton>
+                    </p:column>
+                    
+                    <p:column headerText="Status" style="width:150px;text-align: center">
+                        <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

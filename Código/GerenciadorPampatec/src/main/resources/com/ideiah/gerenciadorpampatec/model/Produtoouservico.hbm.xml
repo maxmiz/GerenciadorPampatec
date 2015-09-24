@@ -6,35 +6,35 @@
     <class name="com.ideiah.gerenciadorpampatec.model.Produtoouservico" table="produtoouservico" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idProdutoOuServico" type="int">
             <column name="idProdutoOuServico" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="estagioEvolucao" type="string">
-            <column name="estagioEvolucao" length="45" not-null="true" />
+            <column name="estagioEvolucao" length="300" />
         </property>
         <property name="tecnologiaProcessos" type="string">
-            <column name="tecnologiaProcessos" length="300" />
+            <column name="tecnologiaProcessos" length="1000" />
         </property>
         <property name="potencialInovacaoTecnologica" type="string">
-            <column name="potencialInovacaoTecnologica" length="300" />
+            <column name="potencialInovacaoTecnologica" length="1000" />
         </property>
         <property name="aplicacoes" type="string">
-            <column name="aplicacoes" length="300" />
+            <column name="aplicacoes" length="1000" />
         </property>
         <property name="dificuldadesEsperadas" type="string">
-            <column name="dificuldadesEsperadas" length="300" />
+            <column name="dificuldadesEsperadas" length="1000" />
         </property>
         <property name="interacaoEmpresaUniversidade" type="string">
-            <column name="interacaoEmpresaUniversidade" length="300" />
+            <column name="interacaoEmpresaUniversidade" length="1000" />
         </property>
         <property name="interacaoEmpresaComunidadeGoverno" type="string">
-            <column name="interacaoEmpresaComunidadeGoverno" length="300" />
+            <column name="interacaoEmpresaComunidadeGoverno" length="1000" />
         </property>
         <property name="infraestrutura" type="string">
-            <column name="infraestrutura" length="300" />
+            <column name="infraestrutura" length="1000" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="ProdutoOuServico_idProdutoOuServico" not-null="true" />
+                <column name="ProdutoOuServico_idProdutoOuServico" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

@@ -12,6 +12,14 @@ require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
 
+
+/*
+ * Funções de exibição de Informações
+ * relativa as funcionalidades dos botões
+ */
+
+
+
 /*
  * Funções de Retorno de etapas no 
  * formulário de Envio de Plano de Negócio

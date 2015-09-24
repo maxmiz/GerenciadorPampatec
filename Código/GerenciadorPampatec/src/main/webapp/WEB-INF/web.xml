@@ -4,6 +4,26 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <filter>
+        <filter-name>RecuperarSenhaFilter</filter-name>
+        <filter-class>com.ideiah.gerenciadorpampatec.controller.RecuperarSenhaFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CompletarCadastroFilter</filter-name>
+        <url-pattern>/faces/terminarCadastroEmpreendedor.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/faces/view/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RecuperarSenhaFilter</filter-name>
+        <url-pattern>/faces/recuperarSenha.xhtml</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -26,8 +46,8 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.LoginFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/*</url-pattern>
-    </filter-mapping>
+    <filter>
+        <filter-name>CompletarCadastroFilter</filter-name>
+        <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
+    </filter>
 </web-app>

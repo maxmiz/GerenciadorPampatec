@@ -11,9 +11,25 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
+import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
+import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.IOException;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.primefaces.expression.impl.ThisExpressionResolver;
 
 /**
  *
@@ -31,11 +47,25 @@ public class EmpreendedorBean {
     private String telefone;
     private String email;
     private String formacao;
+    private String experiencia;
+    private String competencia;
     private String bairro;
     private String rua;
     private String numero;
     private String complemento;
     private Empreendedor empreendedor;
+    private EmpreendedorEmailDao empreendedorEmailDao;
+    private EmpreendedorEmail empreendedorEmail;
+    private HttpSession session;
+    private EmailUtil emailUtil;
+
+    public EmpreendedorBean() {
+        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        if (empreendedor != null) {
+            empreendedor.getEmail();
+        }
+    }
 
     public String getOutcome() {
         return outcome;
@@ -53,22 +83,24 @@ public class EmpreendedorBean {
         this.userInput = userInput;
     }
 
-    /**
-     * @param u usuário que será adicionado na sessão
-     */
-//    public void efetuarLogin(Empreendedor emp) {
-//        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", emp);
-//    }
+    public boolean verificaProjetoEmpreededor(Empreendedor emp) {
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
+
+        System.out.println("projeto=" + projeto);
+        System.out.println("empreendedor=" + emp);
+        
+        return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
+    }
+
     public void chamaCadastro() {
         System.out.println("Entrou no CHAMA CADASTRO da Bean");
-
         empreendedor = new Empreendedor();
-
         empreendedor.setNome(nome);
+        cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
             FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
         } else {
-
             empreendedor.setCpf(cpf);
             empreendedor.setFormacao(formacao);
             if (empreendedor.buscarPorEmail(email) != null) {
@@ -78,21 +110,107 @@ public class EmpreendedorBean {
                     FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
                 } else {
                     empreendedor.setEmail(email);
-                    empreendedor.setTelefone(telefone);
+                    empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
                     empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
                     empreendedor.setRua(rua);
                     empreendedor.setNumero(Integer.parseInt(numero));
                     empreendedor.setBairro(bairro);
                     empreendedor.setComplemento(complemento);
+                    empreendedor.setExperiencia(experiencia);
+                    empreendedor.setCompetencia(competencia);
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+                        try {
+                            LoginBean.MudarNome(empreendedor.getNome());
+                            LoginBean.MudarSenha(empreendedor.getSenha());
+                            LoginBean.MudarUser(empreendedor.getEmail());
+                            empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
+                            session.setAttribute("empreendedor", empreendedor);
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
+                        } catch (IOException ex) {
+                            Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     } else {
                         FacesUtil.addErrorMessage("Cadastro não realizado.!", "formularioCadastro:botaoEnviar");
                     }
                 }
             }
         }
+    }
+
+
+    /**
+     * Método para salvar a nova senha do usuário a partir da recuperação
+     * pelo link submetido para o email
+     */
+    public void terminarRecuperacaoDeSenha() {
+        
+        if (empreendedor != null) {
+
+            this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+            empreendedor.atualizarEmpreendedor(empreendedor);
+            
+            
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.xhtml");
+                
+            } catch (IOException ex) {
+                Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    public void terminarCadastro() {
+        this.empreendedor.setIdUnico(null);
+        this.empreendedor.setNome(nome);
+        cpf = FacesUtil.removeCaracteres(cpf);
+        if (empreendedor.buscarPorCpf(cpf) != null) {
+            FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
+        } else {
+            empreendedor.setCpf(cpf);
+            empreendedor.setFormacao(formacao);
+            if (CpfUtil.isValidCPF(cpf) == false) {
+                FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
+            } else {
+                empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
+                empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+                empreendedor.setRua(rua);
+                empreendedor.setNumero(Integer.parseInt(numero));
+                empreendedor.setBairro(bairro);
+                empreendedor.setComplemento(complemento);
+                empreendedor.setExperiencia(experiencia);
+                empreendedor.setCompetencia(competencia);
+
+                if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                    FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
+                    try {
+                        LoginBean.MudarNome(empreendedor.getNome());
+                        LoginBean.MudarSenha(empreendedor.getSenha());
+                        LoginBean.MudarUser(empreendedor.getEmail());
+                        session.setAttribute("empreendedor", empreendedor);
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    FacesUtil.addErrorMessage("Cadastro não realizado!", "formularioCadastro:botaoEnviar");
+                }
+            }
+        }
+
+    }
+    /**
+     *
+     * @param email
+     * @param id
+     */
+    public void recuperarSenha(String email, String id) {
+        empreendedor.buscaPorEmail(email);
+        this.empreendedorEmail.setEmpreendedor(empreendedor);
+        this.empreendedorEmail.setIdEmpreendedorEmail(id);
+        this.empreendedorEmail.setTipo("Recuperação de Senha");
     }
 
 //    public void chamaLogin() {
@@ -158,7 +276,7 @@ public class EmpreendedorBean {
      * @return the email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
@@ -251,4 +369,34 @@ public class EmpreendedorBean {
     public void setEmpreendedor(Empreendedor empreendedor) {
         this.empreendedor = empreendedor;
     }
+
+    /**
+     * @return the experiencia
+     */
+    public String getExperiencia() {
+        return experiencia;
+    }
+
+    /**
+     * @param experiencia the experiencia to set
+     */
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    /**
+     * @return the competencia
+     */
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    /**
+     * @param competencia the competencia to set
+     */
+    public void setCompetencia(String competencia) {
+        this.competencia = competencia;
+    }
+
+    
 }
