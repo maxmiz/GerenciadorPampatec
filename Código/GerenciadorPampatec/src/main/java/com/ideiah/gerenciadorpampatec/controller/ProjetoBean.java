@@ -151,6 +151,7 @@ public class ProjetoBean implements Serializable{
                 idUnico = UUID.randomUUID().toString();
                 EmailUtil.mandarEmailConcluirCadastro(empreendedorSession.getNome(), projeto.getNome(), empreendedor.getEmail(), idUnico);
                 empreendedor.setIdUnico(idUnico);
+                empreendedor.atualizarEmpreendedor(empreendedor);
             }
         }
     }
