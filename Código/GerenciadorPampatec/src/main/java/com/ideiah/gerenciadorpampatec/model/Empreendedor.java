@@ -273,7 +273,7 @@ public class Empreendedor implements java.io.Serializable {
     public Empreendedor buscarPorEmail(String user) {
         return getEmpreededorDao().buscarPorEmail(user);
     }
-
+    
     public Empreendedor buscarPorCpf(String user) {
         return getEmpreededorDao().buscarPorCpf(user);
     }

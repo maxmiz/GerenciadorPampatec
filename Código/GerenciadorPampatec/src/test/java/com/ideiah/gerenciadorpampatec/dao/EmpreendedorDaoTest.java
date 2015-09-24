@@ -17,6 +17,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
+@Ignore
 public class EmpreendedorDaoTest {
 
     EmpreendedorDao instance;

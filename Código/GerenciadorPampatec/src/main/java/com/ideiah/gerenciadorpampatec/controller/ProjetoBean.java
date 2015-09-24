@@ -531,11 +531,20 @@ public class ProjetoBean implements Serializable{
 //                    "formulario_cadastro_projeto:");
 
         } else {
+            try{
+            
             System.out.println("não entrou");
             HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+            salvarProjeto();
             emp.enviarProjeto(projeto);
+            atualizarProjetoSessao();
+                
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
 
+            }catch(Exception e){
+                System.out.println("exeção = "+e);
+            }
         }
 
     }

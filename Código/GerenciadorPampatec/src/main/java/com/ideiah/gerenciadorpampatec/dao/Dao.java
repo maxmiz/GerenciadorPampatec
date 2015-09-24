@@ -117,6 +117,24 @@ public abstract class Dao {
         return true;
     }
     
+    public boolean excluir(String codigo, Class type) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Transaction tx = null;
+        try {
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            Object object = getSession().get(type, codigo);
+            getSession().delete(object);
+            getTx().commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            getSession().getTransaction().rollback();
+            return false;
+        }
+        return true;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="SEARCH OBJECT"> 
     public Object buscarObjeto(int codigo, Class<?> classe) {
         Object objeto = null;

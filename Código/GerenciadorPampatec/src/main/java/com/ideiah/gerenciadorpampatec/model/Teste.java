@@ -19,13 +19,30 @@ import org.apache.commons.mail.SimpleEmail;
  * @author Pedro
  */
 public class Teste {
-    
+
+    private static SimpleEmail emailSimples;
+    private static HtmlEmail emailHtml;
+
     public static void main(String args[]) {
-        
-       Empreendedor empreendedor = Empreendedor.buscaPorEmail("joao@gmail.com");
-       empreendedor.setBairro("alegrete baita chao");
-             
-       empreendedor.atualizarEmpreendedor(empreendedor);
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setCpf("dsadas");
+        empreendedor.setEmail("dasdasda");
+        empreendedor.setNome("dsadasda");
+        empreendedor.setSenha("dasdasda");
+        empreendedor.setFormacao("dasda");
+        empreendedor.setBairro("dsadas");
+        empreendedor.setRua("dasdasdasda");
+        empreendedor.setComplemento("dsadsadas");
+        empreendedor.setNumero(32131231);
+
+//        mandarEmail("Este é o assunto", "Esta é a mensagem");
+//        mandarHtml();
+//        EmailUtil.mandarEmailConcluirCadastro("Pedro", "Ideiah", "edisonjhonatan@gmail.com");
+
     }
+
+    /*
+    * Testes de envio de cod html via emaail
+    */
 
 }
