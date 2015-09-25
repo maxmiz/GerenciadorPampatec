@@ -5,15 +5,53 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
+import static com.ideiah.gerenciadorpampatec.model.Empreendedor.getEmpreededorDao;
+
 /**
  *
  * @author Jhonatan Moura
  */
 public class EmpreendedorEmail {
-    
+
     private String idEmpreendedorEmail;
     private String tipo;
-    private Integer idEmpreendedor;
+    private Empreendedor empreendedor;
+
+    public EmpreendedorEmail() {
+
+    }
+
+    /**
+     * Construtor da classe EmpreendedorEmail
+     *
+     * @param idEmpreendedorEmail
+     * @param tipo
+     * @param empreendedor
+     */
+    public EmpreendedorEmail(String idEmpreendedorEmail, String tipo, Empreendedor empreendedor) {
+        this.idEmpreendedorEmail = idEmpreendedorEmail;
+        this.tipo = tipo;
+        this.empreendedor = empreendedor;
+    }
+
+    /**
+     * @return the empreededorDao
+     */
+    public static EmpreendedorEmailDao getEmpreededorEmailDao() {
+        return new EmpreendedorEmailDao();
+    }
+
+    /**
+     * 
+     * @param empreendedorEmail
+     * @return 
+     */
+    public boolean salvarEmpreendedorEmail(EmpreendedorEmail empreendedorEmail) {
+        System.out.println("Entrou no método de salvar no bd");
+        return getEmpreededorEmailDao().salvar(empreendedorEmail);
+    }
 
     /**
      * @return the idEmpreendedorEmail
@@ -43,20 +81,29 @@ public class EmpreendedorEmail {
         this.tipo = tipo;
     }
 
+
+    public static EmpreendedorEmail buscaEmpreendedorMailID(String id) {
+        System.out.println("o id é: "+id);
+        return getEmpreededorEmailDao().buscarPorIdUnico(id);
+    }
+    
     /**
-     * @return the idEmpreendedor
+     * @return the empreendedor
      */
-    public Integer getIdEmpreendedor() {
-        return idEmpreendedor;
+    public Empreendedor getEmpreendedor() {
+        return empreendedor;
     }
 
     /**
-     * @param idEmpreendedor the idEmpreendedor to set
+     * @param empreendedor the empreendedor to set
      */
-    public void setIdEmpreendedor(Integer idEmpreendedor) {
-        this.idEmpreendedor = idEmpreendedor;
+    public void setEmpreendedor(Empreendedor empreendedor) {
+        this.empreendedor = empreendedor;
     }
     
-    
-    
+    public void apagarDoBanco(EmpreendedorEmail empreendedorEmail){
+        EmpreendedorEmailDao empreendedorEmailDao = new EmpreendedorEmailDao();
+        empreendedorEmailDao.deletarPorIdUnico(empreendedorEmail.getIdEmpreendedorEmail());
+    }
+
 }

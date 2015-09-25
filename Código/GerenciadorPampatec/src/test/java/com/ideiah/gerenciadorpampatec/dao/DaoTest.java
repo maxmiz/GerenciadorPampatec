@@ -21,6 +21,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
+@Ignore
 public class DaoTest {
 
     Dao instance;

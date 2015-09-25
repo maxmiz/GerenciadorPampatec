@@ -11,13 +11,17 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -25,6 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.primefaces.expression.impl.ThisExpressionResolver;
 
 /**
  *
@@ -49,8 +54,10 @@ public class EmpreendedorBean {
     private String numero;
     private String complemento;
     private Empreendedor empreendedor;
+    private EmpreendedorEmailDao empreendedorEmailDao;
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
+    private EmailUtil emailUtil;
 
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -79,6 +86,10 @@ public class EmpreendedorBean {
     public boolean verificaProjetoEmpreededor(Empreendedor emp) {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
+
+        System.out.println("projeto=" + projeto);
+        System.out.println("empreendedor=" + emp);
+        
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
@@ -128,6 +139,29 @@ public class EmpreendedorBean {
         }
     }
 
+
+    /**
+     * Método para salvar a nova senha do usuário a partir da recuperação
+     * pelo link submetido para o email
+     */
+    public void terminarRecuperacaoDeSenha() {
+        
+        if (empreendedor != null) {
+
+            this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+            empreendedor.atualizarEmpreendedor(empreendedor);
+            
+            
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.xhtml");
+                
+            } catch (IOException ex) {
+                Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
     public void terminarCadastro() {
         this.empreendedor.setIdUnico(null);
         this.empreendedor.setNome(nome);
@@ -167,7 +201,6 @@ public class EmpreendedorBean {
         }
 
     }
-
     /**
      *
      * @param email
@@ -175,7 +208,7 @@ public class EmpreendedorBean {
      */
     public void recuperarSenha(String email, String id) {
         empreendedor.buscaPorEmail(email);
-        this.empreendedorEmail.setIdEmpreendedor(empreendedor.getIdEmpreendedor());
+        this.empreendedorEmail.setEmpreendedor(empreendedor);
         this.empreendedorEmail.setIdEmpreendedorEmail(id);
         this.empreendedorEmail.setTipo("Recuperação de Senha");
     }
