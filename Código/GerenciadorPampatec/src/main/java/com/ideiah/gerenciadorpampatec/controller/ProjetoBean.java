@@ -421,7 +421,7 @@ public class ProjetoBean implements Serializable{
      * @return true se todos os campos do formulario estao preenchidos.
      * @since 21/09/2015
      */
-    public boolean verificarCampos() {
+    public int verificarCampos() {
         int FLAG = 0;
         if (projeto.getNome().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
@@ -520,20 +520,21 @@ public class ProjetoBean implements Serializable{
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosvariaveis");
             FLAG = FLAG + 1;
         }
-        if(FLAG != 0){
-            return false;
-        }
-        return true;
+//        if(FLAG != 0){
+//            return false;
+//        }
+        return FLAG;
     }
 
     /**
      * Envia o projeto para a avaliação.
      */
     public void enviarProjeto() {
-        if (!verificarCampos()) {
+        int FLAG = verificarCampos();
+        if (FLAG > 0) {
             System.out.println("entrou no false");
-//            FacesUtil.addErrorMessage("Sistema encontrou "+FLAG+" problemas que devem ser corrigidos antes de enviar a proposta",
-//                    "formulario_cadastro_projeto:");
+            FacesUtil.addErrorMessage("Sistema encontrou "+FLAG+" campos não preenchidos",
+                    "formulario_cadastro_projeto:tituloMensagem");
 
         } else {
             try{

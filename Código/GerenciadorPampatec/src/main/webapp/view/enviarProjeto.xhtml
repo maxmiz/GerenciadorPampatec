@@ -140,24 +140,28 @@
 
             <div class="col-md-8 form-horizontal well bs-component">
                 <h1>Cadastro - Plano de Negócio</h1>
+                <h:outputText id="tituloMensagem"></h:outputText>
+                <h:message for="tituloMensagem" errorClass="mensagemErro"></h:message>
+                <br/>
+                <br/>
                 <div>
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a aria-expanded="true" href="#formParte01" data-toggle="tab">Contatos</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte02" data-toggle="tab">O Negócio</a></li>
+                        <li class="active"><a aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
+                        <li class=""><a aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
                     </ul>
-                    <div id="myTabContent" class="tab-content">
+                    <div id="myTabContent" class="tab-content" >
 
                         <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto Referente ao CONTATO -->
 
-                        <div class="tab-pane fade active in" id="formParte01">
+                        <div class="tab-pane fade active in" id="formParte01" >
 
                             <div id="formularioParte01">
-                                <legend id="subTitulo">Contatos</legend>
+                                <legend id="subTitulo" >Contatos</legend>
                                 <div class="col-md-12">
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
@@ -248,6 +252,7 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
 
+                                        <f:actionListener type=""
                                     </p:inputTextarea>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     <br/>
@@ -380,7 +385,6 @@
                             </div>
 
                         </div>
-
                         <!-- Fim da terceira parte do formulário -->
 
                         <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto Referente ao PRODUTO DE SERVIÇO -->
@@ -654,6 +658,7 @@
 
                     </div>
 
+                    </div>
                 </div>
 
             </div>
