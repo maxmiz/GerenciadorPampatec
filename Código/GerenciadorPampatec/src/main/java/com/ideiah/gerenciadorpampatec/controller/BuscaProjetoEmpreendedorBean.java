@@ -52,10 +52,37 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
     public ProjetoDao getProjeto() {
         return projeto;
     }
-
+    /**
+     * Remove o empreendedor do projeto selecionado
+     */
+    public void sairDoProjeto(){
+        System.out.println("nome do projeto = "+projetoSelecionado.getNome());
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+//        System.out.println("projeto = "+projetoSelecionado.getEmpreendedores()+" empreendedor = "+empreendedor);
+        projetoSelecionado.getEmpreendedores().remove(empreendedor);
+//        System.out.println("projeto = "+projetoSelecionado.getEmpreendedores()+" empreendedor = "+empreendedor);
+        
+        listaProjetos.remove(projetoSelecionado);
+        
+        if(projetoSelecionado.getEmpreendedores().isEmpty()){
+            projeto.deletar(projetoSelecionado.getIdProjeto());
+        }else{
+            projeto.update(projetoSelecionado);
+        }
+    
+        
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().dispatch("PaginaBuscaProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     public ArrayList<Projeto> buscaProjetoPorEmpreendedor() {
-        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+        empreendedor = Empreendedor.buscaPorEmail(empreendedor.getEmail());
 
         Projeto selecaoProjeto;
         ArrayList<Projeto> projetosEmpreendedor = new ArrayList();

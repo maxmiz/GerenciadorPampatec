@@ -14,7 +14,6 @@
         </f:facet>
 
         <h:outputScript library="js" name="formulario.js" />
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Cadastro Plano de Negócio</title>
@@ -45,7 +44,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink value="Editar meus dados"></h:commandLink></li>
+                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Editar meus dados"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
@@ -63,15 +62,9 @@
 
         <!-- Script para exibição da info do botão SALVAR -->
         <script>
-            var x = false;
-            var y = false;
 
             function infoSalvar() {
-
-                if (x == false) {
-                    $("#modalInfoSalvar").modal();
-                    x = true;
-                }
+                $("#modalInfoSalvar").modal();
             }
 
             function confirmacaoDeEnvio() {
@@ -96,7 +89,7 @@
                         </div>
                         <div class="modal-body">
                             Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                        para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
+                            para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
@@ -104,20 +97,6 @@
                         </div>
                     </div>
                 </div>
-
-<!--                <div class="modal-dialog">
-
-                     Conteúdo do Modal 
-                    <div class="alert alert-dismissible alert-success">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
-                        para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
-                        Se você necessitar de ajuda basta ????
-
-
-                    </div>
-
-                </div>-->
             </div>
             <!-- Fim do Modal de informação do botão Salvar -->
 
