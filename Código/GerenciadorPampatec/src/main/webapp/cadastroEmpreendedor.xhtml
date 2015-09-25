@@ -39,13 +39,14 @@
 
                     </div>
                     <div class="col-md-4">
-                        CPF* <p:inputText id="cpf" class="form-control" 
+                        CPF* <p:inputMask id="cpf" class="form-control" 
                                           placeholder="Insira o seu CPF" 
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
+                                          mask="999.999.999-99"
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                           value="#{empreendedorBean.cpf}">
-                        </p:inputText>
+                        </p:inputMask>
                         <h:message class="mensagemErro" for="cpf"/>
                     </div>
                     <div class="col-md-12">
@@ -82,16 +83,17 @@
 
                     </div>
                     <div class="col-md-6">
-                        Telefone* <p:inputText id="telefone" class="form-control" 
+                        Telefone* <p:inputMask id="telefone" class="form-control" 
                                                placeholder="Insira o número de seu telefone ou celular"
                                                requiredMessage="Insira o seu telefone"
                                                required="true"
+                                               mask="(99) 9999-9999"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                value="#{empreendedorBean.telefone}"
                                                validatorMessage="Número invalido">
 
                             <!--<f:validateRegex pattern="[0-9]*" />-->
-                        </p:inputText>
+                        </p:inputMask>
                         <h:message class="mensagemErro" for="telefone"/>
 
                     </div>
