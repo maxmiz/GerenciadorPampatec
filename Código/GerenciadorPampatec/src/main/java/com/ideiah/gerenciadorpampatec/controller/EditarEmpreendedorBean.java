@@ -37,6 +37,7 @@ public class EditarEmpreendedorBean {
     private String rua;
     private String numero;
     private String complemento;
+    
 
     public EditarEmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -53,7 +54,8 @@ public class EditarEmpreendedorBean {
         this.rua = empreendedor.getRua();
         this.complemento = empreendedor.getComplemento();
         this.numero = String.valueOf(empreendedor.getNumero());
-
+        this.experiencia = empreendedor.getExperiencia();
+        this.competencia = empreendedor.getCompetencia();
     }
 
     public String getNome() {
