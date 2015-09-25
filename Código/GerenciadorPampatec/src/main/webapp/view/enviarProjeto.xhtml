@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </h:head>
-    <h:body>
+    <h:body onload="verificaContatos();">
 
         <!-- Início do menu superior -->
         <h:form>
@@ -85,15 +85,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Modal title</h4>
+                            <h4 class="modal-title">Salvar Projeto</h4>
                         </div>
                         <div class="modal-body">
                             Ao clicar no botão <strong><u>Salvar Plano de Negócio</u></strong> os campos preenchidos ficam salvos, 
                             para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para Edição</button>
-                            <button type="button" class="btn btn-primary">Salvar Plano de Projeto</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
+                            <h:commandButton type="button" class="btn btn-primary" value="Salvar Plano de Projeto"></h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 <div>
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
+                        <li class="active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
                         <li class=""><a aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
@@ -194,7 +194,7 @@
                                             <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
                                         </p:column>
                                         <p:column>
-                                            <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" rendered="#{empreendedorBean.verificaProjetoEmpreededor(empreendedor)}">  
+                                            <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}">  
                                             </h:commandButton>
                                         </p:column>
                                     </p:dataTable>
@@ -203,7 +203,7 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar1" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                    <h:commandButton id="botaoSalvar1" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      action="#{projetoBean.salvarProjeto()}"></h:commandButton>
                                     <h:message for="botaoSalvar1"></h:message>
                                 </div>
