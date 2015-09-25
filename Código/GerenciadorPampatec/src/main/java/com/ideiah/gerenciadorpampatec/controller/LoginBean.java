@@ -221,7 +221,9 @@ public class LoginBean {
      * @return the nome
      */
     public String getNome() {
-        return nome;
+        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp = (Empreendedor) session.getAttribute("empreendedor");
+        return emp.getNome();
     }
 
     /**
