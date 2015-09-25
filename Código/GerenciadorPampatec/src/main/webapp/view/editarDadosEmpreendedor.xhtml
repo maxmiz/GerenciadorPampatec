@@ -21,18 +21,18 @@
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                    <div class="col-md-12">
+                     <div class="col-md-6">
 
-                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" value="#{editarEmpreendedorBean.nome}" class="form-control"
+                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
                                            requiredMessage="Insira o seu nome antes de enviar" 
                                            required="true" 
-                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
+                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                           value="#{editarEmpreendedorBean.nome}">
 
                         </p:inputText>
                         <h:message class="mensagemErro" for="nome"/>
 
                     </div>
-
                     <div class="col-md-6">
                         CPF* <p:inputMask id="cpf" class="form-control" 
                                           placeholder="Digite seu CPF"
@@ -43,7 +43,6 @@
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                           value="#{editarEmpreendedorBean.cpf}">
                         </p:inputMask>
-                        <h:message class="mensagemErro" for="cpf"/>
                     </div>
 
                     <div class="col-md-12">
@@ -60,8 +59,8 @@
                         </p:inputText>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="col-md-6">
+             
+                        <div class="col-md-12">
                             Formação <p:inputText class="form-control" 
                                                   placeholder="Digite sua formação" 
                                                   value="#{editarEmpreendedorBean.formacao}">
@@ -69,10 +68,16 @@
                         </div>
 
                         <div class="col-md-8">
-                            E-mail* <p:inputText id="email" value="#{editarEmpreendedorBean.email}" class="form-control"> 
-
-                            </p:inputText>
-                            <h:message class="mensagemErro" for="email"/>
+                           E-mail* <p:inputText id="email" class="form-control" 
+                                                 placeholder="Digite seu email" 
+                                             requiredMessage="Insira o seu E-mail antes de enviar"
+                                             required="true"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{editarEmpreendedorBean.email}"
+                                             validatorMessage="Email Invalido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
+                        <h:message class="mensagemErro" for="email"/>
 
                         </div>
 
@@ -173,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
 
                 </h:form>
             </div>

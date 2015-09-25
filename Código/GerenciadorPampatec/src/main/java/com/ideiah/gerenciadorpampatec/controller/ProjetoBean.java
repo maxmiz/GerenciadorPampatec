@@ -16,7 +16,10 @@ import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -395,6 +398,9 @@ public class ProjetoBean implements Serializable {
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
         pjto.setNome("Nome do Projeto");
+
+        Date data = new Date(System.currentTimeMillis());
+        pjto.setDataEnvio(data);
         pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
@@ -546,9 +552,9 @@ public class ProjetoBean implements Serializable {
                 if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                     atualizarProjetoSessao();
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
-                }else{
+                } else {
                     FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
-                    "formulario_cadastro_projeto:tituloMensagem");
+                            "formulario_cadastro_projeto:tituloMensagem");
                 }
 
             } catch (Exception e) {
