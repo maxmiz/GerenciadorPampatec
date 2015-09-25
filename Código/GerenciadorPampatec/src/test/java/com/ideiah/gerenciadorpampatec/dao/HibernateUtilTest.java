@@ -10,11 +10,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Peterson
  */
+@Ignore
 public class HibernateUtilTest {
     
     public HibernateUtilTest() {
@@ -31,7 +33,7 @@ public class HibernateUtilTest {
     /**
      * Test of getSessionFactory method, of class HibernateUtil.
      */
-    @Test
+    @Ignore
     public void testGetSessionFactory() {
         System.out.println("getSessionFactory");
         SessionFactory expResult = null;

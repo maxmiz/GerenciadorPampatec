@@ -71,7 +71,7 @@
                         <h4 class="modal-title">Recuperação de senha</h4>
                     </div>
                     <div class="modal-body">
-                        <h:form>
+                        <h:form id="formularioRecuperarSenha">
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
@@ -83,7 +83,7 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
                                     </div>
                                         
-                                    <h:commandButton class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
+                                    <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
                                     
                                 </div>
                             </fieldset>

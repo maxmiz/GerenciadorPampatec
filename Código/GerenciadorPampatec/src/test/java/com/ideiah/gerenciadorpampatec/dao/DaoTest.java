@@ -21,6 +21,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
+@Ignore
 public class DaoTest {
 
     Dao instance;
@@ -42,7 +43,7 @@ public class DaoTest {
     /**
      * Salvar um Empreendedor sem setar o e-mail;
      */
-    @Test
+    @Ignore
     public void testSalvar1() {
         Empreendedor empreendedor = new Empreendedor();
         boolean result = instance.salvar(empreendedor);
@@ -54,7 +55,7 @@ public class DaoTest {
      * estar na classe empreendedor, logo independe do formato do E-mail a Dao
      * vai aceitar sempre qualquer e-mail.
      */
-    @Test
+    @Ignore
     public void testSalvar2() {
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setEmail("teste@gmail.com");
@@ -67,7 +68,7 @@ public class DaoTest {
      * estar na classe empreendedor, logo independe do formato do E-mail a Dao
      * vai aceitar sempre qualquer e-mail.
      */
-    @Test
+    @Ignore
     public void testSalvar3() {
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setEmail("teste...");

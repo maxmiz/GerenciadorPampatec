@@ -9,13 +9,13 @@
             <generator class="identity" />
         </id>
         <property name="segmentoClientes" type="string">
-            <column name="segmentoClientes" length="300" />
+            <column name="segmentoClientes" length="1000" />
         </property>
         <property name="propostaValor" type="string">
-            <column name="PropostaValor" length="300" />
+            <column name="PropostaValor" length="1000" />
         </property>
         <property name="atividadesChaves" type="string">
-            <column name="AtividadesChaves" length="300" />
+            <column name="AtividadesChaves" length="1000" />
         </property>
         <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>

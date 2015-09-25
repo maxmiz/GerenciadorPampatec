@@ -15,6 +15,7 @@ import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean(name = "projetoBean")
 @ViewScoped
-public class ProjetoBean {
+public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;
     private Projeto projeto;
@@ -132,18 +133,19 @@ public class ProjetoBean {
         for (Object object : projeto.getEmpreendedores()) {
             empreendedor = (Empreendedor) object;
             empreendedorCadastrado = Empreendedor.buscaEmpreendedorID(empreendedor.getIdUnico());
-            enviarEmailCadastro(empreendedor.getEmail());
+            enviarEmailCadastro(empreendedor, projeto);
         }
     }
 
     /**
      * Envia um email para que o empreendedor possa terminar o seu cadastro.
      *
-     * @param emailEmpreendedor email para se enviar
+     * @param empreendedor Empreendedor para se colocar o IDUnico e enviar o
+     * email.
+     * @param projeto Projeto para se adicionar o empreendedor atualizado.
      */
-    public void enviarEmailCadastro(String emailEmpreendedor) {
+    public void enviarEmailCadastro(Empreendedor empreendedor, Projeto projeto) {
         String idUnico;
-        Empreendedor empreendedor = Empreendedor.buscaPorEmail(emailEmpreendedor);
         if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
             if (empreendedor.getIdUnico() == null) {
                 idUnico = UUID.randomUUID().toString();
@@ -198,30 +200,35 @@ public class ProjetoBean {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
-        boolean existe = false;
-        Empreendedor empreendedorAchado = null;
-        for (Empreendedor empreendedor : listaEmpreendedor) {
-            if (empreendedor.getEmail().equals(emailEmpreendedor)) {
-                existe = true;
-                empreendedorAchado = empreendedor;
-                break;
-            }
-        }
-
-        if (existe == false) {
-            Empreendedor empreendedor = new Empreendedor();
-            empreendedor.setEmail(emailEmpreendedor);
-            empreendedorAchado = empreendedor;
-        }
-        if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
-            if (!existe) {
-                empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
-                empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
-            }
-            getEmpreedendoresAdicionados().add(empreendedorAchado);
-            projeto.getEmpreendedores().add(empreendedorAchado);
+        if (emailEmpreendedor.equals("")) {
+            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formulario_cadastro_projeto:autocomplete");
         } else {
-            FacesUtil.addErrorMessage("Empreendedor já adicionado", "formPlanoNegocio:autocomplete");
+
+            boolean existe = false;
+            Empreendedor empreendedorAchado = null;
+            for (Empreendedor empreendedor : listaEmpreendedor) {
+                if (empreendedor.getEmail().equals(emailEmpreendedor)) {
+                    existe = true;
+                    empreendedorAchado = empreendedor;
+                    break;
+                }
+            }
+
+            if (existe == false) {
+                Empreendedor empreendedor = new Empreendedor();
+                empreendedor.setEmail(emailEmpreendedor);
+                empreendedorAchado = empreendedor;
+            }
+            if (!verificarLista(empreedendoresAdicionados, empreendedorAchado)) {
+                if (!existe) {
+                    empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
+                    empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
+                }
+                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                projeto.getEmpreendedores().add(empreendedorAchado);
+            } else {
+                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formulario_cadastro_projeto:autocomplete");
+            }
         }
     }
 
@@ -230,9 +237,15 @@ public class ProjetoBean {
      *
      * @param empreendedores
      * @param empreendedorAchado
-     * @return True se ele está presente na lista.
+     * @return True se ele está presente na lista. ou se já esta no projeto!
      */
     public boolean verificarLista(List<Empreendedor> empreendedores, Empreendedor empreendedorAchado) {
+        for (Object emp : projeto.getEmpreendedores()) {
+            Empreendedor empree = (Empreendedor) emp;
+            if (empree.getEmail().equals(empreendedorAchado.getEmail())) {
+                return true;
+            }
+        }
         for (Empreendedor empreendedore : empreendedores) {
             if (empreendedore.getEmail().equals(empreendedorAchado.getEmail())) {
                 return true;
@@ -367,7 +380,7 @@ public class ProjetoBean {
         this.empreendedorSelected = empreendedorSelected;
     }
 
-    public String enviaNovoProjetoCadastrar() {
+    public void enviaNovoProjetoCadastrar() {
         Projeto pjto = new Projeto();
         Analiseemprego analiseemprego = new Analiseemprego();
         Produtoouservico produtoouservico = new Produtoouservico();
@@ -387,7 +400,11 @@ public class ProjetoBean {
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
-        return "/faces/view/enviarProjeto.xhtml";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -404,121 +421,139 @@ public class ProjetoBean {
      * @return true se todos os campos do formulario estao preenchidos.
      * @since 21/09/2015
      */
-    public boolean verificarCampos() {
+    public int verificarCampos() {
+        int FLAG = 0;
         if (projeto.getNome().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
-            return false;
+//            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getSegmentoClientes().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:segmentoDeClientes");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getPropostaValor().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:propostaDeValor");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getAtividadesChaves().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:atividadesChave");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRelacoesClientes().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:relacoComClientes");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getParceriasChaves().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:parceriasChaves");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getCanais().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:canais");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRecursosPrincipais().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:recursosPrincipais");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getConcorrentes().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (selectedButton.equals("Outro:") && descricaoButtonOutro.isEmpty()) {
             FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getTecnologiaProcessos().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getPotencialInovacaoTecnologica().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialInovacaoTecnologica");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getAplicacoes().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:aplicacoes");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getDificuldadesEsperadas().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:dificuldadesEsperadas");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaUniversidade().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaUniversidade");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaComunidadeGoverno().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInfraestrutura().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:infraestrutura");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getParticipacaoacionaria().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:participacaoAcionaria");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPotencialEmprego().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialEmprego");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getFontesReceita().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:fontesDeReceita");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getEstruturaCusto().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:estruturaCustos");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getInvestimentoInicial().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getCustosfixos().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosfixos");
-            return false;
+            FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getCustosvariaveis().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosvariaveis");
-            return false;
+            FLAG = FLAG + 1;
         }
-        return true;
+//        if(FLAG != 0){
+//            return false;
+//        }
+        return FLAG;
     }
 
     /**
      * Envia o projeto para a avaliação.
      */
     public void enviarProjeto() {
-        if (!verificarCampos()) {
+        int FLAG = verificarCampos();
+        if (FLAG > 0) {
             System.out.println("entrou no false");
-//            FacesUtil.addErrorMessage("Sistema encontrou "+FLAG+" problemas que devem ser corrigidos antes de enviar a proposta",
-//                    "formulario_cadastro_projeto:");
+            FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
+                    "formulario_cadastro_projeto:tituloMensagem");
 
         } else {
-            System.out.println("não entrou");
-            HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-            Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
-            emp.enviarProjeto(projeto);
+            try {
 
+                System.out.println("não entrou");
+                HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+                salvarProjeto();
+                if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
+                    atualizarProjetoSessao();
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                }else{
+                    FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
+                    "formulario_cadastro_projeto:tituloMensagem");
+                }
+
+            } catch (Exception e) {
+                System.out.println("exeção = " + e);
+            }
         }
 
     }

@@ -7,12 +7,15 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -34,10 +37,12 @@ import javax.servlet.http.HttpSession;
 public class LoginBean {
 
     private static EmpreendedorDao empreededorDao;
+    private static EmpreendedorEmailDao empreendedorEmailDao;
     private static String user; //pode ser email ou senha
     private static String senha;
     private static String nome;
     private String emailRecuperarSenha;
+    private static EmpreendedorBean empreendedorBean;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -50,7 +55,7 @@ public class LoginBean {
         }
     }
 
-    public String fazLogout() {
+    public void fazLogout() {
 
         session.removeAttribute("empreendedor");
         session.removeAttribute("projetoSelecionado");
@@ -58,30 +63,48 @@ public class LoginBean {
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
 
-        return "/loginEmpreendedor.xhtml";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    public String getInicio() {
-        return "homeEmpreendedor.xhtml";
+    public void getInicio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String getEnviarProjeto() {
-        return "enviarProjeto.xhtml";
+    public void getEnviarProjeto() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String getVisualizarPlanos() {
-        return "PaginaBuscaProjeto.xhtml";
+    public void getVisualizarPlanos() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public String voltar() {
-        return "/loginEmpreendedor.xhtml";
+    public void voltar() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String fazLogin(String user, String senha) {
         try {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             Empreendedor empreendedor = new Empreendedor();
 
             if (soContemNumeros(user)) {
@@ -104,7 +127,7 @@ public class LoginBean {
                 this.setNome(empreendedor.getNome());
                 try {
                     //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().dispatch("view/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -125,9 +148,31 @@ public class LoginBean {
 
     }
     
-    //RECUPERAÇÃO DE SENHA
+    /**
+     * Método para recuparação de senha do usuário.
+     * Envia um email para o destino inserido (email) com um link para alterar a senha.
+     * Cria um novo empreendedorEmail e seta os valores com tipo (recuperação de senha),
+     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email inserido e
+     * gera um idUnico que é setado no campo de id do empreendedorEmail.
+     */
     public void recuperarSenha(){
-        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha);
+        
+        Empreendedor empreendedor;
+        
+        empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+        
+        String idUnico = UUID.randomUUID().toString();
+        
+        EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+        
+        empreendedorEmail.setEmpreendedor(empreendedor);
+        empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+        empreendedorEmail.setTipo("Recuperação de Senha");
+        
+        empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+       
+        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+        
     }
 
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
@@ -176,7 +221,9 @@ public class LoginBean {
      * @return the nome
      */
     public String getNome() {
-        return nome;
+        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp = (Empreendedor) session.getAttribute("empreendedor");
+        return emp.getNome();
     }
 
     /**
@@ -198,8 +245,12 @@ public class LoginBean {
         LoginBean.user = user;
     }
 
-    public String enviaBuscaProjeto() {
-        return "/faces/view/PaginaBuscaProjeto.xhtml";
+    public void enviaBuscaProjeto() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
