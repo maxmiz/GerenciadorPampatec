@@ -82,6 +82,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
     public ArrayList<Projeto> buscaProjetoPorEmpreendedor() {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+        empreendedor = Empreendedor.buscaPorEmail(empreendedor.getEmail());
 
         Projeto selecaoProjeto;
         ArrayList<Projeto> projetosEmpreendedor = new ArrayList();
