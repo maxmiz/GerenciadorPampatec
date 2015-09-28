@@ -64,47 +64,60 @@
 
             <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
 
-            <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
 
-                <f:facet name="header">
-                    Tabela de projetos
-                </f:facet>
-                <p:column headerText="Nome">
-                    <h:outputText value="#{projeto.nome}" />
-                </p:column>
-                <p:column headerText="Data de envio">
-                    <h:outputText value="#{projeto.dataEnvio}" />
-                </p:column>
-                <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Editar" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
+                <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Sair deste Projeto" title="View" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Sair deste Projeto" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
+                    <f:facet name="header">
+                        Tabela de projetos
+                    </f:facet>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{projeto.nome}" />
+                    </p:column>
+                    <p:column headerText="Data de envio" style="text-align: center; width: 150px">
+                        <h:outputText value="#{projeto.dataEnvio}" />
+                    </p:column>
+                    <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                        <div align="center">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                                <h:commandButton class="btn btn-primary btn-sm" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
 
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                </p:column>
+                                <h:commandButton class="btn btn-primary btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Editar" title="View">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-4">
+                                <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Sair deste Projeto" title="View" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
 
-                <p:column headerText="Status" style="width:150px;text-align: center">
-                    <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
-                </p:column>
-            </p:dataTable>
+                                <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Sair deste Projeto" title="View">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-4">
+                                <h:commandButton class="btn btn-danger btn-sm" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
+
+                                <h:commandButton class="btn btn-danger btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
+                                    <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </p:column>
+
+                    <p:column headerText="Status" style="width:150px;text-align: center">
+                        <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </div>
+            <div class="col-md-1"></div>
         </h:form>
     </h:body>
 </html>

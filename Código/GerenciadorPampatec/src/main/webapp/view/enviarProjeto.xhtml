@@ -70,6 +70,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
+            
         </script>
 
         <h:form id="formulario_cadastro_projeto">
@@ -93,7 +94,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton type="button" class="btn btn-primary" value="Salvar Plano de Projeto"></h:commandButton>
+                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -105,19 +106,23 @@
                 <div class="modal-dialog">
 
                     <!-- Conteúdo do Modal -->
-                    <div class="alert alert-dismissible alert-warning">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
-                        para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
-                        <div class="alert alert-dismissible alert-warning text-center"> 
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Salvar Projeto</h4>
                             </div>
-                            <div class="col-md-6">
+                            <div class="modal-body">
+                                Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
+                                para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
                                 <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -204,7 +209,7 @@
                                 <div class="col-md-5 text-center">
                                     <br/>
                                     <h:commandButton id="botaoSalvar1" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
-                                                     action="#{projetoBean.salvarProjeto()}"></h:commandButton>
+                                                     ></h:commandButton>
                                     <h:message for="botaoSalvar1"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right">
@@ -275,15 +280,14 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
-                                                     action="#{projetoBean.salvarProjeto()}"
+                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right">
                                     <br/>
-                                    <h:commandButton id="botaoEnviar2" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
+                                    <h:commandButton id="botaoEnviar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Enviar para avaliação"
+                                                     ></h:commandButton>
                                     <h:message for="botaoEnviar2"></h:message>
                                 </div>
                                 <div class="col-md-3  text-right"></div>
@@ -359,8 +363,8 @@
                                 <div class="col-md-3"><br /></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
-                                                     action="#{projetoBean.salvarProjeto()}"></h:commandButton>
+                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                                     ></h:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right">
@@ -487,8 +491,8 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio" 
-                                                     action="#{projetoBean.salvarProjeto()}"></h:commandButton>
+                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                                     ></h:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right">
@@ -537,8 +541,7 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
-                                                     action="#{projetoBean.salvarProjeto()}"
+                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
@@ -627,8 +630,7 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-5 text-center">
                                     <br/>
-                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" onclick="infoSalvar()" value="Salvar Plano de Negócio"
-                                                     action="#{projetoBean.salvarProjeto()}"
+                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
