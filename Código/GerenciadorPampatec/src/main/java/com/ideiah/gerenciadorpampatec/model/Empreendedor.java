@@ -17,6 +17,7 @@ public class Empreendedor implements java.io.Serializable {
     public static final int FALTANDO_DADOS = 0;
     public static final int ENVIADO = 1;
     public static final int ERRO_AO_SALVAR = 2;
+    
 
     private Integer idEmpreendedor;
     private String senha;
@@ -96,6 +97,16 @@ public class Empreendedor implements java.io.Serializable {
         this.projetos = projetos;
     }
 
+    /**
+     * Método usado na view enviarProjeto verifica se o empreendedor finalizou seu cadastro
+     * @return  cadastroCompleto se o empreendedor já finalizou o seu cadastro
+     */
+    public String retornaStatus(){
+        if(verificaDadosEmpreendedor(this)){
+            return "Cadastro Completo";
+        }
+        return "Cadastro Incompleto";
+    }
     public Integer getIdEmpreendedor() {
         return this.idEmpreendedor;
     }
@@ -224,6 +235,8 @@ public class Empreendedor implements java.io.Serializable {
     public int enviarProjeto(Projeto projeto) {
         if (!verificaDadosEmpreendedores(projeto)) {
             return FALTANDO_DADOS;
+        }else if(projeto.getStatus() == ENVIADO){
+            return ENVIADO;
         }
 
         projeto.setStatus(Projeto.EM_AVALIACAO);

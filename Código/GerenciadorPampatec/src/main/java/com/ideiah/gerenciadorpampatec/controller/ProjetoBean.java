@@ -537,24 +537,31 @@ public class ProjetoBean implements Serializable {
      */
     public void enviarProjeto() {
         int FLAG = verificarCampos();
+        int FLAG_STATUS = 0;
+        
         if (FLAG > 0) {
-            System.out.println("entrou no false");
             FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
                     "formulario_cadastro_projeto:tituloMensagem");
 
         } else {
             try {
 
-                System.out.println("não entrou");
                 HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
-                salvarProjeto();
-                if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                    atualizarProjetoSessao();
+                
+                
+                if(projeto.getStatus() == Empreendedor.ENVIADO){
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
-                } else {
-                    FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
+                }else{       
+                    if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
+                        System.out.println("status enviado");
+                        salvarProjeto();
+                        atualizarProjetoSessao();
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                    }else{
+                        FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
                             "formulario_cadastro_projeto:tituloMensagem");
+                    }
                 }
 
             } catch (Exception e) {

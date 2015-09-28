@@ -193,12 +193,15 @@
                                     <h:message class="mensagemErro" for="autocomplete"/>
                                     <br/><br/>
                                     <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
-                                        <p:column>
+                                        <p:column headerText="E-Mail Empreendedor">
                                             <h:outputText value="#{empreendedor.email}" />
                                             <!--<h:outputText value="" />-->
                                             <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
                                         </p:column>
-                                        <p:column>
+                                        <p:column headerText="Status do Cadastro">
+                                            <h:outputText id="statusEmpreendedor" value="#{empreendedor.retornaStatus()}"></h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Ação">
                                             <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}">  
                                             </h:commandButton>
                                         </p:column>
