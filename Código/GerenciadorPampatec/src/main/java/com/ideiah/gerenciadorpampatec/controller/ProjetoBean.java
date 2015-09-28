@@ -119,7 +119,8 @@ public class ProjetoBean implements Serializable {
     public void salvarProjeto() {
         pegaValorRadioButton();
         EnviaEmails(projeto);
-        projeto.SalvarProjeto(projeto);
+        ProjetoDao daoProj = new ProjetoDao();
+        projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
     }
 
@@ -397,11 +398,11 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
-        pjto.setNome("Nome do Projeto");
+//        pjto.setNome("");
 
         Date data = new Date(System.currentTimeMillis());
         pjto.setDataEnvio(data);
-        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
+//        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
@@ -538,7 +539,7 @@ public class ProjetoBean implements Serializable {
     public void enviarProjeto() {
         int FLAG = verificarCampos();
         int FLAG_STATUS = 0;
-        
+
         if (FLAG > 0) {
             FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
                     "formulario_cadastro_projeto:tituloMensagem");
@@ -548,19 +549,20 @@ public class ProjetoBean implements Serializable {
 
                 HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
-                
-                
-                if(projeto.getStatus() == Empreendedor.ENVIADO){
+
+                if (projeto.getStatus() == Empreendedor.ENVIADO) {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
-                }else{       
+                } else {
+                    salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         System.out.println("status enviado");
-                        salvarProjeto();
+//                        salvarProjeto();
                         atualizarProjetoSessao();
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
-                    }else{
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                    } else {
+
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
-                            "formulario_cadastro_projeto:tituloMensagem");
+                                "formulario_cadastro_projeto:tituloMensagem");
                     }
                 }
 
