@@ -6,8 +6,6 @@
  * relativa as funcionalidades dos botões
  */
 
-
-
 /*
  * Funções de Retorno de etapas no 
  * formulário de Envio de Plano de Negócio
@@ -80,6 +78,7 @@ function  verificarCampos() {
     verificaPlanoFinanceiro();
 }
 
+
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
@@ -98,7 +97,7 @@ function verificaNegocio() {
     mudarCorLista(listaCampos, tabNegocio);
 }
 
-function verificaAnaliseMercado(){
+function verificaAnaliseMercado() {
     var relacoComClientes = document.getElementById("formulario_cadastro_projeto:relacoComClientes");
     var parceriasChaves = document.getElementById("formulario_cadastro_projeto:parceriasChaves");
     var canais = document.getElementById("formulario_cadastro_projeto:canais");
@@ -114,7 +113,7 @@ function verificaAnaliseMercado(){
     mudarCorLista(listaCampos, tabAnaliseMercado);
 }
 
-function verificarProdutoServico(){
+function verificarProdutoServico() {
     var tecnologiaProcessos = document.getElementById("formulario_cadastro_projeto:tecnologiaProcessos");
     var potencialInovacaoTecnologica = document.getElementById("formulario_cadastro_projeto:potencialInovacaoTecnologica");
     var aplicacoes = document.getElementById("formulario_cadastro_projeto:aplicacoes");
@@ -124,7 +123,7 @@ function verificarProdutoServico(){
     var infraestrutura = document.getElementById("formulario_cadastro_projeto:infraestrutura");
     var tabProdutoServico = document.getElementById("tabProdutoServico");
     var listaCampos = new Array();
-    
+
     listaCampos[0] = tecnologiaProcessos;
     listaCampos[1] = potencialInovacaoTecnologica;
     listaCampos[2] = aplicacoes;
@@ -135,7 +134,7 @@ function verificarProdutoServico(){
     mudarCorLista(listaCampos, tabProdutoServico);
 }
 
-function verificaGestaoPessoas(){
+function verificaGestaoPessoas() {
     var participacaoAcionaria = document.getElementById("formulario_cadastro_projeto:participacaoAcionaria");
     var potencialEmprego = document.getElementById("formulario_cadastro_projeto:potencialEmprego");
     var tabGestaoPessoas = document.getElementById("tabGestaoPessoas");
@@ -145,7 +144,7 @@ function verificaGestaoPessoas(){
     mudarCorLista(listaCampos, tabGestaoPessoas);
 }
 
-function verificaPlanoFinanceiro(){
+function verificaPlanoFinanceiro() {
     var fontesDeReceita = document.getElementById("formulario_cadastro_projeto:fontesDeReceita");
     var estruturaCustos = document.getElementById("formulario_cadastro_projeto:estruturaCustos");
     var investimentoInicial = document.getElementById("formulario_cadastro_projeto:investimentoInicial");
@@ -153,13 +152,13 @@ function verificaPlanoFinanceiro(){
     var custosvariaveis = document.getElementById("formulario_cadastro_projeto:custosvariaveis");
     var tabPlanoFinanceiro = document.getElementById("tabPlanoFinanceiro");
     var listaCampos = new Array();
-    
+
     listaCampos[0] = fontesDeReceita;
     listaCampos[1] = estruturaCustos;
     listaCampos[2] = investimentoInicial;
     listaCampos[3] = custosfixos;
     listaCampos[4] = custosvariaveis;
-    
+
     mudarCorLista(listaCampos, tabPlanoFinanceiro);
 }
 
@@ -175,16 +174,26 @@ function mudarCorLista(listaCampos, tab) {
 
 function mudarCor(campo, tab) {
     if (!verificaPreenchimento(campo)) {
-        tab.style.color = "red";
-    } else {
-        tab.style.color = "green";
-    }
-}
 
-function verificaPreenchimento(campo) {
-    if (campo.value === "") {
-        return false;
-    } else {
-        return true;
-    }
+        function verificaContatos() {
+            var empresaProjeto = document.getElementById("empresaProjeto");
+            var tabContato = document.getElementById("tabContato");
+            mudarCor(empresaProjeto, tabContato);
+        }
+
+        function mudarCor(campo, tab) {
+            if (verificaPreenchimento(campo)) {
+                tab.style.color = "red";
+            } else {
+                tab.style.color = "green";
+            }
+        }
+
+        function verificaPreenchimento(campo) {
+            if (campo.value === "") {
+                return false;
+            } else {
+                return true;
+            }
+        }}
 }

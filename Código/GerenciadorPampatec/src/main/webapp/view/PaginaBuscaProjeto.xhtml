@@ -12,6 +12,7 @@
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="formulario.js"/>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -68,7 +69,7 @@
                         <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
                     </div>
                     <div class="col-md-2" text-align="center">
-                        <h:commandButton class="btn btn-success btn-xs" value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
+                        <h:commandButton id="botaoCadastrar" title="Clique aqui para cadastrar um novo projeto." class="btn btn-success btn-xs" value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
                     </div>
                 </div>
 
@@ -130,5 +131,13 @@
                 </div>
             </div>
         </h:form>
+
+
+        <div id="infoBotaoCadastrar" style="visibility: hidden" class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+        </div>
+
+
     </h:body>
 </html>
