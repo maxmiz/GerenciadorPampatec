@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
     private ArrayList<Projeto> listaProjetos;
     private ProjetoDao projeto;
     private Projeto projetoSelecionado;
+    private int contTeste = 0;
     
      public BuscaProjetoEmpreendedorBean() {
         projeto = new ProjetoDao();
@@ -56,12 +58,17 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
      * Remove o empreendedor do projeto selecionado
      */
     public void sairDoProjeto(){
-        System.out.println("nome do projeto = "+projetoSelecionado.getNome());
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
-//        System.out.println("projeto = "+projetoSelecionado.getEmpreendedores()+" empreendedor = "+empreendedor);
-        projetoSelecionado.getEmpreendedores().remove(empreendedor);
-//        System.out.println("projeto = "+projetoSelecionado.getEmpreendedores()+" empreendedor = "+empreendedor);
+        contTeste++;
+        System.out.println("Testeeeeeeeeeeeeee = " + contTeste);
+        for (Object object : projetoSelecionado.getEmpreendedores()) {
+            Empreendedor emmpreendedorLaco = (Empreendedor) object;
+            if(Objects.equals(empreendedor.getIdEmpreendedor(), emmpreendedorLaco.getIdEmpreendedor())){
+                projetoSelecionado.getEmpreendedores().remove(emmpreendedorLaco);
+                break;
+            }
+        }
         
         listaProjetos.remove(projetoSelecionado);
         
@@ -69,13 +76,6 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
             projeto.deletar(projetoSelecionado.getIdProjeto());
         }else{
             projeto.update(projetoSelecionado);
-        }
-    
-        
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().dispatch("PaginaBuscaProjeto.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
