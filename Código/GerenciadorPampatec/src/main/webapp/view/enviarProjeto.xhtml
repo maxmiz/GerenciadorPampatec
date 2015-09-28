@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </h:head>
-    <h:body onload="verificaContatos();">
+    <h:body onload="verificarCampos();">
 
         <!-- Início do menu superior -->
         <h:form>
@@ -100,6 +100,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
+            
         </script>
 
         <h:form id="formulario_cadastro_projeto">
@@ -123,7 +124,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="button" class="btn btn-primary" value="Salvar Plano de Projeto"></h:commandButton>
+                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -135,19 +136,23 @@
                 <div class="modal-dialog">
 
                     <!-- Conteúdo do Modal -->
-                    <div class="alert alert-dismissible alert-warning">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
-                        para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
-                        <div class="alert alert-dismissible alert-warning text-center"> 
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Salvar Projeto</h4>
                             </div>
-                            <div class="col-md-6">
+                            <div class="modal-body">
+                                Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
+                                para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
                                 <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -167,11 +172,11 @@
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
-                        <li class=""><a aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
+                        <li class=""><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
+                        <li class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
+                        <li class=""><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
+                        <li class=""><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
+                        <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content" >
 
@@ -218,12 +223,15 @@
                                     <h:message class="mensagemErro" for="autocomplete"/>
                                     <br/><br/>
                                     <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
-                                        <p:column>
+                                        <p:column headerText="E-Mail Empreendedor">
                                             <h:outputText value="#{empreendedor.email}" />
                                             <!--<h:outputText value="" />-->
                                             <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
                                         </p:column>
-                                        <p:column>
+                                        <p:column headerText="Status do Cadastro">
+                                            <h:outputText id="statusEmpreendedor" value="#{empreendedor.retornaStatus()}"></h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Ação">
                                             <h:commandButton class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}">  
                                             </h:commandButton>
                                         </p:column>
