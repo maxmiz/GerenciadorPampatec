@@ -83,36 +83,40 @@ public class ProjetoBean implements Serializable {
     }
 
     public void pegaValorRadioButton() {
-        switch (selectedButton) {
-            case "Ideia Básica":
-                projeto.getProdutoouservico().setEstagioEvolucao("1");
-                descricaoButtonOutro = null;
-                break;
-            case "Projeto básico":
-                projeto.getProdutoouservico().setEstagioEvolucao("2");
-                descricaoButtonOutro = null;
-                break;
-            case "Projeto detalhado":
-                projeto.getProdutoouservico().setEstagioEvolucao("3");
-                descricaoButtonOutro = null;
-                break;
-            case "Protótipo desenvolvido":
-                projeto.getProdutoouservico().setEstagioEvolucao("4");
-                descricaoButtonOutro = null;
-                break;
-            case "Em teste no mercado":
-                projeto.getProdutoouservico().setEstagioEvolucao("5");
-                descricaoButtonOutro = null;
-                break;
-            case "Clientes Pagando":
-                projeto.getProdutoouservico().setEstagioEvolucao("6");
-                descricaoButtonOutro = null;
-                break;
-            case "Outro:":
-                projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
-                descricaoButtonOutro = null;
-                break;
-            default:
+        if (selectedButton != null) {
+            switch (selectedButton) {
+                case "Ideia Básica":
+                    projeto.getProdutoouservico().setEstagioEvolucao("1");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Projeto básico":
+                    projeto.getProdutoouservico().setEstagioEvolucao("2");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Projeto detalhado":
+                    projeto.getProdutoouservico().setEstagioEvolucao("3");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Protótipo desenvolvido":
+                    projeto.getProdutoouservico().setEstagioEvolucao("4");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Em teste no mercado":
+                    projeto.getProdutoouservico().setEstagioEvolucao("5");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Clientes Pagando":
+                    projeto.getProdutoouservico().setEstagioEvolucao("6");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Outro:":
+                    projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
+                    descricaoButtonOutro = null;
+                    break;
+
+                default:
+
+            }
         }
     }
 
@@ -121,6 +125,11 @@ public class ProjetoBean implements Serializable {
         EnviaEmails(projeto);
         projeto.SalvarProjeto(projeto);
         atualizarProjetoSessao();
+    }
+
+    public void salvarProjetoeSair() {
+        salvarProjeto();      
+        
     }
 
     /**
