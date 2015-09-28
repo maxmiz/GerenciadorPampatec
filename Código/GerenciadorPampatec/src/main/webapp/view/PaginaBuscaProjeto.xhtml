@@ -78,7 +78,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
 
-                        <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto"  value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
                                 Tabela de projetos
@@ -101,20 +101,20 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <p:commandButton icon="fa fa-sign-out" styleClass="btn-default" rendered="#{projeto.status == 0}" value="Sair" title="Sair do projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" rendered="#{projeto.status == 0}" value="Sair" title="Sair do projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
 
-                                        <p:commandButton icon="fa fa-sign-out" styleClass="btn-default" disabled="true" rendered="#{projeto.status != 0}" value="Sair" title="Sair do projeto">
+                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" disabled="true" rendered="#{projeto.status != 0}" value="Sair" title="Sair do projeto">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <p:commandButton icon="fa fa-times" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
 
-                                        <p:commandButton icon="fa fa-times" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
                                     </div>

@@ -172,28 +172,24 @@ function mudarCorLista(listaCampos, tab) {
     }
 }
 
+function verificaContatos() {
+    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
+    var tabContato = document.getElementById("tabContato");
+    mudarCor(empresaProjeto, tabContato);
+}
+
 function mudarCor(campo, tab) {
-    if (!verificaPreenchimento(campo)) {
+    if (verificaPreenchimento(campo)) {
+        tab.style.color = "red";
+    } else {
+        tab.style.color = "green";
+    }
+}
 
-        function verificaContatos() {
-            var empresaProjeto = document.getElementById("empresaProjeto");
-            var tabContato = document.getElementById("tabContato");
-            mudarCor(empresaProjeto, tabContato);
-        }
-
-        function mudarCor(campo, tab) {
-            if (verificaPreenchimento(campo)) {
-                tab.style.color = "red";
-            } else {
-                tab.style.color = "green";
-            }
-        }
-
-        function verificaPreenchimento(campo) {
-            if (campo.value === "") {
-                return false;
-            } else {
-                return true;
-            }
-        }}
+function verificaPreenchimento(campo) {
+    if (campo.value === "") {
+        return false;
+    } else {
+        return true;
+    }
 }
