@@ -83,44 +83,54 @@ public class ProjetoBean implements Serializable {
     }
 
     public void pegaValorRadioButton() {
-        switch (selectedButton) {
-            case "Ideia Básica":
-                projeto.getProdutoouservico().setEstagioEvolucao("1");
-                descricaoButtonOutro = null;
-                break;
-            case "Projeto básico":
-                projeto.getProdutoouservico().setEstagioEvolucao("2");
-                descricaoButtonOutro = null;
-                break;
-            case "Projeto detalhado":
-                projeto.getProdutoouservico().setEstagioEvolucao("3");
-                descricaoButtonOutro = null;
-                break;
-            case "Protótipo desenvolvido":
-                projeto.getProdutoouservico().setEstagioEvolucao("4");
-                descricaoButtonOutro = null;
-                break;
-            case "Em teste no mercado":
-                projeto.getProdutoouservico().setEstagioEvolucao("5");
-                descricaoButtonOutro = null;
-                break;
-            case "Clientes Pagando":
-                projeto.getProdutoouservico().setEstagioEvolucao("6");
-                descricaoButtonOutro = null;
-                break;
-            case "Outro:":
-                projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
-                descricaoButtonOutro = null;
-                break;
-            default:
+        if (selectedButton != null) {
+            switch (selectedButton) {
+                case "Ideia Básica":
+                    projeto.getProdutoouservico().setEstagioEvolucao("1");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Projeto básico":
+                    projeto.getProdutoouservico().setEstagioEvolucao("2");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Projeto detalhado":
+                    projeto.getProdutoouservico().setEstagioEvolucao("3");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Protótipo desenvolvido":
+                    projeto.getProdutoouservico().setEstagioEvolucao("4");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Em teste no mercado":
+                    projeto.getProdutoouservico().setEstagioEvolucao("5");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Clientes Pagando":
+                    projeto.getProdutoouservico().setEstagioEvolucao("6");
+                    descricaoButtonOutro = null;
+                    break;
+                case "Outro:":
+                    projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
+                    descricaoButtonOutro = null;
+                    break;
+
+                default:
+
+            }
         }
     }
 
     public void salvarProjeto() {
         pegaValorRadioButton();
         EnviaEmails(projeto);
-        projeto.SalvarProjeto(projeto);
+        ProjetoDao daoProj = new ProjetoDao();
+        projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
+    }
+
+    public void salvarProjetoeSair() {
+        salvarProjeto();      
+        
     }
 
     /**
@@ -397,11 +407,11 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
-        pjto.setNome("Nome do Projeto");
+//        pjto.setNome("");
 
         Date data = new Date(System.currentTimeMillis());
         pjto.setDataEnvio(data);
-        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
+//        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
@@ -537,24 +547,32 @@ public class ProjetoBean implements Serializable {
      */
     public void enviarProjeto() {
         int FLAG = verificarCampos();
+        int FLAG_STATUS = 0;
+
         if (FLAG > 0) {
-            System.out.println("entrou no false");
             FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
                     "formulario_cadastro_projeto:tituloMensagem");
 
         } else {
             try {
 
-                System.out.println("não entrou");
                 HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
-                salvarProjeto();
-                if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                    atualizarProjetoSessao();
+
+                if (projeto.getStatus() == Empreendedor.ENVIADO) {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
                 } else {
-                    FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
-                            "formulario_cadastro_projeto:tituloMensagem");
+                    salvarProjeto();
+                    if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
+                        System.out.println("status enviado");
+//                        salvarProjeto();
+                        atualizarProjetoSessao();
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                    } else {
+
+                        FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
+                                "formulario_cadastro_projeto:tituloMensagem");
+                    }
                 }
 
             } catch (Exception e) {

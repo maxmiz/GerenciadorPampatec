@@ -17,11 +17,11 @@
     <h:body>
         <div class="col-md-3"></div>
         <div class="col-md-6 form-horizontal well bs-component">
-            <h1>Edite seu cadastro!</h1>
+            <h1>Edite seus dados</h1>
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                     <div class="col-md-6">
+                    <div class="col-md-6">
 
                         Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
                                            requiredMessage="Insira o seu nome antes de enviar" 
@@ -59,17 +59,17 @@
                         </p:inputText>
                     </div>
 
-             
-                        <div class="col-md-12">
-                            Formação <p:inputText class="form-control" 
-                                                  placeholder="Digite sua formação" 
-                                                  value="#{editarEmpreendedorBean.formacao}">
-                            </p:inputText>
-                        </div>
 
-                        <div class="col-md-8">
-                           E-mail* <p:inputText id="email" class="form-control" 
-                                                 placeholder="Digite seu email" 
+                    <div class="col-md-12">
+                        Formação <p:inputText class="form-control" 
+                                              placeholder="Digite sua formação" 
+                                              value="#{editarEmpreendedorBean.formacao}">
+                        </p:inputText>
+                    </div>
+
+                    <div class="col-md-8">
+                        E-mail* <p:inputText id="email" class="form-control" 
+                                             placeholder="Digite seu email" 
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -79,106 +79,111 @@
                         </p:inputText>
                         <h:message class="mensagemErro" for="email"/>
 
-                        </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            Telefone* <p:inputMask id="telefone" class="form-control" 
-                                                   placeholder="Digite seu contato"
-                                                   value="#{editarEmpreendedorBean.telefone}"
-                                                   requiredMessage="Insira o seu telefone"
-                                                   required="true"
-                                                   styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                   mask="(99)9999-9999"
-                                                   validatorMessage="Número invalido">
+                    <div class="col-md-4">
+                        Telefone* <p:inputMask id="telefone" class="form-control" 
+                                               placeholder="Digite seu contato"
+                                               value="#{editarEmpreendedorBean.telefone}"
+                                               requiredMessage="Insira o seu telefone"
+                                               required="true"
+                                               styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                               mask="(99)9999-9999"
+                                               validatorMessage="Número invalido">
 
-                                <!--<f:validateRegex pattern="[0-9]*" />-->
-                            </p:inputMask>
-                            <h:message class="mensagemErro" for="telefone"/>
-                            <br/>
+                            <!--<f:validateRegex pattern="[0-9]*" />-->
+                        </p:inputMask>
+                        <h:message class="mensagemErro" for="telefone"/>
+                        <br/>
 
-                        </div>
+                    </div>
 
-                        <legend>Endereço</legend>
+                    <legend>Endereço</legend>
 
-                        <div class="col-md-9">
-                            Rua* <p:inputText id="rua" class="form-control"
-                                              placeholder="Digite a rua do seu endereço"
-                                              requiredMessage="Insira a rua do seu endereço"
-                                              required="true"
-                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                              value="#{editarEmpreendedorBean.rua}">
-                            </p:inputText>
-                            <h:message class="mensagemErro" for="rua"/>
+                    <div class="col-md-9">
+                        Rua* <p:inputText id="rua" class="form-control"
+                                          placeholder="Digite a rua do seu endereço"
+                                          requiredMessage="Insira a rua do seu endereço"
+                                          required="true"
+                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                          value="#{editarEmpreendedorBean.rua}">
+                        </p:inputText>
+                        <h:message class="mensagemErro" for="rua"/>
 
-                        </div>
+                    </div>
 
-                        <div class="col-md-3">
-                            Número* <p:inputText id="numero" class="form-control" 
-                                                 placeholder="Digite o número do seu endereço"
-                                                 requiredMessage="Insira o número do seu endereço"
-                                                 required="true" 
-                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                 value="#{editarEmpreendedorBean.numero}"
-                                                 validatorMessage="Número invalido">
-                                <f:validateRegex pattern="[0-9]*" />
-                            </p:inputText>
-                            <h:message class="mensagemErro" for="numero"/>
+                    <div class="col-md-3">
+                        Número* <p:inputText id="numero" class="form-control" 
+                                             placeholder="Digite o número do seu endereço"
+                                             requiredMessage="Insira o número do seu endereço"
+                                             required="true" 
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{editarEmpreendedorBean.numero}"
+                                             validatorMessage="Número invalido">
+                            <f:validateRegex pattern="[0-9]*" />
+                        </p:inputText>
+                        <h:message class="mensagemErro" for="numero"/>
 
-                        </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            Bairro* <p:inputText id="bairro" class="form-control" 
-                                                 placeholder="Digite o bairro do seu endereço"
-                                                 requiredMessage="Insira o bairro do seu endereço"
-                                                 required="true"
-                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                 value="#{editarEmpreendedorBean.bairro}">
-                            </p:inputText>
-                            <h:message class="mensagemErro" for="bairro"/>
+                    <div class="col-md-6">
+                        Bairro* <p:inputText id="bairro" class="form-control" 
+                                             placeholder="Digite o bairro do seu endereço"
+                                             requiredMessage="Insira o bairro do seu endereço"
+                                             required="true"
+                                             styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                             value="#{editarEmpreendedorBean.bairro}">
+                        </p:inputText>
+                        <h:message class="mensagemErro" for="bairro"/>
 
-                        </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            Complemento<p:inputText class="form-control" 
-                                                    placeholder="Digite o complemento do seu endereço"
-                                                    value="#{editarEmpreendedorBean.complemento}">
-                            </p:inputText>
-                        </div>
+                    <div class="col-md-6">
+                        Complemento<p:inputText class="form-control" 
+                                                placeholder="Digite o complemento do seu endereço"
+                                                value="#{editarEmpreendedorBean.complemento}">
+                        </p:inputText>
+                    </div>
 
-                        <div class="col-md-12 text-right">
-                            <br/>
-                            <h:commandButton id="botaoFinalizarEdicao" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
-                                             action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
-                            <h:message for="botaoFinalizarEdicao"></h:message>
+                    <div class="col-md-12 text-right">
+                        <br/>
+                        <h:commandButton id="botaoFinalizarEdicao" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
+                                         action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
+                        <h:message for="botaoFinalizarEdicao"></h:message>
 
-                        </div>
+                    </div>
 
-                        <script>
-                            function confirmacaoDeEnvio() {
-                                $("#modalInfoDeEnvio").modal();
-                            }
-                        </script>
+                    <script>
+                        function confirmacaoDeEnvio() {
+                            $("#modalInfoDeEnvio").modal();
+                        }
+                    </script>
 
-                        <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
-                        <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
-                            <div class="modal-dialog">
+                    <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
+                    <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+                        <div class="modal-dialog">
 
-                                <!-- Conteúdo do Modal -->
-                                <div class="alert alert-dismissible alert-warning">
+                            <!-- Conteúdo do Modal -->
+                            <div class="modal-content">
+                                <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">×</button>
-                                    <strong><u>Você tem certeza que deseja encerrar a edição?</u></strong> 
-                                    <div class="alert alert-dismissible alert-warning text-center"> 
-                                        <div class="col-md-6">
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Você tem certeza que deseja encerrar a edição?</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-12"> 
+                                        
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                        </div>
-                                        <div class="col-md-6">
+                                        
                                             <h:commandButton class="btn btn-success" value="Confirmar edição" action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   
+                    </div>
+
 
                 </h:form>
             </div>

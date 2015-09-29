@@ -12,10 +12,12 @@
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="formulario.js"/>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
 
         <title>Planos de Negócio - Empreendedor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -35,15 +37,15 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
                                 </ul>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink value="Editar meus dados"></h:commandLink></li>
+                                    <li><h:commandLink value="Perfil"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
@@ -61,50 +63,80 @@
         </h:form>
 
         <h:form>
+            <div>
+                <div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+                    </div>
+                    <div class="col-md-2" text-align="center">
+                        <h:commandButton id="botaoCadastrar" title="Clique aqui para cadastrar um novo projeto." class="btn btn-success btn-xs" value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
+                    </div>
+                </div>
 
-            <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+                <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
 
-            <p:dataTable id="singleDT" var="projeto" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto"  value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
-                <f:facet name="header">
-                    Tabela de projetos
-                </f:facet>
-                <p:column headerText="Nome">
-                    <h:outputText value="#{projeto.nome}" />
-                </p:column>
-                <p:column headerText="Data de envio">
-                    <h:outputText value="#{projeto.dataEnvio}" />
-                </p:column>
-                <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Editar" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
+                            <f:facet name="header">
+                                Tabela de projetos
+                            </f:facet>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{projeto.nome}" />
+                            </p:column>
+                            <p:column headerText="Data de criação" style="text-align: center; width: 150px">
+                                <h:outputText value="#{projeto.dataEnvio}" />
+                            </p:column>
+                            <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                                <div align="center">
+                                    <div class="col-md-4"> 
+                                        <p:commandButton icon="fa fa-edit" styleClass="btn-primary" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
 
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Sair deste Projeto" title="View" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Sair deste Projeto" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
+                                        <p:commandButton icon="fa fa-edit" disabled="true" styleClass="btn-primary" rendered="#{projeto.status != 0}" value="Editar" title="View">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" rendered="#{projeto.status == 0}" value="Sair" title="Sair do projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
 
-                    <h:commandButton class="btn btn-default btn-sm" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                    
-                    <h:commandButton class="btn btn-default btn-sm" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
-                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                    </h:commandButton>
-                </p:column>
+                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" disabled="true" rendered="#{projeto.status != 0}" value="Sair" title="Sair do projeto">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
 
-                <p:column headerText="Status" style="width:150px;text-align: center">
-                    <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
-                </p:column>
-            </p:dataTable>
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </p:commandButton>
+                                    </div>
+                                </div>
+                            </p:column>
+
+                            <p:column headerText="Status" style="width:150px;text-align: center">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
         </h:form>
+
+
+        <div id="infoBotaoCadastrar" style="visibility: hidden" class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+        </div>
+
+
     </h:body>
 </html>
