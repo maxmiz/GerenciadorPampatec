@@ -129,8 +129,8 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjetoeSair() {
-        salvarProjeto();      
-        
+        salvarProjeto();
+
     }
 
     /**
@@ -181,33 +181,59 @@ public class ProjetoBean implements Serializable {
         return listaFiltrada;
     }
 
-//    Deleta Empreendedor da Lista
-    public void deletarEmpreendedor() {
-        System.out.println("Entrou Deletar");
-        Empreendedor empreendedorDeletar = null;
-        for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
-            System.out.println("deletar 111");
-            empreendedorDeletar = empreendedor;
-            System.out.println("deletar 222" + empreendedor.getEmail());
+    /**
+     *
+     * @return true se o empreendedor não for o dono do projeto
+     */
+    public Boolean verificarEmpreendedorBoss(Empreendedor emp2) {
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+        projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
 
-//            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
-            System.out.println("xii");
-            if (empreendedor.getCpf() != null) {
-                System.out.println("entrou no if 1");
-                break;
-//                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
-            } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
-                System.out.println("entrou no has");
-                empreendedor.deletarEmpreendedor(empreendedor);
-                break;
-            }
+        if (empreendedor.getEmail().equals(emp2.getEmail())) {
+            return true;
         }
-//        }
 
-        projeto.getEmpreendedores().remove(empreendedorDeletar);
-        getEmpreedendoresAdicionados().remove(empreendedorDeletar);
-        System.out.println("Saiu");
+        return false;
     }
+
+    /**
+     * Deletar empreendedor de um projeto desde que ele não seja o dono do mesmo
+     */
+    public void deletarEmpreendedor() {
+
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+        if (!empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
+            projeto.getEmpreendedores().remove(empreendedorSelected);
+            getEmpreedendoresAdicionados().remove(empreendedorSelected);
+        }
+    }
+////    Deleta Empreendedor da Lista
+//    public void deletarEmpreendedor() {
+//        Empreendedor empreendedorDeletar = null;
+//        for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
+//            empreendedorDeletar = empreendedor;
+//            System.out.println("deletar 222" + empreendedor.getEmail());
+//
+////            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
+//            System.out.println("xii");
+//            if (empreendedor.getCpf() != null) {
+//                System.out.println("entrou no if 1");
+//                break;
+////                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
+//            } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
+//                System.out.println("entrou no has");
+//                empreendedor.deletarEmpreendedor(empreendedor);
+//                break;
+//            }
+//        }
+////        }
+//
+//        projeto.getEmpreendedores().remove(empreendedorDeletar);
+//        getEmpreedendoresAdicionados().remove(empreendedorDeletar);
+//        System.out.println("Saiu");
+//    }
 
     /**
      * Adiciona o Empreendedor ao projeto.
