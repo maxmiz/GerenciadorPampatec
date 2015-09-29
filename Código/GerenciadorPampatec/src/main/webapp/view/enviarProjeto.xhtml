@@ -34,17 +34,20 @@
                                 <h:message for="retornarInicio"></h:message>
                             </li>      
 
-                            <script>
+                            <!--Essa janela modal esta com problemas, esta salvando automaticamente o projeto mesmo sem ter sido solicitado-->
+                            
+                            
+<!--                            <script>
                                 function voltarHome() {
                                     $("#modalInfoDeEnvio").modal();
                                 }
                             </script>
 
-                            <!-- Modal com a Informação do botão Inicio -->
+                             Modal com a Informação do botão Inicio 
                             <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
                                 <div class="modal-dialog">
 
-                                    <!-- Conteúdo do Modal -->
+                                     Conteúdo do Modal 
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
@@ -54,13 +57,13 @@
                                         </div>
                                         <div class="modal-footer">
                                             <div >                 
-                                                <button type="button" class="btn btn-default" data-dismiss="modal" action="#{projetoBean.salvarProjetoeSair()}">Salvar e sair</button>                                                
-                                                    <h:commandButton class="btn btn-primary" value="Sair" action="#{loginBean.getInicio()}"></h:commandButton>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" action="#//{projetoBean.salvarProjetoeSair()}">Salvar e sair</button>                                                
+                                                    <h:commandButton class="btn btn-primary" value="Sair" action="#//{loginBean.getInicio()}"></h:commandButton>
                                                 </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
 
                             <li class="dropdown">
