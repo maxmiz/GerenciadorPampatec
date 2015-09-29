@@ -72,7 +72,7 @@ public class EmailUtil {
                     + "\n"
                     + "        <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
                     + "        <div class=\"col-md-4 text-center well\" style=\"text-align: center;width: 66.333333%;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 2px solid #3FB618;border-radius: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)\">\n"
-                    + "            <h1 class=\"fonteBranca\">Conluir cadastro</h1>\n"
+                    + "            <h1 class=\"fonteBranca\">Concluir cadastro</h1>\n"
                     + "            <form class=\"form-horizontal\">\n"
                     + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
                     + "                        <a>Olá!</a><br/><br/><a>O empreendedor <strong>" + empreendedorNome + "</strong> adicionou você\n"

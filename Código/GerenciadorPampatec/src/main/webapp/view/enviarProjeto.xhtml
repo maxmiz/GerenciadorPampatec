@@ -71,15 +71,15 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Cadastrar Plano de Negócio"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Ver meus Planos de Negócio"></h:commandLink></li>
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
                                 </ul>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Editar meus dados"></h:commandLink></li>
+                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
@@ -666,15 +666,13 @@
                                 </div>
 
 
-                                <div class="col-md-3"></div>
-                                <div class="col-md-5 text-center">
-                                    <br/>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
                                     <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <br/>
                                     <h:commandButton id="botaoEnviar6" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para avaliação"
                                                      action="#{projetoBean.enviarProjeto()}"></h:commandButton>
                                     <h:message for="botaoEnviar6"></h:message>
