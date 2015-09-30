@@ -209,31 +209,6 @@ public class ProjetoBean implements Serializable {
             getEmpreedendoresAdicionados().remove(empreendedorSelected);
         }
     }
-////    Deleta Empreendedor da Lista
-//    public void deletarEmpreendedor() {
-//        Empreendedor empreendedorDeletar = null;
-//        for (Empreendedor empreendedor : getEmpreedendoresAdicionados()) {
-//            empreendedorDeletar = empreendedor;
-//            System.out.println("deletar 222" + empreendedor.getEmail());
-//
-////            if (empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
-//            System.out.println("xii");
-//            if (empreendedor.getCpf() != null) {
-//                System.out.println("entrou no if 1");
-//                break;
-////                } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorSelected)) {
-//            } else if (!empreendedor.verificarProjetoHasEmpreendedor(empreendedorDeletar)) {
-//                System.out.println("entrou no has");
-//                empreendedor.deletarEmpreendedor(empreendedor);
-//                break;
-//            }
-//        }
-////        }
-//
-//        projeto.getEmpreendedores().remove(empreendedorDeletar);
-//        getEmpreedendoresAdicionados().remove(empreendedorDeletar);
-//        System.out.println("Saiu");
-//    }
 
     /**
      * Adiciona o Empreendedor ao projeto.
@@ -465,106 +440,102 @@ public class ProjetoBean implements Serializable {
      */
     public int verificarCampos() {
         int FLAG = 0;
-        if (projeto.getNome().isEmpty()) {
+        if (projeto.getNome().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
-//            return false;
             FLAG = FLAG + 1;
         }
-        if (projeto.getNegocio().getSegmentoClientes().isEmpty()) {
+        if (projeto.getNegocio().getSegmentoClientes().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:segmentoDeClientes");
             FLAG = FLAG + 1;
         }
-        if (projeto.getNegocio().getPropostaValor().isEmpty()) {
+        if (projeto.getNegocio().getPropostaValor().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:propostaDeValor");
             FLAG = FLAG + 1;
         }
-        if (projeto.getNegocio().getAtividadesChaves().isEmpty()) {
+        if (projeto.getNegocio().getAtividadesChaves().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:atividadesChave");
             FLAG = FLAG + 1;
         }
-        if (projeto.getAnaliseemprego().getRelacoesClientes().isEmpty()) {
+        if (projeto.getAnaliseemprego().getRelacoesClientes().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:relacoComClientes");
             FLAG = FLAG + 1;
         }
-        if (projeto.getAnaliseemprego().getParceriasChaves().isEmpty()) {
+        if (projeto.getAnaliseemprego().getParceriasChaves().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:parceriasChaves");
             FLAG = FLAG + 1;
         }
-        if (projeto.getAnaliseemprego().getCanais().isEmpty()) {
+        if (projeto.getAnaliseemprego().getCanais().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:canais");
             FLAG = FLAG + 1;
         }
-        if (projeto.getAnaliseemprego().getRecursosPrincipais().isEmpty()) {
+        if (projeto.getAnaliseemprego().getRecursosPrincipais().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:recursosPrincipais");
             FLAG = FLAG + 1;
         }
-        if (projeto.getAnaliseemprego().getConcorrentes().isEmpty()) {
+        if (projeto.getAnaliseemprego().getConcorrentes().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
             FLAG = FLAG + 1;
         }
-        if (selectedButton.equals("Outro:") && descricaoButtonOutro.isEmpty()) {
+        if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
             FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getTecnologiaProcessos().isEmpty()) {
+        if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getPotencialInovacaoTecnologica().isEmpty()) {
+        if (projeto.getProdutoouservico().getPotencialInovacaoTecnologica().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialInovacaoTecnologica");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getAplicacoes().isEmpty()) {
+        if (projeto.getProdutoouservico().getAplicacoes().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:aplicacoes");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getDificuldadesEsperadas().isEmpty()) {
+        if (projeto.getProdutoouservico().getDificuldadesEsperadas().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:dificuldadesEsperadas");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getInteracaoEmpresaUniversidade().isEmpty()) {
+        if (projeto.getProdutoouservico().getInteracaoEmpresaUniversidade().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaUniversidade");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getInteracaoEmpresaComunidadeGoverno().isEmpty()) {
+        if (projeto.getProdutoouservico().getInteracaoEmpresaComunidadeGoverno().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno");
             FLAG = FLAG + 1;
         }
-        if (projeto.getProdutoouservico().getInfraestrutura().isEmpty()) {
+        if (projeto.getProdutoouservico().getInfraestrutura().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:infraestrutura");
             FLAG = FLAG + 1;
         }
-        if (projeto.getParticipacaoacionaria().isEmpty()) {
+        if (projeto.getParticipacaoacionaria().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:participacaoAcionaria");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPotencialEmprego().isEmpty()) {
+        if (projeto.getPotencialEmprego().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialEmprego");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getFontesReceita().isEmpty()) {
+        if (projeto.getPlanofinanceiro().getFontesReceita().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:fontesDeReceita");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getEstruturaCusto().isEmpty()) {
+        if (projeto.getPlanofinanceiro().getEstruturaCusto().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:estruturaCustos");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getInvestimentoInicial().isEmpty()) {
+        if (projeto.getPlanofinanceiro().getInvestimentoInicial().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getCustosfixos().isEmpty()) {
+        if (projeto.getPlanofinanceiro().getCustosfixos().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosfixos");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getCustosvariaveis().isEmpty()) {
+        if (projeto.getPlanofinanceiro().getCustosvariaveis().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosvariaveis");
             FLAG = FLAG + 1;
         }
-//        if(FLAG != 0){
-//            return false;
-//        }
         return FLAG;
     }
 
