@@ -62,11 +62,11 @@ public class CompletarCadastroFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         String id = request.getParameter("id");
         emp = Empreendedor.buscaEmpreendedorID(id);
-        emp2 = (Empreendedor) session.getAttribute("empreendedorTerminado");
+        emp2 = (Empreendedor) session.getAttribute("empreendedor");
         if (emp != null) {
             System.out.println("Entrou");
-            session.removeAttribute("empreendedorTerminado");
-            session.setAttribute("empreendedorTerminado", emp);
+            session.removeAttribute("empreendedor");
+            session.setAttribute("empreendedor", emp);
             request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.xhtml").forward(request, response);
         }else if((emp2 !=  null)){
             if(emp2.getIdUnico() != null){
