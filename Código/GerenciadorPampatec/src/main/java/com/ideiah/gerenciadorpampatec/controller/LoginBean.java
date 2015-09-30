@@ -97,7 +97,7 @@ public class LoginBean {
 
     public void voltar() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

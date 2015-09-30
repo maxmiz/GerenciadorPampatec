@@ -15,7 +15,7 @@ public class Notificacao implements java.io.Serializable {
 
     private int idNotificacao;
     private String descricao;
-    private int idEmpreendedor;
+    private Empreendedor empreendedor;
     
     public Notificacao () {
         
@@ -26,9 +26,9 @@ public class Notificacao implements java.io.Serializable {
      * @param idNotificao
      * @param idEmpreendedor 
      */
-    public Notificacao (int idNotificao, int idEmpreendedor) {
+    public Notificacao (int idNotificao, Empreendedor empreendedor) {
         this.idNotificacao = idNotificao;
-        this.idEmpreendedor = idEmpreendedor;
+        this.empreendedor = empreendedor;
     }
     
     /**
@@ -37,10 +37,10 @@ public class Notificacao implements java.io.Serializable {
      * @param descricao
      * @param idEmpreendedor 
      */
-    public Notificacao (int idNotificacao, String descricao, int idEmpreendedor) {
+    public Notificacao (int idNotificacao, String descricao, Empreendedor empreendedor) {
         this.idNotificacao = idNotificacao;
         this.descricao = descricao;
-        this.idEmpreendedor = idEmpreendedor;
+        this.empreendedor = empreendedor;
     }
     
 
@@ -75,15 +75,15 @@ public class Notificacao implements java.io.Serializable {
     /**
      * @return the idEmpreendedor
      */
-    public int getIdEmpreendedor() {
-        return idEmpreendedor;
+    public Empreendedor getEmpreendedor() {
+        return empreendedor;
     }
 
     /**
-     * @param idEmpreendedor the idEmpreendedor to set
+     * @param empreendedor the idEmpreendedor to set
      */
-    public void setIdEmpreendedor(int idEmpreendedor) {
-        this.idEmpreendedor = idEmpreendedor;
+    public void setEmpreendedor(Empreendedor empreendedor) {
+        this.empreendedor = empreendedor;
     }
     
     
