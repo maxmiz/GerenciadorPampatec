@@ -1,4 +1,3 @@
-
 package com.ideiah.gerenciadorpampatec.dao;
 
 import java.util.ArrayList;
@@ -16,19 +15,18 @@ import org.hibernate.criterion.Restrictions;
  * @author Pedro
  */
 public abstract class Dao {
-    
+
     public static final int SALVOU = 0;
     public static final int ERRO_SALVAR = 1;
     public static final int ARQUIVO_GRANDE = 2;
-    
+
     private Transaction tx = null;
     private Session session = null;
 
-    
-    public  Dao(){
+    public Dao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="INSERT and UPDATE"> 
     /**
      * Salva um objeto mapeado no banco de dados
@@ -52,11 +50,11 @@ public abstract class Dao {
         }
         return salvou;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="INSERT and UPDATE"> 
-    
     /**
      * Salva um objeto que contêm um arquivo nele
+     *
      * @param obj
      * @return Resultado
      */
@@ -73,15 +71,15 @@ public abstract class Dao {
             e.printStackTrace();
             getSession().getTransaction().rollback();
             result = ERRO_SALVAR;
-        } catch (OutOfMemoryError error){
+        } catch (OutOfMemoryError error) {
             error.printStackTrace();
             getSession().getTransaction().rollback();
             result = ARQUIVO_GRANDE;
         }
         return result;
     }
-    
-    public boolean update(Object obj){
+
+    public boolean update(Object obj) {
         boolean salvou = false;
         try {
             setTx(getSession().getTransaction());
@@ -116,7 +114,7 @@ public abstract class Dao {
         }
         return true;
     }
-    
+
     public boolean excluir(String codigo, Class type) {
 //        Session session = HibernateUtil.getSessionFactory().openSession();
 //        Transaction tx = null;
@@ -134,7 +132,7 @@ public abstract class Dao {
         }
         return true;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="SEARCH OBJECT"> 
     public Object buscarObjeto(int codigo, Class<?> classe) {
         Object objeto = null;
@@ -143,13 +141,15 @@ public abstract class Dao {
         return getObject(criteria);
     }
 //    METODO PARA BUSCAR QUALQUER OBJETO UNICO EM QUALQUER CLASSE, (PROPRIEDADE CHAVE, VALOR A SER COMPARADO, TABELA)
-    public Object buscarObjetoCriteria(String propriedade ,String valor, Class<?> classe) {
+
+    public Object buscarObjetoCriteria(String propriedade, String valor, Class<?> classe) {
         Object objeto = null;
         Criteria criteria = getCriteria(classe);
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObject(criteria);
     }
-    public Object buscarObjetoCriteriaINT(String propriedade ,int valor, Class<?> classe) {
+
+    public Object buscarObjetoCriteriaINT(String propriedade, int valor, Class<?> classe) {
         Object objeto = null;
         Criteria criteria = getCriteria(classe);
         criteria.add(Restrictions.eq(propriedade, valor));
@@ -190,7 +190,7 @@ public abstract class Dao {
         Criteria criteria = getCriteria(classe);
         return getObjects(criteria);
     }
-        // </editor-fold>
+    // </editor-fold>
 
     private Object getObject(Criteria criteria) {
         Object object = criteria.uniqueResult();
@@ -247,4 +247,3 @@ public abstract class Dao {
         this.session = session;
     }
 }
-

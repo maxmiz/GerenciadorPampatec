@@ -47,6 +47,10 @@ public class EmpreendedorDao extends Dao {
         return (ArrayList<Notificacao>) buscarObjetos(Notificacao.class);
     }
     
+    public Notificacao buscarNotificacoesPorEmpreendedor(String idEmpreendedor){
+        return (Notificacao) buscarObjetoCriteria("idEmpreendedor", idEmpreendedor, Notificacao.class);
+    }
+    
     public Notificacao buscarNotificacao(int codigo) {
         return (Notificacao) buscarObjeto(codigo, Empreendedor.class);
     }
