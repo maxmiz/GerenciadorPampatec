@@ -30,8 +30,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <a onclick="voltarHome()" style ="cursor:pointer">Início</a>
-                                <h:message for="retornarInicio"></h:message>
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>      
 
                             <!--Essa janela modal esta com problemas, esta salvando automaticamente o projeto mesmo sem ter sido solicitado-->
@@ -67,6 +66,11 @@
                                                             </div>
                                                         </div>-->
 
+                            <li class="">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
