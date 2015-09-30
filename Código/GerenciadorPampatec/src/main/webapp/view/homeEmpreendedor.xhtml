@@ -31,9 +31,17 @@
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
+                            
+                            <li class="">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                    <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
                                     <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>

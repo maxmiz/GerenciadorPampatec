@@ -15,6 +15,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+
+        <!-- Início do menu superior -->
+        <h:form>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                            </li>
+
+                            <li class="">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
+                    </div>
+                </div>
+            </nav>
+        </h:form>
+        <!-- Fim do menu superior -->
+
+
         <div class="col-md-3"></div>
         <div class="col-md-6 form-horizontal well bs-component">
             <h1>Edite seus dados</h1>
@@ -173,11 +221,11 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="col-md-12"> 
-                                        
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                        
-                                            <h:commandButton class="btn btn-success" value="Confirmar edição" action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
-                                        
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+
+                                        <h:commandButton class="btn btn-success" value="Confirmar edição" action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
+
                                     </div>
                                 </div>
                             </div>

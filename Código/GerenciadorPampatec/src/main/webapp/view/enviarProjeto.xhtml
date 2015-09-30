@@ -30,9 +30,47 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <a onclick="voltarHome()" style ="cursor:pointer">Início</a>
-                                <h:message for="retornarInicio"></h:message>
+                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>      
+
+                            <!--Essa janela modal esta com problemas, esta salvando automaticamente o projeto mesmo sem ter sido solicitado-->
+
+
+                            <!--                            <script>
+                                                            function voltarHome() {
+                                                                $("#modalInfoDeEnvio").modal();
+                                                            }
+                                                        </script>-->
+
+                            <!--Modal com a Informação do botão Inicio--> 
+
+
+                            <!--                            <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+                                                            <div class="modal-dialog">
+                            
+                                                                Conteúdo do Modal 
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <strong><u>Você tem certeza que deseja voltar ao inicio e encerrar o cadastro do plano?</u></strong> 
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <div>                 
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal" action="#//{projetoBean.salvarProjetoeSair()}">Salvar e sair</button>                                                
+                                                                            <h:commandButton class="btn btn-primary" value="Sair" action="#//{loginBean.getInicio()}"></h:commandButton>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+                            <li class="">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
