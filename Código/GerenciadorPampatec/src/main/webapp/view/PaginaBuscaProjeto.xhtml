@@ -34,6 +34,12 @@
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
 
+                            <li class="">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -78,7 +84,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
 
-                        <p:dataTable id="singleDT" var="projeto"  value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há projetos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
                                 Tabela de projetos
@@ -88,6 +94,9 @@
                             </p:column>
                             <p:column headerText="Data de criação" style="text-align: center; width: 150px">
                                 <h:outputText value="#{projeto.dataEnvio}" />
+                            </p:column>
+                            <p:column headerText="Status" style="width:150px;text-align: center">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                             </p:column>
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
@@ -119,10 +128,6 @@
                                         </p:commandButton>
                                     </div>
                                 </div>
-                            </p:column>
-
-                            <p:column headerText="Status" style="width:150px;text-align: center">
-                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                             </p:column>
                         </p:dataTable>
                     </div>

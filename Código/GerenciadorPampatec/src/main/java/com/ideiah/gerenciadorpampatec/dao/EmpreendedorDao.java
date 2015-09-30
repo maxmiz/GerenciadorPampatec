@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.Notificacao;
 import java.util.ArrayList;
 
 /**
@@ -18,24 +19,36 @@ public class EmpreendedorDao extends Dao {
     public boolean salvar(Empreendedor empreendedor) {
         return super.salvar(empreendedor);
     }
+    
+    public boolean salvarNotificacao(Notificacao notificacao) {
+        return super.salvar(notificacao);
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Buscar">
     public ArrayList<Empreendedor> buscar() {
         return (ArrayList<Empreendedor>) buscarObjetos(Empreendedor.class);
     }
-    
+
     public Empreendedor buscar(int codigo) {
         return (Empreendedor) buscarObjeto(codigo, Empreendedor.class);
     }
-    
-     public Empreendedor buscarPorIdUnico(String idUnico) {
+
+    public Empreendedor buscarPorIdUnico(String idUnico) {
         return (Empreendedor) buscarObjetoCriteria("idUnico", idUnico, Empreendedor.class);
-        
+
     }
-     
-     public Empreendedor buscaPorEmail(String email){
+
+    public Empreendedor buscaPorEmail(String email) {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
+    }
+    
+    public ArrayList<Notificacao> buscarNotificacoes(){
+        return (ArrayList<Notificacao>) buscarObjetos(Notificacao.class);
+    }
+    
+    public Notificacao buscarNotificacao(int codigo) {
+        return (Notificacao) buscarObjeto(codigo, Empreendedor.class);
     }
 
     /*
@@ -60,7 +73,7 @@ public class EmpreendedorDao extends Dao {
 //    }
     public Empreendedor buscarPorCpf(String cpf) {
         return (Empreendedor) buscarObjetoCriteria("cpf", cpf, Empreendedor.class);
-        
+
     }
 //    public boolean verificarEmail(String email){
 //        if((Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class)!=null){
@@ -73,9 +86,7 @@ public class EmpreendedorDao extends Dao {
     public Empreendedor buscarPorEmail(String email) {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
-    
-    
-    
+
     public static boolean soContemNumeros(String texto) {
 //        return texto.matches("[0-9]");
         if (texto == null) {
@@ -88,18 +99,21 @@ public class EmpreendedorDao extends Dao {
         }
         return true;
     }
-    
+
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Deletar">
-
     public boolean deletar(int codigo) {
         return excluir(codigo, Empreendedor.class
         );
     }
-    
+
     public boolean deletarPorEmail(String email) {
         Empreendedor empreendedorEmail = (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
         return deletar(empreendedorEmail.getIdEmpreendedor());
+    }
+    
+    public boolean deletarNotificacao(int codigo) {
+        return excluir(codigo, Notificacao.class);
     }
 //</editor-fold>
 
