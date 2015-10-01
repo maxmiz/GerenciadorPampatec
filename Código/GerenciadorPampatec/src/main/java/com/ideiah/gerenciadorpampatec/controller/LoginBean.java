@@ -59,9 +59,9 @@ public class LoginBean {
      * 
      * @return O número total de notificações
      */
-    public int getNotificacoesDoEmpreendedor(){
+    public int getQuantidadeDeNotificacoes(){
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
-        return empreendedor.getNotificacoesDoEmpreendedor(empreendedor);
+        return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
         
     }
 

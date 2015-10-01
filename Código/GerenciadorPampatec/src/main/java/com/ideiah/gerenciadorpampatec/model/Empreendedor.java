@@ -416,7 +416,7 @@ public class Empreendedor implements java.io.Serializable {
      * 
      * @return quantidade de notificacoes 
      */
-    public int getNotificacoesDoEmpreendedor(Empreendedor empreendedor){
+    public int getQuantidadeDeNotificacoes(Empreendedor empreendedor){
         return notificacoes.size();
     }
 }
