@@ -239,7 +239,7 @@ public class Empreendedor implements java.io.Serializable {
             return ENVIADO;
         }
 
-        projeto.setStatus(Projeto.EM_AVALIACAO);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
         if (getProjetoDao().update(projeto)) {
             return ENVIADO;
         } else {
