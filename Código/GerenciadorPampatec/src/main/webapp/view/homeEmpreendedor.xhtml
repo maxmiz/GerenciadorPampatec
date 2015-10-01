@@ -13,6 +13,7 @@
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="js.js"/>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -31,10 +32,12 @@
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
-                            
+
                             <li class="">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
-                                    <span class="badge">0</span>
+                                <a class="dropdown-toggle" href="#" onclick="exibeNotificacoes()"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">
+                                        <h:outputText value="${loginBean.quantidadeDeNotificacoes}"></h:outputText>
+                                    </span>
                                 </a>
                             </li>
 
@@ -66,6 +69,33 @@
             </nav>
 
             <!-- Fim do menu superior -->
+
+            <!-- Inicio dos Modais apresentadas -->
+
+            <!-- Modal com as NOTIFICAÇÕES do usuário -->
+            <div class="modal fade" id="modalNotificacoes" role="dialog">
+
+                <div class="modal-dialog">
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Notificações</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h:dataTable value="${loginBean.descricaoNotificacoes}" var="notificacao">
+                                <h:column><h:outputText value="#{notificacao}"></h:outputText></h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="panel-footer" align="right">
+                            <h:commandButton  class="btn btn-success" value="Voltar"></h:commandButton>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Fim do Modal com as NOTIFICAÇÕES -->
+
+            <!-- Fim das modais apresentadas -->
 
             <div class="col-md-12">
                 <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">

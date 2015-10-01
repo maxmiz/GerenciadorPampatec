@@ -55,5 +55,13 @@
                 <column name="Projeto_idProjeto" />
             </many-to-many>
         </set>
+        
+        <set name="notificacoes" table="notificacao" inverse="true" fetch="select" cascade="all">
+            <key>
+                <column name="empreendedor_idEmpreendedor" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Notificacao" />
+        </set>
+        
     </class>
 </hibernate-mapping>

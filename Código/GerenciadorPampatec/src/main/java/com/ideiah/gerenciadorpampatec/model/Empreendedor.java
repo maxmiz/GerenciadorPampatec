@@ -35,6 +35,7 @@ public class Empreendedor implements java.io.Serializable {
     private String complemento;
     private String idUnico;
     private Set projetos = new HashSet(0);
+    private Set<Notificacao> notificacoes = new HashSet<>();
 
     public Empreendedor() {
     }
@@ -76,16 +77,17 @@ public class Empreendedor implements java.io.Serializable {
         this.complemento = complemento;
     }
 
-    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, String senha) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, Set notificacoes, String senha) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
         this.email = email;
         this.formacao = formacao;
+        this.notificacoes = notificacoes;
     }
 
-    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, Set notificacoes) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.telefone = telefone;
@@ -95,6 +97,7 @@ public class Empreendedor implements java.io.Serializable {
         this.experiencia = experiencia;
         this.competencia = competencia;
         this.projetos = projetos;
+        this.notificacoes = notificacoes;
     }
 
     /**
@@ -211,9 +214,7 @@ public class Empreendedor implements java.io.Serializable {
     public static List<Empreendedor> retornarEmpreendedores() {
         return getEmpreededorDao().buscar();
     }
-    /*
-     *
-     */
+    
 
     public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
 //        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
@@ -395,5 +396,41 @@ public class Empreendedor implements java.io.Serializable {
 
     public static Empreendedor buscaPorEmail(String email) {
         return getEmpreededorDao().buscarPorEmail(email);
+    }
+
+    /**
+     * @return the notificacoes
+     */
+    public Set<Notificacao> getNotificacoes() {
+        return notificacoes;
+    }
+
+    /**
+     * @param notificacoes the notificacoes to set
+     */
+    public void setNotificacoes(Set<Notificacao> notificacoes) {
+        this.notificacoes = notificacoes;
+    }
+    
+    /**
+     * 
+     * @return quantidade de notificacoes 
+     */
+    public int getQuantidadeDeNotificacoes(Empreendedor empreendedor){
+        return notificacoes.size();
+    }
+    
+    /**
+     * 
+     * @param empreendedor
+     * @return ArrayList com as descrições de todas as notificações
+     */
+    public  ArrayList<String> getDescricaoDasNotificacoes(Empreendedor empreendedor){
+        ArrayList<String> descricoes = new ArrayList<String>();
+        
+        for (Notificacao notificacao: notificacoes) {
+            descricoes.add(notificacao.getDescricao());
+        }
+        return descricoes;
     }
 }

@@ -25,6 +25,7 @@ public class Teste {
 
     public static void main(String args[]) {
         Empreendedor empreendedor = new Empreendedor();
+        
         empreendedor.setCpf("dsadas");
         empreendedor.setEmail("dasdasda");
         empreendedor.setNome("dsadasda");
@@ -35,6 +36,7 @@ public class Teste {
         empreendedor.setComplemento("dsadsadas");
         empreendedor.setNumero(32131231);
 
+        empreendedor.buscarPorCpf(null);
 //        mandarEmail("Este é o assunto", "Esta é a mensagem");
 //        mandarHtml();
 //        EmailUtil.mandarEmailConcluirCadastro("Pedro", "Ideiah", "edisonjhonatan@gmail.com");
