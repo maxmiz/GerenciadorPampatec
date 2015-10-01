@@ -148,7 +148,7 @@ public abstract class Dao {
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObject(criteria);
     }
-
+    
     public Object buscarObjetoCriteriaINT(String propriedade, int valor, Class<?> classe) {
         Object objeto = null;
         Criteria criteria = getCriteria(classe);
@@ -171,6 +171,12 @@ public abstract class Dao {
         }
         criteria.setMaxResults(1);//no maximo 1 resultado
         return getObject(criteria);
+    }
+    
+    public ArrayList<?> buscarObjetosCritera(String propriedade, int valor, Class<?> classe){
+        Criteria criteria = getCriteria(classe);
+        criteria.add(Restrictions.eq(propriedade, valor));
+        return getObjects(criteria);
     }
         // </editor-fold>
 

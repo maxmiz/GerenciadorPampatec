@@ -54,6 +54,12 @@ public class LoginBean {
             System.out.println("Exceção inesperada" + e);
         }
     }
+    
+    public int getNotificacoesDoEmpreendedor(){
+        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        return empreendedor.getNotificacoesDoEmpreendedor(empreendedor);
+        
+    }
 
     public void fazLogout() {
 

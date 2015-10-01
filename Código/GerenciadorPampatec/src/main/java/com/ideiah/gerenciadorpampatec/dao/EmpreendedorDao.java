@@ -8,6 +8,7 @@ package com.ideiah.gerenciadorpampatec.dao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Notificacao;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,16 +44,15 @@ public class EmpreendedorDao extends Dao {
         return (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
     }
     
-    public ArrayList<Notificacao> buscarNotificacoes(){
-        return (ArrayList<Notificacao>) buscarObjetos(Notificacao.class);
-    }
-    
-    public Notificacao buscarNotificacoesPorEmpreendedor(String idEmpreendedor){
-        return (Notificacao) buscarObjetoCriteria("idEmpreendedor", idEmpreendedor, Notificacao.class);
-    }
     
     public Notificacao buscarNotificacao(int codigo) {
         return (Notificacao) buscarObjeto(codigo, Empreendedor.class);
+    }
+    
+    public ArrayList<Notificacao> buscarNotificacoes(Empreendedor empreendedor){
+        System.out.println("iddddddddddd: "+empreendedor.getIdEmpreendedor());
+        return  (ArrayList<Notificacao>) buscarObjetosCritera("empreendedor_idEmpreendedor", empreendedor.getIdEmpreendedor(), Notificacao.class);
+        
     }
 
     /*
