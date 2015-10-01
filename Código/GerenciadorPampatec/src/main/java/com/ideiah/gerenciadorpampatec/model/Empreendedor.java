@@ -419,4 +419,18 @@ public class Empreendedor implements java.io.Serializable {
     public int getQuantidadeDeNotificacoes(Empreendedor empreendedor){
         return notificacoes.size();
     }
+    
+    /**
+     * 
+     * @param empreendedor
+     * @return ArrayList com as descrições de todas as notificações
+     */
+    public  ArrayList<String> getDescricaoDasNotificacoes(Empreendedor empreendedor){
+        ArrayList<String> descricoes = new ArrayList<String>();
+        
+        for (Notificacao notificacao: notificacoes) {
+            descricoes.add(notificacao.getDescricao());
+        }
+        return descricoes;
+    }
 }
