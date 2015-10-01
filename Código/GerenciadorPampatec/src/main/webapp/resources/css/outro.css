@@ -11,7 +11,7 @@ and open the template in the editor.
 .erro {
 
     color: red;
-    
+
 
 }
 
@@ -28,4 +28,11 @@ and open the template in the editor.
         border-color: rgba(0, 0, 0, 0.6);
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);*/
 
+}
+
+.bordas {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #ff0000;
+    
 }
