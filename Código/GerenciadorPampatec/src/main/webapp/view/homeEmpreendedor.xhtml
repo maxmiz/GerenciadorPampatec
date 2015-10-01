@@ -82,10 +82,12 @@
                             <h3 class="panel-title">Notificações</h3>
                         </div>
                         <div class="panel-body">
-                            <h:outputText value="${loginBean.descricaoNotificacoes}"></h:outputText>
+                            <h:dataTable value="${loginBean.descricaoNotificacoes}" var="notificacao">
+                                <h:column><h:outputText value="#{notificacao}"></h:outputText></h:column>
+                            </h:dataTable>
                         </div>
                         <div class="panel-footer" align="right">
-                            <h:commandButton  class="btn btn-success" value="Retornar"></h:commandButton>
+                            <h:commandButton  class="btn btn-success" value="Voltar"></h:commandButton>
                         </div>
                     </div>
 
