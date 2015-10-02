@@ -12,7 +12,7 @@ import java.util.Set;
 public class Projeto implements java.io.Serializable {
 
     public static final int EM_EDICAO = 0;
-    public static final int EM_AVALIACAO = 1;
+    public static final int EM_PRE_AVALIACAO = 1;
     public static final int APROVADO = 2;
     public static final int REPROVADO = 3;
     public static final int EM_CORRECAO = 4;
@@ -129,19 +129,19 @@ public class Projeto implements java.io.Serializable {
         String statusDescricao = "";
 
         switch (status) {
-            case 0:
+            case EM_EDICAO:
                 statusDescricao = "Em edição";
                 break;
-            case 1:
-                statusDescricao = "Em avaliação";
+            case EM_PRE_AVALIACAO:
+                statusDescricao = "Em Pré-Avaliação";
                 break;
-            case 2:
+            case APROVADO:
                 statusDescricao = "Aprovado";
                 break;
-            case 3:
+            case REPROVADO:
                 statusDescricao = "Reprovado";
                 break;
-            case 4:
+            case EM_CORRECAO:
                 statusDescricao = "Em correção";
                 break;
         }
