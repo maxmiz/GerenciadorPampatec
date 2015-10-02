@@ -5,6 +5,8 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+
 /**
  *
  * @author Edison Moura
@@ -22,7 +24,7 @@ public class Notificacao implements java.io.Serializable {
     /**
      * 
      * @param idNotificao
-     * @param idEmpreendedor 
+     * @param empreendedor 
      */
     public Notificacao (int idNotificao, Empreendedor empreendedor) {
         this.idNotificacao = idNotificao;
@@ -33,13 +35,14 @@ public class Notificacao implements java.io.Serializable {
      * 
      * @param idNotificacao
      * @param descricao
-     * @param idEmpreendedor 
+     * @param empreendedor 
      */
     public Notificacao (int idNotificacao, String descricao, Empreendedor empreendedor) {
         this.idNotificacao = idNotificacao;
         this.descricao = descricao;
         this.empreendedor = empreendedor;
     }
+    
 
     /**
      * @return the idNotificacao
