@@ -23,8 +23,14 @@
     margin: 1px;
 }
 
+.campoFeedBack{
+    display: none;
+}
 
 
+.campoFeedBackOn{
+    display: block;
+}
 
 
 .autoCompletar input {

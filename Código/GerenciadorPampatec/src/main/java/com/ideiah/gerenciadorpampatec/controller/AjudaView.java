@@ -126,6 +126,14 @@ public class AjudaView {
             case "custosvariaveis":
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Custos Variaveis", "Descrição");
                 break;
+           
+            case "campoObservacoes":
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atribuir Status de Avaliação", "Descricao");
+                break;
+            
+            case "statusAvaliacao":
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atribuir Status de Avaliação", "Descricao");
+                break;
                 
         }
 
