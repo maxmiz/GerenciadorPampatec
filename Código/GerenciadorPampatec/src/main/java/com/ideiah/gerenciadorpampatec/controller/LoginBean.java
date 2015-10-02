@@ -15,6 +15,7 @@ import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +54,21 @@ public class LoginBean {
         } catch (Exception e) {
             System.out.println("Exceção inesperada" + e);
         }
+    }
+    
+    /**
+     * 
+     * @return O número total de notificações
+     */
+    public int getQuantidadeDeNotificacoes(){
+        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
+        
+    }
+    
+    public ArrayList<String> getDescricaoNotificacoes(){
+        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        return empreendedor.getDescricaoDasNotificacoes(empreendedor);
     }
 
     public void fazLogout() {
