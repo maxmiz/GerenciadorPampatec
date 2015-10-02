@@ -36,3 +36,8 @@ and open the template in the editor.
     border-bottom: 2px solid #3FB618;
     
 }
+
+.fundoVerde {
+    color: white;
+    background-color: #3FB618;
+}

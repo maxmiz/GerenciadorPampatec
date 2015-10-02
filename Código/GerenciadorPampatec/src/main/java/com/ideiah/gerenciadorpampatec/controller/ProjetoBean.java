@@ -68,7 +68,7 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Preeche o radio button se o projeto já estiver com ele preenchido
+     * Preenche o radio button se o projeto já estiver com ele preenchido
      */
     public void preecheRadioButton() {
         if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {

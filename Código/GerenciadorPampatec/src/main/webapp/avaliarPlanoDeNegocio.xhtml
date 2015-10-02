@@ -30,7 +30,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                <h:commandLink value="Início" ></h:commandLink>
                             </li>
 
                             <li class="dropdown">
@@ -96,7 +96,7 @@
                     <div>
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os planos de negócio que você deve avaliar</h1>
+                            <h1 style="text-align: center;"><h:outputText value="Usuário"></h:outputText>, estes são os planos de negócio que você deve avaliar</h1>
                         </div>
                         <div class="col-md-2" text-align="center">
                         </div>
@@ -106,19 +106,16 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
 
-                            <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                            <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" >
 
                                 <f:facet name="header">
                                     Tabela de Planos de Negócio
                                 </f:facet>
                                 <p:column headerText="Nome">
-                                    <h:outputText value="#{projeto.nome}" />
                                 </p:column>
                                 <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-                                    <h:outputText value="#{projeto.dataEnvio}" />
                                 </p:column>
                                 <p:column headerText="Status" style="width:150px;text-align: center">
-                                    <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                     <div align="center">
