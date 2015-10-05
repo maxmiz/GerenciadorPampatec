@@ -190,9 +190,9 @@ public class LoginBean {
             empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
 
             EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-            FacesUtil.addSuccessMessage("E-mail enviado com sucesso!", "formularioRecuperarSenha:botaoRecuperarSenha");
+            FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
         } else {
-            FacesUtil.addErrorMessage("Este e-mail não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+            FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
         }
 
     }
