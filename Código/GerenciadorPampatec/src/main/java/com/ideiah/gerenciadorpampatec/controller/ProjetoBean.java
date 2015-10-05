@@ -59,6 +59,7 @@ public class ProjetoBean implements Serializable {
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
         preecheRadioButton();
     }
+
     /**
      * Atualiza o projeto que está na sessão.
      */
@@ -119,12 +120,18 @@ public class ProjetoBean implements Serializable {
         }
     }
 
-    public void salvarProjeto() {
-        pegaValorRadioButton();
-        EnviaEmails(projeto);
-        ProjetoDao daoProj = new ProjetoDao();
-        projeto = daoProj.salvarRetornandoProjeto(projeto);
-        atualizarProjetoSessao();
+    public Boolean salvarProjeto() {
+        if (projeto.getNome().trim().isEmpty()) {
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
+            return false;
+        } else {
+            pegaValorRadioButton();
+            EnviaEmails(projeto);
+            ProjetoDao daoProj = new ProjetoDao();
+            projeto = daoProj.salvarRetornandoProjeto(projeto);
+            atualizarProjetoSessao();
+            return true;
+        }
     }
 
     public void salvarProjetoeSair() {
