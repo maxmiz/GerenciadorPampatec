@@ -120,18 +120,14 @@ public class ProjetoBean implements Serializable {
         }
     }
 
-    public Boolean salvarProjeto() {
-        if (projeto.getNome().trim().isEmpty()) {
+    public void salvarProjeto() {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
-            return false;
-        } else {
+
             pegaValorRadioButton();
             EnviaEmails(projeto);
             ProjetoDao daoProj = new ProjetoDao();
             projeto = daoProj.salvarRetornandoProjeto(projeto);
             atualizarProjetoSessao();
-            return true;
-        }
     }
 
     public void salvarProjetoeSair() {
