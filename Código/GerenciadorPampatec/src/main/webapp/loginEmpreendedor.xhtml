@@ -9,6 +9,7 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -75,16 +76,39 @@
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
-                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
+                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
+                                    <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
                                 </div>
                                 <div class="text-right col-md-12"> 
                                     <div class="col-md-10">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
                                     </div>
-                                        
-                                    <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
-                                    
+
+                                    <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}">
+                                        <f:ajax execute="@form" render="mensagemErro"/>
+                                    </h:commandButton>
+
+                                    <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                                        <f:facet name="default">
+                                            <h:outputText value="Status: StandBy" />
+                                        </f:facet>
+
+                                        <f:facet name="start">
+                                            <p:graphicImage name="/resources/imagens/load.gif" />
+                                        </f:facet>
+
+                                        <f:facet name="complete">
+                                            <h:outputText value="Status: Completed" />
+                                        </f:facet>
+                                    </p:ajaxStatus>
+
+                                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+                                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                        <p:graphicImage name="/resources/imagens/load.gif" />
+                                    </p:dialog>
+
                                 </div>
                             </fieldset>
                         </h:form>
@@ -94,8 +118,8 @@
             </div>
         </div>
         <!-- Fim do Modal de Recuperação de Senha -->
-        
-        
+
+
 
     </h:body>
 </html>
