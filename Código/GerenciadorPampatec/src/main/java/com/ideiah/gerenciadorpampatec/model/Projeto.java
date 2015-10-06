@@ -31,6 +31,8 @@ public class Projeto implements java.io.Serializable {
     private String edital;
     private Date dataCriacao;
     
+    private GerenteRelacionamento gerenteRelacionamento;
+    
     public Projeto() {
     }
 
@@ -43,7 +45,8 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
     }
 
-    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital, Date dataCriacao) {
+    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital,
+            Date dataCriacao, GerenteRelacionamento gerenteDeRelacionamento) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -57,6 +60,7 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
         this.edital = edital;
         this.dataCriacao = dataCriacao;
+        this.gerenteRelacionamento = gerenteDeRelacionamento;
     }
 
     public boolean SalvarProjeto(Projeto projeto) {
@@ -214,6 +218,20 @@ public class Projeto implements java.io.Serializable {
      */
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    /**
+     * @return the gerenteRelacionamento
+     */
+    public GerenteRelacionamento getGerenteRelacionamento() {
+        return gerenteRelacionamento;
+    }
+
+    /**
+     * @param gerenteRelacionamento the gerenteRelacionamento to set
+     */
+    public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
+        this.gerenteRelacionamento = gerenteRelacionamento;
     }
 
 }
