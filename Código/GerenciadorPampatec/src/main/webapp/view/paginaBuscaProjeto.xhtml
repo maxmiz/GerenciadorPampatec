@@ -73,7 +73,7 @@
                 <div>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus planos de negócio</h1>
                     </div>
                     <div class="col-md-2" text-align="center">
                         <h:commandButton class="btn btn-success btn-xs" id="botaoCadastrar" title="Clique aqui para cadastrar um novo projeto." value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
@@ -87,7 +87,7 @@
                         <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há projetos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
-                                Tabela de projetos
+                                Tabela de Planos de Negócio
                             </f:facet>
                             <p:column headerText="Nome">
                                 <h:outputText value="#{projeto.nome}" />
