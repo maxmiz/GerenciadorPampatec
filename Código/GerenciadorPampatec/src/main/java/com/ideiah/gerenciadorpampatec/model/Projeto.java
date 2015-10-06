@@ -28,7 +28,9 @@ public class Projeto implements java.io.Serializable {
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
     private String participacaoacionaria;
-
+    private String edital;
+    private Date dataCriacao;
+    
     public Projeto() {
     }
 
@@ -41,7 +43,7 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
     }
 
-    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria) {
+    public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital, Date dataCriacao) {
         this.idProjeto = idProjeto;
         this.analiseemprego = analiseemprego;
         this.negocio = negocio;
@@ -53,6 +55,8 @@ public class Projeto implements java.io.Serializable {
         this.potencialEmprego = potencialEmprego;
         this.empreendedores = empreendedors;
         this.participacaoacionaria = participacaoacionaria;
+        this.edital = edital;
+        this.dataCriacao = dataCriacao;
     }
 
     public boolean SalvarProjeto(Projeto projeto) {
@@ -182,6 +186,34 @@ public class Projeto implements java.io.Serializable {
      */
     public void setParticipacaoacionaria(String participacaoacionaria) {
         this.participacaoacionaria = participacaoacionaria;
+    }
+
+    /**
+     * @return the edital
+     */
+    public String getEdital() {
+        return edital;
+    }
+
+    /**
+     * @param edital the edital to set
+     */
+    public void setEdital(String edital) {
+        this.edital = edital;
+    }
+
+    /**
+     * @return the dataCriacao
+     */
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    /**
+     * @param dataCriacao the dataCriacao to set
+     */
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
 }

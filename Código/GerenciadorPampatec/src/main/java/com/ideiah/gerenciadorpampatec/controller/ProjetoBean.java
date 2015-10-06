@@ -17,9 +17,12 @@ import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -121,13 +124,11 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjeto() {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
-
-            pegaValorRadioButton();
-            EnviaEmails(projeto);
-            ProjetoDao daoProj = new ProjetoDao();
-            projeto = daoProj.salvarRetornandoProjeto(projeto);
-            atualizarProjetoSessao();
+        pegaValorRadioButton();
+        EnviaEmails(projeto);
+        ProjetoDao daoProj = new ProjetoDao();
+        projeto = daoProj.salvarRetornandoProjeto(projeto);
+        atualizarProjetoSessao();
     }
 
     public void salvarProjetoeSair() {
@@ -411,9 +412,32 @@ public class ProjetoBean implements Serializable {
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
 //        pjto.setNome("");
+        pjto.setEdital("2015abc123");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//
+//        Date data = new Date(System.currentTimeMillis());
+//        String abc = sdf.format(data);
+//        try {
+//            Date date = (Date) sdf.parse(abc);
+//            System.out.println("DATA = "+date);
+//            pjto.setDataCriacao(date);
+//
+//        } catch (ParseException ex) {
+//            Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-        Date data = new Date(System.currentTimeMillis());
-        pjto.setDataEnvio(data);
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        calendar.setTime(date);
+        System.out.println("---- data -- : " + out.format(calendar.getTime()));
+//        Date x = Daout.format(calendar.getTime());
+//        System.out.println("<><><><>:"+x);
+
+        Date x = (Date) new Date(out.format(calendar.getTime()));
+        System.out.println("12345 :" + x);
+        pjto.setDataCriacao(x);
+
 //        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
@@ -559,14 +583,14 @@ public class ProjetoBean implements Serializable {
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
 
                 if (projeto.getStatus() == Empreendedor.ENVIADO) {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         System.out.println("status enviado");
 //                        salvarProjeto();
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",

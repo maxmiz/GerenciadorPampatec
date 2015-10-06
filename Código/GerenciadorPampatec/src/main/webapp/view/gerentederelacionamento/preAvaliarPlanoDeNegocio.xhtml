@@ -177,6 +177,36 @@
                                         <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
                                     </div>
                                 </div>
+                                <div class="col-md-4" id="">
+                                    <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="empresaProjeto" placeholder="" class="form-control" 
+                                                 value="#{preAvaliarPlanoBean.projeto.nome}"
+                                                 disabled="true"
+                                                 >
+                                    </p:inputText>
+                                    <h:message class="mensagemErro" for="empresaProjeto"/>
+                                    <br/>
+                                </div>
+
+                                <div class="col-md-4" id="">
+                                    <b>Data de submissão <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="dataSubmit" class="form-control"  
+                                                 value="#{preAvaliarPlanoBean.projeto.dataEnvio}"
+                                                 disabled="true"
+                                                 ></p:inputText>
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-4" id="">
+                                    <b>Edital <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="edital" class="form-control"  
+                                                 value="#{preAvaliarPlanoBean.projeto.edital}"
+                                                 disabled="true"
+                                                 ></p:inputText>
+                                    <br/>
+                                </div>
+
                                 <div class="col-md-12" id="">
                                     <p:dataTable var="empreendedor"  styleClass="tabelaEmpreendedores" value="#{preAvaliarPlanoBean.projeto.empreendedores}">
                                         <f:facet name="header">
@@ -195,19 +225,7 @@
                                     <br/>
                                 </div>
 
-                                <div class="col-md-12" id="">
-                                    <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
-                                    Nome da Empresa ou do Projeto*
-                                    <p:inputText id="empresaProjeto" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                 requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
-                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                 value="#{preAvaliarPlanoBean.projeto.nome}"
-                                                 disabled="true"
-                                                 >
-                                    </p:inputText>
-                                    <h:message class="mensagemErro" for="empresaProjeto"/>
-                                    <br/>
-                                </div>
+
                                 <div class="col-md-3"></div>
 
                             </div>
@@ -740,8 +758,8 @@
                                     <br />
                                 </div>
                                 <div class="col-md-12">
-                                <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                <h:panelGrid style="margin-bottom:10px" columns="4" id="statusAvaliacao">
+                                    <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
+                                    <h:panelGrid style="margin-bottom:10px" columns="4" id="statusAvaliacao">
                                         <p:outputLabel for="avaliacao" value="Status Avaliacao:" class="col-md-12"/>
                                         <p:selectOneRadio id="avaliacao" value="#//{radioView.console}" >
                                             <f:selectItem itemLabel=" Aprovado " itemValue=" Aprovado " />

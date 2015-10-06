@@ -29,7 +29,7 @@ public class PreAvaliarPlanoBean {
          * apenas para testes
          */
         ProjetoDao dao = new ProjetoDao();
-        projeto = dao.buscar(113);
+        projeto = dao.buscar(167);
     }
 
     /**

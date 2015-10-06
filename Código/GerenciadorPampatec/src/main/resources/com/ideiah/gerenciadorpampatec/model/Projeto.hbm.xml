@@ -23,8 +23,8 @@
         <property name="nome" type="string">
             <column name="nome" length="300" />
         </property>
-        <property name="dataEnvio" type="date">
-            <column name="dataEnvio" length="10" />
+        <property name="dataEnvio" type="timestamp">
+            <column name="dataEnvio" length="16" />
         </property>
         <property name="status" type="java.lang.Integer">
             <column name="status" />
@@ -34,6 +34,12 @@
         </property>
         <property name="participacaoacionaria" type="string">
             <column name="participacaoacionaria" length="1000" />
+        </property>
+        <property name="edital" type="string">
+            <column name="edital" length="45" />
+        </property>
+        <property name="dataCriacao" type="timestamp">
+            <column name="dataCriacao" length="16" />
         </property>
         <set name="empreendedores" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
             <key>
