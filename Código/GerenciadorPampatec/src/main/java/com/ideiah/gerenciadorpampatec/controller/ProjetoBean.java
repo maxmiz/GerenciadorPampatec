@@ -84,7 +84,12 @@ public class ProjetoBean implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO DE EVOLUÇÃO
+     * APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR CORRESPONDENTE
+     * CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR DO CAMPO (descricaoButtonOutro)
+     */
     public void pegaValorRadioButton() {
         if (selectedButton != null) {
             switch (selectedButton) {
@@ -411,28 +416,16 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
-//        pjto.setNome("");
+
+        /**
+         * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO RARAMENTE VAI SER ALTERADO
+         */
         pjto.setEdital("2015abc123");
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-//        Date data = new Date(System.currentTimeMillis());
-//        String abc = sdf.format(data);
-//        try {
-//            Date date = (Date) sdf.parse(abc);
-//            System.out.println("DATA = "+date);
-//            pjto.setDataCriacao(date);
-//
-//        } catch (ParseException ex) {
-//            Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         calendar.setTime(date);
-        System.out.println("---- data -- : " + out.format(calendar.getTime()));
-//        Date x = Daout.format(calendar.getTime());
-//        System.out.println("<><><><>:"+x);
 
         Date x = (Date) new Date(out.format(calendar.getTime()));
         System.out.println("12345 :" + x);
