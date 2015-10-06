@@ -12,11 +12,11 @@
 }
 
 .mensagemSucesso{
-    background-color: #78f392;
+    background-color: #00bf28;
     font-weight: bold;
     padding: 3px;
     border-width: 10px;
-    color: #00bf28;
+    color: whitesmoke;
 }
 .campoInvalido{
     border: #FF0000 solid 1px !important;
