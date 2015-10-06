@@ -28,7 +28,7 @@ public class GerenteDeRelacionamentosBean implements Serializable {
     public void visualizarProjetos() {
         
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("avaliarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
