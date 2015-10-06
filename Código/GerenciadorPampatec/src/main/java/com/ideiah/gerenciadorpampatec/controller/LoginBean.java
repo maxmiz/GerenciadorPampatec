@@ -105,7 +105,7 @@ public class LoginBean {
 
     public void getVisualizarPlanos() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
