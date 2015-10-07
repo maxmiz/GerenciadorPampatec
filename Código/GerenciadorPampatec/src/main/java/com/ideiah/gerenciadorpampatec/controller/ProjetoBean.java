@@ -50,8 +50,10 @@ public class ProjetoBean implements Serializable {
     private String selectedButton;
     private String descricaoButtonOutro;
     private Empreendedor empreendedorSession;
+    private boolean salvou;
 
     public ProjetoBean() {
+        salvou = false;
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -126,6 +128,7 @@ public class ProjetoBean implements Serializable {
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
+        salvou = true;
     }
 
     public void salvarProjetoeSair() {
@@ -605,5 +608,19 @@ public class ProjetoBean implements Serializable {
      */
     public void setDescricaoButtonOutro(String descricaoButtonOutro) {
         this.descricaoButtonOutro = descricaoButtonOutro;
+    }
+
+    /**
+     * @return the salvou
+     */
+    public boolean isSalvou() {
+        return salvou;
+    }
+
+    /**
+     * @param salvou the salvou to set
+     */
+    public void setSalvou(boolean salvou) {
+        this.salvou = salvou;
     }
 }

@@ -15,12 +15,13 @@
 
         <h:outputScript library="js" name="formulario.js" />
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </h:head>
-    <h:body onload="verificarCampos();">
+    <h:body onload="verificarCampos(), carregaFeedBack();">
 
         <!-- Início do menu superior -->
         <h:form>
@@ -132,7 +133,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
+                            <h:commandButton action="#{projetoBean.salvarProjeto()}" class="btn btn-success" value="Salvar Plano de Projeto">
+                                
+                            </h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -160,11 +163,20 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- Fim do Modal de informação do botão Salvar -->
+            
+            <!-- Modal Plano salvo com sucesso. -->
+            <h:panelGroup class="modal-feedBackSalvar" id="modal-feedBackSalvar" rendered="#{projetoBean.salvou}">
+                <button type="button" onclick="fechaFeedBack();">
+                    <i class="fa fa-times"></i>
+                </button>
+                <br/>
+                <p>O projeto foi salvo com sucesso.</p>
+                <br/>
+            </h:panelGroup>
+            <!-- Fim Modal Plano salvo com sucesso. -->
 
             <!-- Fim dos MODAIS exibidos no formulário -->
 
@@ -173,7 +185,7 @@
             <div class="col-md-8 form-horizontal well bs-component">
                 <h1>Cadastro - Plano de Negócio</h1>
                 <h:outputText id="tituloMensagem"></h:outputText>
-                <h:message for="tituloMensagem" errorClass="mensagemErro"></h:message>
+                <h:message for="tituloMensagem" errorClass="mensagemErro" infoClass="mensagemSucesso"></h:message>
                 <br/>
                 <br/>
                 <div>
@@ -203,7 +215,7 @@
 
                                     <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     Nome da Empresa ou do Projeto*
-                                    <p:inputText id="empresaProjeto" placeholder="" class="form-control" onchange="precisaSalvar = true;" onblur="verificaContatos()"
+                                    <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control" onchange="precisaSalvar = true;" onblur="verificaContatos()"
                                                  requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
                                                  styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                  value="#{projetoBean.projeto.nome}"
@@ -215,7 +227,7 @@
                                 </div>
 
                                 <div class="col-md-12" id="">
-                                    <b>Empreendedores* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('email')}"></p:commandLink></b><br/>
+                                    <b>Empreendedores <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('email')}"></p:commandLink></b><br/>
                                     Informe os emails de quem está propondo o empreendimento:
                                     <br/>
                                     <div class="row">
@@ -446,7 +458,7 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem itemLabel="Outro: " itemValue="Outro:" />
+                                            <f:selectItem id="llll" itemLabel="Outro: " itemValue="Outro:" />
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
