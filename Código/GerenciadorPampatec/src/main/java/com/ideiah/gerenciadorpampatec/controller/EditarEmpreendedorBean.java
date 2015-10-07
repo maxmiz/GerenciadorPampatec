@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
+import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -37,7 +38,8 @@ public class EditarEmpreendedorBean {
     private String rua;
     private String numero;
     private String complemento;
-    
+    private String senha;
+    private String novaSenha;
 
     public EditarEmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -154,6 +156,22 @@ public class EditarEmpreendedorBean {
         return telefone;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
+    }
+
     public void editarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
@@ -189,6 +207,18 @@ public class EditarEmpreendedorBean {
                     empreendedor.setComplemento(complemento);
                     empreendedor.setExperiencia(experiencia);
                     empreendedor.setCompetencia(competencia);
+
+                    if (!senha.isEmpty()) {
+                        senha = CriptografiaUtil.md5(senha);
+                        if (empreendedor.getSenha().equals(senha)) {
+                            System.out.println("Entrou na estrutura de senha");
+                            System.out.println("senha antiga: " + empreendedor.getSenha());
+                            empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
+                            System.out.println("senha nova: " + empreendedor.getSenha());
+                        } else {
+                            FacesUtil.addErrorMessage("Senha incorreta. Sua senha não foi alterada.");
+                        }
+                    }
 
                     if (empreendedor.atualizarEmpreendedor(empreendedor)) {
                         try {
