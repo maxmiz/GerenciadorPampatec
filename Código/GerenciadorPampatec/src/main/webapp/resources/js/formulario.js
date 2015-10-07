@@ -71,6 +71,16 @@ function exibeSextaParte() {
  * -----------------------------------------------------------------
  */
 
+function carregaFeedBack(){
+    var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
+    feedBack.setAttribute("class","modal-feedBackSalvar modal-feedBackSalvar-in");
+}
+
+function fechaFeedBack(){
+    var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
+    feedBack.style.display = "none";
+}
+
 function  verificarCampos() {
     verificaContatos();
     verificaNegocio();
@@ -134,6 +144,7 @@ function verificarProdutoServico() {
     listaCampos[5] = interacaoEmpresaComunidadeGoverno;
     listaCampos[6] = infraestrutura;
     mudarCorLista(listaCampos, tabProdutoServico);
+    verificarPreenchimentoRadioButton();
 }
 
 function verificaGestaoPessoas() {
@@ -214,3 +225,26 @@ window.onbeforeunload = function () {
 String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, "");
 };
+
+
+function verificarPreenchimentoRadioButton(){
+    var elementos = document.getElementsByClassName('ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active');
+    for (var i = 0; i < elementos.length; i++) {
+        console.log("Deu");
+    }
+}
+
+function percorrerArvoreObejetos(listaComponentes,pai,contador){
+    for (var i = 0; i < pai.children.length; i++) {
+        if(pai.children[i].tagName === listaComponentes[contador]){
+            console.log("Nome da tag"+pai.children[i].tagName);
+            console.log("Nome procurado"+listaComponentes[contador]);
+            console.log(pai.children[i].className);
+            if(contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"){
+                console.log("DEEEEUUUUUUUUU");
+            }
+            contador++;
+            percorrerArvoreObejetos(listaComponentes,pai.children[i],contador);
+        }
+    }
+}
