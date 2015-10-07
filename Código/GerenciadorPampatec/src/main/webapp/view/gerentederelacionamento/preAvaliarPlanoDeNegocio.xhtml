@@ -81,10 +81,11 @@
             function mostrarFeedBack(id) {
                 var campo = document.getElementById(id);
                 if ($(campo).hasClass("form-control campoFeedBackOn")) {
+                    $(campo).fadeOut(900);
                     campo.setAttribute("class", "form-control campoFeedBack");
                 } else {
+                    $(campo).fadeIn(900);
                     campo.setAttribute("class", "form-control campoFeedBackOn");
-//            console.log(campo.className.style.class);
                 }
             }
         </script>
