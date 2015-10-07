@@ -208,19 +208,24 @@ public class EditarEmpreendedorBean {
                     empreendedor.setExperiencia(experiencia);
                     empreendedor.setCompetencia(competencia);
 
+                    //Confere se a intenção do usuário é também alterar a senha,
+                    //usando o boolean @alterarSenha para indicar.
+                    //Se for falso, significa que: a senha está em branco e não
+                    //deve ser alterada, ou que ela foi alterada com sucesso, 
+                    //permitindo que o processo siga em frente.
+                    boolean alterarSenha = false;
                     if (!senha.isEmpty()) {
+                        alterarSenha = true;
                         senha = CriptografiaUtil.md5(senha);
                         if (empreendedor.getSenha().equals(senha)) {
-                            System.out.println("Entrou na estrutura de senha");
-                            System.out.println("senha antiga: " + empreendedor.getSenha());
                             empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
-                            System.out.println("senha nova: " + empreendedor.getSenha());
+                            alterarSenha = false;
                         } else {
-                            FacesUtil.addErrorMessage("Senha incorreta. Sua senha não foi alterada.");
+                            FacesUtil.addErrorMessage("Senha incorreta.", "formularioCadastro:senhaAtual");
                         }
                     }
 
-                    if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                    if (empreendedor.atualizarEmpreendedor(empreendedor)&&alterarSenha==false) {
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
