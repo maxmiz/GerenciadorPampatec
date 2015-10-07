@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +25,13 @@ public class GerenteRelacionamento implements Serializable{
     private Set<Notificacao> projetos = new HashSet<>();
 
 
+     /**
+     * @return the gerenteDao
+     */
+    public static GerenteDao getGerenteDao() {
+        return new GerenteDao();
+    }
+    
     public GerenteRelacionamento() {
     }
 
@@ -116,5 +124,21 @@ public class GerenteRelacionamento implements Serializable{
      */
     public void setProjetos(Set<Notificacao> projetos) {
         this.projetos = projetos;
+    }
+    /**
+     * 
+     * @param user
+     * @return GerenteRelacionamento que possui esse email
+     */
+    public GerenteRelacionamento buscarPorEmail(String user) {
+        return getGerenteDao().buscaPorEmail(user);
+    }
+    /**
+     * 
+     * @param user
+     * @return  GerenteRelacionamento que possui esse CPF
+     */
+    public GerenteRelacionamento buscarPorCpf(String user) {
+        return getGerenteDao().buscarPorCpf(user);
     }
 }

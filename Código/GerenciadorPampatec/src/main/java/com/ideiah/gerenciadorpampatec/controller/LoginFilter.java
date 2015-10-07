@@ -20,9 +20,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Augusto César Görgen
- * Funcionalidade: Criar a sessão para o empreendedor
- * se ele não estiver logado, então é direcionado para a pagina de login.
+ * @author Augusto CÃ©sar GÃ¶rgen
+ * Funcionalidade: Criar a sessÃ£o para o empreendedor
+ * se ele nÃ£o estiver logado, entÃ£o Ã© direcionado para a pagina de login.
  */
 public class LoginFilter implements Filter {
 
