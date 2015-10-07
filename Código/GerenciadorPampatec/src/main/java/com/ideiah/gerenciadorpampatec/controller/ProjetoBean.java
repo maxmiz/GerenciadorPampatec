@@ -421,7 +421,8 @@ public class ProjetoBean implements Serializable {
          * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO RARAMENTE VAI SER ALTERADO
          */
         pjto.setEdital("2015abc123");
-
+        
+        
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();

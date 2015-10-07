@@ -20,7 +20,8 @@
         </property>
         <set name="projetos" table="projeto" inverse="true" fetch="select" cascade="all">
             <key>
-                <column name="projeto_idgerente_relacionamento" not-null="true" />
+                <column name="projeto_gerente_relacionamento_idgerente_relacionamento" not-null="true" />
+                
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>

@@ -30,6 +30,7 @@ public class PreAvaliarPlanoBean {
          */
         ProjetoDao dao = new ProjetoDao();
         projeto = dao.buscar(167);
+//        System.out.println("gerente de relacionamento: "+projeto.getGerenteRelacionamento().getNome());
     }
 
     /**
