@@ -35,11 +35,14 @@
                             </li>
 
                             <li class="">
-                                <a class="dropdown-toggle" href="#" onclick="exibeNotificacoes()"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#">
+                                    Notificações
                                     <span class="badge">
-                                        <h:outputText value="${loginBean.quantidadeDeNotificacoes}"></h:outputText>
+                                        
+                                        <h:outputText value="${loginBean.quantidadeDeNotificacoes}"></h:outputText> 
+
                                     </span>
-                                </a>
+                                </h:outputLink>
                             </li>
 
                             <li class="dropdown">
@@ -93,7 +96,9 @@
                             </h:dataTable>
                         </div>
                         <div class="panel-footer" align="right">
+
                             <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
+
                         </div>
                     </div>
 
