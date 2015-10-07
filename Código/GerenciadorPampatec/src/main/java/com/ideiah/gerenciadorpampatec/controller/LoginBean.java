@@ -97,7 +97,7 @@ public class LoginBean {
 
     public void getEnviarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +143,7 @@ public class LoginBean {
                 this.setNome(empreendedor.getNome());
                 try {
                     //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -269,7 +269,7 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
