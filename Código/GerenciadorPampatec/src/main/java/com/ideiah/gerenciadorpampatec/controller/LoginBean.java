@@ -55,18 +55,18 @@ public class LoginBean {
             System.out.println("Exceção inesperada" + e);
         }
     }
-    
+
     /**
-     * 
+     *
      * @return O número total de notificações
      */
-    public int getQuantidadeDeNotificacoes(){
+    public int getQuantidadeDeNotificacoes() {
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
-        
+
     }
-    
-    public ArrayList<String> getDescricaoNotificacoes(){
+
+    public ArrayList<String> getDescricaoNotificacoes() {
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         return empreendedor.getDescricaoDasNotificacoes(empreendedor);
     }
@@ -97,7 +97,7 @@ public class LoginBean {
 
     public void getEnviarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,7 +105,7 @@ public class LoginBean {
 
     public void getVisualizarPlanos() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +143,7 @@ public class LoginBean {
                 this.setNome(empreendedor.getNome());
                 try {
                     //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -163,32 +163,38 @@ public class LoginBean {
         return null;
 
     }
-    
+
     /**
-     * Método para recuparação de senha do usuário.
-     * Envia um email para o destino inserido (email) com um link para alterar a senha.
-     * Cria um novo empreendedorEmail e seta os valores com tipo (recuperação de senha),
-     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email inserido e
-     * gera um idUnico que é setado no campo de id do empreendedorEmail.
+     * Método para recuparação de senha do usuário. Envia um email para o
+     * destino inserido (email) com um link para alterar a senha. Cria um novo
+     * empreendedorEmail e seta os valores com tipo (recuperação de senha),
+     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
+     * inserido e gera um idUnico que é setado no campo de id do
+     * empreendedorEmail.
      */
-    public void recuperarSenha(){
-        
+    public void recuperarSenha() {
+
         Empreendedor empreendedor;
-        
+
         empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
-        
-        String idUnico = UUID.randomUUID().toString();
-        
-        EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
-        
-        empreendedorEmail.setEmpreendedor(empreendedor);
-        empreendedorEmail.setIdEmpreendedorEmail(idUnico);
-        empreendedorEmail.setTipo("Recuperação de Senha");
-        
-        empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
-       
-        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-        
+
+        if (empreendedor != null) {
+            String idUnico = UUID.randomUUID().toString();
+
+            EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+
+            empreendedorEmail.setEmpreendedor(empreendedor);
+            empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+            empreendedorEmail.setTipo("Recuperação de Senha");
+
+            empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+
+            EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+            FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+        } else {
+            FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+        }
+
     }
 
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
@@ -263,7 +269,8 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -11,6 +11,7 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="formulario.js" />
@@ -89,8 +90,8 @@
             <div class="modal fade" id="modalInfoSalvar" role="dialog">
 
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
+                    <div class="modal-content panel-success">
+                        <div class="modal-header fundoVerde">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="modal-title">Salvar Projeto</h4>
                         </div>
@@ -100,9 +101,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton action="#{projetoBean.salvarProjeto()}" class="btn btn-success" value="Salvar Plano de Projeto">
-                                
-                            </h:commandButton>
+                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio"></h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -116,12 +115,12 @@
                     <!-- Conteúdo do Modal -->
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Salvar Projeto</h4>
                             </div>
                             <div class="modal-body">
-                                Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Projeto será submetido
+                                Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Negócio será submetido
                                 para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
                             </div>
                             <div class="modal-footer">

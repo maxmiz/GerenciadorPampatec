@@ -73,10 +73,10 @@
                 <div>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus projetos</h1>
+                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus planos de negócio</h1>
                     </div>
                     <div class="col-md-2" text-align="center">
-                        <h:commandButton id="botaoCadastrar" title="Clique aqui para cadastrar um novo projeto." class="btn btn-success btn-xs" value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
+                        <h:commandButton class="btn btn-success btn-xs" id="botaoCadastrar" title="Clique aqui para cadastrar um novo projeto." value="Cadastrar novo projeto" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
                     </div>
                 </div>
 
@@ -87,13 +87,20 @@
                         <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há projetos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
-                                Tabela de projetos
+                                Tabela de Planos de Negócio
                             </f:facet>
                             <p:column headerText="Nome">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
-                            <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-                                <h:outputText value="#{projeto.dataEnvio}" />
+                            <p:column headerText="Data de Criação" style="text-align: center; width: 150px">
+                                <h:outputText value="#{projeto.dataCriacao}" >
+                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Data de Envio" style="text-align: center; width: 150px">
+                                <h:outputText value="#{projeto.dataEnvio}" >
+                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
                             </p:column>
                             <p:column headerText="Status" style="width:150px;text-align: center">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
@@ -101,11 +108,11 @@
                             <p:column headerText="Ações" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div class="col-md-4"> 
-                                        <p:commandButton icon="fa fa-edit" styleClass="btn-primary" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                        <p:commandButton icon="fa fa-edit" styleClass="btn-primary" rendered="#{projeto.status == 0}" value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
 
-                                        <p:commandButton icon="fa fa-edit" disabled="true" styleClass="btn-primary" rendered="#{projeto.status != 0}" value="Editar" title="View">
+                                        <p:commandButton icon="fa fa-edit" disabled="true" styleClass="btn-primary" rendered="#{projeto.status != 0}" value="Editar" title="Editar projeto">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
                                     </div>
@@ -119,11 +126,11 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="View" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="Deletar projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
 
-                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="View">
+                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="Deletar projeto">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
                                     </div>

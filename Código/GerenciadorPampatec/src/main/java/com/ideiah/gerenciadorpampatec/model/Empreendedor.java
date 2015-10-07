@@ -4,6 +4,7 @@ package com.ideiah.gerenciadorpampatec.model;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -241,6 +242,9 @@ public class Empreendedor implements java.io.Serializable {
         }
 
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        
+        Date data = new Date(System.currentTimeMillis());
+        projeto.setDataEnvio(data);
         if (getProjetoDao().update(projeto)) {
             return ENVIADO;
         } else {

@@ -17,9 +17,12 @@ import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -61,6 +64,7 @@ public class ProjetoBean implements Serializable {
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
         preecheRadioButton();
     }
+
     /**
      * Atualiza o projeto que está na sessão.
      */
@@ -70,7 +74,7 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Preeche o radio button se o projeto já estiver com ele preenchido
+     * Preenche o radio button se o projeto já estiver com ele preenchido
      */
     public void preecheRadioButton() {
         if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {
@@ -82,7 +86,12 @@ public class ProjetoBean implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO DE EVOLUÇÃO
+     * APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR CORRESPONDENTE
+     * CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR DO CAMPO (descricaoButtonOutro)
+     */
     public void pegaValorRadioButton() {
         if (selectedButton != null) {
             switch (selectedButton) {
@@ -410,10 +419,22 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setStatus(Projeto.EM_EDICAO);
-//        pjto.setNome("");
 
-        Date data = new Date(System.currentTimeMillis());
-        pjto.setDataEnvio(data);
+        /**
+         * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO RARAMENTE VAI SER ALTERADO
+         */
+        pjto.setEdital("2015abc123");
+        
+        
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        calendar.setTime(date);
+
+        Date x = (Date) new Date(out.format(calendar.getTime()));
+        System.out.println("12345 :" + x);
+        pjto.setDataCriacao(x);
+
 //        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
@@ -559,14 +580,14 @@ public class ProjetoBean implements Serializable {
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
 
                 if (projeto.getStatus() == Empreendedor.ENVIADO) {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         System.out.println("status enviado");
 //                        salvarProjeto();
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",

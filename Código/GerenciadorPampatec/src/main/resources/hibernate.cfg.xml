@@ -18,5 +18,6 @@
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Produtoouservico.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/EmpreendedorEmail.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Notificacao.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/GerenteRelacionamentos.xml"/>
   </session-factory>
 </hibernate-configuration>
