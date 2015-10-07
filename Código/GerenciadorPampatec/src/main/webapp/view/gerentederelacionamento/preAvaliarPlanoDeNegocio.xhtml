@@ -795,7 +795,7 @@
                                     </div>
                                 </div>
                                 <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
-                                <div class="col-md-12 espaco" id="observacoes">
+                                <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" >
                                     </h:inputTextarea>
@@ -803,12 +803,13 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                    <h:panelGrid style="margin-bottom:10px" columns="4" id="statusAvaliacao">
-                                        <p:outputLabel for="avaliacao" value="Status Avaliacao:" class="col-md-12"/>
-                                        <p:selectOneRadio id="avaliacao" value="#//{radioView.console}" >
-                                            <f:selectItem itemLabel=" Aprovado " itemValue=" Aprovado " />
-                                            <f:selectItem itemLabel=" Realizar Ajustes " itemValue=" Realizar Ajustes " />
-                                            <f:selectItem itemLabel=" Reprovado " itemValue=" Reprovado " />
+                                    <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
+                                        <p:selectOneRadio id="avaliacao" value="#//{radioView.console}" layout="pageDirection">
+                                            <div class="col-md-12" style="padding-left: 15%;">
+                                                <f:selectItem itemLabel=" Aprovado " itemValue=" Aprovado " /> <br/>
+                                                <f:selectItem itemLabel=" Realizar Ajustes " itemValue=" Realizar Ajustes " /><br/>
+                                                <f:selectItem itemLabel=" Reprovado " itemValue=" Reprovado " />
+                                            </div>
                                         </p:selectOneRadio>
                                     </h:panelGrid>
                                 </div>
