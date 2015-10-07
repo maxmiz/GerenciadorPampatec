@@ -175,9 +175,9 @@ public class LoginBean {
     public void recuperarSenha() {
 
         Empreendedor empreendedor;
-        
+
         empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
-        
+
         if (empreendedor != null) {
             String idUnico = UUID.randomUUID().toString();
 
@@ -269,7 +269,8 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

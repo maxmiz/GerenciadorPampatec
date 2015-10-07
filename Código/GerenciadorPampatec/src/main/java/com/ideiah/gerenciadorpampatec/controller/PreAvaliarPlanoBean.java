@@ -29,12 +29,12 @@ public class PreAvaliarPlanoBean {
          * apenas para testes
          */
         ProjetoDao dao = new ProjetoDao();
-        projeto = dao.buscar(167);
 //        System.out.println("gerente de relacionamento: "+projeto.getGerenteRelacionamento().getNome());
+        projeto = dao.buscar(1);
     }
 
     /**
-     * Método para verificar qual o tido de estágio a empressa sem encontra 
+     * Método para verificar qual o tipo de estágio a empressa sem encontra 
      * @return 
      */
     public String verificaEstagioEvolucao() {

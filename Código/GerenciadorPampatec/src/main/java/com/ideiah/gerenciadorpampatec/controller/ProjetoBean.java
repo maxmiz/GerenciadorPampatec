@@ -584,7 +584,7 @@ public class ProjetoBean implements Serializable {
                         System.out.println("status enviado");
 //                        salvarProjeto();
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
