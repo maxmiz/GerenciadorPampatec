@@ -414,12 +414,12 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem itemLabel="Outro: " itemValue="Outro:" />
+                                            <f:selectItem itemLabel="Outro" itemValue="Outro"  />
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
 
-                                    <h:inputText class="form-control" id="descricaoOutroEstagio"
+                                    <h:inputText class="form-control campoInvisivel" id="descricaoOutroEstagio"
                                                  validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
                                                  value="#{projetoBean.descricaoButtonOutro}"
                                                  onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
