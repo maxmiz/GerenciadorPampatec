@@ -98,7 +98,7 @@
                             <p:column headerText="Status" style="width:150px;text-align: center">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                             </p:column>
-                            <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                            <p:column headerText="Ações" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div class="col-md-4"> 
                                         <p:commandButton icon="fa fa-edit" styleClass="btn-primary" rendered="#{projeto.status == 0}" value="Editar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">

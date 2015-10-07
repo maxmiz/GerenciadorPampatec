@@ -61,7 +61,6 @@ public class ProjetoBean implements Serializable {
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
         preecheRadioButton();
     }
-
     /**
      * Atualiza o projeto que está na sessão.
      */
