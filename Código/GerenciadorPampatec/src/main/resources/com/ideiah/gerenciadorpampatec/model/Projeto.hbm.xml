@@ -50,7 +50,7 @@
             </many-to-many>
         </set>
         <many-to-one name="GerenteRelacionamento" class="com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento" fetch="select">
-            <column name="gerente_relacionamento_idgerente_relacionamento" not-null="true" />
+            <column name="gerente_relacionamento_idgerente_relacionamento" />
         </many-to-one>
     </class>
 </hibernate-mapping>

@@ -220,3 +220,25 @@ fieldset[disabled] .autoCompletar input {
 .modal-feedBackSalvar button:hover{
     color: #06a728;
 }
+
+.modal-feedBackSalvar-in{
+    -webkit-transform: translateY(200%);
+    -moz-transform: translateY(200%);
+    -ms-transform: translateY(200%);
+    transform: translateY(200%);
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    transition: transform 0.4s;
+}
+
+.modal-feedBackSalvar button{
+    position: absolute;
+    margin-left: 92%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: #00390c;
+}
+
+.modal-feedBackSalvar button:hover{
+    color: #06a728;
+}
