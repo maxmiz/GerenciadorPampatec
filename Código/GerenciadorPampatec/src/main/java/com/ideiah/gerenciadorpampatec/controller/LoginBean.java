@@ -171,8 +171,8 @@ public class LoginBean {
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
-            System.out.println("Empreendedor não cadastro");
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            System.out.println("gerente não cadastrado");
             return false;
 
         }
@@ -224,7 +224,7 @@ public class LoginBean {
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
             return false;
 
