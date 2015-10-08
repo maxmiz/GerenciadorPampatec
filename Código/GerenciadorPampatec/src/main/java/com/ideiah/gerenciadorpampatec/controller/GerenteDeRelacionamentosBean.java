@@ -6,13 +6,18 @@
 
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
+import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -32,6 +37,15 @@ public class GerenteDeRelacionamentosBean implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    
+    /**
+     * 
+     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatus() {
+        return Projeto.buscarProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
         
     }
     
