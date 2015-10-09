@@ -7,13 +7,19 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Edison Moura
  */
-public class BuscaProjetoGerenteDeRelacionamentosBean {
+
+@ManagedBean(name = "buscaProjetoGerenteDeRelacionamentosBean")
+@ViewScoped
+public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     private ArrayList<Projeto> listaProjetos;
     private ProjetoDao projeto;
@@ -25,6 +31,10 @@ public class BuscaProjetoGerenteDeRelacionamentosBean {
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
         this.listaProjetos = listaProjetos;
+    }
+
+    public ArrayList<Projeto> getListaProjetos() {
+        return listaProjetos;
     }
 
     /**
