@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author GUTO
  */
-public class Comentario_ProdutoOuServico implements Serializable {
+public class ComentarioProdutoOuServico implements Serializable {
 
     private String estagioEvolucao;
     private String tecnologiaProcessos;
@@ -24,6 +24,23 @@ public class Comentario_ProdutoOuServico implements Serializable {
     private int idcomentario_produtoouservico;
     private ComentarioProjeto comentarioProjeto;
 
+    public ComentarioProdutoOuServico() {
+    }
+
+    public ComentarioProdutoOuServico(String estagioEvolucao, String tecnologiaProcessos, String potencialInovacaoTecnologica, String aplicacoes, String dificuldadesEsperadas, String interacaoEmpresauniversidade, String interacaoEmpresaComunidadeGoverno, String infraestrutura, int idcomentario_produtoouservico, ComentarioProjeto comentarioProjeto) {
+        this.estagioEvolucao = estagioEvolucao;
+        this.tecnologiaProcessos = tecnologiaProcessos;
+        this.potencialInovacaoTecnologica = potencialInovacaoTecnologica;
+        this.aplicacoes = aplicacoes;
+        this.dificuldadesEsperadas = dificuldadesEsperadas;
+        this.interacaoEmpresauniversidade = interacaoEmpresauniversidade;
+        this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
+        this.infraestrutura = infraestrutura;
+        this.idcomentario_produtoouservico = idcomentario_produtoouservico;
+        this.comentarioProjeto = comentarioProjeto;
+    }
+
+    
     /**
      * @return the estagioEvolucao
      */

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author GUTO
  */
-public class Comentario_AnaliseEmprego implements Serializable{
+public class ComentarioAnaliseEmprego implements Serializable{
 
     private String relacoesClientes;
     private String parceriasChaves;
@@ -21,6 +21,20 @@ public class Comentario_AnaliseEmprego implements Serializable{
     private int id_comentarioAnaliseEmprego;
     private ComentarioProjeto comentarioProjeto;
 
+    public ComentarioAnaliseEmprego() {
+    }
+
+    public ComentarioAnaliseEmprego(String relacoesClientes, String parceriasChaves, String canais, String recursosprincipais, String concorrentes, int id_comentarioAnaliseEmprego, ComentarioProjeto comentarioProjeto) {
+        this.relacoesClientes = relacoesClientes;
+        this.parceriasChaves = parceriasChaves;
+        this.canais = canais;
+        this.recursosprincipais = recursosprincipais;
+        this.concorrentes = concorrentes;
+        this.id_comentarioAnaliseEmprego = id_comentarioAnaliseEmprego;
+        this.comentarioProjeto = comentarioProjeto;
+    }
+
+    
     /**
      * @return the relacoesClientes
      */

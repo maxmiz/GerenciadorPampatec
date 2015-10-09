@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author GUTO
  */
-public class Comentario_Negocio implements Serializable {
+public class ComentarioNegocio implements Serializable {
 
     private String segmentoClientes;
     private String propostaValor;
@@ -19,6 +19,18 @@ public class Comentario_Negocio implements Serializable {
     private int idcomentario_negocio;
     private ComentarioProjeto comentarioProjeto;
 
+    public ComentarioNegocio() {
+    }
+
+    public ComentarioNegocio(String segmentoClientes, String propostaValor, String atividadesChaves, int idcomentario_negocio, ComentarioProjeto comentarioProjeto) {
+        this.segmentoClientes = segmentoClientes;
+        this.propostaValor = propostaValor;
+        this.atividadesChaves = atividadesChaves;
+        this.idcomentario_negocio = idcomentario_negocio;
+        this.comentarioProjeto = comentarioProjeto;
+    }
+
+    
     /**
      * @return the segmentoClientes
      */

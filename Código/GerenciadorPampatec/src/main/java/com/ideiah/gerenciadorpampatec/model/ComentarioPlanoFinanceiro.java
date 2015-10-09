@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author GUTO
  */
-public class Comentario_PlanoFinanceiro implements Serializable{
+public class ComentarioPlanoFinanceiro implements Serializable{
     private String fontesReceita;
     private String estruturaCusto;
     private String investimentoInicial;
@@ -20,6 +20,20 @@ public class Comentario_PlanoFinanceiro implements Serializable{
     private int idcomentario_planofinanceiro;
     private ComentarioProjeto comentarioProjeto;
 
+    public ComentarioPlanoFinanceiro() {
+    }
+
+    public ComentarioPlanoFinanceiro(String fontesReceita, String estruturaCusto, String investimentoInicial, String custosFixos, String custosVariaveis, int idcomentario_planofinanceiro, ComentarioProjeto comentarioProjeto) {
+        this.fontesReceita = fontesReceita;
+        this.estruturaCusto = estruturaCusto;
+        this.investimentoInicial = investimentoInicial;
+        this.custosFixos = custosFixos;
+        this.custosVariaveis = custosVariaveis;
+        this.idcomentario_planofinanceiro = idcomentario_planofinanceiro;
+        this.comentarioProjeto = comentarioProjeto;
+    }
+
+    
     /**
      * @return the fontesReceita
      */

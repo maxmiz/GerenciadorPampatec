@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" table="comentario_produtoouservico">
+        <id name="idcomentario_produtoouservico" type="java.lang.Integer">
+            <column name="idcomentario_produtoouservico" />
+            <generator class="identity" />        
+        </id>
+        <property name="estagioEvolucao" type="string">
+            <column name="estagioEvolucao" length="1000" />
+        </property>
+        <property name="tecnologiaProcessos" type="string">
+            <column name="tecnologiaProcessos" length="1000" />
+        </property>
+        <property name="potencialInovacaoTecnologica" type="string">
+            <column name="potencialInovacaoTecnologica" length="1000" />
+        </property>
+        <property name="aplicacoes" type="string">
+            <column name="aplicacoes" length="1000" />
+        </property>
+        <property name="dificuldadesEsperadas" type="string">
+            <column name="dificuldadesEsperadas" length="1000" />
+        </property>
+        <property name="interacaoEmpresauniversidade" type="string">
+            <column name="interacaoEmpresauniversidade" length="1000" />
+        </property>
+        <property name="interacaoEmpresaComunidadeGoverno" type="string">
+            <column name="interacaoEmpresaComunidadeGoverno" length="1000" />
+        </property>
+        <property name="infraestrutura" type="string">
+            <column name="infraestrutura" length="1000" />
+        </property>
+        <one-to-one name="comentarioProjeto" class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto"
+                    cascade="save-update">
+        </one-to-one>
+    </class>
+</hibernate-mapping>

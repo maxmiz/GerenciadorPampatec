@@ -17,11 +17,28 @@ public class ComentarioProjeto implements Serializable{
     private String potencialEmprego;
     private String comentarioGeral;
     private int id_comentarioProjeto;
-    private Comentario_AnaliseEmprego comentario_AnaliseEmprego;
-    private Comentario_Negocio comentario_Negocio;
-    private Comentario_PlanoFinanceiro comentario_PlanoFinanceiro;
-    private Comentario_ProdutoOuServico comentario_ProdutoOuServico;
+    private ComentarioAnaliseEmprego comentario_AnaliseEmprego;
+    private ComentarioNegocio comentario_Negocio;
+    private ComentarioPlanoFinanceiro comentario_PlanoFinanceiro;
+    private ComentarioProdutoOuServico comentario_ProdutoOuServico;
+    private Projeto projeto;
 
+    public ComentarioProjeto() {
+    }
+
+    public ComentarioProjeto(String participacaoAcionaria, String potencialEmprego, String comentarioGeral, int id_comentarioProjeto, ComentarioAnaliseEmprego comentario_AnaliseEmprego, ComentarioNegocio comentario_Negocio, ComentarioPlanoFinanceiro comentario_PlanoFinanceiro, ComentarioProdutoOuServico comentario_ProdutoOuServico, Projeto projeto) {
+        this.participacaoAcionaria = participacaoAcionaria;
+        this.potencialEmprego = potencialEmprego;
+        this.comentarioGeral = comentarioGeral;
+        this.id_comentarioProjeto = id_comentarioProjeto;
+        this.comentario_AnaliseEmprego = comentario_AnaliseEmprego;
+        this.comentario_Negocio = comentario_Negocio;
+        this.comentario_PlanoFinanceiro = comentario_PlanoFinanceiro;
+        this.comentario_ProdutoOuServico = comentario_ProdutoOuServico;
+        this.projeto = projeto;
+    }
+
+    
     /**
      * @return the participacaoAcionaria
      */
@@ -81,57 +98,71 @@ public class ComentarioProjeto implements Serializable{
     /**
      * @return the comentario_AnaliseEmprego
      */
-    public Comentario_AnaliseEmprego getComentario_AnaliseEmprego() {
+    public ComentarioAnaliseEmprego getComentario_AnaliseEmprego() {
         return comentario_AnaliseEmprego;
     }
 
     /**
      * @param comentario_AnaliseEmprego the comentario_AnaliseEmprego to set
      */
-    public void setComentario_AnaliseEmprego(Comentario_AnaliseEmprego comentario_AnaliseEmprego) {
+    public void setComentario_AnaliseEmprego(ComentarioAnaliseEmprego comentario_AnaliseEmprego) {
         this.comentario_AnaliseEmprego = comentario_AnaliseEmprego;
     }
 
     /**
      * @return the comentario_Negocio
      */
-    public Comentario_Negocio getComentario_Negocio() {
+    public ComentarioNegocio getComentario_Negocio() {
         return comentario_Negocio;
     }
 
     /**
      * @param comentario_Negocio the comentario_Negocio to set
      */
-    public void setComentario_Negocio(Comentario_Negocio comentario_Negocio) {
+    public void setComentario_Negocio(ComentarioNegocio comentario_Negocio) {
         this.comentario_Negocio = comentario_Negocio;
     }
 
     /**
      * @return the comentario_PlanoFinanceiro
      */
-    public Comentario_PlanoFinanceiro getComentario_PlanoFinanceiro() {
+    public ComentarioPlanoFinanceiro getComentario_PlanoFinanceiro() {
         return comentario_PlanoFinanceiro;
     }
 
     /**
      * @param comentario_PlanoFinanceiro the comentario_PlanoFinanceiro to set
      */
-    public void setComentario_PlanoFinanceiro(Comentario_PlanoFinanceiro comentario_PlanoFinanceiro) {
+    public void setComentario_PlanoFinanceiro(ComentarioPlanoFinanceiro comentario_PlanoFinanceiro) {
         this.comentario_PlanoFinanceiro = comentario_PlanoFinanceiro;
     }
 
     /**
      * @return the comentario_ProdutoOuServico
      */
-    public Comentario_ProdutoOuServico getComentario_ProdutoOuServico() {
+    public ComentarioProdutoOuServico getComentario_ProdutoOuServico() {
         return comentario_ProdutoOuServico;
     }
 
     /**
      * @param comentario_ProdutoOuServico the comentario_ProdutoOuServico to set
      */
-    public void setComentario_ProdutoOuServico(Comentario_ProdutoOuServico comentario_ProdutoOuServico) {
+    public void setComentario_ProdutoOuServico(ComentarioProdutoOuServico comentario_ProdutoOuServico) {
         this.comentario_ProdutoOuServico = comentario_ProdutoOuServico;
+    }
+
+    /**
+     * @return the projeto
+     */
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    /**
+     * @param projeto the projeto to set
+     */
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
     
 }

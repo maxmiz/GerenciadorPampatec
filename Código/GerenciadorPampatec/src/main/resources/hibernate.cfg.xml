@@ -9,7 +9,6 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <property name="hibernate.connection.password">root</property>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Planofinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Projeto.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Empreendedor.hbm.xml"/>
@@ -19,5 +18,10 @@
     <mapping resource="com/ideiah/gerenciadorpampatec/model/EmpreendedorEmail.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Notificacao.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/GerenteRelacionamentos.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioProjeto.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioProdutoOuServico.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioPlanoFinanceiro.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioNegocio.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioAnaliseEmprego.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" table="comentario_planofinanceiro">
+         <id name="idcomentario_planofinanceiro" type="java.lang.Integer">
+            <column name="idcomentario_planofinanceiro" />
+            <generator class="identity" />        
+        </id>
+        <property name="fontesReceita" type="string">
+            <column name="fontesReceita" length="1000" />
+        </property>
+        <property name="estruturaCusto" type="string">
+            <column name="estruturaCusto" length="1000" />
+        </property>
+        <property name="investimentoInicial" type="string">
+            <column name="investimentoInicial" length="1000" />
+        </property>
+        <property name="custosFixos" type="string">
+            <column name="custosFixos" length="1000" />
+        </property>
+        <property name="custosVariaveis" type="string">
+            <column name="custosVariaveis" length="1000" />
+        </property>
+        <one-to-one name="comentarioProjeto" class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto"
+                    cascade="save-update">
+        </one-to-one>
+    </class>
+</hibernate-mapping>
