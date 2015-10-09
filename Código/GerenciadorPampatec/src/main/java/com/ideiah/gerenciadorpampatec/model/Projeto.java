@@ -244,8 +244,9 @@ public class Projeto implements java.io.Serializable {
     public static ArrayList<Projeto> buscarProjetoPorStatus(int status){
         ArrayList<Projeto> listaDeProjetos;
         ProjetoDao projetoDao = new ProjetoDao();
-        
+        System.out.println("ACESSOU O METODOOOOOOOOOOOOOOOO BUSCAR PROJETOS POR STATUS");
         listaDeProjetos = projetoDao.buscar();
+        
         ArrayList<Projeto> projetosGerente = new ArrayList<>();
         
         for (Projeto projeto : listaDeProjetos) {
