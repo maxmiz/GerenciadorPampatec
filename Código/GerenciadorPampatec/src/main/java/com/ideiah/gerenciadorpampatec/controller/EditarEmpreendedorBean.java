@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
+import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -37,7 +38,8 @@ public class EditarEmpreendedorBean {
     private String rua;
     private String numero;
     private String complemento;
-    
+    private String senha;
+    private String novaSenha;
 
     public EditarEmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -154,6 +156,22 @@ public class EditarEmpreendedorBean {
         return telefone;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
+    }
+
     public void editarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
@@ -190,13 +208,30 @@ public class EditarEmpreendedorBean {
                     empreendedor.setExperiencia(experiencia);
                     empreendedor.setCompetencia(competencia);
 
-                    if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                    //Confere se a intenção do usuário é também alterar a senha,
+                    //usando o boolean @alterarSenha para indicar.
+                    //Se for falso, significa que: a senha está em branco e não
+                    //deve ser alterada, ou que ela foi alterada com sucesso, 
+                    //permitindo que o processo siga em frente.
+                    boolean alterarSenha = false;
+                    if (!senha.isEmpty()) {
+                        alterarSenha = true;
+                        senha = CriptografiaUtil.md5(senha);
+                        if (empreendedor.getSenha().equals(senha)) {
+                            empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
+                            alterarSenha = false;
+                        } else {
+                            FacesUtil.addErrorMessage("Senha incorreta.", "formularioCadastro:senhaAtual");
+                        }
+                    }
+
+                    if (empreendedor.atualizarEmpreendedor(empreendedor)&&alterarSenha==false) {
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.xhtml");
                         } catch (IOException ex) {
                             Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                         }

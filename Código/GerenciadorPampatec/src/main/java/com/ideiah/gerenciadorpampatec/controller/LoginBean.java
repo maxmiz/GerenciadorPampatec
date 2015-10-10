@@ -10,6 +10,7 @@ import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
@@ -48,12 +49,20 @@ public class LoginBean {
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 
-    public void submit() {
+    public boolean submit() {
         try {
-            fazLogin(user, senha);
+            if (fazLoginEmpreendedor(user, senha)) {
+                System.out.println("entrou no if do empreendedor");
+                return true;
+            } else if (fazLoginGerente(user, senha)) {
+
+                System.out.println("entrou no if do gerente");
+                return true;
+            }
         } catch (Exception e) {
             System.out.println("Exceção inesperada" + e);
         }
+        return false;
     }
 
     public void fazLogout() {
@@ -65,7 +74,7 @@ public class LoginBean {
         LoginBean.MudarUser(null);
 
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/faces/loginEmpreendedor.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,6 +84,14 @@ public class LoginBean {
     public void getInicio() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void getInicioGerente() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,8 +121,68 @@ public class LoginBean {
         }
     }
 
-    public String fazLogin(String user, String senha) {
+    /**
+     * 
+     * @param user
+     * @param senha
+     * @return true se o login for de um Gerente de Relacionamento existente
+     */
+    public Boolean fazLoginGerente(String user, String senha) {
+         try {
+
+            GerenteRelacionamento gerente = new GerenteRelacionamento();
+
+            if (soContemNumeros(user)) {
+                if (CpfUtil.isValidCPF(user)) {
+                    System.out.println("..>" + user);
+                    gerente = gerente.buscarPorCpf(user);
+                } else {
+                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    System.out.println("cpf invalido");
+                }
+            } else {
+                gerente = gerente.buscarPorEmail(user);
+            }
+            senha = CriptografiaUtil.md5(senha);
+            System.out.println(senha);
+            if (gerente.getSenha().equals(senha)) {
+                FacesUtil.addSuccessMessage("Logado");
+                System.out.println("Logado");
+                session.setAttribute("gerente", gerente);
+                this.setNome(gerente.getNome());
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    return true;
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                System.out.println("senha incorreta");
+                System.out.println(senha);
+                return false;
+
+            }
+        } catch (NullPointerException nullpointer) {
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            System.out.println("gerente não cadastrado");
+            return false;
+
+        }
+
+        return false;
+
+    }
+
+    /**
+     * 
+     * @param user
+     * @param senha
+     * @return se o login for de um Empreendedor existente
+     */
+    public Boolean fazLoginEmpreendedor(String user, String senha) {
         try {
+
             Empreendedor empreendedor = new Empreendedor();
 
             if (soContemNumeros(user)) {
@@ -127,25 +204,26 @@ public class LoginBean {
                 session.setAttribute("empreendedor", empreendedor);
                 this.setNome(empreendedor.getNome());
                 try {
-                    //                return "success";
                     FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
+                    return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             } else {
-                FacesUtil.addSuccessMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
                 System.out.println(senha);
-                return "failure";
+                return false;
+
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
-            return "failure";
+            return false;
+
         }
 
-        return null;
+        return false;
 
     }
 

@@ -25,10 +25,12 @@
 
 .campoFeedBack{
     display: none;
-}/*
+}
+.campoInvisivel {
+    display: none;
+}
 
-
-*/.campoFeedBackOn{
+.campoFeedBackOn{
     display: block;
 }
 
@@ -177,7 +179,8 @@ fieldset[disabled] .autoCompletar input {
     border-width:0px 0px 1px 0px;
 }
 .tabelaEmpreendedores tr:first-child td:last-child{
-    border-width:0px 0px 1px 1px;
+	border-width:0px 0px 1px 1px;
+
 }
 
 .modal-feedBackSalvar{
@@ -194,6 +197,28 @@ fieldset[disabled] .autoCompletar input {
     color: #ffffff;
     padding: 10px;
     font-size: 25px;
+}
+
+.modal-feedBackSalvar-in{
+    -webkit-transform: translateY(200%);
+    -moz-transform: translateY(200%);
+    -ms-transform: translateY(200%);
+    transform: translateY(200%);
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    transition: transform 0.4s;
+}
+
+.modal-feedBackSalvar button{
+    position: absolute;
+    margin-left: 92%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: #00390c;
+}
+
+.modal-feedBackSalvar button:hover{
+    color: #06a728;
 }
 
 .modal-feedBackSalvar-in{

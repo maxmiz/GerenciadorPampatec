@@ -72,7 +72,6 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
             empreendedor.getNotificacoes().add(notificacao);
             empreendedor.atualizarEmpreendedor(empreendedor);
             quantidadeNotificacoes++;
-            descricoesNotificacoes.add(notificacao.getDescricao());
             atualizaEmpreendedores(empreendedor);
         }
     }

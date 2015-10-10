@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.controller.NotificacoesEmpreendedorBean;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Observable;
@@ -254,6 +255,30 @@ public class Projeto implements java.io.Serializable {
      */
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
+    }
+    
+    
+    /**
+     * 
+     * @param status
+     * @return lista de projeto com o status inserido
+     */
+    public static ArrayList<Projeto> buscarProjetoPorStatus(int status){
+        ArrayList<Projeto> listaDeProjetos;
+        ProjetoDao projetoDao = new ProjetoDao();
+        System.out.println("ACESSOU O METODOOOOOOOOOOOOOOOO BUSCAR PROJETOS POR STATUS");
+        listaDeProjetos = projetoDao.buscar();
+        
+        ArrayList<Projeto> projetosGerente = new ArrayList<>();
+        
+        for (Projeto projeto : listaDeProjetos) {
+            if (projeto.status == status) {
+                projetosGerente.add(projeto);
+            }
+        }
+        
+        return projetosGerente;
+        
     }
 
 }

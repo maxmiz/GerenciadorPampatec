@@ -135,7 +135,7 @@
                                           value="#{editarEmpreendedorBean.cpf}">
                         </p:inputMask>
                     </div>
-
+                    
                     <div class="col-md-12">
                         Experiência profissional <p:inputText class="form-control"
                                                               placeholder="Digite sua experiência"
@@ -188,7 +188,50 @@
                         <br/>
 
                     </div>
+                    
+                    <legend>Senha</legend>
+                    
+                    <div class="col-md-7">
+                        Senha atual <p:password id="senhaAtual" class="form-control" title="senhaAtual"
+                                           placeholder="Digite sua senha" 
+                                           requiredMessage="Insira sua senha atual"
+                                           required="false"
+                                           promptLabel="Força da senha" weakLabel="Fraca"
+                                           goodLabel="Mediana" strongLabel="Forte"
+                                           feedback="true"
+                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                           value="#{editarEmpreendedorBean.senha}"
+                                           validatorMessage="Senha deve ser igual"></p:password>
+                        <h:message class="mensagemErro" for="senha"/>
+                    </div>
+                    
+                    <div class="col-md-7">
+                        Nova senha <p:password id="senhaNova" class="form-control" title="senhaNova"
+                                           placeholder="Digite sua nova senha" 
+                                           requiredMessage="Insira sua nova senha"
+                                           required="false"
+                                           promptLabel="Força da senha" weakLabel="Fraca"
+                                           goodLabel="Mediana" strongLabel="Forte"
+                                           feedback="true"
+                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                           value="#{editarEmpreendedorBean.novaSenha}"
+                                           match="senhaConfig" validatorMessage="Senhas não conferem"></p:password>
+                        <h:message class="mensagemErro" for="senha"/>
 
+                    </div> 
+                    <div class="col-md-7">
+                        Confirme sua senha <p:password id="senhaConfig" class="form-control" 
+                                                        placeholder="Confirme sua nova senha" 
+                                                        requiredMessage="Confirme sua nova senha"
+                                                        required="false"
+                                                        styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                        title="confirmaSenha"  
+                                                        value="#{editarEmpreendedorBean.novaSenha}"></p:password>
+                        <h:message class="mensagemErro" for="senha"/>
+                        <br/>
+                    </div> 
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    
                     <legend>Endereço</legend>
 
                     <div class="col-md-9">

@@ -146,7 +146,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
+                            
                             <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio"></h:commandButton>
+
                         </div>
                     </div>
                 </div>
@@ -469,12 +471,13 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem id="llll" itemLabel="Outro: " itemValue="Outro:" />
+                                            <f:selectItem itemLabel="Outro" itemValue="Outro"  />
+                                            
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
 
-                                    <h:inputText class="form-control" id="descricaoOutroEstagio"
+                                    <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
                                                  validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
                                                  value="#{projetoBean.descricaoButtonOutro}"
                                                  onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
