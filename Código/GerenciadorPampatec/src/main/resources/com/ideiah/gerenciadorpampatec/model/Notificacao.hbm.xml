@@ -11,9 +11,17 @@
         <many-to-one name="empreendedor" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select">
             <column name="empreendedor_idEmpreendedor" not-null="true" />
         </many-to-one>
+        
+        <property name="visualizado" type="boolean">
+            <column name="visualizado" />
+        </property>
   
         <property name="descricao" type="string">
             <column name="descricao" length="450" />
+        </property>
+        
+        <property name="link" type="string">
+            <column name="link" length="100" />
         </property>
     
         

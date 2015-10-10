@@ -24,7 +24,7 @@
     </h:head>
     <body>
         <!-- Início do menu superior -->
-        <h:form>
+        <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-10">
@@ -35,11 +35,12 @@
                             </li>
 
                             <li class="">
-                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#">
+                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
                                     Notificações
                                     <span class="badge">
-                                           <h:outputText value="${loginBean.quantidadeDeNotificacoes}"></h:outputText> 
+                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
                                     </span>
+                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
                                 </h:outputLink>
                             </li>
 
@@ -65,7 +66,7 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -85,10 +86,11 @@
                             <h3 class="panel-title">Notificações</h3>
                         </div>
                         <div class="panel-body" align="center">
-                            <h:dataTable value="${loginBean.descricaoNotificacoes}" var="notificacao">
+                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
                                 <h:column>
                                     <div class="bordas">
-                                        <h:outputText value="#{notificacao}"></h:outputText>
+                                        <h:outputText value="#{notificacao.descricao}"/>
+                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -118,8 +120,8 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
-
-
+            <p:poll interval="3" update="barraNotificacoes"/>
+            <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>
     </body>
 </html>
