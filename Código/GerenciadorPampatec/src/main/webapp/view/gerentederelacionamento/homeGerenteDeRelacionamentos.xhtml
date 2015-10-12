@@ -9,7 +9,6 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css"  />
-            <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
@@ -19,7 +18,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-        <title>Página Principal - Empreendedor</title>
+        <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
@@ -31,31 +30,25 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                <h:commandLink value="Início" action="#{loginBean.getInicioGerente()}"></h:commandLink>
                             </li>
 
-                            <li class="">
-                                <a class="dropdown-toggle" href="#" onclick="exibeNotificacoes()"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#"  data-toggle="dropdown" aria-expanded="false">Notificações 
                                     <span class="badge">
-                                        <h:outputText value="${loginBean.quantidadeDeNotificacoes}"></h:outputText>
+                                        <h:outputText value="1"></h:outputText>
                                     </span>
                                 </a>
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
-                                </ul>
+                                <h:commandLink value="Avaliar Planos de Negócio" action="#{gerenteDeRelacionamentosBean.visualizarProjetos()}"></h:commandLink>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
+                                    <li><h:commandLink value="Perfil"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
@@ -64,7 +57,7 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -84,13 +77,7 @@
                             <h3 class="panel-title">Notificações</h3>
                         </div>
                         <div class="panel-body" align="center">
-                            <h:dataTable value="${loginBean.descricaoNotificacoes}" var="notificacao">
-                                <h:column>
-                                    <div class="bordas">
-                                        <h:outputText value="#{notificacao}"></h:outputText>
-                                    </div>
-                                </h:column>
-                            </h:dataTable>
+                            
                         </div>
                         <div class="panel-footer" align="right">
                             <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
@@ -102,21 +89,6 @@
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
 
             <!-- Fim das modais apresentadas -->
-
-            <div class="col-md-12">
-                <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
-                </iframe>
-            </div>
-
-
-            <div class="col-md-12" text-align="center">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo projeto!" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
-                    <h:commandButton rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Meus projetos!" action="#{loginBean.enviaBuscaProjeto()}"/>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
 
 
         </h:form>

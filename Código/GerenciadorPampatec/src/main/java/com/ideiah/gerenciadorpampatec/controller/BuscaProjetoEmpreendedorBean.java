@@ -22,13 +22,14 @@ import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name = "buscaProjetoEmpreendedorBean")
 @ViewScoped
-public class BuscaProjetoEmpreendedorBean implements Serializable{
+public class BuscaProjetoEmpreendedorBean implements Serializable {
+
     private ArrayList<Projeto> listaProjetos;
     private ProjetoDao projeto;
     private Projeto projetoSelecionado;
     private int contTeste = 0;
-    
-     public BuscaProjetoEmpreendedorBean() {
+
+    public BuscaProjetoEmpreendedorBean() {
         projeto = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
     }
@@ -45,8 +46,6 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
         return projetoSelecionado;
     }
 
-   
-
     public List<Projeto> buscarProjetos() {
         return projeto.buscar();
     }
@@ -54,31 +53,33 @@ public class BuscaProjetoEmpreendedorBean implements Serializable{
     public ProjetoDao getProjeto() {
         return projeto;
     }
+
     /**
      * Remove o empreendedor do projeto selecionado
      */
-    public void sairDoProjeto(){
+    public void sairDoProjeto() {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         contTeste++;
         System.out.println("Testeeeeeeeeeeeeee = " + contTeste);
         for (Object object : projetoSelecionado.getEmpreendedores()) {
             Empreendedor emmpreendedorLaco = (Empreendedor) object;
-            if(Objects.equals(empreendedor.getIdEmpreendedor(), emmpreendedorLaco.getIdEmpreendedor())){
+            if (Objects.equals(empreendedor.getIdEmpreendedor(), emmpreendedorLaco.getIdEmpreendedor())) {
                 projetoSelecionado.getEmpreendedores().remove(emmpreendedorLaco);
                 break;
             }
         }
-        
+
         listaProjetos.remove(projetoSelecionado);
-        
-        if(projetoSelecionado.getEmpreendedores().isEmpty()){
+
+        if (projetoSelecionado.getEmpreendedores().isEmpty()) {
             projeto.deletar(projetoSelecionado.getIdProjeto());
-        }else{
+        } else {
             projeto.update(projetoSelecionado);
         }
-        
+
     }
+
     public ArrayList<Projeto> buscaProjetoPorEmpreendedor() {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");

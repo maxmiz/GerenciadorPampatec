@@ -18,5 +18,11 @@
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Produtoouservico.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/EmpreendedorEmail.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Notificacao.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/GerenteRelacionamentos.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioProjeto.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioProdutoOuServico.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioPlanoFinanceiro.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioNegocio.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioAnaliseEmprego.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

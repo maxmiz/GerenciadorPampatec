@@ -49,6 +49,10 @@ public class ProjetoDao extends Dao {
     public Projeto buscar(int codigo) {
         return (Projeto) buscarObjeto(codigo, Projeto.class);
     }
+    
+    public Projeto buscarPorStatus(int status) {
+        return (Projeto) buscarObjetoCriteriaINT("status", status, Projeto.class);
+    }
 
     public boolean verificaEmpreendedor(Empreendedor empreendedor, Projeto projeto) {
 //        Projeto[] listaOriginal = (Projeto[]) empreendedor.getProjetos().toArray();

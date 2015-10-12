@@ -9,6 +9,7 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -75,15 +76,26 @@
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
-                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
+                                    <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
+                                    <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
+
                                 </div>
+
+                                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+                                <p:dialog widgetVar="statusDialog" style="margin-left: 35%;" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                    <p:graphicImage url="http://i.imgur.com/XGw5fjp.gif" />
+                                </p:dialog>
+
                                 <div class="text-right col-md-12"> 
                                     <div class="col-md-10">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
                                     </div>
-                                        
-                                    <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}"></h:commandButton>
+
+                                    <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}">
+                                        <f:ajax execute="@form" render="mensagemErro"/>
+                                    </h:commandButton>
                                     
                                 </div>
                             </fieldset>
@@ -94,8 +106,8 @@
             </div>
         </div>
         <!-- Fim do Modal de Recuperação de Senha -->
-        
-        
+
+
 
     </h:body>
 </html>

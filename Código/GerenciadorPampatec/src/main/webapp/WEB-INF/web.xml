@@ -12,13 +12,21 @@
         <filter-name>RecuperarSenhaFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.RecuperarSenhaFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>LoginFilterGerente</filter-name>
+        <filter-class>com.ideiah.gerenciadorpampatec.controller.LoginFilterGerente</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilterGerente</filter-name>
+        <url-pattern>/faces/view/gerentederelacionamento/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>CompletarCadastroFilter</filter-name>
         <url-pattern>/faces/terminarCadastroEmpreendedor.xhtml</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/*</url-pattern>
+        <url-pattern>/faces/view/empreendedor/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>RecuperarSenhaFilter</filter-name>

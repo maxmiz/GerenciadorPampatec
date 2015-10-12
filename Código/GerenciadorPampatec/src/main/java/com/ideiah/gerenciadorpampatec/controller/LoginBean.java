@@ -10,6 +10,7 @@ import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
@@ -48,25 +49,33 @@ public class LoginBean {
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 
-    public void submit() {
+    public boolean submit() {
         try {
-            fazLogin(user, senha);
+            if (fazLoginEmpreendedor(user, senha)) {
+                System.out.println("entrou no if do empreendedor");
+                return true;
+            } else if (fazLoginGerente(user, senha)) {
+
+                System.out.println("entrou no if do gerente");
+                return true;
+            }
         } catch (Exception e) {
             System.out.println("Exceção inesperada" + e);
         }
+        return false;
     }
-    
+
     /**
-     * 
+     *
      * @return O número total de notificações
      */
-    public int getQuantidadeDeNotificacoes(){
+    public int getQuantidadeDeNotificacoes() {
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
-        
+
     }
-    
-    public ArrayList<String> getDescricaoNotificacoes(){
+
+    public ArrayList<String> getDescricaoNotificacoes() {
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         return empreendedor.getDescricaoDasNotificacoes(empreendedor);
     }
@@ -80,7 +89,7 @@ public class LoginBean {
         LoginBean.MudarUser(null);
 
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/view/loginEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/faces/loginEmpreendedor.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,10 +103,18 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void getInicioGerente() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void getEnviarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,7 +122,7 @@ public class LoginBean {
 
     public void getVisualizarPlanos() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,8 +136,68 @@ public class LoginBean {
         }
     }
 
-    public String fazLogin(String user, String senha) {
+    /**
+     * 
+     * @param user
+     * @param senha
+     * @return true se o login for de um Gerente de Relacionamento existente
+     */
+    public Boolean fazLoginGerente(String user, String senha) {
+         try {
+
+            GerenteRelacionamento gerente = new GerenteRelacionamento();
+
+            if (soContemNumeros(user)) {
+                if (CpfUtil.isValidCPF(user)) {
+                    System.out.println("..>" + user);
+                    gerente = gerente.buscarPorCpf(user);
+                } else {
+                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    System.out.println("cpf invalido");
+                }
+            } else {
+                gerente = gerente.buscarPorEmail(user);
+            }
+            senha = CriptografiaUtil.md5(senha);
+            System.out.println(senha);
+            if (gerente.getSenha().equals(senha)) {
+                FacesUtil.addSuccessMessage("Logado");
+                System.out.println("Logado");
+                session.setAttribute("gerente", gerente);
+                this.setNome(gerente.getNome());
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    return true;
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                System.out.println("senha incorreta");
+                System.out.println(senha);
+                return false;
+
+            }
+        } catch (NullPointerException nullpointer) {
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            System.out.println("gerente não cadastrado");
+            return false;
+
+        }
+
+        return false;
+
+    }
+
+    /**
+     * 
+     * @param user
+     * @param senha
+     * @return se o login for de um Empreendedor existente
+     */
+    public Boolean fazLoginEmpreendedor(String user, String senha) {
         try {
+
             Empreendedor empreendedor = new Empreendedor();
 
             if (soContemNumeros(user)) {
@@ -142,53 +219,60 @@ public class LoginBean {
                 session.setAttribute("empreendedor", empreendedor);
                 this.setNome(empreendedor.getNome());
                 try {
-                    //                return "success";
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
+                    return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             } else {
-                FacesUtil.addSuccessMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
                 System.out.println(senha);
-                return "failure";
+                return false;
+
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Empreendedor não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
             System.out.println("Empreendedor não cadastro");
-            return "failure";
+            return false;
+
         }
 
-        return null;
+        return false;
 
     }
-    
+
     /**
-     * Método para recuparação de senha do usuário.
-     * Envia um email para o destino inserido (email) com um link para alterar a senha.
-     * Cria um novo empreendedorEmail e seta os valores com tipo (recuperação de senha),
-     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email inserido e
-     * gera um idUnico que é setado no campo de id do empreendedorEmail.
+     * Método para recuparação de senha do usuário. Envia um email para o
+     * destino inserido (email) com um link para alterar a senha. Cria um novo
+     * empreendedorEmail e seta os valores com tipo (recuperação de senha),
+     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
+     * inserido e gera um idUnico que é setado no campo de id do
+     * empreendedorEmail.
      */
-    public void recuperarSenha(){
-        
+    public void recuperarSenha() {
+
         Empreendedor empreendedor;
-        
+
         empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
-        
-        String idUnico = UUID.randomUUID().toString();
-        
-        EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
-        
-        empreendedorEmail.setEmpreendedor(empreendedor);
-        empreendedorEmail.setIdEmpreendedorEmail(idUnico);
-        empreendedorEmail.setTipo("Recuperação de Senha");
-        
-        empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
-       
-        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-        
+
+        if (empreendedor != null) {
+            String idUnico = UUID.randomUUID().toString();
+
+            EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+
+            empreendedorEmail.setEmpreendedor(empreendedor);
+            empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+            empreendedorEmail.setTipo("Recuperação de Senha");
+
+            empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+
+            EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+            FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+        } else {
+            FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+        }
+
     }
 
     //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
@@ -263,7 +347,8 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("PaginaBuscaProjeto.xhtml");
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
