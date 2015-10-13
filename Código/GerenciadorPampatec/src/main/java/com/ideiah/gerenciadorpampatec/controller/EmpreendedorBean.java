@@ -127,7 +127,7 @@ public class EmpreendedorBean {
                             LoginBean.MudarUser(empreendedor.getEmail());
                             empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().redirect("view/homeEmpreendedor.xhtml");
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
                         } catch (IOException ex) {
                             Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                         }
