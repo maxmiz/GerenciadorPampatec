@@ -190,7 +190,7 @@ public class EmpreendedorBean {
                         LoginBean.MudarSenha(empreendedor.getSenha());
                         LoginBean.MudarUser(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
-                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/homeEmpreendedor.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.xhtml");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
