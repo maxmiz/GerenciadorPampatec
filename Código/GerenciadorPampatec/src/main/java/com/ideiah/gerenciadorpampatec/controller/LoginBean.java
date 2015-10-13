@@ -65,21 +65,6 @@ public class LoginBean {
         return false;
     }
 
-    /**
-     *
-     * @return O número total de notificações
-     */
-    public int getQuantidadeDeNotificacoes() {
-        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
-        return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
-
-    }
-
-    public ArrayList<String> getDescricaoNotificacoes() {
-        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
-        return empreendedor.getDescricaoDasNotificacoes(empreendedor);
-    }
-
     public void fazLogout() {
 
         session.removeAttribute("empreendedor");

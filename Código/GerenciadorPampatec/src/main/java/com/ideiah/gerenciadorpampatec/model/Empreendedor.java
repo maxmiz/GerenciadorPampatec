@@ -241,7 +241,7 @@ public class Empreendedor implements java.io.Serializable {
             return ENVIADO;
         }
 
-        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        projeto.mudarStatus(Projeto.EM_PRE_AVALIACAO);
         
         Date data = new Date(System.currentTimeMillis());
         projeto.setDataEnvio(data);
@@ -420,16 +420,21 @@ public class Empreendedor implements java.io.Serializable {
      * 
      * @return quantidade de notificacoes 
      */
-    public int getQuantidadeDeNotificacoes(Empreendedor empreendedor){
-        return notificacoes.size();
+    public int getQuantidadeDeNotificacoes(){
+        int quantidadeNotificacoes = notificacoes.size();
+        for (Notificacao notificacao : notificacoes) {
+            if(notificacao.isVisualizado()){
+                quantidadeNotificacoes--;
+            }
+        }
+        return quantidadeNotificacoes;
     }
     
     /**
      * 
-     * @param empreendedor
      * @return ArrayList com as descrições de todas as notificações
      */
-    public  ArrayList<String> getDescricaoDasNotificacoes(Empreendedor empreendedor){
+    public  ArrayList<String> getDescricaoDasNotificacoes(){
         ArrayList<String> descricoes = new ArrayList<String>();
         
         for (Notificacao notificacao: notificacoes) {

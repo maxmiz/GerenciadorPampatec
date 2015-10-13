@@ -596,6 +596,7 @@ public class ProjetoBean implements Serializable {
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("exeção = " + e);
             }
         }
