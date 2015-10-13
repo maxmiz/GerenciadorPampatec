@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"> 
     <h:head>
-
+        <h:outputScript library="js" name="formulario.js"/>
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
@@ -111,10 +111,10 @@
             <h1>Edite seus dados</h1>
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
-                <h:form id="formularioCadastro" title="cadastroEmpreendedor">
+                <h:form id="formularioCadastro" title="cadastroEmpreendedor" onsubmit="precisaSalvar = false;">
                     <div class="col-md-6">
 
-                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
+                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira o seu nome antes de enviar" 
                                            required="true" 
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -125,7 +125,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        CPF* <p:inputMask id="cpf" class="form-control" 
+                        CPF* <p:inputMask id="cpf" class="form-control" onchange="precisaSalvar = true;"
                                           placeholder="Digite seu CPF"
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
@@ -137,14 +137,14 @@
                     </div>
                     
                     <div class="col-md-12">
-                        Experiência profissional <p:inputText class="form-control"
+                        Experiência profissional <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                               placeholder="Digite sua experiência"
                                                               value="#{editarEmpreendedorBean.experiencia}">
                         </p:inputText>
                     </div>
 
                     <div class="col-md-12">
-                        Competências nas áreas técnica, administrativa e comercial <p:inputText class="form-control"
+                        Competências nas áreas técnica, administrativa e comercial <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                                                                 placeholder="Digite suas competências"
                                                                                                 value="#{editarEmpreendedorBean.competencia}">
                         </p:inputText>
@@ -152,14 +152,14 @@
 
 
                     <div class="col-md-12">
-                        Formação <p:inputText class="form-control" 
+                        Formação <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                               placeholder="Digite sua formação" 
                                               value="#{editarEmpreendedorBean.formacao}">
                         </p:inputText>
                     </div>
 
                     <div class="col-md-8">
-                        E-mail* <p:inputText id="email" class="form-control" 
+                        E-mail* <p:inputText id="email" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite seu email" 
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
@@ -173,7 +173,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        Telefone* <p:inputMask id="telefone" class="form-control" 
+                        Telefone* <p:inputMask id="telefone" class="form-control" onchange="precisaSalvar = true;"
                                                placeholder="Digite seu contato"
                                                value="#{editarEmpreendedorBean.telefone}"
                                                requiredMessage="Insira o seu telefone"
@@ -193,7 +193,7 @@
                     
                     <div class="col-md-7">
                         Senha atual <p:password id="senhaAtual" class="form-control" title="senhaAtual"
-                                           placeholder="Digite sua senha" 
+                                           placeholder="Digite sua senha" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira sua senha atual"
                                            required="false"
                                            promptLabel="Força da senha" weakLabel="Fraca"
@@ -207,7 +207,7 @@
                     
                     <div class="col-md-7">
                         Nova senha <p:password id="senhaNova" class="form-control" title="senhaNova"
-                                           placeholder="Digite sua nova senha" 
+                                           placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira sua nova senha"
                                            required="false"
                                            promptLabel="Força da senha" weakLabel="Fraca"
@@ -220,7 +220,7 @@
 
                     </div> 
                     <div class="col-md-7">
-                        Confirme sua senha <p:password id="senhaConfig" class="form-control" 
+                        Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
                                                         placeholder="Confirme sua nova senha" 
                                                         requiredMessage="Confirme sua nova senha"
                                                         required="false"
@@ -235,7 +235,7 @@
                     <legend>Endereço</legend>
 
                     <div class="col-md-9">
-                        Rua* <p:inputText id="rua" class="form-control"
+                        Rua* <p:inputText id="rua" class="form-control" onchange="precisaSalvar = true;"
                                           placeholder="Digite a rua do seu endereço"
                                           requiredMessage="Insira a rua do seu endereço"
                                           required="true"
@@ -247,7 +247,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        Número* <p:inputText id="numero" class="form-control" 
+                        Número* <p:inputText id="numero" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite o número do seu endereço"
                                              requiredMessage="Insira o número do seu endereço"
                                              required="true" 
@@ -261,7 +261,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        Bairro* <p:inputText id="bairro" class="form-control" 
+                        Bairro* <p:inputText id="bairro" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite o bairro do seu endereço"
                                              requiredMessage="Insira o bairro do seu endereço"
                                              required="true"
@@ -273,7 +273,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        Complemento<p:inputText class="form-control" 
+                        Complemento<p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                 placeholder="Digite o complemento do seu endereço"
                                                 value="#{editarEmpreendedorBean.complemento}">
                         </p:inputText>
