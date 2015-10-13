@@ -22,6 +22,7 @@ import javax.faces.bean.ViewScoped;
 public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     private ArrayList<Projeto> listaProjetos;
+    private Projeto projetoSelecionado;
     private ProjetoDao projeto;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
@@ -35,6 +36,10 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     public ArrayList<Projeto> getListaProjetos() {
         return listaProjetos;
+    }
+    
+    public Projeto getProjetoSelecionado() {
+        return projetoSelecionado;
     }
 
     /**
