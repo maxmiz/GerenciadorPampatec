@@ -28,7 +28,6 @@ public class Empreendedor implements java.io.Serializable {
     private String email;
     private String formacao;
     private String experiencia;
-    private String competencia;
     private String bairro;
     private String rua;
 
@@ -88,7 +87,7 @@ public class Empreendedor implements java.io.Serializable {
         this.notificacoes = notificacoes;
     }
 
-    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, Set notificacoes) {
+    public Empreendedor(Integer idEmpreendedor, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String participacaoAcionaria, Set projetos, Set notificacoes) {
         this.idEmpreendedor = idEmpreendedor;
         this.nome = nome;
         this.telefone = telefone;
@@ -96,7 +95,6 @@ public class Empreendedor implements java.io.Serializable {
         this.email = email;
         this.formacao = formacao;
         this.experiencia = experiencia;
-        this.competencia = competencia;
         this.projetos = projetos;
         this.notificacoes = notificacoes;
     }
@@ -165,14 +163,6 @@ public class Empreendedor implements java.io.Serializable {
 
     public void setExperiencia(String experiencia) {
         this.experiencia = experiencia;
-    }
-
-    public String getCompetencia() {
-        return this.competencia;
-    }
-
-    public void setCompetencia(String competencia) {
-        this.competencia = competencia;
     }
 
     public Set getProjetos() {
