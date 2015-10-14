@@ -91,6 +91,7 @@ function  verificarCampos() {
 }
 
 
+
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
@@ -107,6 +108,7 @@ function verificaNegocio() {
     listaCampos[1] = propostaDeValor;
     listaCampos[2] = atividadesChave;
     mudarCorLista(listaCampos, tabNegocio);
+    
 }
 
 function verificaAnaliseMercado() {
