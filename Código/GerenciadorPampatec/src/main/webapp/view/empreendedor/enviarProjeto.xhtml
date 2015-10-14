@@ -77,6 +77,9 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
+            $("#botaoOutro").click(function () {
+                $("#descricaoOutroEstagio").hide();
+            });
 
         </script>
 
@@ -101,7 +104,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            
+
                             <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio"></h:commandButton>
 
                         </div>
@@ -134,7 +137,7 @@
                 </div>
             </div>
             <!-- Fim do Modal de informação do botão Salvar -->
-            
+
             <!-- Modal Plano salvo com sucesso. -->
             <h:panelGroup class="modal-feedBackSalvar" id="modal-feedBackSalvar" rendered="#{projetoBean.salvou}">
                 <button type="button" onclick="fechaFeedBack();">
@@ -426,8 +429,8 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem itemLabel="Outro" itemValue="Outro"  />
-                                            
+                                            <f:selectItem id="botaoOutro" itemLabel="Outro" itemValue="Outro"  />
+
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
