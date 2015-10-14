@@ -5,20 +5,21 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"> 
     <h:head>
-
+        <h:outputScript library="js" name="formulario.js"/>
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
+        <h:outputScript library="js" name="js.js"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <title>Editar dados cadastrais</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
 
-        <!-- Início do menu superior -->
-        <h:form>
+               <!-- Início do menu superior -->
+        <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-10">
@@ -29,9 +30,13 @@
                             </li>
 
                             <li class="">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Notificações 
-                                    <span class="badge">0</span>
-                                </a>
+                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
+                                    Notificações
+                                    <span class="badge">
+                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
+                                    </span>
+                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
+                                </h:outputLink>
                             </li>
 
                             <li class="dropdown">
@@ -56,10 +61,47 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="${loginBean.nome}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
+
+            <!-- Fim do menu superior -->
+
+            <!-- Inicio dos Modais apresentadas -->
+
+            <!-- Modal com as NOTIFICAÇÕES do usuário -->
+            <div class="modal fade" id="modalNotificacoes" role="dialog">
+
+                <div class="modal-dialog">
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="panel-title">Notificações</h3>
+                        </div>
+                        <div class="panel-body" align="center">
+                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
+                                <h:column>
+                                    <div class="bordas">
+                                        <h:outputText value="#{notificacao.descricao}"/>
+                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="panel-footer" align="right">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Fim do Modal com as NOTIFICAÇÕES -->
+
+            <!-- Fim das modais apresentadas -->
+            <p:poll interval="3" update="barraNotificacoes"/>
+            <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>
         <!-- Fim do menu superior -->
 
@@ -69,10 +111,10 @@
             <h1>Edite seus dados</h1>
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
-                <h:form id="formularioCadastro" title="cadastroEmpreendedor">
+                <h:form id="formularioCadastro" title="cadastroEmpreendedor" onsubmit="precisaSalvar = false;">
                     <div class="col-md-6">
 
-                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
+                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira o seu nome antes de enviar" 
                                            required="true" 
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -83,7 +125,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        CPF* <p:inputMask id="cpf" class="form-control" 
+                        CPF* <p:inputMask id="cpf" class="form-control" onchange="precisaSalvar = true;"
                                           placeholder="Digite seu CPF"
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
@@ -95,14 +137,14 @@
                     </div>
                     
                     <div class="col-md-12">
-                        Experiência profissional <p:inputText class="form-control"
+                        Experiência profissional <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                               placeholder="Digite sua experiência"
                                                               value="#{editarEmpreendedorBean.experiencia}">
                         </p:inputText>
                     </div>
 
                     <div class="col-md-12">
-                        Competências nas áreas técnica, administrativa e comercial <p:inputText class="form-control"
+                        Competências nas áreas técnica, administrativa e comercial <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                                                                 placeholder="Digite suas competências"
                                                                                                 value="#{editarEmpreendedorBean.competencia}">
                         </p:inputText>
@@ -110,14 +152,14 @@
 
 
                     <div class="col-md-12">
-                        Formação <p:inputText class="form-control" 
+                        Formação <p:inputText class="form-control" onchange="precisaSalvar = true;"
                                               placeholder="Digite sua formação" 
                                               value="#{editarEmpreendedorBean.formacao}">
                         </p:inputText>
                     </div>
 
                     <div class="col-md-8">
-                        E-mail* <p:inputText id="email" class="form-control" 
+                        E-mail* <p:inputText id="email" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite seu email" 
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
@@ -131,7 +173,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        Telefone* <p:inputMask id="telefone" class="form-control" 
+                        Telefone* <p:inputMask id="telefone" class="form-control" onchange="precisaSalvar = true;"
                                                placeholder="Digite seu contato"
                                                value="#{editarEmpreendedorBean.telefone}"
                                                requiredMessage="Insira o seu telefone"
@@ -151,7 +193,7 @@
                     
                     <div class="col-md-7">
                         Senha atual <p:password id="senhaAtual" class="form-control" title="senhaAtual"
-                                           placeholder="Digite sua senha" 
+                                           placeholder="Digite sua senha" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira sua senha atual"
                                            required="false"
                                            promptLabel="Força da senha" weakLabel="Fraca"
@@ -160,12 +202,12 @@
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                            value="#{editarEmpreendedorBean.senha}"
                                            validatorMessage="Senha deve ser igual"></p:password>
-                        <h:message class="mensagemErro" for="senha"/>
+                        <h:message class="mensagemErro" for="senhaAtual"/>
                     </div>
                     
                     <div class="col-md-7">
                         Nova senha <p:password id="senhaNova" class="form-control" title="senhaNova"
-                                           placeholder="Digite sua nova senha" 
+                                           placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
                                            requiredMessage="Insira sua nova senha"
                                            required="false"
                                            promptLabel="Força da senha" weakLabel="Fraca"
@@ -178,7 +220,7 @@
 
                     </div> 
                     <div class="col-md-7">
-                        Confirme sua senha <p:password id="senhaConfig" class="form-control" 
+                        Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
                                                         placeholder="Confirme sua nova senha" 
                                                         requiredMessage="Confirme sua nova senha"
                                                         required="false"
@@ -193,7 +235,7 @@
                     <legend>Endereço</legend>
 
                     <div class="col-md-9">
-                        Rua* <p:inputText id="rua" class="form-control"
+                        Rua* <p:inputText id="rua" class="form-control" onchange="precisaSalvar = true;"
                                           placeholder="Digite a rua do seu endereço"
                                           requiredMessage="Insira a rua do seu endereço"
                                           required="true"
@@ -205,7 +247,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        Número* <p:inputText id="numero" class="form-control" 
+                        Número* <p:inputText id="numero" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite o número do seu endereço"
                                              requiredMessage="Insira o número do seu endereço"
                                              required="true" 
@@ -219,7 +261,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        Bairro* <p:inputText id="bairro" class="form-control" 
+                        Bairro* <p:inputText id="bairro" class="form-control" onchange="precisaSalvar = true;"
                                              placeholder="Digite o bairro do seu endereço"
                                              requiredMessage="Insira o bairro do seu endereço"
                                              required="true"
@@ -231,7 +273,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        Complemento<p:inputText class="form-control" 
+                        Complemento<p:inputText class="form-control" onchange="precisaSalvar = true;"
                                                 placeholder="Digite o complemento do seu endereço"
                                                 value="#{editarEmpreendedorBean.complemento}">
                         </p:inputText>

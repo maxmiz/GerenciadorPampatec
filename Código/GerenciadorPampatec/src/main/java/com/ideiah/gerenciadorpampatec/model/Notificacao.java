@@ -16,6 +16,8 @@ public class Notificacao implements java.io.Serializable {
     private int idNotificacao;
     private String descricao;
     private Empreendedor empreendedor;
+    private boolean visualizado;
+    private String link;
     
     public Notificacao () {
         
@@ -84,6 +86,34 @@ public class Notificacao implements java.io.Serializable {
      */
     public void setEmpreendedor(Empreendedor empreendedor) {
         this.empreendedor = empreendedor;
+    }
+
+    /**
+     * @return the visualizado
+     */
+    public boolean isVisualizado() {
+        return visualizado;
+    }
+
+    /**
+     * @param visualizado the visualizado to set
+     */
+    public void setVisualizado(boolean visualizado) {
+        this.visualizado = visualizado;
+    }
+
+    /**
+     * @return the link
+     */
+    public String getLink() {
+        return link;
+    }
+
+    /**
+     * @param link the link to set
+     */
+    public void setLink(String link) {
+        this.link = link;
     }
     
     

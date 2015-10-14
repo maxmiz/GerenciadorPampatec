@@ -30,7 +30,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" ></h:commandLink>
+                                <h:commandLink value="Início" action="#{loginBean.getInicioGerente()}"></h:commandLink>
                             </li>
 
                             <li class="dropdown">
@@ -42,7 +42,7 @@
                             </li>
 
                             <li class="">
-                                <a class="dropdown-toggle" href="#"  data-toggle="dropdown" aria-expanded="false">Avaliar Planos de Negócio 
+                                <a class="dropdown-toggle" href="buscarPlanoDeNegocio.xhtml"  data-toggle="dropdown" aria-expanded="false">Avaliar Planos de Negócio 
                                 </a>
                             </li>
 
@@ -106,29 +106,29 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
 
-                            <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" >
+                            <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                                 <f:facet name="header">
                                     Tabela de Planos de Negócio
                                 </f:facet>
 
                                 <p:column headerText="Nome">
-
+                                    <h:outputText value="#{projeto.nome}" />
                                 </p:column>
 
                                 <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-
+                                    <h:outputText value="#{projeto.dataCriacao}" />
                                 </p:column>
 
-                                <p:column headerText="Status" style="width:150px;text-align: center">
-
-                                </p:column>
+                                <!--                                <p:column headerText="Status" style="width:150px;text-align: center">
+                                                                    
+                                                                </p:column>-->
 
                                 <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                     <div align="center">
-                                        <div class="col-md-4"> 
-                                            <p:commandButton icon="fa fa-check-square-o" styleClass="btn-primary" value="Avaliar" title="View" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                                <f:setPropertyActionListener value="#{projeto}" target=""/>
+                                        <div align="center">
+                                            <p:commandButton icon="fa fa-edit" styleClass="btn-primary" value="Avaliar" title="Avaliar Plano de Negócio" >
+                                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoGerenteDeRelacionamentosBean.projetoSelecionado}"/>
                                             </p:commandButton>
                                         </div>
                                     </div>

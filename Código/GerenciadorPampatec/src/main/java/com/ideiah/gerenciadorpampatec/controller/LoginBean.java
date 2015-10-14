@@ -65,21 +65,6 @@ public class LoginBean {
         return false;
     }
 
-    /**
-     *
-     * @return O número total de notificações
-     */
-    public int getQuantidadeDeNotificacoes() {
-        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
-        return empreendedor.getQuantidadeDeNotificacoes(empreendedor);
-
-    }
-
-    public ArrayList<String> getDescricaoNotificacoes() {
-        Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
-        return empreendedor.getDescricaoDasNotificacoes(empreendedor);
-    }
-
     public void fazLogout() {
 
         session.removeAttribute("empreendedor");
@@ -99,6 +84,14 @@ public class LoginBean {
     public void getInicio() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void getInicioGerente() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
