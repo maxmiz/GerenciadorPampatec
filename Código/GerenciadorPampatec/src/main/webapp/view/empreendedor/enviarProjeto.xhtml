@@ -13,7 +13,7 @@
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
-        
+
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js" />
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
     </h:head>
     <h:body onload="verificarCampos(), carregaFeedBack();">
 
-                <!-- Início do menu superior -->
+        <!-- Início do menu superior -->
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -92,7 +92,7 @@
                                 <h:column>
                                     <div class="bordas">
                                         <h:outputText value="#{notificacao.descricao}"/>
-                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -158,30 +158,6 @@
             </div>
             <!-- Fim do Modal de informação do botão Salvar -->
 
-            <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
-            <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Conteúdo do Modal -->
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header fundoVerde">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">Salvar Projeto</h4>
-                            </div>
-                            <div class="modal-body">
-                                Ao clicar no botão <strong><u>Enviar para avaliação</u></strong> o seu Plano de Negócio será submetido
-                                para avaliação. Após submeter o seu plano para avaliação este <strong>não poderá mais ser editado</strong>.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fim do Modal de informação do botão Salvar -->
 
             <!-- Modal Plano salvo com sucesso. -->
             <h:panelGroup class="modal-feedBackSalvar" id="modal-feedBackSalvar" rendered="#{projetoBean.salvou}">
@@ -231,8 +207,7 @@
 
                                     <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     Nome da Empresa ou do Projeto*
-                                    <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control" onchange="precisaSalvar = true;" onblur="verificaContatos()"
-                                                 requiredMessage="Insira o nome da Empresa/Projeto antes de enviar" 
+                                    <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control" onchange="precisaSalvar = true;" onblur="verificaContatos()" 
                                                  styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                  value="#{projetoBean.projeto.nome}"
                                                  >
@@ -282,12 +257,6 @@
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar1"></h:message>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                    <br/>
-                                    <h:commandButton id="botaoEnviar1" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para Pré-avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                                    <h:message for="botaoEnviar1"></h:message>
-                                </div>
                                 <div class="col-md-3 text-right">
                                 </div>
                             </div>
@@ -311,11 +280,10 @@
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                     <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira o segmento de clientes antes de enviar" onblur="verificaNegocio()"
+                                                     onblur="verificaNegocio()"
                                                      value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
-
                                     </p:inputTextarea>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     <br/>
@@ -324,7 +292,7 @@
                                     <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                     <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira a proposta de valor antes de enviar" onblur="verificaNegocio()"
+                                                     onblur="verificaNegocio()"
                                                      value="#{projetoBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
@@ -337,7 +305,7 @@
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                     <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira as atividades chave antes de enviar" onblur="verificaNegocio()"
+                                                     onblur="verificaNegocio()"
                                                      value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
@@ -353,12 +321,6 @@
                                     <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    <br/>
-                                    <h:commandButton id="botaoEnviar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Enviar para Pré-avaliação"
-                                                     ></h:commandButton>
-                                    <h:message for="botaoEnviar2"></h:message>
                                 </div>
                                 <div class="col-md-3  text-right"></div>
                             </div>
@@ -436,12 +398,6 @@
                                     <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    <br/>
-                                    <h:commandButton id="botaoEnviar3" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para Pré-avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                                    <h:message for="botaoEnviar3"></h:message>
                                 </div>
                                 <div class="col-md-3 text-right"></div>
                             </div>
@@ -570,12 +526,6 @@
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                    <br/>
-                                    <h:commandButton id="botaoEnviar4" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para Pré-avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                                    <h:message for="botaoEnviar4"></h:message>
-                                </div>
                                 <div class="col-md-3 text-right"></div>
                             </div>
 
@@ -620,12 +570,6 @@
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                    <br/>
-                                    <h:commandButton id="botaoEnviar5" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para Pré-avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                                    <h:message for="botaoEnviar5"></h:message>
-                                </div>
                                 <div class="col-md-3 text-right"></div>
 
                             </div>
@@ -649,7 +593,7 @@
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                     <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira as fontes de receita antes de enviar" onblur="verificaPlanoFinanceiro()"
+                                                     onblur="verificaPlanoFinanceiro()"
                                                      value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
@@ -662,7 +606,7 @@
                                     <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                     <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira a estrutura de custos antes de enviar" onblur="verificaPlanoFinanceiro()"
+                                                     onblur="verificaPlanoFinanceiro()"
                                                      value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      >
@@ -707,11 +651,6 @@
                                     <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    <h:commandButton id="botaoEnviar6" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Enviar para Pré-avaliação"
-                                                     action="#{projetoBean.enviarProjeto()}"></h:commandButton>
-                                    <h:message for="botaoEnviar6"></h:message>
                                 </div>
                                 <div class="col-md-3"><br /></div>
                                 <div class="col-md-3 text-right"></div>
