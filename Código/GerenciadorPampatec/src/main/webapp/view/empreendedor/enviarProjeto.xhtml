@@ -115,17 +115,26 @@
         <!-- Script para exibição da info do botão SALVAR -->
         <script>
 
-            function infoSalvar() {
-                $("#modalInfoSalvar").modal();
-            }
+                    function infoSalvar() {
+                    $("#modalInfoSalvar").modal();
+                    }
 
             function confirmacaoDeEnvio() {
-                $("#modalInfoDeEnvio").modal();
+            $("#modalInfoDeEnvio").modal();
             }
-            $("#botaoOutro").click(function () {
-                $("#descricaoOutroEstagio").hide();
-            });
+//            $("#botaoOutro").click(function () {
+//                $("#descricaoOutroEstagio").hide();
+//            });
 
+            function mostrarFeedBack(id) {
+            var campo = document.getElementById(id);
+                    if ($(campo).hasClass("form-control campoFeedBackOn")) {
+            $(campo).fadeOut(900);
+                    campo.setAttribute("class", "form-control campoFeedBack");
+            } else {
+            $(campo).fadeIn(900);
+                    campo.setAttribute("class", "form-control campoFeedBackOn");
+            }
         </script>
 
         <h:form id="formulario_cadastro_projeto" onsubmit="precisaSalvar = false;">
@@ -430,13 +439,17 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem id="botaoOutro" itemLabel="Outro:" itemValue="Outro:"  />
+                                            <f:selectItem id="botaoOutro" itemLabel="Outro:" itemValue="Outro:" >
+                                                <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"
+                                                        onclick="mostrarFeedBack('formulario_cadastro_projeto:descricaoOutroEstagio')">
+                                                </button>
+                                            </f:selectItem>
                                             <f:ajax execute="@form" event="click" listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
 
-                                    <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
+                                    <h:inputText class="campoFeedBack" id="descricaoOutroEstagio"
                                                  validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
                                                  value="#{projetoBean.descricaoButtonOutro}"
                                                  onblur="verificarProdutoServico()">
