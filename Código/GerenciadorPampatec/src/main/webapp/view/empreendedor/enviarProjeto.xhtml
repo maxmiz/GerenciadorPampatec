@@ -447,6 +447,9 @@
                                             <f:ajax execute="@form" event="click" listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:selectOneRadio>
 
+                                        <!--                                        <f:ajax execute="@form" event="change" listener="#//{projetoBean.salvarProjeto()}"/>-->
+
+
                                     </h:panelGrid>
 
                                     <h:inputText class="campoFeedBack" id="descricaoOutroEstagio"
@@ -664,41 +667,179 @@
                                 </div>
                                 <div class="col-md-12">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
-                                    Salários, Aluguel...
-                                    <h:inputTextarea class="form-control"  
+
+                                    <!--Salários, Aluguel...-->
+<!--                                    <h:inputTextarea class="form-control"  
                                                      onblur="verificaPlanoFinanceiro()"
                                                      value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
                                                      id="custosfixos">
-                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
 
-                                    </h:inputTextarea>
-                                    <h:message class="mensagemErro" for="custosfixos"/>
+                                    Salários, Aluguel de servidores...
+                                    <br/><br/>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Nome do Custo</label>
+                                            <div class="col-lg-8">
+                                                <h:inputText class="form-control"></h:inputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Valor</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">R$</span>
 
+                                                <h:inputText class="col-lg-8 form-control"></h:inputText>
+
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default">Adicionar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <f:view>
+                                        <h:dataTable class="table table-striped table-hover">
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Nome do Custo Fixo"/>
+                                                </f:facet>
+                                                <!--#{loginBean.nome}-->
+                                                <h:outputText value="ahdhauidaAA"></h:outputText>
+
+                                            </h:column>
+
+
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Valor do Custo Fixo"/>
+                                                </f:facet>
+
+                                                <h:outputText value="Teste novo"/>
+
+                                            </h:column>
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Ação"/>
+                                                </f:facet>
+
+                                                <h:outputText value="Teste novo">
+                                                    teste
+                                                </h:outputText>
+
+                                            </h:column>
+
+                                        </h:dataTable> 
+                                    </f:view>
+
+                                    <!--                                    <h:inputTextarea class="form-control"  
+                                                                                         onblur="verificaPlanoFinanceiro(), salvaPlano();"
+                                                                                         value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
+                                                                                         id="custosfixos">
+                                                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                    
+                                                                        </h:inputTextarea>
+                                                                        <h:message class="mensagemErro" for="custosfixos"/>-->
+
+                                    <br/>
                                     <br/>
                                 </div>
                                 <div class="col-md-12">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
-                                    <h:inputTextarea class="form-control"  
+
+<!--                                    <h:inputTextarea class="form-control"  
                                                      onblur="verificaPlanoFinanceiro()"
                                                      id="custosvariaveis" value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
-                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
 
-                                    </h:inputTextarea>
-                                    <h:message class="mensagemErro" for="custosvariaveis"/>
+                                    <br/><br/>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Nome do Custo</label>
+                                            <div class="col-lg-8">
+                                                <h:inputText class="form-control"></h:inputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Valor</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">R$</span>
+
+                                                <h:inputText class="col-lg-8 form-control"></h:inputText>
+
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default">Adicionar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <f:view>
+                                        <h:dataTable class="table table-striped table-hover">
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Nome do Custo Variavel"/>
+                                                </f:facet>
+                                                <!--#{loginBean.nome}-->
+                                                <h:outputText value="ahdhauidaAA"></h:outputText>
+
+                                            </h:column>
+
+
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Valor do Custo Fixo"/>
+                                                </f:facet>
+
+                                                <h:outputText value="Teste novo"/>
+
+                                            </h:column>
+                                            <h:column> 
+
+                                                <f:facet name="header">
+                                                    <h:outputText value="Ação"/>
+                                                </f:facet>
+
+                                                <h:outputText value="Teste novo">
+                                                    teste
+                                                </h:outputText>
+
+                                            </h:column>
+
+                                        </h:dataTable> 
+                                    </f:view>
+
+
+                                    <!--                                    <h:inputTextarea class="form-control"  
+                                                                                         onblur="verificaPlanoFinanceiro(), salvaPlano();"
+                                                                                         id="custosvariaveis" value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
+                                                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                    
+                                                                        </h:inputTextarea>
+                                                                        <h:message class="mensagemErro" for="custosvariaveis"/>-->
 
                                     <br/>
-                                </div>
+                                </div> 
 
 
                                 <div class="col-md-4"></div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-center">
                                     <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
-                                <div class="col-md-3"><br /></div>
-                                <div class="col-md-3 text-right"></div>
+                                <div class="col-md-4"><br /></div>
                             </div>
 
                         </div>
