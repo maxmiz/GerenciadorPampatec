@@ -439,20 +439,13 @@
                                             <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                            <f:selectItem id="botaoOutro" itemLabel="Outro:" itemValue="Outro:" >
-                                                <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"
-                                                        onclick="mostrarFeedBack('formulario_cadastro_projeto:descricaoOutroEstagio')">
-                                                </button>
-                                            </f:selectItem>
+                                            <f:selectItem id="botaoOutro" itemLabel="Outro:" itemValue="Outro:" /><br/>
                                             <f:ajax execute="@form" event="click" listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:selectOneRadio>
 
-                                        <!--                                        <f:ajax execute="@form" event="change" listener="#//{projetoBean.salvarProjeto()}"/>-->
-
-
                                     </h:panelGrid>
 
-                                    <h:inputText class="campoFeedBack" id="descricaoOutroEstagio"
+                                    <h:inputText class="col-md-12" id="descricaoOutroEstagio"
                                                  validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
                                                  value="#{projetoBean.descricaoButtonOutro}"
                                                  onblur="verificarProdutoServico()">
@@ -669,11 +662,11 @@
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
 
                                     <!--Salários, Aluguel...-->
-<!--                                    <h:inputTextarea class="form-control"  
-                                                     onblur="verificaPlanoFinanceiro()"
-                                                     value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
-                                                     id="custosfixos">
-                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
+                                    <!--                                    <h:inputTextarea class="form-control"  
+                                                                                         onblur="verificaPlanoFinanceiro()"
+                                                                                         value="#{projetoBean.projeto.planofinanceiro.custosfixos}"
+                                                                                         id="custosfixos">
+                                                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
 
                                     Salários, Aluguel de servidores...
                                     <br/><br/>
@@ -752,10 +745,10 @@
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
 
-<!--                                    <h:inputTextarea class="form-control"  
-                                                     onblur="verificaPlanoFinanceiro()"
-                                                     id="custosvariaveis" value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
-                                        <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
+                                    <!--                                    <h:inputTextarea class="form-control"  
+                                                                                         onblur="verificaPlanoFinanceiro()"
+                                                                                         id="custosvariaveis" value="#{projetoBean.projeto.planofinanceiro.custosvariaveis}">
+                                                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
 
                                     <br/><br/>
                                     <div class="col-md-6">
