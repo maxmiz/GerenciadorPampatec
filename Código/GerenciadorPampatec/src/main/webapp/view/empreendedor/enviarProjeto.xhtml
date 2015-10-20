@@ -115,25 +115,42 @@
         <!-- Script para exibição da info do botão SALVAR -->
         <script>
 
-                    function infoSalvar() {
-                    $("#modalInfoSalvar").modal();
-                    }
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
 
             function confirmacaoDeEnvio() {
-            $("#modalInfoDeEnvio").modal();
+                $("#modalInfoDeEnvio").modal();
             }
 //            $("#botaoOutro").click(function () {
 //                $("#descricaoOutroEstagio").hide();
 //            });
 
             function mostrarFeedBack(id) {
-            var campo = document.getElementById(id);
-                    if ($(campo).hasClass("form-control campoFeedBackOn")) {
-            $(campo).fadeOut(900);
+                var campo = document.getElementById(id);
+                if ($(campo).hasClass("form-control campoFeedBackOn")) {
+                    $(campo).fadeOut(900);
                     campo.setAttribute("class", "form-control campoFeedBack");
-            } else {
-            $(campo).fadeIn(900);
+                } else {
+                    $(campo).fadeIn(900);
                     campo.setAttribute("class", "form-control campoFeedBackOn");
+                }
+            }
+            window.onload = function () {
+                var andamentoProjeto = '#{projetoBean.projeto.status}';
+                switch (andamentoProjeto) {
+                    case 0:
+                        
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                }
             }
         </script>
 
@@ -192,7 +209,7 @@
                 <div>
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
+                        <li class="active" ><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Contatos</a></li>
                         <li class=""><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
                         <li class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
                         <li class=""><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
