@@ -90,7 +90,7 @@
                                 <h:column>
                                     <div class="bordas">
                                         <h:outputText value="#{notificacao.descricao}"/>
-                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -108,22 +108,40 @@
 
             <!-- Fim das modais apresentadas -->
 
-            <div class="col-md-12">
-                <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
-                </iframe>
-            </div>
+        
+
+        <!--            <div class="col-md-12">
+                        <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
+                        </iframe>
+                    </div>-->
+
+        <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
+        <div class="col-md-12" style="background-color: red"> ...</div>
+        <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
+
+        <!-- SEÇÃO DO WORKFLOW VERTICAL -->
+        <div class="col-md-2" style="background-color: pink"> ...</div>
+        <!-- FIM DA SERÃO DO WORKFLOW VERTICAL -->
+
+        <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
+        <div class="col-md-10" style="background-color: blueviolet">
+
+            
+
+        </div>
+        <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
 
 
-            <div class="col-md-12" text-align="center">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo plano de negócio!" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
-                    <h:commandButton rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Meus planos de negócio!" action="#{loginBean.enviaBuscaProjeto()}"/>
-                </div>
-                <div class="col-md-3"></div>
+        <div class="col-md-12" text-align="center" style="padding-top: 1%;">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo plano de negócio!" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
+                <h:commandButton rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Meus planos de negócio!" action="#{loginBean.enviaBuscaProjeto()}"/>
             </div>
-            <p:poll interval="3" update="barraNotificacoes"/>
-            <p:poll interval="3" update="tabelaNotificacoes"/>
+            <div class="col-md-3"></div>
+        </div>
+        <p:poll interval="3" update="barraNotificacoes"/>
+        <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>
     </body>
 </html>
