@@ -21,9 +21,51 @@
 
         <title>Cadastro Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Script para exibição da info do botão SALVAR -->
+        <script type="text/javascript">
+
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
+
+            function confirmacaoDeEnvio() {
+                $("#modalInfoDeEnvio").modal();
+            }
+//            $("#botaoOutro").click(function () {
+//                $("#descricaoOutroEstagio").hide();
+//            });
+
+            function mostrarFeedBack(id) {
+                var campo = document.getElementById(id);
+                if ($(campo).hasClass("form-control campoFeedBackOn")) {
+                    $(campo).fadeOut(900);
+                    campo.setAttribute("class", "form-control campoFeedBack");
+                } else {
+                    $(campo).fadeIn(900);
+                    campo.setAttribute("class", "form-control campoFeedBackOn");
+                }
+            }
+
+            function carregaPagina() {
+
+                var andamentoProjeto = #{projetoBean.projeto.status};
+                alert("teste = " + andamentoProjeto);
+
+                switch (andamentoProjeto) {
+                    case 0:
+                        var teste = document.getElementById("formulario_cadastro_projeto:botaoSalvar1");
+//                        if ($("#botaoSalvar1").hasClass("form-control campoFeedBackOn")) {
+                        if ($(teste).hasClass("campoFeedBackOn")) {
+                            teste.setAttribute("class", "formulario_cadastro_projeto campoFeedBack");
+                        }
+                        break;
+                }
+
+            }
+        </script>
 
     </h:head>
-    <h:body onload="verificarCampos(), carregaFeedBack();">
+    <h:body onload="carregaPagina(), verificarCampos(), carregaFeedBack();">
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
@@ -114,47 +156,6 @@
         </h:form>
         <!-- Fim do menu superior -->
 
-        <!-- Script para exibição da info do botão SALVAR -->
-        <script>
-
-            function infoSalvar() {
-                $("#modalInfoSalvar").modal();
-            }
-
-            function confirmacaoDeEnvio() {
-                $("#modalInfoDeEnvio").modal();
-            }
-//            $("#botaoOutro").click(function () {
-//                $("#descricaoOutroEstagio").hide();
-//            });
-
-            function mostrarFeedBack(id) {
-                var campo = document.getElementById(id);
-                if ($(campo).hasClass("form-control campoFeedBackOn")) {
-                    $(campo).fadeOut(900);
-                    campo.setAttribute("class", "form-control campoFeedBack");
-                } else {
-                    $(campo).fadeIn(900);
-                    campo.setAttribute("class", "form-control campoFeedBackOn");
-                }
-            }
-            window.onload = function () {
-                var andamentoProjeto = '#{projetoBean.projeto.status}';
-                switch (andamentoProjeto) {
-                    case 0:
-                        
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                }
-            }
-        </script>
 
         <h:form id="formulario_cadastro_projeto" onsubmit="precisaSalvar = false;">
 
@@ -288,11 +289,12 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar1" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar1" class="campoFeedBackOn" type="button" onclick="infoSalvar()" 
+                                                         value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar1"></h:message>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -355,7 +357,7 @@
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar2"></h:message>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -434,14 +436,14 @@
                                         <h:message class="mensagemErro" for="concorrentes"/>
                                     </div>
 
-                                    
+
                                     <div class="col-md-12 text-center">
                                         <br/>
                                         <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar3"></h:message>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -583,7 +585,7 @@
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar4"></h:message>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -854,7 +856,7 @@
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar6"></h:message>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
