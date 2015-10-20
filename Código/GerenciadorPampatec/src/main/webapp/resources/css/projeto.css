@@ -23,13 +23,17 @@
     margin: 1px;
 }
 
+
+.etapas{
+    color: #ffffff;
+    background-color: #3fb618;
+    border-color: #3fb618;
+    display: block
+}
+
 .campoFeedBack{
     display: none;
 }
-.campoInvisivel {
-    display: none;
-}
-
 .campoFeedBackOn{
     display: block;
 }
@@ -179,7 +183,7 @@ fieldset[disabled] .autoCompletar input {
     border-width:0px 0px 1px 0px;
 }
 .tabelaEmpreendedores tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
+    border-width:0px 0px 1px 1px;
 
 }
 

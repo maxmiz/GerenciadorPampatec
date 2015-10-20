@@ -54,9 +54,9 @@
                 switch (andamentoProjeto) {
                     case 0:
                         var teste = document.getElementById("formulario_cadastro_projeto:botaoSalvar1");
-//                        if ($("#botaoSalvar1").hasClass("form-control campoFeedBackOn")) {
-                        if ($(teste).hasClass("campoFeedBackOn")) {
-                            teste.setAttribute("class", "formulario_cadastro_projeto campoFeedBack");
+                        if ($(teste).hasClass("etapas")) {
+//                            teste.setAttribute("class", "formulario_cadastro_projeto campoFeedBack");
+                                teste.setAttribute("disabled","true");
                         }
                         break;
                 }
@@ -289,7 +289,7 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar1" class="campoFeedBackOn" type="button" onclick="infoSalvar()" 
+                                        <h:commandButton id="botaoSalvar1" class="etapas" type="button" onclick="infoSalvar()" 
                                                          value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar1"></h:message>
