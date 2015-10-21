@@ -9,6 +9,7 @@
         <h:outputScript library="js" name="formulario.js"/>
 
         <f:facet name="last">
+            <h:outputStylesheet library="css" name="animation.css"  />
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
@@ -176,30 +177,32 @@
             <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
-            <div id="vertical_etapa_elaboracao" class="col-md-2" style="background-color: pink">
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
+            <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
+                <div class="divPadding">
+                    <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="botao"></h:commandButton><br/>
+                </div>
+                <div class="divPadding">
+                    <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="botao"></h:commandButton><br/>
+                </div>
+                <div class="divPadding">
+                    <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="botao"></h:commandButton><br/>
+                </div>
+                <div class="divPadding">
+                    <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="botao"></h:commandButton><br/>
+                </div>
+                <div class="divPadding">
+                    <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="botao"></h:commandButton><br/>
+                </div>
             </div>
             <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA 1-->
-            
+
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
-            <div id="vertical_etapa_pre_avaliacao" class="esconder-div" style="background-color: #33ff11">
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
+            <div id="vertical_etapa_pre_avaliacao text-center" class="esconder-div" style="background-color: #33ff11">
+                <h:commandButton class="btn btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success" value="botao"></h:commandButton><br/>
             </div>
             <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA 2-->
 
