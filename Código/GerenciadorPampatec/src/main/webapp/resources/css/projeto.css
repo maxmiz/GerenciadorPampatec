@@ -246,3 +246,8 @@ fieldset[disabled] .autoCompletar input {
 .modal-feedBackSalvar button:hover{
     color: #06a728;
 }
+
+.esconder-div{
+    display: none;
+
+}
