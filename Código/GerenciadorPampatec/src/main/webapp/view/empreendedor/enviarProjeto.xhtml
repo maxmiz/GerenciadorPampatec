@@ -24,44 +24,7 @@
         <!-- Script para exibição da info do botão SALVAR -->
         <script type="text/javascript">
 
-            function infoSalvar() {
-                $("#modalInfoSalvar").modal();
-            }
-
-            function confirmacaoDeEnvio() {
-                $("#modalInfoDeEnvio").modal();
-            }
-//            $("#botaoOutro").click(function () {
-//                $("#descricaoOutroEstagio").hide();
-//            });
-
-            function mostrarFeedBack(id) {
-                var campo = document.getElementById(id);
-                if ($(campo).hasClass("form-control campoFeedBackOn")) {
-                    $(campo).fadeOut(900);
-                    campo.setAttribute("class", "form-control campoFeedBack");
-                } else {
-                    $(campo).fadeIn(900);
-                    campo.setAttribute("class", "form-control campoFeedBackOn");
-                }
-            }
-
-            function carregaPagina() {
-
-                var andamentoProjeto = #{projetoBean.projeto.status};
-                alert("teste = " + andamentoProjeto);
-
-                switch (andamentoProjeto) {
-                    case 0:
-                        var teste = document.getElementById("formulario_cadastro_projeto:botaoSalvar1");
-                        if ($(teste).hasClass("etapas")) {
-//                            teste.setAttribute("class", "formulario_cadastro_projeto campoFeedBack");
-                                teste.setAttribute("disabled","true");
-                        }
-                        break;
-                }
-
-            }
+            var andamentoProjeto = #{projetoBean.projeto.status};
         </script>
 
     </h:head>
@@ -204,12 +167,12 @@
             <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
             <div class="col-md-12 text-center" style="background-color: red">
                 <ul id="progressbar">
-                    <li class="active"><a>Elaboração</a></li>
-                    <li><a>Pré-Avaliação</a></li>
-		<li><a>Avaliação</a></li>
-		<li><a>Formalização</a></li>
-		<li><a>Incubação</a></li>
-	</ul>
+                    <li id="etapa1" class="active"><a>Elaboração</a></li>
+                    <li id="etapa2"><a>Pré-Avaliação</a></li>
+                    <li id="etapa3"><a>Avaliação</a></li>
+                    <li id="etapa4"><a>Formalização</a></li>
+                    <li id="etapa5"><a>Incubação</a></li>
+                </ul>
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 

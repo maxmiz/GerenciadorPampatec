@@ -71,12 +71,12 @@ function exibeSextaParte() {
  * -----------------------------------------------------------------
  */
 
-function carregaFeedBack(){
+function carregaFeedBack() {
     var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
-    feedBack.setAttribute("class","modal-feedBackSalvar modal-feedBackSalvar-in");
+    feedBack.setAttribute("class", "modal-feedBackSalvar modal-feedBackSalvar-in");
 }
 
-function fechaFeedBack(){
+function fechaFeedBack() {
     var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
     feedBack.style.display = "none";
 }
@@ -108,7 +108,7 @@ function verificaNegocio() {
     listaCampos[1] = propostaDeValor;
     listaCampos[2] = atividadesChave;
     mudarCorLista(listaCampos, tabNegocio);
-    
+
 }
 
 function verificaAnaliseMercado() {
@@ -229,24 +229,88 @@ String.prototype.trim = function () {
 };
 
 
-function verificarPreenchimentoRadioButton(){
+function verificarPreenchimentoRadioButton() {
     var elementos = document.getElementsByClassName('ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active');
     for (var i = 0; i < elementos.length; i++) {
         console.log("Deu");
     }
 }
 
-function percorrerArvoreObejetos(listaComponentes,pai,contador){
+function percorrerArvoreObejetos(listaComponentes, pai, contador) {
     for (var i = 0; i < pai.children.length; i++) {
-        if(pai.children[i].tagName === listaComponentes[contador]){
-            console.log("Nome da tag"+pai.children[i].tagName);
-            console.log("Nome procurado"+listaComponentes[contador]);
+        if (pai.children[i].tagName === listaComponentes[contador]) {
+            console.log("Nome da tag" + pai.children[i].tagName);
+            console.log("Nome procurado" + listaComponentes[contador]);
             console.log(pai.children[i].className);
-            if(contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"){
+            if (contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active") {
                 console.log("DEEEEUUUUUUUUU");
             }
             contador++;
-            percorrerArvoreObejetos(listaComponentes,pai.children[i],contador);
+            percorrerArvoreObejetos(listaComponentes, pai.children[i], contador);
         }
     }
+}
+
+
+
+
+function infoSalvar() {
+    $("#modalInfoSalvar").modal();
+}
+
+function confirmacaoDeEnvio() {
+    $("#modalInfoDeEnvio").modal();
+}
+
+/**
+ * Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
+ * @param {type} id
+ * @returns {undefined}
+ */
+function mostrarFeedBack(id) {
+    var campo = document.getElementById(id);
+    if ($(campo).hasClass("form-control campoFeedBackOn")) {
+        $(campo).fadeOut(900);
+        campo.setAttribute("class", "form-control campoFeedBack");
+    } else {
+        $(campo).fadeIn(900);
+        campo.setAttribute("class", "form-control campoFeedBackOn");
+    }
+}
+
+/**
+ * Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
+ * @returns {undefined}
+ */
+
+function carregaPagina() {
+    
+    var etapa1 = document.getElementById("etapa1");
+    var etapa2 = document.getElementById("etapa2");
+    var etapa3 = document.getElementById("etapa3");
+    var etapa4 = document.getElementById("etapa4");
+    var etapa5 = document.getElementById("etapa5");
+    switch (andamentoProjeto) {
+        case 0:
+            etapa2.innerHTML = "<b>Pré-Avaliação</b>";
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            break;
+        case 1:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            break;
+        case 2:
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            break;
+        case 3:
+            etapa5.innerHTML = "<b>Incubação</b>";
+            break;
+        case 4:
+            break;
+    }
+
 }
