@@ -166,8 +166,8 @@
             <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
             <div class="col-md-12 text-center" style="background-color: #6AA84F;">
                 <ul id="progressbar">
-                    <li id="etapa1" class="active"><a>Elaboração</a></li>
-                    <li id="etapa2"><a>Pré-Avaliação</a></li>
+                    <li id="etapa1" class="active"><a onclick="mostra_vertical_elaboracao()">Elaboração</a></li>
+                    <li id="etapa2"><a onclick="mostra_vertical_pre_avaliacao()">Pré-Avaliação</a></li>
                     <li id="etapa3"><a>Avaliação</a></li>
                     <li id="etapa4"><a>Formalização</a></li>
                     <li id="etapa5"><a>Incubação</a></li>
@@ -175,11 +175,33 @@
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 
-            <!-- SEÇÃO DO WORKFLOW VERTICAL -->
-            <div class="col-md-2" style="background-color: pink">
-                
+            <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
+            <div id="vertical_etapa_elaboracao" class="col-md-2" style="background-color: pink">
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
             </div>
-            <!-- FIM DA SERÃO DO WORKFLOW VERTICAL -->
+            <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA 1-->
+            
+            <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
+            <div id="vertical_etapa_pre_avaliacao" class="esconder-div" style="background-color: #33ff11">
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+                <h:commandButton class="btn-success" value="botao"></h:commandButton><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            </div>
+            <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA 2-->
 
             <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
             <div class="col-md-10" style="background-color: blueviolet">
