@@ -290,8 +290,8 @@ function carregaPagina() {
     var etapa3 = document.getElementById("etapa3");
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
-    switch (andamentoProjeto) {
-//    switch (1) {
+//    switch (andamentoProjeto) {
+    switch (4) {
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -319,10 +319,16 @@ function carregaPagina() {
  * Metodo que exibe o menu vertical da etapa elaboração
  */
 function mostra_vertical_elaboracao() {
-var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "col-md-2");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
 }
 /**
  * Metodo que exibe o menu vertical da etapa Pré-Avalição
@@ -332,4 +338,46 @@ function mostra_vertical_pre_avaliacao() {
     divElaboracao.setAttribute("class", "esconder-div");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "col-md-2");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+}
+function mostra_avaliacao() {
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "col-md-2");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+}
+function mostra_formalizacao() {
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "col-md-2");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+}
+function mostra_incubacao() {
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "col-md-2");
 }
