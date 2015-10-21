@@ -93,6 +93,7 @@ and open the template in the editor.
 	width: 94%;
 	height: 2px;
 	background: white;
+	background: black;
 	position: absolute;
 	left: -48%;
 	top: 9px;
