@@ -79,16 +79,17 @@ and open the template in the editor.
     content: counter(step);
     counter-increment: step;
     width: 40px; /* tamanho do quadrinho da etapa */
-    padding-top: 4%;
-    padding-bottom: 4%;
-    border-color: black;
-    border-width: 2px;
+    padding-top: 3%;
+    padding-bottom: 3%;
     line-height: 20px;
     display: block;
     font-size: 18px;
     color: #333;
     background: white;
-    border-radius: 20px;
+    border-radius: 22px;
+    border-color: #333;
+    border-width: 3px;
+    border-style: solid;
     margin: 0 auto 5px auto;
     top: 35%;
 }
@@ -96,14 +97,18 @@ and open the template in the editor.
 #progressbar li:after {
     content: '';
     width: 85%;
-    height: 8px;
+    height: 5px;
     background: white;
-    background: black;
     position: absolute;
     left: -42.5%;
     top: 35%;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
     //z-index: 1; /*put it behind the numbers*/
+
 }
+
 #progressbar li:first-child:after {
     /*connector not needed before the first step*/
     content: none; 
@@ -111,6 +116,6 @@ and open the template in the editor.
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-    background: #27AE60;
-    color: white;
+    background: #33ff11;
+    color: black;
 }
