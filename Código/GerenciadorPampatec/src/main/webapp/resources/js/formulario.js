@@ -320,7 +320,7 @@ function carregaPagina() {
  */
 function mostra_vertical_elaboracao() {
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "col-md-2");
+    divElaboracao.setAttribute("class", "col-md-2 text-center");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "esconder-div");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
