@@ -144,3 +144,9 @@ and open the template in the editor.
     color: black;
     background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
 }
+
+#progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
+    /*background-color: #62C462;*/
+    color: black;
+    background-image: linear-gradient(to top, yellow, orange, red);
+}
