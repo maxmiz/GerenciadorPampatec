@@ -247,6 +247,10 @@ fieldset[disabled] .autoCompletar input {
     color: #06a728;
 }
 
+.botaoselecionado{
+    background-color: #FF0000;
+}
+
 .esconder-div{
     display: none;
 

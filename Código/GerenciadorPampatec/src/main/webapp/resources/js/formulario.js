@@ -290,18 +290,29 @@ function carregaPagina() {
     var etapa3 = document.getElementById("etapa3");
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
-//    switch (andamentoProjeto) {
-    switch (4) {
+
+//        switch (andamentoProjeto) {
+    switch (5) {
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+            var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
+            botao_preavaliacao.setAttribute("class","botaoselecionado");
+
             break;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
+            mostra_vertical_pre_avaliacao();
+            botao_preavaliacao.setAttribute("class","botaoselecionado");
             break;
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -311,7 +322,18 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             break;
         case 4:
+            etapa1.setAttribute("class", "active, etapaAtual");
             break;
+        case 5:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
+            mostra_vertical_pre_avaliacao();
+            botao_preavaliacao.setAttribute("class","botaoselecionado");
+            break
     }
 }
 
@@ -319,10 +341,10 @@ function carregaPagina() {
  * Metodo que exibe o menu vertical da etapa elaboração
  */
 function mostra_vertical_elaboracao() {
-    var etapa1 = document.getElementById("etapa1");
-    etapa1.setAttribute("class", "active, etapaAtual");
+//    var etapa1 = document.getElementById("etapa1");
+//    etapa1.setAttribute("class", "active, etapaAtual");
     
-    carregaPagina();
+//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
@@ -340,13 +362,13 @@ function mostra_vertical_elaboracao() {
  */
 function mostra_vertical_pre_avaliacao() {
 
-    var etapa2 = document.getElementById("etapa2");
-    etapa2.setAttribute("class", "active, etapaAtual");
-
-    var etapa1 = document.getElementById("etapa1");
-    etapa1.setAttribute("class", "active");
+//    var etapa2 = document.getElementById("etapa2");
+//    etapa2.setAttribute("class", "active, etapaAtual");
+//
+//    var etapa1 = document.getElementById("etapa1");
+//    etapa1.setAttribute("class", "active");
     
-    carregaPagina();
+//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -360,13 +382,13 @@ function mostra_vertical_pre_avaliacao() {
     divIncubacao.setAttribute("class", "esconder-div");
 }
 function mostra_avaliacao() {
-    var etapa3 = document.getElementById("etapa3");
-    etapa3.setAttribute("class", "active, etapaAtual");
-
-    var etapa1 = document.getElementById("etapa1");
-    etapa1.setAttribute("class", "active");
-    var etapa2 = document.getElementById("etapa2");
-    etapa2.setAttribute("class", "active");
+//    var etapa3 = document.getElementById("etapa3");
+//    etapa3.setAttribute("class", "active, etapaAtual");
+//
+//    var etapa1 = document.getElementById("etapa1");
+//    etapa1.setAttribute("class", "active");
+//    var etapa2 = document.getElementById("etapa2");
+//    etapa2.setAttribute("class", "active");
     
     carregaPagina();
 
@@ -382,17 +404,17 @@ function mostra_avaliacao() {
     divIncubacao.setAttribute("class", "esconder-div");
 }
 function mostra_formalizacao() {
-    var etapa4 = document.getElementById("etapa4");
-    etapa4.setAttribute("class", "active, etapaAtual");
+//    var etapa4 = document.getElementById("etapa4");
+//    etapa4.setAttribute("class", "active, etapaAtual");
 
-    var etapa1 = document.getElementById("etapa1");
-    etapa1.setAttribute("class", "active");
-    var etapa2 = document.getElementById("etapa2");
-    etapa2.setAttribute("class", "active");
-    var etapa3 = document.getElementById("etapa3");
-    etapa3.setAttribute("class", "active");
+//    var etapa1 = document.getElementById("etapa1");
+//    etapa1.setAttribute("class", "active");
+//    var etapa2 = document.getElementById("etapa2");
+//    etapa2.setAttribute("class", "active");
+//    var etapa3 = document.getElementById("etapa3");
+//    etapa3.setAttribute("class", "active");
     
-    carregaPagina();
+//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -406,19 +428,19 @@ function mostra_formalizacao() {
     divIncubacao.setAttribute("class", "esconder-div");
 }
 function mostra_incubacao() {
-    var etapa5 = document.getElementById("etapa5");
-    etapa5.setAttribute("class", "active, etapaAtual");
-
-    var etapa1 = document.getElementById("etapa1");
-    etapa1.setAttribute("class", "active");
-    var etapa2 = document.getElementById("etapa2");
-    etapa2.setAttribute("class", "active");
-    var etapa3 = document.getElementById("etapa3");
-    etapa3.setAttribute("class", "active");
-    var etapa4 = document.getElementById("etapa4");
-    etapa4.setAttribute("class", "active");
+//    var etapa5 = document.getElementById("etapa5");
+//    etapa5.setAttribute("class", "active, etapaAtual");
+//
+//    var etapa1 = document.getElementById("etapa1");
+//    etapa1.setAttribute("class", "active");
+//    var etapa2 = document.getElementById("etapa2");
+//    etapa2.setAttribute("class", "active");
+//    var etapa3 = document.getElementById("etapa3");
+//    etapa3.setAttribute("class", "active");
+//    var etapa4 = document.getElementById("etapa4");
+//    etapa4.setAttribute("class", "active");
     
-    carregaPagina();
+//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
