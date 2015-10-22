@@ -54,7 +54,12 @@ and open the template in the editor.
 
 
 .btnWorkflowV {
-    width: 80%;
+    width: 88%;
+    text-align: center;
+    background-color: #62C462;
+    /*background-image: linear-gradient(#78CC78, #62C462 90%, #53BE53);*/
+    /*background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);*/
+    /*background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);*/
 }
 
 .divPadding {
@@ -106,7 +111,7 @@ and open the template in the editor.
     color: #333;
     background: white;
     border-radius: 22px;
-    border-color: #333;
+    border-color: rgba(0, 0, 0, 0.6);
     border-width: 3px;
     border-style: solid;
     margin: 0 auto 5px auto;
@@ -135,6 +140,13 @@ and open the template in the editor.
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-    background: #33ff11;
+    /*background-color: #62C462;*/
     color: black;
+    background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
+}
+
+#progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
+    /*background-color: #62C462;*/
+    color: black;
+    background-image: linear-gradient(to top, yellow, orange, red);
 }
