@@ -337,7 +337,7 @@ function mostra_vertical_pre_avaliacao() {
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "col-md-2");
+    divPreAvaliacao.setAttribute("class", "col-md-2 text-center");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
     divAvaliacao.setAttribute("class", "esconder-div");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
@@ -351,7 +351,7 @@ function mostra_avaliacao() {
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "esconder-div");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "col-md-2");
+    divAvaliacao.setAttribute("class", "col-md-2 text-center");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
@@ -365,7 +365,7 @@ function mostra_formalizacao() {
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
     divAvaliacao.setAttribute("class", "esconder-div");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "col-md-2");
+    divFormalizacao.setAttribute("class", "col-md-2 text-center");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
 }
@@ -379,5 +379,5 @@ function mostra_incubacao() {
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "col-md-2");
+    divIncubacao.setAttribute("class", "col-md-2 text-center");
 }
