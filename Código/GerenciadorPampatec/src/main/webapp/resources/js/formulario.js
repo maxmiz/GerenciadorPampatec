@@ -362,8 +362,6 @@ function mostra_vertical_pre_avaliacao() {
 function mostra_avaliacao() {
     var etapa3 = document.getElementById("etapa3");
     etapa3.setAttribute("class", "active, etapaAtual");
-    
-    
 
     var etapa1 = document.getElementById("etapa1");
     etapa1.setAttribute("class", "active");
@@ -432,4 +430,33 @@ function mostra_incubacao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+}
+
+/**
+ * Função que bloqueia todos os campos da tela EnviarProjeto. Para o Empreendedor apenas poder visualizar e não editar.
+ */
+function bloquearCampos() {
+    var d = document.getElementById('myTabContent').getElementsByTagName('input');
+    var botaoOutro = document.getElementById('formulario_cadastro_projeto:estagioDeEvolucao');
+    botaoOutro.disabled = "true";
+
+    for (var i = 0; i < d.length; i++) {
+//        alert(d[i].value);
+        d[i].disabled = "true";
+    }
+    var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
+    for (var i = 0; i < d2.length; i++) {
+//        alert(d[i].value);
+        d2[i].disabled = "true";
+    }
+}
+
+/**
+ * Função para alternar entre as DIVS
+ */
+function alternarDivs(esconde, mostra) {
+    div1 = document.getElementById(esconde);
+    div1.setAttribute("class", "esconder-div");
+    div2 = document.getElementById(mostra);
+    div2.setAttribute("class", "col-md-10");
 }

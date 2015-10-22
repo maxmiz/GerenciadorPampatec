@@ -140,10 +140,11 @@
                 <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated teste" value="Editar"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="Revisar"></h:commandButton><br/>
+
+                <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="Revisar" onclick="bloquearCampos(),alternarDivs('divVisualizarPlano','div_apresentacao_formulario') "></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="Submeter"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV bounceInUp animated" value="Submeter" onclick="alternarDivs('div_apresentacao_formulario','divVisualizarPlano')"></h:commandButton><br/>
             </div>
         </div>
 
@@ -250,7 +251,7 @@
 
 
             <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
-            <div class="col-md-10" style="background-color: blueviolet">
+            <div id="div_apresentacao_formulario" class="col-md-10" style="background-color: blueviolet">
 
 
 
@@ -910,6 +911,38 @@
             </div>
         </h:form>
 
+        <!--INICIO DA DIV DE VISULIZAÇÃO-->
+        <div class="esconder-div" id="divVisualizarPlano" style="background-color: #983d00;">
+            guyguyguafjanfa
+            
+            alalf
+            
+            awf
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        </div>
+        
+        
+        
     </h:body>
 </html>
 
