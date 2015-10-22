@@ -321,6 +321,8 @@ function carregaPagina() {
 function mostra_vertical_elaboracao() {
     var etapa1 = document.getElementById("etapa1");
     etapa1.setAttribute("class", "active, etapaAtual");
+    
+    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
@@ -343,6 +345,8 @@ function mostra_vertical_pre_avaliacao() {
 
     var etapa1 = document.getElementById("etapa1");
     etapa1.setAttribute("class", "active");
+    
+    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -363,6 +367,8 @@ function mostra_avaliacao() {
     etapa1.setAttribute("class", "active");
     var etapa2 = document.getElementById("etapa2");
     etapa2.setAttribute("class", "active");
+    
+    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -385,6 +391,8 @@ function mostra_formalizacao() {
     etapa2.setAttribute("class", "active");
     var etapa3 = document.getElementById("etapa3");
     etapa3.setAttribute("class", "active");
+    
+    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -409,6 +417,8 @@ function mostra_incubacao() {
     etapa3.setAttribute("class", "active");
     var etapa4 = document.getElementById("etapa4");
     etapa4.setAttribute("class", "active");
+    
+    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
