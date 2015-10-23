@@ -301,7 +301,16 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
-            botao_preavaliacao.setAttribute("class", "botaoselecionado");
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
+            var etapa = document.getElementById("etapa2");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style","cursor: default;");
 
             break;
         case 1:
@@ -312,15 +321,34 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active, etapaAtual");
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class", "botaoselecionado");
+
             agoraVai('divPreVisualizar');
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style","cursor: default;");
+            
             break;
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
+            
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style","cursor: default;");
+            
             break;
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
+            
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style","cursor: default;");
+            
             break;
         case 4:
             etapa1.setAttribute("class", "active, etapaAtual");
@@ -333,7 +361,14 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active, etapaAtual");
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class", "botaoselecionado");
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style","cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style","cursor: default;");
             break
     }
 }

@@ -68,7 +68,15 @@ and open the template in the editor.
 }
 
 
-
+.btnEstadoAtual {
+    width: 88%;
+    text-align: center;
+    border-width: 1px;
+    border-color: black;
+    color: black;
+    text-emphasis-style: triangle;
+    background-image: linear-gradient(to top, yellow, orange, red);
+}
 
 
 /*progressbar*/
