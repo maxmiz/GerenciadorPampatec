@@ -301,7 +301,7 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
-            botao_preavaliacao.setAttribute("class","botaoselecionado");
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
 
             break;
         case 1:
@@ -312,7 +312,7 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active, etapaAtual");
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class","botaoselecionado");
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             break;
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -332,7 +332,7 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active, etapaAtual");
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class","botaoselecionado");
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             break
     }
 }
