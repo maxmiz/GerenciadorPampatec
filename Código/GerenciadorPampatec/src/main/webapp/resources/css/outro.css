@@ -67,6 +67,11 @@ and open the template in the editor.
     padding-bottom: 5%;
 }
 
+.bordaEstadoAtual {
+    border-width: 150px;
+    border-color: black;
+}
+
 
 .btnEstadoAtual {
     width: 88%;
@@ -151,6 +156,8 @@ and open the template in the editor.
     /*background-color: #62C462;*/
     color: black;
     background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
+/*    border-style: solid;
+    border-color: white;*/
 }
 
 #progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
