@@ -281,11 +281,13 @@ function mostrarFeedBack(id) {
     }
 }
 
+
+
+
 /**
  * Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
  * @returns {undefined}
  */
-
 function carregaPagina() {
 
     var etapa1 = document.getElementById("etapa1");
@@ -294,8 +296,8 @@ function carregaPagina() {
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
 
-        switch (andamentoProjeto) {
-//    switch (1) {
+//        switch (andamentoProjeto) {
+    switch (4) {
 
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
@@ -307,14 +309,15 @@ function carregaPagina() {
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
             botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             
-            var etapa = document.getElementById("etapa2");
-            etapa.setAttribute("style","cursor: default;");
-            var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style","cursor: default;");
-            var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style","cursor: default;");
-            var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
+            var etapa2 = document.getElementById("etapa2");
+            etapa2.setAttribute("style","cursor: default;");
+            var etapa3 = document.getElementById("etapa3");
+            etapa3.setAttribute("style","cursor: default;");
+            var etapa4 = document.getElementById("etapa4");
+            etapa4.setAttribute("style","cursor: default;");
+            var etapa5 = document.getElementById("etapa5");
+            etapa5.setAttribute("style","cursor: default;");
+            mostraDIV('div_apresentacao_formulario');
 
             break;
         case 1:
@@ -341,6 +344,12 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             
+         
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active, etapaAtual");
+            
+            
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style","cursor: default;");
             var etapa = document.getElementById("etapa5");
@@ -350,12 +359,25 @@ function carregaPagina() {
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
             
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active, etapaAtual");
+            
+            
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style","cursor: default;");
             
             break;
         case 4:
-            etapa1.setAttribute("class", "active, etapaAtual");
+            
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active");
+            etapa5.setAttribute("class", "active, etapaAtual");
+            
+            
             break;
         case 5:
             etapa3.innerHTML = "<b>Avaliação</b>";
