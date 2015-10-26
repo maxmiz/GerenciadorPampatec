@@ -12,8 +12,9 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="barraProgresso.css"  />
         </f:facet>
-        
+
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js" />
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -25,7 +26,7 @@
     </h:head>
     <h:body onload="verificarCampos(), carregaFeedBack();">
 
-                <!-- Início do menu superior -->
+        <!-- Início do menu superior -->
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -92,7 +93,7 @@
                                 <h:column>
                                     <div class="bordas">
                                         <h:outputText value="#{notificacao.descricao}"/>
-                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -127,6 +128,26 @@
 
         <h:form id="formulario_cadastro_projeto" onsubmit="precisaSalvar = false;">
 
+            <div class="checkout-wrap">
+                <ul class="checkout-bar">
+
+                    <li class="visited first">
+                        <a href="#">Cria Plano de Negócio</a>
+                    </li>
+
+                    <li class="previous visited">Shipping  Billing</li>
+
+                    <li class="active">Shipping Options</li>
+
+                    <li class="next">Review  Payment</li>
+
+                    <li class="">Complete</li>
+
+                </ul>
+            </div>
+            
+            <br/><br/><br/><br/>
+
             <!-- Fim do Script de informação -->
 
             <!-- Início dos MODAIS exibidos no formulário -->
@@ -146,7 +167,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            
+
                             <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio"></h:commandButton>
 
                         </div>
@@ -472,7 +493,7 @@
                                             <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
                                             <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
                                             <f:selectItem itemLabel="Outro" itemValue="Outro"  />
-                                            
+
                                         </p:selectOneRadio>
 
                                     </h:panelGrid>
