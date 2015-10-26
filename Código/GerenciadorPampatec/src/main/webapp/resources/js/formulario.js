@@ -299,7 +299,7 @@ function carregaPagina() {
     var etapa5 = document.getElementById("etapa5");
 
 //        switch (andamentoProjeto) {
-    switch (4) {
+    switch (1) {
 
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
@@ -384,7 +384,7 @@ function carregaPagina() {
             etapa3.setAttribute("class", "active");
             etapa4.setAttribute("class", "active");
             etapa5.setAttribute("class", "active, etapaAtual");
-            
+            etapaAtualDoWorkflow = "etapa5";
             
             break;
         case 5:
@@ -470,7 +470,6 @@ function mostra_vertical_pre_avaliacao() {
     }
 
     campoDoWorkflowSelecionado = etapa;
-
     etapa.setAttribute("class", "etapaSelecionada");
 
 }
