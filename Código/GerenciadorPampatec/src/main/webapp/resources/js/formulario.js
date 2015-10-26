@@ -297,7 +297,7 @@ function carregaPagina() {
     var etapa5 = document.getElementById("etapa5");
 
 //        switch (andamentoProjeto) {
-    switch (4) {
+    switch (5) {
 
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
@@ -385,9 +385,11 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
+            var botaoQueDeveSerPintado = document.getElementById("botao_resultado_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
+            botaoQueDeveSerPintado.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
+            mostraDIV('divPreAvaliar_visualizar');
             
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style","cursor: default;");
@@ -395,6 +397,8 @@ function carregaPagina() {
             etapa.setAttribute("style","cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style","cursor: default;");
+            
+            
             break
     }
 }
