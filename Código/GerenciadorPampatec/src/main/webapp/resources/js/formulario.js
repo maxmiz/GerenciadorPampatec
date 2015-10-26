@@ -97,7 +97,7 @@ function  verificarCampos() {
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
 function verificaNegocio() {
@@ -109,8 +109,7 @@ function verificaNegocio() {
     listaCampos[0] = segmentoDeClientes;
     listaCampos[1] = propostaDeValor;
     listaCampos[2] = atividadesChave;
-    mudarCorLista(listaCampos, tabNegocio);
-
+    mudarCorLista(listaCampos, tabNegocio, "Negócio");
 }
 
 function verificaAnaliseMercado() {
@@ -126,7 +125,7 @@ function verificaAnaliseMercado() {
     listaCampos[2] = canais;
     listaCampos[3] = recursosPrincipais;
     listaCampos[4] = concorrentes;
-    mudarCorLista(listaCampos, tabAnaliseMercado);
+    mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
 function verificarProdutoServico() {
@@ -147,7 +146,7 @@ function verificarProdutoServico() {
     listaCampos[4] = interacaoEmpresaUniversidade;
     listaCampos[5] = interacaoEmpresaComunidadeGoverno;
     listaCampos[6] = infraestrutura;
-    mudarCorLista(listaCampos, tabProdutoServico);
+    mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
     verificarPreenchimentoRadioButton();
 }
 
@@ -158,7 +157,7 @@ function verificaGestaoPessoas() {
     var listaCampos = new Array();
     listaCampos[0] = participacaoAcionaria;
     listaCampos[1] = potencialEmprego;
-    mudarCorLista(listaCampos, tabGestaoPessoas);
+    mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
 function verificaPlanoFinanceiro() {
@@ -176,10 +175,10 @@ function verificaPlanoFinanceiro() {
     listaCampos[3] = custosfixos;
     listaCampos[4] = custosvariaveis;
 
-    mudarCorLista(listaCampos, tabPlanoFinanceiro);
+    mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
-function mudarCorLista(listaCampos, tab) {
+function mudarCorLista(listaCampos, tab , nomeCampo) {
     var flagCompleto = false;
     for (var i = 0; i < listaCampos.length; i++) {
         if (verificaPreenchimento(listaCampos[i])) {
@@ -191,8 +190,10 @@ function mudarCorLista(listaCampos, tab) {
     }
 
     if (flagCompleto) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
@@ -200,13 +201,15 @@ function mudarCorLista(listaCampos, tab) {
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
-function mudarCor(campo, tab) {
+function mudarCor(campo, tab, nomeCampo) {
     if (verificaPreenchimento(campo)) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
@@ -280,11 +283,13 @@ function mostrarFeedBack(id) {
     }
 }
 
+
+
+
 /**
  * Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
  * @returns {undefined}
  */
-
 function carregaPagina() {
 
     var etapa1 = document.getElementById("etapa1");
@@ -294,7 +299,8 @@ function carregaPagina() {
     var etapa5 = document.getElementById("etapa5");
 
 //        switch (andamentoProjeto) {
-    switch (1) {
+    switch (5) {
+
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -303,6 +309,7 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
+            
             botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
 
             etapaAtualDoWorkflow = "etapa1";
@@ -328,9 +335,9 @@ function carregaPagina() {
 
             etapaAtualDoWorkflow = "etapa2";
 
-            agoraVai('divPreVisualizar');
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-
+            mostraDIV('divPreVisualizar');
+            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
@@ -344,7 +351,11 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
 
             etapaAtualDoWorkflow = "etapa3";
-
+            
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active, etapaAtual");
+            
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
@@ -355,14 +366,26 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
 
             etapaAtualDoWorkflow = "etapa4";
-
+            
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active, etapaAtual");
+            
+            
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
 
             break;
         case 4:
-            etapa1.setAttribute("class", "active, etapaAtual");
-            etapaAtualDoWorkflow = "etapa5";
+            
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active");
+            etapa5.setAttribute("class", "active, etapaAtual");
+            
+            
             break;
         case 5:
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -370,17 +393,18 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
+            var botaoQueDeveSerPintado = document.getElementById("botao_resultado_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-
+            botaoQueDeveSerPintado.setAttribute("class","btn btn-danger btnEstadoAtual");
+            
+            mostraDIV('divPreAvaliar_visualizar');
+            
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
-            break
     }
 }
 
@@ -388,10 +412,6 @@ function carregaPagina() {
  * Metodo que exibe o menu vertical da etapa elaboração
  */
 function mostra_vertical_elaboracao() {
-//    var etapa1 = document.getElementById("etapa1");
-//    etapa1.setAttribute("class", "active, etapaAtual");
-
-//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
@@ -426,13 +446,6 @@ function mostra_vertical_elaboracao() {
  */
 function mostra_vertical_pre_avaliacao() {
 
-//    var etapa2 = document.getElementById("etapa2");
-//    etapa2.setAttribute("class", "active, etapaAtual");
-//
-//    var etapa1 = document.getElementById("etapa1");
-//    etapa1.setAttribute("class", "active");
-
-//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -462,15 +475,6 @@ function mostra_vertical_pre_avaliacao() {
 
 }
 function mostra_avaliacao() {
-//    var etapa3 = document.getElementById("etapa3");
-//    etapa3.setAttribute("class", "active, etapaAtual");
-//
-//    var etapa1 = document.getElementById("etapa1");
-//    etapa1.setAttribute("class", "active");
-//    var etapa2 = document.getElementById("etapa2");
-//    etapa2.setAttribute("class", "active");
-
-    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -499,17 +503,6 @@ function mostra_avaliacao() {
     etapa.setAttribute("class", "etapaSelecionada");
 }
 function mostra_formalizacao() {
-//    var etapa4 = document.getElementById("etapa4");
-//    etapa4.setAttribute("class", "active, etapaAtual");
-
-//    var etapa1 = document.getElementById("etapa1");
-//    etapa1.setAttribute("class", "active");
-//    var etapa2 = document.getElementById("etapa2");
-//    etapa2.setAttribute("class", "active");
-//    var etapa3 = document.getElementById("etapa3");
-//    etapa3.setAttribute("class", "active");
-
-//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -537,19 +530,6 @@ function mostra_formalizacao() {
     
 }
 function mostra_incubacao() {
-//    var etapa5 = document.getElementById("etapa5");
-//    etapa5.setAttribute("class", "active, etapaAtual");
-//
-//    var etapa1 = document.getElementById("etapa1");
-//    etapa1.setAttribute("class", "active");
-//    var etapa2 = document.getElementById("etapa2");
-//    etapa2.setAttribute("class", "active");
-//    var etapa3 = document.getElementById("etapa3");
-//    etapa3.setAttribute("class", "active");
-//    var etapa4 = document.getElementById("etapa4");
-//    etapa4.setAttribute("class", "active");
-
-//    carregaPagina();
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
@@ -597,17 +577,15 @@ function bloquearCampos() {
 /**
  * Função para alternar entre as DIVS
  */
-function agoraVai(referencia) {
-//    div1 = document.querySelector(".classeDeTeste");
-    div1 = document.getElementsByClassName("classeDeTeste");
+function mostraDIV(referencia) {
+//    div1 = document.querySelector(".classeConteudo");
+    div1 = document.getElementsByClassName("classeConteudo");
     for (var i = 0; i < div1.length; i++) {
-//        alert(d[i].value);
-//        d2[i].disabled = "true";
+
         if (div1[i].getAttribute("id") === referencia) {
-//            alert("achei");
-            div1[i].setAttribute("class", "classeDeTeste col-md-10");
+            div1[i].setAttribute("class", "classeConteudo col-md-10");
         } else {
-            div1[i].setAttribute("class", "classeDeTeste esconder-div");
+            div1[i].setAttribute("class", "classeConteudo esconder-div");
         }
     }
 }
