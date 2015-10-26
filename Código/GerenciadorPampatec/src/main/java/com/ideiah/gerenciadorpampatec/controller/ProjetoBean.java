@@ -54,7 +54,8 @@ public class ProjetoBean implements Serializable {
     private String descricaoButtonOutro;
     private Empreendedor empreendedorSession;
     private boolean salvou;
-
+    
+    
     public ProjetoBean() {
         salvou = false;
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
@@ -418,7 +419,7 @@ public class ProjetoBean implements Serializable {
         pjto.setPlanofinanceiro(planofinanceiro);
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
-        pjto.setStatus(Projeto.EM_EDICAO);
+        pjto.setStatus(Projeto.ELABORACAO);
 
         /**
          * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO RARAMENTE VAI SER ALTERADO

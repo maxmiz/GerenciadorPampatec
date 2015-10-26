@@ -32,9 +32,6 @@
         <property name="experiencia" type="string">
             <column name="experiencia" length="1000" />
         </property>
-        <property name="competencia" type="string">
-            <column name="competencia" length="1000" />
-        </property>
         <property name="bairro" type="string">
             <column name="bairro" length="45" />
         </property>

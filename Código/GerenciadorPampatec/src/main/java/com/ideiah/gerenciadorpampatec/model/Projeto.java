@@ -16,12 +16,17 @@ import javax.faces.context.FacesContext;
  */
 public class Projeto implements java.io.Serializable {
 
-    public static final int EM_EDICAO = 0;
+    public static final int ELABORACAO = 0;
     public static final int EM_PRE_AVALIACAO = 1;
-    public static final int APROVADO = 2;
-    public static final int REPROVADO = 3;
-    public static final int EM_CORRECAO = 4;
-
+    public static final int AVALIACAO = 2;
+    public static final int FORMALIZACAO = 3;
+    public static final int INCUBACAO = 4;
+    public static final int PRE_APROVADO = 5;
+    public static final int REPROVADO = 6;
+    public static final int PRE_MELHORIA = 7;
+    
+    
+    
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
     private Negocio negocio;
@@ -151,20 +156,20 @@ public class Projeto implements java.io.Serializable {
         String statusDescricao = "";
 
         switch (status) {
-            case EM_EDICAO:
-                statusDescricao = "Em edição";
+            case ELABORACAO:
+                statusDescricao = "Em elaboração";
                 break;
             case EM_PRE_AVALIACAO:
                 statusDescricao = "Em Pré-Avaliação";
                 break;
-            case APROVADO:
-                statusDescricao = "Aprovado";
+            case AVALIACAO:
+                statusDescricao = "Em Avaliação";
                 break;
-            case REPROVADO:
-                statusDescricao = "Reprovado";
+            case FORMALIZACAO:
+                statusDescricao = "Em Formalização";
                 break;
-            case EM_CORRECAO:
-                statusDescricao = "Em correção";
+            case INCUBACAO:
+                statusDescricao = "Incubação";
                 break;
         }
 
