@@ -2,6 +2,8 @@
 
 
 var precisaSalvar = false;
+var campoDoWorkflowSelecionado = null;
+var etapaAtualDoWorkflow = null;
 
 /*
  * Funções de exibição de Informações
@@ -263,7 +265,7 @@ function confirmacaoDeEnvio() {
 }
 
 /**
- * Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
+ * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
  * @param {type} id
  * @returns {undefined}
  */
@@ -301,16 +303,18 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
-            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
-            
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            etapaAtualDoWorkflow = "etapa1";
+
             var etapa = document.getElementById("etapa2");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
 
             break;
         case 1:
@@ -322,36 +326,43 @@ function carregaPagina() {
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
 
+            etapaAtualDoWorkflow = "etapa2";
+
             agoraVai('divPreVisualizar');
-            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
-            
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
             var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
-            
+            etapa.setAttribute("style", "cursor: default;");
+
             break;
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            
+
+            etapaAtualDoWorkflow = "etapa3";
+
             var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
-            
+            etapa.setAttribute("style", "cursor: default;");
+
             break;
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
-            
+
+            etapaAtualDoWorkflow = "etapa4";
+
             var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
-            
+            etapa.setAttribute("style", "cursor: default;");
+
             break;
         case 4:
             etapa1.setAttribute("class", "active, etapaAtual");
+            etapaAtualDoWorkflow = "etapa5";
             break;
         case 5:
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -361,14 +372,14 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active, etapaAtual");
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
-            botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
-            
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
             var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style","cursor: default;");
+            etapa.setAttribute("style", "cursor: default;");
             break
     }
 }
@@ -392,10 +403,24 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
+
     var etapa = document.getElementById("etapa1");
-    etapa.setAttribute("style", "border-color: red;");
-    
+
+    if (campoDoWorkflowSelecionado !== null) {
+        if (etapaAtualDoWorkflow === "etapa1") {
+            campoDoWorkflowSelecionado.setAttribute("class", "active");
+        } else {
+            campoDoWorkflowSelecionado.setAttribute("class", "etapaAtual");
+        }
+    }
+
+    campoDoWorkflowSelecionado = etapa;
+    etapa.setAttribute("class", "etapaSelecionada");
+
 }
+
+
+
 /**
  * Metodo que exibe o menu vertical da etapa Pré-Avalição
  */
@@ -419,6 +444,22 @@ function mostra_vertical_pre_avaliacao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
+
+    var etapa = document.getElementById("etapa2");
+
+    if (campoDoWorkflowSelecionado !== null) {
+        if (etapaAtualDoWorkflow === "etapa2") {
+            campoDoWorkflowSelecionado.setAttribute("class", "active");
+        } else {
+            campoDoWorkflowSelecionado.setAttribute("class", "etapaAtual");
+        }
+
+    }
+
+    campoDoWorkflowSelecionado = etapa;
+
+    etapa.setAttribute("class", "etapaSelecionada");
+
 }
 function mostra_avaliacao() {
 //    var etapa3 = document.getElementById("etapa3");
@@ -441,6 +482,21 @@ function mostra_avaliacao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
+    
+    var etapa = document.getElementById("etapa3");
+
+    if (campoDoWorkflowSelecionado !== null) {
+        if (etapaAtualDoWorkflow === "etapa3") {
+            campoDoWorkflowSelecionado.setAttribute("class", "active");
+        } else {
+            campoDoWorkflowSelecionado.setAttribute("class", "etapaAtual");
+        }
+
+    }
+
+    campoDoWorkflowSelecionado = etapa;
+
+    etapa.setAttribute("class", "etapaSelecionada");
 }
 function mostra_formalizacao() {
 //    var etapa4 = document.getElementById("etapa4");
@@ -465,6 +521,20 @@ function mostra_formalizacao() {
     divFormalizacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
+    
+    var etapa = document.getElementById("etapa4");
+
+    if (campoDoWorkflowSelecionado !== null) {
+        if (etapaAtualDoWorkflow === "etapa4") {
+            campoDoWorkflowSelecionado.setAttribute("class", "active");
+        } else {
+            campoDoWorkflowSelecionado.setAttribute("class", "etapaAtual");
+        }
+    }
+
+    campoDoWorkflowSelecionado = etapa;
+    etapa.setAttribute("class", "etapaSelecionada");
+    
 }
 function mostra_incubacao() {
 //    var etapa5 = document.getElementById("etapa5");
@@ -491,6 +561,18 @@ function mostra_incubacao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+    
+    var etapa = document.getElementById("etapa5");
+
+    if (campoDoWorkflowSelecionado !== null) {
+        if (etapaAtualDoWorkflow === "etapa5") {
+            campoDoWorkflowSelecionado.setAttribute("class", "active");
+        } else {
+            campoDoWorkflowSelecionado.setAttribute("class", "etapaAtual");
+        }
+    }
+    campoDoWorkflowSelecionado = etapa;
+    etapa.setAttribute("class", "etapaSelecionada");
 }
 
 /**

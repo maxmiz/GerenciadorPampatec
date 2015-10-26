@@ -165,3 +165,10 @@ and open the template in the editor.
     color: black;
     background-image: linear-gradient(to top, yellow, orange, red);
 }
+
+#progressbar li.etapaSelecionada:before,  #progressbar li.etapaSelecionada:after{
+    /*background-color: #62C462;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: yellow;
+}
