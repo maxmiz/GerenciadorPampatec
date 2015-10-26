@@ -57,7 +57,6 @@ public class EditarEmpreendedorBean {
         this.complemento = empreendedor.getComplemento();
         this.numero = String.valueOf(empreendedor.getNumero());
         this.experiencia = empreendedor.getExperiencia();
-        this.competencia = empreendedor.getCompetencia();
     }
 
     public String getNome() {
@@ -206,7 +205,6 @@ public class EditarEmpreendedorBean {
                     empreendedor.setBairro(bairro);
                     empreendedor.setComplemento(complemento);
                     empreendedor.setExperiencia(experiencia);
-                    empreendedor.setCompetencia(competencia);
 
                     //Confere se a intenção do usuário é também alterar a senha,
                     //usando o boolean @alterarSenha para indicar.

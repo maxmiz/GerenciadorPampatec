@@ -117,7 +117,6 @@ public class EmpreendedorBean {
                     empreendedor.setBairro(bairro);
                     empreendedor.setComplemento(complemento);
                     empreendedor.setExperiencia(experiencia);
-                    empreendedor.setCompetencia(competencia);
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
@@ -181,7 +180,6 @@ public class EmpreendedorBean {
                 empreendedor.setBairro(bairro);
                 empreendedor.setComplemento(complemento);
                 empreendedor.setExperiencia(experiencia);
-                empreendedor.setCompetencia(competencia);
 
                 if (empreendedor.atualizarEmpreendedor(empreendedor)) {
                     FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
