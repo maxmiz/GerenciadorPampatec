@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-                <!-- Início do menu superior -->
+        <!-- Início do menu superior -->
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -92,7 +92,7 @@
                                 <h:column>
                                     <div class="bordas">
                                         <h:outputText value="#{notificacao.descricao}"/>
-                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -127,7 +127,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
 
-                        <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há projetos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -153,6 +153,7 @@
                                     <div class="col-md-4"> 
                                         <h:commandButton styleClass="btn btn-primary botaoTabela"  value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                             <i class="fa fa-pencil-square-o" style="margin-left: -80%;margin-top: 5%; color: white;"></i> 
+
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandButton>
                                     </div>
@@ -165,6 +166,7 @@
                                     <div class="col-md-4">
                                         <h:commandButton styleClass="btn btn-danger botaoTabela" value="Excluir" title="Excluir Projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <i class="fa fa-sign-out" style="margin-left: -85%;margin-top: 5%; color: white;"></i> 
+
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandButton>
                                     </div>

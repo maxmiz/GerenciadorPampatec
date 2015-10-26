@@ -95,7 +95,7 @@ function  verificarCampos() {
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
 function verificaNegocio() {
@@ -107,8 +107,7 @@ function verificaNegocio() {
     listaCampos[0] = segmentoDeClientes;
     listaCampos[1] = propostaDeValor;
     listaCampos[2] = atividadesChave;
-    mudarCorLista(listaCampos, tabNegocio);
-
+    mudarCorLista(listaCampos, tabNegocio, "Negócio");
 }
 
 function verificaAnaliseMercado() {
@@ -124,7 +123,7 @@ function verificaAnaliseMercado() {
     listaCampos[2] = canais;
     listaCampos[3] = recursosPrincipais;
     listaCampos[4] = concorrentes;
-    mudarCorLista(listaCampos, tabAnaliseMercado);
+    mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
 function verificarProdutoServico() {
@@ -145,7 +144,7 @@ function verificarProdutoServico() {
     listaCampos[4] = interacaoEmpresaUniversidade;
     listaCampos[5] = interacaoEmpresaComunidadeGoverno;
     listaCampos[6] = infraestrutura;
-    mudarCorLista(listaCampos, tabProdutoServico);
+    mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
     verificarPreenchimentoRadioButton();
 }
 
@@ -156,7 +155,7 @@ function verificaGestaoPessoas() {
     var listaCampos = new Array();
     listaCampos[0] = participacaoAcionaria;
     listaCampos[1] = potencialEmprego;
-    mudarCorLista(listaCampos, tabGestaoPessoas);
+    mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
 function verificaPlanoFinanceiro() {
@@ -174,10 +173,10 @@ function verificaPlanoFinanceiro() {
     listaCampos[3] = custosfixos;
     listaCampos[4] = custosvariaveis;
 
-    mudarCorLista(listaCampos, tabPlanoFinanceiro);
+    mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
-function mudarCorLista(listaCampos, tab) {
+function mudarCorLista(listaCampos, tab , nomeCampo) {
     var flagCompleto = false;
     for (var i = 0; i < listaCampos.length; i++) {
         if (verificaPreenchimento(listaCampos[i])) {
@@ -189,8 +188,10 @@ function mudarCorLista(listaCampos, tab) {
     }
 
     if (flagCompleto) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
@@ -198,13 +199,15 @@ function mudarCorLista(listaCampos, tab) {
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
-function mudarCor(campo, tab) {
+function mudarCor(campo, tab, nomeCampo) {
     if (verificaPreenchimento(campo)) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
@@ -293,6 +296,7 @@ function carregaPagina() {
 
         switch (andamentoProjeto) {
 //    switch (1) {
+
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -301,6 +305,7 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
+            agoraVai('div_apresentacao_formulario');
             botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             
             var etapa = document.getElementById("etapa2");

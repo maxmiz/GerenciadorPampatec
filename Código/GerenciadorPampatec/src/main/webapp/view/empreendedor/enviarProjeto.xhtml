@@ -13,6 +13,7 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="barraProgresso.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="js.js"/>
@@ -125,8 +126,8 @@
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
         <div class="col-md-12 text-center" style="background-color: #6AA84F;">
             <ul id="progressbar">
-                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostra_vertical_elaboracao()">Elaboração</a></li>
-                <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostra_vertical_pre_avaliacao()">Pré-Avaliação</a></li>
+                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="agoraVai('div_apresentacao_formulario'),mostra_vertical_elaboracao()">Elaboração</a></li>
+                <li id="etapa2" class="" style="cursor: pointer;"><a onclick="agoraVai('divPreVisualizar'),mostra_vertical_pre_avaliacao()">Pré-Avaliação</a></li>
                 <li id="etapa3" class="" style="cursor: pointer;"><a onclick="mostra_avaliacao()">Avaliação</a></li>
                 <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao()">Formalização</a></li>
                 <li id="etapa5" class="" style="cursor: pointer;"><a onclick="mostra_incubacao()">Incubação</a></li>
@@ -138,11 +139,12 @@
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
             <div class="divPadding">
 
-                <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV teste" value="Editar"></h:commandButton><br/>
+                <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV teste" value="Editar" onclick="agoraVai('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
 
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Revisar" onclick="bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV" value="Revisar" onclick="bloquearCampos(), mostraDIV('divRevisar')"></h:commandButton><br/>
+
             </div>
             <div class="divPadding">
                 <h:commandButton class="btn btn-success btnWorkflowV" value="Submeter" onclick="mostraDIV('divVisualizarPlano')"></h:commandButton><br/>
@@ -154,7 +156,7 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
         <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #33ff11">
             <div class="divPadding text-center">
-                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="agoraVai('divPreVisualizar')"></h:commandButton><br/>
             </div>
             <div class="divPadding text-center">
                 <h:commandButton class="btn btn-success btnWorkflowV" value="Resultado do avaliador"></h:commandButton><br/>
@@ -499,127 +501,107 @@
                                     <legend id="subTitulo">Produto de Serviço</legend>
 
                                     <div class="col-md-12">
-                                        <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
-                                        Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                                    <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
+                                    Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
 
-                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                            <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}">
-                                                <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
-                                                <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
-                                                <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
-                                                <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
-                                                <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
-                                                <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                                <f:selectItem id="botaoOutro" itemLabel="Outro:" itemValue="Outro:" /><br/>
-                                                <f:ajax execute="@form" event="click" listener="#{projetoBean.salvarProjeto()}"/>
-                                            </p:selectOneRadio>
+                                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                        <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}"
+                                                          onchange="precisaSalvar = true;">
 
-                                        </h:panelGrid>
+                                            <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
+                                            <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
+                                            <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
+                                            <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
+                                            <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
+                                            <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
+                                            <f:selectItem itemLabel="Outro" itemValue="Outro"  />
 
-                                        <h:inputText class="col-md-12" id="descricaoOutroEstagio"
-                                                     validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
-                                                     value="#{projetoBean.descricaoButtonOutro}"
-                                                     onblur="verificarProdutoServico()">
-                                            <f:validateLength minimum="2"/>
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputText>
-                                        <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
+                                        </p:selectOneRadio>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
-                                        Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                        <h:inputTextarea class="form-control" 
-                                                         onblur="verificarProdutoServico(), ;"
-                                                         value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
-                                                         id="tecnologiaProcessos"
-                                                         >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="tecnologiaProcessos"/>
+                                    </h:panelGrid>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
-                                        Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                        <h:inputTextarea class="form-control"  
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                         id="potencialInovacaoTecnologica">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
+                                    <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
+                                                 validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
+                                                 value="#{projetoBean.descricaoButtonOutro}"
+                                                 onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputText>
+                                    <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
-                                        A quem se aplica? como? de que maneira?
-                                        <h:inputTextarea class="form-control"  
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
-                                                         id="aplicacoes"
-                                                         >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="aplicacoes"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                    Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
+                                                     id="tecnologiaProcessos"
+                                                     ></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
-                                        Quais são nossas principais limitações?
-                                        <h:inputTextarea class="form-control"
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                         id="dificuldadesEsperadas">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
+                                    Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
+                                                     id="potencialInovacaoTecnologica"></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
-                                        Em que sentido seremos parceiros da Universidade? 
-                                        <h:inputTextarea class="form-control"  
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                         id="interacaoEmpresaUniversidade">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
+                                    A quem se aplica? como? de que maneira?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
+                                                     id="aplicacoes"
+                                                     ></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="aplicacoes"/>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
-                                        Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                        <h:inputTextarea class="form-control"  
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                         id="interacaoEmpresaComunidadeGoverno">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
+                                    Quais são nossas principais limitações?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
+                                                     id="dificuldadesEsperadas"></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
 
-                                        <br/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
-                                        Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                        <h:inputTextarea class="form-control"  
-                                                         onblur="verificarProdutoServico()"
-                                                         value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
-                                                         id="infraestrutura">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="infraestrutura"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
+                                    Em que sentido seremos parceiros da Universidade? 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
+                                                     id="interacaoEmpresaUniversidade"></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
 
-                                        <br/>
-                                    </div>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
+                                    Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
+                                                     id="interacaoEmpresaComunidadeGoverno"></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12">
+                                    <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
+                                    Quanto de espaço será necessário? Mobiliário? Equipamentos?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                                     value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
+                                                     id="infraestrutura"></h:inputTextarea>
+                                    <h:message class="mensagemErro" for="infraestrutura"/>
+
+                                    <br/>
+                                </div>
 
                                     <div class="col-md-12 text-center">
                                         <br/>
@@ -945,6 +927,36 @@
         </div>
 
         <div class="classeConteudo esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
+            guyguyguafjanfa
+
+            alalf
+
+            awf
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        
+        <div class="classeDeTeste esconder-div" id="divRevisar" style="background-color: #FF0000;">
             guyguyguafjanfa
 
             alalf
