@@ -322,7 +322,7 @@ function carregaPagina() {
             var botao_preavaliacao = document.getElementById("botao_preavaliacao");
             mostra_vertical_pre_avaliacao();
 
-            agoraVai('divPreVisualizar');
+            mostraDIV('divPreVisualizar');
             botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             
             var etapa = document.getElementById("etapa3");
@@ -512,17 +512,15 @@ function bloquearCampos() {
 /**
  * Função para alternar entre as DIVS
  */
-function agoraVai(referencia) {
-//    div1 = document.querySelector(".classeDeTeste");
-    div1 = document.getElementsByClassName("classeDeTeste");
+function mostraDIV(referencia) {
+//    div1 = document.querySelector(".classeConteudo");
+    div1 = document.getElementsByClassName("classeConteudo");
     for (var i = 0; i < div1.length; i++) {
-//        alert(d[i].value);
-//        d2[i].disabled = "true";
+
         if (div1[i].getAttribute("id") === referencia) {
-//            alert("achei");
-            div1[i].setAttribute("class", "classeDeTeste col-md-10");
+            div1[i].setAttribute("class", "classeConteudo col-md-10");
         } else {
-            div1[i].setAttribute("class", "classeDeTeste esconder-div");
+            div1[i].setAttribute("class", "classeConteudo esconder-div");
         }
     }
 }
