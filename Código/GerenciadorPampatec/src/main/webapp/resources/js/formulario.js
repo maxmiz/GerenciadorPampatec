@@ -294,8 +294,8 @@ function carregaPagina() {
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
 
-//        switch (andamentoProjeto) {
-    switch (1) {
+        switch (andamentoProjeto) {
+    //switch (1) {
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
