@@ -151,19 +151,19 @@
                             <p:column headerText="Ações" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div class="col-md-4"> 
-                                        <h:commandButton styleClass="btn btn-primary botaoTabela" disabled="#{projeto.status == 0}" value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                        <h:commandButton styleClass="btn btn-primary botaoTabela"  value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                             <i class="fa fa-pencil-square-o" style="margin-left: -80%;margin-top: 5%; color: white;"></i> 
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <h:commandButton styleClass="btn btn-default botaoTabela" disabled="#{projeto.status == 0}" value="Sair" title="Sair do Projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                        <h:commandButton styleClass="btn btn-default botaoTabela" value="Sair" title="Sair do Projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
                                             <i class="fa fa-sign-out" style="margin-left: -70%;margin-top: 5%; color: white;"></i> 
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <h:commandButton styleClass="btn btn-danger botaoTabela" disabled="#{projeto.status == 0}" value="Excluir" title="Excluir Projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                        <h:commandButton styleClass="btn btn-danger botaoTabela" value="Excluir" title="Excluir Projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <i class="fa fa-sign-out" style="margin-left: -85%;margin-top: 5%; color: white;"></i> 
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandButton>
