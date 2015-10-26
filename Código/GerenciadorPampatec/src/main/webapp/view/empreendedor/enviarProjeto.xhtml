@@ -126,8 +126,8 @@
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
         <div class="col-md-12 text-center" style="background-color: #6AA84F;">
             <ul id="progressbar">
-                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="agoraVai('div_apresentacao_formulario'),mostra_vertical_elaboracao()">Elaboração</a></li>
-                <li id="etapa2" class="" style="cursor: pointer;"><a onclick="agoraVai('divPreVisualizar'),mostra_vertical_pre_avaliacao()">Pré-Avaliação</a></li>
+                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostra_vertical_elaboracao()">Elaboração</a></li>
+                <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostra_vertical_pre_avaliacao()">Pré-Avaliação</a></li>
                 <li id="etapa3" class="" style="cursor: pointer;"><a onclick="mostra_avaliacao()">Avaliação</a></li>
                 <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao()">Formalização</a></li>
                 <li id="etapa5" class="" style="cursor: pointer;"><a onclick="mostra_incubacao()">Incubação</a></li>
@@ -139,15 +139,14 @@
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
             <div class="divPadding">
 
-                <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV teste" value="Editar" onclick="agoraVai('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV teste" value="Editar"></h:commandButton><br/>
             </div>
             <div class="divPadding">
 
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Revisar" onclick="bloquearCampos(), mostraDIV('divRevisar')"></h:commandButton><br/>
-
+                <h:commandButton class="btn btn-success btnWorkflowV" value="Revisar" onclick="bloquearCampos(), agoraVai('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Submeter" onclick="mostraDIV('divVisualizarPlano')"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV" value="Submeter" onclick="agoraVai('divVisualizarPlano')"></h:commandButton><br/>
             </div>
         </div>
 
@@ -254,7 +253,7 @@
 
 
             <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
-            <div id="div_apresentacao_formulario" class="classeConteudo esconder-div" style="background-color: blueviolet">
+            <div id="div_apresentacao_formulario" class="classeDeTeste esconder-div" style="background-color: blueviolet">
 
 
 
@@ -897,7 +896,7 @@
         </h:form>
 
         <!--INICIO DA DIV DE VISULIZAÇÃO-->
-        <div class="classeConteudo esconder-div" id="divVisualizarPlano" style="background-color: #983d00;">
+        <div class="classeDeTeste esconder-div" id="divVisualizarPlano" style="background-color: #983d00;">
             guyguyguafjanfa
 
             alalf
@@ -926,37 +925,7 @@
             <br/>
         </div>
 
-        <div class="classeConteudo esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
-            guyguyguafjanfa
-
-            alalf
-
-            awf
-
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-        
-        
-        <div class="classeDeTeste esconder-div" id="divRevisar" style="background-color: #FF0000;">
+        <div class="classeDeTeste esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
             guyguyguafjanfa
 
             alalf

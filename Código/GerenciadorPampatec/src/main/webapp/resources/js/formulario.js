@@ -305,7 +305,6 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
-            agoraVai('div_apresentacao_formulario');
             botao_preavaliacao.setAttribute("class","btn btn-danger btnEstadoAtual");
             
             var etapa = document.getElementById("etapa2");
