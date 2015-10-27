@@ -654,7 +654,7 @@ function addFoco(idDoItem) {
         retornarCorOriginal();
     } 
     classeAnterior = etapa.getAttribute('class');
-    etapa.setAttribute("class", "etapaSelecionada");
+    etapa.setAttribute("class", classeAnterior + " etapaSelecionada pulse animated");
     objetoAnterior = etapa;
 }
 
