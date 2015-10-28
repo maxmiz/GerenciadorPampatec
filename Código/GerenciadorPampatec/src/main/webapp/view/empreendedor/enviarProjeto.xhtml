@@ -282,21 +282,7 @@
 
                                 <div id="formularioParte01">
                                     <legend id="subTitulo" >Contatos</legend>                                
-                                    <div class="col-md-12" id="">
-
-                                        <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
-                                        Nome da Empresa ou do Projeto*
-                                        <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control"
-                                                     onblur="verificaContatos();" 
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                     value="#{projetoBean.projeto.nome}"
-                                                     >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-
-                                        </p:inputText>
-                                        <h:message class="mensagemErro" for="empresaProjeto"/>
-                                        <br/>
-                                    </div>
+                                    
 
                                     <div class="col-md-12" id="">
                                         <b>Empreendedores <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('email')}"></p:commandLink></b><br/>
@@ -351,6 +337,22 @@
 
                                 <div id="formularioParte02">
                                     <legend>O Negócio</legend>
+                                    
+                                    <div class="col-md-12" id="">
+
+                                        <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                        Nome da Empresa ou do Projeto*
+                                        <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control"
+                                                     onblur="verificaContatos();" 
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     value="#{projetoBean.projeto.nome}"
+                                                     >
+                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+
+                                        </p:inputText>
+                                        <h:message class="mensagemErro" for="empresaProjeto"/>
+                                        <br/>
+                                    </div>
 
                                     <div class="col-md-12" id="">
                                         <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
