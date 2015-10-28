@@ -15,6 +15,12 @@ var classeAnterior = null;
 /* variavel para armazenar o objeto anterior */
 var objetoAnterior = null;
 
+/* variavel para armazenar o objeto do botao anterior */
+var objetoBotaoAnterior = null;
+
+/* campo para armazenar a classe dO botao que o usuario esta visualizando antes de ir para outro */
+var classeBotaoAnterior = null;
+
 /*
  * Funções de exibição de Informações
  * relativa as funcionalidades dos botões
@@ -480,6 +486,30 @@ function addFoco(idDoItem) {
  */
 function retornarCorOriginal() {
     objetoAnterior.setAttribute("class", classeAnterior);
+}
+
+/**
+ * @description Coloca foco no botao em que o usuário está visualizando no workflow
+ * @param {type} idDoItem
+ * @returns {undefined}
+ */
+function addFocoBotao(idDoItem) {
+    var etapaBotao = document.getElementById(idDoItem);
+    if (objetoBotaoAnterior !== null) {
+        retornarCorOriginalBotao();
+    } 
+    classeBotaoAnterior = etapaBotao.getAttribute('class');
+    etapaBotao.setAttribute("class", classeBotaoAnterior+" pulse animated");
+    objetoBotaoAnterior = etapaBotao;
+    
+}
+
+/**
+ * @description Retorna a classe original do botao que o usuário deixou de visualizar
+ * @returns {undefined}
+ */
+function retornarCorOriginalBotao() {
+    objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
 
 function mostra_avaliacao() {
