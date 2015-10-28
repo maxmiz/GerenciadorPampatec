@@ -139,11 +139,12 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
             <div class="divPadding">
-
+                <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe')"></h:commandButton><br/>
+            </div>
+            <div class="divPadding">
                 <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-
                 <h:commandButton id='botao_revisar' class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
