@@ -139,15 +139,13 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
             <div class="divPadding">
-
                 <h:commandButton id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-
-                <h:commandButton id='botao_revisar' class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Submeter" onclick="mostraDIV('divVisualizarPlano')"></h:commandButton><br/>
+                <h:commandButton id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'),mostraDIV('divVisualizarPlano')"></h:commandButton><br/>
             </div>
         </div>
 
@@ -156,10 +154,10 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
         <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #33ff11">
             <div class="divPadding text-center">
-                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="mostraDIV('divPreVisualizar')"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
             <div class="divPadding text-center">
-                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="mostraDIV('divPreAvaliar_visualizar')"></h:commandButton><br/>
+                <h:commandButton class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('botao_resultado_preavaliacao'), mostraDIV('divPreAvaliar_visualizar')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
@@ -168,13 +166,13 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
         <div id="vertical_etapa_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #983d00">
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Agendamento"></h:commandButton><br/>
+                <h:commandButton id="botao_agendamento" class="btn btn-success btnWorkflowV" value="Agendamento" onclick="addFocoBotao('botao_agendamento')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Entrevista"></h:commandButton><br/>
+                <h:commandButton id="botao_entrevista" class="btn btn-success btnWorkflowV" value="Entrevista" onclick="addFocoBotao('botao_entrevista')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Parecer"></h:commandButton><br/>
+                <h:commandButton id="botao_parecer" class="btn btn-success btnWorkflowV" value="Parecer" onclick="addFocoBotao('botao_parecer')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
@@ -183,13 +181,13 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
         <div id="vertical_etapa_formalizacao" class="col-md-2 text-center esconder-div" style="background-color: yellow">
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Entrega documentação"></h:commandButton><br/>
+                <h:commandButton id="botao_entrega_documentacao" class="btn btn-success btnWorkflowV" value="Entrega documentação" onclick="addFocoBotao('botao_documentacao')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Resultado final"></h:commandButton><br/>
+                <h:commandButton id="botao_resultado_final" class="btn btn-success btnWorkflowV" value="Resultado final" onclick="addFocoBotao('botao_resultado_final')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Assinar contrato"></h:commandButton><br/>
+                <h:commandButton id="botao_assinar_contrato" class="btn btn-success btnWorkflowV" value="Assinar contrato" onclick="addFocoBotao('botao_assinar_contrato')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
@@ -198,10 +196,10 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA INCUBACAO-->
         <div id="vertical_etapa_incubacao" class="col-md-2 text-center esconder-div" style="background-color: violet">
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Avaliação"></h:commandButton><br/>
+                <h:commandButton id="botao_avaliacao" class="btn btn-success btnWorkflowV" value="Avaliação" onclick="addFocoBotao('botao_avaliacao')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton class="btn btn-success btnWorkflowV" value="Resultado"></h:commandButton><br/>
+                <h:commandButton id="botao_resultado" class="btn btn-success btnWorkflowV" value="Resultado" onclick="addFocoBotao('botao_resultado')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SERÃO DO WORKFLOW VERTICAL ETAPA ININCUBACAO-->
