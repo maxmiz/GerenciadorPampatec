@@ -46,7 +46,7 @@
                 <column name="Projeto_idProjeto" not-null="true" />
             </key>
             <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Empreendedor">
-                <column name="Empreendedor_idEmpreendedor" not-null="true" />
+                <column name="empreendedor_usuario_id_usuario" not-null="true" />
             </many-to-many>
         </set>
         <many-to-one name="GerenteRelacionamento" class="com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento" fetch="select">

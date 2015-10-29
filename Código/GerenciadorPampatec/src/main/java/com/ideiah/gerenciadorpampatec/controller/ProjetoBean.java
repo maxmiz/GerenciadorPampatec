@@ -147,12 +147,14 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjeto() {
+        
         pegaValorRadioButton();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
         salvou = true;
+        
     }
 
     public void salvarProjetoeSair() {
