@@ -434,7 +434,7 @@ public class ProjetoBean implements Serializable {
         pjto.setPlanofinanceiro(planofinanceiro);
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
-        pjto.setStatus(Projeto.EM_EDICAO);
+        pjto.setStatus(Projeto.ELABORACAO);
 
         /**
          * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO

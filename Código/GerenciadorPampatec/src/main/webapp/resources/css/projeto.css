@@ -246,3 +246,17 @@ fieldset[disabled] .autoCompletar input {
 .modal-feedBackSalvar button:hover{
     color: #06a728;
 }
+
+.botaoselecionado{
+    background-color: #FF0000;
+}
+
+.esconder-div{
+    display: none;
+
+}
+
+.classeConteudo{
+
+
+}

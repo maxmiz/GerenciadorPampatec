@@ -3,6 +3,24 @@
 
 var precisaSalvar = false;
 
+/* campo selecionado para VISUALIZAÇÃO pelo usuario */
+var campoDoWorkflowSelecionado = null;
+
+/* campo referente a etapa que está em EXECUÇÃO NO PROCESSO */
+var etapaAtualDoWorkflow = null;
+
+/* campo para armazenar a classe da etapa que o usuario esta visualizando antes de ir para outra */
+var classeAnterior = null;
+
+/* variavel para armazenar o objeto anterior */
+var objetoAnterior = null;
+
+/* variavel para armazenar o objeto do botao anterior */
+var objetoBotaoAnterior = null;
+
+/* campo para armazenar a classe dO botao que o usuario esta visualizando antes de ir para outro */
+var classeBotaoAnterior = null;
+
 /*
  * Funções de exibição de Informações
  * relativa as funcionalidades dos botões
@@ -71,16 +89,28 @@ function exibeSextaParte() {
  * -----------------------------------------------------------------
  */
 
-function carregaFeedBack(){
+/**
+ * @description text
+ * @returns {undefined}
+ */
+function carregaFeedBack() {
     var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
-    feedBack.setAttribute("class","modal-feedBackSalvar modal-feedBackSalvar-in");
+    feedBack.setAttribute("class", "modal-feedBackSalvar modal-feedBackSalvar-in");
 }
 
-function fechaFeedBack(){
+/**
+ * @description text
+ * @returns {undefined}
+ */
+function fechaFeedBack() {
     var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
     feedBack.style.display = "none";
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function  verificarCampos() {
     verificaContatos();
     verificaNegocio();
@@ -91,13 +121,20 @@ function  verificarCampos() {
 }
 
 
-
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificaNegocio() {
     var segmentoDeClientes = document.getElementById("formulario_cadastro_projeto:segmentoDeClientes");
     var propostaDeValor = document.getElementById("formulario_cadastro_projeto:propostaDeValor");
@@ -107,10 +144,13 @@ function verificaNegocio() {
     listaCampos[0] = segmentoDeClientes;
     listaCampos[1] = propostaDeValor;
     listaCampos[2] = atividadesChave;
-    mudarCorLista(listaCampos, tabNegocio);
-    
+    mudarCorLista(listaCampos, tabNegocio, "Negócio");
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificaAnaliseMercado() {
     var relacoComClientes = document.getElementById("formulario_cadastro_projeto:relacoComClientes");
     var parceriasChaves = document.getElementById("formulario_cadastro_projeto:parceriasChaves");
@@ -124,9 +164,13 @@ function verificaAnaliseMercado() {
     listaCampos[2] = canais;
     listaCampos[3] = recursosPrincipais;
     listaCampos[4] = concorrentes;
-    mudarCorLista(listaCampos, tabAnaliseMercado);
+    mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificarProdutoServico() {
     var tecnologiaProcessos = document.getElementById("formulario_cadastro_projeto:tecnologiaProcessos");
     var potencialInovacaoTecnologica = document.getElementById("formulario_cadastro_projeto:potencialInovacaoTecnologica");
@@ -145,10 +189,14 @@ function verificarProdutoServico() {
     listaCampos[4] = interacaoEmpresaUniversidade;
     listaCampos[5] = interacaoEmpresaComunidadeGoverno;
     listaCampos[6] = infraestrutura;
-    mudarCorLista(listaCampos, tabProdutoServico);
+    mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
     verificarPreenchimentoRadioButton();
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificaGestaoPessoas() {
     var participacaoAcionaria = document.getElementById("formulario_cadastro_projeto:participacaoAcionaria");
     var potencialEmprego = document.getElementById("formulario_cadastro_projeto:potencialEmprego");
@@ -156,9 +204,13 @@ function verificaGestaoPessoas() {
     var listaCampos = new Array();
     listaCampos[0] = participacaoAcionaria;
     listaCampos[1] = potencialEmprego;
-    mudarCorLista(listaCampos, tabGestaoPessoas);
+    mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
+/**
+ * @description text
+ * @returns {undefined}
+ */
 function verificaPlanoFinanceiro() {
     var fontesDeReceita = document.getElementById("formulario_cadastro_projeto:fontesDeReceita");
     var estruturaCustos = document.getElementById("formulario_cadastro_projeto:estruturaCustos");
@@ -174,10 +226,17 @@ function verificaPlanoFinanceiro() {
     listaCampos[3] = custosfixos;
     listaCampos[4] = custosvariaveis;
 
-    mudarCorLista(listaCampos, tabPlanoFinanceiro);
+    mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
-function mudarCorLista(listaCampos, tab) {
+/**
+ * @description text
+ * @param {type} listaCampos
+ * @param {type} tab
+ * @param {type} nomeCampo
+ * @returns {undefined}
+ */
+function mudarCorLista(listaCampos, tab, nomeCampo) {
     var flagCompleto = false;
     for (var i = 0; i < listaCampos.length; i++) {
         if (verificaPreenchimento(listaCampos[i])) {
@@ -189,26 +248,45 @@ function mudarCorLista(listaCampos, tab) {
     }
 
     if (flagCompleto) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
 
+/**
+ * @description text
+ */
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato);
+    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
-function mudarCor(campo, tab) {
+/**
+ * @description text
+ * @param {type} campo
+ * @param {type} tab
+ * @param {type} nomeCampo
+ * @returns {undefined}
+ */
+function mudarCor(campo, tab, nomeCampo) {
     if (verificaPreenchimento(campo)) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
         tab.style.color = "green";
     } else {
+        tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
 }
 
+/**
+ * @description text
+ * @param {type} campo
+ * @returns {Boolean}
+ */
 function verificaPreenchimento(campo) {
     if (campo.value.trim() === "") {
         return false;
@@ -217,6 +295,10 @@ function verificaPreenchimento(campo) {
     }
 }
 
+/**
+ * @description text
+ * @returns {String}
+ */
 window.onbeforeunload = function () {
     if (precisaSalvar) {
         return "Você têm alterações que ainda não foram salvas.Têm certeza que quer sair da página?";
@@ -224,29 +306,392 @@ window.onbeforeunload = function () {
 };
 
 //trim completo
+/**
+ * @description text
+ * @returns {String.prototype@call;replace}
+ */
 String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, "");
 };
 
-
-function verificarPreenchimentoRadioButton(){
+/**
+ * @description text
+ * @returns {undefined}
+ */
+function verificarPreenchimentoRadioButton() {
     var elementos = document.getElementsByClassName('ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active');
     for (var i = 0; i < elementos.length; i++) {
         console.log("Deu");
     }
 }
 
-function percorrerArvoreObejetos(listaComponentes,pai,contador){
+/**
+ * @description text
+ * @param {type} listaComponentes
+ * @param {type} pai
+ * @param {type} contador
+ * @returns {undefined}
+ */
+function percorrerArvoreObejetos(listaComponentes, pai, contador) {
     for (var i = 0; i < pai.children.length; i++) {
-        if(pai.children[i].tagName === listaComponentes[contador]){
-            console.log("Nome da tag"+pai.children[i].tagName);
-            console.log("Nome procurado"+listaComponentes[contador]);
+        if (pai.children[i].tagName === listaComponentes[contador]) {
+            console.log("Nome da tag" + pai.children[i].tagName);
+            console.log("Nome procurado" + listaComponentes[contador]);
             console.log(pai.children[i].className);
-            if(contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"){
+            if (contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active") {
                 console.log("DEEEEUUUUUUUUU");
             }
             contador++;
-            percorrerArvoreObejetos(listaComponentes,pai.children[i],contador);
+            percorrerArvoreObejetos(listaComponentes, pai.children[i], contador);
         }
     }
+}
+
+
+
+/**
+ * @description text
+ * @returns {undefined}
+ */
+function infoSalvar() {
+    $("#modalInfoSalvar").modal();
+}
+
+/**
+ * @description text
+ * @returns {undefined}
+ */
+function confirmacaoDeEnvio() {
+    $("#modalInfoDeEnvio").modal();
+}
+
+/**
+ * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
+ * @param {type} id
+ * @returns {undefined}
+ */
+function mostrarFeedBack(id) {
+    var campo = document.getElementById(id);
+    if ($(campo).hasClass("form-control campoFeedBackOn")) {
+        $(campo).fadeOut(900);
+        campo.setAttribute("class", "form-control campoFeedBack");
+    } else {
+        $(campo).fadeIn(900);
+        campo.setAttribute("class", "form-control campoFeedBackOn");
+    }
+}
+
+
+
+
+/**
+ * Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
+ * @returns {undefined}
+ */
+function carregaPagina() {
+
+    var etapa1 = document.getElementById("etapa1");
+    var etapa2 = document.getElementById("etapa2");
+    var etapa3 = document.getElementById("etapa3");
+    var etapa4 = document.getElementById("etapa4");
+    var etapa5 = document.getElementById("etapa5");
+
+//        switch (andamentoProjeto) {
+    switch (4) {
+
+        case 0:
+            etapa2.innerHTML = "<b>Pré-Avaliação</b>";
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+            var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
+
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            etapaAtualDoWorkflow = "etapa1";
+
+            var etapa = document.getElementById("etapa2");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+        case 1:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
+            mostra_vertical_pre_avaliacao();
+
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('divPreVisualizar');
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+        case 2:
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+
+            etapaAtualDoWorkflow = "etapa3";
+
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active, etapaAtual");
+
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+        case 3:
+            etapa5.innerHTML = "<b>Incubação</b>";
+
+            etapaAtualDoWorkflow = "etapa4";
+
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active, etapaAtual");
+
+
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+        case 4:
+
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active");
+            etapa3.setAttribute("class", "active");
+            etapa4.setAttribute("class", "active");
+            etapa5.setAttribute("class", "active, etapaAtual");
+            etapaAtualDoWorkflow = "etapa5";
+
+            break;
+        case 5:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            var botaoQueDeveSerPintado = document.getElementById("botao_resultado_preavaliacao");
+            mostra_vertical_pre_avaliacao();
+            botaoQueDeveSerPintado.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            mostraDIV('divPreAvaliar_visualizar');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+    }
+}
+
+
+/**
+ * @description Função que exibe o menu vertical referente a etapa de elaboração
+ * @returns {undefined}
+ */
+function mostra_vertical_elaboracao() {
+
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+
+
+}
+
+
+
+/**
+ * @description Função que exibe o menu vertical referente a etapa de pré avaliação
+ * @returns {undefined}
+ */
+function mostra_vertical_pre_avaliacao() {
+
+
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+
+
+}
+
+function mostra_avaliacao() {
+
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+
+}
+
+/**
+ * @description Função que exibe o menu vertical referente a etapa de Formalização
+ * @returns {undefined}
+ */
+function mostra_formalizacao() {
+
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "esconder-div");
+
+
+}
+
+/**
+ * @description Função que exibe o menu vertical referente a etapa de Incubação
+ * @returns {undefined}
+ */
+function mostra_incubacao() {
+
+    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
+    divElaboracao.setAttribute("class", "esconder-div");
+    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
+    divPreAvaliacao.setAttribute("class", "esconder-div");
+    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
+    divAvaliacao.setAttribute("class", "esconder-div");
+    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
+    divFormalizacao.setAttribute("class", "esconder-div");
+    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
+    divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated");
+
+}
+
+/**
+ * @description Função que bloqueia todos os campos da tela Enviar Projeto. Para o empreendedor apenas poder visualizar e não editar.
+ * @returns {undefined}
+ */
+function bloquearCampos() {
+    var d = document.getElementById('myTabContent').getElementsByTagName('input');
+    var botaoOutro = document.getElementById('formulario_cadastro_projeto:estagioDeEvolucao');
+    botaoOutro.disabled = "true";
+
+    for (var i = 0; i < d.length; i++) {
+//        alert(d[i].value);
+        d[i].disabled = "true";
+    }
+    var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
+    for (var i = 0; i < d2.length; i++) {
+//        alert(d[i].value);
+        d2[i].disabled = "true";
+    }
+}
+
+
+/**
+ * @description Função para alternar entre as DIVs
+ * @param {type} referencia
+ * @returns {undefined}
+ */
+function mostraDIV(referencia) {
+//    div1 = document.querySelector(".classeConteudo");
+    div1 = document.getElementsByClassName("classeConteudo");
+    for (var i = 0; i < div1.length; i++) {
+
+        if (div1[i].getAttribute("id") === referencia) {
+            div1[i].setAttribute("class", "classeConteudo col-md-10");
+        } else {
+            div1[i].setAttribute("class", "classeConteudo esconder-div");
+        }
+    }
+}
+
+/**
+ * @description Coloca foco na etapa em que o usuário está visualizando no workflow
+ * @param {type} idDoItem
+ * @returns {undefined}
+ */
+function addFoco(idDoItem) {
+    var etapa = document.getElementById(idDoItem);
+    if (objetoAnterior !== null) {
+        retornarCorOriginal();
+    }
+    classeAnterior = etapa.getAttribute('class');
+    etapa.setAttribute("class", classeAnterior + " etapaSelecionada pulse animated");
+    objetoAnterior = etapa;
+}
+
+/**
+ * @description Retorna a classe original da etapa que o usuário deixou de visualizar
+ * @returns {undefined}
+ */
+function retornarCorOriginal() {
+    objetoAnterior.setAttribute("class", classeAnterior);
+}
+
+/**
+ * @description Coloca foco no botao em que o usuário está visualizando no workflow
+ * @param {type} idDoItem
+ * @returns {undefined}
+ */
+function addFocoBotao(idDoItem) {
+    var etapaBotao = document.getElementById(idDoItem);
+    if (objetoBotaoAnterior !== null) {
+        retornarCorOriginalBotao();
+    }
+    classeBotaoAnterior = etapaBotao.getAttribute('class');
+    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
+    objetoBotaoAnterior = etapaBotao;
+
+}
+
+//function testeNovo(idDoItem){
+//    var etapaBotao = document.getElementById(idDoItem);
+//    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
+//    etapaBotao.setAttribute("style", classeBotaoAnterior + "color: red;");
+//}
+
+/**
+ * @description Retorna a classe original do botao que o usuário deixou de visualizar
+ * @returns {undefined}
+ */
+function retornarCorOriginalBotao() {
+    objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }

@@ -8,6 +8,7 @@
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
@@ -24,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-                <!-- Início do menu superior -->
+        <!-- Início do menu superior -->
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -91,7 +92,7 @@
                                 <h:column>
                                     <div class="bordas">
                                         <h:outputText value="#{notificacao.descricao}"/>
-                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -126,7 +127,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
 
-                        <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há projetos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -150,31 +151,24 @@
                             <p:column headerText="Ações" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div class="col-md-4"> 
-                                        <p:commandButton icon="fa fa-edit" styleClass="btn-primary" rendered="#{projeto.status == 0}" value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
+                                        <h:commandButton styleClass="btn btn-primary botaoTabela"  value="Editar" title="Editar projeto" action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                            <i class="fa fa-pencil-square-o" style="margin-left: -80%;margin-top: 5%; color: white;"></i> 
 
-                                        <p:commandButton icon="fa fa-edit" disabled="true" styleClass="btn-primary" rendered="#{projeto.status != 0}" value="Editar" title="Editar projeto">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
+                                        </h:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" rendered="#{projeto.status == 0}" value="Sair" title="Sair do projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                        <h:commandButton styleClass="btn btn-default botaoTabela" value="Sair" title="Sair do Projeto" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                            <i class="fa fa-sign-out" style="margin-left: -70%;margin-top: 5%; color: white;"></i> 
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
-
-                                        <p:commandButton icon="fa fa-sign-out" update="@form" styleClass="btn-default" disabled="true" rendered="#{projeto.status != 0}" value="Sair" title="Sair do projeto">
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
+                                        </h:commandButton>
                                     </div>
                                     <div class="col-md-4">
-                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" rendered="#{projeto.status == 0}" value="Deletar" title="Deletar projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
+                                        <h:commandButton styleClass="btn btn-danger botaoTabela" value="Excluir" title="Excluir Projeto" action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                            <i class="fa fa-sign-out" style="margin-left: -85%;margin-top: 5%; color: white;"></i> 
 
-                                        <p:commandButton icon="fa fa-times" update="@form" styleClass="btn-danger" disabled="true" rendered="#{projeto.status != 0}" value="Deletar" title="Deletar projeto">
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </p:commandButton>
+                                        </h:commandButton>
                                     </div>
                                 </div>
                             </p:column>
