@@ -9,10 +9,7 @@ and open the template in the editor.
 */
 
 .erro {
-
     color: red;
-
-
 }
 
 .sucesso {
@@ -72,6 +69,15 @@ and open the template in the editor.
     border-color: black;
 }
 
+.bordaEstadoVisualizado {
+    border-width: 2px;
+    border-color: yellow;
+}
+
+.bordaEstadoVisualizado:focus {
+    border-width: 2px;
+    border-color: yellow;
+}
 
 .btnEstadoAtual {
     width: 88%;

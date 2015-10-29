@@ -677,10 +677,16 @@ function addFocoBotao(idDoItem) {
         retornarCorOriginalBotao();
     }
     classeBotaoAnterior = etapaBotao.getAttribute('class');
-    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated");
+    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
     objetoBotaoAnterior = etapaBotao;
 
 }
+
+//function testeNovo(idDoItem){
+//    var etapaBotao = document.getElementById(idDoItem);
+//    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
+//    etapaBotao.setAttribute("style", classeBotaoAnterior + "color: red;");
+//}
 
 /**
  * @description Retorna a classe original do botao que o usuário deixou de visualizar
