@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.Custo" table="custo" catalog="gerenciadorpampatec" optimistic-lock="version">
+    <id name="idCusto" type="java.lang.Integer">
+        <column name="idcusto" />
+        <generator class="identity" />
+    </id>
+    <property name="descricao" type="string">
+        <column name="descricao" length="70" />
+    </property>
+    <property name="tipo" type="java.lang.Integer">
+            <column name="tipo" />
+    </property>
+    <property name="valor" type="float">
+            <column name="valor" />
+    </property>    
+    </class>
+</hibernate-mapping>
