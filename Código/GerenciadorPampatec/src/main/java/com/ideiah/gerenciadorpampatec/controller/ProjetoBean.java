@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
+import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
@@ -25,6 +26,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,16 +56,23 @@ public class ProjetoBean implements Serializable {
     private String descricaoButtonOutro;
     private Empreendedor empreendedorSession;
     private boolean salvou;
-    
-    
+    private String nomeCustoFixo;
+    private float valorCustoFixo;
+    private String nomeCustoVariavel;
+    private float valorCustoVariavel;
+    private List<Custo> listaCustoFixo;
+    private List<Custo> listaCustoVariavel;
+
     public ProjetoBean() {
         salvou = false;
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
-        empreedendoresAdicionados = new ArrayList<>();
+        empreedendoresAdicionados = new ArrayList<>();        
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
         preecheRadioButton();
+        listaCustoFixo = new ArrayList<>();
+        listaCustoVariavel = new ArrayList<>();
     }
 
     /**
@@ -72,6 +81,11 @@ public class ProjetoBean implements Serializable {
     public void atualizarProjetoSessao() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projeto);
+        //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
+        listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
+        //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
+        listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
+   
     }
 
     /**
@@ -87,11 +101,12 @@ public class ProjetoBean implements Serializable {
             }
         }
     }
-    
+
     /**
-     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO DE EVOLUÇÃO
-     * APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR CORRESPONDENTE
-     * CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR DO CAMPO (descricaoButtonOutro)
+     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO
+     * DE EVOLUÇÃO APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR
+     * CORRESPONDENTE CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR
+     * DO CAMPO (descricaoButtonOutro)
      */
     public void pegaValorRadioButton() {
         if (selectedButton != null) {
@@ -422,11 +437,11 @@ public class ProjetoBean implements Serializable {
         pjto.setStatus(Projeto.ELABORACAO);
 
         /**
-         * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO RARAMENTE VAI SER ALTERADO
+         * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO
+         * RARAMENTE VAI SER ALTERADO
          */
         pjto.setEdital("2015abc123");
-        
-        
+
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -552,14 +567,6 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
-        if (projeto.getPlanofinanceiro().getCustosfixos().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosfixos");
-            FLAG = FLAG + 1;
-        }
-        if (projeto.getPlanofinanceiro().getCustosvariaveis().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:custosvariaveis");
-            FLAG = FLAG + 1;
-        }
         return FLAG;
     }
 
@@ -644,5 +651,115 @@ public class ProjetoBean implements Serializable {
      */
     public void setSalvou(boolean salvou) {
         this.salvou = salvou;
+    }
+
+    /*
+     Método para adicionar custo fixo ao projeo e à tabela.
+     */
+    public void adicionarCustoFixo() {
+        if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
+            Custo custo = new Custo();
+            custo.setDescricao(nomeCustoFixo);
+            custo.setValor(valorCustoFixo);
+            custo.setTipo(Custo.CUSTO_FIXO);
+            projeto.getPlanofinanceiro().getCusto().add(custo);
+            listaCustoFixo.add(custo);
+        } else {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
+        }
+    }
+
+    /*
+     Método para adicionar custo variável a tabela.
+     */
+    public void adicionarCustoVariavel() {
+        if (nomeCustoVariavel.equals("") || valorCustoVariavel <= 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else {
+            Custo custo = new Custo();
+            custo.setDescricao(nomeCustoVariavel);
+            custo.setValor(valorCustoVariavel);
+            custo.setTipo(Custo.CUSTO_VARIAVEL);
+            planoFinanceiro.getCusto().add(custo);
+            listaCustoVariavel.add(custo);
+        }
+    }
+
+    public String getNomeCustoFixo() {
+        return nomeCustoFixo;
+    }
+
+    public void setNomeCustoFixo(String nomeCustoFixo) {
+        this.nomeCustoFixo = nomeCustoFixo;
+    }
+
+    public float getValorCustoFixo() {
+        return valorCustoFixo;
+    }
+
+    public void setValorCustoFixo(float valorCustoFixo) {
+        this.valorCustoFixo = valorCustoFixo;
+    }
+
+    public String getNomeCustoVariavel() {
+        return nomeCustoVariavel;
+    }
+
+    public void setNomeCustoVariavel(String nomeCustoVariavel) {
+        this.nomeCustoVariavel = nomeCustoVariavel;
+    }
+
+    public float getValorCustoVariavel() {
+        return valorCustoVariavel;
+    }
+
+    public void setValorCustoVariavel(float valorCustoVariavel) {
+        this.valorCustoVariavel = valorCustoVariavel;
+    }
+
+    /**
+     * filtra lista de custos por tipo, seguindo constantes definidas na classe 
+     * Custo: FIXO ou VARIAVEL
+     * @param listaCompleta
+     * @param tipo
+     * @return novaLista
+     */
+    public ArrayList<Custo> filtraCustoPorTipo(ArrayList<Custo> listaCompleta, int tipo) {
+        ArrayList<Custo> novaLista = new ArrayList<>();
+        for (Custo custoSelecionado : listaCompleta) {
+            if (custoSelecionado.getTipo() == Custo.CUSTO_FIXO) {
+                novaLista.add(custoSelecionado);
+            }
+        }
+        return novaLista;
+    }
+    
+    /**
+     * Converte os registros do setCusto em um arraylist
+     * @param setCusto
+     * @return arrayCusto
+     */
+    public ArrayList<Custo> converteSetParaArrayListdeCusto (Set<Custo> setCusto){
+        ArrayList<Custo> arrayCusto = new ArrayList<>();
+        for (Custo custoSet : setCusto){
+            arrayCusto.add(custoSet);
+        }
+        return arrayCusto;
+    }
+
+    public List<Custo> getListaCustoFixo() {
+        return listaCustoFixo;
+    }
+
+    public void setListaCustoFixo(List<Custo> listaCustoFixo) {
+        this.listaCustoFixo = listaCustoFixo;
+    }
+
+    public List<Custo> getListaCustoVariavel() {
+        return listaCustoVariavel;
+    }
+
+    public void setListaCustoVariavel(List<Custo> listaCustoVariavel) {
+        this.listaCustoVariavel = listaCustoVariavel;
     }
 }

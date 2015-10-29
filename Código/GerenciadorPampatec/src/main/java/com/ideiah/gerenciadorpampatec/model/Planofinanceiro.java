@@ -16,25 +16,24 @@ public class Planofinanceiro  implements java.io.Serializable {
      private String estruturaCusto;
      private String investimentoInicial;
      private Set projetos = new HashSet(0);
+     private Set<Custo> custo = new HashSet<>(0);
      private String custosfixos;
      private String custosvariaveis;
      
     public Planofinanceiro() {
     }
-
 	
     public Planofinanceiro(int idPlanoFinanceiro, String fontesReceita, String estruturaCusto) {
         this.idPlanoFinanceiro = idPlanoFinanceiro;
         this.fontesReceita = fontesReceita;
         this.estruturaCusto = estruturaCusto;
     }
-    public Planofinanceiro(int idPlanoFinanceiro, String fontesReceita, String estruturaCusto, String investimentoInicial, String custosFixos, String custosVariaveis) {
+    
+    public Planofinanceiro(int idPlanoFinanceiro, String fontesReceita, String estruturaCusto, String investimentoInicial) {
        this.idPlanoFinanceiro = idPlanoFinanceiro;
        this.fontesReceita = fontesReceita;
        this.estruturaCusto = estruturaCusto;
        this.investimentoInicial = investimentoInicial;
-       this.projetos = projetos;
-       
     }
    
     public int getIdPlanoFinanceiro() {
@@ -73,39 +72,11 @@ public class Planofinanceiro  implements java.io.Serializable {
         this.projetos = projetos;
     }
 
-    /**
-     * @return the custosfixos
-     */
-    public String getCustosfixos() {
-        return custosfixos;
+    public Set<Custo> getCusto() {
+        return custo;
     }
 
-    /**
-     * @param custosfixos the custosfixos to set
-     */
-    public void setCustosfixos(String custosfixos) {
-        this.custosfixos = custosfixos;
+    public void setCusto(Set<Custo> custo) {
+        this.custo = custo;
     }
-
-    /**
-     * @return the custosvariaveis
-     */
-    public String getCustosvariaveis() {
-        return custosvariaveis;
-    }
-
-    /**
-     * @param custosvariaveis the custosvariaveis to set
-     */
-    public void setCustosvariaveis(String custosvariaveis) {
-        this.custosvariaveis = custosvariaveis;
-    }
-
-    
-
-
-
-
 }
-
-

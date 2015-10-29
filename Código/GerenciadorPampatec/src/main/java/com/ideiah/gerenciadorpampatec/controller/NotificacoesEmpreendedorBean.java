@@ -89,7 +89,7 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
      */
     private void atualizaEmpreendedorSessao(Empreendedor empreendedor, HttpSession sessao) {
         Empreendedor empreendedorSessao = (Empreendedor) sessao.getAttribute("empreendedor");
-        if (Objects.equals(empreendedor.getIdEmpreendedor(), empreendedorSessao.getIdEmpreendedor())) {
+        if (Objects.equals(empreendedor.getIdUsuario(), empreendedorSessao.getIdUsuario())) {
             sessao.setAttribute("empreendedor", empreendedor);
         }
     }

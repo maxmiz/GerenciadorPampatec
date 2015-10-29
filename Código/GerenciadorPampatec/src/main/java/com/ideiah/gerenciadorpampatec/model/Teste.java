@@ -5,7 +5,9 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,22 +26,12 @@ public class Teste {
     private static HtmlEmail emailHtml;
 
     public static void main(String args[]) {
-//        Empreendedor empreendedor = new Empreendedor();
-//        
-//        empreendedor.setCpf("dsadas");
-//        empreendedor.setEmail("dasdasda");
-//        empreendedor.setNome("dsadasda");
-//        empreendedor.setSenha("dasdasda");
-//        empreendedor.setFormacao("dasda");
-//        empreendedor.setBairro("dsadas");
-//        empreendedor.setRua("dasdasdasda");
-//        empreendedor.setComplemento("dsadsadas");
-//        empreendedor.setNumero(32131231);
-//
-//        empreendedor.buscarPorCpf(null);
-//        mandarEmail("Este é o assunto", "Esta é a mensagem");
-//        mandarHtml();
-//        EmailUtil.mandarEmailConcluirCadastro("Pedro", "Ideiah", "edisonjhonatan@gmail.com");
+        EmpreendedorDao dao = new EmpreendedorDao();
+        ArrayList<Usuario> usuarios = (ArrayList<Usuario>) dao.buscarObjetos(Usuario.class);
+        System.out.println("sdadasdasdsadasdas");
+        for (Usuario usuario : usuarios) {
+            System.out.println("Usuaaaaario = " + usuario);
+        }
 
     }
 

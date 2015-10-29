@@ -64,7 +64,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         System.out.println("Testeeeeeeeeeeeeee = " + contTeste);
         for (Object object : projetoSelecionado.getEmpreendedores()) {
             Empreendedor emmpreendedorLaco = (Empreendedor) object;
-            if (Objects.equals(empreendedor.getIdEmpreendedor(), emmpreendedorLaco.getIdEmpreendedor())) {
+            if (Objects.equals(empreendedor.getIdUsuario(), emmpreendedorLaco.getIdUsuario())) {
                 projetoSelecionado.getEmpreendedores().remove(emmpreendedorLaco);
                 break;
             }

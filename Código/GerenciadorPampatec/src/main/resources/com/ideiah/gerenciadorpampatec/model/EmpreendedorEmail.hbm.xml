@@ -10,7 +10,7 @@
             <column name="tipo" length="45"/>
         </property>
         <many-to-one name="Empreendedor" entity-name="com.ideiah.gerenciadorpampatec.model.Empreendedor">
-            <column name="Empreendedor_idEmpreendedor" not-null="true" />
+            <column name="empreendedor_usuario_id_usuario" not-null="true" />
         </many-to-one>
     </class>
 </hibernate-mapping>

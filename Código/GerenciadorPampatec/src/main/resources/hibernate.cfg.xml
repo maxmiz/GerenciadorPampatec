@@ -10,7 +10,7 @@
     <property name="hibernate.connection.password">root</property>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Planofinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Projeto.hbm.xml"/>
-    <mapping resource="com/ideiah/gerenciadorpampatec/model/Empreendedor.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/Usuario.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Negocio.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Analiseemprego.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Produtoouservico.hbm.xml"/>
@@ -22,5 +22,6 @@
     <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioPlanoFinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioNegocio.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioAnaliseEmprego.hbm.xml"/>
+    <mapping resource="com/ideiah/gerenciadorpampatec/model/Custo.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

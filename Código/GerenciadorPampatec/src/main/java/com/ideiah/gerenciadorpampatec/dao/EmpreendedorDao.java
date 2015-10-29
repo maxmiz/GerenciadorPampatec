@@ -48,12 +48,6 @@ public class EmpreendedorDao extends Dao {
     public Notificacao buscarNotificacao(int codigo) {
         return (Notificacao) buscarObjeto(codigo, Empreendedor.class);
     }
-    
-    public ArrayList<Notificacao> buscarNotificacoes(Empreendedor empreendedor){
-        System.out.println("iddddddddddd: "+empreendedor.getIdEmpreendedor());
-        return  (ArrayList<Notificacao>) buscarObjetosCritera("empreendedor_idEmpreendedor", empreendedor.getIdEmpreendedor(), Notificacao.class);
-        
-    }
 
     /*
      * Verificação se o email e o nome já estão 
@@ -113,7 +107,7 @@ public class EmpreendedorDao extends Dao {
 
     public boolean deletarPorEmail(String email) {
         Empreendedor empreendedorEmail = (Empreendedor) buscarObjetoCriteria("email", email, Empreendedor.class);
-        return deletar(empreendedorEmail.getIdEmpreendedor());
+        return deletar(empreendedorEmail.getIdUsuario());
     }
     
     public boolean deletarNotificacao(int codigo) {
