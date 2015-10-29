@@ -66,7 +66,7 @@ public class ProjetoBean implements Serializable {
     public ProjetoBean() {
         salvou = false;
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
-        empreedendoresAdicionados = new ArrayList<>();        
+        empreedendoresAdicionados = new ArrayList<>();
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
@@ -85,7 +85,7 @@ public class ProjetoBean implements Serializable {
         listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
         //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
         listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
-   
+
     }
 
     /**
@@ -147,14 +147,16 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjeto() {
-        
+        if (projeto.getNome() == null || projeto.getNome().equals("")) {
+            projeto.setNome("Novo Plano");
+        }
         pegaValorRadioButton();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
         salvou = true;
-        
+
     }
 
     public void salvarProjetoeSair() {
@@ -720,8 +722,9 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * filtra lista de custos por tipo, seguindo constantes definidas na classe 
+     * filtra lista de custos por tipo, seguindo constantes definidas na classe
      * Custo: FIXO ou VARIAVEL
+     *
      * @param listaCompleta
      * @param tipo
      * @return novaLista
@@ -735,15 +738,16 @@ public class ProjetoBean implements Serializable {
         }
         return novaLista;
     }
-    
+
     /**
      * Converte os registros do setCusto em um arraylist
+     *
      * @param setCusto
      * @return arrayCusto
      */
-    public ArrayList<Custo> converteSetParaArrayListdeCusto (Set<Custo> setCusto){
+    public ArrayList<Custo> converteSetParaArrayListdeCusto(Set<Custo> setCusto) {
         ArrayList<Custo> arrayCusto = new ArrayList<>();
-        for (Custo custoSet : setCusto){
+        for (Custo custoSet : setCusto) {
             arrayCusto.add(custoSet);
         }
         return arrayCusto;
