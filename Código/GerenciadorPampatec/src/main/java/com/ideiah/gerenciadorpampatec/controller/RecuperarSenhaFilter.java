@@ -126,7 +126,7 @@ public class RecuperarSenhaFilter implements Filter {
             request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
             empreendedorEmail.apagarDoBanco(empreendedorEmail);
         }else if((emp2 !=  null)){
-            if(emp2.getIdEmpreendedor()!= null){
+            if(emp2.getIdUsuario()!= null){
                 request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
             }else{
                 request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);

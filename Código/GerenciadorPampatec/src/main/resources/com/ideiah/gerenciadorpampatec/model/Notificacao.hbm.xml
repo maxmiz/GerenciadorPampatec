@@ -9,7 +9,7 @@
         </id>
         
         <many-to-one name="empreendedor" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select">
-            <column name="empreendedor_idEmpreendedor" not-null="true" />
+            <column name="usuario_id_usuario" not-null="true" />
         </many-to-one>
         
         <property name="visualizado" type="boolean">
