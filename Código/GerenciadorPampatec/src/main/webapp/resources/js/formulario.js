@@ -408,6 +408,7 @@ function carregaPagina() {
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
 
             botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV('div_apresentacao_formulario');
 
             etapaAtualDoWorkflow = "etapa1";
 
@@ -617,12 +618,10 @@ function bloquearCampos() {
     botaoOutro.disabled = "true";
 
     for (var i = 0; i < d.length; i++) {
-//        alert(d[i].value);
         d[i].disabled = "true";
     }
     var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
     for (var i = 0; i < d2.length; i++) {
-//        alert(d[i].value);
         d2[i].disabled = "true";
     }
 }
@@ -634,7 +633,6 @@ function bloquearCampos() {
  * @returns {undefined}
  */
 function mostraDIV(referencia) {
-//    div1 = document.querySelector(".classeConteudo");
     div1 = document.getElementsByClassName("classeConteudo");
     for (var i = 0; i < div1.length; i++) {
 
