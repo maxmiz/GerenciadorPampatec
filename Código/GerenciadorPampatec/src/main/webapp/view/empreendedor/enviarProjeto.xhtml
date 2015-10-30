@@ -293,7 +293,7 @@
 
                                         <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                         Nome da Empresa ou do Projeto*
-                                        <p:inputText id="empresaProjeto" placeholder="" required="true" class="form-control"
+                                        <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
                                                      onblur="verificaContatos();" 
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
