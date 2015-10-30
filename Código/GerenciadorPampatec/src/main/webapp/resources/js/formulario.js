@@ -113,10 +113,11 @@ function fechaFeedBack() {
 }
 
 /**
- * @description text
+ * @description Chama a verificação de todos os formulários de cada aba do cadastro de Plano
+ * para inserir o ícone de "Certo" ao lado do nada da aba correspondente.
  * @returns {undefined}
  */
-function  verificarCampos() {
+function verificarCampos() {
     verificaContatos();
     verificaNegocio();
     verificaAnaliseMercado();
@@ -125,10 +126,9 @@ function  verificarCampos() {
     verificaPlanoFinanceiro();
 }
 
-
 /**
- * @description text
- * @returns {undefined}
+ * @description Verifica se todos os campos do formulário referente aos Contatos foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  */
 function verificaContatos() {
     var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
@@ -137,7 +137,8 @@ function verificaContatos() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Negócio foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaNegocio() {
@@ -153,7 +154,8 @@ function verificaNegocio() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente a Análise de Mercado foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaAnaliseMercado() {
@@ -173,7 +175,8 @@ function verificaAnaliseMercado() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Produto ou Serviço foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificarProdutoServico() {
@@ -199,7 +202,8 @@ function verificarProdutoServico() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente a Gestão de Pessoas foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaGestaoPessoas() {
@@ -213,7 +217,8 @@ function verificaGestaoPessoas() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Plano Financeiro foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaPlanoFinanceiro() {
@@ -233,6 +238,7 @@ function verificaPlanoFinanceiro() {
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
+
 
 /**
  * @description text
@@ -261,14 +267,7 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
     }
 }
 
-/**
- * @description text
- */
-function verificaContatos() {
-    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
-    var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato, "Contato");
-}
+
 
 /**
  * @description Muda a cor do texto. Neste caso está sendo utilizado para colorir o texto
@@ -394,7 +393,7 @@ function carregaPagina() {
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
 
-        switch (andamentoProjeto) {
+    switch (andamentoProjeto) {
 //    switch (4) {
 
 
