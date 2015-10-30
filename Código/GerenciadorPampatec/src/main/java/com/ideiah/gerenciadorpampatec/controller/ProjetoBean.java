@@ -52,7 +52,7 @@ public class ProjetoBean implements Serializable {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    private String selectedButton;
+    private String selectedOption;
     private String descricaoButtonOutro;
     private Empreendedor empreendedorSession;
     private boolean salvou;
@@ -70,7 +70,7 @@ public class ProjetoBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
-        preecheRadioButton();
+        preencheDropDown();
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
     }
@@ -91,13 +91,13 @@ public class ProjetoBean implements Serializable {
     /**
      * Preenche o radio button se o projeto já estiver com ele preenchido
      */
-    public void preecheRadioButton() {
+    public void preencheDropDown() {
         if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {
             if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
-                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedOption = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
             } else {
-                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedOption = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
             }
         }
     }
@@ -108,9 +108,9 @@ public class ProjetoBean implements Serializable {
      * CORRESPONDENTE CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR
      * DO CAMPO (descricaoButtonOutro)
      */
-    public void pegaValorRadioButton() {
-        if (selectedButton != null) {
-            switch (selectedButton) {
+    public void pegaValorDropDown() {
+        if (selectedOption != null) {
+            switch (selectedOption) {
                 case "Ideia Básica":
                     projeto.getProdutoouservico().setEstagioEvolucao("1");
                     descricaoButtonOutro = null;
@@ -150,7 +150,7 @@ public class ProjetoBean implements Serializable {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
             projeto.setNome("Novo Plano");
         }
-        pegaValorRadioButton();
+        pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
@@ -519,7 +519,7 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
             FLAG = FLAG + 1;
         }
-        if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
+        if (selectedOption.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
             FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
             FLAG = FLAG + 1;
         }
@@ -619,14 +619,14 @@ public class ProjetoBean implements Serializable {
      * @return the selectedButton
      */
     public String getSelectedButton() {
-        return selectedButton;
+        return selectedOption;
     }
 
     /**
      * @param selectedButton the selectedButton to set
      */
     public void setSelectedButton(String selectedButton) {
-        this.selectedButton = selectedButton;
+        this.selectedOption = selectedButton;
     }
 
     /**

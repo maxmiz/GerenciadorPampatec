@@ -457,7 +457,7 @@
                                         <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
                                         
-                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedOption}" onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="value" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="value" itemLabel="Projeto básico"/>
                                             <f:selectItem itemValue="value" itemLabel="Projeto detalhado"/>
