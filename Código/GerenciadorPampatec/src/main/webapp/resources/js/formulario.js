@@ -396,8 +396,8 @@ function carregaPagina() {
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
 
-//        switch (andamentoProjeto) {
-    switch (4) {
+        switch (andamentoProjeto) {
+//    switch (4) {
 
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
@@ -420,7 +420,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
-
+            bloquearBotoesVerticaisElaboracao();
             break;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -695,3 +695,5 @@ function addFocoBotao(idDoItem) {
 function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
+
+
