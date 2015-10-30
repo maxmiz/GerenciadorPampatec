@@ -19,7 +19,6 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public static final int ENVIADO = 1;
     public static final int ERRO_AO_SALVAR = 2;
     
-    private Integer tipoEmpreendedor;
     private String formacao;
     private String experiencia;
     private String bairro;
@@ -55,7 +54,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         return new ProjetoDao();
     }
 
-    public Empreendedor(Integer tipoEmpreendedor,Integer idUsuario, String nome, String cpf, String formacao, String email, String senha, String telefone, String rua, int numero, String bairro, String complemento) {
+    public Empreendedor(Integer idUsuario, String nome, String cpf, String formacao, String email, String senha, String telefone, String rua, int numero, String bairro, String complemento) {
         this.setIdUsuario(idUsuario);
         this.setNome(nome);
         this.setCpf(cpf);
@@ -67,11 +66,10 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
-        this.tipoEmpreendedor = tipoEmpreendedor;
 
     }
 
-    public Empreendedor(Integer tipoEmpreendedor,Integer idUsuario, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, Set notificacoes, String senha) {
+    public Empreendedor(Integer idUsuario, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String competencia, String participacaoAcionaria, Set projetos, Set notificacoes, String senha) {
         this.setIdUsuario(idUsuario);
         this.setNome(nome);
         this.setCpf(cpf);
@@ -80,10 +78,9 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         this.setTelefone(telefone);
         this.formacao = formacao;
         this.notificacoes = notificacoes;
-        this.tipoEmpreendedor = tipoEmpreendedor;
     }
 
-    public Empreendedor(Integer tipoEmpreendedor,Integer idUsuario, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String participacaoAcionaria, Set projetos, Set notificacoes) {
+    public Empreendedor(Integer idUsuario, String nome, String telefone, String cpf, String email, String formacao, String experiencia, String participacaoAcionaria, Set projetos, Set notificacoes) {
         this.setIdUsuario(idUsuario);
         this.setNome(nome);
         this.setCpf(cpf);
@@ -93,7 +90,6 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         this.experiencia = experiencia;
         this.projetos = projetos;
         this.notificacoes = notificacoes;
-        this.tipoEmpreendedor = tipoEmpreendedor;
     }
 
     /**
@@ -106,6 +102,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         }
         return "Cadastro Incompleto";
     }
+    
 
     public String getFormacao() {
         return this.formacao;
@@ -375,19 +372,5 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
             descricoes.add(notificacao.getDescricao());
         }
         return descricoes;
-    }
-
-    /**
-     * @return the tipoEmpreendedor
-     */
-    public Integer getTipoEmpreendedor() {
-        return tipoEmpreendedor;
-    }
-
-    /**
-     * @param tipoEmpreendedor the tipoEmpreendedor to set
-     */
-    public void setTipoEmpreendedor(Integer tipoEmpreendedor) {
-        this.tipoEmpreendedor = tipoEmpreendedor;
     }
 }
