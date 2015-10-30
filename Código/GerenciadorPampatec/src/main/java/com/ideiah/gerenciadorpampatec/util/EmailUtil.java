@@ -76,7 +76,7 @@ public class EmailUtil {
                     + "            <form class=\"form-horizontal\">\n"
                     + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
                     + "                        <a>Olá!</a><br/><br/><a>O empreendedor <strong>" + empreendedorNome + "</strong> adicionou você\n"
-                    + "                        como sócio no projeto <strong>" + projetoNome + "</strong>.\n"
+                    + "                        como sócio em seu novo projeto.\n"
                     + "                        <br/><br/>Para que você possa utilizar o Sistema de Gerenciamento de Projetos do \n"
                     + "                        PampaTec é necessário confirmar o seu e-mail e realizar o seu cadastro.\n"
                     + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"http://localhost:8084/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
