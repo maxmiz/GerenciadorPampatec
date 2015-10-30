@@ -399,6 +399,7 @@ function carregaPagina() {
         switch (andamentoProjeto) {
 //    switch (4) {
 
+
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";

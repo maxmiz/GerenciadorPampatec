@@ -456,8 +456,18 @@
                                     <div class="col-md-12">
                                         <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
-
-                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                        
+                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedOption}" onchange="precisaSalvar = true;">
+                                            <f:selectItem itemValue="value" itemLabel="Ideia Básica"/>
+                                            <f:selectItem itemValue="value" itemLabel="Projeto básico"/>
+                                            <f:selectItem itemValue="value" itemLabel="Projeto detalhado"/>
+                                            <f:selectItem itemValue="value" itemLabel="Protótipo desenvolvido"/>
+                                            <f:selectItem itemValue="value" itemLabel="Em teste no mercado"/>
+                                            <f:selectItem itemValue="value" itemLabel="Clientes Pagando"/>
+                                            <f:selectItem itemValue="value" itemLabel="Outro"/>
+                                        </h:selectOneMenu>
+                                        
+<!--                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                             <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value="#{projetoBean.selectedButton}"
                                                               onchange="precisaSalvar = true;">
 
@@ -471,15 +481,15 @@
 
                                             </p:selectOneRadio>
 
-                                        </h:panelGrid>
+                                        </h:panelGrid>-->
 
-                                        <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
+<!--                                        <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
                                                      validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
                                                      value="#{projetoBean.descricaoButtonOutro}"
                                                      onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
                                             <f:validateLength minimum="2"/>
                                         </h:inputText>
-                                        <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
+                                        <h:message class="mensagemErro" for="descricaoOutroEstagio"/>-->
 
                                         <br/>
                                     </div>
