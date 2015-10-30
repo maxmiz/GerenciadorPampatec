@@ -268,7 +268,6 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
 }
 
 
-
 /**
  * @description Muda a cor do texto. Neste caso está sendo utilizado para colorir o texto
  * das abas do cadastro do plano de negócio. Preenchido = verde || Não preenchido = vermelho
@@ -345,7 +344,6 @@ function percorrerArvoreObejetos(listaComponentes, pai, contador) {
 }
 
 
-
 /**
  * @description Exibe a modal para confirmação de salvamento
  * @returns {undefined}
@@ -379,8 +377,6 @@ function mostrarFeedBack(id) {
 }
 
 
-
-
 /**
  * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
  * @returns {undefined}
@@ -408,7 +404,7 @@ function carregaPagina() {
 
             botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
             mostraDIV('div_apresentacao_formulario');
-
+            
             etapaAtualDoWorkflow = "etapa1";
 
             var etapa = document.getElementById("etapa2");
@@ -690,5 +686,3 @@ function addFocoBotao(idDoItem) {
 function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
-
-
