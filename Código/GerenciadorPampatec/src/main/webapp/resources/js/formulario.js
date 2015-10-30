@@ -29,6 +29,8 @@ var classeBotaoAnterior = null;
 /*
  * Funções de Retorno de etapas no 
  * formulário de Envio de Plano de Negócio
+ * Estas funções não estão sendo utilizadas, estão registradas aqui apenas para em caso de necessidade
+ * futura já saber como implementar o fade de elementos
  */
 
 function retornaPrimeiraParte() {
@@ -59,6 +61,9 @@ function retornaQuintaParte() {
 /*
  * Início das funções de exibição das próximas
  * etapas do formulário de Envio do Plano de Negócio
+ *
+ * Estas funções não estão sendo utilizadas, estão registradas aqui apenas para em caso de necessidade
+ * futura já saber como implementar o fade de elementos
  */
 
 function exibeSegundaParte() {
@@ -266,7 +271,8 @@ function verificaContatos() {
 }
 
 /**
- * @description text
+ * @description Muda a cor do texto. Neste caso está sendo utilizado para colorir o texto
+ * das abas do cadastro do plano de negócio. Preenchido = verde || Não preenchido = vermelho
  * @param {type} campo
  * @param {type} tab
  * @param {type} nomeCampo
@@ -283,7 +289,7 @@ function mudarCor(campo, tab, nomeCampo) {
 }
 
 /**
- * @description text
+ * @description Verifica o preenchimento do campo de formulário desejado
  * @param {type} campo
  * @returns {Boolean}
  */
@@ -295,16 +301,6 @@ function verificaPreenchimento(campo) {
     }
 }
 
-/**
- * @description text
- * @returns {String}
- */
-window.onbeforeunload = function () {
-    if (precisaSalvar) {
-        return "Você têm alterações que ainda não foram salvas.Têm certeza que quer sair da página?";
-    }
-};
-
 //trim completo
 /**
  * @description text
@@ -315,7 +311,9 @@ String.prototype.trim = function () {
 };
 
 /**
- * @description text
+ * @description Verifica o preenchimento de elementos do tipo RadioButton.
+ * Se estiver utilizando o PrimeFaces, sugiro fortemente substituir a utilização de
+ * RadiosButtons por DropDows.
  * @returns {undefined}
  */
 function verificarPreenchimentoRadioButton() {
@@ -350,7 +348,7 @@ function percorrerArvoreObejetos(listaComponentes, pai, contador) {
 
 
 /**
- * @description text
+ * @description Exibe a modal para confirmação de salvamento
  * @returns {undefined}
  */
 function infoSalvar() {
@@ -358,7 +356,7 @@ function infoSalvar() {
 }
 
 /**
- * @description text
+ * @description Exibe modal de confirmação de envio
  * @returns {undefined}
  */
 function confirmacaoDeEnvio() {
@@ -385,7 +383,7 @@ function mostrarFeedBack(id) {
 
 
 /**
- * Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
+ * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
  * @returns {undefined}
  */
 function carregaPagina() {
@@ -550,6 +548,10 @@ function mostra_vertical_pre_avaliacao() {
 
 }
 
+/**
+ * @description Função que exibe o menu vertical referente a etapa de Avaliação
+ * @returns {undefined}
+ */
 function mostra_avaliacao() {
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
@@ -644,7 +646,7 @@ function mostraDIV(referencia) {
 }
 
 /**
- * @description Coloca foco na etapa em que o usuário está visualizando no workflow
+ * @description Coloca foco na etapa (círculo com nome e número) em que o usuário está visualizando no workflow
  * @param {type} idDoItem
  * @returns {undefined}
  */
@@ -667,7 +669,7 @@ function retornarCorOriginal() {
 }
 
 /**
- * @description Coloca foco no botao em que o usuário está visualizando no workflow
+ * @description Coloca foco no botao em que o usuário está visualizando no workflow vertical
  * @param {type} idDoItem
  * @returns {undefined}
  */
@@ -682,11 +684,6 @@ function addFocoBotao(idDoItem) {
 
 }
 
-//function testeNovo(idDoItem){
-//    var etapaBotao = document.getElementById(idDoItem);
-//    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
-//    etapaBotao.setAttribute("style", classeBotaoAnterior + "color: red;");
-//}
 
 /**
  * @description Retorna a classe original do botao que o usuário deixou de visualizar

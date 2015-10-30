@@ -52,7 +52,7 @@ public class ProjetoBean implements Serializable {
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
-    private String selectedOption;
+    private String selectedButton;
     private String descricaoButtonOutro;
     private Empreendedor empreendedorSession;
     private boolean salvou;
@@ -94,10 +94,10 @@ public class ProjetoBean implements Serializable {
     public void preencheDropDown() {
         if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {
             if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
-                selectedOption = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
             } else {
-                selectedOption = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
             }
         }
     }
@@ -109,8 +109,8 @@ public class ProjetoBean implements Serializable {
      * DO CAMPO (descricaoButtonOutro)
      */
     public void pegaValorDropDown() {
-        if (selectedOption != null) {
-            switch (selectedOption) {
+        if (selectedButton != null) {
+            switch (selectedButton) {
                 case "Ideia Básica":
                     projeto.getProdutoouservico().setEstagioEvolucao("1");
                     descricaoButtonOutro = null;
@@ -519,7 +519,7 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
             FLAG = FLAG + 1;
         }
-        if (selectedOption.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
+        if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
             FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
             FLAG = FLAG + 1;
         }
@@ -619,14 +619,14 @@ public class ProjetoBean implements Serializable {
      * @return the selectedButton
      */
     public String getSelectedButton() {
-        return selectedOption;
+        return selectedButton;
     }
 
     /**
      * @param selectedButton the selectedButton to set
      */
     public void setSelectedButton(String selectedButton) {
-        this.selectedOption = selectedButton;
+        this.selectedButton = selectedButton;
     }
 
     /**
