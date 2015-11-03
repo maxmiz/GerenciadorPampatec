@@ -518,7 +518,7 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-
+    
 
 }
 
