@@ -73,6 +73,14 @@ public class ProjetoBean implements Serializable {
         preencheDropDown();
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
+        if (projeto != null){
+            if (projeto != null) {
+            //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
+            listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
+            //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
+            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
+        }
+        }
     }
 
     /**
@@ -81,11 +89,6 @@ public class ProjetoBean implements Serializable {
     public void atualizarProjetoSessao() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projeto);
-        //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
-        listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
-        //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
-        listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
-
     }
 
     /**
@@ -657,31 +660,24 @@ public class ProjetoBean implements Serializable {
         this.salvou = salvou;
     }
 
-    /*
+    /**
      Método para adicionar custo fixo ao projeo e à tabela.
      */
     public void adicionarCustoFixo() {
         if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
-            System.out.println("1");
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
-            System.out.println("2");
             custo.setDescricao(nomeCustoFixo);
-            System.out.println("3");
             custo.setValor(valorCustoFixo);
-            System.out.println("4");
             custo.setTipo(Custo.CUSTO_FIXO);
-            System.out.println("5");
             projeto.getPlanofinanceiro().getCusto().add(custo);
-            System.out.println("6");
             listaCustoFixo.add(custo);
-            System.out.println("7");
         } else {
             FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
         }
     }
 
-    /*
+    /**
      Método para adicionar custo variável a tabela.
      */
     public void adicionarCustoVariavel() {
@@ -692,10 +688,8 @@ public class ProjetoBean implements Serializable {
             custo.setDescricao(nomeCustoVariavel);
             custo.setValor(valorCustoVariavel);
             custo.setTipo(Custo.CUSTO_VARIAVEL);
-            System.out.println("chegou ano custo variavel");
             projeto.getPlanofinanceiro().getCusto().add(custo);
             projeto.SalvarProjeto(projeto);
-            System.out.println("passsooou");
             listaCustoVariavel.add(custo);
         }
     }
