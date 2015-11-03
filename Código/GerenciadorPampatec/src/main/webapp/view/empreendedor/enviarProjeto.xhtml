@@ -696,7 +696,7 @@
 
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="@form" listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
+                                                            <f:ajax listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
                                                         </h:commandButton>
                                                     </span>
                                                 </div>
@@ -756,9 +756,7 @@
                                                     <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"></h:inputText>
 
                                                     <span class="input-group-btn">
-                                                        <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="@form" listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
-                                                        </h:commandButton>
+                                                        <h:commandButton value="Adicionar" class="btn btn-default" action="#{projetoBean.adicionarCustoVariavel()}"/>                                                            
                                                     </span>
                                                 </div>
                                             </div>
