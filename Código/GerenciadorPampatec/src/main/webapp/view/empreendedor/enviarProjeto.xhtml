@@ -721,11 +721,15 @@
 
                                             </h:column>
 
-                                            <p:column headerText="Ação">
-                                                <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}">  
-                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.empreendedorSelected}"/>
+                                            <h:column>
+                                                
+                                                <f:facet name="header">
+                                                    <h:outputText value="Ações"/>
+                                                </f:facet>
+                                                <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarCustoFixo()}">  
+                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>                                                    
                                                 </h:commandButton>
-                                            </p:column>
+                                            </h:column>
 
                                         </h:dataTable> 
 
@@ -790,6 +794,16 @@
 
                                                 <h:outputText value="#{custovariavel.valor}"/>
 
+                                            </h:column>
+                                            <h:column>
+                                                
+                                                <f:facet name="header">
+                                                    <h:outputText value="Ações"/>
+                                                </f:facet>
+                                                <h:commandButton  class="btn btn-default" value="Deletar">  
+                                                    <f:setPropertyActionListener value="#{custovariavel}" target="#{projetoBean.custoVariavelSelecionado}"/>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:tabelaCustoVariavel" listener="#{projetoBean.deletarCustoVariavel()}"></f:ajax>
+                                                </h:commandButton>    
                                             </h:column>
 
                                         </h:dataTable>
