@@ -263,13 +263,11 @@
                     <br/>
                     <br/>
 
-
-
                     <div>
-
+                      
                         <ul class="nav nav-tabs">
-                            <li class="active"><a id="tabNegocio" aria-expanded="true" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
-                            <li class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
+                            <li id="liTabNegocio" class="active"><a id="tabNegocio" aria-expanded="true" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
+                            <li id="liTabAnaliseMercado" class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
                             <li class=""><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
                             <li class=""><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
                             <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
@@ -285,7 +283,7 @@
 
                             <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto Referente ao NEGÓCIO -->
 
-                            <div class="tab-pane fade" id="formParte02">
+                            <div class="tab-pane active in" id="formParte02">
 
                                 <div id="formularioParte02">
                                     <legend>O Negócio</legend>
@@ -698,7 +696,7 @@
 
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="@form" listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
+                                                            <f:ajax listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
                                                         </h:commandButton>
                                                     </span>
                                                 </div>
@@ -758,9 +756,7 @@
                                                     <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"></h:inputText>
 
                                                     <span class="input-group-btn">
-                                                        <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="@form" listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
-                                                        </h:commandButton>
+                                                        <h:commandButton value="Adicionar" class="btn btn-default" action="#{projetoBean.adicionarCustoVariavel()}"/>                                                            
                                                     </span>
                                                 </div>
                                             </div>
@@ -811,6 +807,8 @@
 
                 </div>
             </div>
+            
+            
         </h:form>
 
         <!-- SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
