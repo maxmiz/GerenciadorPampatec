@@ -267,7 +267,6 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
     }
 }
 
-
 /**
  * @description Muda a cor do texto. Neste caso está sendo utilizado para colorir o texto
  * das abas do cadastro do plano de negócio. Preenchido = verde || Não preenchido = vermelho

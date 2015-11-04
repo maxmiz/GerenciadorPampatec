@@ -727,8 +727,9 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
-                                                <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarCustoFixo()}">  
-                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>                                                    
+                                                <h:commandButton  class="btn btn-default" value="Deletar">  
+                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" render="formulario_cadastro_projeto:tabelaCustoFixo" listener="#{projetoBean.deletarCustoFixo()}"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -867,6 +868,9 @@
                                 </p:column>
                                 <p:column headerText="Status do Cadastro">
                                     <h:outputText id="statusEmpreendedor" value="#{empreendedor.retornaStatus()}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Tipo Empreendedor">
+                                    <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ação">
                                     <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedorBoss(empreendedor)}">  

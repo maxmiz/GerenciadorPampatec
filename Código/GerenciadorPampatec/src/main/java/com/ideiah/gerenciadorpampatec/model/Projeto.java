@@ -43,6 +43,7 @@ public class Projeto implements java.io.Serializable {
     private Date dataCriacao;
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
+    private Empreendedor empreendedorCorrespondente;
     
     public Projeto() {
         //pegaObserver();
@@ -285,6 +286,20 @@ public class Projeto implements java.io.Serializable {
         
         return projetosGerente;
         
+    }
+
+    /**
+     * @return the empreendedorCorrespondente
+     */
+    public Empreendedor getEmpreendedorCorrespondente() {
+        return empreendedorCorrespondente;
+    }
+
+    /**
+     * @param empreendedorCorrespondente the empreendedorCorrespondente to set
+     */
+    public void setEmpreendedorCorrespondente(Empreendedor empreendedorCorrespondente) {
+        this.empreendedorCorrespondente = empreendedorCorrespondente;
     }
 
 }
