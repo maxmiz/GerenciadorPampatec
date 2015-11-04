@@ -147,7 +147,8 @@
                 <h:commandButton disabled="#{projetoBean.projeto.status == 8}" id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divVisualizarPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+
             </div>
         </div>
 
@@ -264,7 +265,7 @@
                     <br/>
 
                     <div>
-                      
+
                         <ul class="nav nav-tabs">
                             <li id="liTabNegocio" class="active"><a id="tabNegocio" aria-expanded="true" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
                             <li id="liTabAnaliseMercado" class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
@@ -722,7 +723,7 @@
                                             </h:column>
 
                                             <h:column>
-                                                
+
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
@@ -796,7 +797,7 @@
 
                                             </h:column>
                                             <h:column>
-                                                
+
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
@@ -829,8 +830,8 @@
 
                 </div>
             </div>
-            
-            
+
+
         </h:form>
 
         <!-- SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
@@ -889,35 +890,38 @@
         </h:form>
         <!-- FIM SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
 
-        <!--INICIO DA DIV DE VISULIZAÇÃO-->
-        <div class="classeConteudo esconder-div" id="divVisualizarPlano" style="background-color: #983d00;">
-            guyguyguafjanfa
+        <!--INICIO DA DIV DE SUBMISSÃO -->
+        <div class="classeConteudo esconder-div" id="divSubmeterPlano" style="background-color: red;">
+            <h:form>
+                <div class="" id="formSubmeterPlano">
+                    <div class="tab-pane fade active in well bs-component">
+                        <h1>Cadastro - Plano de Negócio</h1>
+                        <div id="formularioParte01">
+                            <legend id="subTitulo" >Submissão</legend>                                
 
-            alalf
+                            <div class="well">
+                                <a class="text-danger"><strong>Atenção</strong></a>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
+                                ao clicar no botão <strong><u>Submeter Plano de Negócio</u></strong>
+                                o seu Plano de Negócio será enviado para realização da pré-avaliação, com isto, você não poderá mais
+                                realizar novas edições neste Plano de Negócio.
+                            </div>
 
-            awf
+                            <div class="col-md-12 text-center">
+                                <br/>
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio">
+                                    <!-- INSERIR A TAG ACTION (action="") PARA CHAMAR O MÉTODO DENTRO DO COMMAND LINK -->
+                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>
+                                </h:commandLink>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </h:form>
         </div>
+
+        <!-- FIM DA DIV DE SUBMISSÃO -->
 
         <div class="classeConteudo esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
 
