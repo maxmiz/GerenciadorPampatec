@@ -19,7 +19,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public static final int FALTANDO_DADOS = 0;
     public static final int ENVIADO = 1;
     public static final int ERRO_AO_SALVAR = 2;
-    
+
     private String formacao;
     private String experiencia;
     private String bairro;
@@ -94,38 +94,45 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     }
 
     /**
-     * Método usado na view enviarProjeto verifica se o empreendedor finalizou seu cadastro
-     * @return  cadastroCompleto se o empreendedor já finalizou o seu cadastro
+     * Método usado na view enviarProjeto verifica se o empreendedor finalizou
+     * seu cadastro
+     *
+     * @return cadastroCompleto se o empreendedor já finalizou o seu cadastro
      */
-    public String retornaStatus(){
-        if(verificaDadosEmpreendedor(this)){
+    public String retornaStatus() {
+        if (verificaDadosEmpreendedor(this)) {
             return "Cadastro Completo";
         }
         return "Cadastro Incompleto";
     }
+
     /**
-     * Verifica se o empreendedor correspondente disponibilizado é igual a este empreendedor
-     * e retorna o tipo dele.
-     * @param empreendedorCorrespondente empreendedor correspondente para se comparar.
-     * @return 
+     * Verifica se o empreendedor correspondente disponibilizado é igual a este
+     * empreendedor e retorna o tipo dele.
+     *
+     * @param empreendedorCorrespondente empreendedor correspondente para se
+     * comparar.
+     * @return
      */
-    public String retornaTipoEmpreendedor(Empreendedor empreendedorCorrespondente){
-        if(Objects.equals(this.getIdUsuario(), empreendedorCorrespondente.getIdUsuario())){
+    public String retornaTipoEmpreendedor(Empreendedor empreendedorCorrespondente) {
+        if (Objects.equals(this.getIdUsuario(), empreendedorCorrespondente.getIdUsuario())) {
             return "Empreendedor Correspondente";
-        }else{
+        } else {
             return "Empreendedor Observador";
         }
     }
-    
+
     /**
-     * Verifica se o empreendedor correspondente disponibilizado é igual a este empreendedor.
+     * Verifica se o empreendedor correspondente disponibilizado é igual a este
+     * empreendedor.
+     *
      * @param empreendedorCorrespondente
-     * @return trur se o empreendedor disponibilizado é igual a esse empreendedor.
+     * @return trur se o empreendedor disponibilizado é igual a esse
+     * empreendedor.
      */
-    public boolean verificaTipoEmpreendedor(Empreendedor empreendedorCorrespondente){
+    public boolean verificaTipoEmpreendedor(Empreendedor empreendedorCorrespondente) {
         return Objects.equals(this.getIdUsuario(), empreendedorCorrespondente.getIdUsuario());
     }
-    
 
     public String getFormacao() {
         return this.formacao;
@@ -169,7 +176,6 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public static List<Empreendedor> retornarEmpreendedores() {
         return getEmpreededorDao().buscar();
     }
-    
 
     public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
 //        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
@@ -182,7 +188,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     }
 
     /**
-     * Envia o projeto para a avaliação.
+     * Envia o projeto para a pré-avaliação.
      *
      * @param projeto Projeto para ser enviado
      * @return 0 se os empreendedores do projeto estão faltando dados, 1 se o
@@ -191,12 +197,11 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public int enviarProjeto(Projeto projeto) {
         if (!verificaDadosEmpreendedores(projeto)) {
             return FALTANDO_DADOS;
-        }else if(projeto.getStatus() == ENVIADO){
+        } else if (projeto.getStatus() == ENVIADO) {
+            projeto.mudarStatus(Projeto.EM_PRE_AVALIACAO);
             return ENVIADO;
         }
 
-        projeto.mudarStatus(Projeto.EM_PRE_AVALIACAO);
-        
         Date data = new Date(System.currentTimeMillis());
         projeto.setDataEnvio(data);
         if (getProjetoDao().update(projeto)) {
@@ -245,7 +250,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public Empreendedor buscarPorEmail(String user) {
         return getEmpreededorDao().buscarPorEmail(user);
     }
-    
+
     public Empreendedor buscarPorCpf(String user) {
         return getEmpreededorDao().buscarPorCpf(user);
     }
@@ -369,29 +374,29 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public void setNotificacoes(Set<Notificacao> notificacoes) {
         this.notificacoes = notificacoes;
     }
-    
+
     /**
-     * 
-     * @return quantidade de notificacoes 
+     *
+     * @return quantidade de notificacoes
      */
-    public int getQuantidadeDeNotificacoes(){
+    public int getQuantidadeDeNotificacoes() {
         int quantidadeNotificacoes = notificacoes.size();
         for (Notificacao notificacao : notificacoes) {
-            if(notificacao.isVisualizado()){
+            if (notificacao.isVisualizado()) {
                 quantidadeNotificacoes--;
             }
         }
         return quantidadeNotificacoes;
     }
-    
+
     /**
-     * 
+     *
      * @return ArrayList com as descrições de todas as notificações
      */
-    public  ArrayList<String> getDescricaoDasNotificacoes(){
+    public ArrayList<String> getDescricaoDasNotificacoes() {
         ArrayList<String> descricoes = new ArrayList<String>();
-        
-        for (Notificacao notificacao: notificacoes) {
+
+        for (Notificacao notificacao : notificacoes) {
             descricoes.add(notificacao.getDescricao());
         }
         return descricoes;

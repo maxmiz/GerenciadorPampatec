@@ -901,7 +901,7 @@
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
                         <div id="formularioParte01">
-                            <legend id="subTitulo" >Submissão</legend>                                
+                            <legend id="subTitulo" >Submissão de Plano de Negócio</legend>                                
 
                             <div class="well">
                                 <a class="text-danger"><strong>Atenção</strong></a>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
@@ -913,7 +913,7 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio">
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{empreendedor.enviarProjeto()}">
                                     <!-- INSERIR A TAG ACTION (action="") PARA CHAMAR O MÉTODO DENTRO DO COMMAND LINK -->
                                     <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>
                                 </h:commandLink>
