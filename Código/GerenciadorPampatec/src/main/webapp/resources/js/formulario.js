@@ -113,10 +113,11 @@ function fechaFeedBack() {
 }
 
 /**
- * @description text
+ * @description Chama a verificação de todos os formulários de cada aba do cadastro de Plano
+ * para inserir o ícone de "Certo" ao lado do nada da aba correspondente.
  * @returns {undefined}
  */
-function  verificarCampos() {
+function verificarCampos() {
     verificaContatos();
     verificaNegocio();
     verificaAnaliseMercado();
@@ -125,10 +126,19 @@ function  verificarCampos() {
     verificaPlanoFinanceiro();
 }
 
-
+/**
+ * @description Verifica se todos os campos do formulário referente aos Contatos foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
+ */
+function verificaContatos() {
+    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
+    var tabContato = document.getElementById("tabContato");
+    mudarCor(empresaProjeto, tabContato, "Contato");
+}
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Negócio foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaNegocio() {
@@ -144,7 +154,8 @@ function verificaNegocio() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente a Análise de Mercado foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaAnaliseMercado() {
@@ -164,7 +175,8 @@ function verificaAnaliseMercado() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Produto ou Serviço foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificarProdutoServico() {
@@ -190,7 +202,8 @@ function verificarProdutoServico() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente a Gestão de Pessoas foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaGestaoPessoas() {
@@ -204,7 +217,8 @@ function verificaGestaoPessoas() {
 }
 
 /**
- * @description text
+ * @description Verifica se todos os campos do formulário referente ao Plano Financeiro foram preenchidos.
+ * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
  * @returns {undefined}
  */
 function verificaPlanoFinanceiro() {
@@ -224,6 +238,7 @@ function verificaPlanoFinanceiro() {
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
+
 
 /**
  * @description text
@@ -328,7 +343,6 @@ function percorrerArvoreObejetos(listaComponentes, pai, contador) {
 }
 
 
-
 /**
  * @description Exibe a modal para confirmação de salvamento
  * @returns {undefined}
@@ -362,8 +376,6 @@ function mostrarFeedBack(id) {
 }
 
 
-
-
 /**
  * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
  * @returns {undefined}
@@ -376,7 +388,7 @@ function carregaPagina() {
     var etapa4 = document.getElementById("etapa4");
     var etapa5 = document.getElementById("etapa5");
 
-        switch (andamentoProjeto) {
+    switch (andamentoProjeto) {
 //    switch (4) {
 
 
@@ -390,7 +402,8 @@ function carregaPagina() {
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
 
             botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-
+            mostraDIV('div_apresentacao_formulario');
+            
             etapaAtualDoWorkflow = "etapa1";
 
             var etapa = document.getElementById("etapa2");
@@ -504,7 +517,7 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-
+    
 
 }
 
@@ -599,12 +612,10 @@ function bloquearCampos() {
     botaoOutro.disabled = "true";
 
     for (var i = 0; i < d.length; i++) {
-//        alert(d[i].value);
         d[i].disabled = "true";
     }
     var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
     for (var i = 0; i < d2.length; i++) {
-//        alert(d[i].value);
         d2[i].disabled = "true";
     }
 }
@@ -616,7 +627,6 @@ function bloquearCampos() {
  * @returns {undefined}
  */
 function mostraDIV(referencia) {
-//    div1 = document.querySelector(".classeConteudo");
     div1 = document.getElementsByClassName("classeConteudo");
     for (var i = 0; i < div1.length; i++) {
 
@@ -675,5 +685,3 @@ function addFocoBotao(idDoItem) {
 function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
-
-
