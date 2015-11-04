@@ -152,7 +152,7 @@
                                         </h:commandLink>
                                     </div>
                                     <div class="col-md-4">
-                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto"
+                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{}"
                                                        action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>

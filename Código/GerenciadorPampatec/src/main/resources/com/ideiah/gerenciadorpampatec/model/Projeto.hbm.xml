@@ -20,6 +20,9 @@
         <many-to-one name="produtoouservico" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select" cascade="all">
             <column name="ProdutoOuServico_idProdutoOuServico" />
         </many-to-one>
+        <many-to-one name="empreendedorCorrespondente" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select" cascade="save-update">
+            <column name="empreendedorCorrespondente" />
+        </many-to-one>
         <property name="nome" type="string">
             <column name="nome" length="300" />
         </property>

@@ -46,9 +46,6 @@
             <property name="complemento" type="string">
                 <column name="complemento" length="45" />
             </property>
-            <property name="tipoEmpreendedor" type="java.lang.Integer">
-                <column name="tipo_empreendedor" />
-            </property>
             <set name="projetos" table="projeto_has_empreendedor" inverse="false" lazy="true" fetch="select" cascade="save-update">
                 <key>
                     <column name="empreendedor_usuario_id_usuario" />

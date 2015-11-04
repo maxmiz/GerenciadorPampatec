@@ -121,4 +121,15 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         listaProjetos.remove(projetoSelecionado);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
     }
+    
+    /**
+     * Verifica se o empreendedor da seção é o empreendedor correspondente do objeto especificado.
+     * @param projeto Projeto para se verificar se o empreendedor é correspondente
+     * @return true se o empreendedor é correspondente
+     */
+    public boolean verificarEmpreendedor(Projeto projeto){
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
+    }
 }

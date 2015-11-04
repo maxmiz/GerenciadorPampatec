@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.ejb.EJB;
 
@@ -101,6 +102,28 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
             return "Cadastro Completo";
         }
         return "Cadastro Incompleto";
+    }
+    /**
+     * Verifica se o empreendedor correspondente disponibilizado é igual a este empreendedor
+     * e retorna o tipo dele.
+     * @param empreendedorCorrespondente empreendedor correspondente para se comparar.
+     * @return 
+     */
+    public String retornaTipoEmpreendedor(Empreendedor empreendedorCorrespondente){
+        if(Objects.equals(this.getIdUsuario(), empreendedorCorrespondente.getIdUsuario())){
+            return "Empreendedor Correspondente";
+        }else{
+            return "Empreendedor Observador";
+        }
+    }
+    
+    /**
+     * Verifica se o empreendedor correspondente disponibilizado é igual a este empreendedor.
+     * @param empreendedorCorrespondente
+     * @return trur se o empreendedor disponibilizado é igual a esse empreendedor.
+     */
+    public boolean verificaTipoEmpreendedor(Empreendedor empreendedorCorrespondente){
+        return Objects.equals(this.getIdUsuario(), empreendedorCorrespondente.getIdUsuario());
     }
     
 

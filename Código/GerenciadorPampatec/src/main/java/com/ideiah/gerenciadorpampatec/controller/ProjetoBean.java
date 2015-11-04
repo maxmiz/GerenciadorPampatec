@@ -438,6 +438,7 @@ public class ProjetoBean implements Serializable {
         pjto.setPlanofinanceiro(planofinanceiro);
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
+        pjto.setEmpreendedorCorrespondente(empreendedorSession);
         pjto.setStatus(Projeto.ELABORACAO);
 
         /**

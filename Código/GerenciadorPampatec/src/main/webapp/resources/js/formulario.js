@@ -126,15 +126,6 @@ function  verificarCampos() {
 }
 
 
-/**
- * @description text
- * @returns {undefined}
- */
-function verificaContatos() {
-    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
-    var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato, "Contato");
-}
 
 /**
  * @description text
@@ -259,15 +250,6 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
         tab.innerHTML = nomeCampo;
         tab.style.color = "red";
     }
-}
-
-/**
- * @description text
- */
-function verificaContatos() {
-    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
-    var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato, "Contato");
 }
 
 /**
