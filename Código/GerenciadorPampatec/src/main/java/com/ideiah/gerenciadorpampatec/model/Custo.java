@@ -19,6 +19,7 @@ public class Custo {
     private String descricao;
     private float valor;
     private int tipo;
+    private Planofinanceiro planofinanceiro;
 
     public String getDescricao() {
         return descricao;
@@ -50,6 +51,20 @@ public class Custo {
 
     public void setIdCusto(Integer idCusto) {
         this.idCusto = idCusto;
+    }
+
+    /**
+     * @return the planofinanceiro
+     */
+    public Planofinanceiro getPlanofinanceiro() {
+        return planofinanceiro;
+    }
+
+    /**
+     * @param planofinanceiro the planofinanceiro to set
+     */
+    public void setPlanofinanceiro(Planofinanceiro planofinanceiro) {
+        this.planofinanceiro = planofinanceiro;
     }
     
 }

@@ -23,7 +23,7 @@
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>
-        <set name="custo" table="custo" inverse="true" lazy="true" fetch="select" cascade="all">
+        <set name="custo" table="custo" inverse="true" lazy="false" fetch="select" cascade="all">
             <key>
                 <column name="planofinanceiro_idPlanoFinanceiro" />
             </key>

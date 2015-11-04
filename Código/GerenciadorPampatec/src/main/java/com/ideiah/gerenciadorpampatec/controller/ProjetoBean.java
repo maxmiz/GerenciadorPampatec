@@ -678,6 +678,7 @@ public class ProjetoBean implements Serializable {
             custo.setValor(valorCustoFixo);
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
+            custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
             listaCustoFixo.add(custo);
             salvarProjeto();
         } else {
@@ -697,6 +698,7 @@ public class ProjetoBean implements Serializable {
             custo.setValor(valorCustoVariavel);
             custo.setTipo(Custo.CUSTO_VARIAVEL);
             projeto.getPlanofinanceiro().getCusto().add(custo);
+            custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
             projeto.SalvarProjeto(projeto);
             listaCustoVariavel.add(custo);
             salvarProjeto();
