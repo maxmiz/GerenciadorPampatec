@@ -726,8 +726,9 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
-                                                <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarCustoFixo()}">  
-                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>                                                    
+                                                <h:commandButton  class="btn btn-default" value="Deletar">  
+                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" render="formulario_cadastro_projeto:tabelaCustoFixo" listener="#{projetoBean.deletarCustoFixo()}"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 

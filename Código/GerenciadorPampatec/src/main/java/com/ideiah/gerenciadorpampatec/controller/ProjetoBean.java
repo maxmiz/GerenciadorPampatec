@@ -679,6 +679,7 @@ public class ProjetoBean implements Serializable {
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             listaCustoFixo.add(custo);
+            salvarProjeto();
         } else {
             FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
         }
@@ -698,6 +699,7 @@ public class ProjetoBean implements Serializable {
             projeto.getPlanofinanceiro().getCusto().add(custo);
             projeto.SalvarProjeto(projeto);
             listaCustoVariavel.add(custo);
+            salvarProjeto();
         }
     }
 
@@ -786,7 +788,8 @@ public class ProjetoBean implements Serializable {
      */
     public void deletarCustoFixo() {
             listaCustoFixo.remove(custoFixoSelecionado);
-            projeto.getPlanofinanceiro().getCusto().remove(custoFixoSelecionado);        
+            projeto.getPlanofinanceiro().getCusto().remove(custoFixoSelecionado);  
+            salvarProjeto();
     }
     
     /**
@@ -794,7 +797,8 @@ public class ProjetoBean implements Serializable {
      */
     public void deletarCustoVariavel() {
             listaCustoVariavel.remove(custoVariavelSelecionado);
-            projeto.getPlanofinanceiro().getCusto().remove(custoVariavelSelecionado);        
+            projeto.getPlanofinanceiro().getCusto().remove(custoVariavelSelecionado);
+            salvarProjeto();
     }
 
     public Custo getcustoFixoSelecionado() {
