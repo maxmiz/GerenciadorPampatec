@@ -416,6 +416,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             bloquearBotoesVerticaisElaboracao();
             break;
+            
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -685,3 +686,5 @@ function addFocoBotao(idDoItem) {
 function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
+
+

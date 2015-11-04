@@ -855,7 +855,7 @@
                                     </p:autoComplete>
                                 </div>
                                 <div class="col-md-3">
-                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
+                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.projeto.status != 0}"/>
                                 </div>
                             </div>
                             <h:message class="mensagemErro" for="autocomplete"/>
@@ -882,7 +882,7 @@
 
                         <div class="col-md-12 text-center text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" type="button" onclick="infoSalvar()" 
+                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" type="button" disabled="#{projetoBean.projeto.status != 0}" onclick="infoSalvar()" 
                                              value="Salvar Equipe"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
@@ -913,8 +913,11 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{empreendedor.enviarProjeto()}">
-                                    <!-- INSERIR A TAG ACTION (action="") PARA CHAMAR O MÉTODO DENTRO DO COMMAND LINK -->
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{projetoBean.enviarProjeto()}">
+                                    <!-- JS para verificar chamar as funções de atualização no workflow
+                                    superior e desabilitação dos botões do workflow vertical referente 
+                                    a etapa de ELABORAÇÃO -->
+                                    
                                     <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>
                                 </h:commandLink>
                             </div>
