@@ -62,6 +62,8 @@ public class ProjetoBean implements Serializable {
     private float valorCustoVariavel;
     private List<Custo> listaCustoFixo;
     private List<Custo> listaCustoVariavel;
+    private Custo custoFixoSelecionado;
+    private Custo custoVariavelSelecionado;
 
     public ProjetoBean() {
         salvou = false;
@@ -81,6 +83,10 @@ public class ProjetoBean implements Serializable {
             listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
         }
         }
+        
+        //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
+        custoFixoSelecionado = new Custo();
+        custoVariavelSelecionado = new Custo();
     }
 
     /**
@@ -772,5 +778,37 @@ public class ProjetoBean implements Serializable {
 
     public void setListaCustoVariavel(List<Custo> listaCustoVariavel) {
         this.listaCustoVariavel = listaCustoVariavel;
+    }
+    
+    /**
+     * Remove custo fixo da tabela e do projeto
+     */
+    public void deletarCustoFixo() {
+            listaCustoFixo.remove(custoFixoSelecionado);
+            projeto.getPlanofinanceiro().getCusto().remove(custoFixoSelecionado);        
+    }
+    
+    /**
+     * Remove custo variavel da tabela e do projeto
+     */
+    public void deletarCustoVariavel() {
+            listaCustoVariavel.remove(custoVariavelSelecionado);
+            projeto.getPlanofinanceiro().getCusto().remove(custoVariavelSelecionado);        
+    }
+
+    public Custo getcustoFixoSelecionado() {
+        return custoFixoSelecionado;
+    }
+
+    public void setCustoFixoSelecionado(Custo custoFixoSelecionado) {
+        this.custoFixoSelecionado = custoFixoSelecionado;
+    }
+
+    public Custo getCustoVariavelSelecionado() {
+        return custoVariavelSelecionado;
+    }
+
+    public void setCustoVariavelSelecionado(Custo custoVariavelSelecionado) {
+        this.custoVariavelSelecionado = custoVariavelSelecionado;
     }
 }
