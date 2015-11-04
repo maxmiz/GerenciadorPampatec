@@ -14,7 +14,7 @@
         <many-to-one name="negocio" class="com.ideiah.gerenciadorpampatec.model.Negocio" fetch="select" cascade="all">
             <column name="Negocio_idNegocio" />
         </many-to-one>
-        <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" cascade="all">
+        <many-to-one name="planofinanceiro" lazy="false" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" cascade="all">
             <column name="PlanoFinanceiro_idPlanoFinanceiro" />
         </many-to-one>
         <many-to-one name="produtoouservico" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select" cascade="all">
