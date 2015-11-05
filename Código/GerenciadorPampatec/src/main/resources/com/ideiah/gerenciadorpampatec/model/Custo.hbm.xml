@@ -15,7 +15,7 @@
         <property name="valor" type="float">
             <column name="valor" />
         </property>
-        <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" cascade="all">
+        <many-to-one name="planofinanceiro" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" cascade="save-update">
             <column name="planofinanceiro_idPlanoFinanceiro" not-null="true" />
         </many-to-one>    
     </class>
