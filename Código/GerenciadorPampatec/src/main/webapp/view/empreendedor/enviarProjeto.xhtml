@@ -727,9 +727,8 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
-                                                <h:commandButton  class="btn btn-default" value="Deletar">  
-                                                    <f:setPropertyActionListener value="#{custofixo}" target="#{projetoBean.custoFixoSelecionado}"/>
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" render="formulario_cadastro_projeto:tabelaCustoFixo" listener="#{projetoBean.deletarCustoFixo()}"></f:ajax>
+                                                <h:commandButton class="btn btn-default" value="Deletar">  
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -803,9 +802,8 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
-                                                    <f:setPropertyActionListener value="#{custovariavel}" target="#{projetoBean.custoVariavelSelecionado}"/>
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:tabelaCustoVariavel" listener="#{projetoBean.deletarCustoVariavel()}"></f:ajax>
-                                                </h:commandButton>    
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" render="formulario_cadastro_projeto:tabelaCustoVariavel"></f:ajax>
+                                                </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable>
@@ -856,7 +854,7 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.projeto.status != 0}"/>
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.verificaElaboracao()}"/>
                                     </div>
                                 </div>
                                 <h:message class="mensagemErro" for="autocomplete"/>

@@ -76,12 +76,10 @@ public class ProjetoBean implements Serializable {
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
         if (projeto != null){
-            if (projeto != null) {
             //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
             listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
             //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
-            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
-        }
+            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);        
         }
         
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
@@ -432,7 +430,7 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setEmpreendedorCorrespondente(empreendedorSession);
-        pjto.setStatus(Projeto.ELABORACAO);
+        pjto.setStatus(Projeto.DEFININDO_EQUIPE);
 
         /**
          * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO
@@ -658,7 +656,6 @@ public class ProjetoBean implements Serializable {
         if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
-            custo.setDescricao(nomeCustoFixo);
             custo.setValor(valorCustoFixo);
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
@@ -683,7 +680,6 @@ public class ProjetoBean implements Serializable {
             custo.setTipo(Custo.CUSTO_VARIAVEL);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-            projeto.SalvarProjeto(projeto);
             listaCustoVariavel.add(custo);
             salvarProjeto();
         }
@@ -732,7 +728,7 @@ public class ProjetoBean implements Serializable {
     public ArrayList<Custo> filtraCustoPorTipo(ArrayList<Custo> listaCompleta, int tipo) {
         ArrayList<Custo> novaLista = new ArrayList<>();
         for (Custo custoSelecionado : listaCompleta) {
-            if (custoSelecionado.getTipo() == Custo.CUSTO_FIXO) {
+            if (custoSelecionado.getTipo() == tipo) {
                 novaLista.add(custoSelecionado);
             }
         }
@@ -791,18 +787,18 @@ public class ProjetoBean implements Serializable {
     /**
      * Remove custo fixo da tabela e do projeto
      */
-    public void deletarCustoFixo() {
-            listaCustoFixo.remove(custoFixoSelecionado);
-            projeto.getPlanofinanceiro().getCusto().remove(custoFixoSelecionado);  
+    public void deletarCustoFixo(Custo custoFixo) {
+            listaCustoFixo.remove(custoFixo);
+            projeto.getPlanofinanceiro().getCusto().remove(custoFixo);  
             salvarProjeto();
     }
     
     /**
      * Remove custo variavel da tabela e do projeto
      */
-    public void deletarCustoVariavel() {
-            listaCustoVariavel.remove(custoVariavelSelecionado);
-            projeto.getPlanofinanceiro().getCusto().remove(custoVariavelSelecionado);
+    public void deletarCustoVariavel(Custo custoVariavel) {
+            listaCustoVariavel.remove(custoVariavel);
+            projeto.getPlanofinanceiro().getCusto().remove(custoVariavel);            
             salvarProjeto();
     }
 
@@ -820,5 +816,15 @@ public class ProjetoBean implements Serializable {
 
     public void setCustoVariavelSelecionado(Custo custoVariavelSelecionado) {
         this.custoVariavelSelecionado = custoVariavelSelecionado;
+    }
+    
+    public boolean verificaElaboracao() {
+        if (projeto.getStatus() == Projeto.DEFININDO_EQUIPE) {
+            return false;
+        } else if(projeto.getStatus() == Projeto.ELABORACAO) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
