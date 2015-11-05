@@ -222,22 +222,6 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     *
-     * @return true se o empreendedor não for o dono do projeto
-     */
-    public Boolean verificarEmpreendedorBoss(Empreendedor emp2) {
-        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
-        projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
-
-        if (empreendedor.getEmail().equals(emp2.getEmail())) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Deletar empreendedor de um projeto desde que ele não seja o dono do mesmo
      */
     public void deletarEmpreendedor() {
@@ -767,6 +751,25 @@ public class ProjetoBean implements Serializable {
             arrayCusto.add(custoSet);
         }
         return arrayCusto;
+    }
+    
+    /**
+     * Verifica se o empreendedor logado é o empreendedor correspondente desse projeto.
+     * @return true se ele é correspondente.
+     */
+    public boolean verificarEmpreendedor(){
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
+    }
+    
+    /**
+     * Verifica se o empreendedor disponibilizado é o empreendedor correspondente desse projeto.
+     * @param empreendedor empreendedor para se verificar.
+     * @return true se ele é correspondente.
+     */
+    public boolean verificarEmpreendedor(Empreendedor empreendedor){
+        return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
 
     public List<Custo> getListaCustoFixo() {
