@@ -141,13 +141,13 @@
                 <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status == 8}" id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), bloquearCampos(), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
 
             </div>
         </div>
@@ -843,20 +843,22 @@
 
 
                         <div class="col-md-12" id="">
-                            <b>Empreendedores <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('email')}"></p:commandLink></b><br/>
-                            Informe os emails de quem está propondo o empreendimento:
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
-                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                                    </p:autoComplete>
+                            <h:panelGroup rendered="#{projetoBean.verificarEmpreendedor()}">
+                                <b>Empreendedores <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('email')}"></p:commandLink></b><br/>
+                                Informe os emails de quem está propondo o empreendimento:
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:autoComplete>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.projeto.status != 0}"/>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}"/>
-                                </div>
-                            </div>
-                            <h:message class="mensagemErro" for="autocomplete"/>
+                                <h:message class="mensagemErro" for="autocomplete"/>
+                            </h:panelGroup>
                             <br/><br/>
                             <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
                                 <p:column headerText="E-Mail Empreendedor">
@@ -870,8 +872,8 @@
                                 <p:column headerText="Tipo Empreendedor">
                                     <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
-                                <p:column headerText="Ação">
-                                    <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedorBoss(empreendedor)}">  
+                                <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
+                                    <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
                                         <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}"/>
                                     </h:commandButton>
                                 </p:column>
@@ -880,7 +882,7 @@
 
                         <div class="col-md-12 text-center text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" type="button" onclick="infoSalvar()" 
+                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{projetoBean.verificarEmpreendedor()}" type="button" disabled="#{projetoBean.projeto.status != 0}" onclick="infoSalvar()" 
                                              value="Salvar Equipe"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
@@ -911,8 +913,11 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{empreendedor.enviarProjeto()}">
-                                    <!-- INSERIR A TAG ACTION (action="") PARA CHAMAR O MÉTODO DENTRO DO COMMAND LINK -->
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{projetoBean.enviarProjeto()}">
+                                    <!-- JS para verificar chamar as funções de atualização no workflow
+                                    superior e desabilitação dos botões do workflow vertical referente 
+                                    a etapa de ELABORAÇÃO -->
+
                                     <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>
                                 </h:commandLink>
                             </div>
