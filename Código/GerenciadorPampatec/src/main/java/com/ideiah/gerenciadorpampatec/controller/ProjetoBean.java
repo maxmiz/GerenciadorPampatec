@@ -807,10 +807,11 @@ public class ProjetoBean implements Serializable {
      * Remove custo variavel da tabela e do projeto
      */
     public void deletarCustoVariavel(Custo custoVariavel) {
+        ProjetoDao daoProj = new ProjetoDao();
         listaCustoVariavel.remove(custoVariavel);
-        projeto.getPlanofinanceiro().getCusto().remove(custoVariavel);
-        salvarProjeto();
         empreendedorSession.removeCustoProjeto(custoVariavel);
+        projeto = daoProj.buscar(projeto.getIdProjeto());
+        atualizarProjetoSessao();
     }
 
     public Custo getcustoFixoSelecionado() {
