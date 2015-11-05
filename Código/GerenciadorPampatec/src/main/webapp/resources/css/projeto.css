@@ -259,3 +259,27 @@ fieldset[disabled] .autoCompletar input {
 
 
 }
+#div_revisar_plano{
+    text-align: left;
+}
+
+#div_revisar_plano h1{
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: "Arial";
+
+}
+
+#div_revisar_plano h2{
+    font-size: 11pt;
+    font-family: "Arial";
+
+}
+
+
+#cabecalho_revisao{
+    text-align: center;
+}
+#titulo_cabecalho{
+
+}
