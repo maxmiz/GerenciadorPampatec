@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
@@ -15,7 +16,7 @@ import org.hibernate.HibernateException;
  *
  * @author Pedro
  */
-public class ProjetoDao extends Dao {
+public class ProjetoDao extends Dao implements Serializable {
 //<editor-fold defaultstate="collapsed" desc="Salvar">
 
     public boolean salvar(Projeto projeto) {
