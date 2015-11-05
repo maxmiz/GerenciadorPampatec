@@ -6,11 +6,13 @@
 
 package com.ideiah.gerenciadorpampatec.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author AndersonR
  */
-public class Custo {
+public class Custo implements Serializable{
     
     public static final int CUSTO_FIXO = 0;
     public static final int CUSTO_VARIAVEL = 1;
