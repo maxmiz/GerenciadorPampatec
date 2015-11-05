@@ -856,7 +856,7 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.projeto.status != 0}"/>
+                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.verificaElaboracao()}"/>
                                     </div>
                                 </div>
                                 <h:message class="mensagemErro" for="autocomplete"/>
