@@ -436,7 +436,7 @@ public class ProjetoBean implements Serializable {
         pjto.setProdutoouservico(produtoouservico);
         pjto.getEmpreendedores().add(empreendedorSession);
         pjto.setEmpreendedorCorrespondente(empreendedorSession);
-        pjto.setStatus(Projeto.ELABORACAO);
+        pjto.setStatus(Projeto.DEFININDO_EQUIPE);
 
         /**
          * O EDITAL ESTA SENDO SETADO DIRETAMENTE EM LINHA DE CÓDIGO, POIS MUITO
@@ -827,5 +827,15 @@ public class ProjetoBean implements Serializable {
 
     public void setCustoVariavelSelecionado(Custo custoVariavelSelecionado) {
         this.custoVariavelSelecionado = custoVariavelSelecionado;
+    }
+    
+    public boolean verificaElaboracao() {
+        if (projeto.getStatus() == Projeto.DEFININDO_EQUIPE) {
+            return false;
+        } else if(projeto.getStatus() == Projeto.ELABORACAO) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
