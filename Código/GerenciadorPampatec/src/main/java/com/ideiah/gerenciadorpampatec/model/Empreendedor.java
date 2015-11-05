@@ -188,14 +188,15 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     }
 
     /**
-     * Envia o projeto para a pré-avaliação.
-     * Altera o Status para EM PRE AVALIAÇAO se for enviado com sucesso
+     * Envia o projeto para a pré-avaliação. Altera o Status para EM PRE
+     * AVALIAÇAO se for enviado com sucesso
+     *
      * @param projeto Projeto para ser enviado
      * @return 0 se os empreendedores do projeto estão faltando dados, 1 se o
      * projeto foi enviado com sucesso e 2 se aconteceu algum erro ao salvar.
      */
     public int enviarProjeto(Projeto projeto) {
-        
+
         if (!verificaDadosEmpreendedores(projeto)) {
             return FALTANDO_DADOS;
         } else if (projeto.getStatus() != ENVIADO) {
@@ -400,5 +401,10 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
             descricoes.add(notificacao.getDescricao());
         }
         return descricoes;
+    }
+
+    public void removeCustoProjeto(Custo custo) {
+        ProjetoDao dao = new ProjetoDao();
+        dao.excluir(custo.getIdCusto(), Custo.class);
     }
 }
