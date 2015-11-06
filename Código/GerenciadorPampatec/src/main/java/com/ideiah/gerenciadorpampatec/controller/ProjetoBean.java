@@ -242,7 +242,7 @@ public class ProjetoBean implements Serializable {
      */
     public void adicionarEmpreendedor() {
         if (emailEmpreendedor.equals("")) {
-            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formulario_cadastro_projeto:autocomplete");
+            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formEquipe:autocomplete");
         } else {
 
             boolean existe = false;
@@ -268,7 +268,7 @@ public class ProjetoBean implements Serializable {
                 getEmpreedendoresAdicionados().add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
-                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formulario_cadastro_projeto:autocomplete");
+                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
             }
         }
     }
