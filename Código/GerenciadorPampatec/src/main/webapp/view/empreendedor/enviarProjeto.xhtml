@@ -765,13 +765,13 @@
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
-                                                            render="formulario_cadastro_projeto:tabelaCustoFixo" event="click"></f:ajax>
+                                                            render="formulario_cadastro_projeto:tabelaCustoFixo formulario_cadastro_projeto:erroCustoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable> 
-                                        
-                                        <h:message for="tabelaCustoFixo" class="mensagemErro"/>
+
+                                        <h:message id="erroCustoFixo" for="nomeCustoFixo" class="mensagemErro"/>
 
 
                                         <!--<f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/>
@@ -793,6 +793,7 @@
                                                 <label class="col-lg-4 control-label">Nome do Custo</label>
                                                 <div class="col-lg-8">
                                                     <h:inputText class="form-control" id="nomeCustoVariavel" value="#{projetoBean.nomeCustoVariavel}"></h:inputText>
+                                                    <h:message id="erroCustoVariavel" for="nomeCustoVariavel" class="mensagemErro"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -841,12 +842,13 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" render="formulario_cadastro_projeto:tabelaCustoVariavel"></f:ajax>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovarioveavel)}" 
+                                                            render="formulario_cadastro_projeto:tabelaCustoVariavel formulario_cadastro_projeto:erroCustoVariavel"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable>
-                                        <h:message for="tabelaCustoVariavel" class="mensagemErro"/>
+
                                         <!--  <h:message class="mensagemErro" for="custosvariaveis"/>-->
 
                                         <br/>
