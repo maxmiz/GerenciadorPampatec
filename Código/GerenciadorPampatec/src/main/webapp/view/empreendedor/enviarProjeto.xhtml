@@ -214,7 +214,7 @@
 
             <!-- Início dos MODAIS exibidos no formulário -->
 
-            <!-- Modal com a Informação do botão SALVAR -->
+            <!-- Modal com a Informação do botão SALVAR PLANO DE NEGÓCIO -->
             <div class="modal fade" id="modalInfoSalvar" role="dialog">
 
                 <div class="modal-dialog">
@@ -236,7 +236,30 @@
                     </div>
                 </div>
             </div>
-            <!-- Fim do Modal de informação do botão Salvar -->
+            <!-- Fim do Modal de informação do botão Salvar Plano de Negócio -->
+
+            <!-- Modal com a Informação do botão SALVAR EQUIPE -->
+            <div class="modal fade" id="modalInfoSalvarEquipe" role="dialog">
+
+                <div class="modal-dialog">
+                    <div class="modal-content panel-success">
+                        <div class="modal-header fundoVerde">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Salvar Equipe</h4>
+                        </div>
+                        <div class="modal-body">
+                            Ao clicar no botão <strong><u>Salvar Equipe</u></strong> os empreendedores observadores 
+                            adicionados serão vinculados ao seu projeto. Você poderá retornar a qualquer momento
+                            à etapa de definição de Equipe e adicionar ou remover empreendedores do seu projeto.<br/><br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição da Equipe</button>
+                            <h:commandButton action="#{projetoBean.atualizaStatus()}" type="submit" class="btn btn-success" value="Salvar Equipe"></h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Modal de informação do botão Salvar EQUIPE -->
 
 
             <!-- Modal Plano salvo com sucesso. -->
@@ -835,8 +858,9 @@
 
         <!-- SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
         <h:form>
-            <div class="classeConteudo esconder-div" style="background-color: blueviolet" id="formParte01">
-                <div class="tab-pane fade active in well bs-component">
+            <div class="classeConteudo col-md-10" style="background-color: blueviolet" id="formParte01">
+                <div class="col-md-12 form-horizontal well bs-component">
+
                     <h1>Cadastro - Plano de Negócio</h1>
                     <div id="formularioParte01">
                         <legend id="subTitulo" >Minha equipe</legend>                                
@@ -882,7 +906,7 @@
 
                         <div class="col-md-12 text-center text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{projetoBean.verificarEmpreendedor()}" type="button" disabled="#{projetoBean.projeto.status != 0}" onclick="infoSalvar()" 
+                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{projetoBean.verificarEmpreendedor()}" type="button" disabled="#{projetoBean.verificaElaboracao()}" onclick="infoSalvarEquipe()" 
                                              value="Salvar Equipe"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>

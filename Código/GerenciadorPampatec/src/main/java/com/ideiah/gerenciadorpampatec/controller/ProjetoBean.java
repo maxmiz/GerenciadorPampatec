@@ -155,7 +155,7 @@ public class ProjetoBean implements Serializable {
 
     public void salvarProjeto() {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
-            projeto.setNome("Novo Plano");
+            projeto.setNome("Novo plano de negócio sem nome");
         }
         pegaValorDropDown();
         EnviaEmails(projeto);
@@ -168,14 +168,13 @@ public class ProjetoBean implements Serializable {
 
     public void salvarProjetoeSair() {
         salvarProjeto();
-
     }
 
     /**
      * Envia emails de termino de cadastro para os empreendedores necessários
      * dentro do projeto e atauliza os empreendedores.
      *
-     * @param projeto Projeto que contém os empreendedores para se envar os
+     * @param projeto Projeto que contém os empreendedores para se enviar os
      * emails
      */
     public void EnviaEmails(Projeto projeto) {
@@ -826,5 +825,13 @@ public class ProjetoBean implements Serializable {
         } else {
             return true;
         }
+    }
+    
+    /**
+     * Atualiza o status do projeto para "EM ELABORAÇÃO" e salva o projeto.
+     */
+    public void atualizaStatus(){
+        projeto.setStatus(Projeto.ELABORACAO);
+        salvarProjeto();
     }
 }
