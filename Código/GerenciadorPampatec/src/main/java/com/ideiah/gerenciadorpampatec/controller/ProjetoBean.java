@@ -75,16 +75,22 @@ public class ProjetoBean implements Serializable {
         preencheDropDown();
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
-        if (projeto != null){
-            //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
-            listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
-            //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
-            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);        
-        }
-        
+        preencheListaCusto();
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
+    }
+
+    /**
+     * Preenche a lista de custo com os custos do projeto.
+     */
+    public void preencheListaCusto() {
+        if (projeto != null) {
+            //lista de custos fixos recebe a lista de custos filtrada por atributo tipo = fixo
+            listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
+            //lista de custos variaveis recebe a lista de custos filtrada por atributo tipo = variavel
+            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
+        }
     }
 
     /**
@@ -649,7 +655,7 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     Método para adicionar custo fixo ao projeo e à tabela.
+     * Método para adicionar custo fixo ao projeo e à tabela.
      */
     public void adicionarCustoFixo() {
         if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
@@ -659,15 +665,15 @@ public class ProjetoBean implements Serializable {
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-            listaCustoFixo.add(custo);
             salvarProjeto();
+            preencheListaCusto();
         } else {
             FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
         }
     }
 
     /**
-     Método para adicionar custo variável a tabela.
+     * Método para adicionar custo variável a tabela.
      */
     public void adicionarCustoVariavel() {
         if (nomeCustoVariavel.equals("") || valorCustoVariavel <= 0) {
@@ -679,8 +685,8 @@ public class ProjetoBean implements Serializable {
             custo.setTipo(Custo.CUSTO_VARIAVEL);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-            listaCustoVariavel.add(custo);
             salvarProjeto();
+            preencheListaCusto();
         }
     }
 
@@ -747,23 +753,27 @@ public class ProjetoBean implements Serializable {
         }
         return arrayCusto;
     }
-    
+
     /**
-     * Verifica se o empreendedor logado é o empreendedor correspondente desse projeto.
+     * Verifica se o empreendedor logado é o empreendedor correspondente desse
+     * projeto.
+     *
      * @return true se ele é correspondente.
      */
-    public boolean verificarEmpreendedor(){
+    public boolean verificarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
-    
+
     /**
-     * Verifica se o empreendedor disponibilizado é o empreendedor correspondente desse projeto.
+     * Verifica se o empreendedor disponibilizado é o empreendedor
+     * correspondente desse projeto.
+     *
      * @param empreendedor empreendedor para se verificar.
      * @return true se ele é correspondente.
      */
-    public boolean verificarEmpreendedor(Empreendedor empreendedor){
+    public boolean verificarEmpreendedor(Empreendedor empreendedor) {
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
 
@@ -782,23 +792,25 @@ public class ProjetoBean implements Serializable {
     public void setListaCustoVariavel(List<Custo> listaCustoVariavel) {
         this.listaCustoVariavel = listaCustoVariavel;
     }
-    
+
     /**
      * Remove custo fixo da tabela e do projeto
      */
     public void deletarCustoFixo(Custo custoFixo) {
-            listaCustoFixo.remove(custoFixo);
-            projeto.getPlanofinanceiro().getCusto().remove(custoFixo);  
-            salvarProjeto();
+        listaCustoFixo.remove(custoFixo);
+        projeto.getPlanofinanceiro().getCusto().remove(custoFixo);
+        salvarProjeto();
     }
-    
+
     /**
      * Remove custo variavel da tabela e do projeto
      */
     public void deletarCustoVariavel(Custo custoVariavel) {
-            listaCustoVariavel.remove(custoVariavel);
-            projeto.getPlanofinanceiro().getCusto().remove(custoVariavel);            
-            salvarProjeto();
+        ProjetoDao daoProj = new ProjetoDao();
+        listaCustoVariavel.remove(custoVariavel);
+        empreendedorSession.removeCustoProjeto(custoVariavel);
+        projeto = daoProj.buscar(projeto.getIdProjeto());
+        atualizarProjetoSessao();
     }
 
     public Custo getcustoFixoSelecionado() {
