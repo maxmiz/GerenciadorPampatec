@@ -498,7 +498,9 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
-                                                         ></h:inputTextarea>
+                                                         >
+                                            <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
                                         <br/>
@@ -508,7 +510,9 @@
                                         Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                         id="potencialInovacaoTecnologica"></h:inputTextarea>
+                                                         id="potencialInovacaoTecnologica">
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
 
                                         <br/>
@@ -519,7 +523,9 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
-                                                         ></h:inputTextarea>
+                                                         >
+                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="aplicacoes"/>
 
                                         <br/>
@@ -529,7 +535,9 @@
                                         Quais são nossas principais limitações?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                         id="dificuldadesEsperadas"></h:inputTextarea>
+                                                         id="dificuldadesEsperadas">
+                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
 
                                         <br/>
@@ -539,7 +547,9 @@
                                         Em que sentido seremos parceiros da Universidade? 
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                         id="interacaoEmpresaUniversidade"></h:inputTextarea>
+                                                         id="interacaoEmpresaUniversidade">
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
 
                                         <br/>
@@ -549,7 +559,9 @@
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                         id="interacaoEmpresaComunidadeGoverno"></h:inputTextarea>
+                                                         id="interacaoEmpresaComunidadeGoverno">
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
 
                                         <br/>
@@ -559,7 +571,9 @@
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
-                                                         id="infraestrutura"></h:inputTextarea>
+                                                         id="infraestrutura">
+                                            <f:ajax execute="@form" render="form_revisao:revisa_infra" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        </h:inputTextarea>
                                         <h:message class="mensagemErro" for="infraestrutura"/>
 
                                         <br/>
