@@ -352,6 +352,14 @@ function infoSalvar() {
 }
 
 /**
+ * @description Exibe a modal para confirmação de salvamento da equipe
+ * @returns {undefined}
+ */
+function infoSalvarEquipe() {
+    $("#modalInfoSalvarEquipe").modal();
+}
+
+/**
  * @description Exibe modal de confirmação de envio
  * @returns {undefined}
  */
