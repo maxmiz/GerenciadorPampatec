@@ -517,10 +517,11 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
             FLAG = FLAG + 1;
         }
+        /*
         if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
             FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
             FLAG = FLAG + 1;
-        }
+        }*/
         if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
             FLAG = FLAG + 1;
@@ -569,6 +570,14 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
+        if (listaCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoFixo");
+            FLAG = FLAG + 1;
+        }if (listaCustoVariavel.isEmpty()) {
+            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoVariavel");
+            FLAG = FLAG + 1;
+        }
+        
         return FLAG;
     }
 
