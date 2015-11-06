@@ -114,7 +114,7 @@
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
 
             <!-- Fim das modais apresentadas -->
-            
+
 
 
         </h:form>
@@ -297,8 +297,8 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-
+                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <!--<p:ajax update=":form_revisao" event="change"/>-->
                                         </p:inputText>
                                         <h:message class="mensagemErro" for="empresaProjeto"/>
                                         <br/>
@@ -312,7 +312,7 @@
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -326,7 +326,7 @@
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -340,7 +340,7 @@
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="atividadesChave"/>
@@ -374,7 +374,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.relacoesClientes}"
                                                          id="relacoComClientes">    
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
 
@@ -389,7 +389,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.parceriasChaves}"
                                                          id="parceriasChaves">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="parceriasChaves"/>
 
@@ -401,7 +401,7 @@
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_canais" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="canais"/>
 
@@ -414,7 +414,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          id="recursosPrincipais"
                                                          value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="recursosPrincipais"/>
                                         <br/>
@@ -426,7 +426,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          id="concorrentes"
                                                          value="#{projetoBean.projeto.analiseemprego.concorrentes}">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                         <h:message class="mensagemErro" for="concorrentes"/>
@@ -484,7 +484,7 @@
 
                                         <!--                                        <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
                                                                                              validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
-                                                                                             value="#{projetoBean.descricaoButtonOutro}"
+                                                                                             value="#/{projetoBean.descricaoButtonOutro}"
                                                                                              onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
                                                                                     <f:validateLength minimum="2"/>
                                                                                 </h:inputText>
@@ -982,116 +982,118 @@
             <br/>
         </div>
 
-        <div class="classeConteudo esconder-div" id="div_revisar_plano">
-            <div id="cabecalho_revisao">
+        <h:form id="form_revisao">
+            <div class="classeConteudo esconder-div" id="div_revisar_plano">
+                <div id="cabecalho_revisao">
 
-                <div id="descricao_edital">
-                    <p id="titulo_cabecalho">
-                        EDITAL DE FLUXO CONTÍNUO<br/>
-                        PROCESSO SELETIVO PARA INGRESSO NA <br/>
-                        INCUBADORA TECNOLÓGICA PAMPATEC ALEGRETE
-                    </p>
-                    <p style="font-weight: bold">PLANO DE NEGÓCIO</p>
-                    <p>Enviado em: <h:outputText value="#{projetoBean.projeto.dataEnvio}" /> </p>
-                </div>
-                <div id="identificacao_empresa">
-                    <p><h:outputText value="#{projetoBean.projeto.nome}"/></p>
-                    <p>Empreendedor(es):</p>
-                    <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                        <p:column>
-                            <h:outputText value="#{empreendedor.nome}" />
-                        </p:column>
-                    </p:dataTable>
-                </div>
-
-            </div>
-
-            <div id="corpo_documento">
-
-                <div id="part_negocio" class="corpoDoTexto">
-                    <h1>O NEGÓCIO</h1><br/>
-                    <p><h2>Segmento de clientes: <h:outputText value="#{projetoBean.projeto.negocio.segmentoClientes}" /></h2></p>
-                    <p><h2>Proposta de valor: <h:outputText value="#{projetoBean.projeto.negocio.propostaValor}" /></h2></p>
-                    <p><h2>Atividades Chave: <h:outputText value="#{projetoBean.projeto.negocio.atividadesChaves}" /></h2></p>
-                </div>
-
-                <div id="part_AnaliseMercado" class="corpoDoTexto">
-                    <h1>ANÁLISE DE MERCADO</h1><br/>
-                    <p><h2>Relações com clientes: <h:outputText value="#{projetoBean.projeto.analiseemprego.relacoesClientes}" /></h2></p>
-                    <p><h2>Parcerias chaves: <h:outputText value="#{projetoBean.projeto.analiseemprego.parceriasChaves}" /></h2></p>
-                    <p><h2>Canais: <h:outputText value="#{projetoBean.projeto.analiseemprego.canais}" /></h2></p>
-                    <p><h2>Recursos princípais: <h:outputText value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}" /></h2></p>
-                    <p><h2>Concorrentes: <h:outputText value="#{projetoBean.projeto.analiseemprego.concorrentes}" /></h2></p>
-                </div>
-
-                <div id="part_ProdutoServico" class="corpoDoTexto">
-                    <h1>PRODUTO OU SERVIÇO</h1><br/>
-                    <p><h2>Estágio de evolução: <h:outputText value="#{projetoBean.projeto.produtoouservico.estagioEvolucao}" /></h2></p>
-                    <p><h2>Tecnologia e processos (não poluentes): <h:outputText value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}" /></h2></p>
-                    <p><h2>Potencial de inovação tecnológica: <h:outputText value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}" /></h2></p>
-                    <p><h2>Aplicações: <h:outputText value="#{projetoBean.projeto.produtoouservico.aplicacoes}" /></h2></p>
-                    <p><h2>Dificuldades esperadas: <h:outputText value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}" /></h2></p>
-                    <p><h2>Interação entre empresa e Universidade: <h:outputText value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}" /></h2></p>
-                    <p><h2>Interação entre empresa, comunidade e governo: <h:outputText value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}" /></h2></p>
-                    <p><h2>Infra-estrutura necessária para o desenvolvimento e produção: <h:outputText value="#{projetoBean.projeto.produtoouservico.infraestrutura}" /></h2></p>
-                </div>
-
-                <div id="part_GestaoPessoas" class="corpoDoTexto">
-                    <h1>GESTÃO DE PESSOAS</h1><br/>
-                    <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                        <p:column headerText="Formação dos sócios: ">
-                            <h:outputText value="#{empreendedor.formacao}" />
-                        </p:column>
-                        <p:column headerText="Experiência profissional dos sócios: ">
-                            <h:outputText value="#{empreendedor.experiencia}" />
-                        </p:column>
-                        <p:column headerText="Descrição da participação acionaria:">
-                            <h:outputText value="#{projetoBean.projeto.participacaoacionaria}" />
-                        </p:column>          
-                        <p:column headerText="Potencial de geração de emprego e renda: ">
-                            <h:outputText value="#{projetoBean.projeto.potencialEmprego}" />    
-                        </p:column>
-                    </p:dataTable>
-                </div>
-
-                <div id="part_PlanoFinanc" class="corpoDoTexto">
-                    <h1>PLANO FINANCEIRO</h1><br/>
-                    <p><h2>Fontes de receita: <h:outputText value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
-
-                    <div id="part_EstrutCusto">
-
-                        <p><h2>Estrutura de custos: <h:outputText value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
-
-                        <h1>CUSTOS FIXOS</h1><br/>
-                        <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
-                            <p:column headerText="Descrição: ">
-                                <h:outputText value="#{custo.descricao}" />
+                    <div id="descricao_edital">
+                        <p id="titulo_cabecalho">
+                            EDITAL DE FLUXO CONTÍNUO<br/>
+                            PROCESSO SELETIVO PARA INGRESSO NA <br/>
+                            INCUBADORA TECNOLÓGICA PAMPATEC ALEGRETE
+                        </p>
+                        <p style="font-weight: bold">PLANO DE NEGÓCIO</p>
+                        <p>Enviado em: <h:outputText id="revisao_dataEnvio" value="#{projetoBean.projeto.dataEnvio}" /> </p>
+                    </div>
+                    <div id="identificacao_empresa">
+                        <p><h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
+                        <p>Empreendedor(es):</p>
+                        <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
+                            <p:column>
+                                <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
                             </p:column>
-                            <p:column headerText="Valor: ">
-                                <h:outputText value="#{custo.valor}" />
-                            </p:column>
-
-                        </p:dataTable>
-                        
-                        <h1>CUSTOS VARIÁVEIS</h1><br/>
-                        <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
-                            <p:column headerText="Descrição: ">
-                                <h:outputText value="#{custo.descricao}" />
-                            </p:column>
-                            <p:column headerText="Valor: ">
-                                <h:outputText value="#{custo.valor}" />
-                            </p:column>
-
                         </p:dataTable>
                     </div>
+
                 </div>
 
+                <div id="corpo_documento">
+
+                    <div id="part_negocio" class="corpoDoTexto">
+                        <h1>O NEGÓCIO</h1><br/>
+                        <p><h2>Segmento de clientes: <h:outputText id="revisao_segmento" value="#{projetoBean.projeto.negocio.segmentoClientes}" /></h2></p>
+                        <p><h2>Proposta de valor: <h:outputText id="revisao_proposta" value="#{projetoBean.projeto.negocio.propostaValor}" /></h2></p>
+                        <p><h2>Atividades Chave: <h:outputText id="revisao_atividades" value="#{projetoBean.projeto.negocio.atividadesChaves}" /></h2></p>
+                    </div>
+
+                    <div id="part_AnaliseMercado" class="corpoDoTexto">
+                        <h1>ANÁLISE DE MERCADO</h1><br/>
+                        <p><h2>Relações com clientes: <h:outputText id="revisao_ralacoes" value="#{projetoBean.projeto.analiseemprego.relacoesClientes}" /></h2></p>
+                        <p><h2>Parcerias chaves: <h:outputText id="revisao_parcerias" value="#{projetoBean.projeto.analiseemprego.parceriasChaves}" /></h2></p>
+                        <p><h2>Canais: <h:outputText id="revisao_canais" value="#{projetoBean.projeto.analiseemprego.canais}" /></h2></p>
+                        <p><h2>Recursos princípais: <h:outputText id="revisao_recursos" value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}" /></h2></p>
+                        <p><h2>Concorrentes: <h:outputText id="revisao_concorrentes" value="#{projetoBean.projeto.analiseemprego.concorrentes}" /></h2></p>
+                    </div>
+
+                    <div id="part_ProdutoServico" class="corpoDoTexto">
+                        <h1>PRODUTO OU SERVIÇO</h1><br/>
+                        <p><h2>Estágio de evolução: <h:outputText id="revisao_estagio" value="#{projetoBean.projeto.produtoouservico.estagioEvolucao}" /></h2></p>
+                        <p><h2>Tecnologia e processos (não poluentes): <h:outputText id="revisao_tecnologia" value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}" /></h2></p>
+                        <p><h2>Potencial de inovação tecnológica: <h:outputText id="revisao_potencial" value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}" /></h2></p>
+                        <p><h2>Aplicações: <h:outputText id="revisao_aplicacoes" value="#{projetoBean.projeto.produtoouservico.aplicacoes}" /></h2></p>
+                        <p><h2>Dificuldades esperadas: <h:outputText id="revisao_dificuldades" value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}" /></h2></p>
+                        <p><h2>Interação entre empresa e Universidade: <h:outputText id="revisao_interacaoEmpUni" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}" /></h2></p>
+                        <p><h2>Interação entre empresa, comunidade e governo: <h:outputText id="revisao_interacaoEmpGov" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}" /></h2></p>
+                        <p><h2>Infra-estrutura necessária para o desenvolvimento e produção: <h:outputText id="revisa_infra" value="#{projetoBean.projeto.produtoouservico.infraestrutura}" /></h2></p>
+                    </div>
+
+                    <div id="part_GestaoPessoas" class="corpoDoTexto">
+                        <h1>GESTÃO DE PESSOAS</h1><br/>
+                        <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
+                            <p:column headerText="Formação dos sócios: ">
+                                <h:outputText value="#{empreendedor.formacao}" />
+                            </p:column>
+                            <p:column headerText="Experiência profissional dos sócios: ">
+                                <h:outputText value="#{empreendedor.experiencia}" />
+                            </p:column>
+                            <p:column headerText="Descrição da participação acionaria:">
+                                <h:outputText value="#{projetoBean.projeto.participacaoacionaria}" />
+                            </p:column>          
+                            <p:column headerText="Potencial de geração de emprego e renda: ">
+                                <h:outputText value="#{projetoBean.projeto.potencialEmprego}" />    
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+
+                    <div id="part_PlanoFinanc" class="corpoDoTexto">
+                        <h1>PLANO FINANCEIRO</h1><br/>
+                        <p><h2>Fontes de receita: <h:outputText value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
+
+                        <div id="part_EstrutCusto">
+
+                            <p><h2>Estrutura de custos: <h:outputText value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
+
+                            <h1>CUSTOS FIXOS</h1><br/>
+                            <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
+                                <p:column headerText="Descrição: ">
+                                    <h:outputText value="#{custo.descricao}" />
+                                </p:column>
+                                <p:column headerText="Valor: ">
+                                    <h:outputText value="#{custo.valor}" />
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <h1>CUSTOS VARIÁVEIS</h1><br/>
+                            <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
+                                <p:column headerText="Descrição: ">
+                                    <h:outputText value="#{custo.descricao}" />
+                                </p:column>
+                                <p:column headerText="Valor: ">
+                                    <h:outputText value="#{custo.valor}" />
+                                </p:column>
+
+                            </p:dataTable>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="rodape">PAMPATEC 2015</div>
 
             </div>
-
-            <div id="rodape">PAMPATEC 2015</div>
-
-        </div>
+        </h:form>
 
 
 
