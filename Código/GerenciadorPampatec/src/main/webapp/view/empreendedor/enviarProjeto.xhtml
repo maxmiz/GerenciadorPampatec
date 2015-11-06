@@ -727,7 +727,8 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" event="click"></f:ajax>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
+                                                            render="formulario_cadastro_projeto:tabelaCustoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
