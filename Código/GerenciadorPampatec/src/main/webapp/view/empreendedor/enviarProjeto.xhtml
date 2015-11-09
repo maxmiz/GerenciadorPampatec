@@ -757,7 +757,7 @@
                                                     <h:outputText value="Item de custo"/>
                                                 </f:facet>                                                      
                                                 <h:outputText value="#{custofixo.descricao}"></h:outputText>
-                                                
+
                                             </h:column>
                                             <h:column> 
 
@@ -765,7 +765,7 @@
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
                                                 <h:outputText value="#{custofixo.valor}"/>
-                                                
+
                                             </h:column>
 
                                             <h:column>
@@ -833,7 +833,7 @@
                                                     <h:outputText value="Item de custo"/>
                                                 </f:facet>                                                      
                                                 <h:outputText value="#{custovariavel.descricao}"></h:outputText>
-                                                
+
                                             </h:column>
 
 
@@ -844,7 +844,7 @@
                                                 </f:facet>
 
                                                 <h:outputText value="#{custovariavel.valor}"/>
-                                                
+
                                             </h:column>
                                             <h:column>
 
@@ -928,8 +928,10 @@
                                     <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
-                                    <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
-                                        <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}"/>
+                                    <!--<h:commandButton  class="btn btn-default" value="Deletar" action="#/{projetoBean.deletarEmpreendedor()}" disabled="#/{projetoBean.verificarEmpreendedor(empreendedor)}">-->
+                                    <h:commandButton  class="btn btn-default" value="Deletar" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
+                                        <f:ajax execute="formEquipe" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.deletarEmpreendedor(empreendedor)}" 
+                                                event="click"></f:ajax>
                                     </h:commandButton>
                                 </p:column>
                                 <!--<f:ajax execute="@form" event="change" render="form_revisao:revisao_empreendedorList"/>-->
@@ -1038,7 +1040,7 @@
             <br/>
             <br/>
         </div>
-
+        <!-- INICIO DA PARTE DE REVISÃO -->
         <h:form id="form_revisao">
             <div class="classeConteudo esconder-div" id="div_revisar_plano">
                 <div id="cabecalho_revisao">
@@ -1155,6 +1157,7 @@
 
             </div>
         </h:form>
+        <!-- FIM DA PARTE DE REVISÃO -->
 
 
 
