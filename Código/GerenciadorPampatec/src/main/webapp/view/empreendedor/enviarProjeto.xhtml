@@ -26,6 +26,8 @@
         <script type="text/javascript">
 
             var andamentoProjeto = #{projetoBean.projeto.status};
+            var custoVariavelPreenchido = #{projetoBean.listaCustoVariavel.size() != 0};
+            var custoFixoPreenchido = #{projetoBean.listaCustoFixo.size() != 0};
 
         </script>
 
@@ -135,7 +137,7 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
-        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center" style="background-color: pink;">
+        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical">
             <div class="divPadding">
                 <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
@@ -154,7 +156,7 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
-        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #33ff11">
+        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div">
             <div class="divPadding text-center">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 1}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
@@ -275,7 +277,7 @@
             <!-- Fim dos MODAIS exibidos no formulário -->
 
             <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
-            <div id="div_apresentacao_formulario" class="classeConteudo esconder-div" style="background-color: blueviolet">
+            <div id="div_apresentacao_formulario" class="classeConteudo esconder-div">
 
 
 
@@ -316,7 +318,7 @@
                                         <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                         Nome da Empresa ou do Projeto*
                                         <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
-                                                     onblur="verificaContatos();" 
+                                                     onblur="verificaNegocio();" 
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
@@ -487,40 +489,16 @@
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <p:ajax  update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:loco"/>
+                                                <p:ajax update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"/>
                                             </h:selectOneMenu>
-
-                                            <h:inputText id="loco" class="form-control" value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
-                                                <!--<f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
-                                            </h:inputText>
+                                            <br/>
+                                            <div>
+                                                <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
+                                                             value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                    <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                </p:inputText>
+                                            </div>
                                         </h:panelGroup>
-                                        <br/>
-
-
-                                        <!--                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                                                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value=" #{projetoBean.selectedButton}"
-                                                                                                      onchange="precisaSalvar = true;">
-                                        
-                                                                                        <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
-                                                                                        <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
-                                                                                        <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
-                                                                                        <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
-                                                                                        <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
-                                                                                        <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                                                                        <f:selectItem itemLabel="Outro" itemValue="Outro"  />
-                                        
-                                                                                    </p:selectOneRadio>
-                                        
-                                                                                </h:panelGrid>-->
-
-                                        <!--                                        <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
-                                                                                             validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
-                                                                                             value="#/{projetoBean.descricaoButtonOutro}"
-                                                                                             onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
-                                                                                    <f:validateLength minimum="2"/>
-                                                                                </h:inputText>
-                                                                                <h:message class="mensagemErro" for="descricaoOutroEstagio"/>-->
-
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
@@ -529,8 +507,8 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
-                                                         >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         > 
+                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
@@ -887,7 +865,7 @@
 
         <!-- SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
         <h:form id="formEquipe">
-            <div class="classeConteudo col-md-10" style="background-color: blueviolet" id="formParte01">
+            <div class="classeConteudo col-md-10" id="formParte01">
                 <div class="col-md-12 form-horizontal well bs-component">
 
                     <h1>Cadastro - Plano de Negócio</h1>
@@ -953,7 +931,7 @@
         <!-- FIM SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
 
         <!--INICIO DA DIV DE SUBMISSÃO -->
-        <div class="classeConteudo esconder-div" id="divSubmeterPlano" style="background-color: red;">
+        <div class="classeConteudo esconder-div" id="divSubmeterPlano">
             <h:form>
                 <div class="" id="formSubmeterPlano">
                     <div class="tab-pane fade active in well bs-component">
