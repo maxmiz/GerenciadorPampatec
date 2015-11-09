@@ -46,7 +46,7 @@ public class Projeto implements java.io.Serializable {
     private Empreendedor empreendedorCorrespondente;
     
     public Projeto() {
-        //pegaObserver();
+        pegaObserver();
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
@@ -56,7 +56,7 @@ public class Projeto implements java.io.Serializable {
         this.planofinanceiro = planofinanceiro;
         this.produtoouservico = produtoouservico;
         this.participacaoacionaria = participacaoacionaria;
-        //pegaObserver();
+        pegaObserver();
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital,
@@ -75,7 +75,7 @@ public class Projeto implements java.io.Serializable {
         this.edital = edital;
         this.dataCriacao = dataCriacao;
         this.gerenteRelacionamento = gerenteDeRelacionamento;
-        //pegaObserver();
+        pegaObserver();
     }
     
     private void pegaObserver(){
@@ -189,7 +189,7 @@ public class Projeto implements java.io.Serializable {
      */
     public void mudarStatus(Integer status){
         setStatus(status);
-//        notificacoesBean.update(null, this);
+        notificacoesBean.update(null, this);
     }
 
     public String getPotencialEmprego() {
