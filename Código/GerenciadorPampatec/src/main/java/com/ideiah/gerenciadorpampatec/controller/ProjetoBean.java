@@ -602,7 +602,7 @@ public class ProjetoBean implements Serializable {
                         System.out.println("status enviado");
                         salvarProjeto();
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
@@ -665,9 +665,9 @@ public class ProjetoBean implements Serializable {
      * Método para adicionar custo fixo ao projeto e à tabela.
      */
     public void adicionarCustoFixo() {
-        if (valorCustoFixo < 0 && nomeCustoFixo.isEmpty()) {
+        if (valorCustoFixo <= 0 && nomeCustoFixo.isEmpty()) {
             FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoFixo");
-        } else if (valorCustoFixo < 0) {
+        } else if (valorCustoFixo <= 0) {
             FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoFixo");
         } else if (nomeCustoFixo.isEmpty()) {
             FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoFixo");
@@ -689,8 +689,8 @@ public class ProjetoBean implements Serializable {
     public void adicionarCustoVariavel() {
         if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()) {
             FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoVariavel");
-        } else if (valorCustoVariavel < 0) {
-            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else if (valorCustoVariavel <= 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoVariavel");
         } else if (nomeCustoVariavel.isEmpty()) {
             FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoVariavel");
         } else {
