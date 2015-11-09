@@ -773,7 +773,7 @@
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
-                                                            render="formulario_cadastro_projeto:tabelaCustoFixo formulario_cadastro_projeto:erroCustoFixo" event="click"></f:ajax>
+                                                            render="formulario_cadastro_projeto:tabelaCustoFixo formulario_cadastro_projeto:erroCustoFixo form_revisao:revisao_custoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -851,7 +851,7 @@
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovarioveavel)}" 
-                                                            render="formulario_cadastro_projeto:tabelaCustoVariavel formulario_cadastro_projeto:erroCustoVariavel"></f:ajax>
+                                                            render="formulario_cadastro_projeto:tabelaCustoVariavel formulario_cadastro_projeto:erroCustoVariavel form_revisao:revisao_custoVariavel"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -931,7 +931,7 @@
                                         <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}"/>
                                     </h:commandButton>
                                 </p:column>
-                                <f:ajax execute="@form" event="change" render="form_revisao:revisao_empreendedorList"/>
+                                <!--<f:ajax execute="@form" event="change" render="form_revisao:revisao_empreendedorList"/>-->
                             </p:dataTable>
                         </div>
 
