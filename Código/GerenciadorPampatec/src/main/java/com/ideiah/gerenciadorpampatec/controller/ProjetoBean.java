@@ -866,4 +866,14 @@ public class ProjetoBean implements Serializable {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
     }
+    
+    /**
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no estado do negócio
+     * @return true se o usuário clicar no checkbox "Outro"
+     */
+    public boolean exibeCampo() {
+        System.out.println("" + selectedButton);
+          
+        return selectedButton != null && selectedButton.equals("Outro");
+    }
 }
