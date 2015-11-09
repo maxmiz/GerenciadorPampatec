@@ -489,40 +489,16 @@
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <p:ajax  update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:loco"/>
+                                                <p:ajax update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"/>
                                             </h:selectOneMenu>
-
-                                            <h:inputText id="loco" class="form-control" value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
-                                                <!--<f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
-                                            </h:inputText>
+                                            <br/>
+                                            <div>
+                                                <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
+                                                             value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                    <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                </p:inputText>
+                                            </div>
                                         </h:panelGroup>
-                                        <br/>
-
-
-                                        <!--                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                                                                    <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value=" #{projetoBean.selectedButton}"
-                                                                                                      onchange="precisaSalvar = true;">
-                                        
-                                                                                        <f:selectItem itemLabel="Ideia Básica" itemValue="Ideia Básica" /> <br/>
-                                                                                        <f:selectItem itemLabel="Projeto básico" itemValue="Projeto básico" /> <br/>
-                                                                                        <f:selectItem itemLabel="Projeto detalhado" itemValue="Projeto detalhado" /> <br/>
-                                                                                        <f:selectItem itemLabel="Protótipo desenvolvido" itemValue="Protótipo desenvolvido" /> <br/>
-                                                                                        <f:selectItem itemLabel="Em teste no mercado" itemValue="Em teste no mercado" /> <br/>
-                                                                                        <f:selectItem itemLabel="Clientes Pagando" itemValue="Clientes Pagando" /> <br/>
-                                                                                        <f:selectItem itemLabel="Outro" itemValue="Outro"  />
-                                        
-                                                                                    </p:selectOneRadio>
-                                        
-                                                                                </h:panelGrid>-->
-
-                                        <!--                                        <h:inputText class="form-control" disabled="" id="descricaoOutroEstagio"
-                                                                                             validatorMessage="O campo exige um mínimo de 2 (Dois) caracteres"
-                                                                                             value="#/{projetoBean.descricaoButtonOutro}"
-                                                                                             onchange="precisaSalvar = true;" onblur="verificarProdutoServico()">
-                                                                                    <f:validateLength minimum="2"/>
-                                                                                </h:inputText>
-                                                                                <h:message class="mensagemErro" for="descricaoOutroEstagio"/>-->
-
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
@@ -531,8 +507,8 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
-                                                         >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         > 
+                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
