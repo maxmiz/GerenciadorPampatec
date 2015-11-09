@@ -223,7 +223,7 @@ public class ProjetoBean implements Serializable {
     /**
      * Deletar empreendedor de um projeto desde que ele não seja o dono do mesmo
      */
-    public void deletarEmpreendedor() {
+    public void deletarEmpreendedor(Empreendedor empreendedorSelected) {
 
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
