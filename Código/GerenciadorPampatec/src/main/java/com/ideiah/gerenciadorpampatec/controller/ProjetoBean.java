@@ -517,10 +517,10 @@ public class ProjetoBean implements Serializable {
             FLAG = FLAG + 1;
         }
         /*
-        if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
-            FLAG = FLAG + 1;
-        }*/
+         if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
+         FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
+         FLAG = FLAG + 1;
+         }*/
         if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
             FLAG = FLAG + 1;
@@ -572,11 +572,12 @@ public class ProjetoBean implements Serializable {
         if (listaCustoFixo.isEmpty()) {
             FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoFixo");
             FLAG = FLAG + 1;
-        }if (listaCustoVariavel.isEmpty()) {
+        }
+        if (listaCustoVariavel.isEmpty()) {
             FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoVariavel");
             FLAG = FLAG + 1;
         }
-        
+
         return FLAG;
     }
 
@@ -664,10 +665,16 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Método para adicionar custo fixo ao projeo e à tabela.
+     * Método para adicionar custo fixo ao projeto e à tabela.
      */
     public void adicionarCustoFixo() {
-        if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
+        if (valorCustoFixo < 0 && nomeCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoFixo");
+        } else if (valorCustoFixo < 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoFixo");
+        } else if (nomeCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoFixo");
+        } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
             custo.setValor(valorCustoFixo);
@@ -676,8 +683,6 @@ public class ProjetoBean implements Serializable {
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
             salvarProjeto();
             preencheListaCusto();
-        } else {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
         }
     }
 
@@ -685,8 +690,12 @@ public class ProjetoBean implements Serializable {
      * Método para adicionar custo variável a tabela.
      */
     public void adicionarCustoVariavel() {
-        if (nomeCustoVariavel.equals("") || valorCustoVariavel <= 0) {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()){
+            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else if (valorCustoVariavel < 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else if (nomeCustoVariavel.isEmpty()) {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoVariavel");
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoVariavel);
@@ -839,22 +848,32 @@ public class ProjetoBean implements Serializable {
     public void setCustoVariavelSelecionado(Custo custoVariavelSelecionado) {
         this.custoVariavelSelecionado = custoVariavelSelecionado;
     }
-    
+
     public boolean verificaElaboracao() {
         if (projeto.getStatus() == Projeto.DEFININDO_EQUIPE) {
             return false;
-        } else if(projeto.getStatus() == Projeto.ELABORACAO) {
+        } else if (projeto.getStatus() == Projeto.ELABORACAO) {
             return false;
         } else {
             return true;
         }
     }
-    
+
     /**
      * Atualiza o status do projeto para "EM ELABORAÇÃO" e salva o projeto.
      */
-    public void atualizaStatus(){
+    public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+    }
+    
+    /**
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no estado do negócio
+     * @return true se o usuário clicar no checkbox "Outro"
+     */
+    public boolean exibeCampo() {
+        System.out.println("" + selectedButton);
+          
+        return selectedButton != null && selectedButton.equals("Outro");
     }
 }

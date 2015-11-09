@@ -695,4 +695,11 @@ function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
 
+function exibeCampoOutro (){
+    if(document.getElementById('hsbc').checked){  
+         document.getElementById('mostrarOutro').setAttribute("readonly",true );  
+         }else{  
+             document.getElementById('form1:hit').removeAttribute("readonly");  
+         } 
+}
 
