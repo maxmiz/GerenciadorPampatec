@@ -122,40 +122,36 @@ public class ProjetoBean implements Serializable {
      * DO CAMPO (descricaoButtonOutro)
      */
     public void pegaValorDropDown() {
-        if (selectedButton != null) {
-            switch (selectedButton) {
-                case "Ideia Básica":
-                    projeto.getProdutoouservico().setEstagioEvolucao("1");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Projeto básico":
-                    projeto.getProdutoouservico().setEstagioEvolucao("2");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Projeto detalhado":
-                    projeto.getProdutoouservico().setEstagioEvolucao("3");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Protótipo desenvolvido":
-                    projeto.getProdutoouservico().setEstagioEvolucao("4");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Em teste no mercado":
-                    projeto.getProdutoouservico().setEstagioEvolucao("5");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Clientes Pagando":
-                    projeto.getProdutoouservico().setEstagioEvolucao("6");
-                    descricaoButtonOutro = null;
-                    break;
-                case "Outro:":
-                    projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
-                    descricaoButtonOutro = null;
-                    break;
+        switch (selectedButton) {
+            case "Ideia Básica":
+                projeto.getProdutoouservico().setEstagioEvolucao("Ideia Básica");
+                descricaoButtonOutro = null;
+                break;
+            case "Projeto básico":
+                projeto.getProdutoouservico().setEstagioEvolucao("Projeto Básico");
+                descricaoButtonOutro = null;
+                break;
+            case "Projeto detalhado":
+                projeto.getProdutoouservico().setEstagioEvolucao("Projeto Detalhado");
+                descricaoButtonOutro = null;
+                break;
+            case "Protótipo desenvolvido":
+                projeto.getProdutoouservico().setEstagioEvolucao("Protótipo Desenvolvido");
+                descricaoButtonOutro = null;
+                break;
+            case "Em teste no mercado":
+                projeto.getProdutoouservico().setEstagioEvolucao("Em teste no mercado");
+                descricaoButtonOutro = null;
+                break;
+            case "Clientes Pagando":
+                projeto.getProdutoouservico().setEstagioEvolucao("Clientes Pagando");
+                descricaoButtonOutro = null;
+                break;
+            default:
+                projeto.getProdutoouservico().setEstagioEvolucao(descricaoButtonOutro);
+                descricaoButtonOutro = getDescricaoButtonOutro();
+                break;
 
-                default:
-
-            }
         }
     }
 
@@ -648,6 +644,7 @@ public class ProjetoBean implements Serializable {
      */
     public void setDescricaoButtonOutro(String descricaoButtonOutro) {
         this.descricaoButtonOutro = descricaoButtonOutro;
+        this.selectedButton = descricaoButtonOutro;
     }
 
     /**
@@ -690,7 +687,7 @@ public class ProjetoBean implements Serializable {
      * Método para adicionar custo variável a tabela.
      */
     public void adicionarCustoVariavel() {
-        if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()){
+        if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()) {
             FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoVariavel");
         } else if (valorCustoVariavel < 0) {
             FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:nomeCustoVariavel");
@@ -866,14 +863,21 @@ public class ProjetoBean implements Serializable {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
     }
-    
+
     /**
-     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no estado do negócio
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
+     * estado do negócio
+     *
      * @return true se o usuário clicar no checkbox "Outro"
      */
     public boolean exibeCampo() {
         System.out.println("" + selectedButton);
-          
+
         return selectedButton != null && selectedButton.equals("Outro");
     }
+
+    public void verificaUpdate() {
+        System.out.println("PASSOU AQUI NO UPDATEEEEEEEEEEE");
+    }
+
 }
