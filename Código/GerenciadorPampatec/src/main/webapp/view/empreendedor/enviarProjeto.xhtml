@@ -772,11 +772,14 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" event="click"></f:ajax>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
+                                                            render="formulario_cadastro_projeto:tabelaCustoFixo formulario_cadastro_projeto:erroCustoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable> 
+
+                                        <h:message id="erroCustoFixo" for="nomeCustoFixo" class="mensagemErro"/>
 
 
                                         <!--<f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/>
@@ -798,6 +801,7 @@
                                                 <label class="col-lg-4 control-label">Nome do Custo</label>
                                                 <div class="col-lg-8">
                                                     <h:inputText class="form-control" id="nomeCustoVariavel" value="#{projetoBean.nomeCustoVariavel}"></h:inputText>
+                                                    <h:message id="erroCustoVariavel" for="nomeCustoVariavel" class="mensagemErro"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -846,11 +850,13 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" render="formulario_cadastro_projeto:tabelaCustoVariavel"></f:ajax>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovarioveavel)}" 
+                                                            render="formulario_cadastro_projeto:tabelaCustoVariavel formulario_cadastro_projeto:erroCustoVariavel"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable>
+
                                         <!--  <h:message class="mensagemErro" for="custosvariaveis"/>-->
 
                                         <br/>
@@ -878,7 +884,7 @@
         </h:form>
 
         <!-- SEÇÃO DE APRESENTAÇÃO DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
-        <h:form>
+        <h:form id="formEquipe">
             <div class="classeConteudo col-md-10" style="background-color: blueviolet" id="formParte01">
                 <div class="col-md-12 form-horizontal well bs-component">
 
@@ -899,13 +905,15 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" action="#{projetoBean.adicionarEmpreendedor()}" disabled="#{projetoBean.verificaElaboracao()}"/>
+                                        <h:commandButton class="btn btn-default" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
+                                            <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
+                                        </h:commandButton>
                                     </div>
                                 </div>
-                                <h:message class="mensagemErro" for="autocomplete"/>
+                                <h:message id="mensagemErroEquipe" class="mensagemErro" for="autocomplete"/>
                             </h:panelGroup>
                             <br/><br/>
-                            <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
+                            <p:dataTable id="tabelaEmpreendedores" var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
                                 <p:column headerText="E-Mail Empreendedor">
                                     <h:outputText value="#{empreendedor.email}" />
                                     <!--<h:outputText value="" />-->

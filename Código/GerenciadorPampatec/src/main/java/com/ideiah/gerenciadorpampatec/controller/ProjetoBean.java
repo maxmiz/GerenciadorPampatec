@@ -242,7 +242,7 @@ public class ProjetoBean implements Serializable {
      */
     public void adicionarEmpreendedor() {
         if (emailEmpreendedor.equals("")) {
-            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formulario_cadastro_projeto:autocomplete");
+            FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formEquipe:autocomplete");
         } else {
 
             boolean existe = false;
@@ -268,7 +268,7 @@ public class ProjetoBean implements Serializable {
                 getEmpreedendoresAdicionados().add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
-                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formulario_cadastro_projeto:autocomplete");
+                FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
             }
         }
     }
@@ -516,10 +516,11 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
             FLAG = FLAG + 1;
         }
-        if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
-            FLAG = FLAG + 1;
-        }
+        /*
+         if (selectedButton.equals("Outro:") && descricaoButtonOutro.trim().isEmpty()) {
+         FacesUtil.addErrorMessage("Se a opção selecionada for (Outro) então o campo acima não pode estar vazio", "formulario_cadastro_projeto:descricaoOutroEstagio");
+         FLAG = FLAG + 1;
+         }*/
         if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
             FLAG = FLAG + 1;
@@ -568,6 +569,15 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
+        if (listaCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoFixo");
+            FLAG = FLAG + 1;
+        }
+        if (listaCustoVariavel.isEmpty()) {
+            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoVariavel");
+            FLAG = FLAG + 1;
+        }
+
         return FLAG;
     }
 
@@ -655,10 +665,16 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Método para adicionar custo fixo ao projeo e à tabela.
+     * Método para adicionar custo fixo ao projeto e à tabela.
      */
     public void adicionarCustoFixo() {
-        if (valorCustoFixo > 0 && !nomeCustoFixo.isEmpty()) {
+        if (valorCustoFixo < 0 && nomeCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoFixo");
+        } else if (valorCustoFixo < 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoFixo");
+        } else if (nomeCustoFixo.isEmpty()) {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoFixo");
+        } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
             custo.setValor(valorCustoFixo);
@@ -667,8 +683,6 @@ public class ProjetoBean implements Serializable {
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
             salvarProjeto();
             preencheListaCusto();
-        } else {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoFixo");
         }
     }
 
@@ -676,8 +690,12 @@ public class ProjetoBean implements Serializable {
      * Método para adicionar custo variável a tabela.
      */
     public void adicionarCustoVariavel() {
-        if (nomeCustoVariavel.equals("") || valorCustoVariavel <= 0) {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida e valor maior que zero.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()){
+            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else if (valorCustoVariavel < 0) {
+            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:nomeCustoVariavel");
+        } else if (nomeCustoVariavel.isEmpty()) {
+            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoVariavel");
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoVariavel);
@@ -797,9 +815,11 @@ public class ProjetoBean implements Serializable {
      * Remove custo fixo da tabela e do projeto
      */
     public void deletarCustoFixo(Custo custoFixo) {
+        ProjetoDao daoProj = new ProjetoDao();
         listaCustoFixo.remove(custoFixo);
-        projeto.getPlanofinanceiro().getCusto().remove(custoFixo);
-        salvarProjeto();
+        empreendedorSession.removeCustoProjeto(custoFixo);
+        projeto = daoProj.buscar(projeto.getIdProjeto());
+        atualizarProjetoSessao();
     }
 
     /**
