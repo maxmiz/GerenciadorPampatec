@@ -730,6 +730,7 @@
                                                 <label class="col-lg-4 control-label">Nome do Custo</label>
                                                 <div class="col-lg-8">
                                                     <h:inputText class="form-control" id="nomeCustoFixo" value="#{projetoBean.nomeCustoFixo}"></h:inputText>
+                                                    <h:message id="erroNomeCustoFixo" for="nomeCustoFixo" class="mensagemErro"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -739,11 +740,12 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon">R$</span>
 
-                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoFixo" value="#{projetoBean.valorCustoFixo}"></h:inputText>
-
+                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoFixo" value="#{projetoBean.valorCustoFixo}"><f:convertNumber/></h:inputText>
+                                                    <h:message id="erroValorCustoFixo" for="valorCustoFixo" class="mensagemErro"/>
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="formulario_cadastro_projeto:panelCustoFixo" render="formulario_cadastro_projeto:tabelaCustoFixo form_revisao:revisao_custoFixo" listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
+                                                            <f:ajax execute="formulario_cadastro_projeto:panelCustoFixo" render="formulario_cadastro_projeto:panelCustoFixo form_revisao:revisao_custoFixo"
+                                                                    listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
                                                         </h:commandButton>
                                                     </span>
                                                 </div>
@@ -757,7 +759,7 @@
                                                     <h:outputText value="Item de custo"/>
                                                 </f:facet>                                                      
                                                 <h:outputText value="#{custofixo.descricao}"></h:outputText>
-
+                                                
                                             </h:column>
                                             <h:column> 
 
@@ -765,7 +767,7 @@
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
                                                 <h:outputText value="#{custofixo.valor}"/>
-
+                                                
                                             </h:column>
 
                                             <h:column>
@@ -775,13 +777,12 @@
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
-                                                            render="formulario_cadastro_projeto:tabelaCustoFixo formulario_cadastro_projeto:erroCustoFixo form_revisao:revisao_custoFixo" event="click"></f:ajax>
+                                                            render="formulario_cadastro_projeto:panel_custo_fixo form_revisao:revisao_custoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
                                         </h:dataTable> 
 
-                                        <h:message id="erroCustoFixo" for="nomeCustoFixo" class="mensagemErro"/>
 
 
                                         <!--<f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/>
@@ -803,7 +804,7 @@
                                                 <label class="col-lg-4 control-label">Nome do Custo</label>
                                                 <div class="col-lg-8">
                                                     <h:inputText class="form-control" id="nomeCustoVariavel" value="#{projetoBean.nomeCustoVariavel}"></h:inputText>
-                                                    <h:message id="erroCustoVariavel" for="nomeCustoVariavel" class="mensagemErro"/>
+                                                    <h:message id="erroNomeCustoVariavel" for="nomeCustoVariavel" class="mensagemErro"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -814,11 +815,12 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon">R$</span>
 
-                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"></h:inputText>
-
+                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"><f:convertNumber/></h:inputText>
+                                                    <h:message id="erroValorCustoVariavel" for="valorCustoVariavel" class="mensagemErro"/>
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:tabelaCustoVariavel form_revisao:revisao_custoVariavel" listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
+                                                            <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:panel_custo_variavel form_revisao:revisao_custoVariavel"
+                                                                    listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
                                                         </h:commandButton>                                                            
                                                     </span>
                                                 </div>
@@ -833,7 +835,7 @@
                                                     <h:outputText value="Item de custo"/>
                                                 </f:facet>                                                      
                                                 <h:outputText value="#{custovariavel.descricao}"></h:outputText>
-
+                                                
                                             </h:column>
 
 
@@ -844,7 +846,7 @@
                                                 </f:facet>
 
                                                 <h:outputText value="#{custovariavel.valor}"/>
-
+                                                
                                             </h:column>
                                             <h:column>
 
@@ -853,7 +855,7 @@
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" 
-                                                            render="formulario_cadastro_projeto:tabelaCustoVariavel formulario_cadastro_projeto:erroCustoVariavel form_revisao:revisao_custoVariavel"></f:ajax>
+                                                            render="formulario_cadastro_projeto:panel_custo_variavel form_revisao:revisao_custoVariavel"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -907,7 +909,6 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-
                                         <h:commandButton class="btn btn-default" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
                                             <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
                                         </h:commandButton>
