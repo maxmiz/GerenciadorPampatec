@@ -411,7 +411,7 @@ function carregaPagina() {
 
             botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
             mostraDIV('div_apresentacao_formulario');
-            
+
             etapaAtualDoWorkflow = "etapa1";
 
             var etapa = document.getElementById("etapa2");
@@ -424,7 +424,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             bloquearBotoesVerticaisElaboracao();
             break;
-            
+
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -506,6 +506,31 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
+            break;
+
+        case 8:
+            etapa2.innerHTML = "<b>Pré-Avaliação</b>";
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+            var botao_preavaliacao = document.getElementById("botao_elaboracao_equipe");
+
+            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV('formParte01');
+
+            etapaAtualDoWorkflow = "etapa1";
+
+            var etapa = document.getElementById("etapa2");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+            bloquearBotoesVerticaisElaboracao();
     }
 }
 
@@ -526,7 +551,7 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-    
+
 
 }
 
@@ -695,11 +720,11 @@ function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
 
-function exibeCampoOutro (){
-    if(document.getElementById('hsbc').checked){  
-         document.getElementById('mostrarOutro').setAttribute("readonly",true );  
-         }else{  
-             document.getElementById('form1:hit').removeAttribute("readonly");  
-         } 
+function exibeCampoOutro() {
+    if (document.getElementById('hsbc').checked) {
+        document.getElementById('mostrarOutro').setAttribute("readonly", true);
+    } else {
+        document.getElementById('form1:hit').removeAttribute("readonly");
+    }
 }
 
