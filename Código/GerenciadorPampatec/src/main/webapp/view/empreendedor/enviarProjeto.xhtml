@@ -478,16 +478,24 @@
                                     <div class="col-md-12">
                                         <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                                        <h:panelGroup class="checkbox" id="abc">
+                                            <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                                <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
+                                                <f:selectItem itemValue="Projeto básico" itemLabel="Projeto básico"/>
+                                                <f:selectItem itemValue="Projeto detalhado" itemLabel="Projeto detalhado"/>
+                                                <f:selectItem itemValue="Protótipo desenvolvido" itemLabel="Protótipo desenvolvido"/>
+                                                <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
+                                                <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
+                                                <f:selectItem itemValue="Outro" itemLabel="Outro" />
+                                                <p:ajax  update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:loco"/>
+                                            </h:selectOneMenu>
 
-                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
-                                            <f:selectItem itemValue="value" itemLabel="Ideia Básica"/>
-                                            <f:selectItem itemValue="value" itemLabel="Projeto básico"/>
-                                            <f:selectItem itemValue="value" itemLabel="Projeto detalhado"/>
-                                            <f:selectItem itemValue="value" itemLabel="Protótipo desenvolvido"/>
-                                            <f:selectItem itemValue="value" itemLabel="Em teste no mercado"/>
-                                            <f:selectItem itemValue="value" itemLabel="Clientes Pagando"/>
-                                            <f:selectItem itemValue="value" itemLabel="Outro"/>
-                                        </h:selectOneMenu>
+                                            <h:inputText id="loco" class="form-control" value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                <!--<f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
+                                            </h:inputText>
+                                        </h:panelGroup>
+                                        <br/>
+
 
                                         <!--                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                                                                     <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value=" #{projetoBean.selectedButton}"

@@ -828,22 +828,32 @@ public class ProjetoBean implements Serializable {
     public void setCustoVariavelSelecionado(Custo custoVariavelSelecionado) {
         this.custoVariavelSelecionado = custoVariavelSelecionado;
     }
-    
+
     public boolean verificaElaboracao() {
         if (projeto.getStatus() == Projeto.DEFININDO_EQUIPE) {
             return false;
-        } else if(projeto.getStatus() == Projeto.ELABORACAO) {
+        } else if (projeto.getStatus() == Projeto.ELABORACAO) {
             return false;
         } else {
             return true;
         }
     }
-    
+
     /**
      * Atualiza o status do projeto para "EM ELABORAÇÃO" e salva o projeto.
      */
-    public void atualizaStatus(){
+    public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+    }
+    
+    /**
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no estado do negócio
+     * @return true se o usuário clicar no checkbox "Outro"
+     */
+    public boolean exibeCampo() {
+        System.out.println("" + selectedButton);
+          
+        return selectedButton != null && selectedButton.equals("Outro");
     }
 }
