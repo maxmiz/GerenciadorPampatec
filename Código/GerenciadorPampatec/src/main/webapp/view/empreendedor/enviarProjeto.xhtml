@@ -751,7 +751,7 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
-                                                <h:commandButton class="btn btn-default" value="Deletar">  
+                                                <h:commandButton class="btn btn-default" value="Excluir">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
                                                             render="formulario_cadastro_projeto:panel_custo_fixo form_revisao:revisao_custoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
@@ -829,7 +829,7 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
-                                                <h:commandButton  class="btn btn-default" value="Deletar">  
+                                                <h:commandButton  class="btn btn-default" value="Excluir">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" 
                                                             render="formulario_cadastro_projeto:panel_custo_variavel form_revisao:revisao_custoVariavel"></f:ajax>
                                                 </h:commandButton>
@@ -906,7 +906,7 @@
                                     <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
-                                    <h:commandButton  class="btn btn-default" value="Deletar" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
+                                    <h:commandButton  class="btn btn-default" value="Remover Empreendedor" action="#{projetoBean.deletarEmpreendedor()}" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
                                         <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}"/>
                                     </h:commandButton>
                                 </p:column>
