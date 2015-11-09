@@ -915,7 +915,7 @@
                             </h:panelGroup>
                             <br/><br/>
                             <p:dataTable id="tabelaEmpreendedores" var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
-                                <p:column headerText="E-Mail Empreendedor">
+                                <p:column headerText="E-mail">
                                     <h:outputText value="#{empreendedor.email}" />
                                     <!--<h:outputText value="" />-->
                                     <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
@@ -923,7 +923,7 @@
                                 <p:column headerText="Status do Cadastro">
                                     <h:outputText id="statusEmpreendedor" value="#{empreendedor.retornaStatus()}"></h:outputText>
                                 </p:column>
-                                <p:column headerText="Tipo Empreendedor">
+                                <p:column headerText="Categoria">
                                     <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
