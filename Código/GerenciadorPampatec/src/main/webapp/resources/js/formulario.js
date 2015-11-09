@@ -118,7 +118,6 @@ function fechaFeedBack() {
  * @returns {undefined}
  */
 function verificarCampos() {
-    verificaContatos();
     verificaNegocio();
     verificaAnaliseMercado();
     verificarProdutoServico();
@@ -126,15 +125,6 @@ function verificarCampos() {
     verificaPlanoFinanceiro();
 }
 
-/**
- * @description Verifica se todos os campos do formulário referente aos Contatos foram preenchidos.
- * Se sim, irá adicionar um ícone de "certo em verde" ao lado do nome da aba.
- */
-function verificaContatos() {
-    var empresaProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
-    var tabContato = document.getElementById("tabContato");
-    mudarCor(empresaProjeto, tabContato, "Contato");
-}
 
 /**
  * @description Verifica se todos os campos do formulário referente ao Negócio foram preenchidos.
@@ -142,14 +132,16 @@ function verificaContatos() {
  * @returns {undefined}
  */
 function verificaNegocio() {
+    var nomeProjeto = document.getElementById("formulario_cadastro_projeto:empresaProjeto");
     var segmentoDeClientes = document.getElementById("formulario_cadastro_projeto:segmentoDeClientes");
     var propostaDeValor = document.getElementById("formulario_cadastro_projeto:propostaDeValor");
     var atividadesChave = document.getElementById("formulario_cadastro_projeto:atividadesChave");
     var tabNegocio = document.getElementById("tabNegocio");
     var listaCampos = new Array();
-    listaCampos[0] = segmentoDeClientes;
-    listaCampos[1] = propostaDeValor;
-    listaCampos[2] = atividadesChave;
+    listaCampos[0] = nomeProjeto;
+    listaCampos[1] = segmentoDeClientes;
+    listaCampos[2] = propostaDeValor;
+    listaCampos[3] = atividadesChave;
     mudarCorLista(listaCampos, tabNegocio, "Negócio");
 }
 
@@ -225,18 +217,19 @@ function verificaPlanoFinanceiro() {
     var fontesDeReceita = document.getElementById("formulario_cadastro_projeto:fontesDeReceita");
     var estruturaCustos = document.getElementById("formulario_cadastro_projeto:estruturaCustos");
     var investimentoInicial = document.getElementById("formulario_cadastro_projeto:investimentoInicial");
-    var custosfixos = document.getElementById("formulario_cadastro_projeto:custosfixos");
-    var custosvariaveis = document.getElementById("formulario_cadastro_projeto:custosvariaveis");
     var tabPlanoFinanceiro = document.getElementById("tabPlanoFinanceiro");
     var listaCampos = new Array();
 
     listaCampos[0] = fontesDeReceita;
     listaCampos[1] = estruturaCustos;
     listaCampos[2] = investimentoInicial;
-    listaCampos[3] = custosfixos;
-    listaCampos[4] = custosvariaveis;
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
+    
+    if(custoVariavelPreenchido == false || custoFixoPreenchido == false){
+        tabPlanoFinanceiro.innerHTML = "Plano Financeiro";
+        tabPlanoFinanceiro.style.color = "red";
+    }
 }
 
 
@@ -422,7 +415,6 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
-            bloquearBotoesVerticaisElaboracao();
             break;
 
         case 1:
@@ -530,7 +522,6 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
-            bloquearBotoesVerticaisElaboracao();
     }
 }
 

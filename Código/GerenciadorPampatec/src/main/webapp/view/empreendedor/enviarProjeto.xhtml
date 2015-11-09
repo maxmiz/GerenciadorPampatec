@@ -26,6 +26,8 @@
         <script type="text/javascript">
 
             var andamentoProjeto = #{projetoBean.projeto.status};
+            var custoVariavelPreenchido = #{projetoBean.listaCustoVariavel.size() != 0};
+            var custoFixoPreenchido = #{projetoBean.listaCustoFixo.size() != 0};
 
         </script>
 
@@ -316,7 +318,7 @@
                                         <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                         Nome da Empresa ou do Projeto*
                                         <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
-                                                     onblur="verificaContatos();" 
+                                                     onblur="verificaNegocio();" 
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
