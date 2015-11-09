@@ -606,7 +606,7 @@ public class ProjetoBean implements Serializable {
                         System.out.println("status enviado");
                         salvarProjeto();
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
@@ -870,5 +870,15 @@ public class ProjetoBean implements Serializable {
     public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+    }
+    
+    /**
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no estado do negócio
+     * @return true se o usuário clicar no checkbox "Outro"
+     */
+    public boolean exibeCampo() {
+        System.out.println("" + selectedButton);
+          
+        return selectedButton != null && selectedButton.equals("Outro");
     }
 }

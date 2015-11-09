@@ -478,16 +478,24 @@
                                     <div class="col-md-12">
                                         <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                                        <h:panelGroup class="checkbox" id="abc">
+                                            <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                                <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
+                                                <f:selectItem itemValue="Projeto básico" itemLabel="Projeto básico"/>
+                                                <f:selectItem itemValue="Projeto detalhado" itemLabel="Projeto detalhado"/>
+                                                <f:selectItem itemValue="Protótipo desenvolvido" itemLabel="Protótipo desenvolvido"/>
+                                                <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
+                                                <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
+                                                <f:selectItem itemValue="Outro" itemLabel="Outro" />
+                                                <p:ajax  update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:loco"/>
+                                            </h:selectOneMenu>
 
-                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
-                                            <f:selectItem itemValue="value" itemLabel="Ideia Básica"/>
-                                            <f:selectItem itemValue="value" itemLabel="Projeto básico"/>
-                                            <f:selectItem itemValue="value" itemLabel="Projeto detalhado"/>
-                                            <f:selectItem itemValue="value" itemLabel="Protótipo desenvolvido"/>
-                                            <f:selectItem itemValue="value" itemLabel="Em teste no mercado"/>
-                                            <f:selectItem itemValue="value" itemLabel="Clientes Pagando"/>
-                                            <f:selectItem itemValue="value" itemLabel="Outro"/>
-                                        </h:selectOneMenu>
+                                            <h:inputText id="loco" class="form-control" value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                <!--<f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>-->
+                                            </h:inputText>
+                                        </h:panelGroup>
+                                        <br/>
+
 
                                         <!--                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                                                                     <p:selectOneRadio id="estagioDeEvolucao" layout="pageDirection" value=" #{projetoBean.selectedButton}"
@@ -629,7 +637,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
                                                          id="participacaoAcionaria">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="participacaoAcionaria"/>
                                         <br/>
@@ -641,7 +649,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
                                                          id="potencialEmprego">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="potencialEmprego"/>
                                         <br/>
@@ -675,7 +683,7 @@
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas"  listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="fontesDeReceita"/>
                                         <br/>
@@ -688,7 +696,7 @@
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="estruturaCustos"/>
@@ -701,7 +709,7 @@
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
                                                          id="investimentoInicial">
-                                            <f:ajax execute="@form" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="investimentoInicial"/>
@@ -734,7 +742,8 @@
                                                     <h:message id="erroValorCustoFixo" for="valorCustoFixo" class="mensagemErro"/>
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="formulario_cadastro_projeto:panelCustoFixo" render="formulario_cadastro_projeto:panelCustoFixo" listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
+                                                            <f:ajax execute="formulario_cadastro_projeto:panelCustoFixo" render="formulario_cadastro_projeto:panelCustoFixo form_revisao:revisao_custoFixo"
+                                                                    listener="#{projetoBean.adicionarCustoFixo()}"></f:ajax>
                                                         </h:commandButton>
                                                     </span>
                                                 </div>
@@ -766,7 +775,7 @@
                                                 </f:facet>
                                                 <h:commandButton class="btn btn-default" value="Deletar">  
                                                     <f:ajax execute="formulario_cadastro_projeto:panel_custo_fixo" listener="#{projetoBean.deletarCustoFixo(custofixo)}" 
-                                                            render="formulario_cadastro_projeto:panel_custo_fixo" event="click"></f:ajax>
+                                                            render="formulario_cadastro_projeto:panel_custo_fixo form_revisao:revisao_custoFixo" event="click"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -804,11 +813,12 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon">R$</span>
 
-                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"></h:inputText>
+                                                    <h:inputText class="col-lg-8 form-control" id="valorCustoVariavel" value="#{projetoBean.valorCustoVariavel}"><f:convertNumber/></h:inputText>
                                                     <h:message id="erroValorCustoVariavel" for="valorCustoVariavel" class="mensagemErro"/>
                                                     <span class="input-group-btn">
                                                         <h:commandButton value="Adicionar" class="btn btn-default">
-                                                            <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:panel_custo_variavel" listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
+                                                            <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" render="formulario_cadastro_projeto:panel_custo_variavel form_revisao:revisao_custoVariavel"
+                                                                    listener="#{projetoBean.adicionarCustoVariavel()}"></f:ajax>
                                                         </h:commandButton>                                                            
                                                     </span>
                                                 </div>
@@ -842,8 +852,8 @@
                                                     <h:outputText value="Ações"/>
                                                 </f:facet>
                                                 <h:commandButton  class="btn btn-default" value="Deletar">  
-                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovarioveavel)}" 
-                                                            render="formulario_cadastro_projeto:panel_custo_variavel"></f:ajax>
+                                                    <f:ajax execute="formulario_cadastro_projeto:panel_custo_variavel" event="click" listener="#{projetoBean.deletarCustoVariavel(custovariavel)}" 
+                                                            render="formulario_cadastro_projeto:panel_custo_variavel form_revisao:revisao_custoVariavel"></f:ajax>
                                                 </h:commandButton>
                                             </h:column>
 
@@ -906,7 +916,7 @@
                             </h:panelGroup>
                             <br/><br/>
                             <p:dataTable id="tabelaEmpreendedores" var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" styleClass="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
-                                <p:column headerText="E-Mail Empreendedor">
+                                <p:column headerText="E-mail">
                                     <h:outputText value="#{empreendedor.email}" />
                                     <!--<h:outputText value="" />-->
                                     <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
@@ -914,7 +924,7 @@
                                 <p:column headerText="Status do Cadastro">
                                     <h:outputText id="statusEmpreendedor" value="#{empreendedor.retornaStatus()}"></h:outputText>
                                 </p:column>
-                                <p:column headerText="Tipo Empreendedor">
+                                <p:column headerText="Categoria">
                                     <h:outputText id="tipoEmpreendedor" value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}"></h:outputText>
                                 </p:column>
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
@@ -922,6 +932,7 @@
                                         <f:setPropertyActionListener value="#{empreendedor}" target="#{projetoBean.empreendedorSelected}"/>
                                     </h:commandButton>
                                 </p:column>
+                                <!--<f:ajax execute="@form" event="change" render="form_revisao:revisao_empreendedorList"/>-->
                             </p:dataTable>
                         </div>
 
@@ -1085,7 +1096,7 @@
 
                     <div id="part_GestaoPessoas" class="corpoDoTexto">
                         <h1>GESTÃO DE PESSOAS</h1><br/>
-                        <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
+                        <p:dataTable var="empreendedor"  rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
                             <p:column headerText="Formação dos sócios: ">
                                 <h:outputText value="#{empreendedor.formacao}" />
                             </p:column>
@@ -1093,24 +1104,28 @@
                                 <h:outputText value="#{empreendedor.experiencia}" />
                             </p:column>
                             <p:column headerText="Descrição da participação acionaria:">
-                                <h:outputText value="#{projetoBean.projeto.participacaoacionaria}" />
+                                <h:outputText id="revisao_partAcionaria" value="#{projetoBean.projeto.participacaoacionaria}" />
                             </p:column>          
                             <p:column headerText="Potencial de geração de emprego e renda: ">
-                                <h:outputText value="#{projetoBean.projeto.potencialEmprego}" />    
+                                <h:outputText id="revisao_potEmpRenda" value="#{projetoBean.projeto.potencialEmprego}" />    
                             </p:column>
                         </p:dataTable>
                     </div>
 
                     <div id="part_PlanoFinanc" class="corpoDoTexto">
                         <h1>PLANO FINANCEIRO</h1><br/>
-                        <p><h2>Fontes de receita: <h:outputText value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
+
+                        <p><h2>Fontes de receita: <h:outputText id="revisao_fontesReceitas" value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
+
+                        <p><h2>Estrutura de custos: <h:outputText id="revisao_estutCusto" value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
+
+                        <p><h2>Investimento Inícial: <h:outputText id="revisao_invsInicial" value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}" /></h2></p>
+
 
                         <div id="part_EstrutCusto">
 
-                            <p><h2>Estrutura de custos: <h:outputText value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
-
                             <h1>CUSTOS FIXOS</h1><br/>
-                            <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
+                            <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
                                 <p:column headerText="Descrição: ">
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
@@ -1121,7 +1136,7 @@
                             </p:dataTable>
 
                             <h1>CUSTOS VARIÁVEIS</h1><br/>
-                            <p:dataTable var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
+                            <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
                                 <p:column headerText="Descrição: ">
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
