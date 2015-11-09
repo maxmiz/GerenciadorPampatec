@@ -570,11 +570,11 @@ public class ProjetoBean implements Serializable {
             FLAG = FLAG + 1;
         }
         if (listaCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoFixo");
+            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
             FLAG = FLAG + 1;
         }
         if (listaCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:tabelaCustoVariavel");
+            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
             FLAG = FLAG + 1;
         }
 
