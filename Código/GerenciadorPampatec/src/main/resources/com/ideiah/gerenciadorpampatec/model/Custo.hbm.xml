@@ -19,5 +19,8 @@
     <property name="tipo" type="java.lang.Integer">
       <column name="tipo"/>
     </property>
+    <property name="projecao" type="java.lang.Float">
+      <column name="projecao" precision="12" scale="0"/>
+    </property>
   </class>
 </hibernate-mapping>

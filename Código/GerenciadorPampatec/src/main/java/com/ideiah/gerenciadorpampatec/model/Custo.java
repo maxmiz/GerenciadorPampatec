@@ -21,6 +21,7 @@ public class Custo  implements java.io.Serializable {
      private Planofinanceiro planofinanceiro;
      private String descricao;
      private Float total;
+     private Float projecao;
      private Integer tipo;
      public static final int CUSTO_FIXO = 0;
      public static final int CUSTO_VARIAVEL = 1;
@@ -76,6 +77,14 @@ public class Custo  implements java.io.Serializable {
 
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
+    }
+
+    public Float getProjecao() {
+        return projecao;
+    }
+
+    public void setProjecao(Float projecao) {
+        this.projecao = projecao;
     }
       
 }

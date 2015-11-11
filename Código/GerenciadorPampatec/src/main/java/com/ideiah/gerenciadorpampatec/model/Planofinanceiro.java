@@ -17,6 +17,8 @@ public class Planofinanceiro implements java.io.Serializable {
     private String investimentoInicial;
     private Set projetos = new HashSet(0);
     private Set<Custo> custo = new HashSet<>(0);
+    private Float valorTotalFixo;
+    private Float valorTotalVariavel;
 
     public Planofinanceiro() {
     }
@@ -88,6 +90,20 @@ public class Planofinanceiro implements java.io.Serializable {
         this.custo = custo;
     }
 
-   
+    public Float getValorTotalFixo() {
+        return valorTotalFixo;
+    }
+
+    public void setValorTotalFixo(Float valorTotalFixo) {
+        this.valorTotalFixo = valorTotalFixo;
+    }
+
+    public Float getValorTotalVariavel() {
+        return valorTotalVariavel;
+    }
+
+    public void setValorTotalVariavel(Float valorTotalVariavel) {
+        this.valorTotalVariavel = valorTotalVariavel;
+    }
 
 }
