@@ -647,8 +647,69 @@
                             <!-- Fim da quinta parte do formulário -->
 
                             <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
+                            <p:growl id="mensagensFeed" showDetail="true"/>
 
                             <div class="tab-pane fade" id="formParte06">
+
+
+
+                                <p:dataTable id="novaTabelaCustos" editable="true" var="custovariavel" value="#{projetoBean.listaCustoVariavel}">
+
+                                    <f:facet name="header">
+                                        <h:outputText value="Item de custo"/>
+                                    </f:facet>    
+
+                                    <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed form_revisao:revisao_custoVariavel" />
+                                    <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update="formulario_cadastro_projeto:mensagensFeed" />
+
+                                    <p:column headerText="Nome">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><p:outputLabel value="#{custovariavel.descricao}"></p:outputLabel></f:facet>
+
+                                            <f:facet name="input"><p:inputText value="#{custovariavel.descricao}" style="width:96%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    <p:column headerText="Valor">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><p:outputLabel value="#{custovariavel.valor}"></p:outputLabel></f:facet>
+                                            <f:facet name="input"><p:inputText value="#{custovariavel.valor}" style="width:96%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Projeção">
+                                        <p:outputLabel value="#{projetoBean.caularProjecaoCustoVariavel(custovariavel.valor)}"></p:outputLabel>
+                                    </p:column>
+
+                                    <p:column style="width:32px">
+                                        <p:rowEditor />
+                                    </p:column>
+
+                                </p:dataTable>
+                                <p:outputLabel value="VALOR TOTAL PARA PROJEÇÃO DE SEIS MÊSES = " style="width: 100%"></p:outputLabel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                 <div id="formularioParte06">
                                     <legend id="subTitulo">Plano de Financeiro</legend>

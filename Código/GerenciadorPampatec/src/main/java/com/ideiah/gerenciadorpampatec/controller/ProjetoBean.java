@@ -30,10 +30,13 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -880,4 +883,35 @@ public class ProjetoBean implements Serializable {
         System.out.println("PASSOU AQUI NO UPDATEEEEEEEEEEE");
     }
 
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg;
+        Custo custo = (Custo) event.getObject();
+        msg = new FacesMessage("Custo Editado", custo.getDescricao());
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+
+    }
+
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg;
+        Custo custo = (Custo) event.getObject();
+        msg = new FacesMessage("Custo Cancelado", custo.getDescricao());
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+
+        if (newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+        }
+    }
+
+    public String caularProjecaoCustoVariavel(float valor) {
+        valor = valor * 6;
+        String resultado = String.valueOf(valor);
+        return resultado;
+    }
 }
