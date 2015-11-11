@@ -5,130 +5,96 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import java.io.Serializable;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.io.Serializable;
 /**
- *
- * @author GUTO
+ * 
+ * @author Edison Jhonatan
+ * @since 10/11/15
  */
-public class ComentarioPlanoFinanceiro implements Serializable{
-    private String fontesReceita;
-    private String estruturaCusto;
-    private String investimentoInicial;
-    private String custosFixos;
-    private String custosVariaveis;
-    private int idcomentario_planofinanceiro;
-    private ComentarioProjeto comentarioProjeto;
+public class ComentarioPlanoFinanceiro implements java.io.Serializable {
+
+
+     private int idcomentarioplanofinanceiro;
+     private String fontesReceita;
+     private String estruturaCusto;
+     private String investimentoInicial;
+     private String custosfixos;
+     private String custosvariaveis;
+     private Set comentarioprojetos = new HashSet(0);
 
     public ComentarioPlanoFinanceiro() {
     }
 
-    public ComentarioPlanoFinanceiro(String fontesReceita, String estruturaCusto, String investimentoInicial, String custosFixos, String custosVariaveis, int idcomentario_planofinanceiro, ComentarioProjeto comentarioProjeto) {
-        this.fontesReceita = fontesReceita;
-        this.estruturaCusto = estruturaCusto;
-        this.investimentoInicial = investimentoInicial;
-        this.custosFixos = custosFixos;
-        this.custosVariaveis = custosVariaveis;
-        this.idcomentario_planofinanceiro = idcomentario_planofinanceiro;
-        this.comentarioProjeto = comentarioProjeto;
+	
+    public ComentarioPlanoFinanceiro(int idcomentarioplanofinanceiro) {
+        this.idcomentarioplanofinanceiro = idcomentarioplanofinanceiro;
     }
-
+    public ComentarioPlanoFinanceiro(int idcomentarioplanofinanceiro, String fontesReceita, String estruturaCusto, String investimentoInicial, String custosfixos, String custosvariaveis, Set comentarioprojetos) {
+       this.idcomentarioplanofinanceiro = idcomentarioplanofinanceiro;
+       this.fontesReceita = fontesReceita;
+       this.estruturaCusto = estruturaCusto;
+       this.investimentoInicial = investimentoInicial;
+       this.custosfixos = custosfixos;
+       this.custosvariaveis = custosvariaveis;
+       this.comentarioprojetos = comentarioprojetos;
+    }
+   
+    public int getIdcomentarioplanofinanceiro() {
+        return this.idcomentarioplanofinanceiro;
+    }
     
-    /**
-     * @return the fontesReceita
-     */
-    public String getFontesReceita() {
-        return fontesReceita;
+    public void setIdcomentarioplanofinanceiro(int idcomentarioplanofinanceiro) {
+        this.idcomentarioplanofinanceiro = idcomentarioplanofinanceiro;
     }
-
-    /**
-     * @param fontesReceita the fontesReceita to set
-     */
+    public String getFontesReceita() {
+        return this.fontesReceita;
+    }
+    
     public void setFontesReceita(String fontesReceita) {
         this.fontesReceita = fontesReceita;
     }
-
-    /**
-     * @return the estruturaCusto
-     */
     public String getEstruturaCusto() {
-        return estruturaCusto;
+        return this.estruturaCusto;
     }
-
-    /**
-     * @param estruturaCusto the estruturaCusto to set
-     */
+    
     public void setEstruturaCusto(String estruturaCusto) {
         this.estruturaCusto = estruturaCusto;
     }
-
-    /**
-     * @return the investimentoInicial
-     */
     public String getInvestimentoInicial() {
-        return investimentoInicial;
+        return this.investimentoInicial;
     }
-
-    /**
-     * @param investimentoInicial the investimentoInicial to set
-     */
+    
     public void setInvestimentoInicial(String investimentoInicial) {
         this.investimentoInicial = investimentoInicial;
     }
-
-    /**
-     * @return the custosFixos
-     */
-    public String getCustosFixos() {
-        return custosFixos;
+    public String getCustosfixos() {
+        return this.custosfixos;
+    }
+    
+    public void setCustosfixos(String custosfixos) {
+        this.custosfixos = custosfixos;
+    }
+    public String getCustosvariaveis() {
+        return this.custosvariaveis;
+    }
+    
+    public void setCustosvariaveis(String custosvariaveis) {
+        this.custosvariaveis = custosvariaveis;
+    }
+    public Set getComentarioprojetos() {
+        return this.comentarioprojetos;
+    }
+    
+    public void setComentarioprojetos(Set comentarioprojetos) {
+        this.comentarioprojetos = comentarioprojetos;
     }
 
-    /**
-     * @param custosFixos the custosFixos to set
-     */
-    public void setCustosFixos(String custosFixos) {
-        this.custosFixos = custosFixos;
-    }
 
-    /**
-     * @return the custosVariaveis
-     */
-    public String getCustosVariaveis() {
-        return custosVariaveis;
-    }
 
-    /**
-     * @param custosVariaveis the custosVariaveis to set
-     */
-    public void setCustosVariaveis(String custosVariaveis) {
-        this.custosVariaveis = custosVariaveis;
-    }
 
-    /**
-     * @return the idcomentario_planofinanceiro
-     */
-    public int getIdcomentario_planofinanceiro() {
-        return idcomentario_planofinanceiro;
-    }
-
-    /**
-     * @param idcomentario_planofinanceiro the idcomentario_planofinanceiro to set
-     */
-    public void setIdcomentario_planofinanceiro(int idcomentario_planofinanceiro) {
-        this.idcomentario_planofinanceiro = idcomentario_planofinanceiro;
-    }
-
-    /**
-     * @return the comentarioProjeto
-     */
-    public ComentarioProjeto getComentarioProjeto() {
-        return comentarioProjeto;
-    }
-
-    /**
-     * @param comentarioProjeto the comentarioProjeto to set
-     */
-    public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
-        this.comentarioProjeto = comentarioProjeto;
-    }
 }
+
+

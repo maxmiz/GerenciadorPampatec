@@ -6,179 +6,122 @@
 package com.ideiah.gerenciadorpampatec.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- *
- * @author GUTO
+ * 
+ * @author Edison Jhonatan
+ * @since 10/11/15
  */
-public class ComentarioProdutoOuServico implements Serializable {
+public class ComentarioProdutoOuServico  implements java.io.Serializable {
 
-    private String estagioEvolucao;
-    private String tecnologiaProcessos;
-    private String potencialInovacaoTecnologica;
-    private String aplicacoes;
-    private String dificuldadesEsperadas;
-    private String interacaoEmpresauniversidade;
-    private String interacaoEmpresaComunidadeGoverno;
-    private String infraestrutura;
-    private int idcomentario_produtoouservico;
-    private ComentarioProjeto comentarioProjeto;
+
+     private int idcomentarioprodutoouservico;
+     private String estagioEvolucao;
+     private String tecnologiaProcessos;
+     private String potencialInovacaoTecnologica;
+     private String aplicacoes;
+     private String dificuldadesEsperadas;
+     private String interacaoEmpresaUniversidade;
+     private String interacaoEmpresaComunidadeGoverno;
+     private String infraestrutura;
+     private Set comentarioprojetos = new HashSet(0);
 
     public ComentarioProdutoOuServico() {
     }
 
-    public ComentarioProdutoOuServico(String estagioEvolucao, String tecnologiaProcessos, String potencialInovacaoTecnologica, String aplicacoes, String dificuldadesEsperadas, String interacaoEmpresauniversidade, String interacaoEmpresaComunidadeGoverno, String infraestrutura, int idcomentario_produtoouservico, ComentarioProjeto comentarioProjeto) {
-        this.estagioEvolucao = estagioEvolucao;
-        this.tecnologiaProcessos = tecnologiaProcessos;
-        this.potencialInovacaoTecnologica = potencialInovacaoTecnologica;
-        this.aplicacoes = aplicacoes;
-        this.dificuldadesEsperadas = dificuldadesEsperadas;
-        this.interacaoEmpresauniversidade = interacaoEmpresauniversidade;
-        this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
-        this.infraestrutura = infraestrutura;
-        this.idcomentario_produtoouservico = idcomentario_produtoouservico;
-        this.comentarioProjeto = comentarioProjeto;
+	
+    public ComentarioProdutoOuServico(int idcomentarioprodutoouservico) {
+        this.idcomentarioprodutoouservico = idcomentarioprodutoouservico;
     }
-
+    public ComentarioProdutoOuServico(int idcomentarioprodutoouservico, String estagioEvolucao, String tecnologiaProcessos, String potencialInovacaoTecnologica, String aplicacoes, String dificuldadesEsperadas, String interacaoEmpresaUniversidade, String interacaoEmpresaComunidadeGoverno, String infraestrutura, Set comentarioprojetos) {
+       this.idcomentarioprodutoouservico = idcomentarioprodutoouservico;
+       this.estagioEvolucao = estagioEvolucao;
+       this.tecnologiaProcessos = tecnologiaProcessos;
+       this.potencialInovacaoTecnologica = potencialInovacaoTecnologica;
+       this.aplicacoes = aplicacoes;
+       this.dificuldadesEsperadas = dificuldadesEsperadas;
+       this.interacaoEmpresaUniversidade = interacaoEmpresaUniversidade;
+       this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
+       this.infraestrutura = infraestrutura;
+       this.comentarioprojetos = comentarioprojetos;
+    }
+   
+    public int getIdcomentarioprodutoouservico() {
+        return this.idcomentarioprodutoouservico;
+    }
     
-    /**
-     * @return the estagioEvolucao
-     */
-    public String getEstagioEvolucao() {
-        return estagioEvolucao;
+    public void setIdcomentarioprodutoouservico(int idcomentarioprodutoouservico) {
+        this.idcomentarioprodutoouservico = idcomentarioprodutoouservico;
     }
-
-    /**
-     * @param estagioEvolucao the estagioEvolucao to set
-     */
+    public String getEstagioEvolucao() {
+        return this.estagioEvolucao;
+    }
+    
     public void setEstagioEvolucao(String estagioEvolucao) {
         this.estagioEvolucao = estagioEvolucao;
     }
-
-    /**
-     * @return the tecnologiaProcessos
-     */
     public String getTecnologiaProcessos() {
-        return tecnologiaProcessos;
+        return this.tecnologiaProcessos;
     }
-
-    /**
-     * @param tecnologiaProcessos the tecnologiaProcessos to set
-     */
+    
     public void setTecnologiaProcessos(String tecnologiaProcessos) {
         this.tecnologiaProcessos = tecnologiaProcessos;
     }
-
-    /**
-     * @return the potencialInovacaoTecnologica
-     */
     public String getPotencialInovacaoTecnologica() {
-        return potencialInovacaoTecnologica;
+        return this.potencialInovacaoTecnologica;
     }
-
-    /**
-     * @param potencialInovacaoTecnologica the potencialInovacaoTecnologica to set
-     */
+    
     public void setPotencialInovacaoTecnologica(String potencialInovacaoTecnologica) {
         this.potencialInovacaoTecnologica = potencialInovacaoTecnologica;
     }
-
-    /**
-     * @return the aplicacoes
-     */
     public String getAplicacoes() {
-        return aplicacoes;
+        return this.aplicacoes;
     }
-
-    /**
-     * @param aplicacoes the aplicacoes to set
-     */
+    
     public void setAplicacoes(String aplicacoes) {
         this.aplicacoes = aplicacoes;
     }
-
-    /**
-     * @return the dificuldadesEsperadas
-     */
     public String getDificuldadesEsperadas() {
-        return dificuldadesEsperadas;
+        return this.dificuldadesEsperadas;
     }
-
-    /**
-     * @param dificuldadesEsperadas the dificuldadesEsperadas to set
-     */
+    
     public void setDificuldadesEsperadas(String dificuldadesEsperadas) {
         this.dificuldadesEsperadas = dificuldadesEsperadas;
     }
-
-    /**
-     * @return the interacaoEmpresauniversidade
-     */
-    public String getInteracaoEmpresauniversidade() {
-        return interacaoEmpresauniversidade;
+    public String getInteracaoEmpresaUniversidade() {
+        return this.interacaoEmpresaUniversidade;
     }
-
-    /**
-     * @param interacaoEmpresauniversidade the interacaoEmpresauniversidade to set
-     */
-    public void setInteracaoEmpresauniversidade(String interacaoEmpresauniversidade) {
-        this.interacaoEmpresauniversidade = interacaoEmpresauniversidade;
+    
+    public void setInteracaoEmpresaUniversidade(String interacaoEmpresaUniversidade) {
+        this.interacaoEmpresaUniversidade = interacaoEmpresaUniversidade;
     }
-
-    /**
-     * @return the interacaoEmpresaComunidadeGoverno
-     */
     public String getInteracaoEmpresaComunidadeGoverno() {
-        return interacaoEmpresaComunidadeGoverno;
+        return this.interacaoEmpresaComunidadeGoverno;
     }
-
-    /**
-     * @param interacaoEmpresaComunidadeGoverno the interacaoEmpresaComunidadeGoverno to set
-     */
+    
     public void setInteracaoEmpresaComunidadeGoverno(String interacaoEmpresaComunidadeGoverno) {
         this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
     }
-
-    /**
-     * @return the infraestrutura
-     */
     public String getInfraestrutura() {
-        return infraestrutura;
+        return this.infraestrutura;
     }
-
-    /**
-     * @param infraestrutura the infraestrutura to set
-     */
+    
     public void setInfraestrutura(String infraestrutura) {
         this.infraestrutura = infraestrutura;
     }
-
-    /**
-     * @return the idcomentario_produtoouservico
-     */
-    public int getIdcomentario_produtoouservico() {
-        return idcomentario_produtoouservico;
+    public Set getComentarioprojetos() {
+        return this.comentarioprojetos;
+    }
+    
+    public void setComentarioprojetos(Set comentarioprojetos) {
+        this.comentarioprojetos = comentarioprojetos;
     }
 
-    /**
-     * @param idcomentario_produtoouservico the idcomentario_produtoouservico to set
-     */
-    public void setIdcomentario_produtoouservico(int idcomentario_produtoouservico) {
-        this.idcomentario_produtoouservico = idcomentario_produtoouservico;
-    }
 
-    /**
-     * @return the comentarioProjeto
-     */
-    public ComentarioProjeto getComentarioProjeto() {
-        return comentarioProjeto;
-    }
 
-    /**
-     * @param comentarioProjeto the comentarioProjeto to set
-     */
-    public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
-        this.comentarioProjeto = comentarioProjeto;
-    }
 
 }
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.Empreendedor" table="empreendedor" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="usuarioIdUsuario" type="int">
+            <column name="usuario_id_usuario" />
+            <generator class="foreign">
+                <param name="property">usuario</param>
+            </generator>
+        </id>
+        <one-to-one name="usuario" class="model.Usuario" constrained="true"></one-to-one>
+        <property name="formacao" type="string">
+            <column name="formacao" length="65535" />
+        </property>
+        <property name="experiencia" type="string">
+            <column name="experiencia" length="65535" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="100" />
+        </property>
+        <property name="rua" type="string">
+            <column name="rua" length="100" />
+        </property>
+        <property name="numero" type="java.lang.Integer">
+            <column name="numero" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="45" />
+        </property>
+        <property name="idUnico" type="string">
+            <column name="idUnico" length="300" />
+        </property>
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empreendedorCorrespondente" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
+        </set>
+    </class>
+</hibernate-mapping>

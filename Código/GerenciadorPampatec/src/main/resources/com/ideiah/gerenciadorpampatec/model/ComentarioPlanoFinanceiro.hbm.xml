@@ -1,28 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" table="comentario_planofinanceiro">
-         <id name="idcomentario_planofinanceiro" type="java.lang.Integer">
-            <column name="idcomentario_planofinanceiro" />
-            <generator class="identity" />        
+    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" table="comentarioplanofinanceiro" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idcomentarioplanofinanceiro" type="int">
+            <column name="idcomentarioplanofinanceiro" />
+            <generator class="assigned" />
         </id>
         <property name="fontesReceita" type="string">
-            <column name="fontesReceita" length="1000" />
+            <column name="fontesReceita" length="65535" />
         </property>
         <property name="estruturaCusto" type="string">
-            <column name="estruturaCusto" length="1000" />
+            <column name="estruturaCusto" length="65535" />
         </property>
         <property name="investimentoInicial" type="string">
-            <column name="investimentoInicial" length="1000" />
+            <column name="investimentoInicial" length="65535" />
         </property>
-        <property name="custosFixos" type="string">
-            <column name="custosFixos" length="1000" />
+        <property name="custosfixos" type="string">
+            <column name="custosfixos" length="65535" />
         </property>
-        <property name="custosVariaveis" type="string">
-            <column name="custosVariaveis" length="1000" />
+        <property name="custosvariaveis" type="string">
+            <column name="custosvariaveis" length="65535" />
         </property>
-        <one-to-one name="comentarioProjeto" class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto"
-                    cascade="save-update">
-        </one-to-one>
+        <set name="comentarioprojetos" table="comentarioprojeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comentarioplanofinanceiro_idcomentarioplanofinanceiro" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" />
+        </set>
     </class>
 </hibernate-mapping>

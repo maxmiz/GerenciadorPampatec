@@ -1,37 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" table="comentario_produtoouservico">
-        <id name="idcomentario_produtoouservico" type="java.lang.Integer">
-            <column name="idcomentario_produtoouservico" />
-            <generator class="identity" />        
+    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" table="comentarioprodutoouservico" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idcomentarioprodutoouservico" type="int">
+            <column name="idcomentarioprodutoouservico" />
+            <generator class="assigned" />
         </id>
         <property name="estagioEvolucao" type="string">
-            <column name="estagioEvolucao" length="1000" />
+            <column name="estagioEvolucao" length="300" />
         </property>
         <property name="tecnologiaProcessos" type="string">
-            <column name="tecnologiaProcessos" length="1000" />
+            <column name="tecnologiaProcessos" length="65535" />
         </property>
         <property name="potencialInovacaoTecnologica" type="string">
-            <column name="potencialInovacaoTecnologica" length="1000" />
+            <column name="potencialInovacaoTecnologica" length="65535" />
         </property>
         <property name="aplicacoes" type="string">
-            <column name="aplicacoes" length="1000" />
+            <column name="aplicacoes" length="65535" />
         </property>
         <property name="dificuldadesEsperadas" type="string">
-            <column name="dificuldadesEsperadas" length="1000" />
+            <column name="dificuldadesEsperadas" length="65535" />
         </property>
-        <property name="interacaoEmpresauniversidade" type="string">
-            <column name="interacaoEmpresauniversidade" length="1000" />
+        <property name="interacaoEmpresaUniversidade" type="string">
+            <column name="interacaoEmpresaUniversidade" length="65535" />
         </property>
         <property name="interacaoEmpresaComunidadeGoverno" type="string">
-            <column name="interacaoEmpresaComunidadeGoverno" length="1000" />
+            <column name="interacaoEmpresaComunidadeGoverno" length="65535" />
         </property>
         <property name="infraestrutura" type="string">
-            <column name="infraestrutura" length="1000" />
+            <column name="infraestrutura" length="65535" />
         </property>
-        <one-to-one name="comentarioProjeto" class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto"
-                    cascade="save-update">
-        </one-to-one>
+        <set name="comentarioprojetos" table="comentarioprojeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comentarioprodutoouservico_idcomentarioprodutoouservico" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" />
+        </set>
     </class>
 </hibernate-mapping>
