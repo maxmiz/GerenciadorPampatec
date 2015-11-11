@@ -1,31 +1,37 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/08/2015 13:49:29 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" table="planofinanceiro" catalog="gerenciadorpampatec" optimistic-lock="version">
-        <id name="idPlanoFinanceiro" type="int">
+        <id name="idPlanoFinanceiro" type="java.lang.Integer">
             <column name="idPlanoFinanceiro" />
             <generator class="identity" />
         </id>
         <property name="fontesReceita" type="string">
-            <column name="fontesReceita" length="1000" />
+            <column name="fontesReceita" length="65535" />
         </property>
         <property name="estruturaCusto" type="string">
-            <column name="estruturaCusto" length="1000" />
+            <column name="estruturaCusto" length="65535" />
         </property>
         <property name="investimentoInicial" type="string">
-            <column name="investimentoInicial" length="1000" />
+            <column name="investimentoInicial" length="65535" />
         </property>
-        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
+        <property name="valorTotalFixo" type="java.lang.Float">
+            <column name="valorTotalFixo" precision="12" scale="0"/>
+        </property>
+        <property name="valorTotalVariavel" type="java.lang.Float">
+            <column name="valorTotalVariavel" precision="12" scale="0"/>
+        </property>
+        <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PlanoFinanceiro_idPlanoFinanceiro" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>
-        <set name="custo" table="custo" inverse="true" lazy="false" fetch="select" cascade="all">
+        <set name="custo" table="custo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="planofinanceiro_idPlanoFinanceiro" />
+                <column name="planofinanceiro_idPlanoFinanceiro" not-null="true" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Custo" />
         </set>
