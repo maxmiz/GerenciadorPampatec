@@ -19,23 +19,5 @@
     <property name="tipo" type="java.lang.Integer">
       <column name="tipo"/>
     </property>
-    <property name="valorMes1" type="java.lang.Float">
-      <column name="valor_mes1" precision="12" scale="0"/>
-    </property>
-    <property name="valorMes2" type="java.lang.Float">
-      <column name="valor_mes2" precision="12" scale="0"/>
-    </property>
-    <property name="valorMes3" type="java.lang.Float">
-      <column name="valor_mes3" precision="12" scale="0"/>
-    </property>
-    <property name="valorMes4" type="java.lang.Float">
-      <column name="valor_mes4" precision="12" scale="0"/>
-    </property>
-    <property name="valorMes5" type="java.lang.Float">
-      <column name="valor_mes5" precision="12" scale="0"/>
-    </property>
-    <property name="valorMes6" type="java.lang.Float">
-      <column name="valor_mes6" precision="12" scale="0"/>
-    </property>
   </class>
 </hibernate-mapping>

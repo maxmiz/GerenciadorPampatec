@@ -19,5 +19,11 @@
     <property name="status" type="java.lang.Integer">
       <column name="status"/>
     </property>
+    <property name="dataUltimaAlteracao" type="timestamp">
+      <column name="data_ultima_alteracao"/>
+    </property>
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento" fetch="select" name="GerenteRelacionamento">
+      <column name="gerente_relacionamento_idgerente_relacionamento"/>
+    </many-to-one>
   </class>
 </hibernate-mapping>

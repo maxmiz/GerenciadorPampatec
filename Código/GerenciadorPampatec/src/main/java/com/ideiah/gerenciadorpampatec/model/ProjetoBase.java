@@ -21,6 +21,8 @@ public class ProjetoBase  implements java.io.Serializable {
      private Projeto projeto;
      private Date dataAvaliacao;
      private Integer status;
+     private Date dataUltimaAlteracao;
+     private GerenteRelacionamento gerenteRelacionamento;
 
     public ProjetoBase() {
     }
@@ -73,6 +75,22 @@ public class ProjetoBase  implements java.io.Serializable {
     
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getDataUltimaAlteracao() {
+        return dataUltimaAlteracao;
+    }
+
+    public void setDataUltimaAlteracao(Date dataUltimaAlteracao) {
+        this.dataUltimaAlteracao = dataUltimaAlteracao;
+    }
+
+    public GerenteRelacionamento getGerenteRelacionamento() {
+        return gerenteRelacionamento;
+    }
+
+    public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
+        this.gerenteRelacionamento = gerenteRelacionamento;
     }
 
 
