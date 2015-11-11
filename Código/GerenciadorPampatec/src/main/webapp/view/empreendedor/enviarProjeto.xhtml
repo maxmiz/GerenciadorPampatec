@@ -671,13 +671,13 @@
                                     </p:column>
                                     <p:column headerText="Valor">
                                         <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{custovariavel.valor}"></p:outputLabel></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{custovariavel.valor}" style="width:96%"/></f:facet>
+                                            <f:facet name="output"><p:outputLabel value="#{custovariavel.total}"></p:outputLabel></f:facet>
+                                            <f:facet name="input"><p:inputText value="#{custovariavel.total}" style="width:96%"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
                                     <p:column headerText="Projeção">
-                                        <p:outputLabel value="#{projetoBean.caularProjecaoCustoVariavel(custovariavel.valor)}"></p:outputLabel>
+                                        <p:outputLabel value="#{projetoBean.caularProjecaoCustoVariavel(custovariavel.total)}"></p:outputLabel>
                                     </p:column>
 
                                     <p:column style="width:32px">
@@ -803,7 +803,7 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
-                                                <h:outputText value="#{custofixo.valor}"/>
+                                                <h:outputText value="#{custofixo.total}"/>
 
                                             </h:column>
 
@@ -882,7 +882,7 @@
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
 
-                                                <h:outputText value="#{custovariavel.valor}"/>
+                                                <h:outputText value="#{custovariavel.total}"/>
 
                                             </h:column>
                                             <h:column>
@@ -1172,7 +1172,7 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.valor}" />
+                                    <h:outputText value="#{custo.total}" />
                                 </p:column>
 
                             </p:dataTable>
@@ -1183,7 +1183,7 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.valor}" />
+                                    <h:outputText value="#{custo.total}" />
                                 </p:column>
 
                             </p:dataTable>
