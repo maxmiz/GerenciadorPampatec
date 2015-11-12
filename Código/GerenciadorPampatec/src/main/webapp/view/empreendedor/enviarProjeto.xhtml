@@ -677,7 +677,8 @@
                                     </p:column>
 
                                     <p:column headerText="Projeção">
-                                        <p:outputLabel value="#{projetoBean.caularProjecaoCustoVariavel(custovariavel.total)}"></p:outputLabel>
+                                        <p:outputLabel value="#{projetoBean.caucularProjecaoCustoVariavel(custovariavel)}"></p:outputLabel>
+
                                     </p:column>
 
                                     <p:column style="width:32px">
@@ -685,7 +686,7 @@
                                     </p:column>
 
                                 </p:dataTable>
-                                <p:outputLabel value="VALOR TOTAL PARA PROJEÇÃO DE SEIS MÊSES = " style="width: 100%"></p:outputLabel>
+                                <p:outputLabel value="VALOR TOTAL PARA PROJEÇÃO DE SEIS MÊSES = #{projetoBean.somatorioVariavel}" style="width: 100%"></p:outputLabel>
 
 
 

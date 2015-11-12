@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -26,6 +27,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -67,6 +69,7 @@ public class ProjetoBean implements Serializable {
     private List<Custo> listaCustoVariavel;
     private Custo custoFixoSelecionado;
     private Custo custoVariavelSelecionado;
+    private float somatorioVariavel;
 
     public ProjetoBean() {
         salvou = false;
@@ -909,9 +912,42 @@ public class ProjetoBean implements Serializable {
         }
     }
 
-    public String caularProjecaoCustoVariavel(float valor) {
-        valor = valor * 6;
-        String resultado = String.valueOf(valor);
-        return resultado;
+    public float caucularProjecaoCustoVariavel(Custo custo) {
+
+        float valor = custo.getTotal() * 6;
+        custo.setProjecao(valor);
+
+        ProjetoDao dao = new ProjetoDao();
+
+        custo.setProjecao(valor);
+        dao.update(custo);
+        salvarProjeto();
+
+        return valor;
     }
+
+    public void caucularValorColunaCusto() {
+
+        for (int i = 0; i < listaCustoVariavel.size(); i++) {
+            this.setSomatorioVariavel(somatorioVariavel + listaCustoVariavel.get(i).getProjecao());
+
+        }
+        projeto.getPlanofinanceiro().setValorTotalVariavel(somatorioVariavel);
+
+    }
+
+    /**
+     * @return the somatorioVariavel
+     */
+    public float getSomatorioVariavel() {
+        return somatorioVariavel;
+    }
+
+    /**
+     * @param somatorioVariavel the somatorioVariavel to set
+     */
+    public void setSomatorioVariavel(float somatorioVariavel) {
+        this.somatorioVariavel = somatorioVariavel;
+    }
+
 }
