@@ -13,6 +13,7 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -169,6 +170,15 @@ public class ProjetoBean implements Serializable {
         atualizarProjetoSessao();
         salvou = true;
 
+    }
+    
+    public void salvarProjetoBase(Projeto projeto){
+        ProjetoBase projetoBase= new ProjetoBase(projeto);
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
+        empreendedorSession.salvarProjetBase(projetoBase);
+        projeto.setIdProjeto(null);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        salvarProjeto();
     }
 
     public void salvarProjetoeSair() {
