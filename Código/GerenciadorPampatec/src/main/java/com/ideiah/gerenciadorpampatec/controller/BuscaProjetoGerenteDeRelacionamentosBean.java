@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.ProjetoBaseDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
@@ -28,7 +29,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projeto = new ProjetoDao();
-//        listaProjetos = buscaProjetoPorStatus();
+        listaProjetos = buscaProjetoBasePorStatus();
     }
     
     public void teste(){
@@ -48,14 +49,14 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         return projetoSelecionado;
     }
     
-    
 
-//    /**
-//     *
-//     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
-//     */
-//    public ArrayList<Projeto> buscaProjetoPorStatus() {
-//        return Projeto.buscarProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
-//
-//    }
+    /**
+     *
+     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
+     */
+    public ArrayList<ProjetoBase> buscaProjetoBasePorStatus() {
+        ProjetoBaseDao dao = new ProjetoBaseDao();
+        return dao.buscar();
+
+    }
 }

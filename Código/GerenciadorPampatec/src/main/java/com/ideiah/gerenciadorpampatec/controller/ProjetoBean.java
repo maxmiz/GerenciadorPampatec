@@ -579,14 +579,14 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
-        if (listaCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
-            FLAG = FLAG + 1;
-        }
-        if (listaCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
-            FLAG = FLAG + 1;
-        }
+//        if (listaCustoFixo.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
+//            FLAG = FLAG + 1;
+//        }
+//        if (listaCustoVariavel.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
+//            FLAG = FLAG + 1;
+//        }
 
         return FLAG;
     }
