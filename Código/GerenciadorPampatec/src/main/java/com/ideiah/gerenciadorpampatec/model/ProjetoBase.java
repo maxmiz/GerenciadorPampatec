@@ -28,7 +28,10 @@ public class ProjetoBase implements java.io.Serializable {
 
     public ProjetoBase() {
     }
-
+    
+    public ProjetoBase(Projeto projeto){
+        this.projeto = projeto;
+    }
     public ProjetoBase(int idprojetobase, ComentarioProjeto comentarioprojeto, Projeto projeto) {
         this.idprojetobase = idprojetobase;
         this.comentarioprojeto = comentarioprojeto;
@@ -42,7 +45,6 @@ public class ProjetoBase implements java.io.Serializable {
         this.dataAvaliacao = dataAvaliacao;
         this.status = status;
     }
-
     public int getIdprojetobase() {
         return this.idprojetobase;
     }

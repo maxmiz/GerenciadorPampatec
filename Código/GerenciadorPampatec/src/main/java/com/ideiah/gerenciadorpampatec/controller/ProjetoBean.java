@@ -172,6 +172,15 @@ public class ProjetoBean implements Serializable {
         salvou = true;
 
     }
+    
+    public void salvarProjetoBase(Projeto projeto){
+        ProjetoBase projetoBase= new ProjetoBase(projeto);
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
+        empreendedorSession.salvarProjetBase(projetoBase);
+        projeto.setIdProjeto(null);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        salvarProjeto();
+    }
 
     public void salvarProjetoeSair() {
         salvarProjeto();
