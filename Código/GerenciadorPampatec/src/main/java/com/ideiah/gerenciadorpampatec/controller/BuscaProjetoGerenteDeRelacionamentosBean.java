@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -21,33 +22,40 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
-    private ArrayList<Projeto> listaProjetos;
+    private ArrayList<ProjetoBase> listaProjetos;
     private Projeto projetoSelecionado;
     private ProjetoDao projeto;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projeto = new ProjetoDao();
-        listaProjetos = buscaProjetoPorStatus();
+//        listaProjetos = buscaProjetoPorStatus();
+    }
+    
+    public void teste(){
+//        projetoBase = new ProjetoBaseDao();
+//        listaProjetosBase = buscaProjetosBase();
     }
 
-    public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
+    public void setListaProjetos(ArrayList<ProjetoBase> listaProjetos) {
         this.listaProjetos = listaProjetos;
     }
 
-    public ArrayList<Projeto> getListaProjetos() {
+    public ArrayList<ProjetoBase> getListaProjetos() {
         return listaProjetos;
     }
     
     public Projeto getProjetoSelecionado() {
         return projetoSelecionado;
     }
+    
+    
 
-    /**
-     *
-     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
-     */
-    public ArrayList<Projeto> buscaProjetoPorStatus() {
-        return Projeto.buscarProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
-
-    }
+//    /**
+//     *
+//     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
+//     */
+//    public ArrayList<Projeto> buscaProjetoPorStatus() {
+//        return Projeto.buscarProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
+//
+//    }
 }

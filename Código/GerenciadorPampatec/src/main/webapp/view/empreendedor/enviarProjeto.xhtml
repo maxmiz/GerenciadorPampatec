@@ -742,7 +742,8 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
-                                                <h:outputText value="#{custofixo.valor}"/>
+                                                <h:outputText value=""/>
+                                                <!-- (custofixo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
 
                                             </h:column>
 
@@ -821,7 +822,9 @@
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
 
-                                                <h:outputText value="#{custovariavel.valor}"/>
+                                                <h:outputText value=""/>
+                                                <!-- (custovariavel.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
 
                                             </h:column>
                                             <h:column>
@@ -1111,9 +1114,10 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.valor}" />
-                                </p:column>
+                                    <h:outputText value="" />
+                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
 
+                                </p:column>
                             </p:dataTable>
 
                             <h1>CUSTOS VARIÁVEIS</h1><br/>
@@ -1122,7 +1126,9 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.valor}" />
+                                    <h:outputText value="" />
+                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
                                 </p:column>
 
                             </p:dataTable>
