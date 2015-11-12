@@ -106,7 +106,8 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
 
-                            <p:dataTable id="singleDT" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                            <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Não há planos de negócio para serem avaliados" value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                                <p:poll update="tabelaDeNegocios"/>
 
                                 <f:facet name="header">
                                     Tabela de Planos de Negócio
@@ -120,16 +121,14 @@
                                     <h:outputText value="#{projeto.dataCriacao}" />
                                 </p:column>
 
-                                <!--                                <p:column headerText="Status" style="width:150px;text-align: center">
-                                                                    
-                                                                </p:column>-->
-
                                 <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                     <div align="center">
                                         <div align="center">
-                                            <p:commandButton icon="fa fa-edit" styleClass="btn-primary" value="Avaliar" title="Avaliar Plano de Negócio" >
-                                                <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoGerenteDeRelacionamentosBean.projetoSelecionado}"/>
-                                            </p:commandButton>
+                                            <h:commandButton  class="btn btn-default" value="Avaliar" disabled="#{projetoBase.getStatus == 2}">
+                                                <f:ajax execute="tabelaDeNegocios" listener="#{projetoBean.atualizaStatusProjetoBase(projeto)}" 
+                                                        event="click"></f:ajax>
+                                            </h:commandButton>
+
                                         </div>
                                     </div>
                                 </p:column>
@@ -142,7 +141,6 @@
             </h:form>
 
             <!-- Fim da lista de planos de negócio -->
-
 
 
         </h:form>

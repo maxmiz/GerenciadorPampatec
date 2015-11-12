@@ -14,6 +14,7 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -54,6 +55,7 @@ public class ProjetoBean implements Serializable {
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
+    private ProjetoBase projetoBase;
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
@@ -172,6 +174,15 @@ public class ProjetoBean implements Serializable {
         atualizarProjetoSessao();
         salvou = true;
 
+    }
+    
+    public void salvarProjetoBase(Projeto projeto){
+        ProjetoBase projetoBase= new ProjetoBase(projeto);
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
+        empreendedorSession.salvarProjetBase(projetoBase);
+        projeto.setIdProjeto(null);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        salvarProjeto();
     }
 
     public void salvarProjetoeSair() {
@@ -868,6 +879,19 @@ public class ProjetoBean implements Serializable {
     public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+    }
+    
+    /**
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja sendo avaliado
+     * ou PENDENTE caso a avaliação seja interrompida
+     * @param projeto
+     */
+    public void atualizaStatusProjetoBase(ProjetoBase projeto) {
+        if (projeto.getStatus() == 2) {
+            projeto.setStatus(1);
+        } else {
+            projeto.setStatus(2);
+        }
     }
 
     /**

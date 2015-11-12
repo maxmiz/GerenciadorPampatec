@@ -689,29 +689,6 @@
                                 <p:outputLabel value="VALOR TOTAL PARA PROJEÇÃO DE SEIS MÊSES = #{projetoBean.somatorioVariavel}" style="width: 100%"></p:outputLabel>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <div id="formularioParte06">
                                     <legend id="subTitulo">Plano de Financeiro</legend>
 
@@ -804,7 +781,9 @@
                                                 <f:facet name="header">
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
-                                                <h:outputText value="#{custofixo.total}"/>
+                                                <h:outputText value=""/>
+                                                <!-- (custofixo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
 
                                             </h:column>
 
@@ -883,7 +862,9 @@
                                                     <h:outputText value="Valor"/>
                                                 </f:facet>
 
-                                                <h:outputText value="#{custovariavel.total}"/>
+                                                <h:outputText value=""/>
+                                                <!-- (custovariavel.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
 
                                             </h:column>
                                             <h:column>
@@ -1000,7 +981,7 @@
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
                         <div id="formularioParte01">
-                            <legend id="subTitulo" >Submissão de Plano de Negócio</legend>                                
+                            <legend id="subTitulo">Submissão de Plano de Negócio</legend>                                
 
                             <div class="well">
                                 <a class="text-danger"><strong>Atenção</strong></a>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
@@ -1173,9 +1154,12 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.total}" />
-                                </p:column>
+                                    
+                                    <h:outputText value="" />
+                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
 
+
+                                </p:column>
                             </p:dataTable>
 
                             <h1>CUSTOS VARIÁVEIS</h1><br/>
@@ -1184,7 +1168,10 @@
                                     <h:outputText value="#{custo.descricao}" />
                                 </p:column>
                                 <p:column headerText="Valor: ">
-                                    <h:outputText value="#{custo.total}" />
+                                    
+                                    <h:outputText value="" />
+                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
                                 </p:column>
 
                             </p:dataTable>
