@@ -616,8 +616,8 @@ public class ProjetoBean implements Serializable {
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
+                        salvarProjetoBase(projeto);
                         System.out.println("status enviado");
-                        salvarProjeto();
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
