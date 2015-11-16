@@ -177,9 +177,9 @@ public class ProjetoBean implements Serializable {
     }
     
     public void salvarProjetoBase(Projeto projeto){
-        ProjetoBase projetoBase= new ProjetoBase(projeto);
         projeto.setStatus(Projeto.LINHA_DE_BASE);
-        empreendedorSession.salvarProjetBase(projetoBase);
+        ProjetoBase projetoBase= new ProjetoBase(projeto);
+        empreendedorSession.salvarProjetoBase(projetoBase);
         projeto.setIdProjeto(null);
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
         salvarProjeto();
@@ -474,6 +474,7 @@ public class ProjetoBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }

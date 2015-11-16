@@ -409,7 +409,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         dao.excluir(custo.getIdCusto(), Custo.class);
     }
     
-    public void salvarProjetBase(ProjetoBase projetoBase){
+    public void salvarProjetoBase(ProjetoBase projetoBase){
         ProjetoBaseDao dao = new ProjetoBaseDao();
         dao.salvar(projetoBase);        
     }
