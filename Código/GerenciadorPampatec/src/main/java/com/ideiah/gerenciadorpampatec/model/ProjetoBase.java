@@ -20,6 +20,7 @@ public class ProjetoBase implements java.io.Serializable {
     private int idprojetobase;
     private ComentarioProjeto comentarioprojeto;
     private Projeto projeto;
+    private Projeto projetoReferencia;
     private Date dataAvaliacao;
     private Integer status;
     private Date dataUltimaAlteracao;
@@ -100,6 +101,14 @@ public class ProjetoBase implements java.io.Serializable {
 
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
+    }
+
+    public Projeto getProjetoReferencia() {
+        return projetoReferencia;
+    }
+
+    public void setProjetoReferencia(Projeto projetoReferencia) {
+        this.projetoReferencia = projetoReferencia;
     }
 
 }
