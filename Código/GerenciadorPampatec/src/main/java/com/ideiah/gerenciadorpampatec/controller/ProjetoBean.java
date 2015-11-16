@@ -177,12 +177,10 @@ public class ProjetoBean implements Serializable {
     }
     
     public void salvarProjetoBase(Projeto projeto){
-        projeto.setStatus(Projeto.LINHA_DE_BASE);
-        ProjetoBase projetoBase= new ProjetoBase(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
         projeto.setIdProjeto(null);
-        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        salvarProjeto();
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
+        ProjetoBase projetoBase = new ProjetoBase(projeto);
+        empreendedorSession.salvarProjetoBase(projetoBase);
     }
 
     public void salvarProjetoeSair() {
@@ -618,7 +616,6 @@ public class ProjetoBean implements Serializable {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         salvarProjetoBase(projeto);
-                        System.out.println("status enviado");
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
@@ -630,7 +627,7 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exeção = " + e);
+                System.out.println("exceção = " + e);
             }
         }
 
@@ -692,7 +689,7 @@ public class ProjetoBean implements Serializable {
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
-//            custo.setValor(valorCustoFixo);
+            custo.setTotal(valorCustoFixo);
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
@@ -714,7 +711,7 @@ public class ProjetoBean implements Serializable {
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoVariavel);
-//            custo.setValor(valorCustoVariavel);
+            custo.setTotal(valorCustoVariavel);
             custo.setTipo(Custo.CUSTO_VARIAVEL);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());

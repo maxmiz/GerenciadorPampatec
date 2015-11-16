@@ -31,6 +31,7 @@ public class ProjetoBase implements java.io.Serializable {
     
     public ProjetoBase(Projeto projeto){
         this.projeto = projeto;
+        this.status = PENDENTE;
     }
     public ProjetoBase(int idprojetobase, ComentarioProjeto comentarioprojeto, Projeto projeto) {
         this.idprojetobase = idprojetobase;
