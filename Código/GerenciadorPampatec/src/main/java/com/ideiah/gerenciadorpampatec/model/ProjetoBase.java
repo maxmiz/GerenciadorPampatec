@@ -30,7 +30,10 @@ public class ProjetoBase implements java.io.Serializable {
     public ProjetoBase() {
     }
     
-    public ProjetoBase(Projeto projeto){
+    public ProjetoBase(Projeto projeto){   
+        this.projetoReferencia = projeto;
+        projeto.setIdProjeto(null);
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
         this.projeto = projeto;
         this.status = PENDENTE;
     }

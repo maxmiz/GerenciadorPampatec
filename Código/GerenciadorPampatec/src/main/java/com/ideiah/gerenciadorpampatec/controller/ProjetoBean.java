@@ -176,9 +176,7 @@ public class ProjetoBean implements Serializable {
 
     }
     
-    public void salvarProjetoBase(Projeto projeto){
-        projeto.setIdProjeto(null);
-        projeto.setStatus(Projeto.LINHA_DE_BASE);
+    public void salvarProjetoBase(Projeto projeto){        
         ProjetoBase projetoBase = new ProjetoBase(projeto);
         empreendedorSession.salvarProjetoBase(projetoBase);
     }
