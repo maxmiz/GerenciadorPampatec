@@ -12,10 +12,10 @@
             <column name="segmentoClientes" length="65535" />
         </property>
         <property name="propostaValor" type="string">
-            <column name="PropostaValor" length="65535" />
+            <column name="propostaValor" length="65535" />
         </property>
         <property name="atividadesChaves" type="string">
-            <column name="AtividadesChaves" length="65535" />
+            <column name="atividadesChaves" length="65535" />
         </property>
         <set name="comentarioprojetos" table="comentarioprojeto" inverse="true" lazy="true" fetch="select">
             <key>
