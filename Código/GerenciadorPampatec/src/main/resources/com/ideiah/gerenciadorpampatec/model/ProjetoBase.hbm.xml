@@ -8,9 +8,9 @@
       <generator class="assigned"/>
     </id>
     <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" fetch="select" name="comentarioprojeto">
-      <column name="comentarioprojeto_idcomentario" not-null="true"/>
+      <column name="comentarioprojeto_idcomentario"/>
     </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select" name="projeto">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.Projeto" lazy="false" fetch="select" name="projeto" cascade="all">
       <column name="projeto_idProjeto" not-null="true"/>
     </many-to-one>
     <property name="dataAvaliacao" type="date">

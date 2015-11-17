@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -46,7 +47,7 @@ import org.primefaces.event.RowEditEvent;
  * @author Pedro
  */
 @ManagedBean(name = "projetoBean")
-@ViewScoped
+@SessionScoped
 public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;
@@ -881,18 +882,7 @@ public class ProjetoBean implements Serializable {
         salvarProjeto();
     }
     
-    /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja sendo avaliado
-     * ou PENDENTE caso a avaliação seja interrompida
-     * @param projeto
-     */
-    public void atualizaStatusProjetoBase(ProjetoBase projeto) {
-        if (projeto.getStatus() == 2) {
-            projeto.setStatus(1);
-        } else {
-            projeto.setStatus(2);
-        }
-    }
+    
 
     /**
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
