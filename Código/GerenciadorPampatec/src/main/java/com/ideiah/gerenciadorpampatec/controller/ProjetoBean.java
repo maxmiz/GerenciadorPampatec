@@ -177,13 +177,9 @@ public class ProjetoBean implements Serializable {
 
     }
     
-    public void salvarProjetoBase(Projeto projeto){
-        ProjetoBase projetoBase= new ProjetoBase(projeto);
-        projeto.setStatus(Projeto.LINHA_DE_BASE);
-        empreendedorSession.salvarProjetBase(projetoBase);
-        projeto.setIdProjeto(null);
-        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        salvarProjeto();
+    public void salvarProjetoBase(Projeto projeto){        
+        ProjetoBase projetoBase = new ProjetoBase(projeto);
+        empreendedorSession.salvarProjetoBase(projetoBase);
     }
 
     public void salvarProjetoeSair() {
@@ -475,6 +471,7 @@ public class ProjetoBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
@@ -618,7 +615,6 @@ public class ProjetoBean implements Serializable {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         salvarProjetoBase(projeto);
-                        System.out.println("status enviado");
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
@@ -630,7 +626,7 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exeção = " + e);
+                System.out.println("exceção = " + e);
             }
         }
 
@@ -692,7 +688,7 @@ public class ProjetoBean implements Serializable {
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoFixo);
-//            custo.setValor(valorCustoFixo);
+            custo.setTotal(valorCustoFixo);
             custo.setTipo(Custo.CUSTO_FIXO);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
@@ -714,7 +710,7 @@ public class ProjetoBean implements Serializable {
         } else {
             Custo custo = new Custo();
             custo.setDescricao(nomeCustoVariavel);
-//            custo.setValor(valorCustoVariavel);
+            custo.setTotal(valorCustoVariavel);
             custo.setTipo(Custo.CUSTO_VARIAVEL);
             projeto.getPlanofinanceiro().getCusto().add(custo);
             custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
