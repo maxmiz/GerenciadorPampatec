@@ -54,5 +54,5 @@
     <many-to-one class="com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento" fetch="select" name="GerenteRelacionamento">
       <column name="gerente_relacionamento_idgerente_relacionamento"/>
     </many-to-one>
-  </class>
+    </class>
 </hibernate-mapping>

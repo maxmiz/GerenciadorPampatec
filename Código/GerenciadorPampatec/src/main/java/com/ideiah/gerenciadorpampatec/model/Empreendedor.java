@@ -413,4 +413,15 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         ProjetoBaseDao dao = new ProjetoBaseDao();
         dao.salvar(projetoBase);        
     }
+    
+    public ArrayList<ProjetoBase> retornaProjetoBase(Projeto projetoReferencia){
+        ArrayList<ProjetoBase> arrayBase = new ArrayList<ProjetoBase>();
+        ProjetoBaseDao daoPBase = new ProjetoBaseDao();
+        for (ProjetoBase pb : daoPBase.buscar()){
+            if (pb.getProjetoReferencia().getEmpreendedores().equals(projetoReferencia.getEmpreendedores())){
+                arrayBase.add(pb);
+            }
+        }
+        return arrayBase;
+    }
 }

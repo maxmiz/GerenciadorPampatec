@@ -155,6 +155,13 @@ public abstract class Dao {
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObject(criteria);
     }
+    
+        public Object buscarObjetoCriteriaINTEGER(String propriedade, Integer valor, Class<?> classe) {
+        Object objeto = null;
+        Criteria criteria = getCriteria(classe);
+        criteria.add(Restrictions.eq(propriedade, valor));
+        return getObject(criteria);
+    }
 
     public Object buscarObjeto(String codigo, Class<?> classe) {
         Criteria criteria = getCriteria(classe);
