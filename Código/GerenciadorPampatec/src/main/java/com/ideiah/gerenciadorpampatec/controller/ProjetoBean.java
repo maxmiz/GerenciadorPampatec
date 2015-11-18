@@ -72,6 +72,8 @@ public class ProjetoBean implements Serializable {
     private Custo custoFixoSelecionado;
     private Custo custoVariavelSelecionado;
     private float somatorioVariavel;
+    private List<ProjetoBase> listaProjetoBase;
+    private List<Projeto> listaProjetoFiltradaPorBase;
 
     public ProjetoBean() {
         salvou = false;
@@ -87,6 +89,21 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
+        listaProjetoBase = new ArrayList<ProjetoBase>();
+        carregaListaProjetoFiltradaPorBase(projeto); 
+    }
+
+    public void carregaListaProjetoFiltradaPorBase(Projeto projetoReferencia) {
+        if (projetoReferencia != null) {
+            listaProjetoBase = null;
+            listaProjetoFiltradaPorBase = null;
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+            if (listaProjetoBase != null) {
+                for (ProjetoBase projetoB : listaProjetoBase) {
+                    listaProjetoFiltradaPorBase.add(projetoB.getProjeto());
+                }
+            }
+        }
     }
 
     /**
@@ -175,8 +192,8 @@ public class ProjetoBean implements Serializable {
         salvou = true;
 
     }
-    
-    public void salvarProjetoBase(Projeto projeto){        
+
+    public void salvarProjetoBase(Projeto projeto) {
         ProjetoBase projetoBase = new ProjetoBase(projeto);
         empreendedorSession.salvarProjetoBase(projetoBase);
     }
@@ -628,7 +645,7 @@ public class ProjetoBean implements Serializable {
                 System.out.println("exceção = " + e);
             }
         }
-
+        carregarProjetosBase(projeto);
     }
 
     /**
@@ -876,10 +893,11 @@ public class ProjetoBean implements Serializable {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
     }
-    
+
     /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja sendo avaliado
-     * ou PENDENTE caso a avaliação seja interrompida
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja
+     * sendo avaliado ou PENDENTE caso a avaliação seja interrompida
+     *
      * @param projeto
      */
     public void atualizaStatusProjetoBase(ProjetoBase projeto) {
@@ -968,6 +986,26 @@ public class ProjetoBean implements Serializable {
      */
     public void setSomatorioVariavel(float somatorioVariavel) {
         this.somatorioVariavel = somatorioVariavel;
+    }
+
+    public List<ProjetoBase> getListaProjetoBase() {
+        return listaProjetoBase;
+    }
+
+    public void setListaProjetoBase(List<ProjetoBase> listaProjetoBase) {
+        this.listaProjetoBase = listaProjetoBase;
+    }
+
+    public List<Projeto> getListaProjetoFiltradaPorBase() {
+        return listaProjetoFiltradaPorBase;
+    }
+
+    public void setListaProjetoFiltradaPorBase(List<Projeto> listaProjetoFiltradaPorBase) {
+        this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
+    }
+
+    public List<ProjetoBase> carregarProjetosBase(Projeto projetoReferencia) {
+        return empreendedorSession.retornaProjetoBase(projetoReferencia);
     }
 
 }
