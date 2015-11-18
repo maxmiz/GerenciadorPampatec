@@ -23,7 +23,7 @@
     </h:head>
     <body>
         <!-- Início do menu superior -->
-        <h:form>
+        <h:form id="locovelho">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-10">
@@ -58,7 +58,7 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value=""></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -107,7 +107,7 @@
                     <div class="col-md-10">
 
                         <p:dataTable id="tabelaDeNegocios" var="projetoBase" emptyMessage="Não há planos de negócio para serem avaliados" value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
-
+                            
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -124,14 +124,13 @@
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton  class="btn btn-default" value="Avaliar" disabled="#{projetoBase.status == 2}">
+                                        <h:commandButton class="btn btn-default" value="Avaliar" disabled="#{projetoBase.status == 2}">
                                             <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaStatusProjetoBase(projetoBase)}" 
                                                     event="click"></f:ajax>
                                         </h:commandButton>
                                     </div>
                                 </div>
                             </p:column>
-
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
@@ -139,12 +138,10 @@
             </div>
 
 
-
-
-
             <!-- Fim da lista de planos de negócio -->
 
-            <p:poll interval="1" update="tabelaDeNegocios"/>
+            <p:poll interval="1" autoStart="true" listener="#{update.update(tabelaDeNegocios)}"/>
+            
         </h:form>
     </body>
 </html>

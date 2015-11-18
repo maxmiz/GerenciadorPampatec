@@ -14,8 +14,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.Application;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -91,6 +94,26 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public void atualizarProjetoSessao() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projeto);
+    }
+    
+    public void locao(){
+        System.out.println("PASSOU AQUI O POLLLLLLLLLLLLLLL FUNCIONOU");
+        refresh();
+    }
+    
+    /**
+     * Atualiza a página que chamar esse método.
+     * Para que o método seja chamado repetidas vezes, quando uma atualização da
+     * página de forma periódica for necessária, basta chama-lo no
+     * listener de um componente p:poll. Fica a sugestão.
+     */
+    public void refresh() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Application application = context.getApplication();
+        ViewHandler viewHandler = application.getViewHandler();
+        UIViewRoot viewRoot = viewHandler.createView(context, context.getViewRoot().getViewId());
+        context.setViewRoot(viewRoot);
+        context.renderResponse();
     }
 
 }
