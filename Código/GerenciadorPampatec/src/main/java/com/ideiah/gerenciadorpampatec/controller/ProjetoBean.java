@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -46,7 +47,7 @@ import org.primefaces.event.RowEditEvent;
  * @author Pedro
  */
 @ManagedBean(name = "projetoBean")
-@ViewScoped
+@SessionScoped
 public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;

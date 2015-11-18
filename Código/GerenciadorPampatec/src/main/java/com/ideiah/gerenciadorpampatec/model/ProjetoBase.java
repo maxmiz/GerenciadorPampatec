@@ -105,6 +105,10 @@ public class ProjetoBase implements java.io.Serializable {
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
     }
+    
+    public void teste(){
+        System.out.println("POLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL <<<<<<<<<<<<<<<<<<<<<<");
+    }
 
     public Projeto getProjetoReferencia() {
         return projetoReferencia;
