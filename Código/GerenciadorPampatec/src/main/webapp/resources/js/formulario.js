@@ -225,8 +225,8 @@ function verificaPlanoFinanceiro() {
     listaCampos[2] = investimentoInicial;
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
-    
-    if(custoVariavelPreenchido == false || custoFixoPreenchido == false){
+
+    if (custoVariavelPreenchido == false || custoFixoPreenchido == false) {
         tabPlanoFinanceiro.innerHTML = "Plano Financeiro";
         tabPlanoFinanceiro.style.color = "red";
     }
@@ -718,4 +718,7 @@ function exibeCampoOutro() {
         document.getElementById('form1:hit').removeAttribute("readonly");
     }
 }
+
+
+
 

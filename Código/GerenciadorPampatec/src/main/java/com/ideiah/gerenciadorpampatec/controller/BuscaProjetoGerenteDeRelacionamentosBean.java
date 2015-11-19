@@ -35,6 +35,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private ProjetoDao projeto;
     private ProjetoBean projetoBean;
     private ProjetoBaseDao projetoBaseDao;
+    private boolean testeBoolean = false;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projeto = new ProjetoDao();
@@ -71,9 +72,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * @param projetoBase
      */
     public void atualizaStatusProjetoBase(ProjetoBase projetoBase) {
-        if (projetoBase.getStatus() == ProjetoBase.SENDO_AVALIADO) {
-            projetoBase.setStatus(ProjetoBase.PENDENTE);
-        } else {
+        if (projetoBase.getStatus() == ProjetoBase.PENDENTE) {
             projetoBase.setStatus(ProjetoBase.SENDO_AVALIADO);
         }
 
@@ -95,17 +94,17 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projeto);
     }
-    
-    public void locao(){
+
+    public void locao() {
         System.out.println("PASSOU AQUI O POLLLLLLLLLLLLLLL FUNCIONOU");
         refresh();
     }
-    
+
     /**
-     * Atualiza a página que chamar esse método.
-     * Para que o método seja chamado repetidas vezes, quando uma atualização da
-     * página de forma periódica for necessária, basta chama-lo no
-     * listener de um componente p:poll. Fica a sugestão.
+     * Atualiza a página que chamar esse método. Para que o método seja chamado
+     * repetidas vezes, quando uma atualização da página de forma periódica for
+     * necessária, basta chama-lo no listener de um componente p:poll. Fica a
+     * sugestão.
      */
     public void refresh() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -114,6 +113,33 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         UIViewRoot viewRoot = viewHandler.createView(context, context.getViewRoot().getViewId());
         context.setViewRoot(viewRoot);
         context.renderResponse();
+    }
+
+    /**
+     * @return the testeBoolean
+     */
+    public boolean isTesteBoolean() {
+        return testeBoolean;
+    }
+
+    /**
+     * @param testeBoolean the testeBoolean to set
+     */
+    public void setTesteBoolean(boolean testeBoolean) {
+        this.testeBoolean = testeBoolean;
+    }
+
+
+    public boolean verificaStatusProjetoBase(ProjetoBase projetoBase) {
+        if (projetoBase.getStatus() == ProjetoBase.SENDO_AVALIADO) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void atualizaListaDeProjetos() {
+        listaProjetos = buscaProjetoBasePorStatus();
     }
 
 }
