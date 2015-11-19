@@ -91,7 +91,13 @@ public class ProjetoBean implements Serializable {
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
         listaProjetoBase = new ArrayList<ProjetoBase>();
-        carregaListaProjetoFiltradaPorBase(projeto); 
+        carregaProjetosBaseEmLista(projeto); 
+    }
+    
+    public void carregaProjetosBaseEmLista(Projeto projetoReferencia){
+        if (projetoReferencia != null) {
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+        }
     }
 
     public void carregaListaProjetoFiltradaPorBase(Projeto projetoReferencia) {

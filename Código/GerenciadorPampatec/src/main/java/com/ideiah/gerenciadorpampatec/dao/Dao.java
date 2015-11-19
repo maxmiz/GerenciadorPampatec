@@ -185,6 +185,13 @@ public abstract class Dao {
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObjects(criteria);
     }
+    
+    public ArrayList<?> buscarObjetoCriteria(String propriedade, Object object, Class<?> classe) {
+        Object objeto = null;
+        Criteria criteria = getCriteria(classe);
+        criteria.add(Restrictions.eq(propriedade, object));
+        return getObjects(criteria);
+    }
         // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="SEARCH OBJECTS"> 

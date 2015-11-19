@@ -6,6 +6,7 @@
 
 package com.ideiah.gerenciadorpampatec.dao;
 
+import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,5 +27,10 @@ public class ProjetoBaseDao extends Dao implements Serializable {
     
     public ArrayList<ProjetoBase> buscar() {
         return (ArrayList<ProjetoBase>) buscarObjetos(ProjetoBase.class);
+    }
+    
+    public ArrayList<ProjetoBase> buscarPorReferencia(Projeto pb) {
+        ArrayList<ProjetoBase> arrayBase = new ArrayList<>();
+        return (ArrayList<ProjetoBase>) buscarObjetoCriteria("projetoReferencia", pb, ProjetoBase.class);
     }
 }
