@@ -8,65 +8,85 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import java.io.Serializable;
 
+
 /**
- *
- * @author AndersonR
+ * 
+ * @author Edison Jhonatan
+ * @since 10/11/15
  */
-public class Custo implements Serializable{
-    
-    public static final int CUSTO_FIXO = 0;
-    public static final int CUSTO_VARIAVEL = 1;
-    
-    private Integer idCusto; 
-    private String descricao;
-    private float valor;
-    private int tipo;
-    private Planofinanceiro planofinanceiro;
+public class Custo  implements java.io.Serializable {
 
-    public String getDescricao() {
-        return descricao;
+
+     private Integer idCusto;
+     private Planofinanceiro planofinanceiro;
+     private String descricao;
+     private Float total;
+     private Float projecao;
+     private Integer tipo;
+     public static final int CUSTO_FIXO = 0;
+     public static final int CUSTO_VARIAVEL = 1;
+     
+
+    public Custo() {
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+	
+    public Custo(Planofinanceiro planofinanceiro) {
+        this.planofinanceiro = planofinanceiro;
     }
-
-    public float getValor() {
-        return valor;
+    public Custo(Planofinanceiro planofinanceiro, String descricao, Float total, Integer tipo) {
+       this.planofinanceiro = planofinanceiro;
+       this.descricao = descricao;
+       this.total = total;
+       this.tipo = tipo;
     }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
+   
     public Integer getIdCusto() {
-        return idCusto;
+        return this.idCusto;
     }
-
+    
     public void setIdCusto(Integer idCusto) {
         this.idCusto = idCusto;
     }
-
-    /**
-     * @return the planofinanceiro
-     */
     public Planofinanceiro getPlanofinanceiro() {
-        return planofinanceiro;
+        return this.planofinanceiro;
     }
-
-    /**
-     * @param planofinanceiro the planofinanceiro to set
-     */
+    
     public void setPlanofinanceiro(Planofinanceiro planofinanceiro) {
         this.planofinanceiro = planofinanceiro;
     }
+    public String getDescricao() {
+        return this.descricao;
+    }
     
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    public Float getTotal() {
+        return this.total;
+    }
+
+    public void setTotal(Float total) {
+        this.total = total;
+    }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
+
+    public Float getProjecao() {
+        return projecao;
+    }
+
+    public void setProjecao(Float projecao) {
+        this.projecao = projecao;
+    }
+      
 }
+
+

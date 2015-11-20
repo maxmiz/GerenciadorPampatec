@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -13,6 +14,7 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -26,21 +28,26 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
  * @author Pedro
  */
 @ManagedBean(name = "projetoBean")
-@ViewScoped
+@SessionScoped
 public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;
@@ -49,6 +56,7 @@ public class ProjetoBean implements Serializable {
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
+    private ProjetoBase projetoBase;
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
@@ -64,6 +72,11 @@ public class ProjetoBean implements Serializable {
     private List<Custo> listaCustoVariavel;
     private Custo custoFixoSelecionado;
     private Custo custoVariavelSelecionado;
+    private float somatorioVariavel;
+
+    private float somatorioFixo;
+    private List<ProjetoBase> listaProjetoBase;
+    private List<Projeto> listaProjetoFiltradaPorBase;
 
     public ProjetoBean() {
         salvou = false;
@@ -79,6 +92,27 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
+//        listaProjetoBase = new ArrayList<ProjetoBase>();
+//        carregaProjetosBaseEmLista(projeto);
+    }
+
+    public void carregaProjetosBaseEmLista(Projeto projetoReferencia) {
+        if (projetoReferencia != null) {
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+        }
+    }
+
+    public void carregaListaProjetoFiltradaPorBase(Projeto projetoReferencia) {
+        if (projetoReferencia != null) {
+            listaProjetoBase = null;
+            listaProjetoFiltradaPorBase = null;
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+            if (listaProjetoBase != null) {
+                for (ProjetoBase projetoB : listaProjetoBase) {
+                    listaProjetoFiltradaPorBase.add(projetoB.getProjeto());
+                }
+            }
+        }
     }
 
     /**
@@ -166,6 +200,20 @@ public class ProjetoBean implements Serializable {
         atualizarProjetoSessao();
         salvou = true;
 
+    }
+
+    public void salvarProjetoBase(Projeto projeto) {
+//<<<<<<< HEAD
+//        ProjetoBase projetoBase = new ProjetoBase(projeto);
+//        projeto.setStatus(Projeto.LINHA_DE_BASE);
+//        empreendedorSession.salvarProjetBase(projetoBase);
+//        projeto.setIdProjeto(null);
+//=======
+        Projeto projetoNovo = projeto;
+        ProjetoBase projetoBase = new ProjetoBase(projeto);
+        empreendedorSession.salvarProjetoBase(projetoBase);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        projeto = projetoNovo;
     }
 
     public void salvarProjetoeSair() {
@@ -457,6 +505,7 @@ public class ProjetoBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
@@ -565,14 +614,14 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
-        if (listaCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
-            FLAG = FLAG + 1;
-        }
-        if (listaCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
-            FLAG = FLAG + 1;
-        }
+//        if (listaCustoFixo.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
+//            FLAG = FLAG + 1;
+//        }
+//        if (listaCustoVariavel.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
+//            FLAG = FLAG + 1;
+//        }
 
         return FLAG;
     }
@@ -599,8 +648,7 @@ public class ProjetoBean implements Serializable {
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                        System.out.println("status enviado");
-                        salvarProjeto();
+                        salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
@@ -612,10 +660,10 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exeção = " + e);
+                System.out.println("exceção = " + e);
             }
         }
-
+        carregarProjetosBase(projeto);
     }
 
     /**
@@ -664,45 +712,16 @@ public class ProjetoBean implements Serializable {
     /**
      * Método para adicionar custo fixo ao projeto e à tabela.
      */
-    public void adicionarCustoFixo() {
-        if (valorCustoFixo <= 0 && nomeCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoFixo");
-        } else if (valorCustoFixo <= 0) {
-            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoFixo");
-        } else if (nomeCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoFixo");
-        } else {
-            Custo custo = new Custo();
-            custo.setDescricao(nomeCustoFixo);
-            custo.setValor(valorCustoFixo);
-            custo.setTipo(Custo.CUSTO_FIXO);
-            projeto.getPlanofinanceiro().getCusto().add(custo);
-            custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-            salvarProjeto();
-            preencheListaCusto();
-        }
-    }
-
-    /**
-     * Método para adicionar custo variável a tabela.
-     */
-    public void adicionarCustoVariavel() {
-        if (valorCustoVariavel < 0 && nomeCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("Nome e valor inválidos.", "formulario_cadastro_projeto:nomeCustoVariavel");
-        } else if (valorCustoVariavel <= 0) {
-            FacesUtil.addErrorMessage("Adicione um custo com valor válido.", "formulario_cadastro_projeto:valorCustoVariavel");
-        } else if (nomeCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("Adicione um custo com descrição válida.", "formulario_cadastro_projeto:nomeCustoVariavel");
-        } else {
-            Custo custo = new Custo();
-            custo.setDescricao(nomeCustoVariavel);
-            custo.setValor(valorCustoVariavel);
-            custo.setTipo(Custo.CUSTO_VARIAVEL);
-            projeto.getPlanofinanceiro().getCusto().add(custo);
-            custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-            salvarProjeto();
-            preencheListaCusto();
-        }
+    public void adicionarLinhaFixo() {
+        Custo custo = new Custo();
+        float zero = 0;
+        custo.setDescricao("Novo Custo");
+        custo.setTipo(Custo.CUSTO_FIXO);
+        custo.setTotal(zero);
+        projeto.getPlanofinanceiro().getCusto().add(custo);
+        custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvarProjeto();
+        preencheListaCusto();
     }
 
     public String getNomeCustoFixo() {
@@ -778,6 +797,7 @@ public class ProjetoBean implements Serializable {
     public boolean verificarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
 
@@ -817,6 +837,7 @@ public class ProjetoBean implements Serializable {
         empreendedorSession.removeCustoProjeto(custoFixo);
         projeto = daoProj.buscar(projeto.getIdProjeto());
         atualizarProjetoSessao();
+        preencheListaCusto();
     }
 
     /**
@@ -828,6 +849,7 @@ public class ProjetoBean implements Serializable {
         empreendedorSession.removeCustoProjeto(custoVariavel);
         projeto = daoProj.buscar(projeto.getIdProjeto());
         atualizarProjetoSessao();
+        preencheListaCusto();
     }
 
     public Custo getcustoFixoSelecionado() {
@@ -865,6 +887,20 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja
+     * sendo avaliado ou PENDENTE caso a avaliação seja interrompida
+     *
+     * @param projeto
+     */
+    public void atualizaStatusProjetoBase(ProjetoBase projeto) {
+        if (projeto.getStatus() == 2) {
+            projeto.setStatus(1);
+        } else {
+            projeto.setStatus(2);
+        }
+    }
+
+    /**
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
      * estado do negócio
      *
@@ -878,6 +914,163 @@ public class ProjetoBean implements Serializable {
 
     public void verificaUpdate() {
         System.out.println("PASSOU AQUI NO UPDATEEEEEEEEEEE");
+    }
+
+    public void deletarLinha(Custo custo) {
+        FacesMessage msg;
+        if (custo.getTipo() == Custo.CUSTO_FIXO) {
+            deletarCustoFixo(custo);
+            caucularValorColunaCustoFixo();
+            msg = new FacesMessage("Custo fixo DELETADO");
+            FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+        }
+        if (custo.getTipo() == Custo.CUSTO_VARIAVEL) {
+            deletarCustoVariavel(custo);
+            caucularValorColunaCustoVariavel();
+            msg = new FacesMessage("Custo variavel DELETADO");
+            FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+        }
+        projeto.SalvarProjeto(projeto);
+
+    }
+
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg;
+        Custo custo = (Custo) event.getObject();
+
+        msg = new FacesMessage("Custo Editado", custo.getDescricao());
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+
+        caucularValorColunaCustoVariavel();
+        caucularValorColunaCustoFixo();
+
+    }
+
+    public void onRowCancel(RowEditEvent event) {
+
+        FacesMessage msg = new FacesMessage("Edição Cancelada", ((Custo) event.getObject()).getDescricao());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+
+    }
+
+    /**
+     * metodo que faz o calculo da projecao de cada custo variavel para seis
+     * meses
+     *
+     * @param custo
+     */
+    public void caucularProjecaoCustoVariavel(Custo custo) {
+        if (custo != null) {
+
+            float valor = custo.getTotal() * 6;
+            custo.setProjecao(valor);
+
+//            salvarProjeto();
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(custo);
+        }
+
+    }
+
+    /**
+     * metodo que faz o calculo da projecao de cada custo fixo para seis meses
+     *
+     * @param custo
+     */
+    public void caucularProjecaoCustoFixo(Custo custo) {
+        if (custo != null) {
+
+            float valor = custo.getTotal() * 6;
+            custo.setProjecao(valor);
+
+//            salvarProjeto();
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(custo);
+        }
+
+    }
+
+    /**
+     * Metodo que soma os valores de cada custo variavel adicionados na tabela e
+     * faz a projeção para seis meses.
+     */
+    public float caucularValorColunaCustoVariavel() {
+        somatorioVariavel = 0;
+        for (int i = 0; i < listaCustoVariavel.size(); i++) {
+            somatorioVariavel = somatorioVariavel + listaCustoVariavel.get(i).getTotal();
+        }
+        somatorioVariavel = somatorioVariavel * 6;
+        projeto.getPlanofinanceiro().setValorTotalVariavel(somatorioVariavel);
+        setSomatorioVariavel(somatorioVariavel);
+        return somatorioVariavel;
+    }
+
+    /**
+     * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
+     * a projeção para seis meses.
+     */
+    public float caucularValorColunaCustoFixo() {
+        somatorioFixo = 0;
+        for (int i = 0; i < listaCustoFixo.size(); i++) {
+            somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
+        }
+        somatorioFixo = somatorioFixo * 6;
+        projeto.getPlanofinanceiro().setValorTotalVariavel(somatorioFixo);
+        setSomatorioVariavel(somatorioFixo);
+        return somatorioFixo;
+    }
+
+    /**
+     * Método para adicionar custo variável a tabela.
+     */
+    public void adicionarLinhaVariavel() {
+        Custo custo = new Custo();
+        float zero = 0;
+        custo.setDescricao("Novo Custo");
+        custo.setTipo(Custo.CUSTO_VARIAVEL);
+        custo.setTotal(zero);
+        projeto.getPlanofinanceiro().getCusto().add(custo);
+        custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvarProjeto();
+        preencheListaCusto();
+    }
+
+    /**
+     * @return the somatorioVariavel
+     */
+    public float getSomatorioVariavel() {
+        return somatorioVariavel;
+    }
+
+    /**
+     * @param somatorioVariavel the somatorioVariavel to set
+     */
+    public void setSomatorioVariavel(float somatorioVariavel) {
+        this.somatorioVariavel = somatorioVariavel;
+    }
+
+    public List<ProjetoBase> getListaProjetoBase() {
+        return listaProjetoBase;
+    }
+
+    public void setListaProjetoBase(List<ProjetoBase> listaProjetoBase) {
+        this.listaProjetoBase = listaProjetoBase;
+    }
+
+    public List<Projeto> getListaProjetoFiltradaPorBase() {
+        return listaProjetoFiltradaPorBase;
+    }
+
+    public void setListaProjetoFiltradaPorBase(List<Projeto> listaProjetoFiltradaPorBase) {
+        this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
+    }
+
+    public List<ProjetoBase> carregarProjetosBase(Projeto projetoReferencia) {
+        return empreendedorSession.retornaProjetoBase(projetoReferencia);
     }
 
 }

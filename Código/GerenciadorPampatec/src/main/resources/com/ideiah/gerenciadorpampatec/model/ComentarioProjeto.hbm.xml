@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" table="comentario_projeto">
-        <id name="id_comentarioProjeto" type="java.lang.Integer">
-            <column name="id_comentarioProjeto" />
-            <generator class="identity" />
-        </id>
-        <one-to-one name="comentario_AnaliseEmprego" class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego"
-                    cascade="save-update">
-        </one-to-one>
-        <one-to-one name="comentario_ProdutoOuServico" class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico"
-                    cascade="save-update">
-        </one-to-one>
-        <one-to-one name="comentario_Negocio" class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio"
-                    cascade="save-update">
-        </one-to-one>
-        <one-to-one name="comentario_PlanoFinanceiro" class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro"
-                    cascade="save-update">
-        </one-to-one>
-        <property name="participacaoAcionaria" type="string">
-            <column name="participacaoAcionaria" length="1000" />
-        </property>
-        <property name="potencialEmprego" type="string">
-            <column name="potencialEmprego" length="1000" />
-        </property>
-        <property name="comentarioGeral" type="string">
-            <column name="comentarioGeral" length="1000" />
-        </property>
-    </class>
+  <class catalog="gerenciadorpampatec" name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" optimistic-lock="version" table="comentarioprojeto">
+    <id name="idcomentario" type="int">
+      <column name="idcomentario"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego">
+      <column name="comentarioanaliseemprego_idcomentarioanaliseemprego" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" fetch="select" name="comentarionegocio">
+      <column name="comentarionegocio_idcomentarionegocio" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" fetch="select" name="comentarioplanofinanceiro">
+      <column name="comentarioplanofinanceiro_idcomentarioplanofinanceiro" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" fetch="select" name="comentarioprodutoouservico">
+      <column name="comentarioprodutoouservico_idcomentarioprodutoouservico" not-null="true"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="300" name="nome"/>
+    </property>
+    <property name="participacaoacionaria" type="string">
+      <column length="65535" name="participacaoacionaria"/>
+    </property>
+    <property name="potencialemprego" type="string">
+      <column length="65535" name="potencialemprego"/>
+    </property>
+    <property name="consideracoes" type="string">
+      <column length="65535" name="consideracoes"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="projetobases" table="projetobase">
+      <key>
+        <column name="comentarioprojeto_idcomentario" not-null="true"/>
+      </key>
+      <one-to-many class="com.ideiah.gerenciadorpampatec.model.ProjetoBase"/>
+    </set>
+  </class>
 </hibernate-mapping>

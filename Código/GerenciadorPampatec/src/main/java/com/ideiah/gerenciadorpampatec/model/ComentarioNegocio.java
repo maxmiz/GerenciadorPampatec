@@ -6,99 +6,77 @@
 package com.ideiah.gerenciadorpampatec.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- *
- * @author GUTO
+ * 
+ * @author Edison Jhonatan
+ * @since 10/11/15
  */
-public class ComentarioNegocio implements Serializable {
+public class ComentarioNegocio  implements java.io.Serializable {
 
-    private String segmentoClientes;
-    private String propostaValor;
-    private String atividadesChaves;
-    private int idcomentario_negocio;
-    private ComentarioProjeto comentarioProjeto;
+
+     private int idcomentarionegocio;
+     private String segmentoClientes;
+     private String propostaValor;
+     private String atividadesChaves;
+     private Set comentarioprojetos = new HashSet(0);
 
     public ComentarioNegocio() {
     }
 
-    public ComentarioNegocio(String segmentoClientes, String propostaValor, String atividadesChaves, int idcomentario_negocio, ComentarioProjeto comentarioProjeto) {
-        this.segmentoClientes = segmentoClientes;
-        this.propostaValor = propostaValor;
-        this.atividadesChaves = atividadesChaves;
-        this.idcomentario_negocio = idcomentario_negocio;
-        this.comentarioProjeto = comentarioProjeto;
+	
+    public ComentarioNegocio(int idcomentarionegocio) {
+        this.idcomentarionegocio = idcomentarionegocio;
     }
-
+    public ComentarioNegocio(int idcomentarionegocio, String segmentoClientes, String propostaValor, String atividadesChaves, Set comentarioprojetos) {
+       this.idcomentarionegocio = idcomentarionegocio;
+       this.segmentoClientes = segmentoClientes;
+       this.propostaValor = propostaValor;
+       this.atividadesChaves = atividadesChaves;
+       this.comentarioprojetos = comentarioprojetos;
+    }
+   
+    public int getIdcomentarionegocio() {
+        return this.idcomentarionegocio;
+    }
     
-    /**
-     * @return the segmentoClientes
-     */
-    public String getSegmentoClientes() {
-        return segmentoClientes;
+    public void setIdcomentarionegocio(int idcomentarionegocio) {
+        this.idcomentarionegocio = idcomentarionegocio;
     }
-
-    /**
-     * @param segmentoClientes the segmentoClientes to set
-     */
+    public String getSegmentoClientes() {
+        return this.segmentoClientes;
+    }
+    
     public void setSegmentoClientes(String segmentoClientes) {
         this.segmentoClientes = segmentoClientes;
     }
-
-    /**
-     * @return the propostaValor
-     */
     public String getPropostaValor() {
-        return propostaValor;
+        return this.propostaValor;
     }
-
-    /**
-     * @param propostaValor the propostaValor to set
-     */
+    
     public void setPropostaValor(String propostaValor) {
         this.propostaValor = propostaValor;
     }
-
-    /**
-     * @return the atividadesChaves
-     */
     public String getAtividadesChaves() {
-        return atividadesChaves;
+        return this.atividadesChaves;
     }
-
-    /**
-     * @param atividadesChaves the atividadesChaves to set
-     */
+    
     public void setAtividadesChaves(String atividadesChaves) {
         this.atividadesChaves = atividadesChaves;
     }
-
-    /**
-     * @return the idcomentario_negocio
-     */
-    public int getIdcomentario_negocio() {
-        return idcomentario_negocio;
+    public Set getComentarioprojetos() {
+        return this.comentarioprojetos;
+    }
+    
+    public void setComentarioprojetos(Set comentarioprojetos) {
+        this.comentarioprojetos = comentarioprojetos;
     }
 
-    /**
-     * @param idcomentario_negocio the idcomentario_negocio to set
-     */
-    public void setIdcomentario_negocio(int idcomentario_negocio) {
-        this.idcomentario_negocio = idcomentario_negocio;
-    }
 
-    /**
-     * @return the comentarioProjeto
-     */
-    public ComentarioProjeto getComentarioProjeto() {
-        return comentarioProjeto;
-    }
 
-    /**
-     * @param comentarioProjeto the comentarioProjeto to set
-     */
-    public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
-        this.comentarioProjeto = comentarioProjeto;
-    }
 
 }
+
+

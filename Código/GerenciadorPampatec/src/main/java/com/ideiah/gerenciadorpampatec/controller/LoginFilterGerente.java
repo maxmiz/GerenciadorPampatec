@@ -153,6 +153,7 @@ public class LoginFilterGerente implements Filter {
                 chain.doFilter(request, response);
             }catch (NullPointerException e){
                 System.out.println("chain = null");
+                e.printStackTrace();
             }
         }
     }

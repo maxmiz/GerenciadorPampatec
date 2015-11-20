@@ -9,17 +9,17 @@
             <generator class="identity" />
         </id>
         <property name="segmentoClientes" type="string">
-            <column name="segmentoClientes" length="1000" />
+            <column name="segmentoClientes" length="65535" />
         </property>
         <property name="propostaValor" type="string">
-            <column name="PropostaValor" length="1000" />
+            <column name="propostaValor" length="65535" />
         </property>
         <property name="atividadesChaves" type="string">
-            <column name="AtividadesChaves" length="1000" />
+            <column name="atividadesChaves" length="65535" />
         </property>
         <set name="projetos" table="projeto" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
-                <column name="Negocio_idNegocio" not-null="true" />
+                <column name="negocio_idNegocio" not-null="true" />
             </key>
             <one-to-many class="com.ideiah.gerenciadorpampatec.model.Projeto" />
         </set>
