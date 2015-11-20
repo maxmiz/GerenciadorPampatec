@@ -104,10 +104,10 @@ public class EmailUtil {
     }
 
     /**
-     * @param email Envio de email para recuperação de senha
+     * @param email
+     * @param idUnico 
      */
     public static void enviarEmailRecuperarSenha(String email, String idUnico) {
-//        String idUnico = UUID.randomUUID().toString();
 
         emailHtml = new HtmlEmail();
         try {
