@@ -202,12 +202,18 @@ public class ProjetoBean implements Serializable {
 
     }
 
+    /**
+     * AGORA VAI
+     * @param projeto 
+     */
     public void salvarProjetoBase(Projeto projeto) {
         Integer id = projeto.getIdProjeto();
         ProjetoBase projetoBase = new ProjetoBase(projeto);
         empreendedorSession.salvarProjetoBase(projetoBase);
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
         projeto.setIdProjeto(id);
+        projetoBase.setProjetoReferencia(projeto);
+        empreendedorSession.salvarProjetoBase(projetoBase);
     }
 
     public void salvarProjetoeSair() {
