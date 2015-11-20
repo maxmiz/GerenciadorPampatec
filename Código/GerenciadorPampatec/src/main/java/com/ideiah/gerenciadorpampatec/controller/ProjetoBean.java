@@ -90,8 +90,8 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
-        listaProjetoBase = new ArrayList<ProjetoBase>();
-        carregaProjetosBaseEmLista(projeto); 
+//        listaProjetoBase = new ArrayList<ProjetoBase>();
+//        carregaProjetosBaseEmLista(projeto); 
     }
     
     public void carregaProjetosBaseEmLista(Projeto projetoReferencia){
@@ -815,6 +815,7 @@ public class ProjetoBean implements Serializable {
     public boolean verificarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
 
