@@ -34,6 +34,8 @@ public class Planofinanceiro implements java.io.Serializable {
         this.fontesReceita = fontesReceita;
         this.estruturaCusto = estruturaCusto;
         this.investimentoInicial = investimentoInicial;
+        this.valorTotalFixo = valorTotalFixo;
+        this.valorTotalVariavel = valorTotalVariavel;
     }
 
     public int getIdPlanoFinanceiro() {
