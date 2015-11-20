@@ -936,7 +936,7 @@
         <div class="classeConteudo esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
 
             
-            <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.listaProjetoBase}">
+            <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.carregarProjetosBase()}">
                                 <p:column headerText="Data de envio">
                                     <h:outputText value="#{projetoBase.projeto.dataEnvio}" />
                                     <!--<h:outputText value="" />-->

@@ -98,7 +98,7 @@ public class ProjetoBean implements Serializable {
 
     public void carregaProjetosBaseEmLista(Projeto projetoReferencia) {
         if (projetoReferencia != null) {
-            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+            //listaProjetoBase = carregarProjetosBase(projetoReferencia);
         }
     }
 
@@ -106,7 +106,7 @@ public class ProjetoBean implements Serializable {
         if (projetoReferencia != null) {
             listaProjetoBase = null;
             listaProjetoFiltradaPorBase = null;
-            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+            //listaProjetoBase = carregarProjetosBase(projetoReferencia);
             if (listaProjetoBase != null) {
                 for (ProjetoBase projetoB : listaProjetoBase) {
                     listaProjetoFiltradaPorBase.add(projetoB.getProjeto());
@@ -203,17 +203,11 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjetoBase(Projeto projeto) {
-//<<<<<<< HEAD
-//        ProjetoBase projetoBase = new ProjetoBase(projeto);
-//        projeto.setStatus(Projeto.LINHA_DE_BASE);
-//        empreendedorSession.salvarProjetBase(projetoBase);
-//        projeto.setIdProjeto(null);
-//=======
-        Projeto projetoNovo = projeto;
+        Integer id = projeto.getIdProjeto();
         ProjetoBase projetoBase = new ProjetoBase(projeto);
         empreendedorSession.salvarProjetoBase(projetoBase);
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        projeto = projetoNovo;
+        projeto.setIdProjeto(id);
     }
 
     public void salvarProjetoeSair() {
@@ -663,7 +657,6 @@ public class ProjetoBean implements Serializable {
                 System.out.println("exceção = " + e);
             }
         }
-        carregarProjetosBase(projeto);
     }
 
     /**
@@ -1069,8 +1062,14 @@ public class ProjetoBean implements Serializable {
         this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
     }
 
-    public List<ProjetoBase> carregarProjetosBase(Projeto projetoReferencia) {
-        return empreendedorSession.retornaProjetoBase(projetoReferencia);
+    public List<ProjetoBase> carregarProjetosBase() {
+        if (projeto.getIdProjeto() == null) {
+            return null;
+        } else {
+            List<ProjetoBase> pb = new ArrayList<>();
+            pb = empreendedorSession.retornaProjetoBase(projeto);
+            return pb;
+        }
     }
 
 }
