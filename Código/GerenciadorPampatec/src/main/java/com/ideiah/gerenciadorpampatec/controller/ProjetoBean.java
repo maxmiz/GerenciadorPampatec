@@ -201,8 +201,11 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjetoBase(Projeto projeto) {
+        Projeto projetoNovo = projeto;
         ProjetoBase projetoBase = new ProjetoBase(projeto);
         empreendedorSession.salvarProjetoBase(projetoBase);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        projeto = projetoNovo;
     }
 
     public void salvarProjetoeSair() {
@@ -652,7 +655,7 @@ public class ProjetoBean implements Serializable {
                 System.out.println("exceção = " + e);
             }
         }
-        carregarProjetosBase(projeto);
+//        carregarProjetosBase(projeto);
     }
 
     /**
