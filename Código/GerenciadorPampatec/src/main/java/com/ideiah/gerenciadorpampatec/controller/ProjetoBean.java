@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -46,7 +47,7 @@ import org.primefaces.event.RowEditEvent;
  * @author Pedro
  */
 @ManagedBean(name = "projetoBean")
-@ViewScoped
+@SessionScoped
 public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;
@@ -72,7 +73,10 @@ public class ProjetoBean implements Serializable {
     private Custo custoFixoSelecionado;
     private Custo custoVariavelSelecionado;
     private float somatorioVariavel;
+
     private float somatorioFixo;
+    private List<ProjetoBase> listaProjetoBase;
+    private List<Projeto> listaProjetoFiltradaPorBase;
 
     public ProjetoBean() {
         salvou = false;
@@ -88,7 +92,27 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
+//        listaProjetoBase = new ArrayList<ProjetoBase>();
+//        carregaProjetosBaseEmLista(projeto); 
+    }
+    
+    public void carregaProjetosBaseEmLista(Projeto projetoReferencia){
+        if (projetoReferencia != null) {
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+        }
+    }
 
+    public void carregaListaProjetoFiltradaPorBase(Projeto projetoReferencia) {
+        if (projetoReferencia != null) {
+            listaProjetoBase = null;
+            listaProjetoFiltradaPorBase = null;
+            listaProjetoBase = carregarProjetosBase(projetoReferencia);
+            if (listaProjetoBase != null) {
+                for (ProjetoBase projetoB : listaProjetoBase) {
+                    listaProjetoFiltradaPorBase.add(projetoB.getProjeto());
+                }
+            }
+        }
     }
 
     /**
@@ -179,12 +203,17 @@ public class ProjetoBean implements Serializable {
     }
 
     public void salvarProjetoBase(Projeto projeto) {
+//<<<<<<< HEAD
+//        ProjetoBase projetoBase = new ProjetoBase(projeto);
+//        projeto.setStatus(Projeto.LINHA_DE_BASE);
+//        empreendedorSession.salvarProjetBase(projetoBase);
+//        projeto.setIdProjeto(null);
+//=======
+        Projeto projetoNovo = projeto;
         ProjetoBase projetoBase = new ProjetoBase(projeto);
-        projeto.setStatus(Projeto.LINHA_DE_BASE);
-        empreendedorSession.salvarProjetBase(projetoBase);
-        projeto.setIdProjeto(null);
+        empreendedorSession.salvarProjetoBase(projetoBase);
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        salvarProjeto();
+        projeto = projetoNovo;
     }
 
     public void salvarProjetoeSair() {
@@ -476,6 +505,7 @@ public class ProjetoBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
@@ -584,14 +614,14 @@ public class ProjetoBean implements Serializable {
             FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
             FLAG = FLAG + 1;
         }
-        if (listaCustoFixo.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
-            FLAG = FLAG + 1;
-        }
-        if (listaCustoVariavel.isEmpty()) {
-            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
-            FLAG = FLAG + 1;
-        }
+//        if (listaCustoFixo.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos fixos não pode estar vazia", "formulario_cadastro_projeto:nomeCustoFixo");
+//            FLAG = FLAG + 1;
+//        }
+//        if (listaCustoVariavel.isEmpty()) {
+//            FacesUtil.addErrorMessage("A lista de custos variáveis não pode estar vazia", "formulario_cadastro_projeto:nomeCustoVariavel");
+//            FLAG = FLAG + 1;
+//        }
 
         return FLAG;
     }
@@ -618,8 +648,7 @@ public class ProjetoBean implements Serializable {
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                        System.out.println("status enviado");
-                        salvarProjeto();
+                        salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
                     } else {
@@ -631,10 +660,10 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exeção = " + e);
+                System.out.println("exceção = " + e);
             }
         }
-
+//        carregarProjetosBase(projeto);
     }
 
     /**
@@ -768,6 +797,7 @@ public class ProjetoBean implements Serializable {
     public boolean verificarEmpreendedor() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
 
@@ -1021,6 +1051,26 @@ public class ProjetoBean implements Serializable {
      */
     public void setSomatorioVariavel(float somatorioVariavel) {
         this.somatorioVariavel = somatorioVariavel;
+    }
+
+    public List<ProjetoBase> getListaProjetoBase() {
+        return listaProjetoBase;
+    }
+
+    public void setListaProjetoBase(List<ProjetoBase> listaProjetoBase) {
+        this.listaProjetoBase = listaProjetoBase;
+    }
+
+    public List<Projeto> getListaProjetoFiltradaPorBase() {
+        return listaProjetoFiltradaPorBase;
+    }
+
+    public void setListaProjetoFiltradaPorBase(List<Projeto> listaProjetoFiltradaPorBase) {
+        this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
+    }
+
+    public List<ProjetoBase> carregarProjetosBase(Projeto projetoReferencia) {
+        return empreendedorSession.retornaProjetoBase(projetoReferencia);
     }
 
 }

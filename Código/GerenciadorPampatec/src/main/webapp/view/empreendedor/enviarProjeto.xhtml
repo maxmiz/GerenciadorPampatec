@@ -914,7 +914,7 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <br/>
+                                 <br/>
 
                                 <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{projetoBean.enviarProjeto()}">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
@@ -935,6 +935,22 @@
 
         <div class="classeConteudo esconder-div" id="divPreVisualizar" style="background-color: #05FFE2;">
 
+            
+            <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.listaProjetoBase}">
+                                <p:column headerText="Data de envio">
+                                    <h:outputText value="#{projetoBase.projeto.dataEnvio}" />
+                                    <!--<h:outputText value="" />-->
+                                    <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
+                                </p:column>
+                                <p:column headerText="Data de avaliação">
+                                    <h:outputText id="dataPreAv" value="#{projetoBase.dataAvaliacao}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Status">
+                                    <h:outputText id="statusPreAv" value="#{projetoBase.status}"></h:outputText>
+                                </p:column>
+                                </p:dataTable>
+                        
+         
             <br/>
             <br/>
             <br/>

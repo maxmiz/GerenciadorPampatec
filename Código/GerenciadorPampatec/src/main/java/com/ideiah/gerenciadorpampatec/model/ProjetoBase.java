@@ -20,6 +20,7 @@ public class ProjetoBase implements java.io.Serializable {
     private int idprojetobase;
     private ComentarioProjeto comentarioprojeto;
     private Projeto projeto;
+    private Projeto projetoReferencia;
     private Date dataAvaliacao;
     private Integer status;
     private Date dataUltimaAlteracao;
@@ -29,8 +30,12 @@ public class ProjetoBase implements java.io.Serializable {
     public ProjetoBase() {
     }
     
-    public ProjetoBase(Projeto projeto){
+    public ProjetoBase(Projeto projeto){   
+        this.projetoReferencia = projeto;
+        projeto.setIdProjeto(null);
+        projeto.setStatus(Projeto.LINHA_DE_BASE);
         this.projeto = projeto;
+        this.status = PENDENTE;
     }
     public ProjetoBase(int idprojetobase, ComentarioProjeto comentarioprojeto, Projeto projeto) {
         this.idprojetobase = idprojetobase;
@@ -99,6 +104,18 @@ public class ProjetoBase implements java.io.Serializable {
 
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
+    }
+    
+    public void teste(){
+        System.out.println("POLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL <<<<<<<<<<<<<<<<<<<<<<");
+    }
+
+    public Projeto getProjetoReferencia() {
+        return projetoReferencia;
+    }
+
+    public void setProjetoReferencia(Projeto projetoReferencia) {
+        this.projetoReferencia = projetoReferencia;
     }
 
 }

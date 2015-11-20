@@ -409,8 +409,20 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         dao.excluir(custo.getIdCusto(), Custo.class);
     }
     
-    public void salvarProjetBase(ProjetoBase projetoBase){
+    public void salvarProjetoBase(ProjetoBase projetoBase){
         ProjetoBaseDao dao = new ProjetoBaseDao();
         dao.salvar(projetoBase);        
+    }
+    
+    public ArrayList<ProjetoBase> retornaProjetoBase(Projeto projetoReferencia){
+        ArrayList<ProjetoBase> arrayBase = new ArrayList<ProjetoBase>();
+        ProjetoBaseDao daoPBase = new ProjetoBaseDao();
+//        for (ProjetoBase pb : daoPBase.buscar()){
+//            if (pb.getProjetoReferencia().getNome().equals(projetoReferencia.getNome())){
+//                arrayBase.add(pb);
+//            }
+//        }
+        arrayBase = daoPBase.buscarPorReferencia(projetoReferencia);
+        return arrayBase;
     }
 }
