@@ -91,10 +91,10 @@ public class ProjetoBean implements Serializable {
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
 //        listaProjetoBase = new ArrayList<ProjetoBase>();
-//        carregaProjetosBaseEmLista(projeto); 
+//        carregaProjetosBaseEmLista(projeto);
     }
-    
-    public void carregaProjetosBaseEmLista(Projeto projetoReferencia){
+
+    public void carregaProjetosBaseEmLista(Projeto projetoReferencia) {
         if (projetoReferencia != null) {
             listaProjetoBase = carregarProjetosBase(projetoReferencia);
         }
@@ -655,7 +655,7 @@ public class ProjetoBean implements Serializable {
                 System.out.println("exceção = " + e);
             }
         }
-//        carregarProjetosBase(projeto);
+        carregarProjetosBase(projeto);
     }
 
     /**
