@@ -96,25 +96,6 @@ public class ProjetoBean implements Serializable {
 //        carregaProjetosBaseEmLista(projeto);
     }
 
-    public void carregaProjetosBaseEmLista(Projeto projetoReferencia) {
-        if (projetoReferencia != null) {
-            //listaProjetoBase = carregarProjetosBase(projetoReferencia);
-        }
-    }
-
-    public void carregaListaProjetoFiltradaPorBase(Projeto projetoReferencia) {
-        if (projetoReferencia != null) {
-            listaProjetoBase = null;
-            listaProjetoFiltradaPorBase = null;
-            //listaProjetoBase = carregarProjetosBase(projetoReferencia);
-            if (listaProjetoBase != null) {
-                for (ProjetoBase projetoB : listaProjetoBase) {
-                    listaProjetoFiltradaPorBase.add(projetoB.getProjeto());
-                }
-            }
-        }
-    }
-
     /**
      * Preenche a lista de custo com os custos do projeto.
      */
@@ -189,6 +170,9 @@ public class ProjetoBean implements Serializable {
         }
     }
 
+    /**
+     * Salva o projeto atual no banco de dados e na sessão.
+     */
     public void salvarProjeto() {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
             projeto.setNome("Novo plano de negócio sem nome");
@@ -203,8 +187,10 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * AGORA VAI
-     * @param projeto 
+     * Cria um projeto base a partir do projeto atual, salvando uma versão do 
+     * projeto atual a fim de versionar a submissão para a pré-avaliação.
+     * 
+     * @param projeto projeto atual que será versionado
      */
     public void salvarProjetoBase(Projeto projeto) {
         Integer id = projeto.getIdProjeto();
@@ -213,7 +199,7 @@ public class ProjetoBean implements Serializable {
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
         projeto.setIdProjeto(id);
         projetoBase.setProjetoReferencia(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
+        empreendedorSession.salvarProjetoBase(projetoBase);       
     }
 
     public void salvarProjetoeSair() {
@@ -256,7 +242,14 @@ public class ProjetoBean implements Serializable {
         }
     }
 
-    public List<String> completarEmpreendedor(String busca) {
+    /**
+     * Retorna lista de emails de empreendedores cadastrados que começam com a
+     * string passada.
+     * 
+     * @param busca = string inicial a ser buscada
+     * @return lista de emails que começam com a string busca
+     */
+    public List<String> sugerirEmpreendedorCadastrado(String busca) {
         List<String> listaFiltrada = new ArrayList<>();
 
         for (Empreendedor empreendedor : getListaEmpreendedor()) {
@@ -465,7 +458,10 @@ public class ProjetoBean implements Serializable {
         this.empreendedorSelected = empreendedorSelected;
     }
 
-    public void enviaNovoProjetoCadastrar() {
+    /**
+     * Cria um novo plano de negócio vazio e atribui à sessão.
+     */
+    public void criarNovoPlano() {
         Projeto pjto = new Projeto();
         Analiseemprego analiseemprego = new Analiseemprego();
         Produtoouservico produtoouservico = new Produtoouservico();
@@ -510,6 +506,10 @@ public class ProjetoBean implements Serializable {
 
     }
 
+    /**
+     * Verifica se o empreendedor tem projetos cadastrados.
+     * @return true se o empreendedor não tem projetos cadastrados. 
+     */
     public boolean verificaCadastroProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
@@ -627,7 +627,7 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Envia o projeto para a avaliação.
+     * Envia o projeto para a pré-avaliação. Atualiza status, salva projeto base.
      */
     public void enviarProjeto() {
         int FLAG = verificarCampos();
@@ -829,6 +829,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Remove custo fixo da tabela e do projeto
+     * @param custoFixo
      */
     public void deletarCustoFixo(Custo custoFixo) {
         ProjetoDao daoProj = new ProjetoDao();
@@ -841,6 +842,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Remove custo variavel da tabela e do projeto
+     * @param custoVariavel
      */
     public void deletarCustoVariavel(Custo custoVariavel) {
         ProjetoDao daoProj = new ProjetoDao();
@@ -867,6 +869,10 @@ public class ProjetoBean implements Serializable {
         this.custoVariavelSelecionado = custoVariavelSelecionado;
     }
 
+    /**
+     * Verifica se o status do projeto não é DEFININDO_EQUIPE ou ELABORACAO
+     * @return true se for outro status
+     */
     public boolean verificaElaboracao() {
         if (projeto.getStatus() == Projeto.DEFININDO_EQUIPE) {
             return false;
@@ -886,7 +892,7 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja
      * sendo avaliado ou PENDENTE caso a avaliação seja interrompida
      *
      * @param projeto
@@ -911,10 +917,10 @@ public class ProjetoBean implements Serializable {
         return selectedButton != null && selectedButton.equals("Outro");
     }
 
-    public void verificaUpdate() {
-        System.out.println("PASSOU AQUI NO UPDATEEEEEEEEEEE");
-    }
-
+    /**
+     * Deleta registro na tabela.
+     * @param custo 
+     */
     public void deletarLinha(Custo custo) {
         FacesMessage msg;
         if (custo.getTipo() == Custo.CUSTO_FIXO) {
@@ -933,6 +939,10 @@ public class ProjetoBean implements Serializable {
 
     }
 
+    /***
+     * Método para ação após linha ser editada, atualizando valores na tabela.
+     * @param event 
+     */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg;
         Custo custo = (Custo) event.getObject();
@@ -945,6 +955,10 @@ public class ProjetoBean implements Serializable {
 
     }
 
+    /**
+     * Método que cancela edição da linha na tabela.
+     * @param event 
+     */
     public void onRowCancel(RowEditEvent event) {
 
         FacesMessage msg = new FacesMessage("Edição Cancelada", ((Custo) event.getObject()).getDescricao());
@@ -1068,6 +1082,10 @@ public class ProjetoBean implements Serializable {
         this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
     }
 
+    /***
+     * Método para carregar as versões enviadas do projeto na tabela de pré-avaliação.
+     * @return lista de projetos base
+     */
     public List<ProjetoBase> carregarProjetosBase() {
         if (projeto.getIdProjeto() == null) {
             return null;
