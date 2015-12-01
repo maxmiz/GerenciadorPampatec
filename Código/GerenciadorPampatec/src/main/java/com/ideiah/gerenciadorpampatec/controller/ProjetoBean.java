@@ -952,6 +952,9 @@ public class ProjetoBean implements Serializable {
 
         caucularValorColunaCustoVariavel();
         caucularValorColunaCustoFixo();
+        
+        ProjetoDao projetoDao =  new ProjetoDao();
+        projetoDao.salvar(custo);
 
     }
 
@@ -1032,7 +1035,7 @@ public class ProjetoBean implements Serializable {
             somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
         }
         somatorioFixo = somatorioFixo * 6;
-        projeto.getPlanofinanceiro().setValorTotalVariavel(somatorioFixo);
+        projeto.getPlanofinanceiro().setValorTotalFixo(somatorioFixo);
         setSomatorioVariavel(somatorioFixo);
         return somatorioFixo;
     }
@@ -1104,6 +1107,11 @@ public class ProjetoBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) secao.getAttribute("projetoSelecionado"); 
         return projeto.getStatus();
+    }
+    
+    public List<Custo> retornaListaCustoFixo(){
+        preencheListaCusto();
+        return listaCustoFixo;
     }
 
 }

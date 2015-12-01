@@ -701,7 +701,7 @@
                                         Salários, Aluguel de servidores...
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" sortBy="#{custofixo.descricao}" editable="true" var="custofixo" value="#{projetoBean.listaCustoFixo}">
+                                        <p:dataTable id="novaTabelaCustosFixos" sortBy="#{custofixo.descricao}" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
