@@ -1077,5 +1077,15 @@ public class ProjetoBean implements Serializable {
             return pb;
         }
     }
+    
+    /**
+     * Retorna o projeto da sessão, garantindo que ele está atualizado com o servidor.
+     * @return projeto da sessão
+     */
+    public int retornaStatusProjeto(){
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado"); 
+        return projeto.getStatus();
+    }
 
 }
