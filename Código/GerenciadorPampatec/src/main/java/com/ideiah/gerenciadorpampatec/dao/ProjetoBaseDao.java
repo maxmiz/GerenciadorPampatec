@@ -30,7 +30,6 @@ public class ProjetoBaseDao extends Dao implements Serializable {
     }
     
     public ArrayList<ProjetoBase> buscarPorReferencia(Projeto pb) {
-        ArrayList<ProjetoBase> arrayBase = new ArrayList<>();
         return (ArrayList<ProjetoBase>) buscarObjetoCriteria("projetoReferencia", pb, ProjetoBase.class);
     }
 }
