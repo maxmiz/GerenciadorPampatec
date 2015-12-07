@@ -707,29 +707,29 @@
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome" sortBy="#{custofixo.descricao}">
+                                            <p:column headerText="Nome" style="width:45px" sortBy="#{custofixo.descricao}">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custofixo.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custofixo.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor" sortBy="#{custofixo.total}">
+                                            <p:column headerText="Valor" style="width:10px" sortBy="#{custofixo.total}">
                                                 <p:cellEditor>
-                                                    <f:facet name="output"><p:outputLabel value="#{custofixo.total}"></p:outputLabel></f:facet>
+                                                    <f:facet name="output"><p:outputLabel value="R$ #{custofixo.total}"></p:outputLabel></f:facet>
                                                     <f:facet name="input"><p:inputText value="#{custofixo.total}" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
                                                         </p:inputText></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção" sortBy="#{custofixo.projecao}">
-                                                <p:outputLabel value="#{custofixo.projecao}"></p:outputLabel>
+                                            <p:column headerText="Projeção" style="width:10px" sortBy="#{custofixo.projecao}">
+                                                <p:outputLabel value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column style="width:32px" >
-                                                <p:rowEditor />
+                                            <p:column style="width:10px" headerText="Opções">
+                                                <p:rowEditor style="width: inherit"/>
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
                                                     <f:ajax execute="panelCustoFixo" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
@@ -775,28 +775,28 @@
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update="formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome">
+                                            <p:column headerText="Nome" style="width:45px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custovariavel.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custovariavel.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor">
+                                            <p:column headerText="Valor" style="width:10px">
                                                 <p:cellEditor>
-                                                    <f:facet name="output"><p:outputLabel value="#{custovariavel.total}"></p:outputLabel></f:facet>
+                                                    <f:facet name="output"><p:outputLabel value="R$ #{custovariavel.total}"></p:outputLabel></f:facet>
                                                     <f:facet name="input"><p:inputText value="#{custovariavel.total}" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalVariavel" listener="#{projetoBean.caucularProjecaoCustoVariavel(custovariavel)}"/>
                                                         </p:inputText></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção">
-                                                <p:outputLabel value="#{custovariavel.projecao}"></p:outputLabel>
+                                            <p:column headerText="Projeção" style="width:10px">
+                                                <p:outputLabel value="R$ #{custovariavel.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column style="width:32px">
+                                            <p:column style="width:10px"  headerText="Opções">
                                                 <p:rowEditor />
                                                 <h:commandButton value="Vai">
                                                     <f:ajax execute="panel_custo_variavel" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
@@ -804,16 +804,24 @@
                                             </p:column>
 
                                         </p:dataTable>
-
+                                        <br/>
+                                        <div class="col-md-6">
                                         <p:commandButton id="botao_adicionar_nova_linhaVariavel" value="Adicionar Linha" >
                                             <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustos" render="formulario_cadastro_projeto:novaTabelaCustos"
                                                     listener="#{projetoBean.adicionarLinhaVariavel()}"></f:ajax>                                
                                         </p:commandButton>
+                                            </div>
+                                                                             
+                                        <div class="col-md-6" align="right" >
+                                            
+                                            <p:dataTable id="colunaValorTotalVariavel" editable="false" var="custovariavel"  value="#{projetoBean.calcularValorColunaCustoVariavel()}">
+                                                 <p:column headerText="Projeção total de custos variáveis">
+                                                    <p:outputLabel  value="#{custovariavel}"></p:outputLabel>
+                                                 </p:column>
 
-                                        <h:outputText id="colunaValorTotalVariavel" value="Projecao para seis meses: #{projetoBean.calcularValorColunaCustoVariavel()}" style="width: 100%"></h:outputText>
-
-
-
+                                             </p:dataTable>
+                                        </div>
+                                        
                                         <!--  <h:message class="mensagemErro" for="custosvariaveis"/>-->
 
                                         <br/>
