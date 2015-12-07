@@ -737,13 +737,24 @@
                                             </p:column>
 
                                         </p:dataTable>
+                                        
+                                        <div class="col-md-6">
                                         <h:commandButton id="botao_adicionar_nova_linha" class="btn btn-default" value="Adicionar Linha" >
                                             <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos" render="formulario_cadastro_projeto:novaTabelaCustosFixos"
                                                     listener="#{projetoBean.adicionarLinhaFixo()}"></f:ajax>                                
                                         </h:commandButton>
 
-                                        <h:outputText id="colunaValorTotalFixo" value="Projecao para seis meses: #{projetoBean.caucularValorColunaCustoFixo()}" style="width: 100%"></h:outputText>
+                                        </div>
+                                        
+                                        <div class="col-md-6" align="right" >
+                                            
+                                             <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo"  value="#{projetoBean.calcularValorColunaCustoFixo()}">
+                                                 <p:column headerText="Projeção total de custos fixos">
+                                                    <p:outputLabel  value="#{custofixo}"></p:outputLabel>
+                                                 </p:column>
 
+                                             </p:dataTable>
+                                        </div>
 
 
                                         <br/>
@@ -758,7 +769,7 @@
                                         <br/>
 
 
-                                        <p:dataTable id="novaTabelaCustos" editable="true" var="custovariavel" value="#{projetoBean.listaCustoVariavel}">
+                                        <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
@@ -799,7 +810,7 @@
                                                     listener="#{projetoBean.adicionarLinhaVariavel()}"></f:ajax>                                
                                         </p:commandButton>
 
-                                        <h:outputText id="colunaValorTotalVariavel" value="Projecao para seis meses: #{projetoBean.caucularValorColunaCustoVariavel()}" style="width: 100%"></h:outputText>
+                                        <h:outputText id="colunaValorTotalVariavel" value="Projecao para seis meses: #{projetoBean.calcularValorColunaCustoVariavel()}" style="width: 100%"></h:outputText>
 
 
 

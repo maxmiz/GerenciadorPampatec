@@ -925,13 +925,13 @@ public class ProjetoBean implements Serializable {
         FacesMessage msg;
         if (custo.getTipo() == Custo.CUSTO_FIXO) {
             deletarCustoFixo(custo);
-            caucularValorColunaCustoFixo();
+            calcularValorColunaCustoFixo();
             msg = new FacesMessage("Custo fixo DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         }
         if (custo.getTipo() == Custo.CUSTO_VARIAVEL) {
             deletarCustoVariavel(custo);
-            caucularValorColunaCustoVariavel();
+            calcularValorColunaCustoVariavel();
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         }
@@ -950,8 +950,8 @@ public class ProjetoBean implements Serializable {
         msg = new FacesMessage("Custo Editado", custo.getDescricao());
         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
 
-        caucularValorColunaCustoVariavel();
-        caucularValorColunaCustoFixo();
+        calcularValorColunaCustoVariavel();
+        calcularValorColunaCustoFixo();
         
         ProjetoDao projetoDao =  new ProjetoDao();
         projetoDao.salvar(custo);
@@ -1014,7 +1014,7 @@ public class ProjetoBean implements Serializable {
      * Metodo que soma os valores de cada custo variavel adicionados na tabela e
      * faz a projeção para seis meses.
      */
-    public float caucularValorColunaCustoVariavel() {
+    public float calcularValorColunaCustoVariavel() {
         somatorioVariavel = 0;
         for (int i = 0; i < listaCustoVariavel.size(); i++) {
             somatorioVariavel = somatorioVariavel + listaCustoVariavel.get(i).getTotal();
@@ -1028,8 +1028,9 @@ public class ProjetoBean implements Serializable {
     /**
      * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
      * a projeção para seis meses.
+     * @return somatorioFixo
      */
-    public float caucularValorColunaCustoFixo() {
+    public float calcularValorColunaCustoFixo() {
         somatorioFixo = 0;
         for (int i = 0; i < listaCustoFixo.size(); i++) {
             somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
