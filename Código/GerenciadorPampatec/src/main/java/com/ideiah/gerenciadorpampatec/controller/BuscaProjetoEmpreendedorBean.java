@@ -24,13 +24,13 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class BuscaProjetoEmpreendedorBean implements Serializable {
 
-    private ArrayList<Projeto> listaProjetos;
-    private ProjetoDao projeto;
-    private Projeto projetoSelecionado;
-    private int contTeste = 0;
+    private ArrayList<Projeto> listaProjetos;//Lista de projetos exibidos
+    private ProjetoDao projetoDao;//Dao para acessar o banco de dados
+    private Projeto projetoSelecionado;//Projeto que foi selecionado quando um usuário escolhe algum item da lista.
+    
 
     public BuscaProjetoEmpreendedorBean() {
-        projeto = new ProjetoDao();
+        projetoDao = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
     }
 
@@ -47,11 +47,11 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     }
 
     public List<Projeto> buscarProjetos() {
-        return projeto.buscar();
+        return projetoDao.buscar();
     }
 
     public ProjetoDao getProjeto() {
-        return projeto;
+        return projetoDao;
     }
 
     /**
@@ -60,8 +60,6 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public void sairDoProjeto() {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
-        contTeste++;
-        System.out.println("Testeeeeeeeeeeeeee = " + contTeste);
         for (Object object : projetoSelecionado.getEmpreendedores()) {
             Empreendedor emmpreendedorLaco = (Empreendedor) object;
             if (Objects.equals(empreendedor.getIdUsuario(), emmpreendedorLaco.getIdUsuario())) {
@@ -73,13 +71,17 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         listaProjetos.remove(projetoSelecionado);
 
         if (projetoSelecionado.getEmpreendedores().isEmpty()) {
-            projeto.deletar(projetoSelecionado.getIdProjeto());
+            projetoDao.deletar(projetoSelecionado.getIdProjeto());
         } else {
-            projeto.update(projetoSelecionado);
+            projetoDao.update(projetoSelecionado);
         }
 
     }
 
+    /**
+     * Busca os projetos que um empreendedor tem.
+     * @return Lista de projetos encontrada.
+     */
     public ArrayList<Projeto> buscaProjetoPorEmpreendedor() {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
@@ -102,6 +104,9 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         this.projetoSelecionado = projetoSelecionado;
     }
 
+    /**
+     * Envia o usuário para a página de enviar projeto, de acordo com o projeto que ele selecionou.
+     */
     public void enviaProjetoEditar() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
@@ -112,15 +117,18 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         }
     }
 
+    /**
+     * Deleta o projeto que o usuário selecionou.
+     */
     public void deletarProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
-        this.projeto.deletar(projetoSelecionado.getAnaliseemprego().getIdAnaliseEmprego());
-        this.projeto.deletar(projetoSelecionado.getPlanofinanceiro().getIdPlanoFinanceiro());
-        this.projeto.deletar(projetoSelecionado.getProdutoouservico().getIdProdutoOuServico());
-        this.projeto.deletar(projetoSelecionado.getNegocio().getIdNegocio());
-        this.projeto.deletar(projetoSelecionado.getIdProjeto());
+        this.projetoDao.deletar(projetoSelecionado.getAnaliseemprego().getIdAnaliseEmprego());
+        this.projetoDao.deletar(projetoSelecionado.getPlanofinanceiro().getIdPlanoFinanceiro());
+        this.projetoDao.deletar(projetoSelecionado.getProdutoouservico().getIdProdutoOuServico());
+        this.projetoDao.deletar(projetoSelecionado.getNegocio().getIdNegocio());
+        this.projetoDao.deletar(projetoSelecionado.getIdProjeto());
         listaProjetos.remove(projetoSelecionado);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
     }
