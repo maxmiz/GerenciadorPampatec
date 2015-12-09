@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoBaseDao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -406,5 +407,21 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     public void removeCustoProjeto(Custo custo) {
         ProjetoDao dao = new ProjetoDao();
         dao.excluir(custo.getIdCusto(), Custo.class);
+    }
+    
+    public void salvarProjetoBase(ProjetoBase projetoBase){
+        ProjetoBaseDao dao = new ProjetoBaseDao();
+        dao.salvar(projetoBase);        
+    }
+    
+    public ArrayList<ProjetoBase> retornaProjetoBase(Projeto projetoReferencia){
+        ArrayList<ProjetoBase> arrayBase = new ArrayList<ProjetoBase>();
+        ProjetoBaseDao daoPBase = new ProjetoBaseDao();
+        for (ProjetoBase pb : daoPBase.buscar()){
+            if (projetoReferencia.getIdProjeto().equals(pb.getProjetoReferencia().getIdProjeto())){
+                arrayBase.add(pb);
+            }
+        }
+        return arrayBase;
     }
 }

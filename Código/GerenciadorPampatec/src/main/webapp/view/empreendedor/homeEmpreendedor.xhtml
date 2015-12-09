@@ -49,7 +49,7 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.enviaNovoProjetoCadastrar()}" value="Novo Plano"></h:commandLink></li>
+                                    <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
                                     <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
                                 </ul>
                             </li>
@@ -135,7 +135,7 @@
         <div class="col-md-12" text-align="center" style="padding-top: 1%;">
             <div class="col-md-3"></div>
             <div class="col-md-3">
-                <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo plano de negócio!" action="#{projetoBean.enviaNovoProjetoCadastrar()}"/>
+                <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo plano de negócio!" action="#{projetoBean.criarNovoPlano()}"/>
                 <h:commandButton rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Meus planos de negócio!" action="#{loginBean.enviaBuscaProjeto()}"/>
             </div>
             <div class="col-md-3"></div>

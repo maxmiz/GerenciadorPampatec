@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" table="comentario_negocio">
-        <id name="idcomentario_negocio" type="java.lang.Integer">
-            <column name="idcomentario_negocio" />
-            <generator class="identity" />        
+    <class name="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" table="comentarionegocio" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idcomentarionegocio" type="int">
+            <column name="idcomentarionegocio" />
+            <generator class="assigned" />
         </id>
         <property name="segmentoClientes" type="string">
-            <column name="segmentoClientes" length="1000" />
+            <column name="segmentoClientes" length="65535" />
         </property>
         <property name="propostaValor" type="string">
-            <column name="propostaValor" length="1000" />
+            <column name="propostaValor" length="65535" />
         </property>
         <property name="atividadesChaves" type="string">
-            <column name="atividadesChaves" length="1000" />
+            <column name="atividadesChaves" length="65535" />
         </property>
-        <one-to-one name="comentarioProjeto" class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto"
-                    cascade="save-update">
-        </one-to-one>
-    </class> 
+        <set name="comentarioprojetos" table="comentarioprojeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comentarionegocio_idcomentarionegocio" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" />
+        </set>
+    </class>
 </hibernate-mapping>

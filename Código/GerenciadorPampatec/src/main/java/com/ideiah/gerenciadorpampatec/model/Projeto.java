@@ -25,7 +25,7 @@ public class Projeto implements java.io.Serializable {
     public static final int REPROVADO = 6;
     public static final int PRE_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
-    
+    public static final int LINHA_DE_BASE = 9;
     
     
     private Integer idProjeto;
