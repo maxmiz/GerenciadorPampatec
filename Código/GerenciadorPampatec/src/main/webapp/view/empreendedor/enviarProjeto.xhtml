@@ -723,7 +723,7 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção" style="width:10px" sortBy="#{custofixo.projecao}">
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px" sortBy="#{custofixo.projecao}">
                                                 <p:outputLabel value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
@@ -748,11 +748,11 @@
 
                                         </div>
                                         
-                                        <div class="col-md-6" align="right" >
+                                        <div class="col-md-6 text-center" align="center" >
                                             
                                              <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo"  value="#{projetoBean.calcularValorColunaCustoFixo()}">
-                                                 <p:column headerText="Projeção total de custos fixos">
-                                                    <p:outputLabel  value="#{custofixo}"></p:outputLabel>
+                                                 <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custofixo}"></p:outputLabel>
                                                  </p:column>
 
                                              </p:dataTable>
@@ -795,7 +795,7 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção" style="width:10px">
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px">
                                                 <p:outputLabel value="R$ #{custovariavel.projecao}"></p:outputLabel>
 
                                             </p:column>
@@ -816,11 +816,11 @@
                                         </p:commandButton>
                                             </div>
                                                                              
-                                        <div class="col-md-6" align="right" >
+                                        <div class="col-md-6 text-center" align="center" >
                                             
                                             <p:dataTable id="colunaValorTotalVariavel" editable="false" var="custovariavel"  value="#{projetoBean.calcularValorColunaCustoVariavel()}">
-                                                 <p:column headerText="Projeção total de custos variáveis">
-                                                    <p:outputLabel  value="#{custovariavel}"></p:outputLabel>
+                                                 <p:column headerText="Projeção total de custos variáveis (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custovariavel}"></p:outputLabel>
                                                  </p:column>
 
                                              </p:dataTable>
