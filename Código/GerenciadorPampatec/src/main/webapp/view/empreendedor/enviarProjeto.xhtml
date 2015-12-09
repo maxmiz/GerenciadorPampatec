@@ -723,13 +723,13 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção" style="width:10px" sortBy="#{custofixo.projecao}">
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px" sortBy="#{custofixo.projecao}">
                                                 <p:outputLabel value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
 
                                             <p:column style="width:10px" headerText="Opções">
-                                                <p:rowEditor style="width: inherit"/>
+                                                <p:rowEditor style="width: "/>
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
                                                     <f:ajax execute="panelCustoFixo" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
@@ -737,6 +737,8 @@
                                             </p:column>
 
                                         </p:dataTable>
+                                        
+                                        <br/>
                                         
                                         <div class="col-md-6">
                                         <h:commandButton id="botao_adicionar_nova_linha" class="btn btn-default" value="Adicionar Linha" >
@@ -746,17 +748,19 @@
 
                                         </div>
                                         
-                                        <div class="col-md-6" align="right" >
+                                        <div class="col-md-6 text-center" align="center" >
                                             
                                              <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo"  value="#{projetoBean.calcularValorColunaCustoFixo()}">
-                                                 <p:column headerText="Projeção total de custos fixos">
-                                                    <p:outputLabel  value="#{custofixo}"></p:outputLabel>
+                                                 <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custofixo}"></p:outputLabel>
                                                  </p:column>
 
                                              </p:dataTable>
                                         </div>
 
 
+                                        <br/>
+                                        <br/>
                                         <br/>
                                         <br/>
                                     </h:panelGroup>
@@ -769,7 +773,7 @@
                                         <br/>
 
 
-                                        <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
+                                        <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custovariavel" value="#{projetoBean.retornaListaCustoVariavel()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
@@ -791,7 +795,7 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção" style="width:10px">
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px">
                                                 <p:outputLabel value="R$ #{custovariavel.projecao}"></p:outputLabel>
 
                                             </p:column>
@@ -806,21 +810,24 @@
                                         </p:dataTable>
                                         <br/>
                                         <div class="col-md-6">
-                                        <p:commandButton id="botao_adicionar_nova_linhaVariavel" value="Adicionar Linha" >
-                                            <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustos" render="formulario_cadastro_projeto:novaTabelaCustos"
+                                        <p:commandButton id="botao_adicionar_nova_linhaVariavel" class="btn btn-default" value="Adicionar Linha" >
+                                            <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis" render="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
                                                     listener="#{projetoBean.adicionarLinhaVariavel()}"></f:ajax>                                
                                         </p:commandButton>
                                             </div>
                                                                              
-                                        <div class="col-md-6" align="right" >
+                                        <div class="col-md-6 text-center" align="center" >
                                             
                                             <p:dataTable id="colunaValorTotalVariavel" editable="false" var="custovariavel"  value="#{projetoBean.calcularValorColunaCustoVariavel()}">
-                                                 <p:column headerText="Projeção total de custos variáveis">
-                                                    <p:outputLabel  value="#{custovariavel}"></p:outputLabel>
+                                                 <p:column headerText="Projeção total de custos variáveis (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custovariavel}"></p:outputLabel>
                                                  </p:column>
 
                                              </p:dataTable>
                                         </div>
+                                        
+                                        <br/>
+                                        <br/>
                                         
                                         <!--  <h:message class="mensagemErro" for="custosvariaveis"/>-->
 

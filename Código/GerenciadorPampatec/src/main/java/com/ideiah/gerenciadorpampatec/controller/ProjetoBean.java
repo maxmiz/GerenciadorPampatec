@@ -1114,5 +1114,10 @@ public class ProjetoBean implements Serializable {
         preencheListaCusto();
         return listaCustoFixo;
     }
+    
+    public List<Custo> retornaListaCustoVariavel(){
+        preencheListaCusto();
+        return listaCustoVariavel;
+    }
 
 }
