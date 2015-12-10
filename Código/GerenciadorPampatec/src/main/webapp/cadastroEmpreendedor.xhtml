@@ -27,31 +27,39 @@
                                                         <p:inputText id="nome" placeholder="Digite seu nome" required="true" styleClass="#//{not component.valid ? 'form-control campoInvalido' : 'form-control'}" requiredMessage="Insira o seu nome antes de enviar" value="#{candidatoBean.candidato.nome}"/>
                                                         <h:message class="mensagemErro" for="nome"/>
                                                     </div>-->
-
-                        Nome* <p:inputText id="nome" placeholder="Digite seu nome" class="form-control"
+                        
+                        
+                        Nome*
+                        <br/>
+                        <h:message class="mensagemErro" for="nome"/>
+                        <p:inputText id="nome" placeholder="Digite seu nome completo" class="form-control"
                                            requiredMessage="Insira o seu nome antes de enviar" 
                                            required="true" 
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                            value="#{empreendedorBean.nome}">
 
                         </p:inputText>
-                        <h:message class="mensagemErro" for="nome"/>
+                        
 
                     </div>
                     <div class="col-md-6">
-                        CPF* <p:inputMask id="cpf" class="form-control" 
-                                          placeholder="Digite seu CPF" 
+                        CPF*<br/>
+                        <h:message class="mensagemErro" for="cpf"/>
+                        <p:inputMask id="cpf" class="form-control" 
+                                          placeholder="ex: 999.999.999-99"
                                           requiredMessage="Insira o seu CPF antes de enviar"
                                           required="true"
                                           mask="999.999.999-99"
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                           value="#{empreendedorBean.cpf}">
                         </p:inputMask>
-                        <h:message class="mensagemErro" for="cpf"/>
+                        
                     </div>
                     <div class="col-md-6">
-                        Telefone* <p:inputMask id="telefone" class="form-control" 
-                                               placeholder="Digite seu contato"
+                        Telefone* <br/>
+                        <h:message class="mensagemErro" for="telefone"/>
+                        <p:inputMask id="telefone" class="form-control" 
+                                               placeholder="ex:(99) 9999-9999"
                                                requiredMessage="Insira o seu telefone"
                                                required="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -61,7 +69,6 @@
 
                             <!--<f:validateRegex pattern="[0-9]*" />-->
                         </p:inputMask>
-                        <h:message class="mensagemErro" for="telefone"/>
 
                     </div>
                     <div class="col-md-12">
@@ -74,7 +81,7 @@
 
                     <div class="col-md-12">
                         Formação <p:inputTextarea class="form-control" 
-                                                  placeholder="Digite sua formação" 
+                                                  placeholder="Digite sua formação. Graduação, Mestrado, Doutorado, etc. Ex: Bacharelado em Engenharia de Software." 
                                                   value="#{empreendedorBean.formacao}">
                         </p:inputTextarea>
                     </div>
@@ -82,19 +89,23 @@
                     <legend>Endereço</legend>
 
                     <div class="col-md-6">
-                        Rua* <p:inputText id="rua" class="form-control"
-                                          placeholder="Digite a rua do seu endereço"
-                                          requiredMessage="Insira a rua do seu endereço"
+                        Logradouro* <br/>
+                        <h:message class="mensagemErro" for="rua"/>
+                        <p:inputText id="rua" class="form-control"
+                                          placeholder="ex: Avenida Tiaraju"
+                                          requiredMessage="Insira o logradouro do seu endereço"
                                           required="true"
                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                           value="#{empreendedorBean.rua}">
                         </p:inputText>
-                        <h:message class="mensagemErro" for="rua"/>
+                        
 
                     </div>
                     <div class="col-md-6">
-                        Número* <p:inputText id="numero" class="form-control" 
-                                             placeholder="Digite o número do seu endereço"
+                        Número* <br/>
+                        <h:message class="mensagemErro" for="numero"/>
+                        <p:inputText id="numero" class="form-control" 
+                                             placeholder="ex: 1406"
                                              requiredMessage="Insira o número do seu endereço"
                                              required="true" 
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -102,23 +113,25 @@
                                              validatorMessage="Número invalido">
                             <f:validateRegex pattern="[0-9]*" />
                         </p:inputText>
-                        <h:message class="mensagemErro" for="numero"/>
+                        
 
                     </div>
                     <div class="col-md-6">
-                        Bairro* <p:inputText id="bairro" class="form-control" 
-                                             placeholder="Digite o bairro do seu endereço"
+                        Bairro* <br/>
+                        <h:message class="mensagemErro" for="bairro"/>
+                        <p:inputText id="bairro" class="form-control" 
+                                             placeholder="ex:Ibirapuitã"
                                              requiredMessage="Insira o bairro do seu endereço"
                                              required="true"
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                              value="#{empreendedorBean.bairro}">
                         </p:inputText>
-                        <h:message class="mensagemErro" for="bairro"/>
+                        
 
                     </div>
                     <div class="col-md-6">
                         Complemento<p:inputText class="form-control" 
-                                                placeholder="Digite o complemento do seu endereço"
+                                                placeholder="ex: sala 13"
                                                 value="#{empreendedorBean.complemento}">
                         </p:inputText>
                         <br/>
@@ -127,7 +140,9 @@
                     <legend>Dados de Acesso</legend>
 
                     <div class="col-md-12">
-                        E-mail* <p:inputText id="email" placeholder="Digite seu E-mail" class="form-control" 
+                        E-mail* <br/>
+                        <h:message class="mensagemErro" for="email"/>
+                        <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
                                              requiredMessage="Insira o seu E-mail antes de enviar"
                                              required="true"
                                              styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -135,12 +150,13 @@
                                              validatorMessage="Email Invalido">
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         </p:inputText>
-                        <h:message class="mensagemErro" for="email"/>
 
                     </div>
 
                     <div class="col-md-6">
-                        Senha* <p:password id="senha" class="form-control" title="senha"
+                        Senha* <br/>
+                        <h:message class="mensagemErro" for="senha"/>
+                        <p:password id="senha" class="form-control" title="senha"
                                            placeholder="Digite sua senha" 
                                            requiredMessage="Insira sua senha"
                                            required="true"
@@ -150,18 +166,18 @@
                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                            value="#{empreendedorBean.senhaInput}"
                                            match="senhaConfig" validatorMessage="Senha deve ser igual"></p:password>
-                        <h:message class="mensagemErro" for="senha"/>
-
+                        
                     </div> 
                     <div class="col-md-6">
-                        Confirme sua senha* <p:password id="senhaConfig" class="form-control" 
+                        Confirme sua senha* <br/>
+                        <h:message class="mensagemErro" for="senha"/>
+                        <p:password id="senhaConfig" class="form-control" 
                                                         placeholder="Confirme sua senha" 
                                                         requiredMessage="Confirme sua senha"
                                                         required="true"
                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                         title="confirmaSenha"  
                                                         value="#{empreendedorBean.senhaInput}"></p:password>
-                        <h:message class="mensagemErro" for="senha"/>
                         <br/>
                     </div> 
 
