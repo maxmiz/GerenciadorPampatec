@@ -25,8 +25,9 @@
         <div class="col-md-6 form-horizontal well bs-component">
             <h1>Acesse sua conta</h1>
             <div id="empreendedorLogin">
-                <legend>Realizar Login</legend>
                 <h:form id="formularioDeLogin">
+                    <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
+
                     <div class="col-md-12">
                         Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
                     </div>
@@ -78,7 +79,6 @@
                                     E-mail
                                     <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
-                                    <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
 
                                 </div>
 
