@@ -108,40 +108,44 @@
 
             <!-- Fim das modais apresentadas -->
 
-        
-
-        <!--            <div class="col-md-12">
-                        <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
-                        </iframe>
-                    </div>-->
-
-        <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
-        <div class="col-md-12" style="background-color: red"> ...</div>
-        <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
-
-        <!-- SEÇÃO DO WORKFLOW VERTICAL -->
-        <div class="col-md-2" style="background-color: pink"> ...</div>
-        <!-- FIM DA SERÃO DO WORKFLOW VERTICAL -->
-
-        <!-- SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
-        <div class="col-md-10" style="background-color: blueviolet">
-
-            
-
-        </div>
-        <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
 
 
-        <div class="col-md-12" text-align="center" style="padding-top: 1%;">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <h:commandButton rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Cadastre um novo plano de negócio!" action="#{projetoBean.criarNovoPlano()}"/>
-                <h:commandButton rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn botaoCadastrar" value="Meus planos de negócio!" action="#{loginBean.enviaBuscaProjeto()}"/>
+            <div class="col-md-12">
+                <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
+                </iframe>
             </div>
-            <div class="col-md-3"></div>
-        </div>
-        <p:poll interval="3" update="barraNotificacoes"/>
-        <p:poll interval="3" update="tabelaNotificacoes"/>
+
+            <!-- SEÇÃO PARA INSERIR ALGUMA INFORMAÇÃO, COMO O WORKFLOW HORIZONTAL -->
+            <div class="col-md-12"></div>
+            <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
+
+            <!-- SEÇÃO PARA INSERIR ALGUMA INFORMAÇÃO, COMO O WORKFLOW VERTICAL -->
+            <div class="col-md-2"></div>
+            <!-- FIM DA SERÃO DO WORKFLOW VERTICAL -->
+
+            <!-- SEÇÃO PARA INSERIR ALGUMA INFORMAÇÃO, COMO A DE APRESENTAÇÃO DOS FORMULÁRIOS -->
+            <div class="col-md-10"></div>
+            <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
+
+
+            <div class="col-md-12" text-align="center" style="padding-top: 1%;">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+                    
+                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
+                    </h:commandLink>
+
+                    <h:commandLink rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/> Meus planos de negócio</label>
+                    </h:commandLink>
+
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <p:poll interval="3" update="barraNotificacoes"/>
+            <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>
     </body>
 </html>
