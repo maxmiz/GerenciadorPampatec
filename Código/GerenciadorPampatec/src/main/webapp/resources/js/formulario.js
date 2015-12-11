@@ -727,14 +727,24 @@ function exibeCampoOutro() {
  * @description Função para abrir uma nova aba ou janela no navegador
  * @returns {undefined}
  */
-function novaJanela(divID){
-    
-    var valorDaDiv = $(".conteudoDaRevisao").text();    
+function novaJanela(divID) {
+
+    var valorDaDiv = $(".conteudoDaRevisao").text();
     $("#orcamentoAssuntoForm").val(valorDaDiv);
-    
+
     document.write("Teste de escrita");
 }
 
 
-
+function SomenteNumero(e) {
+    var tecla = (window.event) ? event.keyCode : e.which;
+    if ((tecla > 47 && tecla < 58))
+        return true;
+    else {
+        if (tecla == 8 || tecla == 0 || tecla == 46)
+            return true;
+        else
+            return false;
+    }
+}
 
