@@ -177,6 +177,9 @@ public class ProjetoBean implements Serializable {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
             projeto.setNome("Novo plano de negócio sem nome");
         }
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO ,"Salvamento automático", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
