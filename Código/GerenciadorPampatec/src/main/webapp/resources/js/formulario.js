@@ -711,12 +711,28 @@ function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
 
+/**
+ * 
+ * @returns {undefined}
+ */
 function exibeCampoOutro() {
     if (document.getElementById('hsbc').checked) {
         document.getElementById('mostrarOutro').setAttribute("readonly", true);
     } else {
         document.getElementById('form1:hit').removeAttribute("readonly");
     }
+}
+
+/**
+ * @description Função para abrir uma nova aba ou janela no navegador
+ * @returns {undefined}
+ */
+function novaJanela(divID){
+    
+    var valorDaDiv = $(".conteudoDaRevisao").text();    
+    $("#orcamentoAssuntoForm").val(valorDaDiv);
+    
+    document.write("Teste de escrita");
 }
 
 
