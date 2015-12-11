@@ -27,7 +27,9 @@
             <div id="empreendedorLogin">
                 <h:form id="formularioDeLogin">
                     <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
-
+                    <div class="col-md-4 modal-footer" align="center">
+                        <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
+                    </div>
                     <div class="col-md-12">
                         Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
                     </div>
@@ -40,22 +42,19 @@
                     </div> 
                     <div class="col-md-3 modal-footer" align="left">
                     </div>
-                    <div class="col-md-4 modal-footer" align="center">
-                        <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
-                    </div>
-                    <div class="col-md-5 modal-footer">
-                        <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
-                    </div>
+                    
+                    
 
                     <div class="col-md-2 modal-footer" align="left">
                     </div>
                     <div class="col-md-5 modal-footer" align="center">
                     </div>
                     <div class="col-md-5 modal-footer">
+                        <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
+                    </div>
+                    <div class="col-md-5 modal-footer">
                         Não possui conta? <a href="faces/cadastroEmpreendedor.xhtml">Clique aqui</a> para se cadastrar.
                     </div>
-
-
 
                 </h:form>
             </div>
