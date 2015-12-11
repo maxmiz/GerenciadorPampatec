@@ -130,13 +130,13 @@
 
             <div class="col-md-12" text-align="center" style="padding-top: 1%;">
                 <div class="col-md-3"></div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-6 text-center">
                     
-                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
+                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
                         <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
                     </h:commandLink>
 
-                    <h:commandLink rendered="#{!projetoBean.verificaCadastroProjeto()}" style="margin-left: 50%" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
+                    <h:commandLink rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
                         <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/> Meus planos de negócio</label>
                     </h:commandLink>
 
