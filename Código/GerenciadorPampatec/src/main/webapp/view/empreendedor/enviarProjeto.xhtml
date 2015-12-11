@@ -484,13 +484,13 @@
                                         <h:panelGroup class="checkbox" id="abc">
                                             <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
                                                 <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
-                                                <f:selectItem itemValue="Projeto básico" itemLabel="Projeto básico"/>
-                                                <f:selectItem itemValue="Projeto detalhado" itemLabel="Projeto detalhado"/>
-                                                <f:selectItem itemValue="Protótipo desenvolvido" itemLabel="Protótipo desenvolvido"/>
+                                                <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
+                                                <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
+                                                <f:selectItem itemValue="Protótipo Desenvolvido" itemLabel="Protótipo Desenvolvido"/>
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <p:ajax update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"/>
+                                                <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
