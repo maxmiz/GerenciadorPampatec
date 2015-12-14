@@ -226,9 +226,46 @@ function verificaPlanoFinanceiro() {
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 
-    if (custoVariavelPreenchido == false || custoFixoPreenchido == false) {
+    if (!verificaTabelasCusto()) {
         tabPlanoFinanceiro.innerHTML = "Plano Financeiro";
         tabPlanoFinanceiro.style.color = "red";
+    }
+}
+
+/**
+ * Verifica se as tabelas do custo estão preenchidas
+ * @returns {Boolean} true se elas estão preenchidas
+ */
+function verificaTabelasCusto() {
+    var tabelaCustoFixo = document.getElementById("formulario_cadastro_projeto:novaTabelaCustosFixos_data");
+    var tabelaCustoVariavel = document.getElementById("formulario_cadastro_projeto:novaTabelaCustosVariaveis_data");
+    var listaTrFixo = tabelaCustoFixo.getElementsByTagName('tr');
+    var listaTrVariavel = tabelaCustoVariavel.getElementsByTagName('tr');
+    var preenchido;
+
+    preenchido = percorrerTrs(listaTrFixo);
+    if (preenchido) {
+        preenchido = percorrerTrs(listaTrVariavel);
+    }
+
+    return preenchido;
+}
+
+/**
+ * Percorre os trs para verificar se a tabela não está vazia.
+ * @param {type} listaTr lista de trs
+ * @returns {Boolean} true se ela não está vazia
+ */
+function percorrerTrs(listaTr) {
+    var trLaco;
+    for (var i = 0; i < listaTr.length; i++) {
+        trLaco = listaTr[i];
+        //Se a classe do tr indicar que a tabela está vazia
+        if ($(trLaco).hasClass('ui-widget-content ui-datatable-empty-message')) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
@@ -745,6 +782,25 @@ function SomenteNumero(e) {
             return true;
         else
             return false;
+    }
+}
+
+function atualizaTabAjax(data) {
+    var status = data.status; // Can be "begin", "complete" or "success".
+    var source = data.source; // The parent HTML DOM element.
+
+    switch (status) {
+        case "begin": // Before the ajax request is sent.
+            // ...
+            break;
+
+        case "complete": // After the ajax response is arrived.
+            // ...
+            break;
+
+        case "success": // After update of HTML DOM based on ajax response.
+            verificaPlanoFinanceiro();
+            break;
     }
 }
 
