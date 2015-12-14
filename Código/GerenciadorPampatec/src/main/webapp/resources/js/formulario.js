@@ -416,6 +416,7 @@ function mostrarFeedBack(id) {
 
 /**
  * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
+ * andamentoProjeto = status do projeto
  * @returns {undefined}
  */
 function carregaPagina() {
@@ -427,9 +428,8 @@ function carregaPagina() {
     var etapa5 = document.getElementById("etapa5");
 
     switch (andamentoProjeto) {
-//    switch (4) {
 
-
+//      ELABORACAO = 0;
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -454,6 +454,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
+//      EM_PRE_AVALIACAO = 1;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -476,6 +477,8 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+
+//      AVALIACAO = 2;    
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
@@ -492,6 +495,8 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+            
+//      FORMALIZACAO = 3;
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
 
@@ -502,11 +507,12 @@ function carregaPagina() {
             etapa3.setAttribute("class", "active");
             etapa4.setAttribute("class", "active, etapaAtual");
 
-
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+            
+//      INCUBACAO = 4;
         case 4:
 
             etapa1.setAttribute("class", "active");
@@ -517,6 +523,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa5";
 
             break;
+
+//      PRE_APROVADO = 5;
         case 5:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -537,6 +545,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
+//      DEFININDO_EQUIPE = 8;
         case 8:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -579,8 +588,6 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-
-
 }
 
 
@@ -772,7 +779,11 @@ function novaJanela(divID) {
     document.write("Teste de escrita");
 }
 
-
+/**
+ * Filtra os valores de entrada, para receber apenas números 
+ * @param {type} e
+ * @returns {Boolean}
+ */
 function SomenteNumero(e) {
     var tecla = (window.event) ? event.keyCode : e.which;
     if ((tecla > 47 && tecla < 58))
