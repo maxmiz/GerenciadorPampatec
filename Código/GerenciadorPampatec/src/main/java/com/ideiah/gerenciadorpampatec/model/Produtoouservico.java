@@ -32,17 +32,17 @@ public class Produtoouservico implements java.io.Serializable {
 
     public String verificaStatusProjeto(String status) {
         switch (status) {
-            case "1":
+            case "Ideia Básica":
                 return IDEIA_BASICA;
-            case "2":
+            case "Projeto Básico":
                 return PROJETO_BASICO;
-            case "3":
+            case "Projeto Detalhado":
                 return PROJETO_DETALHADO;
-            case "4":
+            case "Protótipo Desenvolvido":
                 return PROTOTIPO_DESENVOLVIDO;
-            case "5":
+            case "Em teste no mercado":
                 return EM_TESTE_NO_MERCADO;
-            case "6":
+            case "Clientes Pagando":
                 return CLIENTES_PAGANDO;
         }
         return "Outro:";

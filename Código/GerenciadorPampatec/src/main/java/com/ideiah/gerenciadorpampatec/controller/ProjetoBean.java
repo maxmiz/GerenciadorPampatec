@@ -47,7 +47,7 @@ import org.primefaces.event.RowEditEvent;
  * @author Pedro
  */
 @ManagedBean(name = "projetoBean")
-@SessionScoped
+@ViewScoped
 public class ProjetoBean implements Serializable {
 
     private Empreendedor empreendedorSelected;
@@ -92,8 +92,6 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
-//        listaProjetoBase = new ArrayList<ProjetoBase>();
-//        carregaProjetosBaseEmLista(projeto);
     }
 
     /**
@@ -122,10 +120,10 @@ public class ProjetoBean implements Serializable {
     public void preencheDropDown() {
         if (projeto != null && projeto.getProdutoouservico() != null && projeto.getProdutoouservico().getEstagioEvolucao() != null) {
             if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
-                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedButton = "Outro";
                 descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
             } else {
-                selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+                selectedButton = projeto.getProdutoouservico().getEstagioEvolucao();
             }
         }
     }
@@ -142,15 +140,15 @@ public class ProjetoBean implements Serializable {
                 projeto.getProdutoouservico().setEstagioEvolucao("Ideia Básica");
                 descricaoButtonOutro = null;
                 break;
-            case "Projeto básico":
+            case "Projeto Básico":
                 projeto.getProdutoouservico().setEstagioEvolucao("Projeto Básico");
                 descricaoButtonOutro = null;
                 break;
-            case "Projeto detalhado":
+            case "Projeto Detalhado":
                 projeto.getProdutoouservico().setEstagioEvolucao("Projeto Detalhado");
                 descricaoButtonOutro = null;
                 break;
-            case "Protótipo desenvolvido":
+            case "Protótipo Desenvolvido":
                 projeto.getProdutoouservico().setEstagioEvolucao("Protótipo Desenvolvido");
                 descricaoButtonOutro = null;
                 break;
@@ -178,7 +176,7 @@ public class ProjetoBean implements Serializable {
             projeto.setNome("Novo plano de negócio sem nome");
         }
         FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO ,"Salvamento automático", "Sua alteração foi salva com sucesso.");
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvamento automático", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         pegaValorDropDown();
         EnviaEmails(projeto);
@@ -190,9 +188,9 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Cria um projeto base a partir do projeto atual, salvando uma versão do 
+     * Cria um projeto base a partir do projeto atual, salvando uma versão do
      * projeto atual a fim de versionar a submissão para a pré-avaliação.
-     * 
+     *
      * @param projeto projeto atual que será versionado
      */
     public void salvarProjetoBase(Projeto projeto) {
@@ -202,7 +200,7 @@ public class ProjetoBean implements Serializable {
         projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
         projeto.setIdProjeto(id);
         projetoBase.setProjetoReferencia(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);       
+        empreendedorSession.salvarProjetoBase(projetoBase);
     }
 
     public void salvarProjetoeSair() {
@@ -248,7 +246,7 @@ public class ProjetoBean implements Serializable {
     /**
      * Retorna lista de emails de empreendedores cadastrados que começam com a
      * string passada.
-     * 
+     *
      * @param busca = string inicial a ser buscada
      * @return lista de emails que começam com a string busca
      */
@@ -511,7 +509,8 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Verifica se o empreendedor tem projetos cadastrados.
-     * @return true se o empreendedor não tem projetos cadastrados. 
+     *
+     * @return true se o empreendedor não tem projetos cadastrados.
      */
     public boolean verificaCadastroProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -630,7 +629,8 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Envia o projeto para a pré-avaliação. Atualiza status, salva projeto base.
+     * Envia o projeto para a pré-avaliação. Atualiza status, salva projeto
+     * base.
      */
     public void enviarProjeto() {
         int FLAG = verificarCampos();
@@ -720,6 +720,7 @@ public class ProjetoBean implements Serializable {
         custo.setDescricao("Novo Custo");
         custo.setTipo(Custo.CUSTO_FIXO);
         custo.setTotal(zero);
+        custo.setProjecao(zero);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
         salvarProjeto();
@@ -832,6 +833,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Remove custo fixo da tabela e do projeto
+     *
      * @param custoFixo
      */
     public void deletarCustoFixo(Custo custoFixo) {
@@ -845,6 +847,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Remove custo variavel da tabela e do projeto
+     *
      * @param custoVariavel
      */
     public void deletarCustoVariavel(Custo custoVariavel) {
@@ -874,6 +877,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Verifica se o status do projeto não é DEFININDO_EQUIPE ou ELABORACAO
+     *
      * @return true se for outro status
      */
     public boolean verificaElaboracao() {
@@ -895,8 +899,8 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja
-     * sendo avaliado ou PENDENTE caso a avaliação seja interrompida
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja sendo
+     * avaliado ou PENDENTE caso a avaliação seja interrompida
      *
      * @param projeto
      */
@@ -922,7 +926,8 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Deleta registro na tabela.
-     * @param custo 
+     *
+     * @param custo
      */
     public void deletarLinha(Custo custo) {
         FacesMessage msg;
@@ -942,9 +947,11 @@ public class ProjetoBean implements Serializable {
 
     }
 
-    /***
+    /**
+     * *
      * Método para ação após linha ser editada, atualizando valores na tabela.
-     * @param event 
+     *
+     * @param event
      */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg;
@@ -955,15 +962,16 @@ public class ProjetoBean implements Serializable {
 
         calcularValorColunaCustoVariavel();
         calcularValorColunaCustoFixo();
-        
-        ProjetoDao projetoDao =  new ProjetoDao();
+
+        ProjetoDao projetoDao = new ProjetoDao();
         projetoDao.salvar(custo);
 
     }
 
     /**
      * Método que cancela edição da linha na tabela.
-     * @param event 
+     *
+     * @param event
      */
     public void onRowCancel(RowEditEvent event) {
 
@@ -1031,6 +1039,7 @@ public class ProjetoBean implements Serializable {
     /**
      * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
      * a projeção para seis meses.
+     *
      * @return somatorioFixo
      */
     public float calcularValorColunaCustoFixo() {
@@ -1053,6 +1062,7 @@ public class ProjetoBean implements Serializable {
         custo.setDescricao("Novo Custo");
         custo.setTipo(Custo.CUSTO_VARIAVEL);
         custo.setTotal(zero);
+        custo.setProjecao(zero);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
         salvarProjeto();
@@ -1089,8 +1099,11 @@ public class ProjetoBean implements Serializable {
         this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
     }
 
-    /***
-     * Método para carregar as versões enviadas do projeto na tabela de pré-avaliação.
+    /**
+     * *
+     * Método para carregar as versões enviadas do projeto na tabela de
+     * pré-avaliação.
+     *
      * @return lista de projetos base
      */
     public List<ProjetoBase> carregarProjetosBase() {
@@ -1102,25 +1115,37 @@ public class ProjetoBean implements Serializable {
             return pb;
         }
     }
-    
+
     /**
-     * Retorna o projeto da sessão, garantindo que ele está atualizado com o servidor.
+     * Retorna o projeto da sessão, garantindo que ele está atualizado com o
+     * servidor.
+     *
      * @return projeto da sessão
      */
-    public int retornaStatusProjeto(){
+    public int retornaStatusProjeto() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        projeto = (Projeto) secao.getAttribute("projetoSelecionado"); 
+        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         return projeto.getStatus();
     }
-    
-    public List<Custo> retornaListaCustoFixo(){
+
+    public List<Custo> retornaListaCustoFixo() {
         preencheListaCusto();
         return listaCustoFixo;
     }
-    
-    public List<Custo> retornaListaCustoVariavel(){
+
+    public List<Custo> retornaListaCustoVariavel() {
         preencheListaCusto();
         return listaCustoVariavel;
+    }
+
+    public String retornaSelectedButton() {
+        if (projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao()).equals("Outro:")) {
+            selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+            descricaoButtonOutro = projeto.getProdutoouservico().getEstagioEvolucao();
+        } else {
+            selectedButton = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
+        }
+        return selectedButton;
     }
 
 }

@@ -493,13 +493,13 @@
                                         <h:panelGroup class="checkbox" id="abc">
                                             <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
                                                 <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
-                                                <f:selectItem itemValue="Projeto básico" itemLabel="Projeto básico"/>
-                                                <f:selectItem itemValue="Projeto detalhado" itemLabel="Projeto detalhado"/>
-                                                <f:selectItem itemValue="Protótipo desenvolvido" itemLabel="Protótipo desenvolvido"/>
+                                                <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
+                                                <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
+                                                <f:selectItem itemValue="Protótipo Desenvolvido" itemLabel="Protótipo Desenvolvido"/>
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <p:ajax update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"/>
+                                                <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
@@ -710,38 +710,40 @@
                                         Salários, Aluguel de servidores...
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" sortBy="#{custofixo.descricao}" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
+                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome" style="width:45px" sortBy="#{custofixo.descricao}">
+                                            <p:column headerText="Nome" style="width:45px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custofixo.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custofixo.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor" style="width:10px" sortBy="#{custofixo.total}">
+                                            <p:column headerText="Valor" style="width:10px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custofixo.total}"></p:outputLabel></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{custofixo.total}" style="width:96%">
+                                                    <f:facet name="input">
+                                                        <p:inputText value="#{custofixo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
-                                                        </p:inputText></f:facet>
+                                                        </p:inputText>
+                                                    </f:facet>
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção (6 meses)" style="width:10px" sortBy="#{custofixo.projecao}">
-                                                <p:outputLabel value="R$ #{custofixo.projecao}"></p:outputLabel>
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px">
+                                                <p:outputLabel  rendered="#{not empty custofixo.projecao}" value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column width="8%" headerText="Opções">
+                                            <p:column width="0.7%" headerText="Opções">
                                                 <p:rowEditor style="width: "/>
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
+                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
                                                 </h:commandLink>    
                                             </p:column>
 
@@ -752,7 +754,7 @@
                                         <div class="col-md-6">
                                             <h:commandButton id="botao_adicionar_nova_linha" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos" render="formulario_cadastro_projeto:novaTabelaCustosFixos"
-                                                        listener="#{projetoBean.adicionarLinhaFixo()}"></f:ajax>                                
+                                                        listener="#{projetoBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
 
                                         </div>
@@ -807,7 +809,7 @@
                                             <p:column headerText="Valor" style="width:12px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custovariavel.total}"></p:outputLabel></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{custovariavel.total}" style="width:96%">
+                                                    <f:facet name="input"><p:inputText value="#{custovariavel.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalVariavel" listener="#{projetoBean.caucularProjecaoCustoVariavel(custovariavel)}"/>
                                                         </p:inputText></f:facet>
                                                 </p:cellEditor>
@@ -818,11 +820,11 @@
 
                                             </p:column>
 
-                                            <p:column width="8%" headerText="Opções">
+                                            <p:column width="0.7%" headerText="Opções">
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panel_custo_variavel" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
+                                                    <f:ajax execute="panel_custo_variavel" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
                                                 </h:commandLink> 
                                             </p:column>
 
@@ -832,7 +834,7 @@
 
                                             <h:commandButton id="botao_adicionar_nova_linhaVariavel" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis" render="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
-                                                        listener="#{projetoBean.adicionarLinhaVariavel()}"></f:ajax>                                
+                                                        listener="#{projetoBean.adicionarLinhaVariavel()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
                                         </div>
 

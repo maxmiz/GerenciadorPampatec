@@ -226,9 +226,46 @@ function verificaPlanoFinanceiro() {
 
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 
-    if (custoVariavelPreenchido == false || custoFixoPreenchido == false) {
+    if (!verificaTabelasCusto()) {
         tabPlanoFinanceiro.innerHTML = "Plano Financeiro";
         tabPlanoFinanceiro.style.color = "red";
+    }
+}
+
+/**
+ * Verifica se as tabelas do custo estão preenchidas
+ * @returns {Boolean} true se elas estão preenchidas
+ */
+function verificaTabelasCusto() {
+    var tabelaCustoFixo = document.getElementById("formulario_cadastro_projeto:novaTabelaCustosFixos_data");
+    var tabelaCustoVariavel = document.getElementById("formulario_cadastro_projeto:novaTabelaCustosVariaveis_data");
+    var listaTrFixo = tabelaCustoFixo.getElementsByTagName('tr');
+    var listaTrVariavel = tabelaCustoVariavel.getElementsByTagName('tr');
+    var preenchido;
+
+    preenchido = percorrerTrs(listaTrFixo);
+    if (preenchido) {
+        preenchido = percorrerTrs(listaTrVariavel);
+    }
+
+    return preenchido;
+}
+
+/**
+ * Percorre os trs para verificar se a tabela não está vazia.
+ * @param {type} listaTr lista de trs
+ * @returns {Boolean} true se ela não está vazia
+ */
+function percorrerTrs(listaTr) {
+    var trLaco;
+    for (var i = 0; i < listaTr.length; i++) {
+        trLaco = listaTr[i];
+        //Se a classe do tr indicar que a tabela está vazia
+        if ($(trLaco).hasClass('ui-widget-content ui-datatable-empty-message')) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
@@ -379,6 +416,7 @@ function mostrarFeedBack(id) {
 
 /**
  * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
+ * andamentoProjeto = status do projeto
  * @returns {undefined}
  */
 function carregaPagina() {
@@ -390,9 +428,8 @@ function carregaPagina() {
     var etapa5 = document.getElementById("etapa5");
 
     switch (andamentoProjeto) {
-//    switch (4) {
 
-
+//      ELABORACAO = 0;
         case 0:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -417,6 +454,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
+//      EM_PRE_AVALIACAO = 1;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -439,6 +477,8 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+
+//      AVALIACAO = 2;    
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
@@ -455,6 +495,8 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+            
+//      FORMALIZACAO = 3;
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
 
@@ -465,11 +507,12 @@ function carregaPagina() {
             etapa3.setAttribute("class", "active");
             etapa4.setAttribute("class", "active, etapaAtual");
 
-
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
 
             break;
+            
+//      INCUBACAO = 4;
         case 4:
 
             etapa1.setAttribute("class", "active");
@@ -480,6 +523,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa5";
 
             break;
+
+//      PRE_APROVADO = 5;
         case 5:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -500,6 +545,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
+//      DEFININDO_EQUIPE = 8;
         case 8:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
             etapa3.innerHTML = "<b>Avaliação</b>";
@@ -542,8 +588,6 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-
-
 }
 
 
@@ -731,6 +775,39 @@ function imprimirPaginaHtml(){
     document.window.print();
 }
 
+/**
+ * Filtra os valores de entrada, para receber apenas números 
+ * @param {type} e
+ * @returns {Boolean}
+ */
+function SomenteNumero(e) {
+    var tecla = (window.event) ? event.keyCode : e.which;
+    if ((tecla > 47 && tecla < 58))
+        return true;
+    else {
+        if (tecla == 8 || tecla == 0 || tecla == 46)
+            return true;
+        else
+            return false;
+    }
+}
 
+function atualizaTabAjax(data) {
+    var status = data.status; // Can be "begin", "complete" or "success".
+    var source = data.source; // The parent HTML DOM element.
 
+    switch (status) {
+        case "begin": // Before the ajax request is sent.
+            // ...
+            break;
+
+        case "complete": // After the ajax response is arrived.
+            // ...
+            break;
+
+        case "success": // After update of HTML DOM based on ajax response.
+            verificaPlanoFinanceiro();
+            break;
+    }
+}
 
