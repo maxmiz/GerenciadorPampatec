@@ -323,7 +323,7 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                             <!--<p:ajax update=":form_revisao" event="change"/>-->
                                         </p:inputText>
                                         <h:message class="mensagemErro" for="empresaProjeto"/>
@@ -338,7 +338,7 @@
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -352,7 +352,7 @@
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -366,7 +366,7 @@
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="atividadesChave"/>
@@ -400,7 +400,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.relacoesClientes}"
                                                          id="relacoComClientes">    
-                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
 
@@ -415,7 +415,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.parceriasChaves}"
                                                          id="parceriasChaves">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="parceriasChaves"/>
 
@@ -427,7 +427,7 @@
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_canais" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="canais"/>
 
@@ -440,7 +440,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          id="recursosPrincipais"
                                                          value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="recursosPrincipais"/>
                                         <br/>
@@ -452,7 +452,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          id="concorrentes"
                                                          value="#{projetoBean.projeto.analiseemprego.concorrentes}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                         <h:message class="mensagemErro" for="concorrentes"/>
@@ -484,19 +484,19 @@
                                         <h:panelGroup class="checkbox" id="abc">
                                             <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
                                                 <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
-                                                <f:selectItem itemValue="Projeto básico" itemLabel="Projeto básico"/>
-                                                <f:selectItem itemValue="Projeto detalhado" itemLabel="Projeto detalhado"/>
-                                                <f:selectItem itemValue="Protótipo desenvolvido" itemLabel="Protótipo desenvolvido"/>
+                                                <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
+                                                <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
+                                                <f:selectItem itemValue="Protótipo Desenvolvido" itemLabel="Protótipo Desenvolvido"/>
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <p:ajax update="formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"/>
+                                                <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
                                                 <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
-                                                    <f:ajax execute="@form" render="form_revisao:revisao_tecnologia" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                    <f:ajax execute="@form" render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                                 </p:inputText>
                                             </div>
                                         </h:panelGroup>
@@ -509,7 +509,7 @@
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
                                                          > 
-                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
@@ -521,7 +521,7 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                          id="potencialInovacaoTecnologica">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
 
@@ -529,12 +529,12 @@
                                     </div>
                                     <div class="col-md-12">
                                         <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
-                                        A quem se aplica? como? de que maneira?
+                                        A quem se aplica? Como? De que maneira?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="aplicacoes"/>
 
@@ -546,7 +546,7 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                          id="dificuldadesEsperadas">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
 
@@ -558,7 +558,7 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                          id="interacaoEmpresaUniversidade">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
 
@@ -570,7 +570,7 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                          id="interacaoEmpresaComunidadeGoverno">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
 
@@ -582,7 +582,7 @@
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
                                                          id="infraestrutura">
-                                            <f:ajax execute="@form" render="form_revisao:revisa_infra" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="infraestrutura"/>
 
@@ -616,7 +616,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
                                                          id="participacaoAcionaria">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="participacaoAcionaria"/>
                                         <br/>
@@ -628,7 +628,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
                                                          id="potencialEmprego">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="potencialEmprego"/>
                                         <br/>
@@ -663,7 +663,7 @@
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas"  listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed"  listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="fontesDeReceita"/>
                                         <br/>
@@ -676,7 +676,7 @@
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="estruturaCustos"/>
@@ -689,7 +689,7 @@
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
                                                          id="investimentoInicial">
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="investimentoInicial"/>
@@ -701,34 +701,36 @@
                                         Salários, Aluguel de servidores...
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" sortBy="#{custofixo.descricao}" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
+                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome" style="width:45px" sortBy="#{custofixo.descricao}">
+                                            <p:column headerText="Nome" style="width:45px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custofixo.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custofixo.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor" style="width:10px" sortBy="#{custofixo.total}">
+                                            <p:column headerText="Valor" style="width:10px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custofixo.total}"></p:outputLabel></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{custofixo.total}" style="width:96%">
+                                                    <f:facet name="input">
+                                                        <p:inputText value="#{custofixo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
-                                                        </p:inputText></f:facet>
+                                                        </p:inputText>
+                                                    </f:facet>
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção (6 meses)" style="width:10px" sortBy="#{custofixo.projecao}">
-                                                <p:outputLabel value="R$ #{custofixo.projecao}"></p:outputLabel>
+                                            <p:column headerText="Projeção (6 meses)" style="width:10px">
+                                                <p:outputLabel  rendered="#{not empty custofixo.projecao}" value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column width="8%" headerText="Opções">
+                                            <p:column width="0.7%" headerText="Opções">
                                                 <p:rowEditor style="width: "/>
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
@@ -769,7 +771,7 @@
                                     <div class="col-md-12" style="background-color: black;"></div>
                                     <br/>
                                     <div class="col-md-12"></div>
-                                    
+
 
 
                                     <h:panelGroup id="panel_custo_variavel" class="col-md-12">
@@ -798,7 +800,7 @@
                                             <p:column headerText="Valor" style="width:12px">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custovariavel.total}"></p:outputLabel></f:facet>
-                                                    <f:facet name="input"><p:inputText value="#{custovariavel.total}" style="width:96%">
+                                                    <f:facet name="input"><p:inputText value="#{custovariavel.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
                                                             <p:ajax event="change" update="formulario_cadastro_projeto:colunaValorTotalVariavel" listener="#{projetoBean.caucularProjecaoCustoVariavel(custovariavel)}"/>
                                                         </p:inputText></f:facet>
                                                 </p:cellEditor>
@@ -809,7 +811,7 @@
 
                                             </p:column>
 
-                                            <p:column width="8%" headerText="Opções">
+                                            <p:column width="0.7%" headerText="Opções">
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
@@ -1039,132 +1041,158 @@
             <br/>
             <br/>
         </div>
+
+
         <!-- INICIO DA PARTE DE REVISÃO -->
-        <h:form id="form_revisao">
-            <div class="classeConteudo esconder-div" id="div_revisar_plano">
-                <div id="cabecalho_revisao">
+        <div class="conteudoDaRevisao">
+            <h:form id="form_revisao">
+                <div class="classeConteudo esconder-div contentPrint" id="div_revisar_plano">
+                    <div id="cabecalho_revisao">
 
-                    <div id="descricao_edital">
-                        <p id="titulo_cabecalho">
-                            EDITAL DE FLUXO CONTÍNUO<br/>
-                            PROCESSO SELETIVO PARA INGRESSO NA <br/>
-                            INCUBADORA TECNOLÓGICA PAMPATEC ALEGRETE
-                        </p>
-                        <p style="font-weight: bold">PLANO DE NEGÓCIO</p>
-                        <p>Enviado em: <h:outputText id="revisao_dataEnvio" value="#{projetoBean.projeto.dataEnvio}" /> </p>
-                    </div>
-                    <div id="identificacao_empresa">
-                        <p><h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
-                        <p>Empreendedor(es):</p>
-                        <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                            <p:column>
-                                <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
-                            </p:column>
-                        </p:dataTable>
-                    </div>
-
-                </div>
-
-                <div id="corpo_documento">
-
-                    <div id="part_negocio" class="corpoDoTexto">
-                        <h1>O NEGÓCIO</h1><br/>
-                        <p><h2>Segmento de clientes: <h:outputText id="revisao_segmento" value="#{projetoBean.projeto.negocio.segmentoClientes}" /></h2></p>
-                        <p><h2>Proposta de valor: <h:outputText id="revisao_proposta" value="#{projetoBean.projeto.negocio.propostaValor}" /></h2></p>
-                        <p><h2>Atividades Chave: <h:outputText id="revisao_atividades" value="#{projetoBean.projeto.negocio.atividadesChaves}" /></h2></p>
-                    </div>
-
-                    <div id="part_AnaliseMercado" class="corpoDoTexto">
-                        <h1>ANÁLISE DE MERCADO</h1><br/>
-                        <p><h2>Relações com clientes: <h:outputText id="revisao_ralacoes" value="#{projetoBean.projeto.analiseemprego.relacoesClientes}" /></h2></p>
-                        <p><h2>Parcerias chaves: <h:outputText id="revisao_parcerias" value="#{projetoBean.projeto.analiseemprego.parceriasChaves}" /></h2></p>
-                        <p><h2>Canais: <h:outputText id="revisao_canais" value="#{projetoBean.projeto.analiseemprego.canais}" /></h2></p>
-                        <p><h2>Recursos princípais: <h:outputText id="revisao_recursos" value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}" /></h2></p>
-                        <p><h2>Concorrentes: <h:outputText id="revisao_concorrentes" value="#{projetoBean.projeto.analiseemprego.concorrentes}" /></h2></p>
-                    </div>
-
-                    <div id="part_ProdutoServico" class="corpoDoTexto">
-                        <h1>PRODUTO OU SERVIÇO</h1><br/>
-                        <p><h2>Estágio de evolução: <h:outputText id="revisao_estagio" value="#{projetoBean.projeto.produtoouservico.estagioEvolucao}" /></h2></p>
-                        <p><h2>Tecnologia e processos (não poluentes): <h:outputText id="revisao_tecnologia" value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}" /></h2></p>
-                        <p><h2>Potencial de inovação tecnológica: <h:outputText id="revisao_potencial" value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}" /></h2></p>
-                        <p><h2>Aplicações: <h:outputText id="revisao_aplicacoes" value="#{projetoBean.projeto.produtoouservico.aplicacoes}" /></h2></p>
-                        <p><h2>Dificuldades esperadas: <h:outputText id="revisao_dificuldades" value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}" /></h2></p>
-                        <p><h2>Interação entre empresa e Universidade: <h:outputText id="revisao_interacaoEmpUni" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}" /></h2></p>
-                        <p><h2>Interação entre empresa, comunidade e governo: <h:outputText id="revisao_interacaoEmpGov" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}" /></h2></p>
-                        <p><h2>Infra-estrutura necessária para o desenvolvimento e produção: <h:outputText id="revisa_infra" value="#{projetoBean.projeto.produtoouservico.infraestrutura}" /></h2></p>
-                    </div>
-
-                    <div id="part_GestaoPessoas" class="corpoDoTexto">
-                        <h1>GESTÃO DE PESSOAS</h1><br/>
-                        <p:dataTable var="empreendedor"  rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                            <p:column headerText="Formação dos sócios: ">
-                                <h:outputText value="#{empreendedor.formacao}" />
-                            </p:column>
-                            <p:column headerText="Experiência profissional dos sócios: ">
-                                <h:outputText value="#{empreendedor.experiencia}" />
-                            </p:column>
-                            <p:column headerText="Descrição da participação acionaria:">
-                                <h:outputText id="revisao_partAcionaria" value="#{projetoBean.projeto.participacaoacionaria}" />
-                            </p:column>          
-                            <p:column headerText="Potencial de geração de emprego e renda: ">
-                                <h:outputText id="revisao_potEmpRenda" value="#{projetoBean.projeto.potencialEmprego}" />    
-                            </p:column>
-                        </p:dataTable>
-                    </div>
-
-                    <div id="part_PlanoFinanc" class="corpoDoTexto">
-                        <h1>PLANO FINANCEIRO</h1><br/>
-
-                        <p><h2>Fontes de receita: <h:outputText id="revisao_fontesReceitas" value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
-
-                        <p><h2>Estrutura de custos: <h:outputText id="revisao_estutCusto" value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
-
-                        <p><h2>Investimento Inícial: <h:outputText id="revisao_invsInicial" value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}" /></h2></p>
-
-
-                        <div id="part_EstrutCusto">
-
-                            <h1>CUSTOS FIXOS</h1><br/>
-                            <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
-                                <p:column headerText="Descrição: ">
-                                    <h:outputText value="#{custo.descricao}" />
+                        <div id="descricao_edital">
+                            <p id="titulo_cabecalho">
+                                EDITAL DE FLUXO CONTÍNUO<br/>
+                                PROCESSO SELETIVO PARA INGRESSO NA <br/>
+                                INCUBADORA TECNOLÓGICA PAMPATEC ALEGRETE
+                            </p>
+                            <p style="font-weight: bold">PLANO DE NEGÓCIO</p>
+                            <p>Enviado em: <h:outputText id="revisao_dataEnvio" value="#{projetoBean.projeto.dataEnvio}" /> </p>
+                        </div>
+                        <div id="identificacao_empresa">
+                            <p><h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
+                            <p>Empreendedor(es):</p>
+                            <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
+                                <p:column>
+                                    <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
                                 </p:column>
-                                <p:column headerText="Valor: ">
-
-                                    <h:outputText value="" />
-                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
-
-
-                                </p:column>
-                            </p:dataTable>
-
-                            <h1>CUSTOS VARIÁVEIS</h1><br/>
-                            <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
-                                <p:column headerText="Descrição: ">
-                                    <h:outputText value="#{custo.descricao}" />
-                                </p:column>
-                                <p:column headerText="Valor: ">
-
-                                    <h:outputText value="" />
-                                    <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
-
-                                </p:column>
-
                             </p:dataTable>
                         </div>
+
                     </div>
+
+                    <div id="corpo_documento">
+
+                        <div id="part_negocio" class="corpoDoTexto">
+                            <h1>O NEGÓCIO</h1><br/>
+                            <p><h2>Segmento de clientes: <h:outputText id="revisao_segmento" value="#{projetoBean.projeto.negocio.segmentoClientes}" /></h2></p>
+                            <p><h2>Proposta de valor: <h:outputText id="revisao_proposta" value="#{projetoBean.projeto.negocio.propostaValor}" /></h2></p>
+                            <p><h2>Atividades Chave: <h:outputText id="revisao_atividades" value="#{projetoBean.projeto.negocio.atividadesChaves}" /></h2></p>
+                        </div>
+
+                        <div id="part_AnaliseMercado" class="corpoDoTexto">
+                            <h1>ANÁLISE DE MERCADO</h1><br/>
+                            <p><h2>Relações com clientes: <h:outputText id="revisao_ralacoes" value="#{projetoBean.projeto.analiseemprego.relacoesClientes}" /></h2></p>
+                            <p><h2>Parcerias chaves: <h:outputText id="revisao_parcerias" value="#{projetoBean.projeto.analiseemprego.parceriasChaves}" /></h2></p>
+                            <p><h2>Canais: <h:outputText id="revisao_canais" value="#{projetoBean.projeto.analiseemprego.canais}" /></h2></p>
+                            <p><h2>Recursos princípais: <h:outputText id="revisao_recursos" value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}" /></h2></p>
+                            <p><h2>Concorrentes: <h:outputText id="revisao_concorrentes" value="#{projetoBean.projeto.analiseemprego.concorrentes}" /></h2></p>
+                        </div>
+
+                        <div id="part_ProdutoServico" class="corpoDoTexto">
+                            <h1>PRODUTO OU SERVIÇO</h1><br/>
+                            <p><h2>Estágio de evolução: <h:outputText id="revisao_estagio" value="#{projetoBean.projeto.produtoouservico.estagioEvolucao}" /></h2></p>
+                            <p><h2>Tecnologia e processos (não poluentes): <h:outputText id="revisao_tecnologia" value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}" /></h2></p>
+                            <p><h2>Potencial de inovação tecnológica: <h:outputText id="revisao_potencial" value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}" /></h2></p>
+                            <p><h2>Aplicações: <h:outputText id="revisao_aplicacoes" value="#{projetoBean.projeto.produtoouservico.aplicacoes}" /></h2></p>
+                            <p><h2>Dificuldades esperadas: <h:outputText id="revisao_dificuldades" value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}" /></h2></p>
+                            <p><h2>Interação entre empresa e Universidade: <h:outputText id="revisao_interacaoEmpUni" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}" /></h2></p>
+                            <p><h2>Interação entre empresa, comunidade e governo: <h:outputText id="revisao_interacaoEmpGov" value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}" /></h2></p>
+                            <p><h2>Infra-estrutura necessária para o desenvolvimento e produção: <h:outputText id="revisa_infra" value="#{projetoBean.projeto.produtoouservico.infraestrutura}" /></h2></p>
+                        </div>
+
+                        <div id="part_GestaoPessoas" class="corpoDoTexto">
+                            <h1>GESTÃO DE PESSOAS</h1><br/>
+                            <p:dataTable var="empreendedor"  rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
+                                <p:column headerText="Formação dos sócios: ">
+                                    <h:outputText value="#{empreendedor.formacao}" />
+                                </p:column>
+                                <p:column headerText="Experiência profissional dos sócios: ">
+                                    <h:outputText value="#{empreendedor.experiencia}" />
+                                </p:column>
+                                <p:column headerText="Descrição da participação acionaria:">
+                                    <h:outputText id="revisao_partAcionaria" value="#{projetoBean.projeto.participacaoacionaria}" />
+                                </p:column>          
+                                <p:column headerText="Potencial de geração de emprego e renda: ">
+                                    <h:outputText id="revisao_potEmpRenda" value="#{projetoBean.projeto.potencialEmprego}" />    
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+
+                        <div id="part_PlanoFinanc" class="corpoDoTexto">
+                            <h1>PLANO FINANCEIRO</h1><br/>
+
+                            <p><h2>Fontes de receita: <h:outputText id="revisao_fontesReceitas" value="#{projetoBean.projeto.planofinanceiro.fontesReceita}" /></h2></p>
+
+                            <p><h2>Estrutura de custos: <h:outputText id="revisao_estutCusto" value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}" /></h2></p>
+
+                            <p><h2>Investimento Inícial: <h:outputText id="revisao_invsInicial" value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}" /></h2></p>
+
+
+                            <div id="part_EstrutCusto">
+
+                                <h1>CUSTOS FIXOS</h1><br/>
+                                <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
+                                    <p:column headerText="Descrição: ">
+                                        <h:outputText value="#{custo.descricao}" />
+                                    </p:column>
+                                    <p:column headerText="Valor: ">
+
+                                        <h:outputText value="" />
+                                        <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
+
+                                    </p:column>
+                                </p:dataTable>
+
+                                <h1>CUSTOS VARIÁVEIS</h1><br/>
+                                <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
+                                    <p:column headerText="Descrição: ">
+                                        <h:outputText value="#{custo.descricao}" />
+                                    </p:column>
+                                    <p:column headerText="Valor: ">
+
+                                        <h:outputText value="" />
+                                        <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+
+                                    </p:column>
+
+                                </p:dataTable>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div id="rodape">PAMPATEC 2015</div>
+
+                    <!--                <h:commandLink class="btn btn-success btn-lg" title="Imprimir" onclick="novaJanela()">
+                                        <label style="color: white; cursor: pointer;"><i class="fa fa-print fa-3x"></i> <br/> </label>
+                                    </h:commandLink>-->
+
+                    <button class="print" onclick="myFunction()">Try it</button>
+
 
 
                 </div>
 
-                <div id="rodape">PAMPATEC 2015</div>
-
-            </div>
-        </h:form>
+            </h:form>
+        </div>
         <!-- FIM DA PARTE DE REVISÃO -->
-
-
+        <script>
+            $(document).ready(function () {
+                $('.print').click(function () {
+                    $('.contentPrint').printArea({
+                        mode: 'popup',
+                        popHt: 500,
+                        popWt: 400,
+                        popX: 500,
+                        popY: 500,
+                        popTitle: 'Título da janela'
+                    });
+                    return false;
+                });
+            });
+        </script>
 
     </h:body>
 </html>

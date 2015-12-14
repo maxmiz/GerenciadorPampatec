@@ -23,6 +23,10 @@
     margin: 1px;
 }
 
+.novaAba {
+    target-new: tab ! important
+}
+
 
 .etapas{
     color: #ffffff;
@@ -290,4 +294,18 @@ fieldset[disabled] .autoCompletar input {
     border-radius: inherit;
     border-width: 2px;
     border-color: #6AA84F;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable, #printable * {
+    visibility: visible;
+  }
+  #printable {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 }
