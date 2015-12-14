@@ -31,7 +31,6 @@ public class ProjetoDao extends Dao implements Serializable {
             getTx().commit();
             return projeto;
         } catch (HibernateException e) {
-            System.out.println("cccaaaatch");
             e.printStackTrace();
             getSession().getTransaction().rollback();
         }
