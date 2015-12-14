@@ -32,6 +32,15 @@
 
         </script>
 
+        <!-- Classe para 'dizer' o que não será impresso da página, para isto
+        basta adicionar a classe 'noprint' na classe da div ou do elemento -->
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+        </style>
+
     </h:head>
     <h:body  onload="carregaPagina(), verificarCampos(), carregaFeedBack();">
 
@@ -125,7 +134,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
-        <div class="col-md-12 text-center" style="background-color: #6AA84F;">
+        <div class="col-md-12 text-center noprint" style="background-color: #6AA84F;">
             <ul id="progressbar">
                 <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
                 <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostraDIV('divPreVisualizar'), mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
@@ -138,7 +147,7 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
-        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical">
+        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical noprint">
             <div class="divPadding">
                 <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
@@ -157,7 +166,7 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
-        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div">
+        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div noprint">
             <div class="divPadding text-center">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 1}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
@@ -169,7 +178,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
-        <div id="vertical_etapa_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #983d00">
+        <div id="vertical_etapa_avaliacao" class="col-md-2 text-center esconder-div noprint" style="background-color: #983d00">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 2}" id="botao_agendamento" class="btn btn-success btnWorkflowV" value="Agendamento" onclick="addFocoBotao('botao_agendamento')"></h:commandButton><br/>
             </div>
@@ -184,7 +193,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
-        <div id="vertical_etapa_formalizacao" class="col-md-2 text-center esconder-div" style="background-color: yellow">
+        <div id="vertical_etapa_formalizacao" class="col-md-2 text-center esconder-div noprint" style="background-color: yellow">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 3}" id="botao_entrega_documentacao" class="btn btn-success btnWorkflowV" value="Entrega documentação" onclick="addFocoBotao('botao_documentacao')"></h:commandButton><br/>
             </div>
@@ -199,7 +208,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA INCUBACAO-->
-        <div id="vertical_etapa_incubacao" class="col-md-2 text-center esconder-div" style="background-color: violet">
+        <div id="vertical_etapa_incubacao" class="col-md-2 text-center esconder-div noprint" style="background-color: violet">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 4}" id="botao_avaliacao" class="btn btn-success btnWorkflowV" value="Avaliação" onclick="addFocoBotao('botao_avaliacao')"></h:commandButton><br/>
             </div>
@@ -1161,35 +1170,26 @@
 
                     </div>
 
-                    <div id="rodape">PAMPATEC 2015</div>
+                    <div>PAMPATEC 2015</div>
 
-                    <!--                <h:commandLink class="btn btn-success btn-lg" title="Imprimir" onclick="novaJanela()">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-print fa-3x"></i> <br/> </label>
-                                    </h:commandLink>-->
 
-                    <button class="print" onclick="myFunction()">Try it</button>
-
+                    <div class="noprint text-right">
+                        <h:commandLink class="btn btn-success" title="Imprimir" onclick="imprimirPaginaHtml();">
+                            <label style="color: white; cursor: pointer;"><i class="fa fa-print"></i>   Imprimir Plano de Negócio</label>
+                        </h:commandLink>
+                        <br/><br/>
+                    </div>
 
 
                 </div>
 
             </h:form>
         </div>
-        <!-- FIM DA PARTE DE REVISÃO -->
+
         <script>
-            $(document).ready(function () {
-                $('.print').click(function () {
-                    $('.contentPrint').printArea({
-                        mode: 'popup',
-                        popHt: 500,
-                        popWt: 400,
-                        popX: 500,
-                        popY: 500,
-                        popTitle: 'Título da janela'
-                    });
-                    return false;
-                });
-            });
+            function imprimirPaginaHtml() {
+                window.print();
+            }
         </script>
 
     </h:body>
