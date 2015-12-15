@@ -130,12 +130,12 @@
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
                             <p:column headerText="Data de Criação" style="text-align: center;">
-                                <h:outputText value="#{projeto.dataCriacao}" >
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
                                     <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
                                 </h:outputText>
                             </p:column>
                             <p:column headerText="Data de Envio" style="text-align: center;">
-                                <h:outputText value="#{projeto.dataEnvio}" >
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
                                     <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
                                 </h:outputText>
                             </p:column>

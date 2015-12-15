@@ -5,6 +5,7 @@ import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,6 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     private ArrayList<Projeto> listaProjetos;//Lista de projetos exibidos
     private ProjetoDao projetoDao;//Dao para acessar o banco de dados
     private Projeto projetoSelecionado;//Projeto que foi selecionado quando um usuário escolhe algum item da lista.
-    
 
     public BuscaProjetoEmpreendedorBean() {
         projetoDao = new ProjetoDao();
@@ -80,6 +80,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
     /**
      * Busca os projetos que um empreendedor tem.
+     *
      * @return Lista de projetos encontrada.
      */
     public ArrayList<Projeto> buscaProjetoPorEmpreendedor() {
@@ -105,7 +106,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     }
 
     /**
-     * Envia o usuário para a página de enviar projeto, de acordo com o projeto que ele selecionou.
+     * Envia o usuário para a página de enviar projeto, de acordo com o projeto
+     * que ele selecionou.
      */
     public void enviaProjetoEditar() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -145,5 +147,23 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
+    }
+
+    public String formatarDataCriacao(Projeto projeto) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (projeto.getDataCriacao() != null) {
+            return formato.format(projeto.getDataCriacao());
+        } else {
+            return "Projeto não criado.";
+        }
+    }
+
+    public String formatarDataEnvio(Projeto projeto) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (projeto.getDataEnvio() != null) {
+            return formato.format(projeto.getDataEnvio());
+        } else {
+            return "Projeto não enviado.";
+        }
     }
 }

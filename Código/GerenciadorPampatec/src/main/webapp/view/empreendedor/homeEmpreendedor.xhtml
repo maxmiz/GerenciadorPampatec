@@ -105,13 +105,39 @@
                 </div>
             </div>
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
-
             <!-- Fim das modais apresentadas -->
 
+            <!-- Div botão Vizualizar/criar formulario e botão visualizar edital-->
+            <div class="col-md-12" text-align="center" style="padding-top: 1%;">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-3">
+                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: " rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/>Meus planos de negócio</label>
+                    </h:commandLink>
+                </div>
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-3 text-center">
+                    <a class="btn btn-success btn-lg"  href="http://porteiras.s.unipampa.edu.br/pampatec/files/2015/06/Edital_186-2015_Pampatec.pdf" target="_blank"> 
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-pdf-o fa-3x"></i> <br/> Edital N. 186/2015</label>
+                    </a>
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
 
 
+            <!-- SEÇÃO STARTUP UNIPAMPA HTML EXTERNO -->
             <div class="col-md-12">
-                <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
+                <iframe style="margin-top: 5%" width="100%" height="550px" src="http://startuppampa.com.br/processo_incubadora/#list">
                 </iframe>
             </div>
 
@@ -127,23 +153,6 @@
             <div class="col-md-10"></div>
             <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
 
-
-            <div class="col-md-12" text-align="center" style="padding-top: 1%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 text-center">
-                    
-                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
-                    </h:commandLink>
-
-                    <h:commandLink rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/> Meus planos de negócio</label>
-                    </h:commandLink>
-
-
-                </div>
-                <div class="col-md-3"></div>
-            </div>
             <p:poll interval="3" update="barraNotificacoes"/>
             <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>
