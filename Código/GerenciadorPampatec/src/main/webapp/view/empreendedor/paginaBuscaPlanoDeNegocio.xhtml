@@ -161,43 +161,44 @@
                 </div>
 
                 <div class="col-md-12">
-                    <p:dataTable id="singleDT" var="projeto" styleClass="tabelaEmpreendedores" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{projeto.nome}" />
-                        </p:column>
-                        <p:column headerText="Data de Criação" style="text-align: center;">
-                            <h:outputText value="#{projeto.dataCriacao}" >
-                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Data de Envio" style="text-align: center;">
-                            <h:outputText value="#{projeto.dataEnvio}" >
-                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Status" style="text-align: center">
-                            <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
-                        </p:column>
-                        <p:column headerText="Ações" style="width: 23%; text-align: center">
-                            <div align="center">
-                                <div class="col-md-6"> 
-                                    <h:commandLink class="btn btn-primary botaoTabela"
-                                                   action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
-                                </div>
-                                <div class="col-md-6">
-                                    <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                   action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
-                                    <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" rendered="#{buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                   action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
+                        <p:dataTable id="singleDT" var="projeto" styleClass="tabelaEmpreendedores" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{projeto.nome}" />
+                            </p:column>
+                            <p:column headerText="Data de Criação" style="text-align: center;">
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
+                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Data de Envio" style="text-align: center;">
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
+                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Status" style="text-align: center">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Ações" style="width: 23%; text-align: center">
+                                <div align="center">
+                                    <div class="col-md-6"> 
+                                        <h:commandLink class="btn btn-primary botaoTabela"
+                                                       action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                                       action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
+                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" rendered="#{buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                                       action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
+                                    </div>
                                 </div>
                             </div>
                         </p:column>

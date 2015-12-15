@@ -59,6 +59,7 @@ public class EmpreendedorBean {
     private HttpSession session;
     private EmailUtil emailUtil;
 
+    
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
@@ -89,7 +90,7 @@ public class EmpreendedorBean {
 
         System.out.println("projeto=" + projeto);
         System.out.println("empreendedor=" + emp);
-        
+
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
@@ -110,7 +111,7 @@ public class EmpreendedorBean {
                     FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
                 } else {
                     empreendedor.setEmail(email);
-                    empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
+                    empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
                     empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
                     empreendedor.setRua(rua);
                     empreendedor.setNumero(Integer.parseInt(numero));
@@ -120,6 +121,21 @@ public class EmpreendedorBean {
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+//                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
+//                        como nulos. Portanto, ele salva no banco depois limpa a tela. (só funciona com refresh)
+                        
+                        nome = null;
+                        cpf = null;
+                        rua = null;
+                        email = null;
+                        senhaInput = null;
+                        telefone = null;
+                        numero = null;
+                        bairro = null;
+                        complemento = null;
+                        experiencia = null;
+                        formacao = null;
+
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
@@ -138,29 +154,26 @@ public class EmpreendedorBean {
         }
     }
 
-
     /**
-     * Método para salvar a nova senha do usuário a partir da recuperação
-     * pelo link submetido para o email
+     * Método para salvar a nova senha do usuário a partir da recuperação pelo
+     * link submetido para o email
      */
     public void terminarRecuperacaoDeSenha() {
-        
+
         if (empreendedor != null) {
 
             this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
             empreendedor.atualizarEmpreendedor(empreendedor);
-            
-            
+
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.xhtml");
-                
+
             } catch (IOException ex) {
                 Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    
+
     public void terminarCadastro() {
         this.empreendedor.setIdUnico(null);
         this.empreendedor.setNome(nome);
@@ -173,7 +186,7 @@ public class EmpreendedorBean {
             if (CpfUtil.isValidCPF(cpf) == false) {
                 FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
             } else {
-                empreendedor.setTelefone( TelefoneUtil.removeParentesesTelefone(telefone));
+                empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
                 empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
                 empreendedor.setRua(rua);
                 empreendedor.setNumero(Integer.parseInt(numero));
@@ -183,11 +196,19 @@ public class EmpreendedorBean {
 
                 if (empreendedor.atualizarEmpreendedor(empreendedor)) {
                     FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
+
                     try {
                         LoginBean.MudarNome(empreendedor.getNome());
                         LoginBean.MudarSenha(empreendedor.getSenha());
                         LoginBean.MudarUser(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
+                        empreendedor.setTelefone(null);
+                        empreendedor.setSenha(CriptografiaUtil.md5(null));
+                        empreendedor.setRua(null);
+                        empreendedor.setNumero(Integer.parseInt(null));
+                        empreendedor.setBairro(null);
+                        empreendedor.setComplemento(null);
+                        empreendedor.setExperiencia(null);
                         FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.xhtml");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,6 +220,7 @@ public class EmpreendedorBean {
         }
 
     }
+
     /**
      *
      * @param email
@@ -396,5 +418,4 @@ public class EmpreendedorBean {
         this.competencia = competencia;
     }
 
-    
 }
