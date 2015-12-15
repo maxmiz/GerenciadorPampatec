@@ -11,8 +11,8 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="animation.css"  />
             <h:outputStylesheet library="css" name="bootstrap.css"  />
-            <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="js.js"/>
@@ -39,6 +39,30 @@
                 .noprint { display:none; } 
                 body { background: #fff; }
             }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
         </style>
 
     </h:head>
@@ -48,6 +72,9 @@
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                    </div>
                     <div class="col-md-10">
                         <ul class="nav navbar-nav navbar-right">
 
@@ -87,7 +114,6 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -134,7 +160,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
-        <div class="col-md-12 text-center noprint" style="background-color: #6AA84F;">
+        <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
             <ul id="progressbar">
                 <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
                 <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostraDIV('divPreVisualizar'), mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
@@ -885,7 +911,7 @@
 
                     <h1>Cadastro - Plano de Negócio</h1>
                     <div id="formularioParte01">
-                        <legend id="subTitulo" >Minha equipe</legend>                                
+                        <legend id="subTitulo" style="color: #727476;">Minha equipe</legend>                                
 
 
                         <div class="col-md-12" id="">
@@ -956,7 +982,7 @@
                             <legend id="subTitulo">Submissão de Plano de Negócio</legend>                                
 
                             <div class="well">
-                                <a class="text-danger"><strong>Atenção</strong></a>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
+                                <strong class="text-danger">Atenção</strong>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
                                 ao clicar no botão <strong><u>Submeter Plano de Negócio</u></strong>
                                 o seu Plano de Negócio será enviado para realização da pré-avaliação, com isto, você não poderá mais
                                 realizar novas edições neste Plano de Negócio.

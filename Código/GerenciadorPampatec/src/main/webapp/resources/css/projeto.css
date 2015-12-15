@@ -11,6 +11,29 @@
     color: wheat;
 }
 
+legend {
+    color: #727476;
+}
+
+.pampaTec {
+    background-color: #00A859
+}
+.navbar-default {
+    background-color: #00A859;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: #00A859;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+    background-color: #00A859;
+}
+.btn-success {
+    background-color: #00A859;
+}
+
 .mensagemSucesso{
     background-color: #00bf28;
     font-weight: bold;
@@ -294,4 +317,16 @@ fieldset[disabled] .autoCompletar input {
     border-radius: inherit;
     border-width: 2px;
     border-color: #6AA84F;
+}
+
+.well {
+    background-color: white;
+}
+
+.bs-component {
+    background-color: white;
+}
+
+.btn-danger {
+    background-color: red;
 }

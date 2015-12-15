@@ -18,6 +18,38 @@
 
         <title>Acessar o Sistema - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
+        </style>
+
     </h:head>
     <h:body>
 
@@ -42,8 +74,8 @@
                     </div> 
                     <div class="col-md-3 modal-footer" align="left">
                     </div>
-                    
-                    
+
+
 
                     <div class="col-md-2 modal-footer" align="left">
                     </div>
@@ -95,7 +127,7 @@
                                     <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}">
                                         <f:ajax execute="@form" render="mensagemErro"/>
                                     </h:commandButton>
-                                    
+
                                 </div>
                             </fieldset>
                         </h:form>

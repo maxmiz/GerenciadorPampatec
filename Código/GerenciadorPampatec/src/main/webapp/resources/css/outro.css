@@ -86,7 +86,8 @@ and open the template in the editor.
     border-color: black;
     color: black;
     text-emphasis-style: triangle;
-    background-image: linear-gradient(to top, yellow, orange, red);
+    /*background-image: linear-gradient(to top, yellow, orange, red);*/
+    background-color: #EF7A37;
 }
 
 
@@ -168,7 +169,8 @@ and open the template in the editor.
 #progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
     /*background-color: #62C462;*/
     color: black;
-    background-image: linear-gradient(to top, yellow, orange, red);
+    /*background-image: linear-gradient(to top, yellow, orange, red);*/
+    background-color: #EF7A37;
 }
 
 #progressbar li.etapaSelecionada:before,  #progressbar li.etapaSelecionada:after{
