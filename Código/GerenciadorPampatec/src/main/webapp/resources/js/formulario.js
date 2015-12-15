@@ -796,6 +796,10 @@ function SomenteNumero(e) {
     }
 }
 
+/**
+ * Atualiza a tab do plano financeiro dependendo.
+ * @param {data} data informações do requisição do ajax
+ */
 function atualizaTabAjax(data) {
     var status = data.status; // Can be "begin", "complete" or "success".
     var source = data.source; // The parent HTML DOM element.
@@ -814,4 +818,6 @@ function atualizaTabAjax(data) {
             break;
     }
 }
+
+
 
