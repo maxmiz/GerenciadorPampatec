@@ -892,7 +892,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <h:commandButton class="btn btn-default" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
-                                            <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
+                                            <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe formEquipe:autocomplete" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
                                         </h:commandButton>
                                     </div>
                                 </div>

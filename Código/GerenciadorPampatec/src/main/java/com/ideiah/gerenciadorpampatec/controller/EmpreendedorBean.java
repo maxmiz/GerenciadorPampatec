@@ -121,7 +121,9 @@ public class EmpreendedorBean {
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
-
+//                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
+//                        como nulos. Portanto, ele salva no banco depois limpa a tela. (só funciona com refresh)
+                        
                         nome = null;
                         cpf = null;
                         rua = null;
