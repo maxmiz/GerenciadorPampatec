@@ -59,6 +59,7 @@ public class EmpreendedorBean {
     private HttpSession session;
     private EmailUtil emailUtil;
 
+    
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
@@ -120,7 +121,7 @@ public class EmpreendedorBean {
 
                     if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
-                       
+
                         nome = null;
                         cpf = null;
                         rua = null;
@@ -132,7 +133,7 @@ public class EmpreendedorBean {
                         complemento = null;
                         experiencia = null;
                         formacao = null;
-                                
+
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
