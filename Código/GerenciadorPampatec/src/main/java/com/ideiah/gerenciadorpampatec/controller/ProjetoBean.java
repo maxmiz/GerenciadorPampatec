@@ -485,15 +485,8 @@ public class ProjetoBean implements Serializable {
          * RARAMENTE VAI SER ALTERADO
          */
         pjto.setEdital("2015abc123");
-
-        Calendar calendar = new GregorianCalendar();
-        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        calendar.setTime(date);
-
-        Date x = (Date) new Date(out.format(calendar.getTime()));
-        System.out.println("12345 :" + x);
-        pjto.setDataCriacao(x);
+        Date data = new Date(System.currentTimeMillis());
+        pjto.setDataCriacao(data);
 
 //        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
