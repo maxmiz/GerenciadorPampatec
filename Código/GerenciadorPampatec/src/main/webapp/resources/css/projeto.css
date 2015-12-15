@@ -295,17 +295,3 @@ fieldset[disabled] .autoCompletar input {
     border-width: 2px;
     border-color: #6AA84F;
 }
-
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  #printable, #printable * {
-    visibility: visible;
-  }
-  #printable {
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
-}

@@ -579,7 +579,7 @@ function carregaPagina() {
 function mostra_vertical_elaboracao() {
 
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical");
+    divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "esconder-div");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
@@ -602,7 +602,7 @@ function mostra_vertical_pre_avaliacao() {
     var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
     divElaboracao.setAttribute("class", "esconder-div");
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical");
+    divPreAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
     divAvaliacao.setAttribute("class", "esconder-div");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
@@ -624,7 +624,7 @@ function mostra_avaliacao() {
     var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
     divPreAvaliacao.setAttribute("class", "esconder-div");
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical");
+    divAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
@@ -645,7 +645,7 @@ function mostra_formalizacao() {
     var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
     divAvaliacao.setAttribute("class", "esconder-div");
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical");
+    divFormalizacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
 
@@ -667,7 +667,7 @@ function mostra_incubacao() {
     var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical");
+    divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
 
 }
 
@@ -756,7 +756,7 @@ function retornarCorOriginalBotao() {
 }
 
 /**
- * 
+ * @description Função para exibir o campo outro na etapa de seleção do estágio de evolução do plano de negócio
  * @returns {undefined}
  */
 function exibeCampoOutro() {
@@ -768,15 +768,11 @@ function exibeCampoOutro() {
 }
 
 /**
- * @description Função para abrir uma nova aba ou janela no navegador
+ * @description Função para imprimir o conteúdo da página atual
  * @returns {undefined}
  */
-function novaJanela(divID) {
-
-    var valorDaDiv = $(".conteudoDaRevisao").text();
-    $("#orcamentoAssuntoForm").val(valorDaDiv);
-
-    document.write("Teste de escrita");
+function imprimirPaginaHtml(){
+    document.window.print();
 }
 
 /**
