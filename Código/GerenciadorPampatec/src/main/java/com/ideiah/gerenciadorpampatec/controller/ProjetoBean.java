@@ -309,6 +309,8 @@ public class ProjetoBean implements Serializable {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
             }
         }
+        //limpa o campo depois de dar refresh na página.        
+        emailEmpreendedor = null;
     }
 
     /**
