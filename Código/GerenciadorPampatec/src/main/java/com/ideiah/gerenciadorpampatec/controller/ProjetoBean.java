@@ -271,7 +271,13 @@ public class ProjetoBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         if (!empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
             projeto.getEmpreendedores().remove(empreendedorSelected);
-            getEmpreedendoresAdicionados().remove(empreendedorSelected);
+            //Percorre a lista achar o empreendedor selecionado e remove ele da lista de adicionados.
+            for (int i = 0; i < empreedendoresAdicionados.size(); i++) {
+                if(empreedendoresAdicionados.get(i).getEmail().equals(empreendedorSelected.getEmail())){
+                    empreedendoresAdicionados.remove(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -303,7 +309,7 @@ public class ProjetoBean implements Serializable {
                     empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
                     empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
                 }
-                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                empreedendoresAdicionados.add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
