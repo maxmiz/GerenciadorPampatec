@@ -122,13 +122,16 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     /**
      * Deleta o projeto que o usuário selecionou.
      */
-    public void deletarProjeto() {
+    public void deletarProjeto(Projeto projeto) {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        secao.setAttribute("projetoSelecionado", projetoSelecionado);
+        secao.setAttribute("projetoSelecionado", null);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         this.projetoDao.deletar(projetoSelecionado.getIdProjeto());
         listaProjetos.remove(projetoSelecionado);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano excluído", "O plano foi excluído com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("lista_planos:mensagensFeed", msg);
     }
 
     /**
