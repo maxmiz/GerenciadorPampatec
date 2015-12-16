@@ -11,8 +11,8 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="animation.css"  />
             <h:outputStylesheet library="css" name="bootstrap.css"  />
-            <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="js.js"/>
@@ -32,6 +32,39 @@
 
         </script>
 
+        <!-- Classe para 'dizer' o que não será impresso da página, para isto
+        basta adicionar a classe 'noprint' na classe da div ou do elemento -->
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
+        </style>
+
     </h:head>
     <h:body  onload="carregaPagina(), verificarCampos(), carregaFeedBack();">
 
@@ -39,6 +72,9 @@
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                    </div>
                     <div class="col-md-10">
                         <ul class="nav navbar-nav navbar-right">
 
@@ -78,7 +114,6 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -125,7 +160,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
-        <div class="col-md-12 text-center" style="background-color: #6AA84F;">
+        <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
             <ul id="progressbar">
                 <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
                 <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostraDIV('divPreVisualizar'), mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
@@ -138,18 +173,21 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW HORIZONTAL -->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
-        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical">
+        <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical noprint">
             <div class="divPadding">
                 <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <!-- A compração do STATUS do projeto a partir de um número (nesse caso 0 e 8) está errado, o coreto seria puxar A CONSTANTE para comparar, porém não consegui fazer isso agora.
+                Porquê comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as comparações de status que foram realizadas comparando um
+                número inteiro, inves da CONSNTANTE -->
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
 
             </div>
         </div>
@@ -157,7 +195,7 @@
         <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
-        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div">
+        <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div noprint">
             <div class="divPadding text-center">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 1}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
@@ -169,7 +207,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
-        <div id="vertical_etapa_avaliacao" class="col-md-2 text-center esconder-div" style="background-color: #983d00">
+        <div id="vertical_etapa_avaliacao" class="col-md-2 text-center esconder-div noprint" style="background-color: #983d00">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 2}" id="botao_agendamento" class="btn btn-success btnWorkflowV" value="Agendamento" onclick="addFocoBotao('botao_agendamento')"></h:commandButton><br/>
             </div>
@@ -184,7 +222,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
-        <div id="vertical_etapa_formalizacao" class="col-md-2 text-center esconder-div" style="background-color: yellow">
+        <div id="vertical_etapa_formalizacao" class="col-md-2 text-center esconder-div noprint" style="background-color: yellow">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 3}" id="botao_entrega_documentacao" class="btn btn-success btnWorkflowV" value="Entrega documentação" onclick="addFocoBotao('botao_documentacao')"></h:commandButton><br/>
             </div>
@@ -199,7 +237,7 @@
 
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA INCUBACAO-->
-        <div id="vertical_etapa_incubacao" class="col-md-2 text-center esconder-div" style="background-color: violet">
+        <div id="vertical_etapa_incubacao" class="col-md-2 text-center esconder-div noprint" style="background-color: violet">
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status != 4}" id="botao_avaliacao" class="btn btn-success btnWorkflowV" value="Avaliação" onclick="addFocoBotao('botao_avaliacao')"></h:commandButton><br/>
             </div>
@@ -317,59 +355,60 @@
                                     <div class="col-md-12" id="">
 
                                         <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
                                         Nome da Empresa ou do Projeto*
                                         <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
-                                                     onblur="verificaNegocio();" 
+                                                     onblur="verificaNegocio();"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroNome" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                             <!--<p:ajax update=":form_revisao" event="change"/>-->
                                         </p:inputText>
-                                        <h:message class="mensagemErro" for="empresaProjeto"/>
                                         <br/>
                                     </div>
 
                                     <div class="col-md-12" id="">
                                         <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroSegmento" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
-                                        <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                         <br/>
                                     </div>
                                     <div class="col-md-12" id="">
                                         <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor"/><br/>
                                         Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                         <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroProposta" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
-                                        <h:message class="mensagemErro" for="propostaDeValor"/>
+
                                         <br/>
                                     </div>
                                     <div class="col-md-12" id="">
                                         <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave"/><br/>
                                         Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                         <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAtividades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
-                                        <h:message class="mensagemErro" for="atividadesChave"/>
                                         <br/>
                                     </div>
 
@@ -395,67 +434,67 @@
 
                                     <div class="col-md-12">
                                         <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.relacoesClientes}"
                                                          id="relacoComClientes">    
-                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroRelacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
-
-                                        <h:message class="mensagemErro" for="relacoComClientes"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves"/><br/>
                                         Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.parceriasChaves}"
                                                          id="parceriasChaves">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroParcerias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="parceriasChaves"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroCanais" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="canais"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Recursos principais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais"/><br/>
                                         Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="recursosPrincipais"
                                                          value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroRecursos" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="recursosPrincipais"/>
+
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Concorrentes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes"/><br/>
                                         Quem são nossos concorrentes? como trabalham?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="concorrentes"
                                                          value="#{projetoBean.projeto.analiseemprego.concorrentes}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroConcorrentes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
-                                        <h:message class="mensagemErro" for="concorrentes"/>
                                     </div>
 
 
@@ -504,87 +543,87 @@
                                     </div>
                                     <div class="col-md-12">
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
                                                          > 
-                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroTecnologias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="tecnologiaProcessos"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                          id="potencialInovacaoTecnologica">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInovacao" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes"/><br/>
                                         A quem se aplica? Como? De que maneira?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAplicacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="aplicacoes"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas"/><br/>
                                         Quais são nossas principais limitações?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                          id="dificuldadesEsperadas">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroDificuldades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroInteracaoUniversidade" class="mensagemErro" for="interacaoEmpresaUniversidade"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                          id="interacaoEmpresaUniversidade">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoUniversidade" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroInteracaoGoverno" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                          id="interacaoEmpresaComunidadeGoverno">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoGoverno" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
 
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroEstrututura" class="mensagemErro" for="infraestrutura"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
                                                          id="infraestrutura">
-                                            <f:ajax execute="@form" render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstrututura" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="infraestrutura"/>
 
                                         <br/>
                                     </div>
@@ -611,26 +650,26 @@
 
                                     <div class="col-md-12">
                                         <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroAcionaria" class="mensagemErro" for="participacaoAcionaria"/><br/>
                                         Haverão sócios? Quanto de participação terão?
                                         <h:inputTextarea class="form-control"  
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
                                                          id="participacaoAcionaria">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAcionaria" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="participacaoAcionaria"/>
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroPotencialEmprego" class="mensagemErro" for="potencialEmprego"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
                                                          id="potencialEmprego">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroPotencialEmprego" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="potencialEmprego"/>
                                         <br/>
                                     </div>
 
@@ -656,43 +695,44 @@
                                     <legend id="subTitulo">Plano de Financeiro</legend>
 
                                     <div class="col-md-12">
-                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
+                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
+                                        <h:message id="mensagemErroFonteReceita" class="mensagemErro" for="fontesDeReceita"/><br/>
                                         Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                         <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control"
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed"  listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroFonteReceita"  listener="#{projetoBean.salvarProjeto()}"/>
                                         </p:inputTextarea>
-                                        <h:message class="mensagemErro" for="fontesDeReceita"/>
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
-                                        <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                        <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>                                        
+                                        <h:message id="mensagemErroEstruturaCusto" class="mensagemErro" for="estruturaCustos"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                         <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" 
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstruturaCusto" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </p:inputTextarea>
-                                        <h:message class="mensagemErro" for="estruturaCustos"/>
+
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
                                         <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                        <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial"/><br/>
                                         Quanto de recurso será necessário para iniciar?
                                         <h:inputTextarea class="form-control"  
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
                                                          id="investimentoInicial">
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInvestimentoInicial" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
-                                        <h:message class="mensagemErro" for="investimentoInicial"/>
                                         <br/>
                                     </div>
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
@@ -734,7 +774,7 @@
                                                 <p:rowEditor style="width: "/>
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
+                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
                                                 </h:commandLink>    
                                             </p:column>
 
@@ -745,7 +785,7 @@
                                         <div class="col-md-6">
                                             <h:commandButton id="botao_adicionar_nova_linha" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos" render="formulario_cadastro_projeto:novaTabelaCustosFixos"
-                                                        listener="#{projetoBean.adicionarLinhaFixo()}"></f:ajax>                                
+                                                        listener="#{projetoBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
 
                                         </div>
@@ -815,7 +855,7 @@
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panel_custo_variavel" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
+                                                    <f:ajax execute="panel_custo_variavel" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
                                                 </h:commandLink> 
                                             </p:column>
 
@@ -825,7 +865,7 @@
 
                                             <h:commandButton id="botao_adicionar_nova_linhaVariavel" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis" render="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
-                                                        listener="#{projetoBean.adicionarLinhaVariavel()}"></f:ajax>                                
+                                                        listener="#{projetoBean.adicionarLinhaVariavel()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
                                         </div>
 
@@ -876,7 +916,7 @@
 
                     <h1>Cadastro - Plano de Negócio</h1>
                     <div id="formularioParte01">
-                        <legend id="subTitulo" >Minha equipe</legend>                                
+                        <legend id="subTitulo" style="color: #727476;">Minha equipe</legend>                                
 
 
                         <div class="col-md-12" id="">
@@ -891,7 +931,7 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
+                                        <h:commandButton class="btn btn-default" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
                                             <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe formEquipe:autocomplete" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
                                         </h:commandButton>
                                     </div>
@@ -925,7 +965,7 @@
 
                         <div class="col-md-12 text-center text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{projetoBean.verificarEmpreendedor()}" type="button" disabled="#{projetoBean.verificaElaboracao()}" onclick="infoSalvarEquipe()" 
+                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" type="button" disabled="#{projetoBean.verificaElaboracao()}" onclick="infoSalvarEquipe()" 
                                              value="Salvar Equipe"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
@@ -939,7 +979,8 @@
 
         <!--INICIO DA DIV DE SUBMISSÃO -->
         <div class="classeConteudo esconder-div" id="divSubmeterPlano">
-            <h:form>
+            <h:form id="form_enviar_projeto">
+                <p:growl id="mensagensFeed" showDetail="true"/>
                 <div class="" id="formSubmeterPlano">
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
@@ -947,7 +988,7 @@
                             <legend id="subTitulo">Submissão de Plano de Negócio</legend>                                
 
                             <div class="well">
-                                <a class="text-danger"><strong>Atenção</strong></a>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
+                                <strong class="text-danger">Atenção</strong>  <h:outputText value=" #{loginBean.nome}"></h:outputText>,
                                 ao clicar no botão <strong><u>Submeter Plano de Negócio</u></strong>
                                 o seu Plano de Negócio será enviado para realização da pré-avaliação, com isto, você não poderá mais
                                 realizar novas edições neste Plano de Negócio.
@@ -956,12 +997,12 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{projetoBean.enviarProjeto()}">
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
 
-                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>
+                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>  
                                 </h:commandLink>
                             </div>
 
@@ -1163,35 +1204,26 @@
 
                     </div>
 
-                    <div id="rodape">PAMPATEC 2015</div>
+                    <div>PAMPATEC 2015</div>
 
-                    <!--                <h:commandLink class="btn btn-success btn-lg" title="Imprimir" onclick="novaJanela()">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-print fa-3x"></i> <br/> </label>
-                                    </h:commandLink>-->
 
-                    <button class="print" onclick="myFunction()">Try it</button>
-
+                    <div class="noprint text-right">
+                        <h:commandLink class="btn btn-success" title="Imprimir" onclick="imprimirPaginaHtml();">
+                            <label style="color: white; cursor: pointer;"><i class="fa fa-print"></i>   Imprimir Plano de Negócio</label>
+                        </h:commandLink>
+                        <br/><br/>
+                    </div>
 
 
                 </div>
 
             </h:form>
         </div>
-        <!-- FIM DA PARTE DE REVISÃO -->
+
         <script>
-            $(document).ready(function () {
-                $('.print').click(function () {
-                    $('.contentPrint').printArea({
-                        mode: 'popup',
-                        popHt: 500,
-                        popWt: 400,
-                        popX: 500,
-                        popY: 500,
-                        popTitle: 'Título da janela'
-                    });
-                    return false;
-                });
-            });
+            function imprimirPaginaHtml() {
+                window.print();
+            }
         </script>
 
     </h:body>

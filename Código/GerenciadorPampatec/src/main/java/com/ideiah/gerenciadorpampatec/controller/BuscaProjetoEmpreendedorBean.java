@@ -126,12 +126,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projeto);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
-        this.projetoDao.deletar(projeto.getAnaliseemprego().getIdAnaliseEmprego());
-        this.projetoDao.deletar(projeto.getPlanofinanceiro().getIdPlanoFinanceiro());
-        this.projetoDao.deletar(projeto.getProdutoouservico().getIdProdutoOuServico());
-        this.projetoDao.deletar(projeto.getNegocio().getIdNegocio());
-        this.projetoDao.deletar(projeto.getIdProjeto());
-        listaProjetos.remove(projeto);
+        this.projetoDao.deletar(projetoSelecionado.getIdProjeto());
+        listaProjetos.remove(projetoSelecionado);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano excluído", "O plano foi excluído com sucesso.");
@@ -150,6 +146,16 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
+    }
+    
+    /**
+     * Verifica se o botão excluir pode ser ativado olhando
+     * o tipo de empreendedor e se o projeto está em pre-avaliação.
+     * @param projeto Projeto para se verificar.
+     * @return true se o botão pode ser ativado.
+     */
+    public boolean verificaExcluir(Projeto projeto){
+        return verificarEmpreendedor(projeto) && projeto.verificarEmPreAvaliacao();
     }
 
     public String formatarDataCriacao(Projeto projeto) {

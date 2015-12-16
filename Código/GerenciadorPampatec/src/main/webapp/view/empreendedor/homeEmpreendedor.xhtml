@@ -10,6 +10,7 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
@@ -21,14 +22,46 @@
 
         <title>Página Principal - Empreendedor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+            @font-face {
+                font-family: lilyUPC;
+                src: url(lily.ttf);
+            }
+            html {
+                font-family: lilyUPC;
+            }
+        </style>
+
     </h:head>
     <body>
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
+            <nav class="navbar navbar-default pampaTec">
+                <div class="container-fluid pampaTec">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                    </div>
                     <div class="col-md-10">
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right pampaTec">
 
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
@@ -66,7 +99,7 @@
                             </li>
 
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+
                     </div>
                 </div>
             </nav>
@@ -105,13 +138,39 @@
                 </div>
             </div>
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
-
             <!-- Fim das modais apresentadas -->
 
+            <!-- Div botão Vizualizar/criar formulario e botão visualizar edital-->
+            <div class="col-md-12" text-align="center" style="padding-top: 1%;">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-3">
+                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
+                    </h:commandLink>
+
+                    <h:commandLink style="margin-left: " rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/>Meus planos de negócio</label>
+                    </h:commandLink>
+                </div>
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-3 text-center">
+                    <a class="btn btn-success btn-lg"  href="http://porteiras.s.unipampa.edu.br/pampatec/files/2015/06/Edital_186-2015_Pampatec.pdf" target="_blank"> 
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-pdf-o fa-3x"></i> <br/> Edital N. 186/2015</label>
+                    </a>
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
 
 
+            <!-- SEÇÃO STARTUP UNIPAMPA HTML EXTERNO -->
             <div class="col-md-12">
-                <iframe width="100%" height="400px" src="http://startuppampa.com.br/processo_incubadora/#list">
+                <iframe style="margin-top: 5%" width="100%" height="550px" src="http://startuppampa.com.br/processo_incubadora/#list">
                 </iframe>
             </div>
 
@@ -127,23 +186,6 @@
             <div class="col-md-10"></div>
             <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
 
-
-            <div class="col-md-12" text-align="center" style="padding-top: 1%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 text-center">
-                    
-                    <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/> Cadastre um novo plano de negócio</label>
-                    </h:commandLink>
-
-                    <h:commandLink rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/> Meus planos de negócio</label>
-                    </h:commandLink>
-
-
-                </div>
-                <div class="col-md-3"></div>
-            </div>
             <p:poll interval="3" update="barraNotificacoes"/>
             <p:poll interval="3" update="tabelaNotificacoes"/>
         </h:form>

@@ -21,12 +21,44 @@
 
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+            @font-face {
+                font-family: lilyUPC;
+                src: url(lily.ttf);
+            }
+            html {
+                font-family: lilyUPC;
+            }
+        </style>
+
     </h:head>
     <body>
         <!-- Início do menu superior -->
         <h:form id="locovelho">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value=""></h:outputText></h4>
+                    </div>
                     <div class="col-md-10">
                         <ul class="nav navbar-nav navbar-right">
 
@@ -57,9 +89,7 @@
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value=""></h:outputText></h4>
                     </div>
                 </div>
             </nav>
