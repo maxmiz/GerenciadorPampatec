@@ -26,8 +26,7 @@ public class Projeto implements java.io.Serializable {
     public static final int PRE_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
     public static final int LINHA_DE_BASE = 9;
-    
-    
+
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
     private Negocio negocio;
@@ -44,7 +43,9 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
-    
+    private Set ProjetoBaseComoReferencia = new HashSet(0);//Projeto Base em que este projeto é referência.
+    private Set ProjetoBase = new HashSet(0);//Projeto Base que esse projeto representa.
+
     public Projeto() {
         pegaObserver();
     }
@@ -77,8 +78,8 @@ public class Projeto implements java.io.Serializable {
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
     }
-    
-    private void pegaObserver(){
+
+    private void pegaObserver() {
         FacesContext context = FacesContext.getCurrentInstance();
         NotificacoesEmpreendedorBean bean = context.getApplication().evaluateExpressionGet(context, "#{notificacoesEmpreendedorBean}", NotificacoesEmpreendedorBean.class);
         notificacoesBean = bean;
@@ -182,12 +183,13 @@ public class Projeto implements java.io.Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
-    
+
     /**
      * Muda o status do Projeto ativando os observadores.
-     * @param status 
+     *
+     * @param status
      */
-    public void mudarStatus(Integer status){
+    public void mudarStatus(Integer status) {
         setStatus(status);
         notificacoesBean.update(null, this);
     }
@@ -263,28 +265,27 @@ public class Projeto implements java.io.Serializable {
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
     }
-    
-    
+
     /**
-     * 
+     *
      * @param status
      * @return lista de projeto com o status inserido
      */
-    public static ArrayList<Projeto> buscarProjetoPorStatus(int status){
+    public static ArrayList<Projeto> buscarProjetoPorStatus(int status) {
         ArrayList<Projeto> listaDeProjetos;
         ProjetoDao projetoDao = new ProjetoDao();
         listaDeProjetos = projetoDao.buscar();
-        
+
         ArrayList<Projeto> projetosGerente = new ArrayList<>();
-        
+
         for (Projeto projeto : listaDeProjetos) {
             if (projeto.status == status) {
                 projetosGerente.add(projeto);
             }
         }
-        
+
         return projetosGerente;
-        
+
     }
 
     /**
@@ -299,6 +300,42 @@ public class Projeto implements java.io.Serializable {
      */
     public void setEmpreendedorCorrespondente(Empreendedor empreendedorCorrespondente) {
         this.empreendedorCorrespondente = empreendedorCorrespondente;
+    }
+
+    /**
+     * @return the ProjetoBaseComoReferencia
+     */
+    public Set getProjetoBaseComoReferencia() {
+        return ProjetoBaseComoReferencia;
+    }
+
+    /**
+     * @param ProjetoBaseComoReferencia the ProjetoBaseComoReferencia to set
+     */
+    public void setProjetoBaseComoReferencia(Set ProjetoBaseComoReferencia) {
+        this.ProjetoBaseComoReferencia = ProjetoBaseComoReferencia;
+    }
+
+    /**
+     * @return the ProjetoBase
+     */
+    public Set getProjetoBase() {
+        return ProjetoBase;
+    }
+
+    /**
+     * @param ProjetoBase the ProjetoBase to set
+     */
+    public void setProjetoBase(Set ProjetoBase) {
+        this.ProjetoBase = ProjetoBase;
+    }
+    
+    /**
+     * Verifica se o projeto está em pré-avaliação
+     * @return 
+     */
+    public boolean verificarEmPreAvaliacao(){
+        return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
     }
 
 }

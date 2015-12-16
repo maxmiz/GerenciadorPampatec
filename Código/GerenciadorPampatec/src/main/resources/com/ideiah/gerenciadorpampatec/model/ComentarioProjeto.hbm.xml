@@ -7,16 +7,16 @@
       <column name="idcomentario"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego" cascade="all">
       <column name="comentarioanaliseemprego_idcomentarioanaliseemprego" not-null="true"/>
     </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" fetch="select" name="comentarionegocio">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" fetch="select" name="comentarionegocio" cascade="all">
       <column name="comentarionegocio_idcomentarionegocio" not-null="true"/>
     </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" fetch="select" name="comentarioplanofinanceiro">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" fetch="select" name="comentarioplanofinanceiro" cascade="all">
       <column name="comentarioplanofinanceiro_idcomentarioplanofinanceiro" not-null="true"/>
     </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" fetch="select" name="comentarioprodutoouservico">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" fetch="select" name="comentarioprodutoouservico" cascade="all">
       <column name="comentarioprodutoouservico_idcomentarioprodutoouservico" not-null="true"/>
     </many-to-one>
     <property name="nome" type="string">

@@ -7,7 +7,7 @@
       <column name="idprojetobase"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" fetch="select" name="comentarioprojeto">
+    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" fetch="select" name="comentarioprojeto" cascade="all">
       <column name="comentarioprojeto_idcomentario"/>
     </many-to-one>
     <many-to-one class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select" name="projeto" cascade="all" lazy="false">

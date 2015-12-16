@@ -144,6 +144,16 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
+    
+    /**
+     * Verifica se o botão excluir pode ser ativado olhando
+     * o tipo de empreendedor e se o projeto está em pre-avaliação.
+     * @param projeto Projeto para se verificar.
+     * @return true se o botão pode ser ativado.
+     */
+    public boolean verificaExcluir(Projeto projeto){
+        return verificarEmpreendedor(projeto) && projeto.verificarEmPreAvaliacao();
+    }
 
     public String formatarDataCriacao(Projeto projeto) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
