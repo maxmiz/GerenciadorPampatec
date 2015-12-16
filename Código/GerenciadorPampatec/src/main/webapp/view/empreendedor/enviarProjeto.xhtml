@@ -931,7 +931,7 @@
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" rendered="#{(projetoBean.projeto.getStatus()) == 0}" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
+                                        <h:commandButton class="btn btn-default" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
                                             <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe formEquipe:autocomplete" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
                                         </h:commandButton>
                                     </div>
