@@ -122,17 +122,20 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     /**
      * Deleta o projeto que o usuário selecionou.
      */
-    public void deletarProjeto() {
+    public void deletarProjeto(Projeto projeto) {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        secao.setAttribute("projetoSelecionado", projetoSelecionado);
+        secao.setAttribute("projetoSelecionado", projeto);
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
-        this.projetoDao.deletar(projetoSelecionado.getAnaliseemprego().getIdAnaliseEmprego());
-        this.projetoDao.deletar(projetoSelecionado.getPlanofinanceiro().getIdPlanoFinanceiro());
-        this.projetoDao.deletar(projetoSelecionado.getProdutoouservico().getIdProdutoOuServico());
-        this.projetoDao.deletar(projetoSelecionado.getNegocio().getIdNegocio());
-        this.projetoDao.deletar(projetoSelecionado.getIdProjeto());
-        listaProjetos.remove(projetoSelecionado);
+        this.projetoDao.deletar(projeto.getAnaliseemprego().getIdAnaliseEmprego());
+        this.projetoDao.deletar(projeto.getPlanofinanceiro().getIdPlanoFinanceiro());
+        this.projetoDao.deletar(projeto.getProdutoouservico().getIdProdutoOuServico());
+        this.projetoDao.deletar(projeto.getNegocio().getIdNegocio());
+        this.projetoDao.deletar(projeto.getIdProjeto());
+        listaProjetos.remove(projeto);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano excluído", "O plano foi excluído com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("lista_planos:mensagensFeed", msg);
     }
 
     /**
