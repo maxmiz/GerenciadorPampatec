@@ -10,8 +10,8 @@
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
-            <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="formulario.js" />
@@ -20,6 +20,37 @@
 
         <title>Pré-Avaliar Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
+        </style>
 
     </h:head>
     <h:body >
@@ -699,77 +730,77 @@
                                     <h:message class="mensagemErro" for="fontesDeReceita"/>
                                     <br/>
                                 </div>
-<!--                                <div class="col-md-12 espaco">
-                                    <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
-                                    Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira a estrutura de custos antes de enviar" 
-                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
-                                                     styleClass="#/{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                     disabled="true">
-
-                                    </p:inputTextarea>
-                                    <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                    </div>
-                                    <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor19" value="#/{preAvaliarPlanoBean.comentEstCustos}">
-                                        </p:inputTextarea>
-                                    </div>
-                                    <h:message class="mensagemErro" for="estruturaCustos"/>
-                                    <br/>
-                                </div>
-                                <div class="col-md-12 espaco">
-                                    <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
-                                    Quanto de recurso será necessário para iniciar?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                     id="investimentoInicial" disabled="true"></h:inputTextarea>
-                                    <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                    </div>
-                                    <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor20" value="#/{preAvaliarPlanoBean.comentInvInicial}">
-                                        </p:inputTextarea>
-                                    </div>
-                                    <h:message class="mensagemErro" for="investimentoInicial"/>
-                                    <br/>
-                                </div>
-                                <div class="col-md-12 espaco">
-                                    <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
-                                    Salários, Aluguel...
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosfixos}"
-                                                     id="custosfixos" disabled="true"></h:inputTextarea>
-                                    <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                    </div>
-                                    <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#/{preAvaliarPlanoBean.comentCustFixos}">
-                                        </p:inputTextarea>
-                                    </div>
-                                    <h:message class="mensagemErro" for="custosfixos"/>
-
-                                    <br/>
-                                </div>
-                                <div class="col-md-12 espaco">
-                                    <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
-                                    Impostos, combustível, matéria-prima... 
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="custosvariaveis" value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosvariaveis}"
-                                                     disabled="true">
-                                    </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                    </div>
-                                    <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#/{preAvaliarPlanoBean.comentCustVariaveis}">
-                                        </p:inputTextarea>
-                                    </div>
-                                    <h:message class="mensagemErro" for=")custosvariaveis"/>
-
-                                    <br/>
-                                </div>-->
+                                <!--                                <div class="col-md-12 espaco">
+                                                                    <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                                                    Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                                                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                                                     requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
+                                                                                     styleClass="#/{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                                                     disabled="true">
+                                
+                                                                    </p:inputTextarea>
+                                                                    <div class="col-md-12 espaco">
+                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                                                    </div>
+                                                                    <div class="has-success col-md-12 espaco">
+                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor19" value="#/{preAvaliarPlanoBean.comentEstCustos}">
+                                                                        </p:inputTextarea>
+                                                                    </div>
+                                                                    <h:message class="mensagemErro" for="estruturaCustos"/>
+                                                                    <br/>
+                                                                </div>
+                                                                <div class="col-md-12 espaco">
+                                                                    <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                                                    Quanto de recurso será necessário para iniciar?
+                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
+                                                                                     id="investimentoInicial" disabled="true"></h:inputTextarea>
+                                                                    <div class="col-md-12 espaco">
+                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                                                    </div>
+                                                                    <div class="has-success col-md-12 espaco">
+                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor20" value="#/{preAvaliarPlanoBean.comentInvInicial}">
+                                                                        </p:inputTextarea>
+                                                                    </div>
+                                                                    <h:message class="mensagemErro" for="investimentoInicial"/>
+                                                                    <br/>
+                                                                </div>
+                                                                <div class="col-md-12 espaco">
+                                                                    <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
+                                                                    Salários, Aluguel...
+                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosfixos}"
+                                                                                     id="custosfixos" disabled="true"></h:inputTextarea>
+                                                                    <div class="col-md-12 espaco">
+                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                                                    </div>
+                                                                    <div class="has-success col-md-12 espaco">
+                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#/{preAvaliarPlanoBean.comentCustFixos}">
+                                                                        </p:inputTextarea>
+                                                                    </div>
+                                                                    <h:message class="mensagemErro" for="custosfixos"/>
+                                
+                                                                    <br/>
+                                                                </div>
+                                                                <div class="col-md-12 espaco">
+                                                                    <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
+                                                                    Impostos, combustível, matéria-prima... 
+                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                                                     id="custosvariaveis" value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosvariaveis}"
+                                                                                     disabled="true">
+                                                                    </h:inputTextarea>
+                                                                    <div class="col-md-12 espaco">
+                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                                                    </div>
+                                                                    <div class="has-success col-md-12 espaco">
+                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#/{preAvaliarPlanoBean.comentCustVariaveis}">
+                                                                        </p:inputTextarea>
+                                                                    </div>
+                                                                    <h:message class="mensagemErro" for=")custosvariaveis"/>
+                                
+                                                                    <br/>
+                                                                </div>-->
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">

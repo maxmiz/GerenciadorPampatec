@@ -271,7 +271,13 @@ public class ProjetoBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         if (!empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
             projeto.getEmpreendedores().remove(empreendedorSelected);
-            getEmpreedendoresAdicionados().remove(empreendedorSelected);
+            //Percorre a lista achar o empreendedor selecionado e remove ele da lista de adicionados.
+            for (int i = 0; i < empreedendoresAdicionados.size(); i++) {
+                if(empreedendoresAdicionados.get(i).getEmail().equals(empreendedorSelected.getEmail())){
+                    empreedendoresAdicionados.remove(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -303,7 +309,7 @@ public class ProjetoBean implements Serializable {
                     empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
                     empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
                 }
-                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                empreedendoresAdicionados.add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
@@ -649,6 +655,11 @@ public class ProjetoBean implements Serializable {
                         salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+//                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
+//                        FacesMessage msg;
+//                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
+//                        FacesContext.getCurrentInstance().addMessage("form_enviar_projeto:mensagensFeed", msg);
+                        
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
