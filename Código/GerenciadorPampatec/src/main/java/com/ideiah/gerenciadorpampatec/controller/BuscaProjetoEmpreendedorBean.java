@@ -163,7 +163,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         if (projeto.getDataCriacao() != null) {
             return formato.format(projeto.getDataCriacao());
         } else {
-            return "Projeto não criado.";
+            return "Plano não criado.";
         }
     }
 
@@ -172,7 +172,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         if (projeto.getDataEnvio() != null) {
             return formato.format(projeto.getDataEnvio());
         } else {
-            return "Projeto não enviado.";
+            return "Plano não enviado.";
         }
     }
 }
