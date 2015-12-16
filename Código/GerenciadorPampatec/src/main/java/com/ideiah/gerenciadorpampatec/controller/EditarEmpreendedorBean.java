@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean(name = "editarEmpreendedorBean")
-@SessionScoped
+@ViewScoped
 
 public class EditarEmpreendedorBean {
 
@@ -206,6 +207,7 @@ public class EditarEmpreendedorBean {
                     empreendedor.setComplemento(complemento);
                     empreendedor.setExperiencia(experiencia);
 
+                   
                     //Confere se a intenção do usuário é também alterar a senha,
                     //usando o boolean @alterarSenha para indicar.
                     //Se for falso, significa que: a senha está em branco e não
@@ -218,12 +220,13 @@ public class EditarEmpreendedorBean {
                         if (empreendedor.getSenha().equals(senha)) {
                             empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
                             alterarSenha = false;
+
                         } else {
                             FacesUtil.addErrorMessage("Senha incorreta.", "formularioCadastro:senhaAtual");
                         }
                     }
 
-                    if (empreendedor.atualizarEmpreendedor(empreendedor)&&alterarSenha==false) {
+                    if (empreendedor.atualizarEmpreendedor(empreendedor) && alterarSenha == false) {
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
