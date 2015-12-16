@@ -1017,20 +1017,20 @@
         <div class="classeConteudo esconder-div" id="divPreVisualizar">
 
 
-            <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.carregarProjetosBase()}">
-                <p:column headerText="Data de envio">
-                    <h:outputText value="#{projetoBase.projeto.dataEnvio}" />
-                    <!--<h:outputText value="" />-->
-                    <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
-                </p:column>
-                <p:column headerText="Data de avaliação">
-                    <h:outputText id="dataPreAv" value="#{projetoBase.dataAvaliacao}"></h:outputText>
-                </p:column>
-                <p:column headerText="Status">
-                    <h:outputText id="statusPreAv" value="#{projetoBase.status}"></h:outputText>
-                </p:column>
-            </p:dataTable>
+             <div class="tab-pane fade active in well bs-component">
+                        <h1>Pré-Avaliação - Plano de Negócio</h1>
+                        <div id="formularioParte01">
+                            <legend id="subTitulo">Pré-Avaliação de Plano de Negócio</legend>                                
 
+                            <div class="well">
+                                Digitar texto aqui.
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <br/>
+                            </div>
+                        </div>
+             </div>
 
             <br/>
             <br/>
