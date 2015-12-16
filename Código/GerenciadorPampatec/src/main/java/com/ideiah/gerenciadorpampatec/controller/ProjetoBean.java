@@ -654,12 +654,13 @@ public class ProjetoBean implements Serializable {
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml"); 
+
 //                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
-//                        FacesMessage msg;
-//                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
-//                        FacesContext.getCurrentInstance().addMessage("form_enviar_projeto:mensagensFeed", msg);
-                        
+                        FacesMessage msg;
+                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
+                        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+                        System.out.println("chegou nessa porra");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",

@@ -980,7 +980,6 @@
         <!--INICIO DA DIV DE SUBMISSÃO -->
         <div class="classeConteudo esconder-div" id="divSubmeterPlano">
             <h:form id="form_enviar_projeto">
-                <p:growl id="mensagensFeed" showDetail="true"/>
                 <div class="" id="formSubmeterPlano">
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
@@ -1015,22 +1014,20 @@
         <!-- FIM DA DIV DE SUBMISSÃO -->
 
         <div class="classeConteudo esconder-div" id="divPreVisualizar">
-
-
-            <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.carregarProjetosBase()}">
-                <p:column headerText="Data de envio">
-                    <h:outputText value="#{projetoBase.projeto.dataEnvio}" />
-                    <!--<h:outputText value="" />-->
-                    <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
-                </p:column>
-                <p:column headerText="Data de avaliação">
-                    <h:outputText id="dataPreAv" value="#{projetoBase.dataAvaliacao}"></h:outputText>
-                </p:column>
-                <p:column headerText="Status">
-                    <h:outputText id="statusPreAv" value="#{projetoBase.status}"></h:outputText>
-                </p:column>
-            </p:dataTable>
-
+                <p:dataTable id="tabelaVersionamento" var="projetoBase" rowKey="#{projetoBase.idprojetobase}" styleClass="tabelaEmpreendedores" value="#{projetoBean.carregarProjetosBase()}">
+                    <p:column headerText="Data de envio">
+                        <h:outputText value="#{projetoBase.projeto.dataEnvio}" />
+                        <!--<h:outputText value="" />-->
+                        <!--<h:outputText value="#//{projetoBean.projeto.empreendedores}" />-->
+                    </p:column>
+                    <p:column headerText="Data de avaliação">
+                        <h:outputText id="dataPreAv" value="#{projetoBase.dataAvaliacao}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText id="statusPreAv" value="#{projetoBase.status}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+            
 
             <br/>
             <br/>
