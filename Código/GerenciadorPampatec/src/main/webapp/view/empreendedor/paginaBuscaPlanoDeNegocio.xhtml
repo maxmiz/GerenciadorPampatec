@@ -196,7 +196,7 @@
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandLink>
-                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" rendered="#{buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}"
                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
