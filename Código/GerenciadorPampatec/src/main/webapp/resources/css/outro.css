@@ -87,8 +87,7 @@ and open the template in the editor.
     color: black;
     text-emphasis-style: triangle;
     /*background-image: linear-gradient(to top, yellow, orange, red);*/
-    background-image: linear-gradient(to top, #EF3D2C, #EF3223, #EF1C0A);
-    /*background-color: #EF7A37;*/
+    background-color: #EF7A37;
 }
 
 
@@ -162,7 +161,6 @@ and open the template in the editor.
 #progressbar li.active:before,  #progressbar li.active:after{
     /*background-color: #62C462;*/
     color: black;
-    /*background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);*/
     background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
 /*    border-style: solid;
     border-color: white;*/
@@ -172,9 +170,7 @@ and open the template in the editor.
     /*background-color: #62C462;*/
     color: black;
     /*background-image: linear-gradient(to top, yellow, orange, red);*/
-    /*background-image: linear-gradient(to top, #EF3D2C, #EF3223, #EF1C0A);*/
-    background-image: linear-gradient(to top, #EF2C00, #EF2C43, blue);
-    /*background-color: #EF7A37;*/
+    background-color: #EF7A37;
 }
 
 #progressbar li.etapaSelecionada:before,  #progressbar li.etapaSelecionada:after{
