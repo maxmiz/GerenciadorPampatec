@@ -178,13 +178,16 @@
                 <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <!-- A compração do STATUS do projeto a partir de um número (nesse caso 0 e 8) está errado, o coreto seria puxar A CONSTANTE para comparar, porém não consegui fazer isso agora.
+                Porquê comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as comparações de status que foram realizadas comparando um
+                número inteiro, inves da CONSNTANTE -->
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(projetoBean.projeto.getStatus()) == 0}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{projetoBean.verificarEmpreendedor()}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(projetoBean.projeto.getStatus()) == 0}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
 
             </div>
         </div>
@@ -994,7 +997,7 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" action="#{projetoBean.enviarProjeto()}">
+                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
