@@ -176,7 +176,7 @@ public class ProjetoBean implements Serializable {
             projeto.setNome("Novo plano de negócio sem nome");
         }
         FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvamento automático", "Sua alteração foi salva com sucesso.");
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         pegaValorDropDown();
         EnviaEmails(projeto);
