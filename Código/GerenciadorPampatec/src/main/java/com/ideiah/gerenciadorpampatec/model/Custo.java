@@ -20,9 +20,10 @@ public class Custo  implements java.io.Serializable {
      private Integer idCusto;
      private Planofinanceiro planofinanceiro;
      private String descricao;
-     private Float total;
-     private Float projecao;
+     private Integer total;
+     private Integer projecao;
      private Integer tipo;
+     private boolean podeExcluir;
      public static final int CUSTO_FIXO = 0;
      public static final int CUSTO_VARIAVEL = 1;
      
@@ -34,7 +35,7 @@ public class Custo  implements java.io.Serializable {
     public Custo(Planofinanceiro planofinanceiro) {
         this.planofinanceiro = planofinanceiro;
     }
-    public Custo(Planofinanceiro planofinanceiro, String descricao, Float total, Integer tipo) {
+    public Custo(Planofinanceiro planofinanceiro, String descricao, int total, Integer tipo) {
        this.planofinanceiro = planofinanceiro;
        this.descricao = descricao;
        this.total = total;
@@ -63,11 +64,11 @@ public class Custo  implements java.io.Serializable {
         this.descricao = descricao;
     }
     
-    public Float getTotal() {
+    public Integer getTotal() {
         return this.total;
     }
 
-    public void setTotal(Float total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 
@@ -79,12 +80,26 @@ public class Custo  implements java.io.Serializable {
         this.tipo = tipo;
     }
 
-    public Float getProjecao() {
+    public Integer getProjecao() {
         return projecao;
     }
 
-    public void setProjecao(Float projecao) {
+    public void setProjecao(Integer projecao) {
         this.projecao = projecao;
+    }
+
+    /**
+     * @return the podeExcluir
+     */
+    public boolean isPodeExcluir() {
+        return podeExcluir;
+    }
+
+    /**
+     * @param podeExcluir the podeExcluir to set
+     */
+    public void setPodeExcluir(boolean podeExcluir) {
+        this.podeExcluir = podeExcluir;
     }
       
 }

@@ -747,14 +747,14 @@
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome" style="width:45px">
+                                            <p:column headerText="Nome">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custofixo.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custofixo.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor" style="width:10px">
+                                            <p:column headerText="Valor">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custofixo.total}"></p:outputLabel></f:facet>
                                                     <f:facet name="input">
@@ -765,14 +765,14 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção (6 meses)" style="width:10px">
+                                            <p:column headerText="Projeção (6 meses)">
                                                 <p:outputLabel  rendered="#{not empty custofixo.projecao}" value="R$ #{custofixo.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column width="10%" headerText="Opções">
+                                            <p:column width="8%" headerText="Opções">
                                                 <p:rowEditor style="width: "/>
-                                                <h:commandLink title="Excluir o Custo">
+                                                <h:commandLink title="Excluir o Custo" rendered="#{custofixo.podeExcluir}">
                                                     <i class="fa fa-trash"></i>
                                                     <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
                                                 </h:commandLink>    
@@ -830,14 +830,14 @@
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update="formulario_cadastro_projeto:mensagensFeed" />
 
-                                            <p:column headerText="Nome" style="width:46px">
+                                            <p:column headerText="Nome">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="#{custovariavel.descricao}"></p:outputLabel></f:facet>
 
                                                     <f:facet name="input"><p:inputText value="#{custovariavel.descricao}" style="width:96%"/></f:facet>
                                                 </p:cellEditor>
                                             </p:column>
-                                            <p:column headerText="Valor" style="width:12px">
+                                            <p:column headerText="Valor">
                                                 <p:cellEditor>
                                                     <f:facet name="output"><p:outputLabel value="R$ #{custovariavel.total}"></p:outputLabel></f:facet>
                                                     <f:facet name="input"><p:inputText value="#{custovariavel.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
@@ -846,12 +846,12 @@
                                                 </p:cellEditor>
                                             </p:column>
 
-                                            <p:column headerText="Projeção (6 meses)" style="width:12px">
+                                            <p:column headerText="Projeção (6 meses)">
                                                 <p:outputLabel value="R$ #{custovariavel.projecao}"></p:outputLabel>
 
                                             </p:column>
 
-                                            <p:column width="10%" headerText="Opções">
+                                            <p:column width="8%" headerText="Opções">
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
@@ -980,7 +980,6 @@
         <!--INICIO DA DIV DE SUBMISSÃO -->
         <div class="classeConteudo esconder-div" id="divSubmeterPlano">
             <h:form id="form_enviar_projeto">
-                <p:growl id="mensagensFeed" showDetail="true"/>
                 <div class="" id="formSubmeterPlano">
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
@@ -1031,7 +1030,6 @@
                     </div>
                 </div>
             </div>
-
             <br/>
             <br/>
             <br/>
