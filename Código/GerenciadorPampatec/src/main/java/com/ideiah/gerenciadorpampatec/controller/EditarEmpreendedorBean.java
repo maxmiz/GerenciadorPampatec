@@ -190,8 +190,8 @@ public class EditarEmpreendedorBean {
         this.empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
-            if (!empreendedor.getCpf().equals(cpf)) {
-                FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
+            if (!verificarAlterarSenha()) {
+                FacesUtil.addErrorMessage("Senha não preenchida", "formularioCadastro:senhaAtual");
             } else {
                 empreendedor.setCpf(cpf);
                 empreendedor.setFormacao(formacao);
@@ -207,7 +207,6 @@ public class EditarEmpreendedorBean {
                     empreendedor.setComplemento(complemento);
                     empreendedor.setExperiencia(experiencia);
 
-                   
                     //Confere se a intenção do usuário é também alterar a senha,
                     //usando o boolean @alterarSenha para indicar.
                     //Se for falso, significa que: a senha está em branco e não
@@ -243,6 +242,20 @@ public class EditarEmpreendedorBean {
             }
 
         }
+    }
+
+    public boolean verificarAlterarSenha() {
+        if (senha.isEmpty()) {                // senha está em branco
+            if (!novaSenha.isEmpty()) {       // e nova senha não está em branco
+                return false;                 // não altera a senha. 
+            }
+        } else {
+            if (novaSenha.isEmpty()) {        // e nova senha está em branco
+                return false;                 // não altera a senha.
+            }
+        }
+        return true;                          // se senha Atual e nova senha não estiverem em branco, altera a senha.
+        
     }
 
     public void showMessage() {
