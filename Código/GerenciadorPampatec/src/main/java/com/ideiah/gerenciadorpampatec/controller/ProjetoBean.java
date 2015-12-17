@@ -177,7 +177,7 @@ public class ProjetoBean implements Serializable {
         }
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:tituloMensagem", msg);
         pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();

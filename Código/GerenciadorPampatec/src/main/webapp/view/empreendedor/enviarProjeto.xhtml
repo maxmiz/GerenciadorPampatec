@@ -323,7 +323,6 @@
                 <div class="col-md-12 form-horizontal well bs-component">
                     <h1>Cadastro - Plano de Negócio</h1>
                     <h:outputText id="tituloMensagem"></h:outputText>
-                    <h:message for="tituloMensagem" errorClass="mensagemErro" infoClass="mensagemSucesso"></h:message>
                     <br/>
                     <br/>
 
@@ -687,7 +686,8 @@
                             <!-- Fim da quinta parte do formulário -->
 
                             <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
-                            <p:growl id="mensagensFeed" showDetail="true"/>
+                            
+                            <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
 
                             <div class="tab-pane fade" id="formParte06">
 
