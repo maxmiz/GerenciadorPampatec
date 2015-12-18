@@ -323,7 +323,6 @@
                 <div class="col-md-12 form-horizontal well bs-component">
                     <h1>Cadastro - Plano de Negócio</h1>
                     <h:outputText id="tituloMensagem"></h:outputText>
-                    <h:message for="tituloMensagem" errorClass="mensagemErro" infoClass="mensagemSucesso"></h:message>
                     <br/>
                     <br/>
 
@@ -487,7 +486,7 @@
                                     <div class="col-md-12">
                                         <b>Concorrentes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes"/><br/>
-                                        Quem são nossos concorrentes? como trabalham?
+                                        Quem são nossos concorrentes? Como trabalham?
                                         <h:inputTextarea class="form-control" 
                                                          onblur="verificaAnaliseMercado()"
                                                          id="concorrentes"
@@ -544,7 +543,7 @@
                                     <div class="col-md-12">
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
-                                        Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                                        Como nosso projeto está alinhado com a preservação de recursos naturais e sustentabilidade? Possui valores nesse sentido?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
@@ -557,7 +556,7 @@
                                     <div class="col-md-12">
                                         <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica"/><br/>
-                                        Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                                        Qual a capacidade de gerar produtos ou serviços inovadores que agreguem o uso de novas tecnologias?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                          id="potencialInovacaoTecnologica">
@@ -687,7 +686,8 @@
                             <!-- Fim da quinta parte do formulário -->
 
                             <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
-                            <p:growl id="mensagensFeed" showDetail="true"/>
+                            
+                            <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
 
                             <div class="tab-pane fade" id="formParte06">
 
@@ -926,7 +926,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.completarEmpreendedor}">
+                                        <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.sugerirEmpreendedorCadastrado}">
                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                                         </p:autoComplete>
                                     </div>
@@ -1095,21 +1095,28 @@
                                 INCUBADORA TECNOLÓGICA PAMPATEC ALEGRETE
                             </p>
                             <p style="font-weight: bold">PLANO DE NEGÓCIO</p>
-                            <p>Enviado em: <h:outputText id="revisao_dataEnvio" value="#{projetoBean.projeto.dataEnvio}" /> </p>
+                            <p><b>Enviado em:</b> <h:outputText id="revisao_dataEnvio" value="#{projetoBean.projeto.dataEnvio}"/></p>
                         </div>
                         <div id="identificacao_empresa">
-                            <p>Nome da Empresa ou do Projeto: <h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
-                            <p>Empreendedor(es):</p>
-                            <p:dataTable var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                                <p:column>
-                                    <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
-                                </p:column>
-                            </p:dataTable>
+                            <p><b>Nome da Empresa ou do Projeto:</b> <h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
+                            <div class="col-md-12">
+                                <div class="col-md-5"></div> 
+                                <div class="col-md-2">
+                                    <h:dataTable var="empreendedor" value="#{projetoBean.projeto.empreendedores}">
+                                        <h:column > 
+                                            <f:facet name="header"><b>EMPREENDEDORES</b></f:facet>
+                                            <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                                <div class="col-md-5"></div> 
+                            </div>
                         </div>
-
                     </div>
 
                     <div id="corpo_documento">
+
+                        <br/>
 
                         <div id="part_negocio" class="corpoDoTexto">
                             <p><h1><b>O NEGÓCIO</b></h1></p>
@@ -1141,22 +1148,22 @@
 
                         <div id="part_GestaoPessoas" class="corpoDoTexto">
                             <p><h1><b>GESTÃO DE PESSOAS</b></h1></p>
-                            <p:dataTable var="empreendedor"  rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
-                                <p:column headerText="Nome do Empreendedor">
-                                    <h:outputText value="#{empreendedor.nome}" />
-                                </p:column>
-                                <p:column headerText="Formação dos sócios ">
-                                    <h:outputText value="#{empreendedor.formacao}" />
-                                </p:column>
-                                <p:column headerText="Experiência profissional dos sócios ">
-                                    <h:outputText value="#{empreendedor.experiencia}" />
-                                </p:column>
-                            </p:dataTable>
-                            
+                            <h:dataTable var="empreendedor"   value="#{projetoBean.projeto.empreendedores}">
+
+                                <h:column >
+                                    <h2><b>Detalhes do Empreendedor <h:outputText value="#{empreendedor.nome}" /></b></h2>
+
+                                    <h2><b>Formação do Sócio: </b> <h:outputText value="#{empreendedor.formacao}" /></h2>
+
+                                    <h2><b>Experiência Profissional do Sócio: </b> <h:outputText value="#{empreendedor.experiencia}" /></h2>
+                                </h:column>
+
+                            </h:dataTable>
+
                             <p><h2><b>Descrição da participação acionaria:</b> <br/><h:outputText id="revisao_partAcionaria" value="#{projetoBean.projeto.participacaoacionaria}" /></h2></p>
-                            
+
                             <p><h2><b>Potencial de geração de emprego e renda:</b> <br/><h:outputText id="revisao_potEmpRenda" value="#{projetoBean.projeto.potencialEmprego}" /></h2></p>
-                            
+
                         </div>
 
                         <div id="part_PlanoFinanc" class="corpoDoTexto">
@@ -1172,37 +1179,71 @@
                             <div id="part_EstrutCusto">
 
                                 <p><h1><b>CUSTOS FIXOS</b></h1></p>
+                              
                                 <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
-                                    <p:column headerText="Descrição: ">
+
+                                    <p:column headerText="Descrição ">
                                         <h:outputText value="#{custo.descricao}" />
                                     </p:column>
-                                    <p:column headerText="Valor: ">
 
-                                        <h:outputText value="" />
-                                        <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
-
-
+                                    <p:column headerText="Valor Médio Mensal">
+                                        <h:outputText value="R$ #{custo.total}" />
                                     </p:column>
-                                </p:dataTable>
 
+                                    <p:column headerText="Projeção em 6 Meses">
+                                        <h:outputText value="R$ #{custo.projecao}" />
+                                    </p:column>
+
+                                </p:dataTable>
+                                  
+                                <br/>     
+                                <!--<div class="col-md-6 text-center" align="center" >-->
+                                <p:dataTable class="text-center " id="colunaValorTotalFixoVisualizar" editable="false" var="custofixo"  
+                                             value="#{projetoBean.calcularValorColunaCustoFixo()}" style="width: 40%; margin-left: auto; margin-right: auto">
+
+                                        <p:column  headerText="Projeção de Custos Fixos Total"> 
+                                            <p:outputLabel style="text-align: center" value="R$ #{projetoBean.projeto.planofinanceiro.valorTotalFixo}"></p:outputLabel>
+                                        </p:column>
+
+                                    </p:dataTable>
+                                <!--</div>-->
+                              
                                 <p><h1><b>CUSTOS VARIÁVEIS</b></h1></p>
                                 <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
-                                    <p:column headerText="Descrição: ">
+
+                                    <p:column headerText="Descrição ">
                                         <h:outputText value="#{custo.descricao}" />
                                     </p:column>
-                                    <p:column headerText="Valor: ">
 
-                                        <h:outputText value="" />
-                                        <!-- (custo.valor) ESTE VALOR ESTAVA DENTRO DO VALUE ACIMA, DO OUTPUTTEXT, PRECEDIDO DE HASTAG ABRE/FECHA CHAVES-->
+                                    <p:column headerText="Valor Médio Mensal">
+                                        <h:outputText value="R$ #{custo.total}" />
+                                    </p:column>
 
+                                    <p:column headerText="Projeção em 6 Meses ">
+                                        <h:outputText value="R$ #{custo.projecao}" />
                                     </p:column>
 
                                 </p:dataTable>
+                                <br/>
+                                <!--<div class="col-md-6 text-center" align="center" >-->
+                                <p:dataTable class="text-center" id="colunaValorTotalVariavelVisualizar" editable="false" var="custovariavel"  
+                                             value="#{projetoBean.calcularValorColunaCustoVariavel()}" style="width: 40%; margin-left: auto; margin-right: auto">
+
+                                        <p:column headerText="Projeção de Custos Variáveis Total">
+                                            <p:outputLabel  value="R$ #{projetoBean.projeto.planofinanceiro.valorTotalVariavel}"></p:outputLabel>
+                                        </p:column>
+
+                                    </p:dataTable>
+                                <!--</div>-->
+
                             </div>
                         </div>
-
                     </div>
-                    <br/><br/>
+
+
+                    <br/>
+                    <br/>
+
                     <div class="noprint text-right">
                         <h:commandLink class="btn btn-success" title="Imprimir" onclick="imprimirPaginaHtml();">
                             <label style="color: white; cursor: pointer;"><i class="fa fa-print"></i>   Imprimir Plano de Negócio</label>
