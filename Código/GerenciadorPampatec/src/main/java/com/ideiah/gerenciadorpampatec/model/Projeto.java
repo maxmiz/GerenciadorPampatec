@@ -287,6 +287,15 @@ public class Projeto implements java.io.Serializable {
         return projetosGerente;
 
     }
+    
+    public ArrayList<Empreendedor> retornaListaEmpreendedores(){
+        ArrayList<Empreendedor> listaEmpreendedores =  new ArrayList<>();
+        for (Object objeto : empreendedores) {
+            Empreendedor empreendedor = (Empreendedor) objeto;
+            listaEmpreendedores.add(empreendedor);
+        }
+        return listaEmpreendedores;
+    }
 
     /**
      * @return the empreendedorCorrespondente

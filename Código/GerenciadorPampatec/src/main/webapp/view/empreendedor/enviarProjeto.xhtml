@@ -1102,7 +1102,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-5"></div> 
                                 <div class="col-md-2">
-                                    <h:dataTable var="empreendedor" value="#{projetoBean.projeto.empreendedores}">
+                                    <h:dataTable var="empreendedor" value="#{projetoBean.projeto.retornaListaEmpreendedores()}">
                                         <h:column > 
                                             <f:facet name="header"><b>EMPREENDEDORES</b></f:facet>
                                             <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
@@ -1148,7 +1148,7 @@
 
                         <div id="part_GestaoPessoas" class="corpoDoTexto">
                             <p><h1><b>GESTÃO DE PESSOAS</b></h1></p>
-                            <h:dataTable var="empreendedor"   value="#{projetoBean.projeto.empreendedores}">
+                            <h:dataTable var="empreendedor"   value="#{projetoBean.projeto.retornaListaEmpreendedores()}">
 
                                 <h:column >
                                     <h2><b>Detalhes do Empreendedor <h:outputText value="#{empreendedor.nome}" /></b></h2>
