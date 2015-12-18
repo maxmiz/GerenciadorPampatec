@@ -162,6 +162,12 @@
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
+                                    <h:messages class="mensagemErro" for="formularioRecuperarSenha:botaoRecuperarSenha" id="teste2"/>
+                                    <h:panelGroup id="painelCadastroIncompleto" rendered="#{loginBean.verificaCadastroIncompleto()}">
+                                        <p>Alguem já adicionou você ao plano <a href="#">Clique Aqui</a>
+                                             para completar o seu cadastro.
+                                        </p>
+                                    </h:panelGroup>
                                     <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
 
@@ -179,9 +185,10 @@
                                     </div>
 
                                     <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}">
-                                        <f:ajax execute="@form" render="mensagemErro"/>
+                                        <f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
+                                                formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/>
                                     </h:commandButton>
-
+                                    
                                 </div>
                             </fieldset>
                         </h:form>

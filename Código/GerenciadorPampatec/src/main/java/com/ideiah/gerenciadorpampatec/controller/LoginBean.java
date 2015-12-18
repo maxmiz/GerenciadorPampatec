@@ -45,6 +45,7 @@ public class LoginBean {
     private static String nome;
     private String emailRecuperarSenha;
     private static EmpreendedorBean empreendedorBean;
+    private boolean cadastroIncompleto;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -88,7 +89,7 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void getInicioGerente() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
@@ -122,13 +123,13 @@ public class LoginBean {
     }
 
     /**
-     * 
+     *
      * @param user
      * @param senha
      * @return true se o login for de um Gerente de Relacionamento existente
      */
     public Boolean fazLoginGerente(String user, String senha) {
-         try {
+        try {
 
             GerenteRelacionamento gerente = new GerenteRelacionamento();
 
@@ -175,7 +176,7 @@ public class LoginBean {
     }
 
     /**
-     * 
+     *
      * @param user
      * @param senha
      * @return se o login for de um Empreendedor existente
@@ -240,20 +241,28 @@ public class LoginBean {
         Empreendedor empreendedor;
 
         empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+        if(emailRecuperarSenha == null || emailRecuperarSenha.equals("")){
+            FacesUtil.addErrorMessage("Insira um email!", "formularioRecuperarSenha:botaoRecuperarSenha");
+        }else if (empreendedor != null) {
 
-        if (empreendedor != null) {
-            String idUnico = UUID.randomUUID().toString();
+            if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
+                cadastroIncompleto = true;
+                FacesUtil.addErrorMessage("Alguem já adicionou você ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha"); 
+            } else {
 
-            EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+                String idUnico = UUID.randomUUID().toString();
 
-            empreendedorEmail.setEmpreendedor(empreendedor);
-            empreendedorEmail.setIdEmpreendedorEmail(idUnico);
-            empreendedorEmail.setTipo("Recuperação de Senha");
+                EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
 
-            empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+                empreendedorEmail.setEmpreendedor(empreendedor);
+                empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+                empreendedorEmail.setTipo("Recuperação de Senha");
 
-            EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-            FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+                empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+
+                EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+                FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+            }
         } else {
             FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
         }
@@ -351,5 +360,32 @@ public class LoginBean {
      */
     public void setEmailRecuperarSenha(String emailRecuperarSenha) {
         this.emailRecuperarSenha = emailRecuperarSenha;
+    }
+
+    /**
+     * @return the cadastroIncompleto
+     */
+    public boolean isCadastroIncompleto() {
+        return cadastroIncompleto;
+    }
+
+    /**
+     * @param cadastroIncompleto the cadastroIncompleto to set
+     */
+    public void setCadastroIncompleto(boolean cadastroIncompleto) {
+        this.cadastroIncompleto = cadastroIncompleto;
+    }
+    
+    /**
+     * Verifica se o empreendedor está com o cadastro completo.
+     * @return 
+     */
+    public boolean verificaCadastroIncompleto(){
+        if(cadastroIncompleto){
+            cadastroIncompleto = false;
+            return true;
+        }else{
+            return false;
+        }
     }
 }
