@@ -14,7 +14,6 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -56,7 +55,6 @@ public class ProjetoBean implements Serializable {
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
-    private ProjetoBase projetoBase;
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
@@ -75,7 +73,6 @@ public class ProjetoBean implements Serializable {
     private int somatorioVariavel;
 
     private int somatorioFixo;
-    private List<ProjetoBase> listaProjetoBase;
     private List<Projeto> listaProjetoFiltradaPorBase;
 
     public ProjetoBean() {
@@ -187,21 +184,6 @@ public class ProjetoBean implements Serializable {
 
     }
 
-    /**
-     * Cria um projeto base a partir do projeto atual, salvando uma versão do
-     * projeto atual a fim de versionar a submissão para a pré-avaliação.
-     *
-     * @param projeto projeto atual que será versionado
-     */
-    public void salvarProjetoBase(Projeto projeto) {
-        Integer id = projeto.getIdProjeto();
-        ProjetoBase projetoBase = new ProjetoBase(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
-        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        projeto.setIdProjeto(id);
-        projetoBase.setProjetoReferencia(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
-    }
 
     public void salvarProjetoeSair() {
         salvarProjeto();
@@ -678,7 +660,6 @@ public class ProjetoBean implements Serializable {
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                        salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
 //                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml"); 
 
@@ -930,22 +911,8 @@ public class ProjetoBean implements Serializable {
     public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+ 
     }
-
-    /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja sendo
-     * avaliado ou PENDENTE caso a avaliação seja interrompida
-     *
-     * @param projeto
-     */
-    public void atualizaStatusProjetoBase(ProjetoBase projeto) {
-        if (projeto.getStatus() == 2) {
-            projeto.setStatus(1);
-        } else {
-            projeto.setStatus(2);
-        }
-    }
-
     /**
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
      * estado do negócio
@@ -1119,13 +1086,7 @@ public class ProjetoBean implements Serializable {
         this.somatorioVariavel = somatorioVariavel;
     }
 
-    public List<ProjetoBase> getListaProjetoBase() {
-        return listaProjetoBase;
-    }
 
-    public void setListaProjetoBase(List<ProjetoBase> listaProjetoBase) {
-        this.listaProjetoBase = listaProjetoBase;
-    }
 
     public List<Projeto> getListaProjetoFiltradaPorBase() {
         return listaProjetoFiltradaPorBase;
@@ -1133,23 +1094,6 @@ public class ProjetoBean implements Serializable {
 
     public void setListaProjetoFiltradaPorBase(List<Projeto> listaProjetoFiltradaPorBase) {
         this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
-    }
-
-    /**
-     * *
-     * Método para carregar as versões enviadas do projeto na tabela de
-     * pré-avaliação.
-     *
-     * @return lista de projetos base
-     */
-    public List<ProjetoBase> carregarProjetosBase() {
-        if (projeto.getIdProjeto() == null) {
-            return null;
-        } else {
-            List<ProjetoBase> pb = new ArrayList<>();
-            pb = empreendedorSession.retornaProjetoBase(projeto);
-            return pb;
-        }
     }
 
     /**

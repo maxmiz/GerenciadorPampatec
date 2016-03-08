@@ -54,8 +54,10 @@ public class PreAvaliarPlanoBean implements Serializable{
          * apenas para testes
          */
         ProjetoDao dao = new ProjetoDao();
-//        System.out.println("gerente de relacionamento: "+projeto.getGerenteRelacionamento().getNome());
-        projeto = dao.buscar(18);
+//        System.out.println(0"gerente de relacionamento: "+projeto.getGerenteRelacionamento().getNome());
+       projeto = dao.buscar(31);
+       // System.out.println(dao.buscar());
+        
     }
 
     /**
