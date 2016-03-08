@@ -43,8 +43,7 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
-    private Set ProjetoBaseComoReferencia = new HashSet(0);//Projeto Base em que este projeto é referência.
-    private Set ProjetoBase = new HashSet(0);//Projeto Base que esse projeto representa.
+    private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
 
     public Projeto() {
         pegaObserver();
@@ -311,33 +310,6 @@ public class Projeto implements java.io.Serializable {
         this.empreendedorCorrespondente = empreendedorCorrespondente;
     }
 
-    /**
-     * @return the ProjetoBaseComoReferencia
-     */
-    public Set getProjetoBaseComoReferencia() {
-        return ProjetoBaseComoReferencia;
-    }
-
-    /**
-     * @param ProjetoBaseComoReferencia the ProjetoBaseComoReferencia to set
-     */
-    public void setProjetoBaseComoReferencia(Set ProjetoBaseComoReferencia) {
-        this.ProjetoBaseComoReferencia = ProjetoBaseComoReferencia;
-    }
-
-    /**
-     * @return the ProjetoBase
-     */
-    public Set getProjetoBase() {
-        return ProjetoBase;
-    }
-
-    /**
-     * @param ProjetoBase the ProjetoBase to set
-     */
-    public void setProjetoBase(Set ProjetoBase) {
-        this.ProjetoBase = ProjetoBase;
-    }
     
     /**
      * Verifica se o projeto está em pré-avaliação
@@ -345,6 +317,20 @@ public class Projeto implements java.io.Serializable {
      */
     public boolean verificarEmPreAvaliacao(){
         return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
+    }
+
+    /**
+     * @return the comentarioProjeto
+     */
+    public Set<ComentarioProjeto> getComentarioProjeto() {
+        return comentarioProjeto;
+    }
+
+    /**
+     * @param comentarioProjeto the comentarioProjeto to set
+     */
+    public void setComentarioProjeto(Set<ComentarioProjeto> comentarioProjeto) {
+        this.comentarioProjeto = comentarioProjeto;
     }
 
 }

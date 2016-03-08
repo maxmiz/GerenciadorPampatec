@@ -26,7 +26,7 @@ public class ComentarioProjeto  implements java.io.Serializable {
      private String participacaoacionaria;
      private String potencialemprego;
      private String consideracoes;
-     private Set projetobases = new HashSet(0);
+     private Projeto projeto;
 
     public ComentarioProjeto() {
     }
@@ -49,7 +49,6 @@ public class ComentarioProjeto  implements java.io.Serializable {
        this.participacaoacionaria = participacaoacionaria;
        this.potencialemprego = potencialemprego;
        this.consideracoes = consideracoes;
-       this.projetobases = projetobases;
     }
    
     public int getIdcomentario() {
@@ -115,12 +114,19 @@ public class ComentarioProjeto  implements java.io.Serializable {
     public void setConsideracoes(String consideracoes) {
         this.consideracoes = consideracoes;
     }
-    public Set getProjetobases() {
-        return this.projetobases;
+
+    /**
+     * @return the projeto
+     */
+    public Projeto getProjeto() {
+        return projeto;
     }
-    
-    public void setProjetobases(Set projetobases) {
-        this.projetobases = projetobases;
+
+    /**
+     * @param projeto the projeto to set
+     */
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
 
