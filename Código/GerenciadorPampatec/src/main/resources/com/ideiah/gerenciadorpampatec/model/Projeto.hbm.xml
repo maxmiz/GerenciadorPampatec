@@ -51,20 +51,16 @@
                 <column name="empreendedor_usuario_id_usuario" not-null="true"/>
             </many-to-many>
         </set>
-        <set name="ProjetoBaseComoReferencia" table="projetobase" inverse="true" lazy="true" fetch="select" cascade="all">
-            <key>
-                <column name="projeto_referencia" not-null="true" />
-            </key>
-            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ProjetoBase" />
-        </set>
-        <set name="ProjetoBase" table="projetobase" inverse="true" lazy="true" fetch="select" cascade="all">
-            <key>
-                <column name="projeto_idProjeto" not-null="true" />
-            </key>
-            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ProjetoBase" />
-        </set>
+        
         <many-to-one class="com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento" fetch="select" name="GerenteRelacionamento">
             <column name="gerente_relacionamento_idgerente_relacionamento"/>
         </many-to-one>
+        
+        <set name="comentarioProjeto" table="comentarioprojeto" inverse="true" fetch="select" cascade="all">
+            <key>
+                <column name="projeto_idProjeto" not-null="true" />
+            </key>
+            <one-to-many class="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" />
+        </set>
     </class>
 </hibernate-mapping>
