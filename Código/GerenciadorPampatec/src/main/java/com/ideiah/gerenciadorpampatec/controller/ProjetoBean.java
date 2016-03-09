@@ -14,7 +14,6 @@ import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
@@ -56,7 +55,6 @@ public class ProjetoBean implements Serializable {
     private Negocio negocio;
     private Produtoouservico produtoOuSevico;
     private Planofinanceiro planoFinanceiro;
-    private ProjetoBase projetoBase;
     private String emailEmpreendedor;
     private List<Empreendedor> listaEmpreendedor;
     private List<Empreendedor> empreedendoresAdicionados;
@@ -72,10 +70,9 @@ public class ProjetoBean implements Serializable {
     private List<Custo> listaCustoVariavel;
     private Custo custoFixoSelecionado;
     private Custo custoVariavelSelecionado;
-    private float somatorioVariavel;
+    private int somatorioVariavel;
 
-    private float somatorioFixo;
-    private List<ProjetoBase> listaProjetoBase;
+    private int somatorioFixo;
     private List<Projeto> listaProjetoFiltradaPorBase;
 
     public ProjetoBean() {
@@ -176,8 +173,8 @@ public class ProjetoBean implements Serializable {
             projeto.setNome("Novo plano de negócio sem nome");
         }
         FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvamento automático", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:tituloMensagem", msg);
         pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
@@ -187,21 +184,6 @@ public class ProjetoBean implements Serializable {
 
     }
 
-    /**
-     * Cria um projeto base a partir do projeto atual, salvando uma versão do
-     * projeto atual a fim de versionar a submissão para a pré-avaliação.
-     *
-     * @param projeto projeto atual que será versionado
-     */
-    public void salvarProjetoBase(Projeto projeto) {
-        Integer id = projeto.getIdProjeto();
-        ProjetoBase projetoBase = new ProjetoBase(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
-        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-        projeto.setIdProjeto(id);
-        projetoBase.setProjetoReferencia(projeto);
-        empreendedorSession.salvarProjetoBase(projetoBase);
-    }
 
     public void salvarProjetoeSair() {
         salvarProjeto();
@@ -271,7 +253,13 @@ public class ProjetoBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         if (!empreendedor.getEmail().equals(empreendedorSelected.getEmail())) {
             projeto.getEmpreendedores().remove(empreendedorSelected);
-            getEmpreedendoresAdicionados().remove(empreendedorSelected);
+            //Percorre a lista achar o empreendedor selecionado e remove ele da lista de adicionados.
+            for (int i = 0; i < empreedendoresAdicionados.size(); i++) {
+                if(empreedendoresAdicionados.get(i).getEmail().equals(empreendedorSelected.getEmail())){
+                    empreedendoresAdicionados.remove(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -303,12 +291,14 @@ public class ProjetoBean implements Serializable {
                     empreendedorAchado.cadastrarEmpreendedor(empreendedorAchado);
                     empreendedorAchado = Empreendedor.buscaPorEmail(emailEmpreendedor);
                 }
-                getEmpreedendoresAdicionados().add(empreendedorAchado);
+                empreedendoresAdicionados.add(empreendedorAchado);
                 projeto.getEmpreendedores().add(empreendedorAchado);
             } else {
                 FacesUtil.addErrorMessage("Empreendedor já adicionado", "formEquipe:autocomplete");
             }
         }
+        //limpa o campo depois de dar refresh na página.        
+        emailEmpreendedor = null;
     }
 
     /**
@@ -470,6 +460,8 @@ public class ProjetoBean implements Serializable {
         Planofinanceiro planofinanceiro = new Planofinanceiro();
         ProjetoDao daoP = new ProjetoDao();
 
+        alocaCustosIniciais(planofinanceiro);
+        
         pjto.setAnaliseemprego(analiseemprego);
         pjto.setNegocio(negocio);
         pjto.setPlanofinanceiro(planofinanceiro);
@@ -483,15 +475,8 @@ public class ProjetoBean implements Serializable {
          * RARAMENTE VAI SER ALTERADO
          */
         pjto.setEdital("2015abc123");
-
-        Calendar calendar = new GregorianCalendar();
-        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        calendar.setTime(date);
-
-        Date x = (Date) new Date(out.format(calendar.getTime()));
-        System.out.println("12345 :" + x);
-        pjto.setDataCriacao(x);
+        Date data = new Date(System.currentTimeMillis());
+        pjto.setDataCriacao(data);
 
 //        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -505,6 +490,30 @@ public class ProjetoBean implements Serializable {
             ex.printStackTrace();
         }
 
+    }
+    
+    /**
+     * Cria os custos obrigatórios do empreendedor
+     * @param planofinanceiro 
+     */
+    public void alocaCustosIniciais(Planofinanceiro planofinanceiro){
+        Custo prolabore = new Custo(planofinanceiro);
+        Custo aluguel =  new Custo(planofinanceiro);
+        
+        prolabore.setDescricao("Prolabore");
+        prolabore.setPodeExcluir(false);
+        prolabore.setProjecao(0);
+        prolabore.setTipo(Custo.CUSTO_FIXO);
+        prolabore.setTotal(0);
+        planofinanceiro.getCusto().add(prolabore);
+        
+        aluguel.setDescricao("Aluguel com o Pampatec");
+        aluguel.setPodeExcluir(false);
+        aluguel.setProjecao(300);
+        aluguel.setTipo(Custo.CUSTO_FIXO);
+        aluguel.setTotal(50);
+        planofinanceiro.getCusto().add(aluguel);
+        
     }
 
     /**
@@ -651,9 +660,14 @@ public class ProjetoBean implements Serializable {
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
-                        salvarProjetoBase(projeto);
                         atualizarProjetoSessao();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml"); 
+
+//                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
+                        FacesMessage msg;
+                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
+                        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
+                        System.out.println("chegou nessa porra");
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
@@ -716,11 +730,12 @@ public class ProjetoBean implements Serializable {
      */
     public void adicionarLinhaFixo() {
         Custo custo = new Custo();
-        float zero = 0;
+        int zero = 0;
         custo.setDescricao("Novo Custo");
         custo.setTipo(Custo.CUSTO_FIXO);
         custo.setTotal(zero);
         custo.setProjecao(zero);
+        custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
         salvarProjeto();
@@ -896,22 +911,8 @@ public class ProjetoBean implements Serializable {
     public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
+ 
     }
-
-    /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja sendo
-     * avaliado ou PENDENTE caso a avaliação seja interrompida
-     *
-     * @param projeto
-     */
-    public void atualizaStatusProjetoBase(ProjetoBase projeto) {
-        if (projeto.getStatus() == 2) {
-            projeto.setStatus(1);
-        } else {
-            projeto.setStatus(2);
-        }
-    }
-
     /**
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
      * estado do negócio
@@ -993,7 +994,7 @@ public class ProjetoBean implements Serializable {
     public void caucularProjecaoCustoVariavel(Custo custo) {
         if (custo != null) {
 
-            float valor = custo.getTotal() * 6;
+            int valor = custo.getTotal() * 6;
             custo.setProjecao(valor);
 
 //            salvarProjeto();
@@ -1011,7 +1012,7 @@ public class ProjetoBean implements Serializable {
     public void caucularProjecaoCustoFixo(Custo custo) {
         if (custo != null) {
 
-            float valor = custo.getTotal() * 6;
+            int valor = custo.getTotal() * 6;
             custo.setProjecao(valor);
 
 //            salvarProjeto();
@@ -1024,8 +1025,9 @@ public class ProjetoBean implements Serializable {
     /**
      * Metodo que soma os valores de cada custo variavel adicionados na tabela e
      * faz a projeção para seis meses.
+     * @return 
      */
-    public float calcularValorColunaCustoVariavel() {
+    public int calcularValorColunaCustoVariavel() {
         somatorioVariavel = 0;
         for (int i = 0; i < listaCustoVariavel.size(); i++) {
             somatorioVariavel = somatorioVariavel + listaCustoVariavel.get(i).getTotal();
@@ -1042,7 +1044,7 @@ public class ProjetoBean implements Serializable {
      *
      * @return somatorioFixo
      */
-    public float calcularValorColunaCustoFixo() {
+    public int calcularValorColunaCustoFixo() {
         somatorioFixo = 0;
         for (int i = 0; i < listaCustoFixo.size(); i++) {
             somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
@@ -1058,11 +1060,12 @@ public class ProjetoBean implements Serializable {
      */
     public void adicionarLinhaVariavel() {
         Custo custo = new Custo();
-        float zero = 0;
+        int zero = 0;
         custo.setDescricao("Novo Custo");
         custo.setTipo(Custo.CUSTO_VARIAVEL);
         custo.setTotal(zero);
         custo.setProjecao(zero);
+        custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
         salvarProjeto();
@@ -1079,17 +1082,11 @@ public class ProjetoBean implements Serializable {
     /**
      * @param somatorioVariavel the somatorioVariavel to set
      */
-    public void setSomatorioVariavel(float somatorioVariavel) {
+    public void setSomatorioVariavel(int somatorioVariavel) {
         this.somatorioVariavel = somatorioVariavel;
     }
 
-    public List<ProjetoBase> getListaProjetoBase() {
-        return listaProjetoBase;
-    }
 
-    public void setListaProjetoBase(List<ProjetoBase> listaProjetoBase) {
-        this.listaProjetoBase = listaProjetoBase;
-    }
 
     public List<Projeto> getListaProjetoFiltradaPorBase() {
         return listaProjetoFiltradaPorBase;
@@ -1097,23 +1094,6 @@ public class ProjetoBean implements Serializable {
 
     public void setListaProjetoFiltradaPorBase(List<Projeto> listaProjetoFiltradaPorBase) {
         this.listaProjetoFiltradaPorBase = listaProjetoFiltradaPorBase;
-    }
-
-    /**
-     * *
-     * Método para carregar as versões enviadas do projeto na tabela de
-     * pré-avaliação.
-     *
-     * @return lista de projetos base
-     */
-    public List<ProjetoBase> carregarProjetosBase() {
-        if (projeto.getIdProjeto() == null) {
-            return null;
-        } else {
-            List<ProjetoBase> pb = new ArrayList<>();
-            pb = empreendedorSession.retornaProjetoBase(projeto);
-            return pb;
-        }
     }
 
     /**
@@ -1147,5 +1127,33 @@ public class ProjetoBean implements Serializable {
         }
         return selectedButton;
     }
+    
+    public String formatarDataEnvio(Projeto projeto) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (projeto.getDataEnvio() != null) {
+            return formato.format(projeto.getDataEnvio());
+        } else {
+            return "Plano não enviado.";
+        }
+    }
+    
+    /**
+     * Verifica se o empreendedor detalhou seu cadastro, com formação e antecedentes,
+     * se não tiver escrito nada ele retorna campo nao expecificado
+     * @param detalhe
+     * @return 
+     */
+    public String verificaTextoDetalhesEmpreendedor(String detalhe){
+        
+        if(detalhe == null){
+            return "Campo não expecificado";
+        }else if (detalhe.trim().isEmpty()){
+            return "Campo não expecificado";
+        }else {
+            return detalhe;
+        }
+                
+    }
+    
 
 }

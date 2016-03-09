@@ -18,48 +18,134 @@
 
         <title>Acessar o Sistema - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
+        </style>
+
     </h:head>
     <h:body>
 
-        <div class="col-md-3"></div>
-        <div class="col-md-6 form-horizontal well bs-component">
-            <h1>Acesse sua conta</h1>
-            <div id="empreendedorLogin">
-                <h:form id="formularioDeLogin">
-                    <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
-                    <div class="col-md-4 modal-footer" align="center">
-                        <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
-                    </div>
-                    <div class="col-md-12">
-                        Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
-                    </div>
-                    <div class="col-md-12">
-                        Senha<h:inputSecret class="form-control" id="senhaInput" value="#{loginBean.senha}"></h:inputSecret>
-                    </div> 
-                    <div class="col-md-12">
-                        <a rel="modal" data-toggle="modal" href="#myModal">Esqueci minha senha</a>
-                        <br/>
-                    </div> 
-                    <div class="col-md-3 modal-footer" align="left">
-                    </div>
-                    
-                    
 
-                    <div class="col-md-2 modal-footer" align="left">
-                    </div>
-                    <div class="col-md-5 modal-footer" align="center">
-                    </div>
-                    <div class="col-md-5 modal-footer">
-                        <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
-                    </div>
-                    <div class="col-md-5 modal-footer">
-                        Não possui conta? <a href="faces/cadastroEmpreendedor.xhtml">Clique aqui</a> para se cadastrar.
-                    </div>
 
-                </h:form>
+        <div class="row">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-4 form-horizontal well bs-component">
+                <h1>Cadastre-se agora</h1>
+                <div id="empreendedorCadastro">
+                    <h:form id="formularioDeCadastro">
+                        <!--<h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>-->
+                        <div class="col-md-4 modal-footer" align="center">
+                            <!--<h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>-->
+                        </div>
+                        <div class ="col-md-12">
+                            O Plano de Negócio define o que sua empresa faz, como ela vai gerar lucro e se sustentar no mercado. Definir o Plano é o primeiro passo para um negócio de sucesso.
+                        </div>
+<!--                        <div class="col-md-12">
+                            Insira seu nome<h:inputText class="form-control" id="nomeInput" value="#{loginBean.user}"></h:inputText>
+                        </div>
+                        <div class="col-md-12">
+                            Informe seu CPF<h:inputText class="form-control" id="cpfInput" value="#{loginBean.senha}"></h:inputText>
+                            <br/>  
+                            
+                        </div>-->
+
+
+                        <div class="col-md-5 modal-footer" align="left">
+                        </div>
+
+                       
+
+                        
+                        
+                         <div class ="col-md-12">
+                            Efetue o cadastro para começar.
+                            <br/>
+                        </div>
+<!--                        <div class="col-md-2 modal-footer" align="left">
+                        </div>-->
+<!--                        <div class="col-md-5 modal-footer" align="left">
+                            <br/>
+                        </div>-->
+                        <div class="col-md-5 modal-footer text-center" align="left">
+                            <br/><br/>
+                            <h:commandButton id="botaoContinuaCadastro" class="btn btn-success" style="margin-left: -30%" value="Cadastrar" action="faces/cadastroEmpreendedor.xhtml" >
+                            </h:commandButton>
+                        </div>
+
+
+                    </h:form>
+                </div>
             </div>
+
+
+
+            <div class="col-md-4 form-horizontal well bs-component" style="margin-left: 1%">
+                <h1>Acesse sua conta</h1>
+                <div id="empreendedorLogin">
+                    <h:form id="formularioDeLogin">
+                        <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
+                        <div class="col-md-4 modal-footer" align="center">
+                            <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
+                        </div>
+                        <div class="col-md-12">
+                            Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
+                        </div>
+                        <div class="col-md-12">
+                            Senha<h:inputSecret class="form-control" id="senhaInput" value="#{loginBean.senha}"></h:inputSecret>
+                        </div> 
+                        <div class="col-md-12">
+                            <a rel="modal" data-toggle="modal" href="#myModal">Esqueci minha senha</a>
+                            <br/>
+                        </div> 
+                        <div class="col-md-1 modal-footer" align="left">
+                        </div>
+
+                        <div class="col-md-2 modal-footer" align="left">
+                        </div>
+                        <div class="col-md-5 modal-footer" align="center">
+                        </div>
+                        <div class="col-md-5 modal-footer" align="center">
+                            <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit}"></h:commandButton>
+                        </div>
+                        <!--                    <div class="col-md-5 modal-footer">
+                                                Não possui conta? <a href="faces/cadastroEmpreendedor.xhtml">Clique aqui</a> para se cadastrar.
+                                            </div>-->
+
+                    </h:form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
         </div>
-        <div class="col-md-3"></div>
 
 
         <!-- Modal de Recuperação de Senha -->
@@ -76,6 +162,12 @@
                             <fieldset>
                                 <div class="col-md-12">
                                     E-mail
+                                    <h:messages class="mensagemErro" for="formularioRecuperarSenha:botaoRecuperarSenha" id="teste2"/>
+                                    <h:panelGroup id="painelCadastroIncompleto" rendered="#{loginBean.verificaCadastroIncompleto()}">
+                                        <p>Alguem já adicionou você ao plano <a href="#">Clique Aqui</a>
+                                             para completar o seu cadastro.
+                                        </p>
+                                    </h:panelGroup>
                                     <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{loginBean.emailRecuperarSenha}"></p:inputText>
                                     <br/>
 
@@ -93,7 +185,8 @@
                                     </div>
 
                                     <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{loginBean.recuperarSenha()}">
-                                        <f:ajax execute="@form" render="mensagemErro"/>
+                                        <f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
+                                                formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/>
                                     </h:commandButton>
                                     
                                 </div>

@@ -23,6 +23,5 @@
     <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioNegocio.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/ComentarioAnaliseEmprego.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Custo.hbm.xml"/>
-    <mapping resource="com/ideiah/gerenciadorpampatec/model/ProjetoBase.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

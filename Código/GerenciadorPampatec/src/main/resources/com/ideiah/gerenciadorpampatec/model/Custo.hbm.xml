@@ -13,14 +13,17 @@
     <property name="descricao" type="string">
       <column length="100" name="descricao"/>
     </property>
-    <property name="total" type="java.lang.Float">
+    <property name="total" type="integer">
       <column name="total" precision="12" scale="0"/>
     </property>
     <property name="tipo" type="java.lang.Integer">
       <column name="tipo"/>
     </property>
-    <property name="projecao" type="java.lang.Float">
+    <property name="projecao" type="integer">
       <column name="projecao" precision="12" scale="0"/>
+    </property>
+    <property name="podeExcluir" type="boolean">
+      <column name="podeExcluir" />
     </property>
   </class>
 </hibernate-mapping>

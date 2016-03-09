@@ -26,8 +26,7 @@ public class Projeto implements java.io.Serializable {
     public static final int PRE_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
     public static final int LINHA_DE_BASE = 9;
-    
-    
+
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
     private Negocio negocio;
@@ -44,7 +43,8 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
-    
+    private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
+
     public Projeto() {
         pegaObserver();
     }
@@ -77,8 +77,8 @@ public class Projeto implements java.io.Serializable {
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
     }
-    
-    private void pegaObserver(){
+
+    private void pegaObserver() {
         FacesContext context = FacesContext.getCurrentInstance();
         NotificacoesEmpreendedorBean bean = context.getApplication().evaluateExpressionGet(context, "#{notificacoesEmpreendedorBean}", NotificacoesEmpreendedorBean.class);
         notificacoesBean = bean;
@@ -182,12 +182,13 @@ public class Projeto implements java.io.Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
-    
+
     /**
      * Muda o status do Projeto ativando os observadores.
-     * @param status 
+     *
+     * @param status
      */
-    public void mudarStatus(Integer status){
+    public void mudarStatus(Integer status) {
         setStatus(status);
         notificacoesBean.update(null, this);
     }
@@ -263,29 +264,36 @@ public class Projeto implements java.io.Serializable {
     public void setGerenteRelacionamento(GerenteRelacionamento gerenteRelacionamento) {
         this.gerenteRelacionamento = gerenteRelacionamento;
     }
-    
-    
+
     /**
-     * 
+     *
      * @param status
      * @return lista de projeto com o status inserido
      */
-    public static ArrayList<Projeto> buscarProjetoPorStatus(int status){
+    public static ArrayList<Projeto> buscarProjetoPorStatus(int status) {
         ArrayList<Projeto> listaDeProjetos;
         ProjetoDao projetoDao = new ProjetoDao();
-        System.out.println("ACESSOU O METODOOOOOOOOOOOOOOOO BUSCAR PROJETOS POR STATUS");
         listaDeProjetos = projetoDao.buscar();
-        
+
         ArrayList<Projeto> projetosGerente = new ArrayList<>();
-        
+
         for (Projeto projeto : listaDeProjetos) {
             if (projeto.status == status) {
                 projetosGerente.add(projeto);
             }
         }
-        
+
         return projetosGerente;
-        
+
+    }
+    
+    public ArrayList<Empreendedor> retornaListaEmpreendedores(){
+        ArrayList<Empreendedor> listaEmpreendedores =  new ArrayList<>();
+        for (Object objeto : empreendedores) {
+            Empreendedor empreendedor = (Empreendedor) objeto;
+            listaEmpreendedores.add(empreendedor);
+        }
+        return listaEmpreendedores;
     }
 
     /**
@@ -300,6 +308,29 @@ public class Projeto implements java.io.Serializable {
      */
     public void setEmpreendedorCorrespondente(Empreendedor empreendedorCorrespondente) {
         this.empreendedorCorrespondente = empreendedorCorrespondente;
+    }
+
+    
+    /**
+     * Verifica se o projeto está em pré-avaliação
+     * @return 
+     */
+    public boolean verificarEmPreAvaliacao(){
+        return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
+    }
+
+    /**
+     * @return the comentarioProjeto
+     */
+    public Set<ComentarioProjeto> getComentarioProjeto() {
+        return comentarioProjeto;
+    }
+
+    /**
+     * @param comentarioProjeto the comentarioProjeto to set
+     */
+    public void setComentarioProjeto(Set<ComentarioProjeto> comentarioProjeto) {
+        this.comentarioProjeto = comentarioProjeto;
     }
 
 }

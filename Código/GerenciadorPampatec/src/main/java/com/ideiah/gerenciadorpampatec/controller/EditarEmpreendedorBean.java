@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean(name = "editarEmpreendedorBean")
-@SessionScoped
+@ViewScoped
 
 public class EditarEmpreendedorBean {
 
@@ -189,8 +190,8 @@ public class EditarEmpreendedorBean {
         this.empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
-            if (!empreendedor.getCpf().equals(cpf)) {
-                FacesUtil.addErrorMessage("CPF já cadastrado!", "formularioCadastro:cpf");
+            if (!verificarAlterarSenha()) {
+                FacesUtil.addErrorMessage("Senha não preenchida", "formularioCadastro:senhaAtual");
             } else {
                 empreendedor.setCpf(cpf);
                 empreendedor.setFormacao(formacao);
@@ -218,12 +219,13 @@ public class EditarEmpreendedorBean {
                         if (empreendedor.getSenha().equals(senha)) {
                             empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
                             alterarSenha = false;
+
                         } else {
                             FacesUtil.addErrorMessage("Senha incorreta.", "formularioCadastro:senhaAtual");
                         }
                     }
 
-                    if (empreendedor.atualizarEmpreendedor(empreendedor)&&alterarSenha==false) {
+                    if (empreendedor.atualizarEmpreendedor(empreendedor) && alterarSenha == false) {
                         try {
                             LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
@@ -240,6 +242,20 @@ public class EditarEmpreendedorBean {
             }
 
         }
+    }
+
+    public boolean verificarAlterarSenha() {
+        if (senha.isEmpty()) {                // senha está em branco
+            if (!novaSenha.isEmpty()) {       // e nova senha não está em branco
+                return false;                 // não altera a senha. 
+            }
+        } else {
+            if (novaSenha.isEmpty()) {        // e nova senha está em branco
+                return false;                 // não altera a senha.
+            }
+        }
+        return true;                          // se senha Atual e nova senha não estiverem em branco, altera a senha.
+        
     }
 
     public void showMessage() {

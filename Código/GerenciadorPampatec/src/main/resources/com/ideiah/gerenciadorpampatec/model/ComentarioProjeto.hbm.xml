@@ -2,40 +2,38 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 10/11/2015 15:34:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="gerenciadorpampatec" name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" optimistic-lock="version" table="comentarioprojeto">
-    <id name="idcomentario" type="int">
-      <column name="idcomentario"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego">
-      <column name="comentarioanaliseemprego_idcomentarioanaliseemprego" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" fetch="select" name="comentarionegocio">
-      <column name="comentarionegocio_idcomentarionegocio" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" fetch="select" name="comentarioplanofinanceiro">
-      <column name="comentarioplanofinanceiro_idcomentarioplanofinanceiro" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" fetch="select" name="comentarioprodutoouservico">
-      <column name="comentarioprodutoouservico_idcomentarioprodutoouservico" not-null="true"/>
-    </many-to-one>
-    <property name="nome" type="string">
-      <column length="300" name="nome"/>
-    </property>
-    <property name="participacaoacionaria" type="string">
-      <column length="65535" name="participacaoacionaria"/>
-    </property>
-    <property name="potencialemprego" type="string">
-      <column length="65535" name="potencialemprego"/>
-    </property>
-    <property name="consideracoes" type="string">
-      <column length="65535" name="consideracoes"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="projetobases" table="projetobase">
-      <key>
-        <column name="comentarioprojeto_idcomentario" not-null="true"/>
-      </key>
-      <one-to-many class="com.ideiah.gerenciadorpampatec.model.ProjetoBase"/>
-    </set>
-  </class>
+    <class catalog="gerenciadorpampatec" name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" optimistic-lock="version" table="comentarioprojeto">
+        <id name="idcomentario" type="int">
+            <column name="idcomentario"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego" cascade="all">
+            <column name="comentarioanaliseemprego_idcomentarioanaliseemprego" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioNegocio" fetch="select" name="comentarionegocio" cascade="all">
+            <column name="comentarionegocio_idcomentarionegocio" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" fetch="select" name="comentarioplanofinanceiro" cascade="all">
+            <column name="comentarioplanofinanceiro_idcomentarioplanofinanceiro" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" fetch="select" name="comentarioprodutoouservico" cascade="all">
+            <column name="comentarioprodutoouservico_idcomentarioprodutoouservico" not-null="true"/>
+        </many-to-one>
+        <property name="nome" type="string">
+            <column length="300" name="nome"/>
+        </property>
+        <property name="participacaoacionaria" type="string">
+            <column length="65535" name="participacaoacionaria"/>
+        </property>
+        <property name="potencialemprego" type="string">
+            <column length="65535" name="potencialemprego"/>
+        </property>
+        <property name="consideracoes" type="string">
+            <column length="65535" name="consideracoes"/>
+        </property>
+    
+        <many-to-one name="projeto" class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select">
+            <column name="projeto_idProjeto" not-null="true" />
+        </many-to-one>
+    </class>
 </hibernate-mapping>
