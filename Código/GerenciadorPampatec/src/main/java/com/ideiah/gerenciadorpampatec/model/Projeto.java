@@ -18,6 +18,7 @@ public class Projeto implements java.io.Serializable {
 
     public static final int ELABORACAO = 0;
     public static final int EM_PRE_AVALIACAO = 1;
+    public static final int SENDO_AVALIADO = 10;
     public static final int AVALIACAO = 2;
     public static final int FORMALIZACAO = 3;
     public static final int INCUBACAO = 4;
@@ -56,6 +57,7 @@ public class Projeto implements java.io.Serializable {
         this.planofinanceiro = planofinanceiro;
         this.produtoouservico = produtoouservico;
         this.participacaoacionaria = participacaoacionaria;
+        
         pegaObserver();
     }
 

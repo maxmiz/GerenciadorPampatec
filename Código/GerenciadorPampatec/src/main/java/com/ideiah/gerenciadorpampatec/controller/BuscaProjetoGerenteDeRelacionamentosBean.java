@@ -30,24 +30,23 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
-    private ArrayList<ProjetoBase> listaProjetos;
+    private ArrayList<Projeto> listaProjetos;
     private Projeto projetoSelecionado;
-    private ProjetoDao projeto;
+    private ProjetoDao projetoDao;
     private ProjetoBean projetoBean;
-    private ProjetoBaseDao projetoBaseDao;
     private boolean testeBoolean = false;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
-        projeto = new ProjetoDao();
-        listaProjetos = buscaProjetoBasePorStatus();
-        projetoBaseDao = new ProjetoBaseDao();
+        projetoDao = new ProjetoDao();
+        listaProjetos = buscaProjetoPorStatus();
+
     }
 
-    public void setListaProjetos(ArrayList<ProjetoBase> listaProjetos) {
+    public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
         this.listaProjetos = listaProjetos;
     }
 
-    public ArrayList<ProjetoBase> getListaProjetos() {
+    public ArrayList<Projeto> getListaProjetos() {
         return listaProjetos;
     }
 
@@ -59,27 +58,27 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      *
      * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
      */
-    public ArrayList<ProjetoBase> buscaProjetoBasePorStatus() {
-        ProjetoBaseDao dao = new ProjetoBaseDao();
-        return dao.buscar();
+    public ArrayList<Projeto> buscaProjetoPorStatus() {
+        projetoDao = new ProjetoDao();
+        return projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
 
     }
 
     /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso não esteja
-     * sendo avaliado ou PENDENTE caso a avaliação seja interrompida
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja
+     * sendo avaliado ou EM_PRE_AVALIACAO caso a avaliação seja interrompida
      *
-     * @param projetoBase
+     * @param projeto
      */
-    public void atualizaStatusProjetoBase(ProjetoBase projetoBase) {
-        if (projetoBase.getStatus() == ProjetoBase.PENDENTE) {
-            projetoBase.setStatus(ProjetoBase.SENDO_AVALIADO);
+    public void atualizaStatusProjeto(Projeto projeto) {
+        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            projeto.setStatus(Projeto.SENDO_AVALIADO);
         }
 
-        projetoBaseDao.salvar(projetoBase);
+        projetoDao.salvar(projeto);
 
         atualizarProjetoSessao();
-        listaProjetos = buscaProjetoBasePorStatus();
+        listaProjetos = buscaProjetoPorStatus();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
         } catch (IOException ex) {
@@ -92,7 +91,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizarProjetoSessao() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        secao.setAttribute("projetoSelecionado", projeto);
+        secao.setAttribute("projetoSelecionado", projetoSelecionado);
     }
 
     public void locao() {
@@ -130,8 +129,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
 
-    public boolean verificaStatusProjetoBase(ProjetoBase projetoBase) {
-        if (projetoBase.getStatus() == ProjetoBase.SENDO_AVALIADO) {
+    public boolean verificaStatusProjeto(Projeto projeto) {
+        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
             return true;
         } else {
             return false;
@@ -139,7 +138,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     public void atualizaListaDeProjetos() {
-        listaProjetos = buscaProjetoBasePorStatus();
+        listaProjetos = buscaProjetoPorStatus();
     }
 
 }

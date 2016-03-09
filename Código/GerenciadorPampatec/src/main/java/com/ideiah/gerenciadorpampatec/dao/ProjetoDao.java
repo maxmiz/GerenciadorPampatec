@@ -54,7 +54,18 @@ public class ProjetoDao extends Dao implements Serializable {
     public Projeto buscarPorStatus(int status) {
         return (Projeto) buscarObjetoCriteriaINT("status", status, Projeto.class);
     }
-
+    
+    public ArrayList<Projeto> buscarListaProjetoPorStatus(int status){
+        
+        ArrayList<Projeto> listaDeProjeto = new ArrayList<>();
+ 
+        listaDeProjeto = (ArrayList<Projeto>) buscarObjetosCritera("status", status, Projeto.class);
+        System.out.println(">>>>>>>>>>"+listaDeProjeto);
+        
+        return listaDeProjeto;
+    }
+    
+    
     public boolean verificaEmpreendedor(Empreendedor empreendedor, Projeto projeto) {
 //        Projeto[] listaOriginal = (Projeto[]) empreendedor.getProjetos().toArray();
 //        ArrayList<Projeto> listaOriginal = (ArrayList<Projeto>) empreendedor.getProjetos().toArray();
