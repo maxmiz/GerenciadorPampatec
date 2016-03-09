@@ -17,6 +17,7 @@ import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -315,9 +316,30 @@ public class LoginBean {
      * @return the nome
      */
     public String getNome() {
-        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor emp = (Empreendedor) session.getAttribute("empreendedor");
-        return emp.getNome();
+//        Enumeration<String> attributeNames = session.getAttributeNames();
+//        String nomeUsuario = "";
+//
+//        while (attributeNames.hasMoreElements()) {
+//            nomeUsuario = attributeNames.nextElement();
+//
+//            if (!nomeUsuario.isEmpty()) {
+//                return nomeUsuario;
+//            }
+//        }
+
+        return nome;
+        
+        
+//        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//        Empreendedor emp = (Empreendedor) session.getAttribute("empreendedor");
+//        GerenteRelacionamento gr = (GerenteRelacionamento) session.getAttribute("gerente");
+//       String usuario = null;
+//        if(emp != null){
+//             usuario = emp.getNome();
+//        }else if(gr != null){
+//            usuario = gr.getNome();
+//        }        
+//        return usuario;
     }
 
     /**
