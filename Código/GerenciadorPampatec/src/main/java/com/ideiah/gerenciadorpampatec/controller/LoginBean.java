@@ -313,33 +313,11 @@ public class LoginBean {
     }
 
     /**
+     * 
      * @return the nome
      */
     public String getNome() {
-//        Enumeration<String> attributeNames = session.getAttributeNames();
-//        String nomeUsuario = "";
-//
-//        while (attributeNames.hasMoreElements()) {
-//            nomeUsuario = attributeNames.nextElement();
-//
-//            if (!nomeUsuario.isEmpty()) {
-//                return nomeUsuario;
-//            }
-//        }
-
         return nome;
-        
-        
-//        session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-//        Empreendedor emp = (Empreendedor) session.getAttribute("empreendedor");
-//        GerenteRelacionamento gr = (GerenteRelacionamento) session.getAttribute("gerente");
-//       String usuario = null;
-//        if(emp != null){
-//             usuario = emp.getNome();
-//        }else if(gr != null){
-//            usuario = gr.getNome();
-//        }        
-//        return usuario;
     }
 
     /**
