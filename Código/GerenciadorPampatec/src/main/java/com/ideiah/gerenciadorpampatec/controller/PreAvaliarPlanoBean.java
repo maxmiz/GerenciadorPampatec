@@ -59,7 +59,8 @@ public class PreAvaliarPlanoBean implements Serializable{
        // System.out.println(dao.buscar());
         
     }
-
+    
+    
     /**
      * Método para verificar qual o tipo de estágio a empressa sem encontra 
      * @return 

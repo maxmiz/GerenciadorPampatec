@@ -5,10 +5,8 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.ProjetoBaseDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.model.ProjetoBase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -92,11 +90,6 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public void atualizarProjetoSessao() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
-    }
-
-    public void locao() {
-        System.out.println("PASSOU AQUI O POLLLLLLLLLLLLLLL FUNCIONOU");
-        refresh();
     }
 
     /**

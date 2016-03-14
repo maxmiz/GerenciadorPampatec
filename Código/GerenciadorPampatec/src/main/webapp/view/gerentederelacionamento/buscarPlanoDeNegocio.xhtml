@@ -158,7 +158,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
 
-                        <p:dataTable id="tabelaDeNegocios" var="projetoBase"  value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" var="projeto"  value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
 
                             <f:facet name="header">
@@ -166,18 +166,18 @@
                             </f:facet>
 
                             <p:column headerText="Nome">
-                                <h:outputText value="#{projetoBase.projeto.nome}" />
+                                <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
                             <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-                                <h:outputText value="#{projetoBase.projeto.dataCriacao}" />
+                                <h:outputText value="#{projeto.dataCriacao}" />
                             </p:column>
 
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-default" value="Avaliar" disabled="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoBase(projetoBase)}">
-                                            <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaStatusProjetoBase(projetoBase)}" 
+                                        <h:commandButton class="btn btn-default" value="Avaliar" disabled="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">
+                                            <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaStatusProjeto(projeto)}" 
                                                     event="click"></f:ajax>
                                         </h:commandButton>
                                     </div>
