@@ -8,12 +8,15 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Notificacao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
@@ -142,6 +145,14 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
      */
     public void setDescricoesNotificacoes(ArrayList<String> descricoesNotificacoes) {
         this.descricoesNotificacoes = descricoesNotificacoes;
+    }
+    
+    public void notificacaoLink(){
+         try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
 
 }
