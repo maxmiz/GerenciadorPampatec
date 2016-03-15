@@ -160,11 +160,14 @@
 
                         <p:dataTable id="tabelaDeNegocios" var="projeto"  value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
-
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
                             </f:facet>
 
+                            <p:column headerText="Identificador">
+                                <h:outputText value="#{projeto.idProjeto}"/>
+                            </p:column>
+                            
                             <p:column headerText="Nome">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
@@ -176,10 +179,11 @@
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-default" value="Avaliar" disabled="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">
-                                            <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaStatusProjeto(projeto)}" 
-                                                    event="click"></f:ajax>
-                                        </h:commandButton>
+                                        <!-- <h:commandLink class="btn btn-default" value="Avaliar" disabled="{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}"> -->                                        
+                                        <h:commandLink class="btn btn-default" value="Avaliar" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">
+                                          <!-- <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="{buscaProjetoGerenteDeRelacionamentosBean.buscaProjetoPorStatus()}" 
+                                                    event="click"></f:ajax> -->
+                                        </h:commandLink>
                                     </div>
                                 </div>
                             </p:column>
@@ -189,11 +193,7 @@
                     <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaDeProjetos()}"/>
                 </h:panelGroup>
             </div>
-
             <!-- Fim da lista de planos de negócio -->
-
         </h:form>
-
-
     </body>
 </html>
