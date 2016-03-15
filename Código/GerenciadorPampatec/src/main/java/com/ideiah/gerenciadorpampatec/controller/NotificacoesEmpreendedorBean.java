@@ -8,12 +8,15 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Notificacao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
@@ -29,7 +32,7 @@ import org.primefaces.context.RequestContext;
  */
 @ManagedBean
 @SessionScoped
-public class NotificacoesEmpreendedorBean implements Observer,Serializable {
+public class NotificacoesEmpreendedorBean implements Observer, Serializable {
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -44,8 +47,8 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
     public NotificacoesEmpreendedorBean() {
         SESSOES.add(session);
     }
-    
-    public void mudaStatusNotificacao(){
+
+    public void mudaStatusNotificacao() {
         Empreendedor empreendedorSessao = (Empreendedor) session.getAttribute("empreendedor");
         for (Notificacao notificacao : empreendedorSessao.getNotificacoes()) {
             notificacao.setVisualizado(true);
@@ -67,8 +70,8 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
         Notificacao notificacao;
         for (Object obj : projeto.getEmpreendedores()) {
             empreendedor = (Empreendedor) obj;
-            notificacao = criaNotificacao("O status do negocio mudou para " + projeto.getStatusString(projeto.getStatus()) 
-                    +  "", empreendedor);
+            notificacao = criaNotificacao("O status do negocio mudou para " + projeto.getStatusString(projeto.getStatus())
+                    + "", empreendedor);
             empreendedor.getNotificacoes().add(notificacao);
             empreendedor.atualizarEmpreendedor(empreendedor);
             quantidadeNotificacoes++;
@@ -78,7 +81,7 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
 
     public void atualizaEmpreendedores(Empreendedor empreendedor) {
         for (HttpSession sessao : SESSOES) {
-            atualizaEmpreendedorSessao(empreendedor,sessao);
+            atualizaEmpreendedorSessao(empreendedor, sessao);
         }
     }
 
@@ -99,7 +102,8 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
         notificacao.setDescricao(descricao);
         notificacao.setEmpreendedor(empreendedor);
         notificacao.setVisualizado(false);
-        notificacao.setLink("http://localhost:8084/GerenciadorPampatec/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
+       // notificacao.setLink("http://localhost:8084/GerenciadorPampatec/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
+        notificacao.setLink(getNotificacaoLink());
         return notificacao;
     }
 
@@ -127,8 +131,8 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
         descricoesNotificacoes = empreendedor.getDescricaoDasNotificacoes();
         return descricoesNotificacoes;
     }
-    
-    public ArrayList<Notificacao> getNotificacoes(){
+
+    public ArrayList<Notificacao> getNotificacoes() {
         Empreendedor empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         ArrayList<Notificacao> listaNotificacoes = new ArrayList<>();
         for (Notificacao notificacao : empreendedor.getNotificacoes()) {
@@ -142,6 +146,14 @@ public class NotificacoesEmpreendedorBean implements Observer,Serializable {
      */
     public void setDescricoesNotificacoes(ArrayList<String> descricoesNotificacoes) {
         this.descricoesNotificacoes = descricoesNotificacoes;
+    }
+
+    public String getNotificacaoLink() {
+
+        // FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
+        String link = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml";
+        return link;
+
     }
 
 }

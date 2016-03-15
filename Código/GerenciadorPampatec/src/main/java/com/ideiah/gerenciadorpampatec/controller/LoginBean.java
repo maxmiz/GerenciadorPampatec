@@ -106,6 +106,16 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    //Página inicial redirecionada para lista de projetos para pré-avaliar.
+    //Razão: O gerente recebia uma tela em branco ao logar no sistema. Agora redireciona para a função principal do Sprint 2016/
+     public void getVisualizarPlanosGerente() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanoDeNegocio.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void getVisualizarPlanos() {
         try {
@@ -152,12 +162,22 @@ public class LoginBean {
                 System.out.println("Logado");
                 session.setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
+
                 try {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
                     return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                getVisualizarPlanosGerente();
+//                try {
+//                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanodeNegocio.xhtml");
+//                    return true;
+//                } catch (IOException ex) {
+//                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+
             } else {
                 FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");

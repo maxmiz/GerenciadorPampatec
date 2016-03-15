@@ -8,17 +8,20 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author GUTO
  */
 @ManagedBean
-public class PreAvaliarPlanoBean implements Serializable{
+public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;
     private String comentSegClientes;
@@ -45,66 +48,92 @@ public class PreAvaliarPlanoBean implements Serializable{
     private String comentCustFixos;
     private String comentCustVariaveis;
     private String comentObservacoes;
-    
-    public PreAvaliarPlanoBean() {
-//        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-//        projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
 
-        /**
-         * apenas para testes
-         */
-        ProjetoDao dao = new ProjetoDao();
-//        System.out.println(0"gerente de relacionamento: "+projeto.getGerenteRelacionamento().getNome());
-       projeto = dao.buscar(31);
-       // System.out.println(dao.buscar());
-        
+    public PreAvaliarPlanoBean() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projeto = (Projeto) session.getAttribute("projetoSelecionado");
+    }
+
+    /**
+     * Método para chamar a página de pré-avalização do pré-projeto selecionado.
+     * ATENÇÃO: As validações do projeto selecionado em avaliação foram 
+     * comentadas para simplificar o debug das demais funções relacionadas. 
+     * Para entrar o projeto, é necessário descomentar tais validçaões.
+     *
+     * @param projSelec
+     */
+    public void enviarPreAvaliacaoPreProjeto(Projeto projSelec) {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("projetoSelecionado", projSelec);
+
+//        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            getPreAvaliarProjeto();
+//            projeto.setStatus(Projeto.SENDO_AVALIADO);
+//        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
+//        }
     }
     
     
     /**
-     * Método para verificar qual o tipo de estágio a empressa sem encontra 
-     * @return 
+     * Redireciona para a página de Pr-eAvaliação do Pré-Projeto.
+     */
+    private void getPreAvaliarProjeto() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.xhtml");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    /**
+     * Método para verificar qual o tipo de estégio a empressa sem encontra
+     *
+     * @return
      */
     public String verificaEstagioEvolucao() {
         String status = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
-        if(status.equals("Outro:")){
+        if (status.equals("Outro:")) {
             return projeto.getProdutoouservico().getEstagioEvolucao();
-        }else{
+        } else {
             return status;
         }
     }
+
     /**
-     * salva a preavaliação do projeto realizada pelo Gerente de Relacionamentos para posterior continuar editando o mesmo
+     * salva a preavaliaÃ§Ã£o do projeto realizada pelo Gerente de
+     * Relacionamentos para posterior continuar editando o mesmo
      */
-    public void salvar(){
-    
-        System.out.println("projeto = "+projeto);
-        System.out.println("segclientes = "+comentSegClientes);
-        System.out.println("comentPropValor = "+comentPropValor);
-        System.out.println("comentAtivChaves = "+comentAtivChaves);
-        System.out.println("comentRelClientes = "+comentRelClientes);
-        System.out.println("comentParcChaves = "+comentParcChaves);
-        System.out.println("comentCanais = "+comentCanais);
-        System.out.println("comentRecPrincipais = "+comentRecPrincipais);
-        System.out.println("comentConcorrentes = "+comentConcorrentes);
-        System.out.println("comentEstEvolucao = "+comentEstEvolucao);
-        System.out.println("comentTecProcessos = "+comentTecProcessos);
-        System.out.println("comentPotInovacao = "+comentPotInovacao);
-        System.out.println("comentAplicacoes = "+comentAplicacoes);
-        System.out.println("comentDifEsperadas = "+comentDifEsperadas);
-        System.out.println("comentIntEmpUniversidade = "+comentIntEmpUniversidade);
-        System.out.println("comentIntEmpEmpComGov = "+comentIntEmpEmpComGov);
-        System.out.println("comentInfEstrutura = "+comentInfEstrutura);
-        System.out.println("comentDescParticipacao = "+comentDescParticipacao);
-        System.out.println("comentPotGerEmpRenda = "+comentPotGerEmpRenda);
-        System.out.println("comentFontReceitas = "+comentFontReceitas);
-        System.out.println("comentEstCustos = "+comentEstCustos);
-        System.out.println("comentInvInicial = "+comentInvInicial);
-        System.out.println("comentCustFixos = "+comentCustFixos);
-        System.out.println("comentCustVariaveis = "+comentCustVariaveis);
-        System.out.println("comentObservacoes = "+comentObservacoes);
-        
+    public void salvar() {
+
+        System.out.println("projeto = " + projeto);
+        System.out.println("segclientes = " + comentSegClientes);
+        System.out.println("comentPropValor = " + comentPropValor);
+        System.out.println("comentAtivChaves = " + comentAtivChaves);
+        System.out.println("comentRelClientes = " + comentRelClientes);
+        System.out.println("comentParcChaves = " + comentParcChaves);
+        System.out.println("comentCanais = " + comentCanais);
+        System.out.println("comentRecPrincipais = " + comentRecPrincipais);
+        System.out.println("comentConcorrentes = " + comentConcorrentes);
+        System.out.println("comentEstEvolucao = " + comentEstEvolucao);
+        System.out.println("comentTecProcessos = " + comentTecProcessos);
+        System.out.println("comentPotInovacao = " + comentPotInovacao);
+        System.out.println("comentAplicacoes = " + comentAplicacoes);
+        System.out.println("comentDifEsperadas = " + comentDifEsperadas);
+        System.out.println("comentIntEmpUniversidade = " + comentIntEmpUniversidade);
+        System.out.println("comentIntEmpEmpComGov = " + comentIntEmpEmpComGov);
+        System.out.println("comentInfEstrutura = " + comentInfEstrutura);
+        System.out.println("comentDescParticipacao = " + comentDescParticipacao);
+        System.out.println("comentPotGerEmpRenda = " + comentPotGerEmpRenda);
+        System.out.println("comentFontReceitas = " + comentFontReceitas);
+        System.out.println("comentEstCustos = " + comentEstCustos);
+        System.out.println("comentInvInicial = " + comentInvInicial);
+        System.out.println("comentCustFixos = " + comentCustFixos);
+        System.out.println("comentCustVariaveis = " + comentCustVariaveis);
+        System.out.println("comentObservacoes = " + comentObservacoes);
+
     }
+
     /**
      * @return the projeto
      */

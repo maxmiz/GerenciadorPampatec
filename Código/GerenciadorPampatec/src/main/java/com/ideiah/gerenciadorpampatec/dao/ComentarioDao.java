@@ -5,10 +5,51 @@
  */
 package com.ideiah.gerenciadorpampatec.dao;
 
+import com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego;
+import com.ideiah.gerenciadorpampatec.model.ComentarioNegocio;
+import com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro;
+import com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico;
+import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import java.io.Serializable;
+
 /**
  *
- * @author GUTO
+ * @author MAICON
  */
-public class ComentarioDao extends Dao{
+public class ComentarioDao extends Dao implements Serializable{
     
+//<editor-fold defaultstate="collapsed" desc="Salvar">
+    
+    public boolean salvarComentarioAnalise(ComentarioAnaliseEmprego comentarioanaliseemprego){
+        return super.salvar(comentarioanaliseemprego);
+    }
+    
+  
+    public boolean salvarComentarioNegocio(ComentarioNegocio comentarionegocio){
+        return super.salvar(comentarionegocio);
+    }
+       
+    
+    public boolean salvarComentarioPlanoFinanceiro(ComentarioPlanoFinanceiro comentarioplanofinanceiro){
+        return super.salvar(comentarioplanofinanceiro);
+    }   
+    
+    
+    public boolean salvarComentarioProdutoOuServico(ComentarioProdutoOuServico comentarioproduto){
+        return super.salvar(comentarioproduto);
+    }
+     
+    
+    public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
+        return super.salvar(comentarioprojeto);
+    }
+    
+//</editor-fold>
+    
+    
+    
+//<editor-fold defaultstate="collapsed" desc="Buscar">
+    
+//</editor-fold>
+
 }
