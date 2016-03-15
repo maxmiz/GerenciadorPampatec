@@ -10,7 +10,6 @@
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
     </context-param>
-    
     <filter>
         <filter-name>RecuperarSenhaFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.RecuperarSenhaFilter</filter-class>
@@ -19,10 +18,6 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.LoginFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/empreendedor/*</url-pattern>
-    </filter-mapping>
     <filter>
         <filter-name>LoginFilterGerente</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.LoginFilterGerente</filter-class>
@@ -31,7 +26,14 @@
         <filter-name>EnviarProjetoFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.EnviarProjetoFilter</filter-class>
     </filter>
-    
+    <filter>
+        <filter-name>PreAvaliarPlanoFiltro</filter-name>
+        <filter-class>com.ideiah.gerenciadorpampatec.controller.PreAvaliarPlanoFiltro</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/faces/view/empreendedor/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>EnviarProjetoFilter</filter-name>
         <url-pattern>/faces/view/empreendedor/enviarProjeto.xhtml</url-pattern>
@@ -57,6 +59,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <filter-mapping>
+        <filter-name>PreAvaliarPlanoFiltro</filter-name>
+        <url-pattern>/faces/view/gerentederelacionamento/preAvaliarPlanoDeNegocio.xhtml</url-pattern>
+    </filter-mapping>
     <session-config>
         <session-timeout>
             30
@@ -66,7 +72,6 @@
         <!--<welcome-file>faces/view/cadastroEmpreendedor.xhtml</welcome-file>-->
         <welcome-file>faces/loginEmpreendedor.xhtml</welcome-file>
     </welcome-file-list>
-    
     <filter>
         <filter-name>CompletarCadastroFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
