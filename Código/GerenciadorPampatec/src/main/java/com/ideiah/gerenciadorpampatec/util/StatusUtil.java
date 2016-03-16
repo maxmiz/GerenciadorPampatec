@@ -12,7 +12,8 @@ package com.ideiah.gerenciadorpampatec.util;
 public enum StatusUtil {
     
         EM_ANDAMENTO(1), FINALIZADO(2);
-        public int status_numero;
+        
+        private final int status_numero;
         
         StatusUtil(int valor){
             status_numero = valor;
