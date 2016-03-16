@@ -1,6 +1,7 @@
 package com.ideiah.gerenciadorpampatec.model;
 // Generated 31/08/2015 13:49:28 by Hibernate Tools 4.3.1
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +38,30 @@ public class Planofinanceiro implements java.io.Serializable {
         this.valorTotalFixo = valorTotalFixo;
         this.valorTotalVariavel = valorTotalVariavel;
     }
+    
+    public ArrayList retornaListaCustosFixos(){
+        
+        ArrayList<Custo> listaDeCustosFixos = new ArrayList<Custo>();
+        
+        for (Custo custo : custo) {
+            if (custo.getTipo() == custo.CUSTO_FIXO) {
+                listaDeCustosFixos.add(custo);
+            }
+        }
+        return listaDeCustosFixos;
+}
+    
+    public ArrayList retornaListaCustosVariaveis(){
+        
+        ArrayList<Custo> listaDeCustosVariaveis = new ArrayList<Custo>();
+        
+        for (Custo custo : custo) {
+            if (custo.getTipo() == custo.CUSTO_VARIAVEL) {
+                listaDeCustosVariaveis.add(custo);
+            }
+        }
+        return listaDeCustosVariaveis;
+}
 
     public int getIdPlanoFinanceiro() {
         return this.idPlanoFinanceiro;
