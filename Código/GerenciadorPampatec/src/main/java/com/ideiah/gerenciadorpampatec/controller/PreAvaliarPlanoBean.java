@@ -69,12 +69,12 @@ public class PreAvaliarPlanoBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.setAttribute("projetoSelecionado", projSelec);
 
-        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+//        if (projSelec.getStatus() == Projeto.EM_PRE_AVALIACAO) {
         getPreAvaliarProjeto();
-            projeto.setStatus(Projeto.SENDO_AVALIADO);
-        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
-        }
+            projSelec.setStatus(Projeto.SENDO_AVALIADO);
+//        } else if (projSelec.getStatus() == Projeto.SENDO_AVALIADO) {
+//            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
+//        }
     }
 
     /**
