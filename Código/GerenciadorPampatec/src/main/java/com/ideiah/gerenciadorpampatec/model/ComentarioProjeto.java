@@ -5,33 +5,38 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author Edison Jhonatan
  * @since 10/11/15
  */
-public class ComentarioProjeto  implements java.io.Serializable {
+public class ComentarioProjeto implements java.io.Serializable {
 
-
-     private int idcomentario;
-     private ComentarioAnaliseEmprego comentarioanaliseemprego;
-     private ComentarioNegocio comentarionegocio;
-     private ComentarioPlanoFinanceiro comentarioplanofinanceiro;
-     private ComentarioProdutoOuServico comentarioprodutoouservico;
-     private String nome;
-     private String participacaoacionaria;
-     private String potencialemprego;
-     private String consideracoes;
-     private Projeto projeto;
+    private int idcomentario;
+    private ComentarioAnaliseEmprego comentarioanaliseemprego;
+    private ComentarioNegocio comentarionegocio;
+    private ComentarioPlanoFinanceiro comentarioplanofinanceiro;
+    private ComentarioProdutoOuServico comentarioprodutoouservico;
+    private String nome;
+    private String participacaoacionaria;
+    private String potencialemprego;
+    private String consideracoes;
+    private Projeto projeto;
 
     public ComentarioProjeto() {
+        comentarioanaliseemprego = new ComentarioAnaliseEmprego();
+        comentarionegocio = new ComentarioNegocio();
+        comentarioplanofinanceiro = new ComentarioPlanoFinanceiro();
+        comentarioprodutoouservico = new ComentarioProdutoOuServico();
+        nome = "";
+        participacaoacionaria = "";
+        potencialemprego = "";
+        consideracoes = "";
+        projeto = new Projeto();
     }
 
-	
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
         this.idcomentario = idcomentario;
         this.comentarioanaliseemprego = comentarioanaliseemprego;
@@ -39,78 +44,87 @@ public class ComentarioProjeto  implements java.io.Serializable {
         this.comentarioplanofinanceiro = comentarioplanofinanceiro;
         this.comentarioprodutoouservico = comentarioprodutoouservico;
     }
+
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes, Set projetobases) {
-       this.idcomentario = idcomentario;
-       this.comentarioanaliseemprego = comentarioanaliseemprego;
-       this.comentarionegocio = comentarionegocio;
-       this.comentarioplanofinanceiro = comentarioplanofinanceiro;
-       this.comentarioprodutoouservico = comentarioprodutoouservico;
-       this.nome = nome;
-       this.participacaoacionaria = participacaoacionaria;
-       this.potencialemprego = potencialemprego;
-       this.consideracoes = consideracoes;
+        this.idcomentario = idcomentario;
+        this.comentarioanaliseemprego = comentarioanaliseemprego;
+        this.comentarionegocio = comentarionegocio;
+        this.comentarioplanofinanceiro = comentarioplanofinanceiro;
+        this.comentarioprodutoouservico = comentarioprodutoouservico;
+        this.nome = nome;
+        this.participacaoacionaria = participacaoacionaria;
+        this.potencialemprego = potencialemprego;
+        this.consideracoes = consideracoes;
     }
-   
+
     public int getIdcomentario() {
         return this.idcomentario;
     }
-    
+
     public void setIdcomentario(int idcomentario) {
         this.idcomentario = idcomentario;
     }
+
     public ComentarioAnaliseEmprego getComentarioanaliseemprego() {
         return this.comentarioanaliseemprego;
     }
-    
+
     public void setComentarioanaliseemprego(ComentarioAnaliseEmprego comentarioanaliseemprego) {
         this.comentarioanaliseemprego = comentarioanaliseemprego;
     }
+
     public ComentarioNegocio getComentarionegocio() {
         return this.comentarionegocio;
     }
-    
+
     public void setComentarionegocio(ComentarioNegocio comentarionegocio) {
         this.comentarionegocio = comentarionegocio;
     }
+
     public ComentarioPlanoFinanceiro getComentarioplanofinanceiro() {
         return this.comentarioplanofinanceiro;
     }
-    
+
     public void setComentarioplanofinanceiro(ComentarioPlanoFinanceiro comentarioplanofinanceiro) {
         this.comentarioplanofinanceiro = comentarioplanofinanceiro;
     }
+
     public ComentarioProdutoOuServico getComentarioprodutoouservico() {
         return this.comentarioprodutoouservico;
     }
-    
+
     public void setComentarioprodutoouservico(ComentarioProdutoOuServico comentarioprodutoouservico) {
         this.comentarioprodutoouservico = comentarioprodutoouservico;
     }
+
     public String getNome() {
         return this.nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getParticipacaoacionaria() {
         return this.participacaoacionaria;
     }
-    
+
     public void setParticipacaoacionaria(String participacaoacionaria) {
         this.participacaoacionaria = participacaoacionaria;
     }
+
     public String getPotencialemprego() {
         return this.potencialemprego;
     }
-    
+
     public void setPotencialemprego(String potencialemprego) {
         this.potencialemprego = potencialemprego;
     }
+
     public String getConsideracoes() {
         return this.consideracoes;
     }
-    
+
     public void setConsideracoes(String consideracoes) {
         this.consideracoes = consideracoes;
     }
@@ -129,9 +143,4 @@ public class ComentarioProjeto  implements java.io.Serializable {
         this.projeto = projeto;
     }
 
-
-
-
 }
-
-

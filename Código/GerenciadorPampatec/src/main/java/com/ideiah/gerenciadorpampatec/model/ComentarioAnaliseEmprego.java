@@ -24,9 +24,15 @@ public class ComentarioAnaliseEmprego  implements java.io.Serializable {
      private String canais;
      private String recursosPrincipais;
      private String concorrentes;
-     private Set comentarioprojetos = new HashSet(0);
+     private Set comentarioprojetos;
 
     public ComentarioAnaliseEmprego() {
+        relacoesClientes = "";
+        parceriasChaves = "";
+        canais = "";
+        recursosPrincipais = "";
+        concorrentes = "";        
+        comentarioprojetos = new HashSet(0);
     }
 
 	
