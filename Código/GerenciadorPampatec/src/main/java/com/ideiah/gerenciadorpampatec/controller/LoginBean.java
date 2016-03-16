@@ -90,7 +90,7 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void getInicioGerente() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
@@ -162,6 +162,14 @@ public class LoginBean {
                 System.out.println("Logado");
                 session.setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
+
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    return true;
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 getVisualizarPlanosGerente();
 //                try {
 //                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanodeNegocio.xhtml");
@@ -169,6 +177,7 @@ public class LoginBean {
 //                } catch (IOException ex) {
 //                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
 //                }
+
             } else {
                 FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
