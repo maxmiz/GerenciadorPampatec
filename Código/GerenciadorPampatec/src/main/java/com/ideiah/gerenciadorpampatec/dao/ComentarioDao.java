@@ -42,13 +42,20 @@ public class ComentarioDao extends Dao implements Serializable{
     
     public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
         return super.salvar(comentarioprojeto);
+       
     }
     
 //</editor-fold>
-    
-    
+     
     
 //<editor-fold defaultstate="collapsed" desc="Buscar">
+    
+    //busca comentario pelo codigo
+    public ComentarioProjeto buscar(int codigo) {
+        return (ComentarioProjeto) buscarObjeto(codigo, ComentarioProjeto.class);
+    }
+    
+    //busca comentario pelo projeto
     
 //</editor-fold>
 
