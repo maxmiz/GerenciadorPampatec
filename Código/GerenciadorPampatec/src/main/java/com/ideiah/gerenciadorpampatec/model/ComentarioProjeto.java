@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.util.StatusUtil;
 import java.util.Set;
 
 /**
@@ -24,6 +25,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private String potencialemprego;
     private String consideracoes;
     private Projeto projeto;
+    private StatusUtil status;
 
     public ComentarioProjeto() {
         comentarioanaliseemprego = new ComentarioAnaliseEmprego();
@@ -34,7 +36,8 @@ public class ComentarioProjeto implements java.io.Serializable {
         participacaoacionaria = "";
         potencialemprego = "";
         consideracoes = "";
-        projeto = new Projeto();
+        status = StatusUtil.EM_ANDAMENTO;
+        
     }
 
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
@@ -141,6 +144,20 @@ public class ComentarioProjeto implements java.io.Serializable {
      */
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
+    }
+
+    /**
+     * @return the status
+     */
+    public StatusUtil getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(StatusUtil status) {
+        this.status = status;
     }
 
 }

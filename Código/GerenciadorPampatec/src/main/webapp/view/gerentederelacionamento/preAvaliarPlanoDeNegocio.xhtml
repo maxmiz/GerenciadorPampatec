@@ -289,7 +289,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button" onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioSegCliente" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
@@ -309,7 +310,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioProposta" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor}">
@@ -330,7 +332,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor3" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
@@ -373,7 +376,8 @@
                                                      id="relacoComClientes">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor4" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
@@ -392,7 +396,8 @@
                                                      id="parceriasChaves">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor5" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
@@ -410,7 +415,8 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor6" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
@@ -429,7 +435,8 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor7" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
@@ -446,7 +453,8 @@
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor8" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
@@ -487,7 +495,8 @@
                                                      id="estagioDeEvolucao"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor9" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
@@ -505,7 +514,8 @@
                                                      id="tecnologiaProcessos"
                                                      disabled="true" ></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor10" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
@@ -523,7 +533,8 @@
                                                      id="potencialInovacaoTecnologica"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor11" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
@@ -541,7 +552,8 @@
                                                      id="aplicacoes"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor12" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
@@ -559,7 +571,8 @@
                                                      id="dificuldadesEsperadas"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor13" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
@@ -577,7 +590,8 @@
                                                      id="interacaoEmpresaUniversidade"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor14" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
@@ -595,7 +609,8 @@
                                                      id="interacaoEmpresaComunidadeGoverno"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor15" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
@@ -613,7 +628,8 @@
                                                      id="infraestrutura"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor16" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
@@ -657,7 +673,8 @@
                                                      id="participacaoAcionaria"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor005" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
@@ -674,7 +691,8 @@
                                                      id="potencialEmprego"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor006" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
@@ -721,7 +739,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor18" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
@@ -730,77 +749,120 @@
                                     <h:message class="mensagemErro" for="fontesDeReceita"/>
                                     <br/>
                                 </div>
-                                <!--                                <div class="col-md-12 espaco">
-                                                                    <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
-                                                                    Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
-                                                                                     requiredMessage="Insira a estrutura de custos antes de enviar" 
-                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
-                                                                                     styleClass="#/{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                                                     disabled="true">
-                                
-                                                                    </p:inputTextarea>
-                                                                    <div class="col-md-12 espaco">
-                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                                                    </div>
-                                                                    <div class="has-success col-md-12 espaco">
-                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor19" value="#/{preAvaliarPlanoBean.comentEstCustos}">
-                                                                        </p:inputTextarea>
-                                                                    </div>
-                                                                    <h:message class="mensagemErro" for="estruturaCustos"/>
-                                                                    <br/>
-                                                                </div>
-                                                                <div class="col-md-12 espaco">
-                                                                    <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
-                                                                    Quanto de recurso será necessário para iniciar?
-                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                                                     id="investimentoInicial" disabled="true"></h:inputTextarea>
-                                                                    <div class="col-md-12 espaco">
-                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                                                    </div>
-                                                                    <div class="has-success col-md-12 espaco">
-                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor20" value="#/{preAvaliarPlanoBean.comentInvInicial}">
-                                                                        </p:inputTextarea>
-                                                                    </div>
-                                                                    <h:message class="mensagemErro" for="investimentoInicial"/>
-                                                                    <br/>
-                                                                </div>
-                                                                <div class="col-md-12 espaco">
-                                                                    <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
-                                                                    Salários, Aluguel...
-                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                                                     value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosfixos}"
-                                                                                     id="custosfixos" disabled="true"></h:inputTextarea>
-                                                                    <div class="col-md-12 espaco">
-                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                                                    </div>
-                                                                    <div class="has-success col-md-12 espaco">
-                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#/{preAvaliarPlanoBean.comentCustFixos}">
-                                                                        </p:inputTextarea>
-                                                                    </div>
-                                                                    <h:message class="mensagemErro" for="custosfixos"/>
-                                
-                                                                    <br/>
-                                                                </div>
-                                                                <div class="col-md-12 espaco">
-                                                                    <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
-                                                                    Impostos, combustível, matéria-prima... 
-                                                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                                                     id="custosvariaveis" value="#/{preAvaliarPlanoBean.projeto.planofinanceiro.custosvariaveis}"
-                                                                                     disabled="true">
-                                                                    </h:inputTextarea>
-                                                                    <div class="col-md-12 espaco">
-                                                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEmpresa" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                                                    </div>
-                                                                    <div class="has-success col-md-12 espaco">
-                                                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#/{preAvaliarPlanoBean.comentCustVariaveis}">
-                                                                        </p:inputTextarea>
-                                                                    </div>
-                                                                    <h:message class="mensagemErro" for=")custosvariaveis"/>
-                                
-                                                                    <br/>
-                                                                </div>-->
+                                <div class="col-md-12 espaco">
+                                    <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                    Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                                     value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     disabled="true">
+
+                                    </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
+
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor19" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="estruturaCustos"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                    Quanto de recurso será necessário para iniciar?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
+                                                     id="investimentoInicial" disabled="true"></h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
+
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor20" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="investimentoInicial"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
+                                    Salários, Aluguel...
+                                    <p:dataTable id="preAvaliar_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosFixos()}">
+
+                                        <p:column headerText="Descrição ">
+                                            <h:outputText value="#{custo.descricao}" />
+                                        </p:column>
+
+                                        <p:column headerText="Valor Médio Mensal">
+                                            <h:outputText value="R$ #{custo.total}" />
+                                        </p:column>
+
+                                        <p:column headerText="Projeção em 6 Meses">
+                                            <h:outputText value="R$ #{custo.projecao}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                    <br/>     
+                                    <!--<div class="col-md-6 text-center" align="center" >-->
+                                    <!--    <p:dataTable class="text-center " id="colunaValorTotalFixoVisualizar" editable="false" var="custofixo"  
+                                                     value="#{projetoBean.calcularValorColunaCustoFixo()}" style="width: 40%; margin-left: auto; margin-right: auto">
+    
+                                            <p:column  headerText="Projeção de Custos Fixos Total"> 
+                                                <p:outputLabel style="text-align: center" value="R$ #{projetoBean.projeto.planofinanceiro.valorTotalFixo}"></p:outputLabel>
+                                            </p:column>
+    
+                                        </p:dataTable> -->
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="custosfixos"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
+                                    Impostos, combustível, matéria-prima... 
+                                    <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}">
+
+                                        <p:column headerText="Descrição ">
+                                            <h:outputText value="#{custo.descricao}" />
+                                        </p:column>
+
+                                        <p:column headerText="Valor Médio Mensal">
+                                            <h:outputText value="R$ #{custo.total}" />
+                                        </p:column>
+
+                                        <p:column headerText="Projeção em 6 Meses ">
+                                            <h:outputText value="R$ #{custo.projecao}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm espaco" id="adicionarComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm espaco" id="historicoComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-pencil"></i> Histórico de Comentários</button>
+
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="custosvariaveis"/>
+
+                                    <br/>
+                                </div>
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
@@ -852,7 +914,7 @@
                                     </div>
                                     <div class="col-md-6 text-center">
                                         <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação"
-                                                         action="#//{projetoBean.enviarProjeto()}"></h:commandButton>
+                                                         action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projSelec)}"></h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
                                     <br/>
