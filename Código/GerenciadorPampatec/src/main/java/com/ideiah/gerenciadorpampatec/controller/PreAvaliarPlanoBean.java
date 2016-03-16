@@ -8,6 +8,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -67,12 +68,12 @@ public class PreAvaliarPlanoBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.setAttribute("projetoSelecionado", projSelec);
 
-//        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
         getPreAvaliarProjeto();
-//            projeto.setStatus(Projeto.SENDO_AVALIADO);
-//        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-//            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
-//        }
+            projeto.setStatus(Projeto.SENDO_AVALIADO);
+        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
+        }
     }
 
     /**
@@ -137,6 +138,9 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     }
 
+    public void mudaStatusComentario(){
+        
+    }
     /**
      * @return the projeto
      */
