@@ -6,18 +6,14 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
-import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.util.FacesUtil;
-import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Session;
 
 /**
  *
@@ -56,13 +52,14 @@ public class PreAvaliarPlanoBean implements Serializable {
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
+        comentarioProjeto = new ComentarioProjeto();
     }
 
     /**
      * Método para chamar a página de pré-avalização do pré-projeto selecionado.
-     * ATENÇÃO: As validações do projeto selecionado em avaliação foram 
-     * comentadas para simplificar o debug das demais funções relacionadas. 
-     * Para entrar o projeto, é necessário descomentar tais validçaões.
+     * ATENÇÃO: As validações do projeto selecionado em avaliação foram
+     * comentadas para simplificar o debug das demais funções relacionadas. Para
+     * entrar o projeto, é necessário descomentar tais validçaões.
      *
      * @param projSelec
      */
@@ -71,14 +68,13 @@ public class PreAvaliarPlanoBean implements Serializable {
         session.setAttribute("projetoSelecionado", projSelec);
 
 //        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
-            getPreAvaliarProjeto();
+        getPreAvaliarProjeto();
 //            projeto.setStatus(Projeto.SENDO_AVALIADO);
 //        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
 //            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
 //        }
     }
-    
-    
+
     /**
      * Redireciona para a página de Pr-eAvaliação do Pré-Projeto.
      */
