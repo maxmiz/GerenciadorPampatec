@@ -39,6 +39,11 @@ public class Planofinanceiro implements java.io.Serializable {
         this.valorTotalVariavel = valorTotalVariavel;
     }
     
+    /*
+    * Método preenche uma lista de custos fixos de um projeto na sess"ao para ser 
+    * mostrada na pré-avaliaçao
+    */
+    
     public ArrayList retornaListaCustosFixos(){
         
         ArrayList<Custo> listaDeCustosFixos = new ArrayList<Custo>();
@@ -51,6 +56,10 @@ public class Planofinanceiro implements java.io.Serializable {
         return listaDeCustosFixos;
 }
     
+    /*
+    * Método preenche uma lista de custos variaveis de um projeto na sessão para ser 
+    * mostrada na pré-avaliaçao
+    */
     public ArrayList retornaListaCustosVariaveis(){
         
         ArrayList<Custo> listaDeCustosVariaveis = new ArrayList<Custo>();

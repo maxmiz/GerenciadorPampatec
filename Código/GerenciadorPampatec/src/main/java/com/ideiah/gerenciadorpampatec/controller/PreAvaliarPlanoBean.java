@@ -78,7 +78,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Redireciona para a página de Pr-eAvaliação do Pré-Projeto.
+     * Redireciona para a página de Pre-Avaliação do Pré-Projeto.
      */
     private void getPreAvaliarProjeto() {
         try {
@@ -90,7 +90,6 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * Método para verificar qual o tipo de estégio a empressa sem encontra
-     *
      * @return
      */
     public String verificaEstagioEvolucao() {
@@ -103,7 +102,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * salva a preavaliaÃ§Ã£o do projeto realizada pelo Gerente de
+     * salva a preavaliao do projeto realizada pelo Gerente de
      * Relacionamentos para posterior continuar editando o mesmo
      */
     public void salvar() {
