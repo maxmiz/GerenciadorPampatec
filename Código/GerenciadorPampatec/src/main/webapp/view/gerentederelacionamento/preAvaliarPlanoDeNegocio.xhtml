@@ -294,6 +294,8 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor1 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                        
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     </div>
@@ -718,7 +720,8 @@
                         <!-- Fim da quinta parte do formulário -->
 
                         <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
-
+                        <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
+                        
                         <div class="tab-pane fade" id="formParte06">
 
                             <div id="formularioParte06">
@@ -917,7 +920,6 @@
                         <!-- Fim da setima parte do formulário -->
                     </div>
                 </div>
-
             </div>
             <div class="col-md-1"></div>
         </h:form>
