@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
@@ -83,7 +84,10 @@ public class PreAvaliarPlanoBean implements Serializable {
          * Gambiarra para resolver o problema do Ajax+Filtro.
          */
         if (projSelec != null) {
-            projSelec.setStatus(Projeto.SENDO_AVALIADO);            
+            projSelec.setStatus(Projeto.SENDO_AVALIADO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelec);
+            
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.setAttribute("projetoSelecionado", projSelec);
 
