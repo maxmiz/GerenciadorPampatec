@@ -179,9 +179,12 @@
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandLink class="btn btn-success" value="Avaliar" disabled="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-default" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                            <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}" event="click"></f:ajax>
-                                        </h:commandLink>
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-default" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                           <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}" event="click"></f:ajax>
+                                        </h:commandButton>                                        
                                     </div>
                                 </div>
                             </p:column>
