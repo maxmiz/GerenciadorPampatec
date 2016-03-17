@@ -227,7 +227,7 @@ public class EditarEmpreendedorBean {
 
                     if (empreendedor.atualizarEmpreendedor(empreendedor) && alterarSenha == false) {
                         try {
-                            LoginBean.MudarNome(empreendedor.getNome());
+                         //   LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
