@@ -58,13 +58,20 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public ArrayList<Projeto> buscaProjetoPorStatus() {
         projetoDao = new ProjetoDao();
-        return projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
+        ArrayList<Projeto> listaProjetosPorStatus;
+        listaProjetosPorStatus = projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
+        ArrayList<Projeto> listaProjetosSendoAvaliado = projetoDao.buscarListaProjetoPorStatus(Projeto.SENDO_AVALIADO);
 
+        for (Projeto projeto : listaProjetosSendoAvaliado) {
+            listaProjetosPorStatus.add(projeto);
+        }
+
+        return listaProjetosPorStatus;
     }
 
     /**
-     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja
-     * sendo avaliado ou EM_PRE_AVALIACAO caso a avaliação seja interrompida
+     * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja sendo
+     * avaliado ou EM_PRE_AVALIACAO caso a avaliação seja interrompida
      *
      * @param projeto
      */
@@ -121,13 +128,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         this.testeBoolean = testeBoolean;
     }
 
-
     public boolean verificaStatusProjeto(Projeto projeto) {
-        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            return true;
-        } else {
-            return false;
-        }
+        return projeto.getStatus() == Projeto.SENDO_AVALIADO;
     }
 
     public void atualizaListaDeProjetos() {
