@@ -43,7 +43,7 @@ public class LoginBean {
     private static EmpreendedorEmailDao empreendedorEmailDao;
     private static String user; //pode ser email ou senha
     private static String senha;
-    private static String nome;
+    private String nome;
     private String emailRecuperarSenha;
     private static EmpreendedorBean empreendedorBean;
     private boolean cadastroIncompleto;
@@ -55,6 +55,7 @@ public class LoginBean {
         try {
             if (fazLoginEmpreendedor(user, senha)) {
                 System.out.println("entrou no if do empreendedor");
+                
                 return true;
             } else if (fazLoginGerente(user, senha)) {
 
@@ -71,7 +72,7 @@ public class LoginBean {
 
         session.removeAttribute("empreendedor");
         session.removeAttribute("projetoSelecionado");
-        LoginBean.MudarNome(null);
+        MudarNome(null);
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
 
@@ -347,8 +348,8 @@ public class LoginBean {
         this.nome = nome;
     }
 
-    public static void MudarNome(String nome) {
-        LoginBean.nome = nome;
+    public void MudarNome(String nome) {
+        this.nome = nome;
     }
 
     public static void MudarSenha(String senha) {

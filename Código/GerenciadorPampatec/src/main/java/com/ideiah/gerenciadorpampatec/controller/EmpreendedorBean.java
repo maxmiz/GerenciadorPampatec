@@ -137,7 +137,7 @@ public class EmpreendedorBean {
                         formacao = null;
 
                         try {
-                            LoginBean.MudarNome(empreendedor.getNome());
+                           // LoginBean.MudarNome(empreendedor.getNome());
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
                             empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
@@ -198,7 +198,7 @@ public class EmpreendedorBean {
                     FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
 
                     try {
-                        LoginBean.MudarNome(empreendedor.getNome());
+                       // LoginBean.MudarNome(empreendedor.getNome());
                         LoginBean.MudarSenha(empreendedor.getSenha());
                         LoginBean.MudarUser(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
