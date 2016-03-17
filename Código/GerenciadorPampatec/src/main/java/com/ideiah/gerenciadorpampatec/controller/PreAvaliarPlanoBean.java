@@ -81,6 +81,7 @@ public class PreAvaliarPlanoBean implements Serializable {
          * Gambiarra para resolver o problema do Ajax+Filtro.
          */
         if (projSelec != null) {
+            projSelec.setStatus(Projeto.SENDO_AVALIADO);            
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.setAttribute("projetoSelecionado", projSelec);
 

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.ManagedProperty;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -58,8 +59,9 @@ public class EmpreendedorBean {
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
     private EmailUtil emailUtil;
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBean; // +setter
 
-    
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
@@ -106,49 +108,47 @@ public class EmpreendedorBean {
             empreendedor.setFormacao(formacao);
             if (empreendedor.buscarPorEmail(email) != null) {
                 FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
+            } else if (CpfUtil.isValidCPF(cpf) == false) {
+                FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
             } else {
-                if (CpfUtil.isValidCPF(cpf) == false) {
-                    FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
-                } else {
-                    empreendedor.setEmail(email);
-                    empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
-                    empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
-                    empreendedor.setRua(rua);
-                    empreendedor.setNumero(Integer.parseInt(numero));
-                    empreendedor.setBairro(bairro);
-                    empreendedor.setComplemento(complemento);
-                    empreendedor.setExperiencia(experiencia);
+                empreendedor.setEmail(email);
+                empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
+                empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+                empreendedor.setRua(rua);
+                empreendedor.setNumero(Integer.parseInt(numero));
+                empreendedor.setBairro(bairro);
+                empreendedor.setComplemento(complemento);
+                empreendedor.setExperiencia(experiencia);
 
-                    if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
-                        FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+                if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
+                    FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
 //                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
 //                        como nulos. Portanto, ele salva no banco depois limpa a tela. (só funciona com refresh)
-                        
-                        nome = null;
-                        cpf = null;
-                        rua = null;
-                        email = null;
-                        senhaInput = null;
-                        telefone = null;
-                        numero = null;
-                        bairro = null;
-                        complemento = null;
-                        experiencia = null;
-                        formacao = null;
 
-                        try {
-                           // LoginBean.MudarNome(empreendedor.getNome());
-                            LoginBean.MudarSenha(empreendedor.getSenha());
-                            LoginBean.MudarUser(empreendedor.getEmail());
-                            empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
-                            session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
-                        } catch (IOException ex) {
-                            Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else {
-                        FacesUtil.addErrorMessage("Cadastro não realizado.!", "formularioCadastro:botaoEnviar");
+                    nome = null;
+                    cpf = null;
+                    rua = null;
+                    email = null;
+                    senhaInput = null;
+                    telefone = null;
+                    numero = null;
+                    bairro = null;
+                    complemento = null;
+                    experiencia = null;
+                    formacao = null;
+
+                    try {
+                        // LoginBean.MudarNome(empreendedor.getNome());
+                        LoginBean.MudarSenha(empreendedor.getSenha());
+                        LoginBean.MudarUser(empreendedor.getEmail());
+                        empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
+                        session.setAttribute("empreendedor", empreendedor);
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                } else {
+                    FacesUtil.addErrorMessage("Cadastro não realizado.!", "formularioCadastro:botaoEnviar");
                 }
             }
         }
@@ -198,7 +198,8 @@ public class EmpreendedorBean {
                     FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
 
                     try {
-                       // LoginBean.MudarNome(empreendedor.getNome());
+                        // LoginBean.MudarNome(empreendedor.getNome());
+                        getLoginBean().setNome(nome);
                         LoginBean.MudarSenha(empreendedor.getSenha());
                         LoginBean.MudarUser(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
@@ -416,6 +417,20 @@ public class EmpreendedorBean {
      */
     public void setCompetencia(String competencia) {
         this.competencia = competencia;
+    }
+
+    /**
+     * @return the loginBean
+     */
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    /**
+     * @param loginBean the loginBean to set
+     */
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 
 }
