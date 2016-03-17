@@ -20,6 +20,7 @@ public class ComentarioDao extends Dao implements Serializable{
     
 //<editor-fold defaultstate="collapsed" desc="Salvar">
     
+    
     public boolean salvarComentarioAnalise(ComentarioAnaliseEmprego comentarioanaliseemprego){
         return super.salvar(comentarioanaliseemprego);
     }
@@ -39,7 +40,7 @@ public class ComentarioDao extends Dao implements Serializable{
         return super.salvar(comentarioproduto);
     }
      
-    
+    //salva o objeto comentario inteiro no banco
     public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
         return super.salvar(comentarioprojeto);
        
@@ -53,6 +54,11 @@ public class ComentarioDao extends Dao implements Serializable{
     //busca comentario pelo codigo
     public ComentarioProjeto buscar(int codigo) {
         return (ComentarioProjeto) buscarObjeto(codigo, ComentarioProjeto.class);
+    }
+    
+    //busca comentario pelo status
+    public ComentarioProjeto buscarPorStatus(int status) {
+        return (ComentarioProjeto) buscarObjetoCriteriaINT("status", status, ComentarioProjeto.class);
     }
     
     //busca comentario pelo projeto
