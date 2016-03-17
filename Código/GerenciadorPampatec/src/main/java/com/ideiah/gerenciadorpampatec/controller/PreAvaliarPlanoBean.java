@@ -16,12 +16,14 @@ import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author GUTO
  */
 @ManagedBean
+@ViewScoped
 public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;

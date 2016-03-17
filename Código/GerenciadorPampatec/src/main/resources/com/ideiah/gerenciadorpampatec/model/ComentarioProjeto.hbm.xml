@@ -31,6 +31,10 @@
         <property name="consideracoes" type="string">
             <column length="65535" name="consideracoes"/>
         </property>
+        
+        <property name="status" type="integer">
+            <column  name="status"/>
+        </property>
     
         <many-to-one name="projeto" class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select">
             <column name="projeto_idProjeto" not-null="true" />
