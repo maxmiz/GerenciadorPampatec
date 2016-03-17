@@ -67,15 +67,15 @@ public class PreAvaliarPlanoBean implements Serializable {
      * @param projSelec
      */
     public void enviarPreAvaliacaoPreProjeto(Projeto projSelec) {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.setAttribute("projetoSelecionado", projSelec);
+        /**
+         * Gambiarra para resolver o problema do Ajax+Filtro.
+         */
+        if (projSelec != null) {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            session.setAttribute("projetoSelecionado", projSelec);
 
-//        if (projSelec.getStatus() == Projeto.EM_PRE_AVALIACAO) {
-        getPreAvaliarProjeto();
-            projSelec.setStatus(Projeto.SENDO_AVALIADO);
-//        } else if (projSelec.getStatus() == Projeto.SENDO_AVALIADO) {
-//            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
-//        }
+            getPreAvaliarProjeto();
+        }
     }
 
     /**
@@ -91,6 +91,7 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * Método para verificar qual o tipo de estégio a empressa sem encontra
+     *
      * @return
      */
     public String verificaEstagioEvolucao() {
@@ -103,22 +104,22 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * salva a preavaliao do projeto realizada pelo Gerente de
-     * Relacionamentos para posterior continuar editando o mesmo
+     * salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
+     * para posterior continuar editando o mesmo
      */
     public void salvar() {
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
-        
+
         /**
          * Para exibir a mensagem de salvo com sucesso.
          */
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:tituloMensagem", msg);
-        
+
 //        System.out.println("projeto = " + projeto);
 //        System.out.println("segclientes = " + comentSegClientes);
 //        System.out.println("comentPropValor = " + comentPropValor);
@@ -144,7 +145,6 @@ public class PreAvaliarPlanoBean implements Serializable {
 //        System.out.println("comentCustFixos = " + comentCustFixos);
 //        System.out.println("comentCustVariaveis = " + comentCustVariaveis);
 //        System.out.println("comentObservacoes = " + comentObservacoes);
-
     }
 
     /**
