@@ -16,12 +16,14 @@ import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author GUTO
  */
 @ManagedBean
+@ViewScoped
 public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;
@@ -54,9 +56,20 @@ public class PreAvaliarPlanoBean implements Serializable {
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
-        comentarioProjeto = new ComentarioProjeto();
+        buscarComentarioProjeto();
+        if(comentarioProjeto == null) {
+            comentarioProjeto = new ComentarioProjeto();
+        }
     }
 
+    public void buscarComentarioProjeto(){
+        ComentarioDao comentDao = new ComentarioDao();
+
+        comentarioProjeto = comentDao.buscarPorStatus(ComentarioProjeto.EM_ANDAMENTO);
+    }
+    
+    
+    
     /**
      * Método para chamar a página de pré-avalização do pré-projeto selecionado.
      * ATENÇÃO: As validações do projeto selecionado em avaliação foram
@@ -161,13 +174,14 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.projeto = projeto;
     }
 
-    public ComentarioProjeto getComentarioProjeto() {
+    public ComentarioProjeto getComentarioProjeto() {        
         return comentarioProjeto;
     }
 
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
+    
 
     /**
      * @return the comentSegClientes
