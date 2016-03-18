@@ -10,6 +10,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -29,6 +31,8 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBean;
 //    private String comentSegClientes;
 //    private String comentPropValor;
 //    private String comentAtivChaves;
@@ -53,6 +57,14 @@ public class PreAvaliarPlanoBean implements Serializable {
 //    private String comentCustFixos;
 //    private String comentCustVariaveis;
 //    private String comentObservacoes;
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
 
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -116,6 +128,25 @@ public class PreAvaliarPlanoBean implements Serializable {
         } else {
             return status;
         }
+    }
+
+    /**
+     * Muda o status do projeto em pré avaliação e redireciona para o início
+     */
+    public void mudaStatusRedirecionaInicio() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        loginBean.getInicioGerente();
+
+    }
+
+    public void mudaStatusRedirecionaLista() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -185,21 +216,25 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     *  
-     * @param projSelect  
+     *
+     * @param projSelect
      */
     public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
 
-       if(projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO){
-           projSelect.setStatus(Projeto.SENDO_AVALIADO);
-       }
+        if (projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            projSelect.setStatus(Projeto.SENDO_AVALIADO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
     }
-    public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect){
-        if(projSelect.getStatus() == Projeto.SENDO_AVALIADO){
-           projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
-       }
+
+    public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect) {
+        if (projSelect.getStatus() == Projeto.SENDO_AVALIADO) {
+            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
     }
-   
 
     /**
      * @return the comentSegClientes

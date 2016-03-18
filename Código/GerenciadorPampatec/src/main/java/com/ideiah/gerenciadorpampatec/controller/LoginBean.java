@@ -47,6 +47,7 @@ public class LoginBean {
     private String emailRecuperarSenha;
     private static EmpreendedorBean empreendedorBean;
     private boolean cadastroIncompleto;
+    private PreAvaliarPlanoBean preAvaliarBean;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
