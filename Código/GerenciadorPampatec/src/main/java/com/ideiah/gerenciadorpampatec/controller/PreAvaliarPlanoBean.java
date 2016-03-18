@@ -33,30 +33,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     private ComentarioProjeto comentarioProjeto;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
-//    private String comentSegClientes;
-//    private String comentPropValor;
-//    private String comentAtivChaves;
-//    private String comentRelClientes;
-//    private String comentParcChaves;
-//    private String comentCanais;
-//    private String comentRecPrincipais;
-//    private String comentConcorrentes;
-//    private String comentEstEvolucao;
-//    private String comentTecProcessos;
-//    private String comentPotInovacao;
-//    private String comentAplicacoes;
-//    private String comentDifEsperadas;
-//    private String comentIntEmpUniversidade;
-//    private String comentIntEmpEmpComGov;
-//    private String comentInfEstrutura;
-//    private String comentDescParticipacao;
-//    private String comentPotGerEmpRenda;
-//    private String comentFontReceitas;
-//    private String comentEstCustos;
-//    private String comentInvInicial;
-//    private String comentCustFixos;
-//    private String comentCustVariaveis;
-//    private String comentObservacoes;
+
 
     public LoginBean getLoginBean() {
         return loginBean;
@@ -234,6 +211,9 @@ public class PreAvaliarPlanoBean implements Serializable {
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
         }
+    }
+    public void sairPreAvaliacao(){
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
     }
 
     /**
