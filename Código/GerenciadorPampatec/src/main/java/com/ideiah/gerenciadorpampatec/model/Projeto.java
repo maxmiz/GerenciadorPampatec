@@ -195,7 +195,7 @@ public class Projeto implements java.io.Serializable {
      */
     public void mudarStatus(Integer status) {
         setStatus(status);
-        notificacoesBean.update(null, this);
+        //notificacoesBean.update(null, this);
     }
 
     public String getPotencialEmprego() {
