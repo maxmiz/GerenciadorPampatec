@@ -188,11 +188,14 @@ public class PreAvaliarPlanoBean implements Serializable {
      *  
      * @param projSelect  
      */
-    public void mudaStatusProjeto(Projeto projSelect) {
+    public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
 
        if(projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO){
            projSelect.setStatus(Projeto.SENDO_AVALIADO);
-       } else if(projSelect.getStatus() == Projeto.SENDO_AVALIADO){
+       }
+    }
+    public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect){
+        if(projSelect.getStatus() == Projeto.SENDO_AVALIADO){
            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
        }
     }
