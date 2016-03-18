@@ -47,7 +47,7 @@ public class Projeto implements java.io.Serializable {
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
 
     public Projeto() {
-        pegaObserver();
+        //pegaObserver();
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {

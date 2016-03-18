@@ -30,9 +30,7 @@ public class SessionListener implements HttpSessionListener {
     
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        JOptionPane.showConfirmDialog(null, "Entrou para destruir a sessão!");
-
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        HttpSession session = se.getSession();
         GerenteRelacionamento gdr = (GerenteRelacionamento) session.getAttribute("gerente");
         
         if (gdr != null) {
