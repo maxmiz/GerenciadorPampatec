@@ -155,7 +155,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
      * @return true se o botão pode ser ativado.
      */
     public boolean verificaExcluir(Projeto projeto){
-        return verificarEmpreendedor(projeto) && projeto.verificarEmPreAvaliacao();
+        return verificarEmpreendedor(projeto) && projeto.verificarEmPreAvaliacao() && projeto.verificarSendoAvaliado();
     }
 
     public String formatarDataCriacao(Projeto projeto) {
