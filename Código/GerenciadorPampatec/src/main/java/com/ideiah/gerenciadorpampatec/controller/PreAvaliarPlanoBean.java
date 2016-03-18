@@ -58,19 +58,17 @@ public class PreAvaliarPlanoBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         buscarComentarioProjeto();
-        if(comentarioProjeto == null) {
+        if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
         }
     }
 
-    public void buscarComentarioProjeto(){
+    public void buscarComentarioProjeto() {
         ComentarioDao comentDao = new ComentarioDao();
 
         comentarioProjeto = comentDao.buscarPorStatus(ComentarioProjeto.EM_ANDAMENTO);
     }
-    
-    
-    
+
     /**
      * Método para chamar a página de pré-avalização do pré-projeto selecionado.
      * ATENÇÃO: As validações do projeto selecionado em avaliação foram
@@ -87,7 +85,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             projSelec.setStatus(Projeto.SENDO_AVALIADO);
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelec);
-            
+
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.setAttribute("projetoSelecionado", projSelec);
 
@@ -178,14 +176,30 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.projeto = projeto;
     }
 
-    public ComentarioProjeto getComentarioProjeto() {        
+    public ComentarioProjeto getComentarioProjeto() {
         return comentarioProjeto;
     }
 
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
-    
+
+    /**
+     *  
+     * @param projSelect  
+     */
+    public void mudaStatusProjetoSendoAvaliado(Projeto projSelect) {
+
+       if(projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO){
+           projSelect.setStatus(Projeto.SENDO_AVALIADO);
+       }
+    }
+    public void mudaStatusProjetoEmPreAvaliacao(Projeto projSelect) {
+
+       if(projSelect.getStatus() == Projeto.SENDO_AVALIADO){
+           projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
+       }
+    }
 
     /**
      * @return the comentSegClientes
