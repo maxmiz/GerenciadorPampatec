@@ -163,6 +163,9 @@ public class Projeto implements java.io.Serializable {
             case ELABORACAO:
                 statusDescricao = "Em elaboração";
                 break;
+            case SENDO_AVALIADO:
+                statusDescricao = "Sendo Avaliado";
+                break;
             case EM_PRE_AVALIACAO:
                 statusDescricao = "Em Pré-Avaliação";
                 break;
@@ -319,6 +322,10 @@ public class Projeto implements java.io.Serializable {
      */
     public boolean verificarEmPreAvaliacao(){
         return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
+    }
+    
+    public boolean verificarSendoAvaliado(){
+        return this.getStatus() != Projeto.SENDO_AVALIADO;
     }
 
     /**
