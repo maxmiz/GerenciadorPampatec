@@ -163,11 +163,11 @@
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
                             </f:facet>
-
+                            <!--
                             <p:column headerText="Identificador">
                                 <h:outputText value="#{projeto.idProjeto}"/>
                             </p:column>
-                            
+                            -->
                             <p:column headerText="Nome">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
@@ -180,11 +180,9 @@
                                 <div align="center">
                                     <div align="center">
                                         <h:commandButton class="btn btn-default" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
-                                           <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}" event="click"></f:ajax>
                                         </h:commandButton>
-                                        <h:commandButton class="btn btn-default" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
-                                           <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}" event="click"></f:ajax>
-                                        </h:commandButton>                                        
+                                        <h:commandButton class="btn btn-default" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
+                                        </h:commandButton>                                  
                                     </div>
                                 </div>
                             </p:column>
