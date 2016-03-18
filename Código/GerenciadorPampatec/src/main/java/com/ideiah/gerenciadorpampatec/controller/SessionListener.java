@@ -8,11 +8,9 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import javax.swing.JOptionPane;
 
 /**
  * Web application lifecycle listener.
@@ -20,19 +18,19 @@ import javax.swing.JOptionPane;
  * @author Juliano M.
  */
 public class SessionListener implements HttpSessionListener {
-    
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         /**
          * Não é necessário fazer nada aqui.
          */
     }
-    
+
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession session = se.getSession();
         GerenteRelacionamento gdr = (GerenteRelacionamento) session.getAttribute("gerente");
-        
+
         if (gdr != null) {
             Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
             if ((projeto != null) && (projeto.getStatus() == Projeto.SENDO_AVALIADO)) {
