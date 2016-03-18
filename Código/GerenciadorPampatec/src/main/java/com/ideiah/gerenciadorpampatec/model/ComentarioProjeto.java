@@ -53,7 +53,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.comentarioprodutoouservico = comentarioprodutoouservico;
     }
 
-    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes, Set projetobases) {
+    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
         this.idcomentario = idcomentario;
         this.comentarioanaliseemprego = comentarioanaliseemprego;
         this.comentarionegocio = comentarionegocio;
