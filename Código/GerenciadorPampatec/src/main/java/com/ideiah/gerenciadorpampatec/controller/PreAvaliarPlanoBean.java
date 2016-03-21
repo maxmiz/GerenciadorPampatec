@@ -9,7 +9,6 @@ import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -58,10 +57,10 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Método para chamar a página de pré-avalização do pré-projeto selecionado.
-     * ATENÇÃO: As validações do projeto selecionado em avaliação foram
-     * comentadas para simplificar o debug das demais funções relacionadas. Para
-     * entrar o projeto, é necessário descomentar tais validçaões.
+     * <p>
+     * Método que muda o status do projeto, atualizar essa informação no banco e
+     * chama o método para redirecionar para a página de pré-avalização do
+     * pré-projeto selecionado.</p>
      *
      * @param projSelec
      */
@@ -124,6 +123,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
 
     }
+
     public void mudaStatusFazLogout() {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
         loginBean.fazLogout();
@@ -188,11 +188,6 @@ public class PreAvaliarPlanoBean implements Serializable {
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
         }
-    }
-
-    
-    public void sairPreAvaliacao(){
-        mudaStatusProjetoParaEmPreAvaliacao(projeto);
     }
 
 }
