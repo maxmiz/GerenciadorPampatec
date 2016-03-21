@@ -125,6 +125,10 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
 
     }
+    public void mudaStatusFazLogout() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        loginBean.fazLogout();
+    }
 
     /**
      * salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
@@ -212,6 +216,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             dao.update(projSelect);
         }
     }
+    
     public void sairPreAvaliacao(){
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
     }
