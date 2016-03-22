@@ -122,7 +122,7 @@
             }
         </script>
 
-        <h:form id="formulario_cadastro_projeto" onsubmit="precisaSalvar = false;">
+        <h:form id="formulario_comentarpreavalizar" onsubmit="precisaSalvar = false;">
 
             <!-- Fim do Script de informação -->
 
@@ -290,12 +290,12 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioSegCliente" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor1 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor1 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -313,12 +313,12 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioProposta" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor2 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor2 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                             
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -337,12 +337,12 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor3" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor3 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor3 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="atividadesChave"/>
@@ -382,12 +382,12 @@
                                                      id="relacoComClientes">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor4" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor4 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor4 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="relacoComClientes"/>
@@ -403,12 +403,12 @@
                                                      id="parceriasChaves">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor5" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor5 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor5 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="parceriasChaves"/>
@@ -423,12 +423,12 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor6" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor6 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor6 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="canais"/>
@@ -444,12 +444,12 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor7" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor7 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor7 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="recursosPrincipais"/>
@@ -463,12 +463,12 @@
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor8" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
-                                        <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor8 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor8 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="concorrentes"/>
@@ -506,12 +506,12 @@
                                                      id="estagioDeEvolucao"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor9" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor9 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor9 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
@@ -526,12 +526,12 @@
                                                      id="tecnologiaProcessos"
                                                      disabled="true" ></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor10" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor10 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor10 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="tecnologiaProcessos"/>
@@ -546,12 +546,12 @@
                                                      id="potencialInovacaoTecnologica"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor11" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor11 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor11 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
@@ -566,12 +566,12 @@
                                                      id="aplicacoes"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor12" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor12 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor12 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="aplicacoes"/>
@@ -586,12 +586,12 @@
                                                      id="dificuldadesEsperadas"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor13" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor13 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor13 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
@@ -606,12 +606,12 @@
                                                      id="interacaoEmpresaUniversidade"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor14" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor14 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor14 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
@@ -626,12 +626,12 @@
                                                      id="interacaoEmpresaComunidadeGoverno"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor15" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor15 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor15 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
@@ -646,12 +646,12 @@
                                                      id="infraestrutura"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor16" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor16 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor16 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="infraestrutura"/>
@@ -692,12 +692,12 @@
                                                      id="participacaoAcionaria"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor005" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor005 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor005 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="participacaoAcionaria"/>
@@ -711,12 +711,12 @@
                                                      id="potencialEmprego"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor006" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor006 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor006 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="potencialEmprego"/>
@@ -760,12 +760,12 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor18" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor18 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor18 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="fontesDeReceita"/>
@@ -782,13 +782,13 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor19" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor19 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor19 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="estruturaCustos"/>
@@ -801,13 +801,13 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
                                                      id="investimentoInicial" disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor20" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor20 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="investimentoInicial"/>
@@ -835,12 +835,12 @@
                                     <br/>     
                                     
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor21 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosfixos"/>
@@ -868,13 +868,13 @@
 
 
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_cadastro_projeto:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
-                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor23 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosvariaveis"/>
@@ -909,20 +909,20 @@
                                 <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
-                                        <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                     </h:inputTextarea>
                                     <br />
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
                                     <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
-                                        <p:selectOneRadio id="avaliacao" value="#//{radioView.console}" layout="pageDirection">
+                                        <p:selectOneRadio id="avaliacao" value="#{preAvaliarPlanoBean.resultadoPreAvaliacao}" layout="pageDirection">
                                             <div class="col-md-12" style="padding-left: 15%;">
-                                                <f:selectItem itemLabel=" Aprovado " itemValue=" Aprovado " /> <br/>
-                                                <f:selectItem itemLabel=" Realizar Ajustes " itemValue=" Realizar Ajustes " /><br/>
-                                                <f:selectItem itemLabel=" Reprovado " itemValue=" Reprovado " />
+                                                <f:selectItem itemLabel=" Aprovado " itemValue="2" /> <br/>
+                                                <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
+                                                <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                             </div>
-                                        </p:selectOneRadio>
+                                        </p:selectOneRadio>                                       
                                     </h:panelGrid>
                                 </div>
                                 <div class="col-md-12 espaco">
@@ -933,14 +933,15 @@
                                     </div>
                                     <div class="col-md-6 text-center">
                                         <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação"
-                                                         action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projSelec)}"></h:commandButton>
+                                                         action="#{preAvaliarPlanoBean.terminarPreAvaliacao()}">
+                                        </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
                                     <br/>
                                 </div>
                             </div>
                         </div>
-                        <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
+                        <p:growl id="mensagensFeed" for="formulario_comentarpreavalizar:tituloMensagem" showDetail="true"/>
                         <!-- Fim da setima parte do formulário -->
                     </div>
                 </div>
