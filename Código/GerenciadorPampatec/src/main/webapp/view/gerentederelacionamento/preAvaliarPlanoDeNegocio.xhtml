@@ -739,7 +739,6 @@
                         <!-- Fim da quinta parte do formulário -->
 
                         <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
-                        <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
                         
                         <div class="tab-pane fade" id="formParte06">
 
@@ -841,6 +840,7 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosfixos"/>
@@ -874,6 +874,7 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor23" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
+                                            <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosvariaveis"/>
@@ -908,6 +909,7 @@
                                 <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
+                                        <f:ajax execute="@form" render="formulario_cadastro_projeto:propostaDeValor20 formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                     </h:inputTextarea>
                                     <br />
                                 </div>
@@ -938,7 +940,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
                         <!-- Fim da setima parte do formulário -->
                     </div>
                 </div>
