@@ -796,7 +796,7 @@
 
                                         <div class="col-md-6 text-center" align="center" >
 
-                                            <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo"  value="#{projetoBean.calcularValorColunaCustoFixo()}">
+                                            <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.calcularValorColunaCustoFixo()}">
                                                 <p:column headerText="Projeção total de custos fixos (6 meses)">
                                                     <p:outputLabel  value="R$ #{custofixo}"></p:outputLabel>
                                                 </p:column>
@@ -827,7 +827,7 @@
                                         <br/>
 
 
-                                        <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custovariavel" value="#{projetoBean.retornaListaCustoVariavel()}">
+                                        <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custovariavel" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoVariavel()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
