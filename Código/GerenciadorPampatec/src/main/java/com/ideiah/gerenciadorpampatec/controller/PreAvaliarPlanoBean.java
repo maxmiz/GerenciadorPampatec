@@ -44,50 +44,27 @@ public class PreAvaliarPlanoBean implements Serializable {
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
-        buscarComentarioProjeto();
+        ComentarioDao comentarioDao = new ComentarioDao();
+       
+        buscarComentarioProjeto(projeto);
+        
+
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
+            comentarioProjeto.setProjeto(projeto);
+             
+            comentarioDao.salvar(comentarioProjeto);
         }
     }
 
-    public void buscarComentarioProjeto() {
+    public void buscarComentarioProjeto(Projeto projetoSelecionado) {
+        
         ComentarioDao comentDao = new ComentarioDao();
-
-        comentarioProjeto = comentDao.buscarPorStatus(ComentarioProjeto.EM_ANDAMENTO);
-    }
-
-    /**
-     * <p>
-     * Método que muda o status do projeto, atualizar essa informação no banco e
-     * chama o método para redirecionar para a página de pré-avalização do
-     * pré-projeto selecionado.</p>
-     *
-     * @param projSelec
-     */
-    public void enviarPreAvaliacaoPreProjeto(Projeto projSelec) {
-        /**
-         * Gambiarra para resolver o problema do Ajax+Filtro.
-         */
-        if (projSelec != null) {
-            projSelec.setStatus(Projeto.SENDO_AVALIADO);
-            ProjetoDao dao = new ProjetoDao();
-            dao.update(projSelec);
-
-            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-            session.setAttribute("projetoSelecionado", projSelec);
-
-            getPreAvaliarProjeto();
-        }
-    }
-
-    /**
-     * Redireciona para a página de Pre-Avaliação do Pré-Projeto.
-     */
-    private void getPreAvaliarProjeto() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.xhtml");
-        } catch (Exception e) {
-            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        
+        for (ComentarioProjeto comentarioProjeto : projetoSelecionado.getComentarioProjeto()) {
+            if(comentarioProjeto.getStatus() == ComentarioProjeto.EM_ANDAMENTO){
+                this.comentarioProjeto = comentarioProjeto;
+            }
         }
     }
 

@@ -6,7 +6,7 @@
     <class name="com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico" table="comentarioprodutoouservico" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idcomentarioprodutoouservico" type="int">
             <column name="idcomentarioprodutoouservico" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="estagioEvolucao" type="string">
             <column name="estagioEvolucao" length="300" />
