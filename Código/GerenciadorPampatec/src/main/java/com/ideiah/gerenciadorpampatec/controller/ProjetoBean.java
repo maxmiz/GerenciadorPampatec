@@ -509,9 +509,9 @@ public class ProjetoBean implements Serializable {
         
         aluguel.setDescricao("Aluguel com o Pampatec");
         aluguel.setPodeExcluir(false);
-        aluguel.setProjecao(300);
+        aluguel.setProjecao(270);
         aluguel.setTipo(Custo.CUSTO_FIXO);
-        aluguel.setTotal(50);
+        aluguel.setTotal(45);
         planofinanceiro.getCusto().add(aluguel);
         
     }
