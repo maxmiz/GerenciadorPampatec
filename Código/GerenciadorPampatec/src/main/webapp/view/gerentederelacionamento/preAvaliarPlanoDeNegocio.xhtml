@@ -53,10 +53,10 @@
         </style>
 
     </h:head>
-    <h:body >
+    <h:body onunload="botaoVoltar()">
 
         <!-- Início do menu superior -->
-         <h:form id="locovelho">
+        <h:form id="locovelho">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-2">
@@ -67,7 +67,7 @@
 
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaInicio()}" />       
-                                
+
                             </li>
 
                             <li class="dropdown">
@@ -85,7 +85,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink value="Perfil"></h:commandLink></li>
+                                    <li><h:commandLink  value="Voltar"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{preAvaliarPlanoBean.mudaStatusFazLogout()}">
                                         </h:commandLink>
@@ -120,10 +120,38 @@
                     campo.setAttribute("class", "form-control campoFeedBackOn");
                 }
             }
+            document.onmouseover = function () {
+                //O cara ta clicando dentro da página que a gente usa
+                //esse método previne que mude a hash quando navegar dentro do projeto
+                //Utilizado no OnHashChange ali em baixo.
+                window.innerDocClick = true;
+            };
+
+            document.onmouseleave = function () {
+                //O cara tirou o mouse do documento, então agora a gente corre o
+                //risco dele clicar no botão voltar.
+                window.innerDocClick = false;
+            };
+
+
+            window.onhashchange = function () {
+                if (window.innerDocClick) {
+                    //Nós mudamos o hash, então não faz diferença.
+                } else {
+                    //O botão de voltar foi clicado
+                    botaoVoltar();
+                }
+            };
+
+
+            function botaoVoltar() {
+                alert("Enrrtoiofd");
+            }
         </script>
 
         <h:form id="formulario_comentarpreavalizar" onsubmit="precisaSalvar = false;">
 
+            <p:remoteCommand name="botaoVoltar" actionListener="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}" />
             <!-- Fim do Script de informação -->
 
             <!-- Início dos MODAIS exibidos no formulário -->
@@ -296,7 +324,7 @@
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
                                             <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor1 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                        
+
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     </div>
@@ -319,7 +347,7 @@
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor}">
                                             <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor2 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                            
+
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
                                     </div>
@@ -468,7 +496,7 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor8" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor8 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor8 formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="concorrentes"/>
@@ -739,7 +767,7 @@
                         <!-- Fim da quinta parte do formulário -->
 
                         <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
-                        
+
                         <div class="tab-pane fade" id="formParte06">
 
                             <div id="formularioParte06">
@@ -833,7 +861,7 @@
                                     </p:dataTable>
 
                                     <br/>     
-                                    
+
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
