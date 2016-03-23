@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import java.io.Serializable;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -19,6 +20,7 @@ import java.io.Serializable;
 public class ComentarioDao extends Dao implements Serializable{
     
 //<editor-fold defaultstate="collapsed" desc="Salvar">
+    
     
     public boolean salvarComentarioAnalise(ComentarioAnaliseEmprego comentarioanaliseemprego){
         return super.salvar(comentarioanaliseemprego);
@@ -39,16 +41,41 @@ public class ComentarioDao extends Dao implements Serializable{
         return super.salvar(comentarioproduto);
     }
      
-    
+    //salva o objeto comentario inteiro no banco
     public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
         return super.salvar(comentarioprojeto);
+       
+    }
+    public ComentarioProjeto salvarRetornandoComentarioProjeto(ComentarioProjeto comentarioProjeto) {
+        try {
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            comentarioProjeto = (ComentarioProjeto) getSession().merge(comentarioProjeto);
+            getTx().commit();
+            return comentarioProjeto;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            getSession().getTransaction().rollback();
+        }
+        return null;
     }
     
 //</editor-fold>
-    
-    
+     
     
 //<editor-fold defaultstate="collapsed" desc="Buscar">
+    
+    //busca comentario pelo codigo
+    public ComentarioProjeto buscar(int codigo) {
+        return (ComentarioProjeto) buscarObjeto(codigo, ComentarioProjeto.class);
+    }
+    
+    //busca comentario pelo status
+    public ComentarioProjeto buscarPorStatus(int status) {
+        return (ComentarioProjeto) buscarObjetoCriteriaINT("status", status, ComentarioProjeto.class);
+    }
+    
+    //busca comentario pelo projeto
     
 //</editor-fold>
 

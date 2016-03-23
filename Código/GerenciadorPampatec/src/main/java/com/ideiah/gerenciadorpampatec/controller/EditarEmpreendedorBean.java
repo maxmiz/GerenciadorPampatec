@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -41,6 +42,8 @@ public class EditarEmpreendedorBean {
     private String complemento;
     private String senha;
     private String novaSenha;
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBean; // +setter
 
     public EditarEmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -227,7 +230,8 @@ public class EditarEmpreendedorBean {
 
                     if (empreendedor.atualizarEmpreendedor(empreendedor) && alterarSenha == false) {
                         try {
-                            LoginBean.MudarNome(empreendedor.getNome());
+                            //  LoginBean.MudarNome(empreendedor.getNome());
+                            getLoginBean().setNome(nome);
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
@@ -249,17 +253,29 @@ public class EditarEmpreendedorBean {
             if (!novaSenha.isEmpty()) {       // e nova senha não está em branco
                 return false;                 // não altera a senha. 
             }
-        } else {
-            if (novaSenha.isEmpty()) {        // e nova senha está em branco
-                return false;                 // não altera a senha.
-            }
+        } else if (novaSenha.isEmpty()) {        // e nova senha está em branco
+            return false;                 // não altera a senha.
         }
         return true;                          // se senha Atual e nova senha não estiverem em branco, altera a senha.
-        
+
     }
 
     public void showMessage() {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Edição", "Edição realizda com sucesso!");
         RequestContext.getCurrentInstance().showMessageInDialog(message);
+    }
+
+    /**
+     * @return the loginBean
+     */
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    /**
+     * @param loginBean the loginBean to set
+     */
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 }

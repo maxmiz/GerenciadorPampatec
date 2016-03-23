@@ -49,7 +49,11 @@
     <filter-mapping>
         <filter-name>RecuperarSenhaFilter</filter-name>
         <url-pattern>/faces/recuperarSenha.jsf</url-pattern>
-    </filter-mapping>   
+    </filter-mapping>
+    <listener>
+        <description>HttpSessionListener</description>
+        <listener-class>com.ideiah.gerenciadorpampatec.controller.SessionListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

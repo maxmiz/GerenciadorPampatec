@@ -5,7 +5,7 @@
     <class catalog="gerenciadorpampatec" name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto" optimistic-lock="version" table="comentarioprojeto">
         <id name="idcomentario" type="int">
             <column name="idcomentario"/>
-            <generator class="assigned"/>
+            <generator class="identity"/>
         </id>
         <many-to-one class="com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego" fetch="select" name="comentarioanaliseemprego" cascade="all">
             <column name="comentarioanaliseemprego_idcomentarioanaliseemprego" not-null="true"/>
@@ -30,6 +30,10 @@
         </property>
         <property name="consideracoes" type="string">
             <column length="65535" name="consideracoes"/>
+        </property>
+        
+        <property name="status" type="integer">
+            <column  name="status"/>
         </property>
     
         <many-to-one name="projeto" class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select">

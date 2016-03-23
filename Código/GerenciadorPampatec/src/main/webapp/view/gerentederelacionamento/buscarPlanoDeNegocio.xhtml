@@ -57,7 +57,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-2">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                     <div class="col-md-10">
                         <ul class="nav navbar-nav navbar-right">
@@ -163,27 +163,26 @@
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
                             </f:facet>
-
+                            <!--
                             <p:column headerText="Identificador">
-                                <h:outputText value="#{projeto.idProjeto}"/>
+                                <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
-                            
+                            -->
                             <p:column headerText="Nome">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-                                <h:outputText value="#{projeto.dataCriacao}" />
+                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px">
+                                <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
                                 <div align="center">
                                     <div align="center">
-                                        <!-- <h:commandLink class="btn btn-default" value="Avaliar" disabled="{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}"> -->                                        
-                                        <h:commandLink class="btn btn-default" value="Avaliar" action="#{preAvaliarPlanoBean.enviarPreAvaliacaoPreProjeto(projeto)}">
-                                          <!-- <f:ajax execute="tabelaDeNegocios" render="tabelaDeNegocios" listener="{buscaProjetoGerenteDeRelacionamentosBean.buscaProjetoPorStatus()}" 
-                                                    event="click"></f:ajax> -->
-                                        </h:commandLink>
+                                        <h:commandButton class="btn-success" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        </h:commandButton>
+                                        <h:commandButton class="btn-success" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
+                                        </h:commandButton>                                  
                                     </div>
                                 </div>
                             </p:column>

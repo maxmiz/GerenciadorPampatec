@@ -6,7 +6,7 @@
     <class name="com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro" table="comentarioplanofinanceiro" catalog="gerenciadorpampatec" optimistic-lock="version">
         <id name="idcomentarioplanofinanceiro" type="int">
             <column name="idcomentarioplanofinanceiro" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="fontesReceita" type="string">
             <column name="fontesReceita" length="65535" />

@@ -14,6 +14,10 @@ import java.util.Set;
  */
 public class ComentarioProjeto implements java.io.Serializable {
 
+    public static final int EM_ANDAMENTO = 1;
+    public static final int FINALIZADO = 2;
+    
+    
     private int idcomentario;
     private ComentarioAnaliseEmprego comentarioanaliseemprego;
     private ComentarioNegocio comentarionegocio;
@@ -24,7 +28,10 @@ public class ComentarioProjeto implements java.io.Serializable {
     private String potencialemprego;
     private String consideracoes;
     private Projeto projeto;
+    private Integer status;
 
+  
+    
     public ComentarioProjeto() {
         comentarioanaliseemprego = new ComentarioAnaliseEmprego();
         comentarionegocio = new ComentarioNegocio();
@@ -34,7 +41,8 @@ public class ComentarioProjeto implements java.io.Serializable {
         participacaoacionaria = "";
         potencialemprego = "";
         consideracoes = "";
-        projeto = new Projeto();
+        status = EM_ANDAMENTO;
+        
     }
 
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
@@ -45,7 +53,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.comentarioprodutoouservico = comentarioprodutoouservico;
     }
 
-    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes, Set projetobases) {
+    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
         this.idcomentario = idcomentario;
         this.comentarioanaliseemprego = comentarioanaliseemprego;
         this.comentarionegocio = comentarionegocio;
@@ -141,6 +149,25 @@ public class ComentarioProjeto implements java.io.Serializable {
      */
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
+    }
+      public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+    public String getStatusString(int status){
+        String statusDescricao = "";
+        switch(status){
+            case EM_ANDAMENTO:
+                statusDescricao = "Em andamento";
+                break;
+            case FINALIZADO:
+                statusDescricao = "Finalizado";
+                break;
+        }
+        return statusDescricao;
     }
 
 }

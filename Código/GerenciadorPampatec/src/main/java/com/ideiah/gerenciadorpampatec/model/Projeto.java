@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.controller.NotificacoesEmpreendedorBean;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -44,10 +45,14 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
+   //Contador de acesso serve como gambiarra para verificar se o projeto está
+    //aberto para outro gerente no atualizar a página
+    private int contAcesso;
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
 
     public Projeto() {
-        pegaObserver();
+        //pegaObserver();
+        contAcesso = 0;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
@@ -57,7 +62,7 @@ public class Projeto implements java.io.Serializable {
         this.planofinanceiro = planofinanceiro;
         this.produtoouservico = produtoouservico;
         this.participacaoacionaria = participacaoacionaria;
-        
+        contAcesso = 0;
         pegaObserver();
     }
 
@@ -78,6 +83,7 @@ public class Projeto implements java.io.Serializable {
         this.dataCriacao = dataCriacao;
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
+        contAcesso = 0;
     }
 
     private void pegaObserver() {
@@ -94,6 +100,15 @@ public class Projeto implements java.io.Serializable {
         } catch (Exception e) {
         }
         return false;
+    }
+    
+        public String formatarDataEnvio() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (getDataEnvio() != null) {
+            return formato.format(getDataEnvio());
+        } else {
+            return "Plano não enviado.";
+        }
     }
 
     public Integer getIdProjeto() {
@@ -163,6 +178,9 @@ public class Projeto implements java.io.Serializable {
             case ELABORACAO:
                 statusDescricao = "Em elaboração";
                 break;
+            case SENDO_AVALIADO:
+                statusDescricao = "Sendo Avaliado";
+                break;
             case EM_PRE_AVALIACAO:
                 statusDescricao = "Em Pré-Avaliação";
                 break;
@@ -192,7 +210,7 @@ public class Projeto implements java.io.Serializable {
      */
     public void mudarStatus(Integer status) {
         setStatus(status);
-        notificacoesBean.update(null, this);
+        //notificacoesBean.update(null, this);
     }
 
     public String getPotencialEmprego() {
@@ -320,6 +338,10 @@ public class Projeto implements java.io.Serializable {
     public boolean verificarEmPreAvaliacao(){
         return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
     }
+    
+    public boolean verificarSendoAvaliado(){
+        return this.getStatus() != Projeto.SENDO_AVALIADO;
+    }
 
     /**
      * @return the comentarioProjeto
@@ -333,6 +355,20 @@ public class Projeto implements java.io.Serializable {
      */
     public void setComentarioProjeto(Set<ComentarioProjeto> comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
+    }
+
+    /**
+     * @return the contAcesso
+     */
+    public int getContAcesso() {
+        return contAcesso;
+    }
+
+    /**
+     * @param contAcesso the contAcesso to set
+     */
+    public void setContAcesso(int contAcesso) {
+        this.contAcesso = contAcesso;
     }
 
 }

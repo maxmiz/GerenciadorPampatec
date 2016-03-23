@@ -6,83 +6,79 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author GUTO
  */
 @ManagedBean
+@ViewScoped
 public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
-//    private String comentSegClientes;
-//    private String comentPropValor;
-//    private String comentAtivChaves;
-//    private String comentRelClientes;
-//    private String comentParcChaves;
-//    private String comentCanais;
-//    private String comentRecPrincipais;
-//    private String comentConcorrentes;
-//    private String comentEstEvolucao;
-//    private String comentTecProcessos;
-//    private String comentPotInovacao;
-//    private String comentAplicacoes;
-//    private String comentDifEsperadas;
-//    private String comentIntEmpUniversidade;
-//    private String comentIntEmpEmpComGov;
-//    private String comentInfEstrutura;
-//    private String comentDescParticipacao;
-//    private String comentPotGerEmpRenda;
-//    private String comentFontReceitas;
-//    private String comentEstCustos;
-//    private String comentInvInicial;
-//    private String comentCustFixos;
-//    private String comentCustVariaveis;
-//    private String comentObservacoes;
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBean;
+    private int resultadoPreAvaliacao;
+    private int contAnterior;
 
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
-        comentarioProjeto = new ComentarioProjeto();
+        ComentarioDao comentarioDao = new ComentarioDao();
+
+        //Gambiarra para resolver o problema do usuário deixar a página.
+        //Quando o usuário acessa a pagina de pré-avaliar ou atualiza a
+        //página, o construtor é chamado adionando um ao contador de acessos do projeto.
+        //Se ele sair pra qualquer página esse contrutor não será chamado.
+        //Com isso é possível identificar quando a página foi atualizada, pois
+        //o contador de acesso será incrementado quando isso acontecer.
+        //Para saber se o status deve ser mudado ou não é necessessário comparar
+        //o contador do projeto e o valor desse contador anteriormente(contAnterior). 
+        projeto.setContAcesso(projeto.getContAcesso() + 1);
+        contAnterior = projeto.getContAcesso();
+
+        buscarComentarioProjeto(projeto);
+
+        if (comentarioProjeto == null) {
+            comentarioProjeto = new ComentarioProjeto();
+            comentarioProjeto.setProjeto(projeto);
+            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
+            mudaStatus();
+
+        }
     }
 
-    /**
-     * Método para chamar a página de pré-avalização do pré-projeto selecionado.
-     * ATENÇÃO: As validações do projeto selecionado em avaliação foram
-     * comentadas para simplificar o debug das demais funções relacionadas. Para
-     * entrar o projeto, é necessário descomentar tais validçaões.
-     *
-     * @param projSelec
-     */
-    public void enviarPreAvaliacaoPreProjeto(Projeto projSelec) {
+    public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.setAttribute("projetoSelecionado", projSelec);
-
-//        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
-        getPreAvaliarProjeto();
-//            projeto.setStatus(Projeto.SENDO_AVALIADO);
-//        } else if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-//            FacesUtil.addErrorMessage("ATENÇÃO!\n O projeto selecionado já está em pré-avaliação por outro gerente!");
-//        }
+        projeto.setStatus(Projeto.SENDO_AVALIADO);
+        ProjetoDao dao = new ProjetoDao();
+        dao.update(projeto);
+        session.setAttribute("projetoSelecionado", projeto);
     }
 
-    /**
-     * Redireciona para a página de Pr-eAvaliação do Pré-Projeto.
-     */
-    private void getPreAvaliarProjeto() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.jsf");
-        } catch (Exception e) {
-            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+    public void buscarComentarioProjeto(Projeto projetoSelecionado) {
+
+        ComentarioDao comentDao = new ComentarioDao();
+
+        for (ComentarioProjeto comentarioProjeto : projetoSelecionado.getComentarioProjeto()) {
+            if (comentarioProjeto.getStatus() == ComentarioProjeto.EM_ANDAMENTO) {
+                this.comentarioProjeto = comentarioProjeto;
+            }
         }
     }
 
@@ -101,40 +97,47 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * salva a preavaliaÃ§Ã£o do projeto realizada pelo Gerente de
-     * Relacionamentos para posterior continuar editando o mesmo
+     * Muda o status do projeto em pré avaliação e redireciona para o início
+     */
+    public void mudaStatusRedirecionaInicio() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        loginBean.getInicioGerente();
+
+    }
+
+    public void mudaStatusRedirecionaLista() {
+        //Gambiarra para resolver o problema do usuário deixar a página
+        if (contAnterior == projeto.getContAcesso()) {
+            mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        }
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+        } catch (Exception ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void mudaStatusFazLogout() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        loginBean.fazLogout();
+    }
+
+    /**
+     * salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
+     * para posterior continuar editando o mesmo
      */
     public void salvar() {
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
-//        System.out.println("projeto = " + projeto);
-//        System.out.println("segclientes = " + comentSegClientes);
-//        System.out.println("comentPropValor = " + comentPropValor);
-//        System.out.println("comentAtivChaves = " + comentAtivChaves);
-//        System.out.println("comentRelClientes = " + comentRelClientes);
-//        System.out.println("comentParcChaves = " + comentParcChaves);
-//        System.out.println("comentCanais = " + comentCanais);
-//        System.out.println("comentRecPrincipais = " + comentRecPrincipais);
-//        System.out.println("comentConcorrentes = " + comentConcorrentes);
-//        System.out.println("comentEstEvolucao = " + comentEstEvolucao);
-//        System.out.println("comentTecProcessos = " + comentTecProcessos);
-//        System.out.println("comentPotInovacao = " + comentPotInovacao);
-//        System.out.println("comentAplicacoes = " + comentAplicacoes);
-//        System.out.println("comentDifEsperadas = " + comentDifEsperadas);
-//        System.out.println("comentIntEmpUniversidade = " + comentIntEmpUniversidade);
-//        System.out.println("comentIntEmpEmpComGov = " + comentIntEmpEmpComGov);
-//        System.out.println("comentInfEstrutura = " + comentInfEstrutura);
-//        System.out.println("comentDescParticipacao = " + comentDescParticipacao);
-//        System.out.println("comentPotGerEmpRenda = " + comentPotGerEmpRenda);
-//        System.out.println("comentFontReceitas = " + comentFontReceitas);
-//        System.out.println("comentEstCustos = " + comentEstCustos);
-//        System.out.println("comentInvInicial = " + comentInvInicial);
-//        System.out.println("comentCustFixos = " + comentCustFixos);
-//        System.out.println("comentCustVariaveis = " + comentCustVariaveis);
-//        System.out.println("comentObservacoes = " + comentObservacoes);
 
+        /**
+         * Para exibir a mensagem de salvo com sucesso.
+         */
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_comentarpreavalizar:tituloMensagem", msg);
     }
 
     /**
@@ -159,339 +162,82 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.comentarioProjeto = comentarioProjeto;
     }
 
+    public int getResultadoPreAvaliacao() {
+        return resultadoPreAvaliacao;
+    }
+
+    public void setResultadoPreAvaliacao(int resultadoPreAvaliacao) {
+        this.resultadoPreAvaliacao = resultadoPreAvaliacao;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
     /**
-     * @return the comentSegClientes
+     *
+     * @param projSelect
      */
-//    public String getComentSegClientes() {
-//        return comentSegClientes;
-//    }
-//
-//    /**
-//     * @param comentSegClientes the comentSegClientes to set
-//     */
-//    public void setComentSegClientes(String comentSegClientes) {
-//        this.comentSegClientes = comentSegClientes;
-//    }
-//
-//    /**
-//     * @return the comentPropValor
-//     */
-//    public String getComentPropValor() {
-//        return comentPropValor;
-//    }
-//
-//    /**
-//     * @param comentPropValor the comentPropValor to set
-//     */
-//    public void setComentPropValor(String comentPropValor) {
-//        this.comentPropValor = comentPropValor;
-//    }
-//
-//    /**
-//     * @return the comentAtivChaves
-//     */
-//    public String getComentAtivChaves() {
-//        return comentAtivChaves;
-//    }
-//
-//    /**
-//     * @param comentAtivChaves the comentAtivChaves to set
-//     */
-//    public void setComentAtivChaves(String comentAtivChaves) {
-//        this.comentAtivChaves = comentAtivChaves;
-//    }
-//
-//    /**
-//     * @return the comentRelClientes
-//     */
-//    public String getComentRelClientes() {
-//        return comentRelClientes;
-//    }
-//
-//    /**
-//     * @param comentRelClientes the comentRelClientes to set
-//     */
-//    public void setComentRelClientes(String comentRelClientes) {
-//        this.comentRelClientes = comentRelClientes;
-//    }
-//
-//    /**
-//     * @return the comentParcChaves
-//     */
-//    public String getComentParcChaves() {
-//        return comentParcChaves;
-//    }
-//
-//    /**
-//     * @param comentParcChaves the comentParcChaves to set
-//     */
-//    public void setComentParcChaves(String comentParcChaves) {
-//        this.comentParcChaves = comentParcChaves;
-//    }
-//
-//    /**
-//     * @return the comentCanais
-//     */
-//    public String getComentCanais() {
-//        return comentCanais;
-//    }
-//
-//    /**
-//     * @param comentCanais the comentCanais to set
-//     */
-//    public void setComentCanais(String comentCanais) {
-//        this.comentCanais = comentCanais;
-//    }
-//
-//    /**
-//     * @return the comentRecPrincipais
-//     */
-//    public String getComentRecPrincipais() {
-//        return comentRecPrincipais;
-//    }
-//
-//    /**
-//     * @param comentRecPrincipais the comentRecPrincipais to set
-//     */
-//    public void setComentRecPrincipais(String comentRecPrincipais) {
-//        this.comentRecPrincipais = comentRecPrincipais;
-//    }
-//
-//    /**
-//     * @return the comentConcorrentes
-//     */
-//    public String getComentConcorrentes() {
-//        return comentConcorrentes;
-//    }
-//
-//    /**
-//     * @param comentConcorrentes the comentConcorrentes to set
-//     */
-//    public void setComentConcorrentes(String comentConcorrentes) {
-//        this.comentConcorrentes = comentConcorrentes;
-//    }
-//
-//    /**
-//     * @return the comentEstEvolucao
-//     */
-//    public String getComentEstEvolucao() {
-//        return comentEstEvolucao;
-//    }
-//
-//    /**
-//     * @param comentEstEvolucao the comentEstEvolucao to set
-//     */
-//    public void setComentEstEvolucao(String comentEstEvolucao) {
-//        this.comentEstEvolucao = comentEstEvolucao;
-//    }
-//
-//    /**
-//     * @return the comentTecProcessos
-//     */
-//    public String getComentTecProcessos() {
-//        return comentTecProcessos;
-//    }
-//
-//    /**
-//     * @param comentTecProcessos the comentTecProcessos to set
-//     */
-//    public void setComentTecProcessos(String comentTecProcessos) {
-//        this.comentTecProcessos = comentTecProcessos;
-//    }
-//
-//    /**
-//     * @return the comentPotInovacao
-//     */
-//    public String getComentPotInovacao() {
-//        return comentPotInovacao;
-//    }
-//
-//    /**
-//     * @param comentPotInovacao the comentPotInovacao to set
-//     */
-//    public void setComentPotInovacao(String comentPotInovacao) {
-//        this.comentPotInovacao = comentPotInovacao;
-//    }
-//
-//    /**
-//     * @return the comentAplicacoes
-//     */
-//    public String getComentAplicacoes() {
-//        return comentAplicacoes;
-//    }
-//
-//    /**
-//     * @param comentAplicacoes the comentAplicacoes to set
-//     */
-//    public void setComentAplicacoes(String comentAplicacoes) {
-//        this.comentAplicacoes = comentAplicacoes;
-//    }
-//
-//    /**
-//     * @return the comentDifEsperadas
-//     */
-//    public String getComentDifEsperadas() {
-//        return comentDifEsperadas;
-//    }
-//
-//    /**
-//     * @param comentDifEsperadas the comentDifEsperadas to set
-//     */
-//    public void setComentDifEsperadas(String comentDifEsperadas) {
-//        this.comentDifEsperadas = comentDifEsperadas;
-//    }
-//
-//    /**
-//     * @return the comentIntEmpUniversidade
-//     */
-//    public String getComentIntEmpUniversidade() {
-//        return comentIntEmpUniversidade;
-//    }
-//
-//    /**
-//     * @param comentIntEmpUniversidade the comentIntEmpUniversidade to set
-//     */
-//    public void setComentIntEmpUniversidade(String comentIntEmpUniversidade) {
-//        this.comentIntEmpUniversidade = comentIntEmpUniversidade;
-//    }
-//
-//    /**
-//     * @return the comentIntEmpEmpComGov
-//     */
-//    public String getComentIntEmpEmpComGov() {
-//        return comentIntEmpEmpComGov;
-//    }
-//
-//    /**
-//     * @param comentIntEmpEmpComGov the comentIntEmpEmpComGov to set
-//     */
-//    public void setComentIntEmpEmpComGov(String comentIntEmpEmpComGov) {
-//        this.comentIntEmpEmpComGov = comentIntEmpEmpComGov;
-//    }
-//
-//    /**
-//     * @return the comentInfEstrutura
-//     */
-//    public String getComentInfEstrutura() {
-//        return comentInfEstrutura;
-//    }
-//
-//    /**
-//     * @param comentInfEstrutura the comentInfEstrutura to set
-//     */
-//    public void setComentInfEstrutura(String comentInfEstrutura) {
-//        this.comentInfEstrutura = comentInfEstrutura;
-//    }
-//
-//    /**
-//     * @return the comentDescParticipacao
-//     */
-//    public String getComentDescParticipacao() {
-//        return comentDescParticipacao;
-//    }
-//
-//    /**
-//     * @param comentDescParticipacao the comentDescParticipacao to set
-//     */
-//    public void setComentDescParticipacao(String comentDescParticipacao) {
-//        this.comentDescParticipacao = comentDescParticipacao;
-//    }
-//
-//    /**
-//     * @return the comentPotGerEmpRenda
-//     */
-//    public String getComentPotGerEmpRenda() {
-//        return comentPotGerEmpRenda;
-//    }
-//
-//    /**
-//     * @param comentPotGerEmpRenda the comentPotGerEmpRenda to set
-//     */
-//    public void setComentPotGerEmpRenda(String comentPotGerEmpRenda) {
-//        this.comentPotGerEmpRenda = comentPotGerEmpRenda;
-//    }
-//
-//    /**
-//     * @return the comentFontReceitas
-//     */
-//    public String getComentFontReceitas() {
-//        return comentFontReceitas;
-//    }
-//
-//    /**
-//     * @param comentFontReceitas the comentFontReceitas to set
-//     */
-//    public void setComentFontReceitas(String comentFontReceitas) {
-//        this.comentFontReceitas = comentFontReceitas;
-//    }
-//
-//    /**
-//     * @return the comentEstCustos
-//     */
-//    public String getComentEstCustos() {
-//        return comentEstCustos;
-//    }
-//
-//    /**
-//     * @param comentEstCustos the comentEstCustos to set
-//     */
-//    public void setComentEstCustos(String comentEstCustos) {
-//        this.comentEstCustos = comentEstCustos;
-//    }
-//
-//    /**
-//     * @return the comentInvInicial
-//     */
-//    public String getComentInvInicial() {
-//        return comentInvInicial;
-//    }
-//
-//    /**
-//     * @param comentInvInicial the comentInvInicial to set
-//     */
-//    public void setComentInvInicial(String comentInvInicial) {
-//        this.comentInvInicial = comentInvInicial;
-//    }
-//
-//    /**
-//     * @return the comentCustFixos
-//     */
-//    public String getComentCustFixos() {
-//        return comentCustFixos;
-//    }
-//
-//    /**
-//     * @param comentCustFixos the comentCustFixos to set
-//     */
-//    public void setComentCustFixos(String comentCustFixos) {
-//        this.comentCustFixos = comentCustFixos;
-//    }
-//
-//    /**
-//     * @return the comentCustVariaveis
-//     */
-//    public String getComentCustVariaveis() {
-//        return comentCustVariaveis;
-//    }
-//
-//    /**
-//     * @param comentCustVariaveis the comentCustVariaveis to set
-//     */
-//    public void setComentCustVariaveis(String comentCustVariaveis) {
-//        this.comentCustVariaveis = comentCustVariaveis;
-//    }
-//
-//    /**
-//     * @return the comentObservacoes
-//     */
-//    public String getComentObservacoes() {
-//        return comentObservacoes;
-//    }
-//
-//    /**
-//     * @param comentObservacoes the comentObservacoes to set
-//     */
-//    public void setComentObservacoes(String comentObservacoes) {
-//        this.comentObservacoes = comentObservacoes;
-//    }
+    public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
+
+        if (projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            projSelect.setStatus(Projeto.SENDO_AVALIADO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
+    }
+
+    public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect) {
+        if (projSelect.getStatus() == Projeto.SENDO_AVALIADO) {
+            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
+    }
+
+    /**
+     * <p>
+     * Método que finaliza a avaliação do projeto, muda o seu status, bem como o
+     * dos comentários.</p>
+     */
+    public void terminarPreAvaliacao() {
+        if (getResultadoPreAvaliacao() != 0) {
+            if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//                System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
+//                        + "\t Status= " + projeto.getStatus()
+//                        + "\t Status selecionado: " + getResultadoPreAvaliacao());
+                projeto.setStatus(getResultadoPreAvaliacao());
+                mudaStatusComentarioProjetoFinalizar();
+                ProjetoDao projDao = new ProjetoDao();
+                projDao.update(projeto);
+            }
+        }
+    }
+
+    /**
+     * <p>
+     * Método para atualizar o status dos comentários ao finalizar a avaliação.
+     * </p>
+     */
+    private void mudaStatusComentarioProjetoFinalizar() {
+        if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
+            comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+            getBuscarPlanoDeNegocio();
+        }
+    }
+
+    /**
+     * Redireciona para a página de lista de Planos de Negócio.
+     */
+    private void getBuscarPlanoDeNegocio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }

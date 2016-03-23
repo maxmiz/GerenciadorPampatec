@@ -43,10 +43,11 @@ public class LoginBean {
     private static EmpreendedorEmailDao empreendedorEmailDao;
     private static String user; //pode ser email ou senha
     private static String senha;
-    private static String nome;
+    private String nome;
     private String emailRecuperarSenha;
     private static EmpreendedorBean empreendedorBean;
     private boolean cadastroIncompleto;
+    private PreAvaliarPlanoBean preAvaliarBean;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
     private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -55,6 +56,7 @@ public class LoginBean {
         try {
             if (fazLoginEmpreendedor(user, senha)) {
                 System.out.println("entrou no if do empreendedor");
+                
                 return true;
             } else if (fazLoginGerente(user, senha)) {
 
@@ -71,7 +73,7 @@ public class LoginBean {
 
         session.removeAttribute("empreendedor");
         session.removeAttribute("projetoSelecionado");
-        LoginBean.MudarNome(null);
+        MudarNome(null);
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
 
@@ -90,7 +92,7 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void getInicioGerente() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.jsf");
@@ -162,6 +164,14 @@ public class LoginBean {
                 System.out.println("Logado");
                 session.setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
+
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    return true;
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 getVisualizarPlanosGerente();
 //                try {
 //                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanodeNegocio.jsf");
@@ -169,6 +179,7 @@ public class LoginBean {
 //                } catch (IOException ex) {
 //                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
 //                }
+
             } else {
                 FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
                 System.out.println("senha incorreta");
@@ -338,8 +349,8 @@ public class LoginBean {
         this.nome = nome;
     }
 
-    public static void MudarNome(String nome) {
-        LoginBean.nome = nome;
+    public void MudarNome(String nome) {
+        this.nome = nome;
     }
 
     public static void MudarSenha(String senha) {
