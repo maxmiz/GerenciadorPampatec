@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -55,11 +56,11 @@ public class PreAvaliarPlanoBean implements Serializable {
 
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
-            comentarioProjeto.setProjeto(projeto); 
+            comentarioProjeto.setProjeto(projeto);
             comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
             mudaStatus();
 
-    }
+        }
     }
 
     public void mudaStatus() {
@@ -160,7 +161,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
-    
+
     public int getResultadoPreAvaliacao() {
         return resultadoPreAvaliacao;
     }
@@ -198,21 +199,30 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
-    public void mudaStatusComentarioProjetoFilanizar(){
-        
-        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
-            comentarioProjeto.setStatus(2);
+    /**
+     * <p>
+     * Método para atualizar o status dos comentários ao finalizar a avaliação.
+     * </p>
+     */
+    private void mudaStatusComentarioProjetoFilnalizar() {
+        if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
+            comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
         }
     }
 
+    /**
+     * <p>
+     * Método que finaliza a avaliação do projeto, 
+     * muda o seu status, bem como o dos comentários.</p>
+     */
     public void terminarPreAvaliacao() {
-        if (!(getResultadoPreAvaliacao() == 0)) {
+        if (getResultadoPreAvaliacao() != 0) {
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
 //                System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
 //                        + "\t Status= " + projeto.getStatus()
 //                        + "\t Status selecionado: " + getResultadoPreAvaliacao());
                 projeto.setStatus(getResultadoPreAvaliacao());
-		mudaStatusComentarioProjetoFilanizar();				
+                mudaStatusComentarioProjetoFilnalizar();
                 ProjetoDao projDao = new ProjetoDao();
                 projDao.update(projeto);
             }
