@@ -484,7 +484,7 @@ public class ProjetoBean implements Serializable {
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -656,12 +656,12 @@ public class ProjetoBean implements Serializable {
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
 
                 if (projeto.getStatus() == Empreendedor.ENVIADO) {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.jsf");
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         atualizarProjetoSessao();
-//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml"); 
+//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf"); 
 
 //                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
                         FacesMessage msg;

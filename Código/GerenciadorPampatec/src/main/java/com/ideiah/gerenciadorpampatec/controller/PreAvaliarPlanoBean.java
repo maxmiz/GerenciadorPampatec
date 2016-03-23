@@ -80,7 +80,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     private void getPreAvaliarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.jsf");
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
