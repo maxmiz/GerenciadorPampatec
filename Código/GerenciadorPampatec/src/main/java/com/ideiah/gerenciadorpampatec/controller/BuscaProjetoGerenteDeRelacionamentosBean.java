@@ -85,7 +85,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         atualizarProjetoSessao();
         listaProjetos = buscaProjetoPorStatus();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,7 +163,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     private void getPreAvaliarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.jsf");
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }

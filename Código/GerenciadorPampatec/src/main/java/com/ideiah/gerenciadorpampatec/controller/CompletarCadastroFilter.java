@@ -67,16 +67,16 @@ public class CompletarCadastroFilter implements Filter {
             System.out.println("Entrou");
             session.removeAttribute("empreendedor");
             session.setAttribute("empreendedor", emp);
-            request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.xhtml").forward(request, response);
+            request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.jsf").forward(request, response);
         }else if((emp2 !=  null)){
             if(emp2.getIdUnico() != null){
-                request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.xhtml").forward(request, response);
+                request.getRequestDispatcher("/faces/terminarCadastroEmpreendedor.jsf").forward(request, response);
             }else{
-                request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
+                request.getRequestDispatcher("/faces/loginEmpreendedor.jsf").forward(request, response);
             }
         }
         else{
-            request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
+            request.getRequestDispatcher("/faces/loginEmpreendedor.jsf").forward(request, response);
         }
     }
 

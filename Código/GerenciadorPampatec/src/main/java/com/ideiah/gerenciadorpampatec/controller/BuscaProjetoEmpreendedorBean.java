@@ -113,7 +113,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
         } catch (IOException ex) {
             Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }

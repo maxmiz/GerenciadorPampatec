@@ -108,7 +108,7 @@ public class PreAvaliarPlanoFiltro implements Filter {
         projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
 
         if (projeto == null) {
-            request.getRequestDispatcher("buscarPlanoDeNegocio.xhtml").forward(request, response);
+            request.getRequestDispatcher("buscarPlanoDeNegocio.jsf").forward(request, response);
         } else {
             try {
                 chain.doFilter(request, response);

@@ -166,7 +166,7 @@ public class LoginBean {
                 this.setNome(gerente.getNome());
 
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.jsf");
                     return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
