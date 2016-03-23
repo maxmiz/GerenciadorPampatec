@@ -40,13 +40,10 @@ public class PreAvaliarPlanoBean implements Serializable {
         ComentarioDao comentarioDao = new ComentarioDao();
        
         buscarComentarioProjeto(projeto);
-        
-
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
-            comentarioProjeto.setProjeto(projeto);
-             
-            comentarioDao.salvar(comentarioProjeto);
+            comentarioProjeto.setProjeto(projeto); 
+            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
         }
     }
 
@@ -177,6 +174,12 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+    public void mudaStatusComentarioProjetoFilanizar(){
+        
+        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
+            comentarioProjeto.setStatus(2);
+        }
+    }
     
     public void terminarPreAvaliacao() {
         if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
@@ -184,6 +187,7 @@ public class PreAvaliarPlanoBean implements Serializable {
                     + "\t Status= "+projeto.getStatus() 
                     + "\t Status selecionado: "+getResultadoPreAvaliacao());
 //            projeto.setStatus(getResultadoPreAvaliacao());
+//             mudaStatusComentarioProjetoFilanizar();
 //            ProjetoDao projDao = new ProjetoDao();
 //            projDao.update(projeto);
         }
