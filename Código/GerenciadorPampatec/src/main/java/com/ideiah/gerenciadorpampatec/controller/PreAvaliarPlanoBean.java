@@ -32,14 +32,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     private ComentarioProjeto comentarioProjeto;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
-
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
+    private int resultadoPreAvaliacao;
 
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -121,7 +114,7 @@ public class PreAvaliarPlanoBean implements Serializable {
          */
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:tituloMensagem", msg);
+        FacesContext.getCurrentInstance().addMessage("formulario_comentarpreavalizar:tituloMensagem", msg);
     }
 
     /**
@@ -145,6 +138,23 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
+    
+    
+    public int getResultadoPreAvaliacao() {
+        return resultadoPreAvaliacao;
+    }
+
+    public void setResultadoPreAvaliacao(int resultadoPreAvaliacao) {
+        this.resultadoPreAvaliacao = resultadoPreAvaliacao;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
 
     /**
      *
@@ -167,4 +177,16 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+    
+    public void terminarPreAvaliacao() {
+        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+            System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
+                    + "\t Status= "+projeto.getStatus() 
+                    + "\t Status selecionado: "+getResultadoPreAvaliacao());
+//            projeto.setStatus(getResultadoPreAvaliacao());
+//            ProjetoDao projDao = new ProjetoDao();
+//            projDao.update(projeto);
+        }
+    }
+    
 }
