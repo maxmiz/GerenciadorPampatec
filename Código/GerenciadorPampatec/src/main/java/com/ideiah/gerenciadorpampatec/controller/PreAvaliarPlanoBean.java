@@ -40,7 +40,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         ComentarioDao comentarioDao = new ComentarioDao();
-        
+
         //Gambiarra para resolver o problema do usuário deixar a página.
         //Quando o usuário acessa a pagina de pré-avaliar ou atualiza a
         //página, o construtor é chamado adionando um ao contador de acessos do projeto.
@@ -49,7 +49,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         //o contador de acesso será incrementado quando isso acontecer.
         //Para saber se o status deve ser mudado ou não é necessessário comparar
         //o contador do projeto e o valor desse contador anteriormente(contAnterior). 
-        projeto.setContAcesso(projeto.getContAcesso()+1);
+        projeto.setContAcesso(projeto.getContAcesso() + 1);
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
@@ -110,9 +110,9 @@ public class PreAvaliarPlanoBean implements Serializable {
         if (contAnterior == projeto.getContAcesso()) {
             mudaStatusProjetoParaEmPreAvaliacao(projeto);
         }
-        try{
+        try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -201,19 +201,8 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * <p>
-     * Método para atualizar o status dos comentários ao finalizar a avaliação.
-     * </p>
-     */
-    private void mudaStatusComentarioProjetoFilnalizar() {
-        if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
-            comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
-        }
-    }
-
-    /**
-     * <p>
-     * Método que finaliza a avaliação do projeto, 
-     * muda o seu status, bem como o dos comentários.</p>
+     * Método que finaliza a avaliação do projeto, muda o seu status, bem como o
+     * dos comentários.</p>
      */
     public void terminarPreAvaliacao() {
         if (getResultadoPreAvaliacao() != 0) {
@@ -222,10 +211,33 @@ public class PreAvaliarPlanoBean implements Serializable {
 //                        + "\t Status= " + projeto.getStatus()
 //                        + "\t Status selecionado: " + getResultadoPreAvaliacao());
                 projeto.setStatus(getResultadoPreAvaliacao());
-                mudaStatusComentarioProjetoFilnalizar();
+                mudaStatusComentarioProjetoFinalizar();
                 ProjetoDao projDao = new ProjetoDao();
                 projDao.update(projeto);
             }
+        }
+    }
+
+    /**
+     * <p>
+     * Método para atualizar o status dos comentários ao finalizar a avaliação.
+     * </p>
+     */
+    private void mudaStatusComentarioProjetoFinalizar() {
+        if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
+            comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+            getBuscarPlanoDeNegocio();
+        }
+    }
+
+    /**
+     * Redireciona para a página de lista de Planos de Negócio.
+     */
+    private void getBuscarPlanoDeNegocio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
