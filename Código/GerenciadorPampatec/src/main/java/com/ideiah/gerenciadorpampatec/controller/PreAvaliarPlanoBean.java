@@ -106,9 +106,11 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void mudaStatusRedirecionaLista() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         //Gambiarra para resolver o problema do usuário deixar a página
         if (contAnterior == projeto.getContAcesso()) {
             mudaStatusProjetoParaEmPreAvaliacao(projeto);
+            session.removeAttribute("projetoSelecionado");
         }
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
