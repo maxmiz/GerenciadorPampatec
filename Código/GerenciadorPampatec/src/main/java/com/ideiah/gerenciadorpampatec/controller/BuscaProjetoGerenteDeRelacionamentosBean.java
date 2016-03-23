@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
@@ -149,12 +150,22 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
          * Gambiarra para resolver o problema do Ajax+Filtro.
          */
         if (projSelec != null) {
-            projSelec.setStatus(Projeto.SENDO_AVALIADO);
             ProjetoDao dao = new ProjetoDao();
-            dao.update(projSelec);
-            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-            session.setAttribute("projetoSelecionado", projSelec);
-            getPreAvaliarProjeto();
+            /**
+             * Nesse if de baixo ele garante que 2 gerentes não poderão avaliar
+             * o mesmo plano ao mesmo tempo.PS: Somente se eles clicarem para
+             * avaliar no mesmo tempo, bemm no mesmo tempo, tipo juntos, se
+             * tiver diferença de meio segundo já não cai no if de baixo.
+             * 
+             */
+            if (dao.buscar(projSelec.getIdProjeto()).getStatus() != Projeto.SENDO_AVALIADO) {
+                projSelec.setStatus(Projeto.SENDO_AVALIADO);
+                dao.update(projSelec);
+                HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                session.setAttribute("projetoSelecionado", projSelec);
+                getPreAvaliarProjeto();
+            }
+
         }
     }
 
