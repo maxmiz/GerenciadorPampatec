@@ -190,13 +190,13 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void terminarPreAvaliacao() {
-        if (getResultadoPreAvaliacao() == 0) {
+        if (!(getResultadoPreAvaliacao() == 0)) {
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
 //                System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
 //                        + "\t Status= " + projeto.getStatus()
 //                        + "\t Status selecionado: " + getResultadoPreAvaliacao());
                 projeto.setStatus(getResultadoPreAvaliacao());
-				mudaStatusComentarioProjetoFilanizar();				
+		mudaStatusComentarioProjetoFilanizar();				
                 ProjetoDao projDao = new ProjetoDao();
                 projDao.update(projeto);
             }
