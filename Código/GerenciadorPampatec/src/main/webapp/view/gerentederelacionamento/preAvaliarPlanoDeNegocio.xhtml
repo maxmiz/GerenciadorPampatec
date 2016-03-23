@@ -120,6 +120,7 @@
                     campo.setAttribute("class", "form-control campoFeedBackOn");
                 }
             }
+  
             document.onmouseover = function () {
                 //O cara ta clicando dentro da página que a gente usa
                 //esse método previne que mude a hash quando navegar dentro do projeto
@@ -179,7 +180,7 @@
             <!-- Fim do Modal de informação do botão Salvar -->
 
             <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
-            <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+            <div class="modal fade" id="modalInfoDeEnvio" role="dialog" >
                 <div class="modal-dialog">
 
                     <!-- Conteúdo do Modal -->
@@ -950,6 +951,7 @@
                                                 <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                                 <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                             </div>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar"/>
                                         </p:selectOneRadio>                                       
                                     </h:panelGrid>
                                 </div>
@@ -960,7 +962,7 @@
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
+                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" disabled="#{preAvaliarPlanoBean.resultadoPreAvaliacao == 0}" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
