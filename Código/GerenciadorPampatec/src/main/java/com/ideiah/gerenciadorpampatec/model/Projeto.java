@@ -3,6 +3,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.controller.NotificacoesEmpreendedorBean;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -94,6 +95,15 @@ public class Projeto implements java.io.Serializable {
         } catch (Exception e) {
         }
         return false;
+    }
+    
+        public String formatarDataEnvio() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (getDataEnvio() != null) {
+            return formato.format(getDataEnvio());
+        } else {
+            return "Plano não enviado.";
+        }
     }
 
     public Integer getIdProjeto() {

@@ -172,8 +172,8 @@
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de criação" style="text-align: center; width: 150px">
-                                <h:outputText value="#{projeto.dataCriacao}" />
+                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px">
+                                <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
                             <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
