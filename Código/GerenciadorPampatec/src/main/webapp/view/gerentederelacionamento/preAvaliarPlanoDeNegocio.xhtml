@@ -224,7 +224,7 @@
                                 <div class="col-md-4" id="">
                                     <b>Data de submissão <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="dataSubmit" class="form-control"  
-                                                 value="#{preAvaliarPlanoBean.projeto.dataEnvio}"
+                                                 value="#{preAvaliarPlanoBean.projeto.formatarDataEnvio()}"
                                                  disabled="true"
                                                  ></p:inputText>
                                     <br/>
