@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import java.io.Serializable;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -44,6 +45,19 @@ public class ComentarioDao extends Dao implements Serializable{
     public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
         return super.salvar(comentarioprojeto);
        
+    }
+    public ComentarioProjeto salvarRetornandoComentarioProjeto(ComentarioProjeto comentarioProjeto) {
+        try {
+            setTx(getSession().getTransaction());
+            getTx().begin();
+            comentarioProjeto = (ComentarioProjeto) getSession().merge(comentarioProjeto);
+            getTx().commit();
+            return comentarioProjeto;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            getSession().getTransaction().rollback();
+        }
+        return null;
     }
     
 //</editor-fold>

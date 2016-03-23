@@ -52,14 +52,14 @@ public class PreAvaliarPlanoBean implements Serializable {
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
-        mudaStatus();
 
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
-            comentarioProjeto.setProjeto(projeto);
+            comentarioProjeto.setProjeto(projeto); 
+            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
+            mudaStatus();
 
-            comentarioDao.salvar(comentarioProjeto);
-        }
+    }
     }
 
     public void mudaStatus() {
@@ -160,7 +160,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
-
+    
     public int getResultadoPreAvaliacao() {
         return resultadoPreAvaliacao;
     }
@@ -198,15 +198,24 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
-    public void terminarPreAvaliacao() {
-        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
-                    + "\t Status= " + projeto.getStatus()
-                    + "\t Status selecionado: " + getResultadoPreAvaliacao());
-//            projeto.setStatus(getResultadoPreAvaliacao());
-//            ProjetoDao projDao = new ProjetoDao();
-//            projDao.update(projeto);
+    public void mudaStatusComentarioProjetoFilanizar(){
+        
+        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
+            comentarioProjeto.setStatus(2);
         }
     }
 
+    public void terminarPreAvaliacao() {
+        if (!(getResultadoPreAvaliacao() == 0)) {
+            if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//                System.out.println("\t>>>> Entrou no terminarPreAvaliação! "
+//                        + "\t Status= " + projeto.getStatus()
+//                        + "\t Status selecionado: " + getResultadoPreAvaliacao());
+                projeto.setStatus(getResultadoPreAvaliacao());
+		mudaStatusComentarioProjetoFilanizar();				
+                ProjetoDao projDao = new ProjetoDao();
+                projDao.update(projeto);
+            }
+        }
+    }
 }
