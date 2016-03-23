@@ -111,7 +111,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             mudaStatusProjetoParaEmPreAvaliacao(projeto);
         }
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (Exception ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -235,7 +235,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     private void getBuscarPlanoDeNegocio() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
