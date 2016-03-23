@@ -32,23 +32,23 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/empreendedor/*</url-pattern>
+        <url-pattern>/view/empreendedor/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>EnviarProjetoFilter</filter-name>
-        <url-pattern>/faces/view/empreendedor/enviarProjeto.jsf</url-pattern>
+        <url-pattern>/view/empreendedor/enviarProjeto.jsf</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilterGerente</filter-name>
-        <url-pattern>/faces/view/gerentederelacionamento/*</url-pattern>
+        <url-pattern>/view/gerentederelacionamento/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CompletarCadastroFilter</filter-name>
-        <url-pattern>/faces/terminarCadastroEmpreendedor.jsf</url-pattern>
+        <url-pattern>/terminarCadastroEmpreendedor.jsf</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>RecuperarSenhaFilter</filter-name>
-        <url-pattern>/faces/recuperarSenha.jsf</url-pattern>
+        <url-pattern>/recuperarSenha.jsf</url-pattern>
     </filter-mapping>
     <listener>
         <description>HttpSessionListener</description>
@@ -65,7 +65,7 @@
     </servlet-mapping>
     <filter-mapping>
         <filter-name>PreAvaliarPlanoFiltro</filter-name>
-        <url-pattern>/faces/view/gerentederelacionamento/preAvaliarPlanoDeNegocio.jsf</url-pattern>
+        <url-pattern>/view/gerentederelacionamento/preAvaliarPlanoDeNegocio.jsf</url-pattern>
     </filter-mapping>
     <session-config>
         <session-timeout>

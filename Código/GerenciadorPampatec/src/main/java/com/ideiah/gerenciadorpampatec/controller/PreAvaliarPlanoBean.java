@@ -53,13 +53,13 @@ public class PreAvaliarPlanoBean implements Serializable {
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
+        
+        mudaStatus();
 
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
             comentarioProjeto.setProjeto(projeto);
-            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
-            mudaStatus();
-
+            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);          
         }
     }
 

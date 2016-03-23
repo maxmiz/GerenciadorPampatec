@@ -146,7 +146,7 @@ public class LoginFilterGerente implements Filter {
         if (user == null) {
             System.out.println("login invalido");
             String contextPath = ((HttpServletRequest) request).getContextPath();
-            ((HttpServletResponse) response).sendRedirect(contextPath + "loginEmpreendedor.jsf");
+            ((HttpServletResponse) response).sendRedirect(contextPath + "/loginEmpreendedor.jsf");
             
         } else {
             try{
