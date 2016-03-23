@@ -194,7 +194,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#//{projetoBean.enviarProjeto()}"></h:commandButton>
+                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{preAvaliarPlanoBean.terminarPreAvaliacao()}"></h:commandButton>
                             </div>
                         </div>
                     </div>
@@ -960,8 +960,7 @@
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação"
-                                                         action="#{preAvaliarPlanoBean.terminarPreAvaliacao()}">
+                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
