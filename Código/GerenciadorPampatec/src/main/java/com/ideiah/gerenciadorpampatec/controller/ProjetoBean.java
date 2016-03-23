@@ -1127,16 +1127,7 @@ public class ProjetoBean implements Serializable {
         }
         return selectedButton;
     }
-    
-    public String formatarDataEnvio(Projeto projeto) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        if (projeto.getDataEnvio() != null) {
-            return formato.format(projeto.getDataEnvio());
-        } else {
-            return "Plano não enviado.";
-        }
-    }
-    
+      
     /**
      * Verifica se o empreendedor detalhou seu cadastro, com formação e antecedentes,
      * se não tiver escrito nada ele retorna campo nao expecificado
