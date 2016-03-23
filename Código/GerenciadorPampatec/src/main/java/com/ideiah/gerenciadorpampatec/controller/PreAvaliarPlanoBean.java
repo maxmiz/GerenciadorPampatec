@@ -33,11 +33,23 @@ public class PreAvaliarPlanoBean implements Serializable {
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     private int resultadoPreAvaliacao;
+    private int contAnterior;
 
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         ComentarioDao comentarioDao = new ComentarioDao();
+        
+        //Gambiarra para resolver o problema do usuário deixar a página.
+        //Quando o usuário acessa a pagina de pré-avaliar ou atualiza a
+        //página, o construtor é chamado adionando um ao contador de acessos do projeto.
+        //Se ele sair pra qualquer página esse contrutor não será chamado.
+        //Com isso é possível identificar quando a página foi atualizada, pois
+        //o contador de acesso será incrementado quando isso acontecer.
+        //Para saber se o status deve ser mudado ou não é necessessário comparar
+        //o contador do projeto e o valor desse contador anteriormente(contAnterior). 
+        projeto.setContAcesso(projeto.getContAcesso()+1);
+        contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
         mudaStatus();
@@ -51,9 +63,11 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void mudaStatus() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
         ProjetoDao dao = new ProjetoDao();
         dao.update(projeto);
+        session.setAttribute("projetoSelecionado", projeto);
     }
 
     public void buscarComentarioProjeto(Projeto projetoSelecionado) {
@@ -91,13 +105,15 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void mudaStatusRedirecionaLista() {
-        mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        try {
+        //Gambiarra para resolver o problema do usuário deixar a página
+        if (contAnterior == projeto.getContAcesso()) {
+            mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        }
+        try{
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
-        } catch (IOException ex) {
+        }catch (Exception ex){
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void mudaStatusFazLogout() {
