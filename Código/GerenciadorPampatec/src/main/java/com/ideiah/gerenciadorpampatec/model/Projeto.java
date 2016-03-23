@@ -45,10 +45,12 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
+    private int contAcesso;
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
 
     public Projeto() {
         //pegaObserver();
+        contAcesso = 0;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
@@ -58,7 +60,7 @@ public class Projeto implements java.io.Serializable {
         this.planofinanceiro = planofinanceiro;
         this.produtoouservico = produtoouservico;
         this.participacaoacionaria = participacaoacionaria;
-        
+        contAcesso = 0;
         pegaObserver();
     }
 
@@ -79,6 +81,7 @@ public class Projeto implements java.io.Serializable {
         this.dataCriacao = dataCriacao;
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
+        contAcesso = 0;
     }
 
     private void pegaObserver() {
@@ -350,6 +353,20 @@ public class Projeto implements java.io.Serializable {
      */
     public void setComentarioProjeto(Set<ComentarioProjeto> comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
+    }
+
+    /**
+     * @return the contAcesso
+     */
+    public int getContAcesso() {
+        return contAcesso;
+    }
+
+    /**
+     * @param contAcesso the contAcesso to set
+     */
+    public void setContAcesso(int contAcesso) {
+        this.contAcesso = contAcesso;
     }
 
 }
