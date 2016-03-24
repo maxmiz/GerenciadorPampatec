@@ -29,15 +29,25 @@ public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession session = se.getSession();
+        mudaStatusProjetoGerente(session);
+    }
+    
+    /**
+     * 
+     * @param session 
+     */
+    public void mudaStatusProjetoGerente(HttpSession session){
         GerenteRelacionamento gdr = (GerenteRelacionamento) session.getAttribute("gerente");
-
+        Projeto projeto;
+        
         if (gdr != null) {
-            Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
+            projeto = (Projeto) session.getAttribute("projetoSelecionado");
             if ((projeto != null) && (projeto.getStatus() == Projeto.SENDO_AVALIADO)) {
                 projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
                 atualizaStatusdProjeto(projeto);
             }
         }
+        session.removeAttribute("projetoSelecionado");
     }
 
     /**
