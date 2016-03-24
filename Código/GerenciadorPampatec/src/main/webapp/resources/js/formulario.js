@@ -439,8 +439,8 @@ function carregaPagina() {
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
 
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-            mostraDIV('div_apresentacao_formulario');
+            //botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV2('div_apresentacao_formulario');
 
             etapaAtualDoWorkflow = "etapa1";
 
@@ -709,11 +709,17 @@ function mostraDIV(referencia) {
 /**
  * @description Esta função é chamada para validar que quando o plano está em pre avalaição os empreendedores poderão só Revisar o plano.
  * @param {type} referencia
- * @returns {undefined}
  */
 function mostraDIV2(referencia) {
+    // se andamento está em elaboração
     if (andamentoProjeto === 0) {
-        mostraDIV(referencia);
+        // se o empreendedor é correspondente
+        if (tipoEmpreededor) {
+            mostraDIV(referencia);
+        } else {
+            // se empreendedor não é correspondente, apenas mostra plano para revisar
+            mostraDIV('div_revisar_plano');
+        }
     } else {
         mostraDIV('div_revisar_plano');
     }
