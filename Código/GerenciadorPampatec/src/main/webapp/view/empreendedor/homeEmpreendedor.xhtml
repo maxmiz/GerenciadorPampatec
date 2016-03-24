@@ -155,10 +155,10 @@
 
                 <div class="col-md-2">
                     <h:commandLink rendered="#{projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/>Novo plano</label>
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-3x"></i> <br/>Novo Plano</label>
                     </h:commandLink>
                     <h:commandLink style="margin-left: " rendered="#{!projetoBean.verificaCadastroProjeto()}" class="btn btn-success btn-lg" title="Meus planos de negócio" action="#{loginBean.enviaBuscaProjeto()}">
-                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/>Meus planos</label>
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br/>Meus Planos</label>
                     </h:commandLink>
                 </div>
 
@@ -195,8 +195,10 @@
             <div class="col-md-10"></div>
             <!-- FIM DA SEÇÃO DE APRESENTAÇÃO DOS FORMULÁRIOS -->
 
+            <!--
             <p:poll interval="3" update="barraNotificacoes"/>
             <p:poll interval="3" update="tabelaNotificacoes"/>
+            -->
         </h:form>
     </body>
 </html>
