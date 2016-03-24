@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.Dao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -526,7 +527,10 @@ public class ProjetoBean implements Serializable {
         secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor emp;
         emp = (Empreendedor) secao.getAttribute("empreendedor");
-        System.out.println(">>> Existem projetos? \t "+emp.getProjetos().isEmpty());
+
+        EmpreendedorDao empreendedorDao = new EmpreendedorDao();
+        emp = empreendedorDao.buscar(emp.getIdUsuario());
+
         return emp.getProjetos().isEmpty();
     }
 
