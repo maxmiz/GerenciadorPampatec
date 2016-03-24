@@ -120,7 +120,7 @@
                     campo.setAttribute("class", "form-control campoFeedBackOn");
                 }
             }
-  
+
             document.onmouseover = function () {
                 //O cara ta clicando dentro da página que a gente usa
                 //esse método previne que mude a hash quando navegar dentro do projeto
@@ -148,7 +148,58 @@
             function botaoVoltar() {
                 alert("Enrrtoiofd");
             }
+
+            window.addEventListener("unload", function (e) {
+                return "it is beforeunload event";
+            });
         </script>
+
+    </h:head>
+    <h:body onunload="botaoVoltar()">
+
+        <!-- Início do menu superior -->
+        <h:form id="locovelho">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                    </div>
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaInicio()}" />       
+
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">
+                                        <h:outputText value="1"></h:outputText>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <h:commandLink value="Avaliar Planos de Negócio" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}"/>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink  value="Voltar"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{preAvaliarPlanoBean.mudaStatusFazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </h:form>
+        <!-- Fim do menu superior -->
 
         <h:form id="formulario_comentarpreavalizar" onsubmit="precisaSalvar = false;">
 
