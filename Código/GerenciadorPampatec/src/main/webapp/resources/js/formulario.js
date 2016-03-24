@@ -495,7 +495,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
-            
+
 //      FORMALIZACAO = 3;
         case 3:
             etapa5.innerHTML = "<b>Incubação</b>";
@@ -511,7 +511,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
 
             break;
-            
+
 //      INCUBACAO = 4;
         case 4:
 
@@ -706,7 +706,18 @@ function mostraDIV(referencia) {
         }
     }
 }
-
+/**
+ * @description Esta função é chamada para validar que quando o plano está em pre avalaição os empreendedores poderão só Revisar o plano.
+ * @param {type} referencia
+ * @returns {undefined}
+ */
+function mostraDIV2(referencia) {
+    if (andamentoProjeto === 0) {
+        mostraDIV(referencia);
+    } else {
+        mostraDIV('div_revisar_plano');
+    }
+}
 /**
  * @description Coloca foco na etapa (círculo com nome e número) em que o usuário está visualizando no workflow
  * @param {type} idDoItem
@@ -771,7 +782,7 @@ function exibeCampoOutro() {
  * @description Função para imprimir o conteúdo da página atual
  * @returns {undefined}
  */
-function imprimirPaginaHtml(){
+function imprimirPaginaHtml() {
     document.window.print();
 }
 
