@@ -522,8 +522,11 @@ public class ProjetoBean implements Serializable {
      * @return true se o empreendedor não tem projetos cadastrados.
      */
     public boolean verificaCadastroProjeto() {
-        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+        HttpSession secao;
+        secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp;
+        emp = (Empreendedor) secao.getAttribute("empreendedor");
+        System.out.println(">>> Existem projetos? \t "+emp.getProjetos().isEmpty());
         return emp.getProjetos().isEmpty();
     }
 
