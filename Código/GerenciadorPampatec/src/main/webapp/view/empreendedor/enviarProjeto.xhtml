@@ -745,7 +745,7 @@
 
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" value="#{projetoBean.retornaListaCustoFixo()}">
+                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoFixo()}">
 
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
@@ -1183,7 +1183,7 @@
 
                                 <p><h1><b>CUSTOS FIXOS</b></h1></p>
 
-                                <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoFixo}">
+                                <p:dataTable id="revisao_custoFixo" var="custo" rowKey="#{custo.idCusto}" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.listaCustoFixo}">
 
                                     <p:column headerText="Descrição ">
                                         <h:outputText value="#{custo.descricao}" />
@@ -1201,7 +1201,7 @@
 
                                 <br/>     
                                 <!--<div class="col-md-6 text-center" align="center" >-->
-                                <p:dataTable class="text-center " id="colunaValorTotalFixoVisualizar" editable="false" var="custofixo"  
+                                <p:dataTable class="text-center " id="colunaValorTotalFixoVisualizar" editable="false" var="custofixo" emptyMessage="Nenhum registro encontrado."
                                              value="#{projetoBean.calcularValorColunaCustoFixo()}" style="width: 40%; margin-left: auto; margin-right: auto">
 
                                     <p:column  headerText="Projeção de Custos Fixos Total"> 
@@ -1212,7 +1212,7 @@
                                 <!--</div>-->
 
                                 <p><h1><b>CUSTOS VARIÁVEIS</b></h1></p>
-                                <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{projetoBean.listaCustoVariavel}">
+                                <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.listaCustoVariavel}">
 
                                     <p:column headerText="Descrição ">
                                         <h:outputText value="#{custo.descricao}" />
