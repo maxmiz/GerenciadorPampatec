@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.Dao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -522,8 +523,14 @@ public class ProjetoBean implements Serializable {
      * @return true se o empreendedor não tem projetos cadastrados.
      */
     public boolean verificaCadastroProjeto() {
-        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+        HttpSession secao;
+        secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp;
+        emp = (Empreendedor) secao.getAttribute("empreendedor");
+
+        EmpreendedorDao empreendedorDao = new EmpreendedorDao();
+        emp = empreendedorDao.buscar(emp.getIdUsuario());
+
         return emp.getProjetos().isEmpty();
     }
 
