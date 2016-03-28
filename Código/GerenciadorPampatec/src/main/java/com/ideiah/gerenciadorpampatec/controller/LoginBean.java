@@ -31,9 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ *  <p>Classe usada para realizar login do empreendedor
+ * no sistema</p>
  *
- * @author Augusto César Görgen classe usada para realizar login do empreendedor
- * no sistema
+ * @author Augusto César Görgen 
  */
 @ManagedBean
 @SessionScoped
@@ -50,7 +51,7 @@ public class LoginBean {
     private PreAvaliarPlanoBean preAvaliarBean;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
-    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 
     public boolean submit() {
         try {
@@ -71,8 +72,8 @@ public class LoginBean {
 
     public void fazLogout() {
 
-        session.removeAttribute("empreendedor");
-        session.removeAttribute("projetoSelecionado");
+        getSession().removeAttribute("empreendedor");
+        getSession().removeAttribute("projetoSelecionado");
         MudarNome(null);
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
@@ -162,7 +163,7 @@ public class LoginBean {
             if (gerente.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-                session.setAttribute("gerente", gerente);
+                getSession().setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
 
                 try {
@@ -225,7 +226,7 @@ public class LoginBean {
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-                session.setAttribute("empreendedor", empreendedor);
+                getSession().setAttribute("empreendedor", empreendedor);
                 this.setNome(empreendedor.getNome());
                 try {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
@@ -409,5 +410,19 @@ public class LoginBean {
         }else{
             return false;
         }
+    }
+
+    /**
+     * @return the session
+     */
+    public HttpSession getSession() {
+        return session;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(HttpSession session) {
+        this.session = session;
     }
 }

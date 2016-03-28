@@ -80,4 +80,9 @@
         <filter-name>CompletarCadastroFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
     </filter>
+    
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/loginEmpreendedor.jsf</location>
+    </error-page>
 </web-app>
