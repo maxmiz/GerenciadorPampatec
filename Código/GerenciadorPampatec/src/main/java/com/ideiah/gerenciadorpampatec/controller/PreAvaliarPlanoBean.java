@@ -83,7 +83,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Método para verificar qual o tipo de estégio a empressa sem encontra
+     * Método para verificar qual o tipo de estégio a empressa se encontra.
      *
      * @return
      */
