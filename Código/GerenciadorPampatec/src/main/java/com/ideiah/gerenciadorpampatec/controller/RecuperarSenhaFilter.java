@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jhonatan Moura
  */
-@WebFilter(filterName = "RecuperarSenhaFilter", urlPatterns = {"/faces/recuperarSenha.xhtml"})
+@WebFilter(filterName = "RecuperarSenhaFilter", urlPatterns = {"/faces/recuperarSenha.jsf"})
 public class RecuperarSenhaFilter implements Filter {
     
     private static final boolean debug = true;
@@ -123,17 +123,17 @@ public class RecuperarSenhaFilter implements Filter {
             System.out.println("Entrou");
             session.removeAttribute("empreendedor");
             session.setAttribute("empreendedor", emp);
-            request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
+            request.getRequestDispatcher("/faces/recuperarSenha.jsf").forward(request, response);
             empreendedorEmail.apagarDoBanco(empreendedorEmail);
         }else if((emp2 !=  null)){
             if(emp2.getIdUsuario()!= null){
-                request.getRequestDispatcher("/faces/recuperarSenha.xhtml").forward(request, response);
+                request.getRequestDispatcher("/faces/recuperarSenha.jsf").forward(request, response);
             }else{
-                request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
+                request.getRequestDispatcher("/faces/loginEmpreendedor.jsf").forward(request, response);
             }
         }
         else{
-            request.getRequestDispatcher("/faces/loginEmpreendedor.xhtml").forward(request, response);
+            request.getRequestDispatcher("/faces/loginEmpreendedor.jsf").forward(request, response);
         }
         
     }

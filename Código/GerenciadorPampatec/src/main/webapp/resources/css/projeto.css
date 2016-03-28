@@ -3,6 +3,11 @@
     Created on : 02/09/2015, 02/09/2015 17:43:14
     Author     : Pedro
 */
+
+body{
+    width: 98%;
+}
+
 .mensagemErro{
     background-color: #fc2f2f;
     font-weight: bold;
@@ -329,4 +334,11 @@ fieldset[disabled] .autoCompletar input {
 
 .btn-danger {
     background-color: red;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
 }

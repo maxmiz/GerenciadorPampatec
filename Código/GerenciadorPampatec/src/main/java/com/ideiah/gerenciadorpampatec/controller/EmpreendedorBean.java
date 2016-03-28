@@ -143,7 +143,7 @@ public class EmpreendedorBean {
                         LoginBean.MudarUser(empreendedor.getEmail());
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -166,7 +166,7 @@ public class EmpreendedorBean {
             empreendedor.atualizarEmpreendedor(empreendedor);
 
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.jsf");
 
             } catch (IOException ex) {
                 Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -210,7 +210,7 @@ public class EmpreendedorBean {
                         empreendedor.setBairro(null);
                         empreendedor.setComplemento(null);
                         empreendedor.setExperiencia(null);
-                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }

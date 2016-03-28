@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
@@ -85,7 +86,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         atualizarProjetoSessao();
         listaProjetos = buscaProjetoPorStatus();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,12 +150,22 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
          * Gambiarra para resolver o problema do Ajax+Filtro.
          */
         if (projSelec != null) {
-            projSelec.setStatus(Projeto.SENDO_AVALIADO);
             ProjetoDao dao = new ProjetoDao();
-            dao.update(projSelec);
-            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-            session.setAttribute("projetoSelecionado", projSelec);
-            getPreAvaliarProjeto();
+            /**
+             * Nesse if de baixo ele garante que 2 gerentes não poderão avaliar
+             * o mesmo plano ao mesmo tempo.PS: Somente se eles clicarem para
+             * avaliar no mesmo tempo, bemm no mesmo tempo, tipo juntos, se
+             * tiver diferença de meio segundo já não cai no if de baixo.
+             * 
+             */
+            if (dao.buscar(projSelec.getIdProjeto()).getStatus() != Projeto.SENDO_AVALIADO) {
+                projSelec.setStatus(Projeto.SENDO_AVALIADO);
+                dao.update(projSelec);
+                HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                session.setAttribute("projetoSelecionado", projSelec);
+                getPreAvaliarProjeto();
+            }
+
         }
     }
 
@@ -163,7 +174,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     private void getPreAvaliarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("preAvaliarPlanoDeNegocio.jsf");
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }

@@ -106,7 +106,7 @@ public class EnviarProjetoFilter implements Filter {
         Projeto projeto = (Projeto) secao.getAttribute("projetoSelecionado");
         
         if(projeto == null){
-            request.getRequestDispatcher("paginaBuscaPlanoDeNegocio.xhtml").forward(request, response);
+            request.getRequestDispatcher("paginaBuscaPlanoDeNegocio.jsf").forward(request, response);
         }else{
             try{
                 chain.doFilter(request, response);

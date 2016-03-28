@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -22,7 +23,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author GUTO
+ * @author Ideiah
  */
 @ManagedBean
 @ViewScoped
@@ -39,7 +40,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         ComentarioDao comentarioDao = new ComentarioDao();
-        
+
         //Gambiarra para resolver o problema do usuário deixar a página.
         //Quando o usuário acessa a pagina de pré-avaliar ou atualiza a
         //página, o construtor é chamado adionando um ao contador de acessos do projeto.
@@ -48,18 +49,18 @@ public class PreAvaliarPlanoBean implements Serializable {
         //o contador de acesso será incrementado quando isso acontecer.
         //Para saber se o status deve ser mudado ou não é necessessário comparar
         //o contador do projeto e o valor desse contador anteriormente(contAnterior). 
-        projeto.setContAcesso(projeto.getContAcesso()+1);
+        projeto.setContAcesso(projeto.getContAcesso() + 1);
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
 
+        mudaStatus();
+
         if (comentarioProjeto == null) {
             comentarioProjeto = new ComentarioProjeto();
-            comentarioProjeto.setProjeto(projeto); 
+            comentarioProjeto.setProjeto(projeto);
             comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
-            mudaStatus();
-
-    }
+        }
     }
 
     public void mudaStatus() {
@@ -71,9 +72,6 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void buscarComentarioProjeto(Projeto projetoSelecionado) {
-
-        ComentarioDao comentDao = new ComentarioDao();
-
         for (ComentarioProjeto comentarioProjeto : projetoSelecionado.getComentarioProjeto()) {
             if (comentarioProjeto.getStatus() == ComentarioProjeto.EM_ANDAMENTO) {
                 this.comentarioProjeto = comentarioProjeto;
@@ -105,13 +103,15 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void mudaStatusRedirecionaLista() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         //Gambiarra para resolver o problema do usuário deixar a página
         if (contAnterior == projeto.getContAcesso()) {
             mudaStatusProjetoParaEmPreAvaliacao(projeto);
+            session.removeAttribute("projetoSelecionado");
         }
-        try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.xhtml");
-        }catch (Exception ex){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
+        } catch (Exception ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -140,6 +140,72 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
+     *
+     * @param projSelect
+     */
+    public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
+
+        if (projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            projSelect.setStatus(Projeto.SENDO_AVALIADO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
+    }
+
+    /**
+     *
+     * @param projSelect
+     */
+    public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect) {
+        if (projSelect.getStatus() == Projeto.SENDO_AVALIADO) {
+            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(projSelect);
+        }
+    }
+
+    /**
+     * <p>
+     * Método que finaliza a avaliação do projeto, muda o seu status, bem como o
+     * dos comentários.</p>
+     */
+    public void terminarPreAvaliacao() {
+        if (getResultadoPreAvaliacao() != 0) {
+            if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+                projeto.setStatus(getResultadoPreAvaliacao());
+                mudaStatusComentarioProjetoFinalizar();
+                ProjetoDao projDao = new ProjetoDao();
+                projDao.update(projeto);
+                getBuscarPlanoDeNegocio();
+            }
+        }
+    }
+
+    /**
+     * <p>
+     * Método para atualizar o status dos comentários ao finalizar a avaliação.
+     * </p>
+     */
+    private void mudaStatusComentarioProjetoFinalizar() {
+        if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
+            comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+        }
+    }
+
+    /**
+     * <p>
+     * Redireciona para a página de lista de Planos de Negócio.
+     * </p>
+     */
+    private void getBuscarPlanoDeNegocio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    /**
      * @return the projeto
      */
     public Projeto getProjeto() {
@@ -160,7 +226,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         this.comentarioProjeto = comentarioProjeto;
     }
-    
+
     public int getResultadoPreAvaliacao() {
         return resultadoPreAvaliacao;
     }
@@ -176,6 +242,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
+<<<<<<< HEAD
 
     /**
      *
@@ -223,4 +290,6 @@ public class PreAvaliarPlanoBean implements Serializable {
      //   resultadoPreAvaliacao 
         
     }
+=======
+>>>>>>> b9e9ae5cc753b1da8acdf450f28976bd8dc86ff2
 }
