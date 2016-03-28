@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
@@ -14,15 +15,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Claudio
  */
+@Ignore
 public class PreAvaliarPlanoBeanTest {
 
     PreAvaliarPlanoBean instance;
     Projeto projeto;
+    ComentarioDao comentDao;
     ComentarioProjeto comentarioProjeto;
     ProjetoDao projDao;
 
@@ -43,28 +47,36 @@ public class PreAvaliarPlanoBeanTest {
 
         projeto = new Projeto();
         projDao = new ProjetoDao();
-        
+        comentDao = new ComentarioDao();
         projeto = projDao.buscar(1);
-        
+        comentarioProjeto = comentDao.buscar(1);
         instance = new PreAvaliarPlanoBean(projeto);
 
     }
 
     @After
     public void tearDown() {
+        projeto = null;
+        projDao = null;
+        comentDao = null;
+        projeto = null;
+        comentarioProjeto = null;
+        instance = null;
     }
-
-   
 
     /**
      * Test of buscarComentarioProjeto method, of class PreAvaliarPlanoBean.
      */
     @Test
     public void testBuscarComentarioProjeto() {
+        //ajustando variáveis de teste
+
+//        System.out.println("projeto tal: " + comentarioProjeto.getProjeto().getNome());
         System.out.println("buscar Comentario do Projeto");
         instance.buscarComentarioProjeto(projeto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("intance nome projeto: " + instance.getComentarioProjeto());
+
+        assertEquals(comentarioProjeto.getIdcomentario(), instance.getComentarioProjeto().getIdcomentario());
     }
 
     /**
@@ -72,61 +84,18 @@ public class PreAvaliarPlanoBeanTest {
      */
     @Test
     public void testVerificaEstagioEvolucao() {
-        System.out.println("verificaEstagioEvolucao");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        String expResult = "";
-        String result = instance.verificaEstagioEvolucao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        String esperado = "Projeto Básico";
+
+        assertEquals(esperado, projeto.getProdutoouservico().getEstagioEvolucao());
+
     }
 
-    /**
-     * Test of mudaStatusRedirecionaInicio method, of class PreAvaliarPlanoBean.
-     */
     @Test
-    public void testMudaStatusRedirecionaInicio() {
-        System.out.println("mudaStatusRedirecionaInicio");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.mudaStatusRedirecionaInicio();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    public void testVerificaEstagioFalso() {
+        String esperado = "Idéia Básica";
 
-    /**
-     * Test of mudaStatusRedirecionaLista method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testMudaStatusRedirecionaLista() {
-        System.out.println("mudaStatusRedirecionaLista");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.mudaStatusRedirecionaLista();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of mudaStatusFazLogout method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testMudaStatusFazLogout() {
-        System.out.println("mudaStatusFazLogout");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.mudaStatusFazLogout();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of salvar method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testSalvar() {
-        System.out.println("salvar");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.salvar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(esperado, projeto.getProdutoouservico().getEstagioEvolucao());
     }
 
     /**
@@ -134,13 +103,30 @@ public class PreAvaliarPlanoBeanTest {
      * PreAvaliarPlanoBean.
      */
     @Test
-    public void testMudaStatusProjetoParaSendoAvaliado() {
-        System.out.println("mudaStatusProjetoParaSendoAvaliado");
-        Projeto projSelect = null;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.mudaStatusProjetoParaSendoAvaliado(projSelect);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testMudaStatusProjetoParaSendoAvaliadoFalse() {
+
+        System.out.println(projeto.getStatusString(projeto.getStatus()));
+
+        int statusProjeto = Projeto.EM_PRE_AVALIACAO;
+
+        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
+
+        assertFalse("Verifica se o status do projeto é mudado de Pré Avaliacao para Sendo avaliado deve ser False", statusProjeto == instance.getProjeto().getStatus());
+
+        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
+
+    }
+
+    @Test
+    public void testMudaStatusProjetoParaSendoAvaliadoTrue() {
+
+        System.out.println(projeto.getStatusString(projeto.getStatus()));
+
+        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
+
+        assertTrue("Verifica se o status do projeto é: Sendo Avaliado deve ser True", Projeto.SENDO_AVALIADO == instance.getProjeto().getStatus());
+
+        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
     }
 
     /**
@@ -148,133 +134,26 @@ public class PreAvaliarPlanoBeanTest {
      * PreAvaliarPlanoBean.
      */
     @Test
-    public void testMudaStatusProjetoParaEmPreAvaliacao() {
-        System.out.println("mudaStatusProjetoParaEmPreAvaliacao");
-        Projeto projSelect = null;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.mudaStatusProjetoParaEmPreAvaliacao(projSelect);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testMudaStatusProjetoParaEmPreAvaliacaoTrue() {
+        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
+        
+        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
+        
+        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        
+        assertTrue("Verifica se o status do projeto é: Em Pre Avaliação Deve ser True", Projeto.EM_PRE_AVALIACAO == projeto.getStatus());
+        
     }
-
-    /**
-     * Test of terminarPreAvaliacao method, of class PreAvaliarPlanoBean.
-     */
     @Test
-    public void testTerminarPreAvaliacao() {
-        System.out.println("terminarPreAvaliacao");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.terminarPreAvaliacao();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getProjeto method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testGetProjeto() {
-        System.out.println("getProjeto");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        Projeto expResult = null;
-        Projeto result = instance.getProjeto();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setProjeto method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testSetProjeto() {
-        System.out.println("setProjeto");
-        Projeto projeto = null;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.setProjeto(projeto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getComentarioProjeto method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testGetComentarioProjeto() {
-        System.out.println("getComentarioProjeto");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        ComentarioProjeto expResult = null;
-        ComentarioProjeto result = instance.getComentarioProjeto();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setComentarioProjeto method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testSetComentarioProjeto() {
-        System.out.println("setComentarioProjeto");
-        ComentarioProjeto comentarioProjeto = null;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.setComentarioProjeto(comentarioProjeto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getResultadoPreAvaliacao method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testGetResultadoPreAvaliacao() {
-        System.out.println("getResultadoPreAvaliacao");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        int expResult = 0;
-        int result = instance.getResultadoPreAvaliacao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setResultadoPreAvaliacao method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testSetResultadoPreAvaliacao() {
-        System.out.println("setResultadoPreAvaliacao");
-        int resultadoPreAvaliacao = 0;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.setResultadoPreAvaliacao(resultadoPreAvaliacao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLoginBean method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testGetLoginBean() {
-        System.out.println("getLoginBean");
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        LoginBean expResult = null;
-        LoginBean result = instance.getLoginBean();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setLoginBean method, of class PreAvaliarPlanoBean.
-     */
-    @Test
-    public void testSetLoginBean() {
-        System.out.println("setLoginBean");
-        LoginBean loginBean = null;
-        PreAvaliarPlanoBean instance = new PreAvaliarPlanoBean();
-        instance.setLoginBean(loginBean);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testMudaStatusProjetoParaEmPreAvaliacaoFalse() {
+        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
+        
+        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
+        
+        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        
+        assertFalse("Verifica se o status do projeto é: Em Pre Avaliação, Deve ser falso", Projeto.SENDO_AVALIADO == projeto.getStatus());
+        
     }
 
 }
