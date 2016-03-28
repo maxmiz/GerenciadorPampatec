@@ -1,0 +1,919 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <h:outputScript library="js" name="formulario.js"/>
+
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
+        </f:facet>
+
+        <h:outputScript library="js" name="formulario.js" />
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!--<script src="C:\Users\GUTO\Documents\gerenciador-pampatec\Código\GerenciadorPampatec\src\main\webapp\resources\js\bootstrap.min.js"></script>-->
+
+        <title>Resivar Plano de Negócio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+                body { background: #fff; }
+            }
+
+            .pampaTec {
+                background-color: #00A859
+            }
+            .navbar-default {
+                background-color: #00A859;
+            }
+            .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+                background-color: #00A859;
+            }
+            .dropdown-menu > .active > a,
+            .dropdown-menu > .active > a:hover,
+            .dropdown-menu > .active > a:focus {
+                background-color: #00A859;
+            }
+            .btn-success {
+                background-color: #00A859;
+            }
+
+            body {
+                color: #727476;
+            }
+
+        </style>
+
+    </h:head>
+    <h:body onunload="botaoVoltar()">
+
+        <!-- Início do menu superior -->
+        <h:form id="locovelho">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-2">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                    </div>
+                    <div class="col-md-10">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <h:commandLink value="Início" action="#{revisarPlanoDeNegocioBean.mudaStatusRedirecionaInicio()}" />       
+
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                                    <span class="badge">
+                                        <h:outputText value="1"></h:outputText>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <h:commandLink value="Avaliar Planos de Negócio" action="#{revisarPlanoDeNegocioBean.mudaStatusRedirecionaInicio()}"/>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink  value="Voltar"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </h:form>
+        <!-- Fim do menu superior -->
+
+        <!-- Script para exibição da info do botão SALVAR -->
+        <script>
+
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
+
+            function confirmacaoDeEnvio() {
+                $("#modalInfoDeEnvio").modal();
+            }
+
+            function mostrarFeedBack(id) {
+                var campo = document.getElementById(id);
+                if ($(campo).hasClass("form-control campoFeedBackOn")) {
+                    $(campo).fadeOut(900);
+                    campo.setAttribute("class", "form-control campoFeedBack");
+                } else {
+                    $(campo).fadeIn(900);
+                    campo.setAttribute("class", "form-control campoFeedBackOn");
+                }
+            }
+  
+            document.onmouseover = function () {
+                //O cara ta clicando dentro da página que a gente usa
+                //esse método previne que mude a hash quando navegar dentro do projeto
+                //Utilizado no OnHashChange ali em baixo.
+                window.innerDocClick = true;
+            };
+
+            document.onmouseleave = function () {
+                //O cara tirou o mouse do documento, então agora a gente corre o
+                //risco dele clicar no botão voltar.
+                window.innerDocClick = false;
+            };
+
+
+            window.onhashchange = function () {
+                if (window.innerDocClick) {
+                    //Nós mudamos o hash, então não faz diferença.
+                } else {
+                    //O botão de voltar foi clicado
+                    botaoVoltar();
+                }
+            };
+
+
+            function botaoVoltar() {
+                alert("Enrrtoiofd");
+            }
+        </script>
+
+        <h:form id="formulario_comentarpreavalizar" onsubmit="precisaSalvar = false;">
+
+            <p:remoteCommand name="botaoVoltar" actionListener="#{revisarPlanoDeNegocioBean.mudaStatusRedirecionaInicio()}" />
+            <!-- Fim do Script de informação -->
+
+            <!-- Início dos MODAIS exibidos no formulário -->
+
+            <!-- Modal com a Informação do botão SALVAR -->
+            <div class="modal fade" id="modalInfoSalvar" role="dialog">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Salvar Projeto</h4>
+                        </div>
+                        <div class="modal-body">
+                            Ao clicar no botão <strong><u>Salvar Revisão Pós Pré-Avaliação</u></strong> os campos preenchidos ficam salvos, 
+                            para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
+                            <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Modal de informação do botão Salvar -->
+
+            <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
+            <div class="modal fade" id="modalInfoDeEnvio" role="dialog" >
+                <div class="modal-dialog">
+
+                    <!-- Conteúdo do Modal -->
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Salvar Projeto</h4>
+                            </div>
+                            <div class="modal-body">
+                                Ao clicar no botão <strong><u>Terminar Revisão Pós Pré-Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{projetoBean.enviarProjeto()}"></h:commandButton>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Fim do Modal de informação do botão Salvar -->
+
+            <!-- Fim dos MODAIS exibidos no formulário -->
+
+            <div class="col-md-1"> </div>
+
+            <div class="col-md-10 form-horizontal well bs-component">
+                <h1>Revisar Plano de Negócio</h1>
+                <h:outputText id="tituloMensagem"></h:outputText>
+                <h:message for="tituloMensagem" errorClass="mensagemErro"></h:message>
+                <br/>
+                <br/>
+                <div>
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Informações</a></li>
+                        <li class=""><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
+                        <li class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
+                        <li class=""><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
+                        <li class=""><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
+                        <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
+                        <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliação</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content" >
+
+                        <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto Referente ao CONTATO -->
+
+                        <div class="tab-pane fade active in" id="formParte01" >
+
+                            <div id="formularioParte01">
+                                <legend id="subTitulo" >Informações Básicas</legend>
+                                <div class="col-md-12">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="">
+                                    <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="empresaProjeto" placeholder="" class="form-control" 
+                                                 value="#{revisarPlanoDeNegocioBean.projeto.nome}"
+                                                 disabled="true"
+                                                 >
+                                    </p:inputText>
+                                    <h:message class="mensagemErro" for="empresaProjeto"/>
+                                    <br/>
+                                </div>
+
+                                <div class="col-md-4" id="">
+                                    <b>Data de submissão <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="dataSubmit" class="form-control"  
+                                                 value="#{revisarPlanoDeNegocioBean.projeto.formatarDataEnvio()}"
+                                                 disabled="true"
+                                                 ></p:inputText>
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-4" id="">
+                                    <b>Edital <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <p:inputText id="edital" class="form-control"  
+                                                 value="#{revisarPlanoDeNegocioBean.projeto.edital}"
+                                                 disabled="true"
+                                                 ></p:inputText>
+                                    <br/>
+                                </div>
+
+                                <div class="col-md-12" id="">
+                                    <p:dataTable var="empreendedor"  styleClass="tabelaEmpreendedores" value="#{revisarPlanoDeNegocioBean.projeto.empreendedores}">
+                                        <f:facet name="header">
+                                            Empreendedores
+                                        </f:facet>
+                                        <p:column headerText="Nome">
+                                            <h:outputText value="#{empreendedor.nome}" />
+                                        </p:column>
+                                        <p:column headerText="CPF">
+                                            <h:outputText value="#{empreendedor.cpf}" />
+                                        </p:column>
+                                        <p:column headerText="E-Mail">
+                                            <h:outputText value="#{empreendedor.email}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-3"></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Fim da primeira parte do formulário -->
+
+                        <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto Referente ao NEGÓCIO -->
+
+                        <div class="tab-pane fade" id="formParte02">
+
+                            <div id="formularioParte02">
+                                <legend>O Negócio</legend>
+                                <div class="col-md-12">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 16.58%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco" id="">
+                                    <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                    Para quem criamos valor? Quais são os nossos clientes mais importantes? 
+                                    <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira o segmento de clientes antes de enviar" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
+
+                                    </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i>Comentários</button> 
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <h:inputTextarea class="form-control campoFeedBack"  disabled="true" id="propostaDeValor1" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        </h:inputTextarea>
+                                        <h:message class="mensagemErro" for="segmentoDeClientes"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco" id="">
+                                    <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                    Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
+                                    <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira a proposta de valor antes de enviar"  
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     >
+
+                                    </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <h:inputTextarea class="form-control campoFeedBack" disabled="true" id="propostaDeValor2" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor}">
+                                        </h:inputTextarea>
+                                        <h:message class="mensagemErro" for="propostaDeValor"/>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 espaco" id="">
+                                    <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                    Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
+                                    <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"  
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     >
+
+                                    </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="atividadesChave"/>
+                                    <br/>
+                                </div>
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4" align="center">
+                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                     ></h:commandButton>
+                                    <h:message for="botaoSalvar2"></h:message>
+                                </div>
+                                <div class="col-md-4  text-right"></div>
+                            </div>
+
+                        </div>
+
+                        <!-- Fim da segunda parte do formulário -->
+
+                        <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto Referente a ANÁLISE DE MERCADO -->
+
+                        <div class="tab-pane fade" id="formParte03">
+
+                            <div id="formularioParte03">
+                                <legend id="subTitulo">Análise de Mercado</legend>
+                                <div class="col-md-12 espaco">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 33.16%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                    Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
+                                                     id="relacoComClientes">                 
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor4" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="relacoComClientes"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                    Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
+                                                     id="parceriasChaves">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor5" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="parceriasChaves"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                    Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     id="canais"  value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor6" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="canais"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Recursos principais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                    Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     id="recursosPrincipais"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor7" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="recursosPrincipais"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Concorrentes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
+                                    Quem são nossos concorrentes? como trabalham?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     id="concorrentes"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}"
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor8" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="concorrentes"/>
+                                    <br />
+                                </div>
+
+                                <div class="col-md-4"><br /></div>
+                                <div class="col-md-4" align="center">
+                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                     ></h:commandButton>
+                                    <h:message for="botaoSalvar3"></h:message>
+                                </div>
+                                <div class="col-md-4 text-right"></div>
+                            </div>
+
+                        </div>
+                        <!-- Fim da terceira parte do formulário -->
+
+                        <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto Referente ao PRODUTO DE SERVIÇO -->
+
+                        <div class="tab-pane fade" id="formParte04">
+
+                            <div id="formularioParte04">
+                                <legend id="subTitulo">Produto de Serviço</legend>
+                                <div class="col-md-12 espaco">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 49.75%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
+                                    Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.verificaEstagioEvolucao()}"
+                                                     id="estagioDeEvolucao">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor9" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                    Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos}"
+                                                     id="tecnologiaProcessos">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor10" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="tecnologiaProcessos"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
+                                    Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
+                                                     id="potencialInovacaoTecnologica">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor11" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
+                                    A quem se aplica? como? de que maneira?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes}"
+                                                     id="aplicacoes">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor12" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="aplicacoes"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
+                                    Quais são nossas principais limitações?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas}"
+                                                     id="dificuldadesEsperadas">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor13" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
+                                    Em que sentido seremos parceiros da Universidade? 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
+                                                     id="interacaoEmpresaUniversidade">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor14" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
+                                    Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
+                                                     id="interacaoEmpresaComunidadeGoverno">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor15" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
+                                    Quanto de espaço será necessário? Mobiliário? Equipamentos?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura}"
+                                                     id="infraestrutura">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor16" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="infraestrutura"/>
+
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4" align="center">
+                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                     ></h:commandButton>
+                                    <h:message for="botaoSalvar4"></h:message>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+
+                        </div>
+
+                        <!-- Fim da quarta parte do formulário -->
+
+                        <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto Referente a GESTÃO DE PESSOAS -->
+
+                        <div class="tab-pane fade" id="formParte05">
+
+                            <div id="formularioParte05">
+                                <legend id="subTitulo">Gestão de Pessoas</legend>
+                                <div class="col-md-12 espaco">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 66.33%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
+                                    Haverão sócios? Quanto de participação terão?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.participacaoacionaria}" 
+                                                     id="participacaoAcionaria">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor005" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="participacaoAcionaria"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
+                                    Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.potencialEmprego}"
+                                                     id="potencialEmprego">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor006" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="potencialEmprego"/>
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                     ></h:commandButton>
+                                    <h:message for="botaoSalvar5"></h:message>
+                                </div>
+                                <div class="col-md-4"></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Fim da quinta parte do formulário -->
+
+                        <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
+
+                        <div class="tab-pane fade" id="formParte06">
+
+                            <div id="formularioParte06">
+                                <legend id="subTitulo">Plano de Financeiro</legend>
+                                <div class="col-md-12 espaco">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 82.91%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
+                                    Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
+                                    <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as fontes de receita antes de enviar" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                    </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor18" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="fontesDeReceita"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                    Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
+                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira a estrutura de custos antes de enviar" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
+                                   </p:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor19" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="estruturaCustos"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                    Quanto de recurso será necessário para iniciar?
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial}"
+                                                     id="investimentoInicial">
+                                    </h:inputTextarea>
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor20" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="investimentoInicial"/>
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
+                                    Salários, Aluguel...
+                                    <p:dataTable id="preAvaliar_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}">
+
+                                        <p:column headerText="Descrição ">
+                                            <h:outputText value="#{custo.descricao}" />
+                                        </p:column>
+
+                                        <p:column headerText="Valor Médio Mensal">
+                                            <h:outputText value="R$ #{custo.total}" />
+                                        </p:column>
+
+                                        <p:column headerText="Projeção em 6 Meses">
+                                            <h:outputText value="R$ #{custo.projecao}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                    <br/>     
+
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor21" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="custosfixos"/>
+
+                                    <br/>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
+                                    Impostos, combustível, matéria-prima... 
+                                    <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}">
+
+                                        <p:column headerText="Descrição ">
+                                            <h:outputText value="#{custo.descricao}" />
+                                        </p:column>
+
+                                        <p:column headerText="Valor Médio Mensal">
+                                            <h:outputText value="R$ #{custo.total}" />
+                                        </p:column>
+
+                                        <p:column headerText="Projeção em 6 Meses ">
+                                            <h:outputText value="R$ #{custo.projecao}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+
+                                    <div class="col-md-12 espaco">
+                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"><i class="fa fa-pencil"></i>Comentário</button>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor23" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
+                                        </p:inputTextarea>
+                                    </div>
+                                    <h:message class="mensagemErro" for="custosvariaveis"/>
+
+                                    <br/>
+                                </div>
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                     ></h:commandButton>
+                                    <h:message for="botaoSalvar6"></h:message>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+
+                        </div>
+
+                        <!-- Fim da sexta parte do formulário -->
+
+                        <!-- Inicio da setima parte do formulário -->
+
+                        <div class="tab-pane fade" id="formParte07" >
+                            <div id="formularioParte07">
+                                <legend id="subTitulo" >Avaliar</legend>
+                                <div class="col-md-12 espaco">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                                <div class="col-md-12 espaco has-success" id="observacoes">
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     id="campoObservacoes" disabled=true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
+                                    </h:inputTextarea>
+                                    <br />
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
+                                    <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
+                                        <p:selectOneRadio id="avaliacao" disabled="true" value="#{revisarPlanoDeNegocioBean.projeto.status}" layout="pageDirection">
+                                            <div class="col-md-12" style="padding-left: 15%;">
+                                                <f:selectItem itemLabel=" Aprovado " itemValue="2" /> <br/>
+                                                <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
+                                                <f:selectItem itemLabel=" Reprovado " itemValue="6" />
+                                            </div>
+                                        </p:selectOneRadio>                                       
+                                    </h:panelGrid>
+                                </div>
+                                <div class="col-md-12 espaco">
+                                    <div class="col-md-6 text-center">
+                                        <h:commandButton id="botaoSalvar" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                                         ></h:commandButton>
+                                        <h:message for="botaoSalvar"></h:message>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" value="Terminar Revisão">
+                                        </h:commandButton>
+                                        <h:message for="botaoEnviar"></h:message>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <p:growl id="mensagensFeed" for="formulario_comentarpreavalizar:tituloMensagem" showDetail="true"/>
+                        <!-- Fim da setima parte do formulário -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </h:form>
+    </h:body>
+</html>
+
+
