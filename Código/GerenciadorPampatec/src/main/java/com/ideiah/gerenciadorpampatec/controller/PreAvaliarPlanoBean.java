@@ -63,6 +63,23 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+    /**
+     *Construtor da classe utilzado para testes, recebe um projeto como
+     * parâmetro ao invés de pela sessão, assim os testes podem ser realizados
+     */
+    public PreAvaliarPlanoBean(Projeto proj) {
+        this.projeto = proj;
+        ComentarioDao comentarioDao = new ComentarioDao();
+        
+        buscarComentarioProjeto(proj);
+
+        if (comentarioProjeto == null) {
+            comentarioProjeto = new ComentarioProjeto();
+            comentarioProjeto.setProjeto(proj);
+            comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
+        }
+    }
+
     public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
