@@ -28,7 +28,7 @@
             var andamentoProjeto = #{projetoBean.retornaStatusProjeto()};
             var custoVariavelPreenchido = #{projetoBean.listaCustoVariavel.size() != 0};
             var custoFixoPreenchido = #{projetoBean.listaCustoFixo.size() != 0};
-
+            var tipoEmpreededor = #{buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)}
 
         </script>
 
@@ -162,7 +162,7 @@
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
         <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
             <ul id="progressbar">
-                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
+                <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV2('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
                 <li id="etapa2" class="" style="cursor: pointer;"><a onclick="mostraDIV('divPreVisualizar'), mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
                 <li id="etapa3" class="" style="cursor: pointer;"><a onclick="mostra_avaliacao(), addFoco('etapa3')">Avaliação</a></li>
                 <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
@@ -175,19 +175,19 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical noprint">
             <div class="divPadding">
-                <h:commandButton id="botao_elaboracao_equipe" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
+                <h:commandButton id="botao_elaboracao_equipe" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
                 <!-- A compração do STATUS do projeto a partir de um número (nesse caso 0 e 8) está errado, o coreto seria puxar A CONSTANTE para comparar, porém não consegui fazer isso agora.
                 Porquê comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as comparações de status que foram realizadas comparando um
                 número inteiro, inves da CONSNTANTE -->
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
 
             </div>
         </div>

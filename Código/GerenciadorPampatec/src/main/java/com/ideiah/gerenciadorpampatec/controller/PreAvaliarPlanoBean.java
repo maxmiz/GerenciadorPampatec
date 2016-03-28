@@ -259,4 +259,18 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
+
+
+    public void mudaStatusComentarioProjetoFilanizar(){
+        
+        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
+            comentarioProjeto.setStatus(2);
+        }
+    }
+
+    
+    public void preencheCampoObservacao(){
+     //   resultadoPreAvaliacao 
+        
+    }
 }
