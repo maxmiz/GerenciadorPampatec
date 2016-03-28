@@ -956,7 +956,7 @@
                                                 <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                                 <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                             </div>
-                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar"/>
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:campoObservacoes" listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
                                         </p:selectOneRadio>                                       
                                     </h:panelGrid>
                                 </div>

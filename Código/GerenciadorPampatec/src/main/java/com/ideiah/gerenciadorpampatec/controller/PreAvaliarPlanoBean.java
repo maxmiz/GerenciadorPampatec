@@ -270,7 +270,12 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     
     public void preencheCampoObservacao(){
-     //   resultadoPreAvaliacao 
-        
+        if(resultadoPreAvaliacao == Projeto.PRE_MELHORIA){
+            comentarioProjeto.setConsideracoes("O seu plano de negócio precisa de ajustes. Leia os comentários de cada item preenchido do plano de negócio e faça as alterações necessárias.");
+        }else if(resultadoPreAvaliacao == Projeto.AVALIACAO){
+            comentarioProjeto.setConsideracoes("O seu plano de negócio foi aprovado. Aguarde o agendamento da entrevista.");
+        }else if(resultadoPreAvaliacao == Projeto.REPROVADO){
+            comentarioProjeto.setConsideracoes("O seu plano de negócio foi reprovado.");
+        }      
     }
 }
