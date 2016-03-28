@@ -218,4 +218,9 @@ public class PreAvaliarPlanoBean implements Serializable {
             }
         }
     }
+    
+    public void preencheCampoObservacao(){
+     //   resultadoPreAvaliacao 
+        
+    }
 }
