@@ -113,8 +113,8 @@
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
 
-                <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                    <div class="col-md-6">
+                <h:form id="formularioCadastro">
+                    <div class="col-md-6" title="Digite seu nome completo">
 
                         <!--                             <div class="col-lg-8">
                                                         <p:inputText id="nome" placeholder="Digite seu nome" required="true" styleClass="#//{not component.valid ? 'form-control campoInvalido' : 'form-control'}" requiredMessage="Insira o seu nome antes de enviar" value="#{candidatoBean.candidato.nome}"/>
@@ -136,7 +136,7 @@
 
                     </div>
                     
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite seu telefone">
                         Telefone* <br/>
                         <h:message class="mensagemErro" for="telefone"/>
                         <p:inputMask id="telefone" class="form-control" 
@@ -152,7 +152,7 @@
                         </p:inputMask>
 
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" title="Digite sua experiência">
                         Experiências <p:inputTextarea class="form-control"
                                                       placeholder="Digite sua experiência. Experiências incluem quaisquer atividades realizadas em âmbito profissional, seja com carteira assinada ou não"
                                                       value="#{editarEmpreendedorBean.experiencia}"
@@ -160,7 +160,7 @@
                         </p:inputTextarea>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" title="Digite sua formação">
                         Formação <p:inputTextarea class="form-control" 
                                                   placeholder="Digite sua formação. Graduação, Mestrado, Doutorado, etc. Ex: Bacharelado em Engenharia de Software." 
                                                   value="#{editarEmpreendedorBean.formacao}">
@@ -169,7 +169,7 @@
 
                     <legend>Endereço</legend>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite o logradouro do seu endereço">
                         Logradouro* <br/>
                         <h:message class="mensagemErro" for="rua"/>
                         <p:inputText id="rua" class="form-control"
@@ -182,7 +182,7 @@
 
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite o número do seu endereço">
                         Número* <br/>
                         <h:message class="mensagemErro" for="numero"/>
                         <p:inputText id="numero" class="form-control" 
@@ -197,7 +197,7 @@
 
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite o bairro do seu endereço">
                         Bairro* <br/>
                         <h:message class="mensagemErro" for="bairro"/>
                         <p:inputText id="bairro" class="form-control" 
@@ -210,7 +210,7 @@
 
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite o complemento do seu endereço">
                         Complemento<p:inputText class="form-control" 
                                                 placeholder="ex: sala 13"
                                                 value="#{editarEmpreendedorBean.complemento}">
@@ -220,7 +220,7 @@
 
                     <legend>Dados de Acesso</legend>
                     
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite o seu CPF">
                         CPF*<br/>
                         <h:message class="mensagemErro" for="cpf"/>
                         <p:inputMask id="cpf" class="form-control" 
@@ -235,7 +235,7 @@
 
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" title="Digite o seu email">
                         E-mail* <br/>
                         <h:message class="mensagemErro" for="email"/>
                         <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
@@ -249,8 +249,8 @@
 
                     </div>
 
-                    <div class="col-md-7">
-                        Senha atual <p:password id="senhaAtual" class="form-control" title="senhaAtual"
+                    <div class="col-md-7" title="Digite a sua senha atual">
+                        Senha atual <p:password id="senhaAtual" class="form-control"
                                                 placeholder="Digite sua senha" onchange="precisaSalvar = true;"
                                                 requiredMessage="Insira sua senha atual"
                                                 required="false"
@@ -263,8 +263,8 @@
                         <h:message class="mensagemErro" for="senhaAtual"/>
                     </div>
 
-                    <div class="col-md-7">
-                        Nova senha <p:password id="senhaNova" class="form-control" title="senhaNova"
+                    <div class="col-md-7" title="Digite a sua nova senha">
+                        Nova senha <p:password id="senhaNova" class="form-control" 
                                                placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
                                                requiredMessage="Insira sua nova senha"
                                                required="false"
@@ -277,13 +277,12 @@
                         <h:message class="mensagemErro" for="senhaNova"/>
 
                     </div> 
-                    <div class="col-md-7">
+                    <div class="col-md-7" title="Digite novamente a sua nova senha para confirmação">
                         Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
                                                        placeholder="Confirme sua nova senha" 
                                                        requiredMessage="Confirme sua nova senha"
                                                        required="false"
-                                                       styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                       title="confirmaSenha"  
+                                                       styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
                                                        value="#{editarEmpreendedorBean.novaSenha}"></p:password>
                         <h:message class="mensagemErro" for="senhaNova"/>
                         <br/>
@@ -292,7 +291,7 @@
                     
                     <div class="col-md-12 text-right">
                         <br/>
-                        <h:commandButton id="botaoFinalizarEdicao" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
+                        <h:commandButton id="botaoFinalizarEdicao" title="Finalizar edição do perfil" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
                                          action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
                         <h:message for="botaoFinalizarEdicao"></h:message>
 

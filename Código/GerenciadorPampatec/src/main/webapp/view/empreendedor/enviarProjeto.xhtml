@@ -175,19 +175,19 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical noprint">
             <div class="divPadding">
-                <h:commandButton id="botao_elaboracao_equipe" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
+                <h:commandButton id="botao_elaboracao_equipe" title="Equipe do Plano de Negócio" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
                 <!-- A compração do STATUS do projeto a partir de um número (nesse caso 0 e 8) está errado, o coreto seria puxar A CONSTANTE para comparar, porém não consegui fazer isso agora.
                 Porquê comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as comparações de status que foram realizadas comparando um
                 número inteiro, inves da CONSNTANTE -->
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_elaboracao_editar" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_elaboracao_editar" title="Editar Plano de Negócio" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" title="Revisar Plano de Negócio" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
             </div>
             <div class="divPadding">
-                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_submeter" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status != 0 }" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_submeter" title="Submeter Plano de Negócio" class="btn btn-success btnWorkflowV" value="Submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')"></h:commandButton><br/>
 
             </div>
         </div>
@@ -368,7 +368,7 @@
                                     </div>
 
                                     <div class="col-md-12" id="">
-                                        <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                        <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Segmento de Clientes" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" 
@@ -382,7 +382,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" id="">
-                                        <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                        <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento de Proposta de Valor" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor"/><br/>
                                         O que é? O que faz? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado? Que valor proporcionamos a cada segmento de mercado?
                                         <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" 
@@ -397,7 +397,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" id="">
-                                        <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                        <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Atividades Chave" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave"/><br/>
                                         Que atividades-chave garantem que as nossas "Propostas de valor", "Canais", "Fontes de renda" e "Relações com clientes" serão realizadas? 
                                         <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" 
@@ -413,7 +413,7 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar2" class="btn btn-success" title="Salvar Plano de Negócio" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar2"></h:message>
                                     </div>
@@ -432,7 +432,7 @@
                                     <legend id="subTitulo">Análise de Mercado</legend>
 
                                     <div class="col-md-12">
-                                        <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                        <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Relações com clientes" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? O que fazemos para manter e fidelizar os nossos segmentos de clientes?
                                         <h:inputTextarea class="form-control" 
@@ -446,7 +446,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
-                                        <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                        <b>Parcerias chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Parcerias Chave" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves"/><br/>
                                         Quem são nossos parceiros-chave? Que recursos-chave adquirimos de nossos parceiros? Quem são nossos principais fornecedores de matéria-prima, insumos, serviços, ...? Que atividades-chave desenvolvemos em conjunto com parceiros?
                                         <h:inputTextarea class="form-control" 
@@ -459,7 +459,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
-                                        <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                        <b>Canais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Canais" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
 
@@ -472,7 +472,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
-                                        <b>Recursos principais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                        <b>Recursos principais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Recursos Principais" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais"/><br/>
                                         Que recursos são necessários para que possamos cumprir nossas "Propostas de valor", operar nossos "Canais", manter nossas "Relações com clientes"? 
                                         <h:inputTextarea class="form-control" 
@@ -500,7 +500,7 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar3" title="Salvar Plano de Negócio" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar3"></h:message>
                                     </div>
@@ -542,7 +542,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12">
-                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com os princípios da sustentabilidade empresarial?
                                         <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
@@ -630,7 +630,7 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar4" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar4" title="Salvar Plano de Negócio" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar4"></h:message>
                                     </div>
@@ -675,7 +675,7 @@
 
                                     <div class="col-md-12 text-center">
                                         <br/>
-                                        <h:commandButton id="botaoSalvar5" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar5" title="Salvar Plano de Negócio" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar5"></h:message>
                                     </div>
@@ -696,7 +696,7 @@
                                     <legend id="subTitulo">Plano de Financeiro</legend>
 
                                     <div class="col-md-12">
-                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
+                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Fontes de Receitas" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
                                         <h:message id="mensagemErroFonteReceita" class="mensagemErro" for="fontesDeReceita"/><br/>
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
                                         Qual segmento de cliente pagará? Haverá segmentos de clientes com gratuidade?
@@ -787,7 +787,7 @@
                                         <br/>
 
                                         <div class="col-md-6">
-                                            <h:commandButton id="botao_adicionar_nova_linha" class="btn btn-default" value="Adicionar Linha" >
+                                            <h:commandButton id="botao_adicionar_nova_linha" title="Adicionar nova linha de custo fixo" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos" render="formulario_cadastro_projeto:novaTabelaCustosFixos"
                                                         listener="#{projetoBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
@@ -866,7 +866,7 @@
                                         <br/>
                                         <div class="col-md-6">
 
-                                            <h:commandButton id="botao_adicionar_nova_linhaVariavel" class="btn btn-default" value="Adicionar Linha" >
+                                            <h:commandButton id="botao_adicionar_nova_linhaVariavel" title="Adicionar nova linha de custo variável" class="btn btn-default" value="Adicionar Linha" >
                                                 <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis" render="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
                                                         listener="#{projetoBean.adicionarLinhaVariavel()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
@@ -892,7 +892,7 @@
                                     </h:panelGroup>
 
                                     <div class="col-md-12 text-center">
-                                        <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
+                                        <h:commandButton id="botaoSalvar6" title="Salvar Plano de Negócio" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Plano de Negócio"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar6"></h:message>
                                     </div>
@@ -928,13 +928,13 @@
                                 Informe os emails de quem está propondo o empreendimento:
                                 <br/>
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-9" title="Digite o email de quem está propondo o empreendimento">
                                         <p:autoComplete validatorMessage="Email Invalido" id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.sugerirEmpreendedorCadastrado}">
                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                                         </p:autoComplete>
                                     </div>
                                     <div class="col-md-3">
-                                        <h:commandButton class="btn btn-default" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
+                                        <h:commandButton class="btn btn-default" title="Adicionar email" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" value="Adicionar" disabled="#{projetoBean.verificaElaboracao()}">
                                             <f:ajax execute="formEquipe:autocomplete" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe formEquipe:autocomplete" listener="#{projetoBean.adicionarEmpreendedor()}"></f:ajax>
                                         </h:commandButton>
                                     </div>
@@ -957,7 +957,7 @@
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
 
                                     <!--<h:commandButton  class="btn btn-default" value="Deletar" action="#/{projetoBean.deletarEmpreendedor()}" disabled="#/{projetoBean.verificarEmpreendedor(empreendedor)}">-->
-                                    <h:commandButton  class="btn btn-default" value="Deletar" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
+                                    <h:commandButton  class="btn btn-default" title="Excluir este empreendedor" value="Deletar" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
                                         <f:ajax execute="formEquipe" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.deletarEmpreendedor(empreendedor)}" 
                                                 event="click"></f:ajax>
                                     </h:commandButton>
@@ -968,7 +968,7 @@
 
                         <div class="col-md-12 text-center text-center">
                             <br/>
-                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" type="button" disabled="#{projetoBean.verificaElaboracao()}" onclick="infoSalvarEquipe()" 
+                            <h:commandButton id="botaoSalvar1" class="etapas btn btn-success" title="Salvar Equipe" rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" type="button" disabled="#{projetoBean.verificaElaboracao()}" onclick="infoSalvarEquipe()" 
                                              value="Salvar Equipe"
                                              ></h:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
@@ -1248,7 +1248,7 @@
                     <br/>
 
                     <div class="noprint text-right">
-                        <h:commandLink class="btn btn-success" title="Imprimir" onclick="imprimirPaginaHtml();">
+                        <h:commandLink class="btn btn-success" title="Imprimir Plano de Negócio" onclick="imprimirPaginaHtml();">
                             <label style="color: white; cursor: pointer;"><i class="fa fa-print"></i>   Imprimir Plano de Negócio</label>
                         </h:commandLink>
                         <br/><br/>
