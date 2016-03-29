@@ -31,9 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ *  <p>Classe usada para realizar login do empreendedor
+ * no sistema</p>
  *
- * @author Augusto César Görgen classe usada para realizar login do empreendedor
- * no sistema
+ * @author Augusto César Görgen 
  */
 @ManagedBean
 @SessionScoped
@@ -50,7 +51,7 @@ public class LoginBean {
     private PreAvaliarPlanoBean preAvaliarBean;
 
     private FacesContext fc = FacesContext.getCurrentInstance();
-    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 
     public boolean submit() {
         try {
@@ -71,14 +72,14 @@ public class LoginBean {
 
     public void fazLogout() {
 
-        session.removeAttribute("empreendedor");
-        session.removeAttribute("projetoSelecionado");
+        getSession().removeAttribute("empreendedor");
+        getSession().removeAttribute("projetoSelecionado");
         MudarNome(null);
         LoginBean.MudarSenha(null);
         LoginBean.MudarUser(null);
 
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/faces/loginEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +88,7 @@ public class LoginBean {
 
     public void getInicio() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +96,7 @@ public class LoginBean {
 
     public void getInicioGerente() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,7 +104,7 @@ public class LoginBean {
 
     public void getEnviarProjeto() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,7 +114,7 @@ public class LoginBean {
     //Razão: O gerente recebia uma tela em branco ao logar no sistema. Agora redireciona para a função principal do Sprint 2016/
      public void getVisualizarPlanosGerente() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -121,7 +122,7 @@ public class LoginBean {
 
     public void getVisualizarPlanos() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,7 +130,7 @@ public class LoginBean {
 
     public void voltar() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -162,11 +163,11 @@ public class LoginBean {
             if (gerente.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-                session.setAttribute("gerente", gerente);
+                getSession().setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
 
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.jsf");
                     return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,7 +175,7 @@ public class LoginBean {
 
                 getVisualizarPlanosGerente();
 //                try {
-//                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanodeNegocio.xhtml");
+//                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanodeNegocio.jsf");
 //                    return true;
 //                } catch (IOException ex) {
 //                    Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -225,10 +226,10 @@ public class LoginBean {
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
                 System.out.println("Logado");
-                session.setAttribute("empreendedor", empreendedor);
+                getSession().setAttribute("empreendedor", empreendedor);
                 this.setNome(empreendedor.getNome());
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
                     return true;
                 } catch (IOException ex) {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -364,7 +365,7 @@ public class LoginBean {
     public void enviaBuscaProjeto() {
         try {
 
-            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -409,5 +410,19 @@ public class LoginBean {
         }else{
             return false;
         }
+    }
+
+    /**
+     * @return the session
+     */
+    public HttpSession getSession() {
+        return session;
+    }
+
+    /**
+     * @param session the session to set
+     */
+    public void setSession(HttpSession session) {
+        this.session = session;
     }
 }

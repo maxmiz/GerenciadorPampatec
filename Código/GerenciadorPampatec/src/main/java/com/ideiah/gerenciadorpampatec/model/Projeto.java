@@ -45,6 +45,8 @@ public class Projeto implements java.io.Serializable {
     private GerenteRelacionamento gerenteRelacionamento;
     private NotificacoesEmpreendedorBean notificacoesBean;
     private Empreendedor empreendedorCorrespondente;
+   //Contador de acesso serve como gambiarra para verificar se o projeto está
+    //aberto para outro gerente no atualizar a página
     private int contAcesso;
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
 

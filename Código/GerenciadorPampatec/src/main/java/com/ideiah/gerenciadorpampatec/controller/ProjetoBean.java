@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.Dao;
+import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -484,7 +485,7 @@ public class ProjetoBean implements Serializable {
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -522,8 +523,14 @@ public class ProjetoBean implements Serializable {
      * @return true se o empreendedor não tem projetos cadastrados.
      */
     public boolean verificaCadastroProjeto() {
-        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
+        HttpSession secao;
+        secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Empreendedor emp;
+        emp = (Empreendedor) secao.getAttribute("empreendedor");
+
+        EmpreendedorDao empreendedorDao = new EmpreendedorDao();
+        emp = empreendedorDao.buscar(emp.getIdUsuario());
+
         return emp.getProjetos().isEmpty();
     }
 
@@ -656,12 +663,12 @@ public class ProjetoBean implements Serializable {
                 Empreendedor emp = (Empreendedor) secao.getAttribute("empreendedor");
 
                 if (projeto.getStatus() == Empreendedor.ENVIADO) {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaProjeto.jsf");
                 } else {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         atualizarProjetoSessao();
-//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.xhtml"); 
+//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf"); 
 
 //                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
                         FacesMessage msg;

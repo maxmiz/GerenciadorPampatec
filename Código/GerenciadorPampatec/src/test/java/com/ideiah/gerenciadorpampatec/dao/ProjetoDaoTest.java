@@ -10,9 +10,11 @@ import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 
 /**
@@ -23,6 +25,14 @@ import org.junit.Ignore;
 public class ProjetoDaoTest {
     
     public ProjetoDaoTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
     
     @Before
@@ -147,6 +157,36 @@ public class ProjetoDaoTest {
         ProjetoDao instance = new ProjetoDao();
         boolean expResult = false;
         boolean result = instance.deletar(codigo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of buscarPorStatus method, of class ProjetoDao.
+     */
+    @Test
+    public void testBuscarPorStatus() {
+        System.out.println("buscarPorStatus");
+        int status = 0;
+        ProjetoDao instance = new ProjetoDao();
+        Projeto expResult = null;
+        Projeto result = instance.buscarPorStatus(status);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of buscarListaProjetoPorStatus method, of class ProjetoDao.
+     */
+    @Test
+    public void testBuscarListaProjetoPorStatus() {
+        System.out.println("buscarListaProjetoPorStatus");
+        int status = 0;
+        ProjetoDao instance = new ProjetoDao();
+        ArrayList<Projeto> expResult = null;
+        ArrayList<Projeto> result = instance.buscarListaProjetoPorStatus(status);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

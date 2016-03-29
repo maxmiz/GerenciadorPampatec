@@ -181,7 +181,7 @@ public class EditarEmpreendedorBean {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("editarDadosEmpreendedor.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("editarDadosEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -235,7 +235,7 @@ public class EditarEmpreendedorBean {
                             LoginBean.MudarSenha(empreendedor.getSenha());
                             LoginBean.MudarUser(empreendedor.getEmail());
                             session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.xhtml");
+                            FacesContext.getCurrentInstance().getExternalContext().dispatch("homeEmpreendedor.jsf");
                         } catch (IOException ex) {
                             Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                         }

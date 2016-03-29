@@ -32,23 +32,23 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/faces/view/empreendedor/*</url-pattern>
+        <url-pattern>/view/empreendedor/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>EnviarProjetoFilter</filter-name>
-        <url-pattern>/faces/view/empreendedor/enviarProjeto.xhtml</url-pattern>
+        <url-pattern>/view/empreendedor/enviarProjeto.jsf</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilterGerente</filter-name>
-        <url-pattern>/faces/view/gerentederelacionamento/*</url-pattern>
+        <url-pattern>/view/gerentederelacionamento/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CompletarCadastroFilter</filter-name>
-        <url-pattern>/faces/terminarCadastroEmpreendedor.xhtml</url-pattern>
+        <url-pattern>/terminarCadastroEmpreendedor.jsf</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>RecuperarSenhaFilter</filter-name>
-        <url-pattern>/faces/recuperarSenha.xhtml</url-pattern>
+        <url-pattern>/recuperarSenha.jsf</url-pattern>
     </filter-mapping>
     <listener>
         <description>HttpSessionListener</description>
@@ -61,11 +61,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     <filter-mapping>
         <filter-name>PreAvaliarPlanoFiltro</filter-name>
-        <url-pattern>/faces/view/gerentederelacionamento/preAvaliarPlanoDeNegocio.xhtml</url-pattern>
+        <url-pattern>/view/gerentederelacionamento/preAvaliarPlanoDeNegocio.jsf</url-pattern>
     </filter-mapping>
     <session-config>
         <session-timeout>
@@ -73,11 +73,16 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <!--<welcome-file>faces/view/cadastroEmpreendedor.xhtml</welcome-file>-->
-        <welcome-file>faces/loginEmpreendedor.xhtml</welcome-file>
+        <!--<welcome-file>faces/view/cadastroEmpreendedor.jsf</welcome-file>-->
+        <welcome-file>loginEmpreendedor.jsf</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>CompletarCadastroFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
     </filter>
+    
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/loginEmpreendedor.jsf</location>
+    </error-page>
 </web-app>

@@ -102,7 +102,7 @@ public class NotificacoesEmpreendedorBean implements Observer, Serializable {
         notificacao.setDescricao(descricao);
         notificacao.setEmpreendedor(empreendedor);
         notificacao.setVisualizado(false);
-       // notificacao.setLink("http://localhost:8084/GerenciadorPampatec/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
+       // notificacao.setLink("http://localhost:8084/GerenciadorPampatec/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf");
         notificacao.setLink(getNotificacaoLink());
         return notificacao;
     }
@@ -150,8 +150,8 @@ public class NotificacoesEmpreendedorBean implements Observer, Serializable {
 
     public String getNotificacaoLink() {
 
-        // FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml");
-        String link = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.xhtml";
+        // FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/paginaBuscaPlanoDeNegocio.jsf");
+        String link = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf";
         return link;
 
     }
