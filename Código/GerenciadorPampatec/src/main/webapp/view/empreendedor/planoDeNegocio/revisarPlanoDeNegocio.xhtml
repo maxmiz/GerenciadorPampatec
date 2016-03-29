@@ -317,7 +317,9 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i>Comentários</button> 
+                                        <h:commandButton class="btn btn-default btn-sm btn-success espaco" id="comentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')" rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes != null}">
+                                            <i class="fa fa-pencil"></i>Comentários
+                                        </h:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack"  disabled="true" id="propostaDeValor1" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
@@ -465,7 +467,7 @@
                                     Quem são nossos concorrentes? como trabalham?
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="concorrentes"
-                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" id="comentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i>Comentário</button>
@@ -738,7 +740,7 @@
                                     <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" id="comentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i>Comentário</button>
@@ -875,21 +877,15 @@
                                 <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="campoObservacoes" disabled=true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
+                                                     id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
                                     </h:inputTextarea>
                                     <br />
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr>
                                     <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                    <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
-                                        <p:selectOneRadio id="avaliacao" disabled="true" value="#{revisarPlanoDeNegocioBean.projeto.status}" layout="pageDirection">
-                                            <div class="col-md-12" style="padding-left: 15%;">
-                                                <f:selectItem itemLabel=" Aprovado " itemValue="2" /> <br/>
-                                                <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
-                                                <f:selectItem itemLabel=" Reprovado " itemValue="6" />
-                                            </div>
-                                        </p:selectOneRadio>                                       
-                                    </h:panelGrid>
+                                    <h3><b><h:outputText id="statusAvaliacao" value="#{revisarPlanoDeNegocioBean.retornaResultadoAvaliacao()}"></h:outputText></b></h3>
+                                    <hr></hr>
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <div class="col-md-6 text-center">
@@ -915,5 +911,3 @@
         </h:form>
     </h:body>
 </html>
-
-
