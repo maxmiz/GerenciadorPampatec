@@ -53,8 +53,8 @@
             <div id="empreendedorLogin">
                 <legend></legend>
                 <h:form id="formularioCadastro" title="cadastroEmpreendedor">
-                    <div class="col-md-6">
-                        Senha* <p:password id="senha" class="form-control" title="senha"
+                    <div class="col-md-6" title="Digite sua nova senha">
+                        Senha* <p:password id="senha" class="form-control"
                                            placeholder="Digite sua nova senha" 
                                            requiredMessage="Insira sua senha"
                                            required="true"
@@ -67,13 +67,12 @@
                         <h:message class="mensagemErro" for="senha"/>
 
                     </div> 
-                    <div class="col-md-6">
+                    <div class="col-md-6" title="Digite novamente a sua nova senha para confirmação">
                         Confirme sua senha* <p:password id="senhaConfig" class="form-control" 
                                                         placeholder="Confirme sua senha" 
                                                         requiredMessage="Confirme sua senha"
                                                         required="true"
                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                        title="confirmaSenha"  
                                                         value="#{empreendedorBean.senhaInput}"></p:password>
                         <h:message class="mensagemErro" for="senha"/>
                         <br/>
@@ -82,7 +81,7 @@
                     <div class="col-md-12 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
                         <h:message for="botaoSalvar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
-                        <h:commandButton id="botaoSalvar" class="btn btn-success" value="Salvar nova senha" action="#{empreendedorBean.terminarRecuperacaoDeSenha()}">
+                        <h:commandButton id="botaoSalvar" class="btn btn-success" title="Salvar a nova senha" value="Salvar nova senha" action="#{empreendedorBean.terminarRecuperacaoDeSenha()}">
 
                         </h:commandButton>
                     </div>

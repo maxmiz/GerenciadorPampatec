@@ -37,7 +37,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
-        listaProjetos = buscaProjetoPorStatus();
+        this.atualizaListaProjetosPreAvaliacao();
 
     }
 
@@ -54,20 +54,100 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     /**
-     *
-     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO)
+     * Atualiza lista de projeto para projetos que podem ou estão sendo
+     * avaliados.
      */
-    public ArrayList<Projeto> buscaProjetoPorStatus() {
-        projetoDao = new ProjetoDao();
-        ArrayList<Projeto> listaProjetosPorStatus;
-        listaProjetosPorStatus = projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
-        ArrayList<Projeto> listaProjetosSendoAvaliado = projetoDao.buscarListaProjetoPorStatus(Projeto.SENDO_AVALIADO);
+    public void atualizaListaProjetosPreAvaliacao() {
+        this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
+    }
 
+    /**
+     * Atualiza lista de projeto para projetos que não estão em elaboração
+     */
+    public void atualizaListaProjetosTodos() {
+        this.setListaProjetos(buscaProjetoPorStatusTodos());
+    }
+
+    /**
+     * Atualiza lista de projeto para projetos aprovados.
+     */
+    public void atualizaListaProjetosAprovados() {
+        this.setListaProjetos(buscaProjetoPorStatusAprovado());
+    }
+
+    /**
+     * Atualiza lista de projeto para projetos Reprovados
+     */
+    public void atualizaListaProjetosReprovados() {
+        this.setListaProjetos(buscaProjetoPorStatusReprovado());
+    }
+
+    /**
+     * Atualiza lista de projeto para projetos em melhoria
+     */
+    public void atualizaListaProjetosnelhoria() {
+        this.setListaProjetos(buscaProjetoPorStatusMelhoria());
+    }
+
+    /**
+     *
+     * @return Lista de projetos com o status igual à 1 (EM_PRE_AVALIAÇÃO) e 10
+     * (SENDO AVALIADO)
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatusPreAvaliacao() {
+        projetoDao = new ProjetoDao();
+        ArrayList<Projeto> listaProjetosPorStatus = projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
+        ArrayList<Projeto> listaProjetosSendoAvaliado = projetoDao.buscarListaProjetoPorStatus(Projeto.SENDO_AVALIADO);
         for (Projeto projeto : listaProjetosSendoAvaliado) {
             listaProjetosPorStatus.add(projeto);
         }
 
         return listaProjetosPorStatus;
+    }
+
+    /**
+     *
+     * @return Lista de todos projetos Aprovados
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatusAprovado() {
+        return projetoDao.buscarListaProjetoPorStatus(Projeto.AVALIACAO);
+    }
+
+    /**
+     *
+     * @return Lista de todos projetos Reprovados
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatusReprovado() {
+        return projetoDao.buscarListaProjetoPorStatus(Projeto.REPROVADO);
+    }
+
+    /**
+     *
+     * @return Lista de todos projetos em Melhoria
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatusMelhoria() {
+        return projetoDao.buscarListaProjetoPorStatus(Projeto.PRE_MELHORIA);
+    }
+
+    private ArrayList<Projeto> buscaTodosProjetos() {
+        projetoDao = new ProjetoDao();
+        return projetoDao.buscar();
+    }
+
+    /**
+     *
+     * @return Lista de todos projetos menos os que estão em elaboração
+     */
+    public ArrayList<Projeto> buscaProjetoPorStatusTodos() {
+
+        ArrayList<Projeto> listaProjetosMenosElaboracao = new ArrayList<>();
+        for (Projeto projeto : this.buscaTodosProjetos()) {
+            if (projeto.getStatus() != 0) {
+                listaProjetosMenosElaboracao.add(projeto);
+            }
+        }
+
+        return listaProjetosMenosElaboracao;
     }
 
     /**
@@ -84,7 +164,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         projetoDao.salvar(projeto);
 
         atualizarProjetoSessao();
-        listaProjetos = buscaProjetoPorStatus();
+        listaProjetos = buscaProjetoPorStatusPreAvaliacao();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
@@ -134,7 +214,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     public void atualizaListaDeProjetos() {
-        listaProjetos = buscaProjetoPorStatus();
+        listaProjetos = buscaProjetoPorStatusPreAvaliacao();
     }
 
     /**
@@ -156,7 +236,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
              * o mesmo plano ao mesmo tempo.PS: Somente se eles clicarem para
              * avaliar no mesmo tempo, bemm no mesmo tempo, tipo juntos, se
              * tiver diferença de meio segundo já não cai no if de baixo.
-             * 
+             *
              */
             if (dao.buscar(projSelec.getIdProjeto()).getStatus() != Projeto.SENDO_AVALIADO) {
                 projSelec.setStatus(Projeto.SENDO_AVALIADO);

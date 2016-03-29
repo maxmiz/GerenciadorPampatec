@@ -288,6 +288,9 @@
                                         <p:column headerText="E-Mail">
                                             <h:outputText value="#{empreendedor.email}" />
                                         </p:column>
+                                        <p:column headerText="Tipo">
+                                            <h:outputText value="#{empreendedor.retornaTipoEmpreendedor(empreendedor)}" />
+                                        </p:column>
                                     </p:dataTable>
                                     <br/>
                                 </div>
