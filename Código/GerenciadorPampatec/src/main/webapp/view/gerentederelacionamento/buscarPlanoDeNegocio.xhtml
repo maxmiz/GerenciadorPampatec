@@ -169,15 +169,19 @@
                                 <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
                             -->
-                            <p:column headerText="Nome">
+                            <p:column headerText="Nome" width="35%">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px">
+                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
+                            
+                            <p:column headerText="Status" style="text-align: center;" width="25%">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
+                            </p:column>
 
-                            <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                            <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
                                         <h:commandButton class="btn btn-success" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
