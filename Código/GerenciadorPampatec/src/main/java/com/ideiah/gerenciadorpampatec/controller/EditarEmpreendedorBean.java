@@ -187,6 +187,18 @@ public class EditarEmpreendedorBean {
         }
 
     }
+        public void editarEmpreendedorRevisar() {
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../editarDadosEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public void finalizarEdicao() {
         String numeroTelefone;
