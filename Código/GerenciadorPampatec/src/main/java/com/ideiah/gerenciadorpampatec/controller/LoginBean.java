@@ -93,6 +93,13 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        public void getInicioRevisar() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void getInicioGerente() {
         try {
@@ -123,6 +130,13 @@ public class LoginBean {
     public void getVisualizarPlanos() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public void getVisualizarPlanosRevisar() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
