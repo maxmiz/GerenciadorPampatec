@@ -9,7 +9,6 @@ import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -66,6 +65,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     /**
      *Construtor da classe utilzado para testes, recebe um projeto como
      * parâmetro ao invés de pela sessão, assim os testes podem ser realizados
+     * @param proj
      */
     public PreAvaliarPlanoBean(Projeto proj) {
         this.projeto = proj;
@@ -259,7 +259,142 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
+    
+    
+     /**
+     * <p>
+     * Retorna a quantidade de campos comentário vazios
+     * </p>
+     */
+    private int verificaCampos() {
+        int FLAG = 0;
+        
+        //NEGOCIO
+        if(!comentarioProjeto.getComentarionegocio().getSegmentoClientes().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarionegocio().getPropostaValor().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarionegocio().getAtividadesChaves().equals("")){
+            FLAG++;
+        }
+        //ANALISE DE MERCADO
+        if(!comentarioProjeto.getComentarioanaliseemprego().getRelacoesClientes().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioanaliseemprego().getParceriasChaves().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioanaliseemprego().getCanais().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioanaliseemprego().getRecursosPrincipais().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioanaliseemprego().getConcorrentes().equals("")){
+            FLAG++;
+        }
+        //PRODUTO OU SERVIÇO
+        if(!comentarioProjeto.getComentarioprodutoouservico().getEstagioEvolucao().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getAplicacoes().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioprodutoouservico().getInfraestrutura().equals("")){
+            FLAG++;
+        }
+        //GESTAO DE PESSOAS
+        if(!comentarioProjeto.getParticipacaoacionaria().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getPotencialemprego().equals("")){
+            FLAG++;
+        }
+        //PLANO FINANCEIRO
+        if(!comentarioProjeto.getComentarioplanofinanceiro().getFontesReceita().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioplanofinanceiro().getEstruturaCusto().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioplanofinanceiro().getCustosfixos().equals("")){
+            FLAG++;
+        }
+        
+        if(!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")){
+            FLAG++;
+        }
+        //System.out.println("Existem " + FLAG + " comentarios no projeto.");
+        return FLAG;
+    }
 
+    /**
+     * <p>
+     * METODO PARA VALIDAR O PREENCHIMENTO DOS CAMPOS COMENTARIO NA AVALIAÇÃO DO PLANO.
+     *O BOTAO TERMINAR AVALIAÇÃO FICARÁ ABILITADO SE E SOMENTE SE:
+     * foi selecionado um dos campos aprovado, reprovado ou realizar ajustes
+     * se o campo realizar ajustes for selecionado, é necessário existir ao menos um comentario
+     *além das observações </p>
+     */
+    public boolean validaAvaliacao(){
+        
+        //O campo observacoes precisa estar preenchido 
+        // aprovado = 2, melhorias, = 7 reprovado, = 6
+        
+        if(!comentarioProjeto.getConsideracoes().equals("")){
+            
+             
+            if(resultadoPreAvaliacao == 2 || resultadoPreAvaliacao == 6){
+                return true;
+            }
+            
+            if(resultadoPreAvaliacao == 7){
+                if(verificaCampos() >= 1){
+                    return true;
+                }
+            }
+            
+        }
+        
+        return false;
+    }
 
     public void mudaStatusComentarioProjetoFilanizar(){
         
