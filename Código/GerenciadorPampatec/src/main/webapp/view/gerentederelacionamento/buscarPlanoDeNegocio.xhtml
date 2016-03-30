@@ -162,24 +162,31 @@
                             <h:form>
                                 <p:growl id="growl" life="2000" />
                                 <h:outputLabel value="Filtrar Por:"></h:outputLabel>
-                                <p:commandLink id="todos" actionListener="#">
+                                <p:commandLink id="todos">
                                     <h:outputText value="Todos" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
-                                <p:commandLink id="PreAvaliacao" actionListener="#" >
+                                <p:commandLink id="PreAvaliacao" >
                                     <h:outputText value="Em Pré-Avaliação" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
+
                                 </p:commandLink>
 
-                                <p:commandLink id="melhoria" actionListener="#">
+                                <p:commandLink id="melhoria">
                                     <h:outputText value="Em Pré-Melhoria" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
+
                                 </p:commandLink>
 
                                 <p:commandLink id="aprov">
                                     <h:outputText value="Aprovados" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
-                                <p:commandLink id="reprov2" actionListener="#">
+                                <p:commandLink id="reprov">
                                     <h:outputText value="Reprovados" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosReprovados()}" render=":locovelho:tabelaDeNegocios"/>
+
                                 </p:commandLink>
 
                             </h:form>
@@ -222,7 +229,7 @@
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
-                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}"/>
+                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
                 </h:panelGroup>
             </div>
             <!-- Fim da lista de planos de negócio -->
