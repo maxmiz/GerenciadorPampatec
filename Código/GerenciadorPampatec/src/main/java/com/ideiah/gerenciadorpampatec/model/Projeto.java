@@ -360,7 +360,22 @@ public class Projeto implements java.io.Serializable {
         public boolean verificarPreMelhoria(){
         return this.getStatus() != Projeto.PRE_MELHORIA;
     }
-
+            /**
+     * Verifica se o projeto está em avaliação
+     * @return 
+     */
+    public boolean verificarEmAvaliacao(){
+        return this.getStatus() != Projeto.AVALIACAO;
+    }
+    
+        /**
+     * Verifica se o projeto foi reprovado
+     * @return 
+     */
+    public boolean verificarReprovado(){
+        return this.getStatus() != Projeto.REPROVADO;
+    }
+    
     /**
      * @return the comentarioProjeto
      */
