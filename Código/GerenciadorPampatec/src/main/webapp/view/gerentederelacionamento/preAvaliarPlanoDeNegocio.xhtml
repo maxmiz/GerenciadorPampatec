@@ -51,7 +51,7 @@
             }
 
         </style>
-        <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
+        <!--<meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
     </h:head>
     <h:body onunload="botaoVoltar()">
 
@@ -109,7 +109,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
-
+            
             function mostrarFeedBack(id) {
                 var campo = document.getElementById(id);
                 if ($(campo).hasClass("form-control campoFeedBackOn")) {
