@@ -46,6 +46,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     public ArrayList<Projeto> getListaProjetos() {
+        System.out.println("busco planos");
         return listaProjetos;
     }
 
@@ -72,6 +73,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos aprovados.
      */
     public void atualizaListaProjetosAprovados() {
+        System.out.println("teste entrando atualizar");
+
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
     }
 
