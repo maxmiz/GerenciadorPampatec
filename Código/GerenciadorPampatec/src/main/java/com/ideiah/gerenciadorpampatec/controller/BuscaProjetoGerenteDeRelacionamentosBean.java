@@ -34,6 +34,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private ProjetoDao projetoDao;
     private ProjetoBean projetoBean;
     private boolean testeBoolean = false;
+    private boolean avaliar = false;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
@@ -59,13 +60,22 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * avaliados.
      */
     public void atualizaListaProjetosPreAvaliacao() {
+        setAvaliar(true);
         this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
+
+    }
+
+    public void atualizaListaProjetosPreAvaliacaoFLAG() {
+        if (isAvaliar()) {
+            this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
+        }
     }
 
     /**
      * Atualiza lista de projeto para projetos que não estão em elaboração
      */
     public void atualizaListaProjetosTodos() {
+        setAvaliar(true);
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
@@ -73,6 +83,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos aprovados.
      */
     public void atualizaListaProjetosAprovados() {
+        setAvaliar(false);
         System.out.println("teste entrando atualizar");
 
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
@@ -82,6 +93,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos Reprovados
      */
     public void atualizaListaProjetosReprovados() {
+        setAvaliar(false);
         this.setListaProjetos(buscaProjetoPorStatusReprovado());
     }
 
@@ -89,6 +101,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos em melhoria
      */
     public void atualizaListaProjetosnelhoria() {
+        setAvaliar(true);
         this.setListaProjetos(buscaProjetoPorStatusMelhoria());
     }
 
@@ -196,6 +209,14 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         UIViewRoot viewRoot = viewHandler.createView(context, context.getViewRoot().getViewId());
         context.setViewRoot(viewRoot);
         context.renderResponse();
+    }
+
+    public boolean isAvaliar() {
+        return avaliar;
+    }
+
+    public void setAvaliar(boolean avaliar) {
+        this.avaliar = avaliar;
     }
 
     /**
