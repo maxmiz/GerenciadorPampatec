@@ -52,6 +52,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
+       
 
         mudaStatus();
 
@@ -92,6 +93,9 @@ public class PreAvaliarPlanoBean implements Serializable {
             if (comentarioProjeto.getStatus() == ComentarioProjeto.EM_ANDAMENTO) {
                 this.comentarioProjeto = comentarioProjeto;
             }
+        }
+        if (comentarioProjeto != null){
+            resultadoPreAvaliacao = projeto.getStatus();
         }
     }
 
