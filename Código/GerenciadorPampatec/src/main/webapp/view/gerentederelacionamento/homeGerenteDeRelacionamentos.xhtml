@@ -5,15 +5,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css"  />
+            <h:outputStylesheet library="css" name="sweetalert.css" />
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
         <h:outputScript library="js" name="js.js"/>
+        <h:outputScript library="js" name="sweetalert.min.js" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -47,7 +48,23 @@
                 font-family: lilyUPC;
             }
         </style>
-        <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
+        <script>
+             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+                setTimeout(function () {
+                    // sweetAlert: http://t4t5.github.io/sweetalert/
+                     sweetAlert({
+                        title: "Bah!", 
+                        text: "Sua sessão expirou!", 
+                        type: "error",
+                        confirmButtonColor: '#00A859'
+                    },function() {
+                        // Redireciona o usuário para a página de login.
+                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+                });
+                }, (tempoMaxSessao - 1) * 1000);
+            // Falta retirar o tempo de redireção e espera, 
+            // para faze-lo unicamente quando o usuário clicar me OK.
+        </script>
     </h:head>
     <body>
         <!-- Início do menu superior -->
@@ -118,8 +135,6 @@
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
 
             <!-- Fim das modais apresentadas -->
-
-
         </h:form>
     </body>
 </html>
