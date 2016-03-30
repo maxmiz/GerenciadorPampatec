@@ -157,7 +157,42 @@
 
                 <h:panelGroup class="col-md-12">
                     <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
+                        <h:form>
+                            <p:growl id="growl" life="2000" />
+                            <div class="col-md-2">
+                                <p:commandLink id="todos" update="growl" actionListener="#">
+                                    <h:outputText value="Todos" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="PreAvaliacao" actionListener="#">
+                                    <h:outputText value="Em Pré-Avaliação" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="melhoria" actionListener="#">
+                                    <h:outputText value="Em Pré-Melhoria" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="aprov" actionListener="#">
+                                    <h:outputText value="Aprovados" />
+                                </p:commandLink> 
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="reprov2" actionListener="#">
+                                    <h:outputText value="Reprovados" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="reprov" actionListener="#">
+                                    <h:outputText value="Reprovados" />
+                                </p:commandLink>
+                            </div>
+                        </h:form>
+                    </div>
+                    <div class="col-md-12">
 
                         <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
@@ -176,7 +211,7 @@
                             <p:column headerText="Data de submissão" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
-                            
+
                             <p:column headerText="Status" style="text-align: center;" width="25%">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
                             </p:column>
