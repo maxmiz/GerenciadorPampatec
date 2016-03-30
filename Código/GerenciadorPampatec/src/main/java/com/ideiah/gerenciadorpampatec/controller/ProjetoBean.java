@@ -453,7 +453,7 @@ public class ProjetoBean implements Serializable {
     /**
      * Cria um novo plano de negócio vazio e atribui à sessão.
      */
-    public void criarNovoPlano() {
+    public void criarObjetoPlano() {
         Projeto pjto = new Projeto();
         Analiseemprego analiseemprego = new Analiseemprego();
         Produtoouservico produtoouservico = new Produtoouservico();
@@ -478,12 +478,15 @@ public class ProjetoBean implements Serializable {
         pjto.setEdital("2015abc123");
         Date data = new Date(System.currentTimeMillis());
         pjto.setDataCriacao(data);
-
-//        pjto = (Projeto) daoP.salvarRetornandoProjeto(pjto);
+        
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
+    }
+    
+    public void criarNovoPlano(){ 
+    criarObjetoPlano();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
         } catch (IOException ex) {
@@ -492,6 +495,18 @@ public class ProjetoBean implements Serializable {
         }
 
     }
+    
+    public void criarNovoPlanoRevisar(){
+            criarObjetoPlano();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../enviarProjeto.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+
+    }
+    
     
     /**
      * Cria os custos obrigatórios do empreendedor
