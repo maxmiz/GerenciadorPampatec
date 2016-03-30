@@ -9,7 +9,6 @@ import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -64,13 +63,13 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     *Construtor da classe utilzado para testes, recebe um projeto como
+     * Construtor da classe utilizado para testes, recebe um projeto como
      * parâmetro ao invés de pela sessão, assim os testes podem ser realizados
      */
     public PreAvaliarPlanoBean(Projeto proj) {
         this.projeto = proj;
         ComentarioDao comentarioDao = new ComentarioDao();
-        
+
         buscarComentarioProjeto(proj);
 
         if (comentarioProjeto == null) {
@@ -97,7 +96,9 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Método para verificar qual o tipo de estégio a empressa se encontra.
+    * <p>
+     * Método para verificar qual o tipo de estágio a empresa se encontra.
+     * </p>
      *
      * @return
      */
@@ -223,6 +224,28 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
+     * <p>
+     * Método responsável por preencher o campo Observações com a mensagem
+     * pré-definida, de acordo com a seleção do usuário.
+     * </p>
+     */
+    public void preencheCampoObservacao() {
+        switch (resultadoPreAvaliacao) {
+            case Projeto.PRE_MELHORIA:
+                comentarioProjeto.setConsideracoes("O seu plano de negócio precisa de ajustes. Leia os comentários de cada item preenchido do plano de negócio e faça as alterações necessárias.");
+                break;
+            case Projeto.AVALIACAO:
+                comentarioProjeto.setConsideracoes("O seu plano de negócio foi aprovado. Aguarde o agendamento da entrevista.");
+                break;
+            case Projeto.REPROVADO:
+                comentarioProjeto.setConsideracoes("O seu plano de negócio foi reprovado.");
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
      * @return the projeto
      */
     public Projeto getProjeto() {
@@ -260,22 +283,14 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.loginBean = loginBean;
     }
 
-
-    public void mudaStatusComentarioProjetoFilanizar(){
-        
+    /**
+     * <p>
+     * Método para mudar o status dos comentários automaticamente.
+     * </p>
+     */
+    public void mudaStatusComentarioProjetoFilanizar() {
         if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
             comentarioProjeto.setStatus(2);
         }
-    }
-
-    
-    public void preencheCampoObservacao(){
-        if(resultadoPreAvaliacao == Projeto.PRE_MELHORIA){
-            comentarioProjeto.setConsideracoes("O seu plano de negócio precisa de ajustes. Leia os comentários de cada item preenchido do plano de negócio e faça as alterações necessárias.");
-        }else if(resultadoPreAvaliacao == Projeto.AVALIACAO){
-            comentarioProjeto.setConsideracoes("O seu plano de negócio foi aprovado. Aguarde o agendamento da entrevista.");
-        }else if(resultadoPreAvaliacao == Projeto.REPROVADO){
-            comentarioProjeto.setConsideracoes("O seu plano de negócio foi reprovado.");
-        }      
     }
 }
