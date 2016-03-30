@@ -56,7 +56,7 @@
     <h:body onunload="botaoVoltar()">
 
         <!-- Início do menu superior -->
-        <h:form id="locovelho">
+<h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-2">
@@ -66,36 +66,79 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{revisarPlanoDeNegocioBean.mudaStatusRedirecionaInicio()}" />       
-
+                                <h:commandLink value="Início" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
                             </li>
 
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#"  data-toggle="dropdown" aria-expanded="false">Notificações 
+                            <li class="">
+                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
+                                    Notificações
                                     <span class="badge">
-                                        <h:outputText value="1"></h:outputText>
+                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
                                     </span>
-                                </a>
+                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
+                                </h:outputLink>
                             </li>
 
                             <li class="dropdown">
-                                <h:commandLink value="Avaliar Planos de Negócio" action="#{revisarPlanoDeNegocioBean.mudaStatusRedirecionaInicio()}"/>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:commandLink action="#{projetoBean.criarNovoPlanoRevisar()}" value="Novo Plano"></h:commandLink></li>
+                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanosRevisar()}" value="Lista de Planos"></h:commandLink></li>
+                                </ul>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink  value="Voltar"></h:commandLink></li>
+                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedorRevisar()}" value="Perfil"></h:commandLink></li>
                                     <li>
                                         <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
                                     </li>
                                 </ul>
                             </li>
+
                         </ul>
                     </div>
                 </div>
             </nav>
+            <!-- Inicio dos Modais apresentadas -->
+
+            <!-- Modal com as NOTIFICAÇÕES do usuário -->
+            <div class="modal fade" id="modalNotificacoes" role="dialog">
+
+                <div class="modal-dialog">
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="panel-title">Notificações</h3>
+                        </div>
+                        <div class="panel-body" align="center">
+                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
+                                <h:column>
+                                    <div class="bordas">
+                                        <h:outputText value="#{notificacao.descricao}"/>
+                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="panel-footer" align="right">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Fim do Modal com as NOTIFICAÇÕES -->
+
+            <!-- Fim das modais apresentadas -->
+
+
+
         </h:form>
         <!-- Fim do menu superior -->
 
@@ -317,9 +360,13 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <h:commandButton class="btn btn-default btn-sm btn-success espaco" id="comentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')" rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes != null}">
-                                            <i class="fa fa-pencil"></i>Comentários
-                                        </h:commandButton>
+                                        <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                       id="comentarioSegCliente" type="button"
+                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')" 
+                                                       rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack"  disabled="true" id="propostaDeValor1" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
@@ -338,7 +385,14 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioProposta" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"
+                                                     rendered="#{not empty comentarioProjeto.getComentarionegocio().getPropostaValor()
+                                                               and !comentarioProjeto.getComentarionegocio().getPropostaValor().equals('')}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" disabled="true" id="propostaDeValor2" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor}">
@@ -358,7 +412,13 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioAtividades" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
@@ -400,7 +460,13 @@
                                                      id="relacoComClientes">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioRelacao" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor4" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
@@ -418,7 +484,13 @@
                                                      id="parceriasChaves">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioParceria" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                         </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor5" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
@@ -435,7 +507,13 @@
                                                      id="canais"  value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioCanais" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor6" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais}">
@@ -453,7 +531,13 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioRecursos" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor7" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
@@ -470,7 +554,13 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioConcorrentes" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor8" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
@@ -503,15 +593,33 @@
                                         <div class="progress-bar progress-bar-success" style="width: 49.75%"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 espaco">
-                                    <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
-                                    Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     value="#{revisarPlanoDeNegocioBean.verificaEstagioEvolucao()}"
-                                                     id="estagioDeEvolucao">
-                                    </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i>Comentário</button>
+                                <div class="col-md-12">
+                                        <b>Estágio de evolução* </b><br/>
+                                        Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
+                                        <h:panelGroup class="checkbox" id="abc">
+                                            <h:selectOneMenu class="form-control" id="estagioDeEvolucao" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                                <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
+                                                <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
+                                                <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
+                                                <f:selectItem itemValue="Protótipo Desenvolvido" itemLabel="Protótipo Desenvolvido"/>
+                                                <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
+                                                <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
+                                                <f:selectItem itemValue="Outro" itemLabel="Outro" />
+                                             </h:selectOneMenu>
+                                            <div>
+                                                <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
+                                                             value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                    </p:inputText>
+                                            </div>
+                                        </h:panelGroup>
+                                        <div class="col-md-12 espaco">
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioEstagio" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor9" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
@@ -520,7 +628,7 @@
                                     <h:message class="mensagemErro" for="descricaoOutroEstagio"/>
 
                                     <br/>
-                                </div>
+                                    </div>
                                 <div class="col-md-12 espaco">
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
@@ -529,7 +637,13 @@
                                                      id="tecnologiaProcessos">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioTecnologia" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor10" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
@@ -547,7 +661,13 @@
                                                      id="potencialInovacaoTecnologica">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioPotencial" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor11" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
@@ -565,7 +685,13 @@
                                                      id="aplicacoes">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioAplicacao" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor12" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
@@ -583,7 +709,13 @@
                                                      id="dificuldadesEsperadas">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioDificuldades" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor13" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
@@ -601,7 +733,13 @@
                                                      id="interacaoEmpresaUniversidade">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioInteracaoUniversidade" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor14" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
@@ -619,7 +757,13 @@
                                                      id="interacaoEmpresaComunidadeGoverno">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioInteracaoComunidade" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor15" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
@@ -637,7 +781,13 @@
                                                      id="infraestrutura">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioInfraEstrutura" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor16" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
@@ -681,7 +831,13 @@
                                                      id="participacaoAcionaria">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioDescricao" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor005" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria}">
@@ -698,7 +854,13 @@
                                                      id="potencialEmprego">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioPotencialRenda" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor006" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego}">
@@ -743,7 +905,13 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioFontes" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor18" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
@@ -761,7 +929,13 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
                                    </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioEstruturaCustos" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor19" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
@@ -778,7 +952,13 @@
                                                      id="investimentoInicial">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioInvestimentoInicial" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor20" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
@@ -809,7 +989,13 @@
                                     <br/>     
 
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioCustosFixos" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor21" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
@@ -840,7 +1026,13 @@
 
 
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="comentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"><i class="fa fa-pencil"></i>Comentário</button>
+                                        <commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                                     id="comentarioCustosVariaveis" type="button"  
+                                                     onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"
+                                                     rendered="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis != null}">
+                                            <i class="fa fa-pencil"></i>Comentário
+                                            <f:ajax event="click"/>
+                                        </commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor23" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
