@@ -162,7 +162,9 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public boolean verificaExcluir(Projeto projeto){
         return verificarEmpreendedor(projeto) 
                 && projeto.verificarEmPreAvaliacao() 
-                && projeto.verificarSendoAvaliado() 
+                && projeto.verificarSendoAvaliado()
+                && projeto.verificarEmAvaliacao()
+                && projeto.verificarReprovado()
                 && projeto.verificarPreMelhoria();
     }
 
