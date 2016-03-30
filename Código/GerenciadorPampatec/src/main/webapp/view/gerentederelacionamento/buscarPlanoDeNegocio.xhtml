@@ -157,9 +157,44 @@
 
                 <h:panelGroup class="col-md-12">
                     <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
+                        <h:form>
+                            <p:growl id="growl" life="2000" />
+                            <div class="col-md-2">
+                                <p:commandLink id="todos" update="growl" actionListener="#">
+                                    <h:outputText value="Todos" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="PreAvaliacao" actionListener="#">
+                                    <h:outputText value="Em Pré-Avaliação" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="melhoria" actionListener="#">
+                                    <h:outputText value="Em Pré-Melhoria" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="aprov" actionListener="#">
+                                    <h:outputText value="Aprovados" />
+                                </p:commandLink> 
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="reprov2" actionListener="#">
+                                    <h:outputText value="Reprovados" />
+                                </p:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandLink id="reprov" actionListener="#">
+                                    <h:outputText value="Reprovados" />
+                                </p:commandLink>
+                            </div>
+                        </h:form>
+                    </div>
+                    <div class="col-md-12">
 
-                        <p:dataTable id="tabelaDeNegocios" var="projeto"  value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -169,20 +204,24 @@
                                 <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
                             -->
-                            <p:column headerText="Nome">
+                            <p:column headerText="Nome" width="35%">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px">
+                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
-                            <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                            <p:column headerText="Status" style="text-align: center;" width="25%">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
+                            </p:column>
+
+                            <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-success" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                         </h:commandButton>
-                                        <h:commandButton class="btn btn-success" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
                                         </h:commandButton>                                  
                                     </div>
                                 </div>
@@ -190,7 +229,7 @@
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
-                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaDeProjetos()}"/>
+                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}"/>
                 </h:panelGroup>
             </div>
             <!-- Fim da lista de planos de negócio -->

@@ -97,7 +97,7 @@
                         </div>-->
                         <div class="col-md-5 modal-footer text-center" align="left">
                             <br/><br/>
-                            <h:commandButton id="botaoContinuaCadastro" class="btn btn-success" style="margin-left: -30%" value="Cadastrar" action="cadastroEmpreendedor.jsf" >
+                            <h:commandButton id="botaoContinuaCadastro" class="btn btn-success" title="Cadastre-se para começar" style="margin-left: -30%" value="Cadastrar" action="cadastroEmpreendedor.jsf" >
                             </h:commandButton>
                         </div>
 
@@ -116,13 +116,13 @@
                         <div class="col-md-4 modal-footer" align="center">
                             <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" title="Digite seu email ou CPF">
                             Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" title="Digite sua senha">
                             Senha<h:inputSecret class="form-control" id="senhaInput" value="#{loginBean.senha}"></h:inputSecret>
                         </div> 
-                        <div class="col-md-12">
+                        <div class="col-md-12" title="Recupere sua senha">
                             <a rel="modal" data-toggle="modal" href="#myModal">Esqueci minha senha</a>
                             <br/>
                         </div> 
@@ -134,7 +134,7 @@
                         <div class="col-md-5 modal-footer" align="center">
                         </div>
                         <div class="col-md-5 modal-footer" align="center">
-                            <h:commandButton id="botaoLogin" class="btn btn-success" value="Acessar" action="#{loginBean.submit()}"></h:commandButton>
+                            <h:commandButton id="botaoLogin" class="btn btn-success" title="Acesse sua conta" value="Acessar" action="#{loginBean.submit()}"></h:commandButton>
                         </div>
                         <!--                    <div class="col-md-5 modal-footer">
                                                 Não possui conta? <a href="faces/cadastroEmpreendedor.xhtml">Clique aqui</a> para se cadastrar.

@@ -113,9 +113,14 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
+
+            if (projetoSelecionado.getStatus() == Projeto.PRE_MELHORIA) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
+            }else{
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
-        } catch (IOException ex) {
-            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            } catch (IOException ex) {
+				Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,7 +160,12 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
      * @return true se o botão pode ser ativado.
      */
     public boolean verificaExcluir(Projeto projeto){
-        return verificarEmpreendedor(projeto) && projeto.verificarEmPreAvaliacao() && projeto.verificarSendoAvaliado();
+        return verificarEmpreendedor(projeto) 
+                && projeto.verificarEmPreAvaliacao() 
+                && projeto.verificarSendoAvaliado()
+                && projeto.verificarEmAvaliacao()
+                && projeto.verificarReprovado()
+                && projeto.verificarPreMelhoria();
     }
 
     public String formatarDataCriacao(Projeto projeto) {
