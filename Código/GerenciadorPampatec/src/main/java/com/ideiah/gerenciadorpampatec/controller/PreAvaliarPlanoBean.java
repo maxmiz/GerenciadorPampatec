@@ -96,7 +96,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-    * <p>
+     * <p>
      * Método para verificar qual o tipo de estágio a empresa se encontra.
      * </p>
      *
