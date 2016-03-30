@@ -184,9 +184,9 @@
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-success" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                         </h:commandButton>
-                                        <h:commandButton class="btn btn-success" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
                                         </h:commandButton>                                  
                                     </div>
                                 </div>
