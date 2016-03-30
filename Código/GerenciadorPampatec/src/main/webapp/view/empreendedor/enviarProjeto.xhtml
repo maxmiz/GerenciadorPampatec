@@ -350,11 +350,10 @@
                                 <div id="formularioParte02">
                                     <legend>O Negócio</legend>
 
-                                    <div class="col-md-12" id="">
+                                    <div class="col-md-12" id="" title="Insira o nome da Empresa ou do Projeto">
 
-                                        <b>Empresa/Projeto* </b><br/>
+                                        <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
-                                        Informe os nomes de quem está propondo o empreendimento
                                         <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
                                                      onblur="verificaNegocio();"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -366,7 +365,7 @@
                                         <br/>
                                     </div>
 
-                                    <div class="col-md-12" id="">
+                                    <div class="col-md-12" id="" title="Insira o Segmento de Clientes">
                                         <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Segmento de Clientes" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
@@ -380,7 +379,7 @@
                                         </p:inputTextarea>
                                         <br/>
                                     </div>
-                                    <div class="col-md-12" id="">
+                                    <div class="col-md-12" id="" title="Insira a Proposta de Valor">
                                         <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento de Proposta de Valor" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor"/><br/>
                                         O que é? O que faz? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado? Que valor proporcionamos a cada segmento de mercado?
@@ -395,7 +394,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12" id="">
+                                    <div class="col-md-12" id="" title="Insira as Atividades Chave">
                                         <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Atividades Chave" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave"/><br/>
                                         Que atividades-chave garantem que as nossas "Propostas de valor", "Canais", "Fontes de renda" e "Relações com clientes" serão realizadas? 
@@ -430,7 +429,7 @@
                                 <div id="formularioParte03">
                                     <legend id="subTitulo">Análise de Mercado</legend>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira as Relações com clientes">
                                         <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Relações com clientes" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? O que fazemos para manter e fidelizar os nossos segmentos de clientes?
@@ -444,7 +443,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira as Parcerias Chave">
                                         <b>Parcerias chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Parcerias Chave" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves"/><br/>
                                         Quem são nossos parceiros-chave? Que recursos-chave adquirimos de nossos parceiros? Quem são nossos principais fornecedores de matéria-prima, insumos, serviços, ...? Que atividades-chave desenvolvemos em conjunto com parceiros?
@@ -457,7 +456,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira os Canais">
                                         <b>Canais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Canais" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
@@ -470,7 +469,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira os Recursos principais">
                                         <b>Recursos principais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Recursos Principais" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais"/><br/>
                                         Que recursos são necessários para que possamos cumprir nossas "Propostas de valor", operar nossos "Canais", manter nossas "Relações com clientes"? 
@@ -483,7 +482,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira os Concorrentes">
                                         <b>Concorrentes* </b><br/>
                                         <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes"/><br/>
                                         Quem são nossos concorrentes? Como trabalham? Como vendem?
@@ -516,7 +515,7 @@
                                 <div id="formularioParte04">
                                     <legend id="subTitulo">Produto de Serviço</legend>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Selecione o Estágio de evolução">
                                         <b>Estágio de evolução* </b><br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
                                         <h:panelGroup class="checkbox" id="abc">
@@ -540,7 +539,7 @@
                                         </h:panelGroup>
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a Tecnologia e processos">
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com os princípios da sustentabilidade empresarial?
@@ -553,7 +552,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira o Potencial de inovação tecnológica">
                                         <b>Potencial de inovação tecnológica* </b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores que agreguem o uso de novas tecnologias?
@@ -565,7 +564,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira as Aplicações">
                                         <b>Aplicações* </b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes"/><br/>
                                         A quem se aplica? Como? De que maneira?
@@ -578,7 +577,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira as Dificuldades esperadas">
                                         <b>Dificuldades esperadas* </b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas"/><br/>
                                         Quais são nossas principais limitações?
@@ -590,7 +589,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a interação entre a empresa e Universidade">
                                         <b>Interação entre empresa e Universidade* </b><br/>
                                         <h:message id="mensagemErroInteracaoUniversidade" class="mensagemErro" for="interacaoEmpresaUniversidade"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
@@ -602,7 +601,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a interação entre empresa, comunidade e governo">
                                         <b>Interação entre empresa, comunidade e governo* </b><br/>
                                         <h:message id="mensagemErroInteracaoGoverno" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
@@ -614,7 +613,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a Infra-estrutura necessária para o desenvolvimento e produção">
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção* </b><br/>
                                         <h:message id="mensagemErroEstrututura" class="mensagemErro" for="infraestrutura"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
@@ -647,7 +646,7 @@
                                 <div id="formularioParte05">
                                     <legend id="subTitulo">Gestão de Pessoas</legend>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a descrição da participação acionária">
                                         <b>Descrição da participação acionária* </b><br/>
                                         <h:message id="mensagemErroAcionaria" class="mensagemErro" for="participacaoAcionaria"/><br/>
                                         Haverão sócios? Quanto de participação terão?
@@ -659,7 +658,7 @@
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira o potencial de geração de emprego e renda">
                                         <b>Potencial de geração de emprego e renda* </b><br/>
                                         <h:message id="mensagemErroPotencialEmprego" class="mensagemErro" for="potencialEmprego"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
@@ -694,7 +693,7 @@
                                 <div id="formularioParte06">
                                     <legend id="subTitulo">Plano de Financeiro</legend>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira as Fontes de receita">
                                         <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Fontes de Receitas" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
                                         <h:message id="mensagemErroFonteReceita" class="mensagemErro" for="fontesDeReceita"/><br/>
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
@@ -708,7 +707,7 @@
                                         </p:inputTextarea>
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira a Estrutura de custos">
                                         <b>Estrutura de custos* </b><br/>                                        
                                         <h:message id="mensagemErroEstruturaCusto" class="mensagemErro" for="estruturaCustos"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
@@ -723,7 +722,7 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" title="Insira o Investimento inicial">
                                         <b>Investimento inicial* </b><br/>
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial"/><br/>
                                         Quanto de recurso será necessário para iniciar?

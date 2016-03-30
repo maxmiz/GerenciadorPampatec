@@ -51,7 +51,7 @@
             }
 
         </style>
-        <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
+        <!--<meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
     </h:head>
     <h:body onunload="botaoVoltar()">
 
@@ -109,7 +109,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
-
+            
             function mostrarFeedBack(id) {
                 var campo = document.getElementById(id);
                 if ($(campo).hasClass("form-control campoFeedBackOn")) {
@@ -327,8 +327,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioSegCliente" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioSegCliente" type="button" onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioSegCliente" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
@@ -350,8 +350,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioProposta" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioProposta" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioProposta" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="form-control campoFeedBack" id="propostaDeValor2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor}">
@@ -374,8 +374,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor3" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
@@ -388,7 +388,7 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
                                 </div>
@@ -419,8 +419,8 @@
                                                      id="relacoComClientes">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor4" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
@@ -440,8 +440,8 @@
                                                      id="parceriasChaves">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor5" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
@@ -460,8 +460,8 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor6" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
@@ -481,8 +481,8 @@
                                                      disabled="true">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor7" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
@@ -500,8 +500,8 @@
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor8" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
@@ -514,7 +514,7 @@
 
                                 <div class="col-md-4"><br /></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
                                 </div>
@@ -543,8 +543,8 @@
                                                      id="estagioDeEvolucao"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor9" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
@@ -563,8 +563,8 @@
                                                      id="tecnologiaProcessos"
                                                      disabled="true" ></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor10" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
@@ -583,8 +583,8 @@
                                                      id="potencialInovacaoTecnologica"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor11" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
@@ -603,8 +603,8 @@
                                                      id="aplicacoes"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor12" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
@@ -623,8 +623,8 @@
                                                      id="dificuldadesEsperadas"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor13" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
@@ -643,8 +643,8 @@
                                                      id="interacaoEmpresaUniversidade"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor14" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
@@ -663,8 +663,8 @@
                                                      id="interacaoEmpresaComunidadeGoverno"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor15" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
@@ -683,8 +683,8 @@
                                                      id="infraestrutura"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor16" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
@@ -699,7 +699,7 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
@@ -729,8 +729,8 @@
                                                      id="participacaoAcionaria"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor005" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
@@ -748,8 +748,8 @@
                                                      id="potencialEmprego"
                                                      disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor006" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
@@ -763,7 +763,7 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
@@ -797,8 +797,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor18" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
@@ -819,8 +819,8 @@
 
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -838,8 +838,8 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
                                                      id="investimentoInicial" disabled="true"></h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -872,8 +872,8 @@
                                     <br/>     
 
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioCustosFixos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor21')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor21" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
@@ -905,8 +905,8 @@
 
 
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="adicionarComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" id="historicoComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor23')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioCustosVariaveis" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -921,7 +921,7 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
@@ -943,7 +943,7 @@
                                     </div>
                                 </div>
                                 <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
-                                <div class="col-md-12 espaco has-success" id="observacoes">
+                                <div class="col-md-12 espaco has-success" id="observacoes" title="Inserir Observações">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
                                         <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
@@ -965,12 +965,12 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoSalvar" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
+                                        <h:commandButton id="botaoSalvar" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" disabled="#{preAvaliarPlanoBean.resultadoPreAvaliacao == 0}" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
+                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" title="Terminar Avaliação" disabled="#{preAvaliarPlanoBean.resultadoPreAvaliacao == 0}" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>

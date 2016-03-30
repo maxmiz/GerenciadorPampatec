@@ -14,27 +14,20 @@ import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.flow.builder.NavigationCaseBuilder;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *  <p>Classe usada para realizar login do empreendedor
- * no sistema</p>
+ * <p>
+ * Classe usada para realizar login do empreendedor no sistema</p>
  *
- * @author Augusto César Görgen 
+ * @author Augusto César Görgen
  */
 @ManagedBean
 @SessionScoped
@@ -50,14 +43,19 @@ public class LoginBean {
     private boolean cadastroIncompleto;
     private PreAvaliarPlanoBean preAvaliarBean;
 
-    private FacesContext fc = FacesContext.getCurrentInstance();
-    private HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
+    private FacesContext fc;
+    private HttpSession session;
+
+    public LoginBean() {
+        fc = FacesContext.getCurrentInstance();
+        session = (HttpSession) fc.getExternalContext().getSession(true);
+    }
 
     public boolean submit() {
         try {
             if (fazLoginEmpreendedor(user, senha)) {
                 System.out.println("entrou no if do empreendedor");
-                
+
                 return true;
             } else if (fazLoginGerente(user, senha)) {
 
@@ -116,10 +114,15 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    //Página inicial redirecionada para lista de projetos para pré-avaliar.
-    //Razão: O gerente recebia uma tela em branco ao logar no sistema. Agora redireciona para a função principal do Sprint 2016/
-     public void getVisualizarPlanosGerente() {
+
+    /**
+     * <p>
+     * Página inicial redirecionada para lista de projetos para pré-avaliar.
+     * Razão: O gerente recebia uma tela em branco ao logar no sistema. Agora
+     * redireciona para a função principal do Sprint 2016
+     * </p>
+     */
+    public void getVisualizarPlanosGerente() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
@@ -267,7 +270,7 @@ public class LoginBean {
     }
 
     /**
-     * Método para recuparação de senha do usuário. Envia um email para o
+     * Método para recuperação de senha do usuário. Envia um email para o
      * destino inserido (email) com um link para alterar a senha. Cria um novo
      * empreendedorEmail e seta os valores com tipo (recuperação de senha),
      * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
@@ -279,13 +282,13 @@ public class LoginBean {
         Empreendedor empreendedor;
 
         empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
-        if(emailRecuperarSenha == null || emailRecuperarSenha.equals("")){
+        if (emailRecuperarSenha == null || emailRecuperarSenha.equals("")) {
             FacesUtil.addErrorMessage("Insira um email!", "formularioRecuperarSenha:botaoRecuperarSenha");
-        }else if (empreendedor != null) {
+        } else if (empreendedor != null) {
 
             if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
                 cadastroIncompleto = true;
-                FacesUtil.addErrorMessage("Alguem já adicionou você ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha"); 
+                FacesUtil.addErrorMessage("Alguem já adicionou você ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha");
             } else {
 
                 String idUnico = UUID.randomUUID().toString();
@@ -307,7 +310,13 @@ public class LoginBean {
 
     }
 
-    //VERIFICA SE A STRING CONTEM APENAS NÚMEROS
+    /**
+     * <p>
+     * Verifica se a String contem apenas números.
+     * </p>
+     * @param texto
+     * @return 
+     */
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
             return false;
@@ -350,7 +359,7 @@ public class LoginBean {
     }
 
     /**
-     * 
+     *
      * @return the nome
      */
     public String getNome() {
@@ -412,16 +421,17 @@ public class LoginBean {
     public void setCadastroIncompleto(boolean cadastroIncompleto) {
         this.cadastroIncompleto = cadastroIncompleto;
     }
-    
+
     /**
      * Verifica se o empreendedor está com o cadastro completo.
-     * @return 
+     *
+     * @return
      */
-    public boolean verificaCadastroIncompleto(){
-        if(cadastroIncompleto){
+    public boolean verificaCadastroIncompleto() {
+        if (cadastroIncompleto) {
             cadastroIncompleto = false;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
