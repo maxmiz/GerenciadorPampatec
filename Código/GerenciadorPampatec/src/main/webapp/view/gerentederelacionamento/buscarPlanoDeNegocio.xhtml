@@ -158,39 +158,32 @@
                 <h:panelGroup class="col-md-12">
                     <div class="col-md-1"></div>
                     <div class="col-md-12">
-                        <h:form>
-                            <p:growl id="growl" life="2000" />
-                            <div class="col-md-2">
-                                <p:commandLink id="todos" update="growl" actionListener="#">
+                        <div class="row estilo">
+                            <h:form>
+                                <p:growl id="growl" life="2000" />
+                                <h:outputLabel value="Filtrar Por:"></h:outputLabel>
+                                <p:commandLink id="todos" actionListener="#">
                                     <h:outputText value="Todos" />
                                 </p:commandLink>
-                            </div>
-                            <div class="col-md-2">
-                                <p:commandLink id="PreAvaliacao" actionListener="#">
+
+                                <p:commandLink id="PreAvaliacao" actionListener="#" >
                                     <h:outputText value="Em Pré-Avaliação" />
                                 </p:commandLink>
-                            </div>
-                            <div class="col-md-2">
+
                                 <p:commandLink id="melhoria" actionListener="#">
                                     <h:outputText value="Em Pré-Melhoria" />
                                 </p:commandLink>
-                            </div>
-                            <div class="col-md-2">
-                                <p:commandLink id="aprov" actionListener="#">
+
+                                <p:commandLink id="aprov">
                                     <h:outputText value="Aprovados" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
-                            </div>
-                            <div class="col-md-2">
                                 <p:commandLink id="reprov2" actionListener="#">
                                     <h:outputText value="Reprovados" />
                                 </p:commandLink>
-                            </div>
-                            <div class="col-md-2">
-                                <p:commandLink id="reprov" actionListener="#">
-                                    <h:outputText value="Reprovados" />
-                                </p:commandLink>
-                            </div>
-                        </h:form>
+
+                            </h:form>
+                        </div>
                     </div>
                     <div class="col-md-12">
 

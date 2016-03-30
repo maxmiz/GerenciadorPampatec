@@ -315,7 +315,18 @@ fieldset[disabled] .autoCompletar input {
 #titulo_cabecalho{
 
 }
-
+.estilo a{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+.estilo label{
+    font-size: 17px;
+    font-weight:normal;
+}
+.estilo{
+   text-align:center;
+    margin-left: 0%;
+}
 .estiloDivVertical {
     background-color: white;
     border: #00bf28;
