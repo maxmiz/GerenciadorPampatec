@@ -47,7 +47,6 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     public ArrayList<Projeto> getListaProjetos() {
-        System.out.println("busco planos");
         return listaProjetos;
     }
 
