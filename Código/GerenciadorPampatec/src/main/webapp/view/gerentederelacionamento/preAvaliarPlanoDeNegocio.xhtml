@@ -293,7 +293,7 @@
                                             <h:outputText value="#{empreendedor.email}" />
                                         </p:column>
                                         <p:column headerText="Tipo">
-                                            <h:outputText value="#{empreendedor.retornaTipoEmpreendedor(empreendedor)}" />
+                                            <h:outputText value="#{empreendedor.retornaTipoEmpreendedor(projetoBean.projeto.empreendedorCorrespondente)}" />
                                         </p:column>
                                     </p:dataTable>
                                     <br/>
