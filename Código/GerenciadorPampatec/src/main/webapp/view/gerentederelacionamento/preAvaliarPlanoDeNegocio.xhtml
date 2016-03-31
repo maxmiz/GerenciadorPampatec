@@ -946,12 +946,15 @@
                                         <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                                     </div>
                                 </div>
-                                <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                                <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b><br/>
+                                <h:message id="mensagemSemObservacoes" class="mensagemErro" for="campoObservacoes"/><br/>
                                 <div class="col-md-12 espaco has-success" id="observacoes" title="Inserir Observações">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                    
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}" 
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagensFeed formulario_comentarpreavalizar:botaoEnviar" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar" event="keyup"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemSemObservacoes formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:mensagemSemObservacoes" event="keyup"/>
                                     </h:inputTextarea>
                                     <br />
                                 </div>

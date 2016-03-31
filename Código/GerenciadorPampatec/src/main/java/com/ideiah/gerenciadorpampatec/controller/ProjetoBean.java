@@ -689,7 +689,7 @@ public class ProjetoBean implements Serializable {
                         FacesMessage msg;
                         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
                         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
-                        System.out.println("chegou nessa porra");
+                        
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
