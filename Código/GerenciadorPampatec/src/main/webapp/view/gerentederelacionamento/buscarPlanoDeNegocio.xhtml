@@ -10,19 +10,20 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css" />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>
+        <h:outputScript library="js" name="sweetalert.min.js" />        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
         <style>
             .pampaTec {
                 background-color: #00A859
@@ -50,7 +51,24 @@
                 font-family: lilyUPC;
             }
         </style>
-        <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
+        <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
+        <script>
+             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+                setTimeout(function () {
+                    // sweetAlert: http://t4t5.github.io/sweetalert/
+                     sweetAlert({
+                        title: "Bah!", 
+                        text: "Sua sessão expirou!", 
+                        type: "error",
+                        confirmButtonColor: '#00A859'
+                    },function() {
+                        // Redireciona o usuário para a página de login.
+                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+                });
+                }, (tempoMaxSessao - 1) * 1000);
+            // Falta retirar o tempo de redireção e espera, 
+            // para faze-lo unicamente quando o usuário clicar me OK.
+        </script>
     </h:head>
     <body>
         <!-- Início do menu superior -->
@@ -219,10 +237,12 @@
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                         </h:commandButton>
-                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
-                                        </h:commandButton>                                  
+                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-success" title="Visualizar Plano" value="Visualizar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
+                                        </h:commandButton>      
                                     </div>
                                 </div>
                             </p:column>

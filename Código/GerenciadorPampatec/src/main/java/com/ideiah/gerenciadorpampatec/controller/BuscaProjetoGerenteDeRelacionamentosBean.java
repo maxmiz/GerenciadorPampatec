@@ -65,6 +65,9 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     }
 
+    /**
+     * DAVI COMENTA ISSO AQUI, DEIXA DE PREGUIÇA!
+     */
     public void atualizaListaProjetosPreAvaliacaoFLAG() {
         if (isAvaliar()) {
             this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
@@ -75,7 +78,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos que não estão em elaboração
      */
     public void atualizaListaProjetosTodos() {
-        setAvaliar(true);
+        setAvaliar(false);
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
@@ -84,8 +87,6 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosAprovados() {
         setAvaliar(false);
-        System.out.println("teste entrando atualizar");
-
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
     }
 
@@ -101,7 +102,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos em melhoria
      */
     public void atualizaListaProjetosnelhoria() {
-        setAvaliar(true);
+        setAvaliar(false);
         this.setListaProjetos(buscaProjetoPorStatusMelhoria());
     }
 
@@ -233,8 +234,46 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         this.testeBoolean = testeBoolean;
     }
 
+    /**
+     * Verifica se o projeto está em pré avaliação e retorna true se sim.
+     *
+     * @param projeto
+     * @return
+     */
     public boolean verificaStatusProjeto(Projeto projeto) {
-        return projeto.getStatus() == Projeto.SENDO_AVALIADO;
+        if (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Verifica se o projeto está sendo avaliado e retorna true se sim.
+     *
+     * @param projeto
+     * @return
+     */
+    public boolean verificaStatusProjetoSendoAvaliado(Projeto projeto) {
+        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Verifica se o projeto não esta sendo avaliado nem em pre-avaliação e retorna true se sim.
+     *
+     * @param projeto
+     * @return
+     */
+    public boolean verificaStatusProjetoRestantes(Projeto projeto) {
+        if (projeto.getStatus() != Projeto.SENDO_AVALIADO && projeto.getStatus() != Projeto.EM_PRE_AVALIACAO) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void atualizaListaDeProjetos() {
