@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -103,6 +104,17 @@ public class PreAvaliarPlanoFiltro implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         Projeto projeto;
+        
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        
+        //Essas linhas limpam o chache do navegador para garantir que ele tenha
+        //que fazer uma nova requisição para entrar na página de pré-avaliar.
+        //Dessa forma, o usuário não poderá entrar na página através do foward
+        //do navegador.
+        httpResponse.setHeader("Expires", "Sat, 1 Jan 1990 12:00:00 GMT");
+        httpResponse.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        httpResponse.addHeader("Cache-Control", "post-check=0, pre-check=0");
+        httpResponse.setHeader("Pragma", "no-cache");
 
         HttpSession sessao = ((HttpServletRequest) request).getSession(false);
         projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
@@ -116,6 +128,8 @@ public class PreAvaliarPlanoFiltro implements Filter {
                 System.out.println("chain = null");
             }
         }
+        
+        System.out.println("Tessssssssssssste");
     }
 
     /**

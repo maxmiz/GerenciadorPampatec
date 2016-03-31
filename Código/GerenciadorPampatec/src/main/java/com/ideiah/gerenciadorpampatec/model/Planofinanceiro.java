@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author Edison Jhonatan
  * @since 10/11/15
  */
@@ -35,42 +35,45 @@ public class Planofinanceiro implements java.io.Serializable {
         this.fontesReceita = fontesReceita;
         this.estruturaCusto = estruturaCusto;
         this.investimentoInicial = investimentoInicial;
-        this.valorTotalFixo = valorTotalFixo;
-        this.valorTotalVariavel = valorTotalVariavel;
     }
-    
-    /*
-    * Método preenche uma lista de custos fixos de um projeto na sess"ao para ser 
-    * mostrada na pré-avaliaçao
-    */
-    
-    public ArrayList retornaListaCustosFixos(){
-        
+
+    /**
+     * <p>
+     * Método preenche uma lista de custos fixos de um projeto na sessão para
+     * ser mostrada na pré-avaliação.</p>
+     *
+     * @return listaDeCustosFixos
+     */
+    public ArrayList retornaListaCustosFixos() {
+
         ArrayList<Custo> listaDeCustosFixos = new ArrayList<Custo>();
-        
-        for (Custo custo : custo) {
-            if (custo.getTipo() == custo.CUSTO_FIXO) {
-                listaDeCustosFixos.add(custo);
+
+        for (Custo objCusto : custo) {
+            if (objCusto.getTipo() == Custo.CUSTO_FIXO) {
+                listaDeCustosFixos.add(objCusto);
             }
         }
         return listaDeCustosFixos;
-}
-    
-    /*
-    * Método preenche uma lista de custos variaveis de um projeto na sessão para ser 
-    * mostrada na pré-avaliaçao
-    */
-    public ArrayList retornaListaCustosVariaveis(){
-        
+    }
+
+    /**
+     * <p>
+     * Método preenche uma lista de custos variáveis de um projeto na sessão
+     * para ser mostrada na pré-avaliação.</p>
+     *
+     * @return listaDeCustosVariaveis
+     */
+    public ArrayList retornaListaCustosVariaveis() {
+
         ArrayList<Custo> listaDeCustosVariaveis = new ArrayList<Custo>();
-        
-        for (Custo custo : custo) {
-            if (custo.getTipo() == custo.CUSTO_VARIAVEL) {
-                listaDeCustosVariaveis.add(custo);
+
+        for (Custo objCusto : custo) {
+            if (objCusto.getTipo() == Custo.CUSTO_VARIAVEL) {
+                listaDeCustosVariaveis.add(objCusto);
             }
         }
         return listaDeCustosVariaveis;
-}
+    }
 
     public int getIdPlanoFinanceiro() {
         return this.idPlanoFinanceiro;
@@ -141,5 +144,4 @@ public class Planofinanceiro implements java.io.Serializable {
     public void setValorTotalVariavel(Integer valorTotalVariavel) {
         this.valorTotalVariavel = valorTotalVariavel;
     }
-
 }

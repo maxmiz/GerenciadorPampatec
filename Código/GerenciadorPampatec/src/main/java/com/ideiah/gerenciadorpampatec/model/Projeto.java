@@ -187,11 +187,17 @@ public class Projeto implements java.io.Serializable {
             case AVALIACAO:
                 statusDescricao = "Em Avaliação";
                 break;
+            case PRE_MELHORIA:
+                statusDescricao = "Em Pré-Melhoria";
+                break;
             case FORMALIZACAO:
                 statusDescricao = "Em Formalização";
                 break;
             case INCUBACAO:
                 statusDescricao = "Incubação";
+                break;
+            case REPROVADO:
+                statusDescricao = "Reprovado";
                 break;
         }
 
@@ -339,10 +345,37 @@ public class Projeto implements java.io.Serializable {
         return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
     }
     
+        /**
+     * Verifica se o projeto está em sendo avaliado
+     * @return 
+     */
+    
     public boolean verificarSendoAvaliado(){
         return this.getStatus() != Projeto.SENDO_AVALIADO;
     }
-
+        /**
+     * Verifica se o projeto está em pré-melhoria
+     * @return 
+     */
+        public boolean verificarPreMelhoria(){
+        return this.getStatus() != Projeto.PRE_MELHORIA;
+    }
+            /**
+     * Verifica se o projeto está em avaliação
+     * @return 
+     */
+    public boolean verificarEmAvaliacao(){
+        return this.getStatus() != Projeto.AVALIACAO;
+    }
+    
+        /**
+     * Verifica se o projeto foi reprovado
+     * @return 
+     */
+    public boolean verificarReprovado(){
+        return this.getStatus() != Projeto.REPROVADO;
+    }
+    
     /**
      * @return the comentarioProjeto
      */

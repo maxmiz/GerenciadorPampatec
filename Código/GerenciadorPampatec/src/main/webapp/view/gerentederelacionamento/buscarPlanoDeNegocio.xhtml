@@ -10,19 +10,20 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css" />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap.js"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>
+        <h:outputScript library="js" name="sweetalert.min.js" />        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
         <style>
             .pampaTec {
                 background-color: #00A859
@@ -50,7 +51,24 @@
                 font-family: lilyUPC;
             }
         </style>
-        <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
+        <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
+        <script>
+             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+                setTimeout(function () {
+                    // sweetAlert: http://t4t5.github.io/sweetalert/
+                     sweetAlert({
+                        title: "Bah!", 
+                        text: "Sua sessão expirou!", 
+                        type: "error",
+                        confirmButtonColor: '#00A859'
+                    },function() {
+                        // Redireciona o usuário para a página de login.
+                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+                });
+                }, (tempoMaxSessao - 1) * 1000);
+            // Falta retirar o tempo de redireção e espera, 
+            // para faze-lo unicamente quando o usuário clicar me OK.
+        </script>
     </h:head>
     <body>
         <!-- Início do menu superior -->
@@ -157,9 +175,44 @@
 
                 <h:panelGroup class="col-md-12">
                     <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
+                        <div class="row estilo">
+                            <h:form>
+                                <p:growl id="growl" life="2000" />
+                                <h:outputLabel value="Filtrar Por:"></h:outputLabel>
+                                <p:commandLink id="todos">
+                                    <h:outputText value="Todos" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
+                                </p:commandLink>
 
-                        <p:dataTable id="tabelaDeNegocios" var="projeto"  value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                                <p:commandLink id="PreAvaliacao" >
+                                    <h:outputText value="Em Pré-Avaliação" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
+
+                                </p:commandLink>
+
+                                <p:commandLink id="melhoria">
+                                    <h:outputText value="Em Pré-Melhoria" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
+
+                                </p:commandLink>
+
+                                <p:commandLink id="aprov">
+                                    <h:outputText value="Aprovados" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
+                                </p:commandLink> 
+                                <p:commandLink id="reprov">
+                                    <h:outputText value="Reprovados" />
+                                    <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosReprovados()}" render=":locovelho:tabelaDeNegocios"/>
+
+                                </p:commandLink>
+
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+
+                        <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -169,28 +222,34 @@
                                 <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
                             -->
-                            <p:column headerText="Nome">
+                            <p:column headerText="Nome" width="35%">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px">
+                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
-                            <p:column headerText="Ações Referentes ao Projeto" style="width:450px;text-align: center">
+                            <p:column headerText="Status" style="text-align: center;" width="25%">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
+                            </p:column>
+
+                            <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-success" value="Avaliar" rendered="#{!buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                         </h:commandButton>
-                                        <h:commandButton class="btn btn-success" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}">                                       
-                                        </h:commandButton>                                  
+                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-success" title="Visualizar Plano" value="Visualizar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
+                                        </h:commandButton>      
                                     </div>
                                 </div>
                             </p:column>
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
-                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaDeProjetos()}"/>
+                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
                 </h:panelGroup>
             </div>
             <!-- Fim da lista de planos de negócio -->
