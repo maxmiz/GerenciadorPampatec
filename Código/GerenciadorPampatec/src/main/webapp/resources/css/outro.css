@@ -163,8 +163,8 @@ and open the template in the editor.
     /*background-color: #62C462;*/
     color: black;
     background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
-/*    border-style: solid;
-    border-color: white;*/
+    /*    border-style: solid;
+        border-color: white;*/
 }
 
 #progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
@@ -183,5 +183,10 @@ and open the template in the editor.
 }
 
 .botaoTabela{
-    color: white;
+      background-color: #3fb618;
+
+}
+.botaoTabela:hover,
+.botaoTabela:focus{
+    background-color: #3fb618;
 }
