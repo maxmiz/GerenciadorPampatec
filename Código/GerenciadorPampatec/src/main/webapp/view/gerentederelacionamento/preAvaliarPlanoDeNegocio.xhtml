@@ -57,7 +57,7 @@
         <meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
         -->
     </h:head>
-    <h:body onunload="botaoVoltar()">
+    <h:body>
 
         <!-- Início do menu superior -->
         <h:form id="locovelho">
@@ -113,7 +113,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
-            
+
             function mostrarFeedBack(id) {
                 var campo = document.getElementById(id);
                 if ($(campo).hasClass("form-control campoFeedBackOn")) {
@@ -147,26 +147,30 @@
                     botaoVoltar();
                 }
             };
+            var myEvent = window.attachEvent || window.addEventListener;
+            var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compitable
+
+            myEvent(chkevent, function (e) { // For >=IE7, Chrome, Firefox
+                botaoVoltar();
+            });
 
 
             function botaoVoltar() {
-                alert("Enrrtoiofd");
+                var botaoUnload = document.getElementById("formulario_comentarpreavalizar:botaoUnload");
+                botaoUnload.click();
             }
-
-            window.addEventListener("unload", function (e) {
-                return "it is beforeunload event";
-            });
         </script>
 
 
         <h:form id="formulario_comentarpreavalizar" onsubmit="precisaSalvar = false;">
 
-            <p:remoteCommand name="botaoVoltar" actionListener="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}" />
+            <!--<p:remoteCommand name="botaoVoltar" actionListener="" />-->
             <!-- Fim do Script de informação -->
 
             <!-- Início dos MODAIS exibidos no formulário -->
 
             <!-- Modal com a Informação do botão SALVAR -->
+            <p:commandButton id="botaoUnload" value="" style="visibility: hidden;" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}"/>
             <div class="modal fade" id="modalInfoSalvar" role="dialog">
 
                 <div class="modal-dialog">
@@ -951,7 +955,7 @@
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
                                         <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagensFeed formulario_comentarpreavalizar:botaoEnviar" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                       
+
                                     </h:inputTextarea>
                                     <br />
                                 </div>
