@@ -182,27 +182,27 @@
                                 <p:growl id="growl" life="2000" />
                                 <h:outputLabel value="Filtrar Por:"></h:outputLabel>
                                 <p:commandLink id="todos">
-                                    <h:outputText value="Todos" />
+                                    <h:outputText value="Todos" title="Filtrar por todos planos"/>
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
-                                <p:commandLink id="PreAvaliacao" >
+                                <p:commandLink id="PreAvaliacao" title="Filtrar por planos em pré-avaliação">
                                     <h:outputText value="Em Pré-Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
 
                                 </p:commandLink>
 
-                                <p:commandLink id="melhoria">
+                                <p:commandLink id="melhoria" title="Filtrar por planos em melhoria">
                                     <h:outputText value="Em Pré-Melhoria" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
 
                                 </p:commandLink>
 
-                                <p:commandLink id="aprov">
+                                <p:commandLink id="aprov" title="Filtrar por planos aprovados">
                                     <h:outputText value="Aprovados" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
-                                <p:commandLink id="reprov">
+                                <p:commandLink id="reprov" title="Filtrar por planos reprovados">
                                     <h:outputText value="Reprovados" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosReprovados()}" render=":locovelho:tabelaDeNegocios"/>
 
@@ -244,7 +244,7 @@
                                         <h:outputLabel class="btn botaoTabela" style="background-color: red; cursor: not-allowed" title="Plano de Negócio em Avaliação"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
                                             <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i>Em Avaliação</label>
                                         </h:outputLabel>
-                                        <h:commandLink class="btn btn-primary botaoTabela" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
+                                        <h:commandLink class="btn btn-primary" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
                                         </h:commandLink>  
                                     </div>
