@@ -34,12 +34,16 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private ProjetoDao projetoDao;
     private ProjetoBean projetoBean;
     private boolean testeBoolean = false;
-    private boolean avaliar = false;
+    private int filtrarPor;
+    private final int TODOS = 1;
+    private final int PRE_AVALIACAO = 2;
+    private final int MELHORIA = 3;
+    private final int APROVADOS = 4;
+    private final int REPROVADOS = 5;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
         this.atualizaListaProjetosPreAvaliacao();
-
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
@@ -59,7 +63,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * avaliados.
      */
     public void atualizaListaProjetosPreAvaliacao() {
-        setAvaliar(true);
+        filtrarPor = PRE_AVALIACAO;
         this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
 
     }
@@ -68,8 +72,23 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * DAVI COMENTA ISSO AQUI, DEIXA DE PREGUIÇA!
      */
     public void atualizaListaProjetosPreAvaliacaoFLAG() {
-        if (isAvaliar()) {
-            this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
+
+        switch (filtrarPor) {
+            case TODOS:
+                this.setListaProjetos(buscaProjetoPorStatusTodos());
+                break;
+            case PRE_AVALIACAO:
+                this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
+                break;
+            case MELHORIA:
+                this.setListaProjetos(buscaProjetoPorStatusMelhoria());
+                break;
+            case REPROVADOS:
+                this.setListaProjetos(buscaProjetoPorStatusReprovado());
+                break;
+            case APROVADOS:
+                this.setListaProjetos(buscaProjetoPorStatusAprovado());
+                break;
         }
     }
 
@@ -77,7 +96,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos que não estão em elaboração
      */
     public void atualizaListaProjetosTodos() {
-        setAvaliar(true);
+        filtrarPor = TODOS;
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
@@ -85,7 +104,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos aprovados.
      */
     public void atualizaListaProjetosAprovados() {
-        setAvaliar(false);
+        filtrarPor = APROVADOS;
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
     }
 
@@ -93,7 +112,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos Reprovados
      */
     public void atualizaListaProjetosReprovados() {
-        setAvaliar(false);
+        filtrarPor = REPROVADOS;
         this.setListaProjetos(buscaProjetoPorStatusReprovado());
     }
 
@@ -101,7 +120,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos em melhoria
      */
     public void atualizaListaProjetosnelhoria() {
-        setAvaliar(false);
+        filtrarPor = MELHORIA;
         this.setListaProjetos(buscaProjetoPorStatusMelhoria());
     }
 
@@ -211,14 +230,6 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         context.renderResponse();
     }
 
-    public boolean isAvaliar() {
-        return avaliar;
-    }
-
-    public void setAvaliar(boolean avaliar) {
-        this.avaliar = avaliar;
-    }
-
     /**
      * @return the testeBoolean
      */
@@ -262,7 +273,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     /**
-     * Verifica se o projeto não esta sendo avaliado nem em pre-avaliação e retorna true se sim.
+     * Verifica se o projeto não esta sendo avaliado nem em pre-avaliação e
+     * retorna true se sim.
      *
      * @param projeto
      * @return
