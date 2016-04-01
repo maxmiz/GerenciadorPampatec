@@ -18,7 +18,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!--<script src="C:\Users\GUTO\Documents\gerenciador-pampatec\Código\GerenciadorPampatec\src\main\webapp\resources\js\bootstrap.min.js"></script>-->
 
-        <title>Resivar Plano de Negócio</title>
+        <title>Revisar Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <style>
@@ -283,7 +283,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4" id="">
-                                    <b>Empresa/Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <b>Nome da Empresa ou Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" placeholder="" class="form-control" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.nome}"
                                                  disabled="true"
@@ -353,23 +353,29 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                    <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="segmentoDeClientes1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
+                                                     >
+                                    </p:inputTextarea>
+                                    <p:inputTextarea id="segmentoDeClientes2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira o segmento de clientes antes de enviar" 
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
-
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                        id="comentarioSegCliente" type="button"
-                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')">
+                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente3')">
                                                        <i class="fa fa-pencil"></i>Comentário
                                             <f:ajax event="click"/>
                                         </h:commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:inputTextarea class="form-control campoFeedBack"  disabled="true" id="propostaDeValor1" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        <h:inputTextarea class="form-control campoFeedBack"  disabled="true" id="segmentoDeClientes3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     </div>
@@ -377,24 +383,30 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                                    <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="propostaDeValor1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira a proposta de valor antes de enviar"  
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
+                                                     >
+                                    </p:inputTextarea>
+                                    <p:inputTextarea id="propostaDeValor2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                      >
-
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
                                                        id="comentarioPropostaValor" type="button"
-                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')">
+                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')">
                                                        <i class="fa fa-pencil"></i>Comentário
                                             <f:ajax event="click"/>
                                         </h:commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:inputTextarea class="form-control campoFeedBack" disabled="true" id="propostaDeValor2" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor}">
+                                        <h:inputTextarea class="form-control campoFeedBack" disabled="true" id="propostaDeValor3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor}">
                                         </h:inputTextarea>
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
                                     </div>
@@ -403,24 +415,30 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                                    <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="atividadesChave1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"  
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
+                                                     >
+                                    </p:inputTextarea>
+                                    <p:inputTextarea id="atividadesChave2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
                                                      >
-
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
                                                        id="comentarioAtividadesChaves" type="button"
-                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')">
+                                                       onclick="mostrarFeedBack('formulario_comentarpreavalizar:atividadesChave3')">
                                                        <i class="fa fa-pencil"></i>Comentário
                                             <f:ajax event="click"/>
                                         </h:commandLink>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="propostaDeValor3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" disabled="true" id="atividadesChaves3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="atividadesChave"/>
@@ -454,9 +472,17 @@
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
-                                                     id="relacoComClientes">                 
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                     id="relacoComClientes1">                 
+                                    </h:inputTextarea>
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     requiredMessage="Insira as atividades chave antes de enviar"  
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
+                                                     id="relacoComClientes2">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
@@ -478,9 +504,17 @@
                                 <div class="col-md-12 espaco">
                                     <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"   
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
-                                                     id="parceriasChaves">
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
+                                                     id="parceriasChaves1">
+                                    </h:inputTextarea>
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     requiredMessage="Insira as atividades chave antes de enviar"  
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
+                                                     id="parceriasChaves2">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
@@ -502,8 +536,17 @@
                                 <div class="col-md-12 espaco">
                                     <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                     Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="canais"  value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}">
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
+                                                     id="canais1">
+                                    </h:inputTextarea>
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
+                                                     id="canais2">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
@@ -525,8 +568,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Recursos principais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                     Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     id="recursosPrincipais1"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
+                                    </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="recursosPrincipais"
+                                                     id="recursosPrincipais2"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -548,8 +599,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Concorrentes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
                                     Quem são nossos concorrentes? como trabalham?
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     id="concorrentes1"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
+                                                     value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
+                                    </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="concorrentes"
+                                                     id="concorrentes2"
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">

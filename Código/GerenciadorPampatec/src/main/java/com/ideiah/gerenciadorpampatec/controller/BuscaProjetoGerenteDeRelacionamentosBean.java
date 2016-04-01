@@ -77,7 +77,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * Atualiza lista de projeto para projetos que não estão em elaboração
      */
     public void atualizaListaProjetosTodos() {
-        setAvaliar(false);
+        setAvaliar(true);
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
