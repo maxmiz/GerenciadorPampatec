@@ -10,6 +10,7 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css" />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
             <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
 
@@ -53,19 +54,19 @@
         </style>
         <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
         <script>
-             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-                setTimeout(function () {
-                    // sweetAlert: http://t4t5.github.io/sweetalert/
-                     sweetAlert({
-                        title: "Bah!", 
-                        text: "Sua sessão expirou!", 
-                        type: "error",
-                        confirmButtonColor: '#00A859'
-                    },function() {
-                        // Redireciona o usuário para a página de login.
-                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+            setTimeout(function () {
+                // sweetAlert: http://t4t5.github.io/sweetalert/
+                sweetAlert({
+                    title: "Bah!",
+                    text: "Sua sessão expirou!",
+                    type: "error",
+                    confirmButtonColor: '#00A859'
+                }, function () {
+                    // Redireciona o usuário para a página de login.
+                    window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
                 });
-                }, (tempoMaxSessao - 1) * 1000);
+            }, (tempoMaxSessao - 1) * 1000);
             // Falta retirar o tempo de redireção e espera, 
             // para faze-lo unicamente quando o usuário clicar me OK.
         </script>
@@ -237,12 +238,15 @@
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandButton class="btn btn-success" title="Avaliar Plano de Negócio" value="Avaliar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
-                                        </h:commandButton>
-                                        <h:commandButton class="btn btn-success" title="Plano de Negócio em Avaliação" value="Em Avaliação" disabled="true" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
-                                        </h:commandButton>
-                                        <h:commandButton class="btn btn-success" title="Visualizar Plano" value="Visualizar" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
-                                        </h:commandButton>      
+                                        <h:commandLink class="btn btn-success botaoTabela" title="Avaliar Plano de Negócio"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-check-square-o"></i>Avaliar</label>
+                                        </h:commandLink>
+                                        <h:outputLabel class="btn botaoTabela" style="background-color: red; cursor: not-allowed" title="Plano de Negócio em Avaliação"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
+                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i>Em Avaliação</label>
+                                        </h:outputLabel>
+                                        <h:commandLink class="btn btn-primary botaoTabela" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
+                                        </h:commandLink>  
                                     </div>
                                 </div>
                             </p:column>

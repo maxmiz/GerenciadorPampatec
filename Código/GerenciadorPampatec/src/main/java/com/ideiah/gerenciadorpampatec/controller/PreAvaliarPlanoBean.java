@@ -9,6 +9,7 @@ import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -419,6 +420,9 @@ public class PreAvaliarPlanoBean implements Serializable {
                 }
             }
             
+        }else{
+            FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", "formulario_comentarpreavalizar:campoObservacoes");
+            return false;
         }
         
         return false;
