@@ -687,7 +687,7 @@ public class ProjetoBean implements Serializable {
 
 //                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
                         FacesMessage msg;
-                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado da Pré-avaliação!");
+                        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado!");
                         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
                         
                     } else {
