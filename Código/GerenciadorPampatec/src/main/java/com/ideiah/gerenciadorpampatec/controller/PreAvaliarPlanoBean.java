@@ -53,7 +53,6 @@ public class PreAvaliarPlanoBean implements Serializable {
         contAnterior = projeto.getContAcesso();
 
         buscarComentarioProjeto(projeto);
-       
 
         mudaStatus();
 
@@ -67,6 +66,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     /**
      * Construtor da classe utilizado para testes, recebe um projeto como
      * parâmetro ao invés de pela sessão, assim os testes podem ser realizados
+     *
      * @param proj
      */
     public PreAvaliarPlanoBean(Projeto proj) {
@@ -96,7 +96,7 @@ public class PreAvaliarPlanoBean implements Serializable {
                 this.comentarioProjeto = comentarioProjeto;
             }
         }
-        if (comentarioProjeto != null){
+        if (comentarioProjeto != null) {
             resultadoPreAvaliacao = projeto.getStatus();
         }
     }
@@ -195,13 +195,11 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void terminarPreAvaliacao() {
         if (getResultadoPreAvaliacao() != 0) {
-            if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-                projeto.setStatus(getResultadoPreAvaliacao());
-                mudaStatusComentarioProjetoFinalizar();
-                ProjetoDao projDao = new ProjetoDao();
-                projDao.update(projeto);
-                getBuscarPlanoDeNegocio();
-            }
+            projeto.setStatus(getResultadoPreAvaliacao());
+            mudaStatusComentarioProjetoFinalizar();
+            ProjetoDao projDao = new ProjetoDao();
+            projDao.update(projeto);
+            getBuscarPlanoDeNegocio();
         }
     }
 
@@ -288,106 +286,105 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
-    
-    
-     /**
+
+    /**
      * <p>
      * Retorna a quantidade de campos comentário vazios
      * </p>
      */
     private int verificaCampos() {
         int FLAG = 0;
-        
+
         //NEGOCIO
-        if(!comentarioProjeto.getComentarionegocio().getSegmentoClientes().equals("")){
+        if (!comentarioProjeto.getComentarionegocio().getSegmentoClientes().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarionegocio().getPropostaValor().equals("")){
+
+        if (!comentarioProjeto.getComentarionegocio().getPropostaValor().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarionegocio().getAtividadesChaves().equals("")){
+
+        if (!comentarioProjeto.getComentarionegocio().getAtividadesChaves().equals("")) {
             FLAG++;
         }
         //ANALISE DE MERCADO
-        if(!comentarioProjeto.getComentarioanaliseemprego().getRelacoesClientes().equals("")){
+        if (!comentarioProjeto.getComentarioanaliseemprego().getRelacoesClientes().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioanaliseemprego().getParceriasChaves().equals("")){
+
+        if (!comentarioProjeto.getComentarioanaliseemprego().getParceriasChaves().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioanaliseemprego().getCanais().equals("")){
+
+        if (!comentarioProjeto.getComentarioanaliseemprego().getCanais().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioanaliseemprego().getRecursosPrincipais().equals("")){
+
+        if (!comentarioProjeto.getComentarioanaliseemprego().getRecursosPrincipais().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioanaliseemprego().getConcorrentes().equals("")){
+
+        if (!comentarioProjeto.getComentarioanaliseemprego().getConcorrentes().equals("")) {
             FLAG++;
         }
         //PRODUTO OU SERVIÇO
-        if(!comentarioProjeto.getComentarioprodutoouservico().getEstagioEvolucao().equals("")){
+        if (!comentarioProjeto.getComentarioprodutoouservico().getEstagioEvolucao().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getAplicacoes().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getAplicacoes().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioprodutoouservico().getInfraestrutura().equals("")){
+
+        if (!comentarioProjeto.getComentarioprodutoouservico().getInfraestrutura().equals("")) {
             FLAG++;
         }
         //GESTAO DE PESSOAS
-        if(!comentarioProjeto.getParticipacaoacionaria().equals("")){
+        if (!comentarioProjeto.getParticipacaoacionaria().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getPotencialemprego().equals("")){
+
+        if (!comentarioProjeto.getPotencialemprego().equals("")) {
             FLAG++;
         }
         //PLANO FINANCEIRO
-        if(!comentarioProjeto.getComentarioplanofinanceiro().getFontesReceita().equals("")){
+        if (!comentarioProjeto.getComentarioplanofinanceiro().getFontesReceita().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioplanofinanceiro().getEstruturaCusto().equals("")){
+
+        if (!comentarioProjeto.getComentarioplanofinanceiro().getEstruturaCusto().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")){
+
+        if (!comentarioProjeto.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioplanofinanceiro().getCustosfixos().equals("")){
+
+        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosfixos().equals("")) {
             FLAG++;
         }
-        
-        if(!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")){
+
+        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
             FLAG++;
         }
         //System.out.println("Existem " + FLAG + " comentarios no projeto.");
@@ -396,41 +393,37 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * <p>
-     * METODO PARA VALIDAR O PREENCHIMENTO DOS CAMPOS COMENTARIO NA AVALIAÇÃO DO PLANO.
-     *O BOTAO TERMINAR AVALIAÇÃO FICARÁ ABILITADO SE E SOMENTE SE:
-     * foi selecionado um dos campos aprovado, reprovado ou realizar ajustes
-     * se o campo realizar ajustes for selecionado, é necessário existir ao menos um comentario
-     *além das observações </p>
+     * METODO PARA VALIDAR O PREENCHIMENTO DOS CAMPOS COMENTARIO NA AVALIAÇÃO DO
+     * PLANO. O BOTAO TERMINAR AVALIAÇÃO FICARÁ ABILITADO SE E SOMENTE SE: foi
+     * selecionado um dos campos aprovado, reprovado ou realizar ajustes se o
+     * campo realizar ajustes for selecionado, é necessário existir ao menos um
+     * comentario além das observações </p>
      */
-    public boolean validaAvaliacao(){
-        
+    public boolean validaAvaliacao() {
+
         //O campo observacoes precisa estar preenchido 
         // aprovado = 2, melhorias, = 7 reprovado, = 6
-        
-        if(!comentarioProjeto.getConsideracoes().equals("")){
-            
-             
-            if(resultadoPreAvaliacao == 2 || resultadoPreAvaliacao == 6){
+        if (!comentarioProjeto.getConsideracoes().equals("")) {
+
+            if (resultadoPreAvaliacao == 2 || resultadoPreAvaliacao == 6) {
                 return true;
             }
-            
-            if(resultadoPreAvaliacao == 7){
-                if(verificaCampos() >= 1){
+
+            if (resultadoPreAvaliacao == 7) {
+                if (verificaCampos() >= 1) {
                     return true;
                 }
             }
-            
-        }else{
+
+        } else {
             FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", "formulario_comentarpreavalizar:campoObservacoes");
             return false;
         }
-        
+
         return false;
     }
 
-  
-        
-     /**
+    /**
      * <p>
      * Método para mudar o status dos comentários automaticamente.
      * </p>
