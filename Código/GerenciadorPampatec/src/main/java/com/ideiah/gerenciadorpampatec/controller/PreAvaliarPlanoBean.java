@@ -194,7 +194,8 @@ public class PreAvaliarPlanoBean implements Serializable {
      * dos comentários.</p>
      */
     public void terminarPreAvaliacao() {
-        if (getResultadoPreAvaliacao() != 0) {
+        if (validaAvaliacao()) {
+            System.out.println("Avaliação realizada. PreAvaliarPlanoBean.terminarPreAvaliacao()");
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
                 projeto.setStatus(getResultadoPreAvaliacao());
                 mudaStatusComentarioProjetoFinalizar();
@@ -202,6 +203,8 @@ public class PreAvaliarPlanoBean implements Serializable {
                 projDao.update(projeto);
                 getBuscarPlanoDeNegocio();
             }
+        }else{
+            System.out.println("Não foi possível completar a avaliação. PreAvaliarPlanoBean.terminarPreAvaliacao()");
         }
     }
 
@@ -393,6 +396,17 @@ public class PreAvaliarPlanoBean implements Serializable {
         //System.out.println("Existem " + FLAG + " comentarios no projeto.");
         return FLAG;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public boolean campoObservacoesVazio(){
+        boolean resultado;
+        resultado = comentarioProjeto.getConsideracoes().equals("");
+        System.out.println("Observações vazio = " + resultado);
+        return resultado;
+    }
 
     /**
      * <p>
@@ -401,31 +415,36 @@ public class PreAvaliarPlanoBean implements Serializable {
      * foi selecionado um dos campos aprovado, reprovado ou realizar ajustes
      * se o campo realizar ajustes for selecionado, é necessário existir ao menos um comentario
      *além das observações </p>
+     * @return Quantidade de erros
      */
     public boolean validaAvaliacao(){
-        
+        int flag_erro = 0;
         //O campo observacoes precisa estar preenchido 
         // aprovado = 2, melhorias, = 7 reprovado, = 6
         
-        if(!comentarioProjeto.getConsideracoes().equals("")){
-            
-             
-            if(resultadoPreAvaliacao == 2 || resultadoPreAvaliacao == 6){
-                return true;
-            }
-            
-            if(resultadoPreAvaliacao == 7){
-                if(verificaCampos() >= 1){
-                    return true;
-                }
-            }
-            
-        }else{
-            FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", "formulario_comentarpreavalizar:campoObservacoes");
-            return false;
+        // o campo observasões precisa estar preenchido
+        if(comentarioProjeto.getConsideracoes().equals("")){
+            FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", 
+                    "formulario_comentarpreavalizar:campoObservacoes");
+            flag_erro++;
         }
-        
-        return false;
+        // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
+        if(resultadoPreAvaliacao == 7){
+            if(verificaCampos() == 0){
+                FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.", 
+                        "formulario_comentarpreavalizar:statusAvaliacao");
+                flag_erro++;
+            }
+        }
+        // se o resultado da pre avaliaçao for zero, significa que nenhum campo foi selecionado
+        if(resultadoPreAvaliacao == 0){
+            FacesUtil.addErrorMessage("Você precisa selecionar um status de Avaliação.", 
+                        "formulario_comentarpreavalizar:statusAvaliacao");
+            flag_erro++;
+        }
+       
+        return flag_erro == 0;
+
     }
 
   
