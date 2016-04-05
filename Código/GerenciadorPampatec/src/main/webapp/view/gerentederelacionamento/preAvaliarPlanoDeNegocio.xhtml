@@ -111,7 +111,7 @@
             }
 
             function confirmacaoDeEnvio() {
-                $("#modalInfoDeEnvio").modal();
+                    $("#modalInfoDeEnvio").modal();
             }
 
             function mostrarFeedBack(id) {
@@ -201,7 +201,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">Salvar Projeto</h4>
+                                <h4 class="modal-title">Confirmar envio</h4>
                             </div>
                             <div class="modal-body">
                                 Ao clicar no botão <strong><u>Terminar Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
@@ -951,20 +951,21 @@
                                     <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                                 </div>
                             </div>
-                            <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b><br/>
+                            <b>Observações <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                            <h:panelGroup id="mensagemErroObservacoes" rendered="#{preAvaliarPlanoBean.campoObservacoesVazio()}" class="mensagemErro">Campo observaçoes não pode estar vazio.</h:panelGroup>
                             <h:message id="mensagemSemObservacoes" class="mensagemErro" for="campoObservacoes"/><br/>
                             <div class="col-md-12 espaco has-success" id="observacoes" title="Inserir Observações">
-                                <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-
-                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}" 
+                                <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"  
                                                  id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
-                                    <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemSemObservacoes formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                    <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:mensagemSemObservacoes" event="keyup"/>
+                                <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemErroObservacoes formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar  formulario_comentarpreavalizar:mensagemStatusAvaliacao" event="change"/>
                                 </h:inputTextarea>
+                                
                                 <br />
                             </div>
                             <div class="col-md-12 espaco">
-                                <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
+                                <b>Avaliação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
+                                <h:message id="mensagemStatusAvaliacao" class="mensagemErro" for="statusAvaliacao"/><br/>
                                 <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
                                     <p:selectOneRadio id="avaliacao" value="#{preAvaliarPlanoBean.resultadoPreAvaliacao}" layout="pageDirection">
                                         <div class="col-md-12" style="padding-left: 15%;">
@@ -972,19 +973,20 @@
                                             <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                             <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                         </div>
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:campoObservacoes" listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:campoObservacoes " listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
                                     </p:selectOneRadio>                                       
                                 </h:panelGrid>
                             </div>
                             <div class="col-md-12 espaco">
                                 <div class="col-md-6 text-center">
-                                    <h:commandButton id="botaoSalvar" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação"
-                                                     ></h:commandButton>
+                                    <h:commandButton id="botaoSalvar" class="btn btn-success" title="Salvar Pré-Avaliação" type="button" onclick="infoSalvar()" value="Salvar Pré-Avaliação">    
+                                    </h:commandButton>
                                     <h:message for="botaoSalvar"></h:message>
                                 </div>
                                 <div class="col-md-6 text-center">
                                     <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" title="Terminar Avaliação" disabled="#{preAvaliarPlanoBean.validaAvaliacao() == false}" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
                                     </h:commandButton>
+                                    
                                     <h:message for="botaoEnviar"></h:message>
                                 </div>
                                 <br/>
