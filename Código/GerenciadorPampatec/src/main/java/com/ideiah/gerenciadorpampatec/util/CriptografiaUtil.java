@@ -26,9 +26,8 @@ public final class CriptografiaUtil {
 //Formatando o resuldado em uma cadeia de 32 caracteres, completando com 0 caso falte 
             senha = String.format("%1$032X", i);
 
-            System.out.println("MD5: " + senha);
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Erro na criptografia");
+            System.out.println("Erro: "+e);
             e.printStackTrace();
             return null;
         }
