@@ -54,16 +54,12 @@ public class LoginBean {
     public boolean submit() {
         try {
             if (fazLoginEmpreendedor(user, senha)) {
-                System.out.println("entrou no if do empreendedor");
-
                 return true;
             } else if (fazLoginGerente(user, senha)) {
-
-                System.out.println("entrou no if do gerente");
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Exceção inesperada" + e);
+            System.out.println("Origem: "+this.getClass().getName()+ ":: \t Exceção inesperada" + e);
         }
         return false;
     }
@@ -166,20 +162,16 @@ public class LoginBean {
 
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
-                    System.out.println("..>" + user);
                     gerente = gerente.buscarPorCpf(user);
                 } else {
                     FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
-                    System.out.println("cpf invalido");
                 }
             } else {
                 gerente = gerente.buscarPorEmail(user);
             }
             senha = CriptografiaUtil.md5(senha);
-            System.out.println(senha);
             if (gerente.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
-                System.out.println("Logado");
                 getSession().setAttribute("gerente", gerente);
                 this.setNome(gerente.getNome());
 
@@ -200,20 +192,15 @@ public class LoginBean {
 
             } else {
                 FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
-                System.out.println("senha incorreta");
-                System.out.println(senha);
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
             FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
-            System.out.println("gerente não cadastrado");
             return false;
 
         }
-
         return false;
-
     }
 
     /**
@@ -229,20 +216,16 @@ public class LoginBean {
 
             if (soContemNumeros(user)) {
                 if (CpfUtil.isValidCPF(user)) {
-                    System.out.println("..>" + user);
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
                     FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
-                    System.out.println("cpf invalido");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
             }
             senha = CriptografiaUtil.md5(senha);
-            System.out.println(senha);
             if (empreendedor.getSenha().equals(senha)) {
                 FacesUtil.addSuccessMessage("Logado");
-                System.out.println("Logado");
                 getSession().setAttribute("empreendedor", empreendedor);
                 this.setNome(empreendedor.getNome());
                 try {
@@ -253,14 +236,11 @@ public class LoginBean {
                 }
             } else {
                 FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
-                System.out.println("senha incorreta");
-                System.out.println(senha);
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
             FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
-            System.out.println("Empreendedor não cadastro");
             return false;
 
         }

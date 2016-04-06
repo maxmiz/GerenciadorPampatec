@@ -90,14 +90,10 @@ public class EmpreendedorBean {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Projeto projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
 
-        System.out.println("projeto=" + projeto);
-        System.out.println("empreendedor=" + emp);
-
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
     public void chamaCadastro() {
-        System.out.println("Entrou no CHAMA CADASTRO da Bean");
         empreendedor = new Empreendedor();
         empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);

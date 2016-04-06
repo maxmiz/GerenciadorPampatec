@@ -41,7 +41,6 @@ public class LoginFilter implements Filter {
         }
 
         if (user == null) {
-            System.out.println("login invalido");
             String contextPath = ((HttpServletRequest) request).getContextPath();
             ((HttpServletResponse) response).sendRedirect(contextPath + "/loginEmpreendedor.jsf");
             
@@ -49,7 +48,7 @@ public class LoginFilter implements Filter {
             try{
                 chain.doFilter(request, response);
             }catch (NullPointerException e){
-                System.out.println("chain = null");
+                System.out.println("Origem: "+this.getClass().getName()+ ":: \t chain = null");
             }
         }
     }

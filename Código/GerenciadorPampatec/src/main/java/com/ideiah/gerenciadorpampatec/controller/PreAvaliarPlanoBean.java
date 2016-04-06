@@ -194,9 +194,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      * dos comentários.</p>
      */
     public void terminarPreAvaliacao() {
-
         if (validaAvaliacao()) {
-            System.out.println("Avaliação realizada. PreAvaliarPlanoBean.terminarPreAvaliacao()");
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
                 projeto.setStatus(getResultadoPreAvaliacao());
                 mudaStatusComentarioProjetoFinalizar();
@@ -204,8 +202,6 @@ public class PreAvaliarPlanoBean implements Serializable {
                 projDao.update(projeto);
                 getBuscarPlanoDeNegocio();
             }
-        }else{
-            System.out.println("Não foi possível completar a avaliação. PreAvaliarPlanoBean.terminarPreAvaliacao()");
         }
     }
 
@@ -215,8 +211,10 @@ public class PreAvaliarPlanoBean implements Serializable {
      * </p>
      */
     private void mudaStatusComentarioProjetoFinalizar() {
+        ComentarioDao comentarioDao = new ComentarioDao();
         if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
             comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+            comentarioDao.update(comentarioProjeto);
         }
     }
 
@@ -393,7 +391,6 @@ public class PreAvaliarPlanoBean implements Serializable {
         if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
             FLAG++;
         }
-        //System.out.println("Existem " + FLAG + " comentarios no projeto.");
         return FLAG;
     }
     
@@ -404,7 +401,6 @@ public class PreAvaliarPlanoBean implements Serializable {
     public boolean campoObservacoesVazio(){
         boolean resultado;
         resultado = comentarioProjeto.getConsideracoes().equals("");
-        System.out.println("Observações vazio = " + resultado);
         return resultado;
     }
 

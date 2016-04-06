@@ -54,7 +54,6 @@ public class EmpreendedorDao extends Dao {
      * cadastrados no sistema.
      */
 //    public boolean buscarDados(String email, String nome) {
-//        System.out.println("Entrou na BuscarDados na DAO");
 //        boolean resultado = true;
 //        //TRUE -> Não está cadastrado
 //        //FALSE -> Está cadastrado
