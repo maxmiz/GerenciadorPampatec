@@ -699,7 +699,7 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exceção = " + e);
+                System.out.println("Origem: "+this.getClass().getName()+ ":: \t Erro: " + e);
             }
         }
     }
@@ -942,8 +942,6 @@ public class ProjetoBean implements Serializable {
      * @return true se o usuário clicar no checkbox "Outro"
      */
     public boolean exibeCampo() {
-        System.out.println("" + selectedButton);
-
         return selectedButton != null && selectedButton.equals("Outro");
     }
 

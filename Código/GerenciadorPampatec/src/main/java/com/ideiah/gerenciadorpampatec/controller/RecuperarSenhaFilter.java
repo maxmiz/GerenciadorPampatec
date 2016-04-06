@@ -120,7 +120,6 @@ public class RecuperarSenhaFilter implements Filter {
         emp2 = (Empreendedor) session.getAttribute("empreendedor");
         
         if (emp != null) {
-            System.out.println("Entrou");
             session.removeAttribute("empreendedor");
             session.setAttribute("empreendedor", emp);
             request.getRequestDispatcher("/faces/recuperarSenha.jsf").forward(request, response);

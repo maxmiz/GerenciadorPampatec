@@ -178,7 +178,6 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
     }
 
     public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
-//        System.out.println("Entrou na CADASTRAR EMPREENDEDOR na Empreendedor");
 //        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
 //        int idEndereco = 0;
 //        if (retorno == true) {
@@ -341,7 +340,6 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
             }
 
 //            if (projeto.getEmpreendedors().equals(empreendedor)) {
-//                System.out.println("true");
 //                return true;
 //                
 //            }

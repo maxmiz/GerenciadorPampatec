@@ -42,7 +42,6 @@ public abstract class Dao {
             getSession().merge(obj);
             salvou = true;
             getTx().commit();
-            System.out.println("Salvou ...... ");
         } catch (HibernateException e) {
             e.printStackTrace();
             getSession().getTransaction().rollback();
