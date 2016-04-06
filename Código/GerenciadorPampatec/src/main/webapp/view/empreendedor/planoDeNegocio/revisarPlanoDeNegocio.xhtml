@@ -7,6 +7,7 @@
     <h:head>
 
         <h:outputScript library="js" name="formulario.js"/>
+        <h:outputScript library="js" name="chamaModal.js"/>
 
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
@@ -472,7 +473,7 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                    <h:commandButton id="botaoSalvar2" class="btn btn-success" type="button" onclick="chamaModal(modalInfoSalvar)" value="Salvar Revisão"
                                                      ></h:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
                                 </div>
@@ -1335,7 +1336,7 @@
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" value="Terminar Revisão">
+                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" value="Terminar Revisão" onclick="chamaModal(modalInfoDeEnvio)" action="#{projetoBean.enviarProjeto()}">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
@@ -1361,12 +1362,6 @@
                                      id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
                     </h:inputTextarea>
                     <br />
-                </div>
-                <div class="col-md-12 espaco">
-                    <hr></hr>
-                    <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                    <h3><b><h:outputText id="statusAvaliacao2" value="#{revisarPlanoDeNegocioBean.retornaResultadoAvaliacao()}"></h:outputText></b></h3>
-                    <hr></hr>
                 </div>
             </div>
 
