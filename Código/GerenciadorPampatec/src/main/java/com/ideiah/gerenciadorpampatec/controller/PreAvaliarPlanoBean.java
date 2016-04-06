@@ -215,8 +215,10 @@ public class PreAvaliarPlanoBean implements Serializable {
      * </p>
      */
     private void mudaStatusComentarioProjetoFinalizar() {
+        ComentarioDao comentarioDao = new ComentarioDao();
         if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
             comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+            comentarioDao.update(comentarioProjeto);
         }
     }
 
