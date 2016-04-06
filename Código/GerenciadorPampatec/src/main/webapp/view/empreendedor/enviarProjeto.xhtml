@@ -196,10 +196,10 @@
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
         <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical esconder-div noprint">
             <div class="divPadding text-center">
-                <h:commandButton disabled="#{projetoBean.projeto.status == 1 || projetoBean.projeto.status == 6}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status == 1}" class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('botao_resultado_preavaliacao'), mostraDIV('divPreAvaliar_visualizar')"></h:commandButton><br/>
             </div>
             <div class="divPadding text-center">
-                <h:commandButton disabled="#{projetoBean.projeto.status == 1}" class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('botao_resultado_preavaliacao'), mostraDIV('divPreAvaliar_visualizar')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status == 1 || projetoBean.projeto.status == 6}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
