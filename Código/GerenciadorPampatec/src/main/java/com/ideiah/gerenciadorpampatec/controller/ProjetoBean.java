@@ -485,10 +485,11 @@ public class ProjetoBean implements Serializable {
         secao.setAttribute("projetoSelecionado", pjto);
     }
     
+  
     public void criarNovoPlano(){ 
     criarObjetoPlano();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ProjetoBean.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();

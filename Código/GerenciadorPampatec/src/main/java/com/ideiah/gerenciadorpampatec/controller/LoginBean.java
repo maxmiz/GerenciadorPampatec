@@ -15,6 +15,7 @@ import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
 
     private static EmpreendedorDao empreededorDao;
     private static EmpreendedorEmailDao empreendedorEmailDao;
@@ -85,18 +86,22 @@ public class LoginBean {
     }
 
     public void getInicio() {
+
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/view/empreendedor/homeEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getInicioRevisar() {
+
+    public void getInicioRevisar() {
+
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/view/empreendedor/homeEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void getInicioGerente() {
@@ -131,13 +136,16 @@ public class LoginBean {
     }
 
     public void getVisualizarPlanos() {
+        System.out.println("LoginBean + MSG:" + FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "");
+
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getVisualizarPlanosRevisar() {
+
+    public void getVisualizarPlanosRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
@@ -314,8 +322,9 @@ public class LoginBean {
      * <p>
      * Verifica se a String contem apenas números.
      * </p>
+     *
      * @param texto
-     * @return 
+     * @return
      */
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
