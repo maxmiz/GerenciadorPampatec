@@ -18,16 +18,16 @@ import javax.faces.context.FacesContext;
 public class Projeto implements java.io.Serializable {
 
     public static final int ELABORACAO = 0;
-    public static final int EM_PRE_AVALIACAO = 1;
+    public static final int SUBMETIDO = 1;
+    public static final int RESUBMETIDO = 11;
     public static final int SENDO_AVALIADO = 10;
-    public static final int AVALIACAO = 2;
+    public static final int ACEITO_PARA_AVALIACAO = 2;
     public static final int FORMALIZACAO = 3;
     public static final int INCUBACAO = 4;
     public static final int PRE_APROVADO = 5;
     public static final int REPROVADO = 6;
-    public static final int PRE_MELHORIA = 7;
+    public static final int NECESSITA_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
-    public static final int LINHA_DE_BASE = 9;
 
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
@@ -182,13 +182,13 @@ public class Projeto implements java.io.Serializable {
             case SENDO_AVALIADO:
                 statusDescricao = "Sendo Avaliado";
                 break;
-            case EM_PRE_AVALIACAO:
+            case SUBMETIDO:
                 statusDescricao = "Em Pré-Avaliação";
                 break;
-            case AVALIACAO:
+            case ACEITO_PARA_AVALIACAO:
                 statusDescricao = "Em Avaliação";
                 break;
-            case PRE_MELHORIA:
+            case NECESSITA_MELHORIA:
                 statusDescricao = "Em Pré-Melhoria";
                 break;
             case FORMALIZACAO:
@@ -343,7 +343,7 @@ public class Projeto implements java.io.Serializable {
      * @return 
      */
     public boolean verificarEmPreAvaliacao(){
-        return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
+        return this.getStatus() != Projeto.SUBMETIDO;
     }
     
         /**
@@ -359,14 +359,14 @@ public class Projeto implements java.io.Serializable {
      * @return 
      */
         public boolean verificarPreMelhoria(){
-        return this.getStatus() != Projeto.PRE_MELHORIA;
+        return this.getStatus() != Projeto.NECESSITA_MELHORIA;
     }
             /**
      * Verifica se o projeto está em avaliação
      * @return 
      */
     public boolean verificarEmAvaliacao(){
-        return this.getStatus() != Projeto.AVALIACAO;
+        return this.getStatus() != Projeto.ACEITO_PARA_AVALIACAO;
     }
     
         /**

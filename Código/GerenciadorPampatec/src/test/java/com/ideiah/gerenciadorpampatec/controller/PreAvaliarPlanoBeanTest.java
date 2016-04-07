@@ -107,7 +107,7 @@ public class PreAvaliarPlanoBeanTest {
 
         System.out.println(projeto.getStatusString(projeto.getStatus()));
 
-        int statusProjeto = Projeto.EM_PRE_AVALIACAO;
+        int statusProjeto = Projeto.SUBMETIDO;
 
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
 
@@ -141,7 +141,7 @@ public class PreAvaliarPlanoBeanTest {
         
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
         
-        assertTrue("Verifica se o status do projeto é: Em Pre Avaliação Deve ser True", Projeto.EM_PRE_AVALIACAO == projeto.getStatus());
+        assertTrue("Verifica se o status do projeto é: Em Pre Avaliação Deve ser True", Projeto.SUBMETIDO == projeto.getStatus());
         
     }
     @Test
