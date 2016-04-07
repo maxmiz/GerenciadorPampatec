@@ -190,3 +190,10 @@ and open the template in the editor.
 .botaoTabela:focus{
     background-color: #3fb618;
 }
+
+.botaoDropDown{
+    border: none;
+    width: 100%;
+    background-color: #00A859;
+    
+}

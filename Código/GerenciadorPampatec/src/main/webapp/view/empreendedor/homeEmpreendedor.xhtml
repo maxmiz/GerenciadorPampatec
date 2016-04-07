@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <f:facet name="last">
@@ -49,120 +50,44 @@
             }
         </style>
         <script>
-             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-                setTimeout(function () {
-                    // sweetAlert: http://t4t5.github.io/sweetalert/
-                     sweetAlert({
-                        title: "Bah!", 
-                        text: "Sua sessão expirou!", 
-                        type: "error",
-                        confirmButtonColor: '#00A859'
-                    },function() {
-                        // Redireciona o usuário para a página de login.
-                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+            setTimeout(function () {
+                // sweetAlert: http://t4t5.github.io/sweetalert/
+                sweetAlert({
+                    title: "Bah!",
+                    text: "Sua sessão expirou!",
+                    type: "error",
+                    confirmButtonColor: '#00A859'
+                }, function () {
+                    // Redireciona o usuário para a página de login.
+                    window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
                 });
-                }, (tempoMaxSessao - 1) * 1000);
+            }, (tempoMaxSessao - 1) * 1000);
             // Falta retirar o tempo de redireção e espera, 
             // para faze-lo unicamente quando o usuário clicar me OK.
         </script>
         <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
     </h:head>
-    <body>
+    <h:body>
+
+
         <!-- Início do menu superior -->
-        <h:form id="menuSuperior">
-            <nav class="navbar navbar-default pampaTec">
-                <div class="container-fluid pampaTec">
-                    <div class="col-md-2">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{empreendedorBean.empreendedor.nome}!"></h:outputText></h4>
-                    </div>
-                    <div class="col-md-10">
-                        <ul class="nav navbar-nav navbar-right pampaTec">
+        <h:form id="homeEmpreendedor">
+                <ui:insert name="menu">
+                    <ui:include src="../templateMenuSuperior.xhtml" />
+                </ui:insert>
 
-                            <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
-                            </li>
-
-                            <li class="">
-                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
-                                    Notificações
-                                    <span class="badge">
-                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
-                                    </span>
-                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
-                                </h:outputLink>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
-                                    <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
-                                        </h:commandLink>
-                                    </li>
-                                </ul>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
 
             <!-- Fim do menu superior -->
 
-            <!-- Inicio dos Modais apresentadas -->
-
-            <!-- Modal com as NOTIFICAÇÕES do usuário -->
-            <div class="modal fade" id="modalNotificacoes" role="dialog">
-
-                <div class="modal-dialog">
-
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 class="panel-title">Notificações</h3>
-                        </div>
-                        <div class="panel-body" align="center">
-                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
-                                <h:column>
-                                    <div class="bordas">
-                                        <h:outputText value="#{notificacao.descricao}"/>
-                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
-                                    </div>
-                                </h:column>
-                            </h:dataTable>
-                        </div>
-                        <div class="panel-footer" align="right">
-
-                            <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Fim do Modal com as NOTIFICAÇÕES -->
-            <!-- Fim das modais apresentadas -->
-            
             <!-- Div botão Vizualizar/criar formulario e botão visualizar edital-->
             <div class="col-md-12" text-align="center" style="padding-top: 1%">
 
                 <div class="col-md-4">
-                    
+
                     <div class="col-md-9" style="border-style: solid; margin-top: -2%; margin-left: -2%">
                         <h1 align="center" >
-                          Meu Plano de Negócio
+                            Meu Plano de Negócio
                         </h1>
                     </div>
                     <div class="col-md-3"></div>
@@ -215,5 +140,5 @@
             <p:poll interval="3" update="tabelaNotificacoes"/>
             -->
         </h:form>
-    </body>
+    </h:body>
 </html>
