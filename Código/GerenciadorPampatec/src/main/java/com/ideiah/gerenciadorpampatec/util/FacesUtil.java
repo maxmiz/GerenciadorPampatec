@@ -9,6 +9,20 @@ import javax.faces.context.FacesContext;
  * @author Pedro
  */
 public class FacesUtil {
+    
+    
+    
+    /**
+     * Mensagem de sucesso.
+     * @param title
+     * @param message
+     * @param idComponente 
+     */
+//    public static void addFeedbackSuccess(String title, String message, String idComponente){
+//        FacesContext.getCurrentInstance().addMessage(idComponente,
+//                new FacesMessage(FacesMessage.SEVERITY_INFO,
+//                        title, message));
+//    }
 
     /**
      * Mensagem de sucesso.
