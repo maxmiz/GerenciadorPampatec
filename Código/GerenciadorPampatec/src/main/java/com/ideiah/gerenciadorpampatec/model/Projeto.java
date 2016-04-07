@@ -49,6 +49,7 @@ public class Projeto implements java.io.Serializable {
     //aberto para outro gerente no atualizar a página
     private int contAcesso;
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
+    private Integer statusTemp;
 
     public Projeto() {
         //pegaObserver();
@@ -402,6 +403,20 @@ public class Projeto implements java.io.Serializable {
      */
     public void setContAcesso(int contAcesso) {
         this.contAcesso = contAcesso;
+    }
+
+    /**
+     * @return the statusTemp
+     */
+    public Integer getStatusTemp() {
+        return statusTemp;
+    }
+
+    /**
+     * @param statusTemp the statusTemp to set
+     */
+    public void setStatusTemp(Integer statusTemp) {
+        this.statusTemp = statusTemp;
     }
 
 }
