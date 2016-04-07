@@ -67,7 +67,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         String resultadoAvaliacao = "";
         
         switch(projeto.getStatus()){
-            case Projeto.PRE_MELHORIA:
+            case Projeto.NECESSITA_MELHORIA:
                 resultadoAvaliacao = " Projeto Necessita Realizar Ajustes";
                 break;
             case Projeto.REPROVADO:

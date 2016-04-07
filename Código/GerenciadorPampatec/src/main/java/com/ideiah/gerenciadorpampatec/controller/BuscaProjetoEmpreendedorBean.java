@@ -93,10 +93,6 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
         for (Object projeto : empreendedor.getProjetos().toArray()) {
             selecaoProjeto = (Projeto) projeto;
-            //NÃO LISTA SE FOR LINHA DE BASE
-            if (selecaoProjeto.getStatus() != Projeto.LINHA_DE_BASE) {
-                projetosEmpreendedor.add(selecaoProjeto);
-            }
         }
         return projetosEmpreendedor;
     }
@@ -114,7 +110,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
 
-            if (projetoSelecionado.getStatus() == Projeto.PRE_MELHORIA) {
+            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             }else{
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");

@@ -169,7 +169,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
 
-        if (projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+        if (projSelect.getStatus() == Projeto.SUBMETIDO) {
             projSelect.setStatus(Projeto.SENDO_AVALIADO);
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
@@ -182,7 +182,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect) {
         if (projSelect.getStatus() == Projeto.SENDO_AVALIADO) {
-            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
+            projSelect.setStatus(Projeto.SUBMETIDO);
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
         }
@@ -239,10 +239,10 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void preencheCampoObservacao() {
         switch (resultadoPreAvaliacao) {
-            case Projeto.PRE_MELHORIA:
+            case Projeto.NECESSITA_MELHORIA:
                 comentarioProjeto.setConsideracoes("O seu plano de negócio precisa de ajustes. Leia os comentários de cada item preenchido do plano de negócio e faça as alterações necessárias.");
                 break;
-            case Projeto.AVALIACAO:
+            case Projeto.ACEITO_PARA_AVALIACAO:
                 comentarioProjeto.setConsideracoes("O seu plano de negócio foi aprovado. Aguarde o agendamento da entrevista.");
                 break;
             case Projeto.REPROVADO:
