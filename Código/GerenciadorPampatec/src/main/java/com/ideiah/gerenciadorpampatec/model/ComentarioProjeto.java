@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author Edison Jhonatan
+ * @author Ideiah
  * @since 10/11/15
  */
 public class ComentarioProjeto implements java.io.Serializable {
@@ -29,7 +29,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private String consideracoes;
     private Projeto projeto;
     private Integer status;
-
+    private String consideracoesPersonalizadas;
   
     
     public ComentarioProjeto() {
@@ -41,6 +41,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         participacaoacionaria = "";
         potencialemprego = "";
         consideracoes = "";
+        consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
         
     }
@@ -168,6 +169,20 @@ public class ComentarioProjeto implements java.io.Serializable {
                 break;
         }
         return statusDescricao;
+    }
+
+    /**
+     * @return the consideracoesPersonalizadas
+     */
+    public String getConsideracoesPersonalizadas() {
+        return consideracoesPersonalizadas;
+    }
+
+    /**
+     * @param consideracoesPersonalizadas the consideracoesPersonalizadas to set
+     */
+    public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
+        this.consideracoesPersonalizadas = consideracoesPersonalizadas;
     }
 
 }
