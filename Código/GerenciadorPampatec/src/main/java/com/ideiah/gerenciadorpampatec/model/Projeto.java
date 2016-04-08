@@ -53,6 +53,11 @@ public class Projeto implements java.io.Serializable {
     public Projeto() {
         //pegaObserver();
         contAcesso = 0;
+        /**
+         * O 99 é um status inexistente para definir a variável com um status
+         * inexistente como padrão inicial.
+         */
+        statusTemp = 99;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
@@ -64,6 +69,7 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
         contAcesso = 0;
         pegaObserver();
+        statusTemp = 99;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital,
@@ -84,6 +90,7 @@ public class Projeto implements java.io.Serializable {
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
         contAcesso = 0;
+        statusTemp = 99;
     }
 
     private void pegaObserver() {

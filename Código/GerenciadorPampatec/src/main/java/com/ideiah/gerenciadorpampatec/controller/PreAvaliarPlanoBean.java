@@ -97,7 +97,11 @@ public class PreAvaliarPlanoBean implements Serializable {
             }
         }
         if (comentarioProjeto != null) {
-            resultadoPreAvaliacao = projeto.getStatus();
+            if (projeto.getStatusTemp() == null) {
+                resultadoPreAvaliacao = 99;
+            } else {
+                resultadoPreAvaliacao = projeto.getStatusTemp();
+            }
         }
     }
 
@@ -146,14 +150,18 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
-     * para posterior continuar editando o mesmo
+     * Salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
+     * para posterior continuar editando o mesmo.
      */
     public void salvar() {
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
+        
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatusTemp(resultadoPreAvaliacao);
+        projetoDao.salvar(projeto);
 
         /**
          * Para exibir a mensagem de salvo com sucesso.
@@ -163,6 +171,27 @@ public class PreAvaliarPlanoBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage("formulario_comentarpreavalizar:tituloMensagem", msg);
     }
 
+    /**
+     * <p>
+     * Método para salvar o pré-projeto quando via botão salvar pré-avaliação.
+     * </p>
+     */
+    public void salvarPreAvaliacao() {
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.setProjeto(projeto);
+        comentDao.salvar(comentarioProjeto);
+        
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatusTemp(resultadoPreAvaliacao);
+        projetoDao.salvar(projeto);        
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
+        } catch (Exception ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      *
      * @param projSelect
@@ -251,6 +280,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             default:
                 break;
         }
+        salvar();
     }
 
     /**
