@@ -12,7 +12,7 @@
             <h:outputStylesheet library="css" name="font-awesome.min.css"  />            
         </f:facet>
 
-        <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
+             
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
         <h:outputScript library="js" name="formulario.js" />
 
@@ -183,7 +183,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton action="#{preAvaliarPlanoBean.salvar()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
+                            <h:commandButton action="#{preAvaliarPlanoBean.salvarPreAvaliacao()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -949,37 +949,37 @@
                                     <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                                 </div>
                             </div>
-                            <b>Observações: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                            <b>Comentário Geral: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                             <h:panelGroup id="mensagemErroObservacoes" rendered="#{preAvaliarPlanoBean.campoObservacoesVazio()}" class="mensagemErro">Campo observações não pode estar vazio.</h:panelGroup>
                             <h:message id="mensagemSemObservacoes" class="mensagemErro" for="campoObservacoes"/><br/>
                             <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
                                 <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"  
-                                                 id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
+                                                 id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoesPersonalizadas}">
                                 <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemErroObservacoes formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                 <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar  formulario_comentarpreavalizar:mensagemStatusAvaliacao" event="change"/>
                                 </h:inputTextarea>
                                 
                                 <br />
                             </div>
-                            <b>Observações: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('observacoesPreDefinidas')}"></p:commandLink></b>                            
-                            <div class="col-md-12" >
-                                <h:inputTextarea class="form-control" id="observacoesPreDefinidas" disabled="true" value="#-{preAvaliarPlanoBean.comentarioProjeto.}">
-                                    
+                            <b>Observação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('observacoesPreDefinidas')}"></p:commandLink></b>                            
+                            <div class="col-md-12">
+                                <h:inputTextarea class="form-control" id="observacoesPreDefinidas" disabled="true" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
                                 </h:inputTextarea>
+                            <br />                                 
                             </div>
-                            <div class="col-md-12 espaco">
-                                <b>Avaliação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                <h:message id="mensagemStatusAvaliacao" class="mensagemErro" for="statusAvaliacao"/><br/>
-                                <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
+                            <br />                            
+                            <b>Avaliação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
+                            <h:message id="mensagemStatusAvaliacao" class="mensagemErro" for="statusAvaliacao"/><br/>                            
+                            <div class="col-md-12">
+                                <h:panelGrid cellpadding="5" columns="2" id="statusAvaliacao">
                                     <p:selectOneRadio id="avaliacao" value="#{preAvaliarPlanoBean.resultadoPreAvaliacao}" layout="pageDirection">
-                                        <div class="col-md-12" style="padding-left: 15%;">
                                             <f:selectItem itemLabel=" Aprovado " itemValue="2" /> <br/>
                                             <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                             <f:selectItem itemLabel=" Reprovado " itemValue="6" />
-                                        </div>
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:observacoesPreDefinidas " listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
-                                    </p:selectOneRadio>                                       
+                                            <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:observacoesPreDefinidas" event="change" listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
+                                        </p:selectOneRadio>
                                 </h:panelGrid>
+                            <br />                                 
                             </div>
                             <div class="col-md-12 espaco">
                                 <div class="col-md-6 text-center">
