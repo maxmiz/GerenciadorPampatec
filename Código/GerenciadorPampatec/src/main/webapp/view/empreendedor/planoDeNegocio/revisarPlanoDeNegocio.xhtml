@@ -300,9 +300,9 @@
                         <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto Referente ao CONTATO -->
 
                         <div class="tab-pane fade active in" id="formParte01" >
-<br/>
+                            <br/>
                             <div id="formularioParte01">
-                            
+
                                 <div class="col-md-12">
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
@@ -368,7 +368,7 @@
                         <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto Referente ao NEGÓCIO -->
 
                         <div class="tab-pane fade" id="formParte02">
-<br/>
+                            <br/>
                             <div id="formularioParte02">
                                 <div class="col-md-12">
                                     <div class="progress progress-striped active">
@@ -385,7 +385,7 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                      >
-                                                    <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_resubmeterplano:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                        <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_resubmeterplano:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                     </p:inputTextarea>
                                     <p:inputTextarea id="segmentoDeClientes2" placeholder="" 
@@ -500,7 +500,7 @@
                         <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto Referente a ANÁLISE DE MERCADO -->
 
                         <div class="tab-pane fade" id="formParte03">
-<br/>
+                            <br/>
                             <div id="formularioParte03">
                                 <div class="col-md-12 espaco">
                                     <div class="progress progress-striped active">
@@ -692,7 +692,7 @@
                         <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto Referente ao PRODUTO DE SERVIÇO -->
 
                         <div class="tab-pane fade" id="formParte04">
-<br/>
+                            <br/>
                             <div id="formularioParte04">
                                 <div class="col-md-12 espaco">
                                     <div class="progress progress-striped active">
@@ -1023,7 +1023,7 @@
                         <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto Referente a GESTÃO DE PESSOAS -->
 
                         <div class="tab-pane fade" id="formParte05">
-<br/>
+                            <br/>
                             <div id="formularioParte05">
                                 <div class="col-md-12 espaco">
                                     <div class="progress progress-striped active">
@@ -1119,7 +1119,7 @@
                         <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
 
                         <div class="tab-pane fade" id="formParte06">
-<br/>
+                            <br/>
                             <div id="formularioParte06">
                                 <div class="col-md-12 espaco">
                                     <div class="progress progress-striped active">
@@ -1376,10 +1376,10 @@
                                 <div class="col-md-12 espaco">
                                     <div class="col-md-6 text-center">
                                         <h:commandButton id="botaoEnviar" type="button"
-										rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
-										class="btn btn-success" value="Terminar Revisão" 
-										onclick="chamaModal(modalInfoDeEnvio)" 
-										action="#{projetoBean.enviarProjeto()}">
+                                                         rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
+                                                         class="btn btn-success" value="Terminar Revisão" 
+                                                         onclick="chamaModal(modalInfoDeEnvio)" 
+                                                         action="#{projetoBean.enviarProjeto()}">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
@@ -1390,7 +1390,7 @@
 
                         <p:growl id="mensagensFeed" for="formulario_resubmeterplano:tituloMensagem" showDetail="true"/>
                         <!-- Fim da setima parte do formulário -->
-                        
+
                     </div>
 
                 </div>
