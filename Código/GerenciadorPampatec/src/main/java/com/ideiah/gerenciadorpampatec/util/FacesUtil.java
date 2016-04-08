@@ -13,16 +13,15 @@ public class FacesUtil {
     
     
     /**
-     * Mensagem de sucesso.
-     * @param title
-     * @param message
+     * Mensagem de socesso no salvamento.
      * @param idComponente 
      */
-//    public static void addFeedbackSuccess(String title, String message, String idComponente){
-//        FacesContext.getCurrentInstance().addMessage(idComponente,
-//                new FacesMessage(FacesMessage.SEVERITY_INFO,
-//                        title, message));
-//    }
+    public static void addFeedbackSaveSuccess(String idComponente){
+        FacesContext.getCurrentInstance().addMessage(idComponente,
+                new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "Salvo", "Sua alteração foi salva com sucesso."));
+        System.out.println("Feedback deveria aparecer.");
+    }
 
     /**
      * Mensagem de sucesso.
