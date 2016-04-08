@@ -61,6 +61,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     /**
      * <p>
      * Método para retornar o resultado da Avaliação em string para a area de Avaliação.
+     * @return o resultado da avaliação pelo gerente.
      * </p>
      */
     public String retornaResultadoAvaliacao(){
@@ -73,8 +74,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             case Projeto.REPROVADO:
                 resultadoAvaliacao = " Projeto Reprovado";
                 break;
-            case Projeto.PRE_APROVADO:
-                resultadoAvaliacao = " Projeto pré-Aprovado";
+            case Projeto.ACEITO_PARA_AVALIACAO:
+                resultadoAvaliacao = " Projeto Aceito para Avaliação";
                 break;
             default:
                 break;
