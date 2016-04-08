@@ -378,7 +378,9 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                    <p:inputTextarea id="segmentoDeClientes1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="segmentoDeClientes1" placeholder=""
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
+                                                     class="form-control campoInvalido" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
@@ -386,7 +388,9 @@
                                                     <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_resubmeterplano:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
                                     </p:inputTextarea>
-                                    <p:inputTextarea id="segmentoDeClientes2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="segmentoDeClientes2" placeholder="" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                     class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
@@ -410,13 +414,17 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Proposta de Valor* <p:commandLink value="(?)" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                                    <p:inputTextarea id="propostaDeValor1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="propostaDeValor1" placeholder="" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                     class="form-control campoInvalido" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
                                                      >
                                     </p:inputTextarea>
-                                    <p:inputTextarea id="propostaDeValor2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="propostaDeValor2" placeholder=""
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                     class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -442,13 +450,17 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                                    <p:inputTextarea id="atividadesChave1" placeholder="" class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="atividadesChave1" placeholder="" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                     class="form-control campoInvalido" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
                                                      >
                                     </p:inputTextarea>
-                                    <p:inputTextarea id="atividadesChave2" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="atividadesChave2" placeholder=""
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                     class="form-control" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -499,12 +511,14 @@
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
                                                      id="relacoComClientes1">                 
                                     </h:inputTextarea>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
@@ -531,19 +545,22 @@
                                     <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"   
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                      id="parceriasChaves1">
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     requiredMessage="Insira as atividades chave antes de enviar"  
+                                                     requiredMessage="Insira as atividades chave antes de enviar"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                      id="parceriasChaves2">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                        <h:commandLink class="btn btn-default btn-sm btn-success espaco"
+                                                       disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                        id="comentarioParceriasChaves" type="button"
                                                        onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor5')">
@@ -563,12 +580,14 @@
                                     <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                     Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
                                                      id="canais1">
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
@@ -596,12 +615,14 @@
                                     Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
                                                      id="recursosPrincipais1"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="recursosPrincipais2"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
@@ -627,12 +648,14 @@
                                     Quem são nossos concorrentes? como trabalham?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
                                                      id="concorrentes1"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="concorrentes2"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
@@ -681,7 +704,7 @@
                                     Qual o estágio atual de evolução do produto ou serviço proposto?
                                     <h:panelGroup class="checkbox" id="abc1"
                                                   rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
-                                        <h:selectOneMenu class="form-control campoInvalido" id="estagioDeEvolucao1" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control campoInvalido" id="estagioDeEvolucao1" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
                                             <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
@@ -698,7 +721,7 @@
                                     </h:panelGroup>
                                     <h:panelGroup class="checkbox" id="abc"
                                                   rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
-                                        <h:selectOneMenu class="form-control" id="estagioDeEvolucao2" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control" id="estagioDeEvolucao2" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
                                             <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
@@ -734,6 +757,7 @@
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                      id="tecnologiaProcessos1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -741,6 +765,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                      id="tecnologiaProcessos2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -767,14 +792,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                     Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                      id="potencialInovacaoTecnologica1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
                                                      >
                                     </h:inputTextarea>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                      id="potencialInovacaoTecnologica2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -802,6 +829,7 @@
                                     <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
                                     A quem se aplica? como? de que maneira?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes}"
                                                      id="aplicacoes1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -809,6 +837,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes}"
                                                      id="aplicacoes2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -836,6 +865,7 @@
                                     <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
                                     Quais são nossas principais limitações?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                      id="dificuldadesEsperadas1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -843,6 +873,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                      id="dificuldadesEsperadas2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -869,7 +900,8 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                     Em que sentido seremos parceiros da Universidade? 
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                      id="interacaoEmpresaUniversidade1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -877,6 +909,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                      id="interacaoEmpresaUniversidade2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -903,14 +936,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
                                     Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                      id="interacaoEmpresaComunidadeGoverno1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                      >
                                     </h:inputTextarea>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                      id="interacaoEmpresaComunidadeGoverno2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -937,14 +972,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
                                     Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura}"
                                                      id="infraestrutura1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                      >
                                     </h:inputTextarea>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura}"
                                                      id="infraestrutura2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -952,7 +989,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <h:commandLink class="btn btn-default btn-sm btn-success espaco" 
+                                        <h:commandLink class="btn btn-default btn-sm btn-success espaco"
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
                                                        id="comentarioInteracaoInfraInstrutura" type="button"
                                                        onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor16')">
@@ -996,7 +1033,8 @@
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     Haverão sócios? Quanto de participação terão?
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.participacaoacionaria}" 
                                                      id="participacaoAcionaria1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -1004,6 +1042,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.participacaoacionaria}" 
                                                      id="participacaoAcionaria2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -1030,6 +1069,7 @@
                                     <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
                                     Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.potencialEmprego}"
                                                      id="potencialEmprego1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -1037,6 +1077,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.potencialEmprego}"
                                                      id="potencialEmprego2"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
@@ -1090,6 +1131,7 @@
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                     <p:inputTextarea id="fontesDeReceita1" class="form-control campoInvalido" 
                                                      onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
@@ -1097,6 +1139,7 @@
                                     </p:inputTextarea>
                                     <p:inputTextarea id="fontesDeReceita2" class="form-control" 
                                                      onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
@@ -1123,6 +1166,7 @@
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                     <p:inputTextarea id="estruturaCustos1" class="form-control campoInvalido" 
                                                      onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
@@ -1130,6 +1174,7 @@
                                     </p:inputTextarea>
                                     <p:inputTextarea id="estruturaCustos2" class="form-control" 
                                                      onchange="precisaSalvar = true;"
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
@@ -1155,12 +1200,14 @@
                                     <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
                                     Quanto de recurso será necessário para iniciar?
                                     <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial}"
                                                      id="investimentoInicial1"
                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
                                                      >
                                     </h:inputTextarea>
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                                     disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial}"
                                                      id="investimentoInicial2"
                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
@@ -1205,7 +1252,7 @@
 
                                     </p:dataTable>
 
-                                    <p:dataTable id="revisar_custoFixo2" var="custo" 
+                                    <p:dataTable id="revisar_custoFixo2" var="custo"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
@@ -1328,12 +1375,15 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoSalvar" class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
+                                        <h:commandButton id="botaoSalvar" 
+                                                         rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
+                                                         class="btn btn-success" type="button" onclick="infoSalvar()" value="Salvar Revisão"
                                                          ></h:commandButton>
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" value="Terminar Revisão" onclick="chamaModal(modalInfoDeEnvio)" action="#{projetoBean.enviarProjeto()}">
+                                        <h:commandButton id="botaoEnviar" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
+                                                         type="button" class="btn btn-success" value="Terminar Revisão" onclick="chamaModal(modalInfoDeEnvio)" action="#{projetoBean.enviarProjeto()}">
                                         </h:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
