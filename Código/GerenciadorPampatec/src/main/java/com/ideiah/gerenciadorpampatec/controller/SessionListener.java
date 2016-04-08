@@ -43,7 +43,7 @@ public class SessionListener implements HttpSessionListener {
         if (gdr != null) {
             projeto = (Projeto) session.getAttribute("projetoSelecionado");
             if ((projeto != null) && (projeto.getStatus() == Projeto.SENDO_AVALIADO)) {
-                projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+                projeto.setStatus(Projeto.SUBMETIDO);
                 atualizaStatusdProjeto(projeto);
             }
         }

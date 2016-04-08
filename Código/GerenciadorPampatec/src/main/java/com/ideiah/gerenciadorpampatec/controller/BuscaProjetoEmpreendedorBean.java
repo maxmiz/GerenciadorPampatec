@@ -88,15 +88,9 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         empreendedor = Empreendedor.buscaPorEmail(empreendedor.getEmail());
 
-        Projeto selecaoProjeto;
         ArrayList<Projeto> projetosEmpreendedor = new ArrayList();
-
-        for (Object projeto : empreendedor.getProjetos().toArray()) {
-            selecaoProjeto = (Projeto) projeto;
-            //NÃO LISTA SE FOR LINHA DE BASE
-            if (selecaoProjeto.getStatus() != Projeto.LINHA_DE_BASE) {
-                projetosEmpreendedor.add(selecaoProjeto);
-            }
+        for (Object projeto : empreendedor.getProjetos()) {
+            projetosEmpreendedor.add((Projeto) projeto);
         }
         return projetosEmpreendedor;
     }
@@ -114,13 +108,13 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
 
-            if (projetoSelecionado.getStatus() == Projeto.PRE_MELHORIA) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
-            }else{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
+            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
             }
-            } catch (IOException ex) {
-				Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -152,20 +146,21 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
-    
+
     /**
-     * Verifica se o botão excluir pode ser ativado olhando
-     * o tipo de empreendedor e se o projeto está em pre-avaliação.
+     * Verifica se o botão excluir pode ser ativado olhando o tipo de
+     * empreendedor e se o projeto está em pre-avaliação.
+     *
      * @param projeto Projeto para se verificar.
      * @return true se o botão pode ser ativado.
      */
-    public boolean verificaExcluir(Projeto projeto){
-        return verificarEmpreendedor(projeto) 
-                && projeto.verificarEmPreAvaliacao() 
+    public boolean verificaExcluir(Projeto projeto) {
+        return verificarEmpreendedor(projeto)
+                && projeto.verificaSubmetido()
                 && projeto.verificarSendoAvaliado()
-                && projeto.verificarEmAvaliacao()
+                && projeto.verificarAceitoParaAvaliacao()
                 && projeto.verificarReprovado()
-                && projeto.verificarPreMelhoria();
+                && projeto.verificarNecessitaAvaliacao();
     }
 
     public String formatarDataCriacao(Projeto projeto) {

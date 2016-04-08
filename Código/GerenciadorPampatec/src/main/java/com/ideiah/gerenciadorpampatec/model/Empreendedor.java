@@ -199,7 +199,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         if (!verificaDadosEmpreendedores(projeto)) {
             return FALTANDO_DADOS;
         } else if (projeto.getStatus() != ENVIADO) {
-            projeto.mudarStatus(Projeto.EM_PRE_AVALIACAO);
+            projeto.mudarStatus(Projeto.SUBMETIDO);
         }
 
         Date data = new Date(System.currentTimeMillis());
