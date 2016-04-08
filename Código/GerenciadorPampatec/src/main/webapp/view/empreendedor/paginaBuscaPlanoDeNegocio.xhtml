@@ -18,10 +18,10 @@
         <h:outputScript library="js" name="formulario.js"/>
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="sweetalert.min.js" />        
-<!--
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
--->
+        <!--
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+        -->
 
         <title>Planos de Negócio - Empreendedor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -58,28 +58,28 @@
         </style>
         <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
         <script>
-             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-                setTimeout(function () {
-                    // sweetAlert: http://t4t5.github.io/sweetalert/
-                     sweetAlert({
-                        title: "Bah!", 
-                        text: "Sua sessão expirou!", 
-                        type: "error",
-                        confirmButtonColor: '#00A859'
-                    },function() {
-                        // Redireciona o usuário para a página de login.
-                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+            setTimeout(function () {
+                // sweetAlert: http://t4t5.github.io/sweetalert/
+                sweetAlert({
+                    title: "Bah!",
+                    text: "Sua sessão expirou!",
+                    type: "error",
+                    confirmButtonColor: '#00A859'
+                }, function () {
+                    // Redireciona o usuário para a página de login.
+                    window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
                 });
-                }, (tempoMaxSessao - 1) * 1000);
+            }, (tempoMaxSessao - 1) * 1000);
             // Falta retirar o tempo de redireção e espera, 
             // para faze-lo unicamente quando o usuário clicar me OK.
         </script>
     </h:head>
     <h:body>
         <!-- Início do menu superior -->
-        
+
         <!-- CUIDADO AO ABRIR E FECHAR TAGS -->
-        
+
         <h:form id="menuSuperior">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -183,48 +183,48 @@
                 </div>
 
                 <div class="col-md-12">
-                        <p:dataTable id="singleDT" var="projeto" styleClass="tabelaEmpreendedores" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{projeto.nome}" />
-                            </p:column>
-                            <p:column headerText="Data de Criação" style="text-align: center;">
-                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
-                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                                </h:outputText>
-                            </p:column>
-                            <p:column headerText="Data de Envio" style="text-align: center;">
-                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
-                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                                </h:outputText>
-                            </p:column>
-                            <p:column headerText="Status" style="text-align: center">
-                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
-                            </p:column>
-                            <p:column headerText="Ações" style="width: 23%; text-align: center">
-                                <div align="center">
-                                    <div class="col-md-6"> 
-                                        <h:commandLink class="btn btn-primary botaoTabela" title="Visualizar o Plano de Negócio"
-                                                       action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                       action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
-                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
-                                                       rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
-                                                       action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                                            <f:ajax execute="@form"></f:ajax>
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
-                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
-                                 
-                                    </div>
-                                     <script>
+                    <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto" styleClass="tabelaEmpreendedores" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:column headerText="Nome" sortBy="#{projeto.nome}">
+                            <h:outputText value="#{projeto.nome}" />
+                        </p:column>
+                        <p:column headerText="Data de Criação" sortBy="#{projeto.dataCriacao}" style="text-align: center;">
+                            <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
+                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Data de Envio" sortBy="#{projeto.dataEnvio}" style="text-align: center;">
+                            <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
+                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Status" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center">
+                            <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Ações" style="width: 23%; text-align: center">
+                            <div align="center">
+                                <div class="col-md-6"> 
+                                    <h:commandLink class="btn btn-primary botaoTabela" title="Visualizar o Plano de Negócio"
+                                                   action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                    </h:commandLink>
+                                </div>
+                                <div class="col-md-6">
+                                    <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                                   action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                        <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                    </h:commandLink>
+                                    <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
+                                                   rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
+                                                   action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                        <f:ajax execute="@form"></f:ajax>
+                                        <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                    </h:commandLink>
+
+                                </div>
+                                <script>
                                     function confirmacaoDeExclusao() {
                                         $("#modalInfoDeExclusao").modal();
                                     }
@@ -254,7 +254,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
 
                         </p:column>
                     </p:dataTable>
