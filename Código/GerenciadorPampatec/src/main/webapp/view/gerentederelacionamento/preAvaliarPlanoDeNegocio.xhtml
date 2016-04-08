@@ -57,7 +57,7 @@
         <meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
         -->
     </h:head>
-    <h:body>
+    <h:body onload="mostrarMensagemCampoObrigatorio();">
 
         <!-- Início do menu superior -->
         <h:form id="locovelho">
@@ -326,7 +326,7 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                    <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
@@ -339,7 +339,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor1" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        <p:inputTextarea class="campoFeedBack" cols="50" rows="2" id="propostaDeValor1" onchange="mostrarMensagemCampoObrigatorio();" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
                                             <f:ajax execute="@form" render="formulario_comentarpreavalizar:propostaDeValor3 formulario_comentarpreavalizar:mensagensFeed formulario_comentarpreavalizar:botaoEnviar" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                         </p:inputTextarea>
                                     </div>
@@ -957,15 +957,22 @@
                             <div class="col-md-12 espaco has-success" id="observacoes" title="Inserir Observações">
                                 <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"  
                                                  id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
-                                <f:ajax execute="@form" render="formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemErroObservacoes formulario_comentarpreavalizar:mensagensFeed" event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
-                                <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar  formulario_comentarpreavalizar:mensagemStatusAvaliacao" event="change"/>
+                                <f:ajax execute="@form"
+                                        render="formulario_comentarpreavalizar:campoObservacoes
+                                        formulario_comentarpreavalizar:mensagemErroObservacoes
+                                        formulario_comentarpreavalizar:mensagensFeed
+                                        formulario_comentarpreavalizar:mensagemStatusAvaliacao
+                                        formulario_comentarpreavalizar:botaoEnviar"
+                                        event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                 </h:inputTextarea>
                                 
                                 <br />
                             </div>
                             <div class="col-md-12 espaco">
                                 <b>Avaliação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                <h:message id="mensagemStatusAvaliacao" class="mensagemErro" for="statusAvaliacao"/><br/>
+                                <h:panelGroup id="mensagemStatusAvaliacao" class="mensagemErro">
+                                    É necessário pelo menos um comentário antes de mandar para realizar ajustes
+                                </h:panelGroup><br/>
                                 <h:panelGrid cellpadding="5" style="margin-bottom:10px" columns="2" id="statusAvaliacao">
                                     <p:selectOneRadio id="avaliacao" value="#{preAvaliarPlanoBean.resultadoPreAvaliacao}" layout="pageDirection">
                                         <div class="col-md-12" style="padding-left: 15%;">
@@ -973,7 +980,7 @@
                                             <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                             <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                         </div>
-                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:campoObservacoes " listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
+                                        <f:ajax execute="@form" render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:campoObservacoes formulario_comentarpreavalizar:mensagemStatusAvaliacao" listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
                                     </p:selectOneRadio>                                       
                                 </h:panelGrid>
                             </div>
