@@ -24,12 +24,10 @@ import javax.servlet.http.HttpSession;
 
 public class revisarPlanoDeNegocioBean implements Serializable {
 
-    
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
-
 
     public revisarPlanoDeNegocioBean() {
 
@@ -37,15 +35,15 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         recuperaComentarioProjeto();
     }
-    
-    
-     /**
+
+    /**
      * <p>
-     * Método para retornar os comentarios do projeto selecionado que estão com o estatus finalizado.
+     * Método para retornar os comentarios do projeto selecionado que estão com
+     * o estatus finalizado.
      * </p>
      */
-    public void recuperaComentarioProjeto (){
-        
+    public void recuperaComentarioProjeto() {
+
         for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
             if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.FINALIZADO) {
                 comentarioProjeto = objetoComentarioprojeto;
@@ -53,21 +51,31 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             }
         }
     }
-    
-    public boolean verificaExistenciaComentario(){
+
+    public boolean verificaStatusAceitoAvaliacao(Projeto projetoSelecionado) {
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
+    }
+
+    public boolean verificaExistenciaComentario() {
 
         return true;
     }
+
     /**
      * <p>
-     * Método para retornar o resultado da Avaliação em string para a area de Avaliação.
+     * Método para retornar o resultado da Avaliação em string para a area de
+     * Avaliação.
+     *
      * @return o resultado da avaliação pelo gerente.
      * </p>
      */
-    public String retornaResultadoAvaliacao(){
+    public String retornaResultadoAvaliacao() {
         String resultadoAvaliacao = "";
-        
-        switch(projeto.getStatus()){
+
+        switch (projeto.getStatus()) {
             case Projeto.NECESSITA_MELHORIA:
                 resultadoAvaliacao = " Projeto Necessita Realizar Ajustes";
                 break;
@@ -82,9 +90,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         }
         return resultadoAvaliacao;
     }
-    
-    
-    
+
     /**
      * <p>
      * Método para verificar qual o tipo de estégio a empressa se encontra.
