@@ -3,10 +3,16 @@
     Created on : 02/09/2015, 02/09/2015 17:43:14
     Author     : Pedro
 */
+html {
+    font-family: lilyUPC;
+}
 
 body{
     width: 98.5%;
+    background: #fff;
+    color: #727476;
 }
+
 
 .mensagemErro{
     background-color: #fc2f2f;
@@ -65,7 +71,7 @@ legend {
 
 .campoFeedBack{
     display: none;
-    
+
 }
 .campoFeedBackOn{
     display: block;
@@ -325,7 +331,7 @@ fieldset[disabled] .autoCompletar input {
     font-weight:normal;
 }
 .estilo{
-   text-align:center;
+    text-align:center;
     margin-left: 0%;
 }
 .estiloDivVertical {
