@@ -23,30 +23,9 @@
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
-            .pampaTec {
-                background-color: #00A859
-            }
-            .navbar-default {
-                background-color: #00A859;
-            }
-            .dropdown-menu > li > a:hover,
-            .dropdown-menu > li > a:focus {
-                background-color: #00A859;
-            }
-            .dropdown-menu > .active > a,
-            .dropdown-menu > .active > a:hover,
-            .dropdown-menu > .active > a:focus {
-                background-color: #00A859;
-            }
-            .btn-success {
-                background-color: #00A859;
-            }
             @font-face {
                 font-family: lilyUPC;
                 src: url(lily.ttf);
-            }
-            html {
-                font-family: lilyUPC;
             }
         </style>
         <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
@@ -210,7 +189,7 @@
                     </div>
                     <div class="col-md-12">
 
-                        <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" paginator="true" rows="20" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                             <f:facet name="header">
                                 Tabela de Planos de Negócio
@@ -224,7 +203,7 @@
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de submissão" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
+                            <p:column id="submissionDate" headerText="Data de submissão" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 

@@ -160,7 +160,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         comentDao.salvar(comentarioProjeto);
         
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(resultadoPreAvaliacao);
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
         projetoDao.salvar(projeto);
 
         /**
@@ -182,14 +182,10 @@ public class PreAvaliarPlanoBean implements Serializable {
         comentDao.salvar(comentarioProjeto);
         
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(resultadoPreAvaliacao);
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
         projetoDao.salvar(projeto);        
 
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
-        } catch (Exception ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        getBuscarPlanoDeNegocio();
     }
     
     /**
@@ -226,9 +222,12 @@ public class PreAvaliarPlanoBean implements Serializable {
         if (validaAvaliacao()) {
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
                 projeto.setStatus(getResultadoPreAvaliacao());
+                
                 mudaStatusComentarioProjetoFinalizar();
+                
                 ProjetoDao projDao = new ProjetoDao();
-                projDao.update(projeto);
+                projDao.salvar(projeto);
+                
                 getBuscarPlanoDeNegocio();
             }
         }

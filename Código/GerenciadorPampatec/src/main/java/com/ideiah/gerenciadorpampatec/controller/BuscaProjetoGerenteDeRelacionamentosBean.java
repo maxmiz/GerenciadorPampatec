@@ -8,9 +8,12 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.ComparadorUtil;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.Application;
@@ -47,6 +50,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
+        sortByDate(listaProjetos);
         this.listaProjetos = listaProjetos;
     }
 
@@ -136,7 +140,6 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         for (Projeto projeto : listaProjetosSendoAvaliado) {
             listaProjetosPorStatus.add(projeto);
         }
-
         return listaProjetosPorStatus;
     }
 
@@ -187,7 +190,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     /**
      * Atualiza o status do projeto base para SENDO_AVALIADO caso esteja sendo
- avaliado ou SUBMETIDO caso a avaliação seja interrompida
+     * avaliado ou SUBMETIDO caso a avaliação seja interrompida
      *
      * @param projeto
      */
@@ -332,6 +335,10 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    private void sortByDate(ArrayList<Projeto> lista) {
+        Collections.sort(lista, new ComparadorUtil().reversed());
     }
 
 }

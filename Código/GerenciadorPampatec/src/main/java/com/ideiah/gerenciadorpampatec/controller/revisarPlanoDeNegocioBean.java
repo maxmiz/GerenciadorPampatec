@@ -6,9 +6,11 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -59,10 +61,15 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
 
-    public boolean verificaExistenciaComentario() {
+    public boolean verificaProjetoRecusado(Projeto projetoSelecionado){
+        
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
-        return true;
-    }
+        return projetoSelecionado.getStatus() != Projeto.REPROVADO;
+}
+    
+    
 
     /**
      * <p>
@@ -157,6 +164,19 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+    
+    public void salvarRevisaoProjeto(){
+        ProjetoDao projetoDao = new ProjetoDao();
+        projetoDao.salvar(projeto);
+        
+        
+        /**
+         * Para exibir a mensagem de salvo com sucesso.
+         */
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);        
     }
 
 }
