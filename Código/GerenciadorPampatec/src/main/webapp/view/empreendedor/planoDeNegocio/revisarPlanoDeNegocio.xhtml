@@ -5,8 +5,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-
-        <h:outputScript library="js" name="formulario.js"/>
         <h:outputScript library="js" name="chamaModal.js"/>
 
         <f:facet name="last">
@@ -14,14 +12,20 @@
             <h:outputStylesheet library="css" name="outro.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
-  
+
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
-        <h:outputScript library="js" name="formulario.js" />
+        <h:outputScript library="js" name="preavaliacao.js" />
 
         <title>Revisar Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+        
+        <script> 
+            var andamentoProjeto = #{revisarPlanoDeNegocioBean.retornaStatusProjeto()};
+        </script>
+        
+        
+        
     </h:head>
     <h:body onload="carregaPagina();">
 
@@ -125,7 +129,7 @@
                     <h:commandButton  class="btn btn-success btnWorkflowV" type="button" title="Visualizar resultado do avaliador" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('menuSuperior:botao_resultado_preavaliacao'), mostraDIV('sessao_resultado_avaliador')"></h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
-                    <h:commandButton  class="btn btn-success btnWorkflowV" rendered="#{revisarPlanoDeNegocioBean.verificaProjetoRecusado(projetoSelecionado)}"
+                    <h:commandButton  class="btn btn-success btnWorkflowV" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}"
                                       type="button" title="Revisar plano de negócio" id="botao_revisar" value="Revisar" onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')"></h:commandButton><br/>
                 </div>
             </div>
@@ -243,7 +247,7 @@
 
 
 
-            <div  id="sessao_revisar_plano_pre_melhoria" class="classeConteudo col-md-10 form-horizontal well bs-component">
+            <div  id="sessao_revisar_plano_pre_melhoria" class="classeConteudo col-md-10 form-horizontal well bs-component ">
                 <h1>Revisar Plano de Negócio</h1>
                 <h:outputText id="tituloMensagem"></h:outputText>
                 <h:message for="tituloMensagem" errorClass="mensagemErro"></h:message>
@@ -362,11 +366,11 @@
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals(''))}"
-                                                       id="comentarioSegCliente" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:segmentoDeClientes3')"
-                                                       value="Comentário"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals(''))}"
+                                                         id="comentarioSegCliente" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:segmentoDeClientes3')"
+                                                         value="Comentário"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -375,7 +379,7 @@
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-12 espaco" id="">
                                     <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
@@ -399,11 +403,11 @@
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals(''))}"
-                                                       id="comentarioPropostaValor" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor3')"
-                                                       value="Comentário"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals(''))}"
+                                                         id="comentarioPropostaValor" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor3')"
+                                                         value="Comentário"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -412,7 +416,7 @@
                                         <h:message class="mensagemErro" for="propostaDeValor"/>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-12 espaco" id="">
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
@@ -436,11 +440,11 @@
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals(''))}"
-                                                       id="comentarioAtividadesChaves" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:atividadesChaves3')"
-                                                       value="Comentário"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals(''))}"
+                                                         id="comentarioAtividadesChaves" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:atividadesChaves3')"
+                                                         value="Comentário"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1377,6 +1381,58 @@
                     <br />
                 </div>
             </div>
+
+
+
+
+
+
+            <!-- INICIO DA DIV DE PRE AVALIAÇÂO PARA PROJETOS COM STATUS SUBMETIDO-->
+
+            <div class="classeConteudo esconder-div" id="divPreVisualizar">
+
+
+                <div class="tab-pane fade active in well bs-component">
+                    <h1>Pré-Avaliação - Plano de Negócio</h1>
+                    <div id="formularioParte01">
+                        <legend id="subTitulo">Pré-Avaliação de Plano de Negócio</legend>                                
+
+                        <div class="well">
+                            <strong> Situação: </strong> Este plano de negócio está sendo avaliado.
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+
+            <!-- FINAL DA DIV DE PRE AVALIAÇÂO PARA PROJETOS COM STATUS SUBMETIDO-->
+
+
+
+
 
         </h:form>
 

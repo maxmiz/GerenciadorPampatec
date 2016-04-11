@@ -454,20 +454,18 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
-//      EM_PRE_AVALIACAO = 1;
+//      SUBMETIDO = 1;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
-            mostra_vertical_pre_avaliacao();
+            mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
 
-            mostraDIV('divPreVisualizar');
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV('div_revisar_plano');
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -480,6 +478,7 @@ function carregaPagina() {
 
 //      AVALIACAO = 2;    
         case 2:
+            
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
 

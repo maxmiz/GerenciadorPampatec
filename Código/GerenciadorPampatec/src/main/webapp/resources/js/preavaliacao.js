@@ -14,40 +14,14 @@ function carregaPagina() {
 
     switch (andamentoProjeto) {
 
-//      ELABORACAO = 0;
-        case 0:
-            etapa2.innerHTML = "<b>Pré-Avaliação</b>";
-            etapa3.innerHTML = "<b>Avaliação</b>";
-            etapa4.innerHTML = "<b>Formalização</b>";
-            etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual");
-            mostra_vertical_elaboracao();
-            var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
-
-            //botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-            mostraDIV2('div_apresentacao_formulario');
-
-            etapaAtualDoWorkflow = "etapa1";
-
-            var etapa = document.getElementById("etapa2");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style", "cursor: default;");
-            break;
-
-//      EM_PRE_AVALIACAO = 1;
+//      SUBMETIDO = 1;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
-            mostra_vertical_pre_avaliacao();
+            var botao_preavaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
 
             etapaAtualDoWorkflow = "etapa2";
 
@@ -63,16 +37,17 @@ function carregaPagina() {
 
             break;
 
-//      AVALIACAO = 2;    
+//      ACEITO PARA AVALIAÇÃO;    
         case 2:
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-
-            etapaAtualDoWorkflow = "etapa3";
-
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active");
             etapa3.setAttribute("class", "active, etapaAtual");
+            
+            etapaAtualDoWorkflow = "etapa3";
+
+
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
@@ -109,18 +84,17 @@ function carregaPagina() {
 
             break;
 
-//      PRE_APROVADO = 5;
-        case 5:
+//      REPROVADO = 6;
+        case 6:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botaoQueDeveSerPintado = document.getElementById("botao_resultado_preavaliacao");
-            mostra_vertical_pre_avaliacao();
-            botaoQueDeveSerPintado.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            var botaoResultadoPreAvaliacao = document.getElementById("botao_resultado_preavaliacao");
+            botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
 
-            mostraDIV('divPreAvaliar_visualizar');
+            mostraDIV('sessao_resultado_avaliador');
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -129,30 +103,6 @@ function carregaPagina() {
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
             break;
-
-//      DEFININDO_EQUIPE = 8;
-        case 8:
-            etapa2.innerHTML = "<b>Pré-Avaliação</b>";
-            etapa3.innerHTML = "<b>Avaliação</b>";
-            etapa4.innerHTML = "<b>Formalização</b>";
-            etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual");
-            mostra_vertical_elaboracao();
-            var botao_preavaliacao = document.getElementById("botao_elaboracao_equipe");
-
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-            mostraDIV('formParte01');
-
-            etapaAtualDoWorkflow = "etapa1";
-
-            var etapa = document.getElementById("etapa2");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style", "cursor: default;");
     }
 }
 /**
