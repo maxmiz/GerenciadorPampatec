@@ -10,6 +10,8 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -166,6 +168,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         this.loginBean = loginBean;
     }
     
+    /**
+     * <p>
+     * Método para salvar as edições feitas no objeto do projeto.
+     * </p>
+     */
     public void salvarRevisaoProjeto(){
         ProjetoDao projetoDao = new ProjetoDao();
         projetoDao.salvar(projeto);
@@ -178,5 +185,30 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);        
     }
+    
+    /**
+     * <p>
+     * Método para salvar e terminar a revisão do projeto.
+     * </p>
+     */
+    public void terminarRevisaoProjeto() {
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatus(Projeto.RESUBMETIDO);
+        projetoDao.salvar(projeto);
 
+        getBuscarPlanoDeNegocio();
+    }
+
+    /**
+     * <p>
+     * Redireciona para a página de lista de Planos de Negócio.
+     * </p>
+     */
+    private void getBuscarPlanoDeNegocio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }
