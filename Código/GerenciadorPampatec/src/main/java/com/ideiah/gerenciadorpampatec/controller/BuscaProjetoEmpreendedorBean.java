@@ -108,7 +108,9 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
 
-            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) {
+            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA || 
+                    projetoSelecionado.getStatus() == Projeto.SUBMETIDO ||
+                    projetoSelecionado.getStatus() == Projeto.REPROVADO) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");

@@ -61,15 +61,26 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
 
-    public boolean verificaProjetoRecusado(Projeto projetoSelecionado){
+    
+    public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado){
         
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
-        return projetoSelecionado.getStatus() != Projeto.REPROVADO;
+        return projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA;
 }
     
-    
+      /**
+     * Retorna o projeto da sessão, garantindo que ele está atualizado com o
+     * servidor.
+     *
+     * @return projeto da sessão
+     */
+    public int retornaStatusProjeto() {
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
+        return projeto.getStatus();
+    }  
 
     /**
      * <p>
