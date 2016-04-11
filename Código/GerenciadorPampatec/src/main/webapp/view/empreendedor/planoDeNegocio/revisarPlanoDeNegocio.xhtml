@@ -125,7 +125,8 @@
                     <h:commandButton  class="btn btn-success btnWorkflowV" type="button" title="Visualizar resultado do avaliador" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('menuSuperior:botao_resultado_preavaliacao'), mostraDIV('sessao_resultado_avaliador')"></h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
-                    <h:commandButton  class="btn btn-success btnWorkflowV" type="button" title="Revisar plano de negócio" id="botao_revisar" value="Revisar" onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')"></h:commandButton><br/>
+                    <h:commandButton  class="btn btn-success btnWorkflowV" rendered="#{revisarPlanoDeNegocioBean.verificaProjetoRecusado(projetoSelecionado)}"
+                                      type="button" title="Revisar plano de negócio" id="botao_revisar" value="Revisar" onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')"></h:commandButton><br/>
                 </div>
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
