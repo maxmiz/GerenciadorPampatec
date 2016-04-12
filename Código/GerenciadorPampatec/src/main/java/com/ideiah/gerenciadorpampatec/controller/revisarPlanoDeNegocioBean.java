@@ -9,6 +9,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -165,6 +166,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void terminarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatus(Projeto.RESUBMETIDO);
+        Date dataEnvio = new Date(System.currentTimeMillis());
+        projeto.setDataEnvio(dataEnvio);
         projetoDao.salvar(projeto);
 
         getBuscarPlanoDeNegocio();
