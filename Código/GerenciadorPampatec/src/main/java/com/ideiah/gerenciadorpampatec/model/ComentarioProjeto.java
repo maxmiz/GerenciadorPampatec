@@ -184,5 +184,9 @@ public class ComentarioProjeto implements java.io.Serializable {
     public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
         this.consideracoesPersonalizadas = consideracoesPersonalizadas;
     }
+    
+    public String todasConsideracoes(){
+        return consideracoes + "\n" + consideracoesPersonalizadas;
+    }
 
 }

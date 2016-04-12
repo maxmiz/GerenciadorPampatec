@@ -670,8 +670,14 @@
 
                                 <div class="col-md-4"><br /></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar3" class="btn btn-success" type="button" title="Salvar Revisão" onclick="infoSalvar()" value="Salvar Revisão"
-                                                     ></h:commandButton>
+                                    <p:commandButton id="botaoSalvar3" 
+                                                     class="btn btn-success" 
+                                                     type="button" 
+                                                     title="Salvar Revisão" 
+                                                     onclick="infoSalvar()" 
+                                                     value="Salvar Revisão"
+                                                     icon="fa fa-save">
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right"></div>
@@ -696,7 +702,11 @@
                                     Qual o estágio atual de evolução do produto ou serviço proposto?
                                     <h:panelGroup class="checkbox" id="abc1"
                                                   rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
-                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control campoInvalido" id="estagioDeEvolucao1" value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu id="estagioDeEvolucao1" 
+                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
+                                                         class="form-control campoInvalido" 
+                                                         value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" 
+                                                         onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
                                             <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
@@ -704,20 +714,26 @@
                                             <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                             <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                             <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                            <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                            <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:mensagensFeed formulario_resubmeterplano:campoOutro1" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:selectOneMenu>
                                         <div>
+                                            <!-- Esse inputText não está sendo renderizado corretamente. -->
                                             <p:inputText id="campoOutro1" 
                                                          class="form-control" 
                                                          placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                         value="#{projetoBean.descricaoButtonOutro}" 
-                                                         rendered="#{projetoBean.exibeCampo()}">
+                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.estagioEvolucao}" 
+                                                         rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
+                                                <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </p:inputText>
                                         </div>
                                     </h:panelGroup>
                                     <h:panelGroup class="checkbox" id="abc"
                                                   rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
-                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control" id="estagioDeEvolucao2" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu id="estagioDeEvolucao2" 
+                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
+                                                         class="form-control" 
+                                                         value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" 
+                                                         onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
                                             <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
@@ -725,13 +741,16 @@
                                             <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                             <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                             <f:selectItem itemValue="Outro" itemLabel="Outro" />
+                                            <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:selectOneMenu>
                                         <div>
+                                            <!-- Esse inputText não está sendo renderizado corretamente. -->
                                             <p:inputText id="campoOutro2" 
                                                          class="form-control" 
                                                          placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                         value="#{projetoBean.descricaoButtonOutro}" 
-                                                         rendered="#{projetoBean.exibeCampo()}">
+                                                         value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
+                                                         rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
+                                                <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </p:inputText>
                                         </div>
                                     </h:panelGroup>
@@ -1016,8 +1035,14 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar4" class="btn btn-success" type="button" title="Salvar Revisão" onclick="infoSalvar()" value="Salvar Revisão"
-                                                     ></h:commandButton>
+                                    <p:commandButton id="botaoSalvar4" 
+                                                     class="btn btn-success" 
+                                                     type="button" 
+                                                     title="Salvar Revisão" 
+                                                     onclick="infoSalvar()" 
+                                                     value="Salvar Revisão"
+                                                     icon="fa fa-save">
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -1113,8 +1138,14 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar5" class="btn btn-success" type="button" title="Salvar Revisão" onclick="infoSalvar()" value="Salvar Revisão"
-                                                     ></h:commandButton>
+                                    <p:commandButton id="botaoSalvar5" 
+                                                     class="btn btn-success" 
+                                                     type="button" 
+                                                     title="Salvar Revisão" 
+                                                     onclick="infoSalvar()" 
+                                                     value="Salvar Revisão"
+                                                     icon="fa fa-save">
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -1362,8 +1393,14 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar6" class="btn btn-success" type="button" title="Salvar Revisão" onclick="infoSalvar()" value="Salvar Revisão"
-                                                     ></h:commandButton>
+                                    <p:commandButton id="botaoSalvar6" 
+                                                     class="btn btn-success" 
+                                                     type="button" 
+                                                     onclick="infoSalvar()" 
+                                                     value="Salvar Revisão"
+                                                     title="Salvar a revisão do projeto."
+                                                     icon="fa fa-save">
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -1381,7 +1418,7 @@
                                 <b>Observações <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
+                                                     id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
                                     </h:inputTextarea>
                                     <br />
                                 </div>
@@ -1400,7 +1437,8 @@
                                                          class="btn btn-success" 
                                                          value="Terminar Revisão" 
                                                          onclick="chamaModal(modalInfoDeEnvio)"
-                                                         icon="fa fa-check">
+                                                         icon="fa fa-check"
+                                                         title="Terminar e submeter a revisão do plano de negócio.">
                                         </p:commandButton>
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
@@ -1423,7 +1461,7 @@
                 <b>Observações <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
+                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
                     </h:inputTextarea>
                     <br />
                 </div>

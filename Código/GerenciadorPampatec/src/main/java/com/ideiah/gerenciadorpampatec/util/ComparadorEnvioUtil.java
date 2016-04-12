@@ -12,7 +12,7 @@ import java.util.Comparator;
  *
  * @author Claudio
  */
-public class ComparadorUtil implements Comparator<Projeto> {
+public class ComparadorEnvioUtil implements Comparator<Projeto> {
 
     /**
      * @param Projeto o1 para ser comparado

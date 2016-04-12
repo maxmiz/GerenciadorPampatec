@@ -507,8 +507,11 @@
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
-                                                <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                             value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                <p:inputText id="campoOutro" 
+                                                             class="form-control" 
+                                                             placeholder="Digite aqui o estágio de evolução de seu Negócio"
+                                                             value="#{projetoBean.descricaoButtonOutro}" 
+                                                             rendered="#{projetoBean.exibeCampo()}">
                                                     <f:ajax execute="@form" render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                                 </p:inputText>
                                             </div>
