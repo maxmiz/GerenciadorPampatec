@@ -5,7 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
@@ -32,18 +31,20 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private ComentarioProjeto comentarioProjeto;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
+    private String estagioEvolucao;
 
     public revisarPlanoDeNegocioBean() {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         recuperaComentarioProjeto();
+        setEstagioEvolucao(verificaEstagioEvolucao());
     }
 
     /**
      * <p>
-     * Método para retornar os comentarios do projeto selecionado que estão com
-     * o estatus finalizado.
+     * Método para retornar os comentários do projeto selecionado que estão com
+     * o status finalizado.
      * </p>
      */
     public void recuperaComentarioProjeto() {
@@ -63,18 +64,18 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
 
-    
-    public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado){
-        
+    public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado) {
+
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
         return projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA;
-}
-    
-      /**
+    }
+
+    /**
+     * <p>
      * Retorna o projeto da sessão, garantindo que ele está atualizado com o
-     * servidor.
+     * servidor.</p>
      *
      * @return projeto da sessão
      */
@@ -82,15 +83,16 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) sessao.getAttribute("projetoSelecionado");
         return projeto.getStatus();
-    }  
+    }
 
     /**
      * <p>
-     * Método para retornar o resultado da Avaliação em string para a area de
-     * Avaliação.
+     * Método para retornar o resultado da Avaliação em <code>String</code> para
+     * a área de Avaliação.
+     * </p>
      *
      * @return o resultado da avaliação pelo gerente.
-     * </p>
+     *
      */
     public String retornaResultadoAvaliacao() {
         String resultadoAvaliacao = "";
@@ -113,12 +115,12 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     /**
      * <p>
-     * Método para verificar qual o tipo de estégio a empressa se encontra.
+     * Método para verificar qual o tipo de estágio a empresa se encontra.
      * </p>
      *
      * @return
      */
-    public String verificaEstagioEvolucao() {
+    private String verificaEstagioEvolucao() {
         String status = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
         if (status.equals("Outro:")) {
             return projeto.getProdutoouservico().getEstagioEvolucao();
@@ -135,6 +137,49 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void mudaStatusRedirecionaInicio() {
         getLoginBean().getInicio();
 
+    }
+
+    /**
+     * <p>
+     * Método para salvar as edições feitas no objeto do projeto.
+     * </p>
+     */
+    public void salvarRevisaoProjeto() {
+        ProjetoDao projetoDao = new ProjetoDao();
+        projetoDao.salvar(projeto);
+
+        /**
+         * Para exibir a mensagem de salvo com sucesso.
+         */
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+    }
+
+    /**
+     * <p>
+     * Método para salvar e terminar a revisão do projeto.
+     * </p>
+     */
+    public void terminarRevisaoProjeto() {
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatus(Projeto.RESUBMETIDO);
+        projetoDao.salvar(projeto);
+
+        getBuscarPlanoDeNegocio();
+    }
+
+    /**
+     * <p>
+     * Redireciona para a página de lista de Planos de Negócio.
+     * </p>
+     */
+    private void getBuscarPlanoDeNegocio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     /**
@@ -178,48 +223,12 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
-    
-    /**
-     * <p>
-     * Método para salvar as edições feitas no objeto do projeto.
-     * </p>
-     */
-    public void salvarRevisaoProjeto(){
-        ProjetoDao projetoDao = new ProjetoDao();
-        projetoDao.salvar(projeto);
-        
-        
-        /**
-         * Para exibir a mensagem de salvo com sucesso.
-         */
-        FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);        
-    }
-    
-    /**
-     * <p>
-     * Método para salvar e terminar a revisão do projeto.
-     * </p>
-     */
-    public void terminarRevisaoProjeto() {
-        ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatus(Projeto.RESUBMETIDO);
-        projetoDao.salvar(projeto);
 
-        getBuscarPlanoDeNegocio();
+    public String getEstagioEvolucao() {
+        return estagioEvolucao;
     }
 
-    /**
-     * <p>
-     * Redireciona para a página de lista de Planos de Negócio.
-     * </p>
-     */
-    private void getBuscarPlanoDeNegocio() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
-        } catch (Exception e) {
-            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
-        }
+    public void setEstagioEvolucao(String estagioEvolucao) {
+        this.estagioEvolucao = estagioEvolucao;
     }
 }

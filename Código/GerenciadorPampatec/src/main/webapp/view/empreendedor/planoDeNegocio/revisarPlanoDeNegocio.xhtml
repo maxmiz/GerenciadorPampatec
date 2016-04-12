@@ -696,7 +696,7 @@
                                     Qual o estágio atual de evolução do produto ou serviço proposto?
                                     <h:panelGroup class="checkbox" id="abc1"
                                                   rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
-                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control campoInvalido" id="estagioDeEvolucao1" value="#{projetoBean.selectedButton}" onchange="precisaSalvar = true;">
+                                        <h:selectOneMenu disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" class="form-control campoInvalido" id="estagioDeEvolucao1" value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" onchange="precisaSalvar = true;">
                                             <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
                                             <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
                                             <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
