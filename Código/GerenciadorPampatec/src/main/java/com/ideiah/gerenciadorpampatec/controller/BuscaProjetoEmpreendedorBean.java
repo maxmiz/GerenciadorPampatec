@@ -167,7 +167,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                 && projeto.verificarSendoAvaliado()
                 && projeto.verificarAceitoParaAvaliacao()
                 && projeto.verificarReprovado()
-                && projeto.verificarNecessitaAvaliacao();
+                && projeto.verificarNecessitaAvaliacao()
+                && projeto.verificaReSubmetido();
     }
 
     public String formatarDataCriacao(Projeto projeto) {
