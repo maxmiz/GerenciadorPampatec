@@ -174,7 +174,8 @@
                 <h:commandButton disabled="#{projetoBean.projeto.status == 1}" class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('botao_resultado_preavaliacao'), mostraDIV('divPreAvaliar_visualizar')"></h:commandButton><br/>
             </div>
             <div class="divPadding text-center">
-                <h:commandButton disabled="#{projetoBean.projeto.status == 1 || projetoBean.projeto.status == 6}" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
+                <h:commandButton disabled="#{projetoBean.projeto.status == 1 || projetoBean.projeto.status == 6}"
+                                 class="btn btn-success btnWorkflowV" id="botao_preavaliacao" value="Visualizar" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')"></h:commandButton><br/>
             </div>
         </div>
         <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
@@ -506,8 +507,11 @@
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
-                                                <p:inputText id="campoOutro" class="form-control" placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                             value="#{projetoBean.descricaoButtonOutro}" rendered="#{projetoBean.exibeCampo()}">
+                                                <p:inputText id="campoOutro" 
+                                                             class="form-control" 
+                                                             placeholder="Digite aqui o estágio de evolução de seu Negócio"
+                                                             value="#{projetoBean.descricaoButtonOutro}" 
+                                                             rendered="#{projetoBean.exibeCampo()}">
                                                     <f:ajax execute="@form" render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                                 </p:inputText>
                                             </div>
@@ -988,75 +992,6 @@
         </div>
 
         <!-- FIM DA DIV DE SUBMISSÃO -->
-
-        <div class="classeConteudo esconder-div" id="divPreVisualizar">
-
-
-            <div class="tab-pane fade active in well bs-component">
-                <h1>Pré-Avaliação - Plano de Negócio</h1>
-                <div id="formularioParte01">
-                    <legend id="subTitulo">Pré-Avaliação de Plano de Negócio</legend>                                
-
-                    <div class="well">
-                        <strong> Situação: </strong> Este plano de negócio está sendo avaliado.
-                    </div>
-
-                    <div class="col-md-12 text-center">
-                        <br/>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-
-        <div class="classeConteudo esconder-div" id="divPreAvaliar_visualizar">
-
-            
-                <div id="formularioParte07">
-                    <legend id="subTitulo" >Avaliar</legend>
-                    <div class="col-md-12 espaco">
-                    </div>
-                    <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
-                    <div class="col-md-12 espaco has-success" id="observacoes">
-                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                         id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
-                        </h:inputTextarea>
-                        <br />
-                    </div>
-                    <!-- Resultado do Radio button ainda não implementado para receber na página
-                    <div class="col-md-12 espaco">
-                        <hr></hr>
-                        <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#//{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                        <h3><b><h:outputText id="statusAvaliacao" value="#//{projetoBean.retornaResultadoAvaliacao()}"></h:outputText></b></h3>
-                        <hr></hr>
-                    </div>
-                    -->
-                    <div class="col-md-12 espaco">
-                        
-                        <br/>
-                    </div>
-                </div>
-          
-        </div>
 
 
         <!-- INICIO DA PARTE DE REVISÃO -->

@@ -44,9 +44,10 @@ public class Produtoouservico implements java.io.Serializable {
                 return EM_TESTE_NO_MERCADO;
             case "Clientes Pagando":
                 return CLIENTES_PAGANDO;
+            default:
+                break;
         }
         return "Outro:";
-
     }
 
     public Produtoouservico(int idProdutoOuServico, String estagioEvolucao) {
