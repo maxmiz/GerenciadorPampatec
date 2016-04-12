@@ -109,10 +109,17 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         try {
 
             if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA || 
-                    projetoSelecionado.getStatus() == Projeto.SUBMETIDO ||
-                    projetoSelecionado.getStatus() == Projeto.REPROVADO) {
+                projetoSelecionado.getStatus() == Projeto.SUBMETIDO ||
+                projetoSelecionado.getStatus() == Projeto.REPROVADO) {
+                
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
-            } else {
+            
+            }else if(projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO){
+                    
+                FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/avaliacaoPlanoDeNegocio.jsf");
+            
+            }else{
+                
                 FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
             }
         } catch (IOException ex) {
