@@ -32,6 +32,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     private String estagioEvolucao;
+    private String estagioEvolucaoOutro;
 
     public revisarPlanoDeNegocioBean() {
 
@@ -183,6 +184,17 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
+     * <p>
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
+     * estado do negócio.</p>
+     *
+     * @return <code>true</code> se o usuário clicar no checkbox "Outro".
+     */
+    public boolean exibeCampoOutro() {
+        return estagioEvolucao != null && estagioEvolucao.equals("Outro");
+    }
+
+    /**
      * @return the projeto
      */
     public Projeto getProjeto() {
@@ -230,5 +242,13 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     public void setEstagioEvolucao(String estagioEvolucao) {
         this.estagioEvolucao = estagioEvolucao;
+    }
+
+    public String getEstagioEvolucaoOutro() {
+        return estagioEvolucaoOutro;
+    }
+
+    public void setEstagioEvolucaoOutro(String estagioEvolucaoOutro) {
+        this.estagioEvolucaoOutro = estagioEvolucaoOutro;
     }
 }
