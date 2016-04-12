@@ -14,8 +14,8 @@ function carregaPagina() {
 
     switch (andamentoProjeto) {
 
-//      SUBMETIDO = 1;
-        case 1:
+//      SUBMETIDO = 1 e RESUBMETIDO = 11;
+        case 1 || 11:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
@@ -46,8 +46,6 @@ function carregaPagina() {
             etapa3.setAttribute("class", "active, etapaAtual");
             
             etapaAtualDoWorkflow = "etapa3";
-
-
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
@@ -91,7 +89,27 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botaoResultadoPreAvaliacao = document.getElementById("botao_resultado_preavaliacao");
+            var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
+            botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            mostraDIV('sessao_resultado_avaliador');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+            break;
+            
+//     NECESSITA_MELHORIA = 7
+        case 7:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
 
             mostraDIV('sessao_resultado_avaliador');

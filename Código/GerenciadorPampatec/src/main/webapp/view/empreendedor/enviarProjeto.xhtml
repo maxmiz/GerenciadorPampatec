@@ -990,36 +990,6 @@
 
         <!-- FIM DA DIV DE SUBMISSÃO -->
 
-        <div class="classeConteudo esconder-div" id="divPreAvaliar_visualizar">
-
-            
-                <div id="formularioParte07">
-                    <legend id="subTitulo" >Avaliar</legend>
-                    <div class="col-md-12 espaco">
-                    </div>
-                    <b>Observações <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
-                    <div class="col-md-12 espaco has-success" id="observacoes">
-                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                         id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
-                        </h:inputTextarea>
-                        <br />
-                    </div>
-                    <!-- Resultado do Radio button ainda não implementado para receber na página
-                    <div class="col-md-12 espaco">
-                        <hr></hr>
-                        <b>Avaliação: <p:commandLink update="" value="(?)" actionListener="#//{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                        <h3><b><h:outputText id="statusAvaliacao" value="#//{projetoBean.retornaResultadoAvaliacao()}"></h:outputText></b></h3>
-                        <hr></hr>
-                    </div>
-                    -->
-                    <div class="col-md-12 espco">
-                        
-                        <br/>
-                    </div>
-                </div>
-          
-        </div>
-
 
         <!-- INICIO DA PARTE DE REVISÃO -->
         <div class="conteudoDaRevisao">
