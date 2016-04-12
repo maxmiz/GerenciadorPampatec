@@ -29,217 +29,226 @@
         <style>
             @media print { 
                 .noprint { display:none; } 
-        </style>
-        <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
-        <script>
-            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-            setTimeout(function () {
-                // sweetAlert: http://t4t5.github.io/sweetalert/
-                sweetAlert({
-                    title: "Bah!",
-                    text: "Sua sessão expirou!",
-                    type: "error",
-                    confirmButtonColor: '#00A859'
-                }, function () {
-                    // Redireciona o usuário para a página de login.
-                    window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
-                });
-            }, (tempoMaxSessao - 1) * 1000);
-            // Falta retirar o tempo de redireção e espera, 
-            // para faze-lo unicamente quando o usuário clicar me OK.
-        </script>
-    </h:head>
-    <h:body>
-        <!-- Início do menu superior -->
+            </style>
+            <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
+            <script>
+                var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+                setTimeout(function () {
+                    // sweetAlert: http://t4t5.github.io/sweetalert/
+                    sweetAlert({
+                        title: "Bah!",
+                        text: "Sua sessão expirou!",
+                        type: "error",
+                        confirmButtonColor: '#00A859'
+                    }, function () {
+                        // Redireciona o usuário para a página de login.
+                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+                    });
+                }, (tempoMaxSessao - 1) * 1000);
+                // Falta retirar o tempo de redireção e espera, 
+                // para faze-lo unicamente quando o usuário clicar me OK.
+            </script>
+        </h:head>
+        <h:body>
+            <!-- Início do menu superior -->
 
-        <!-- CUIDADO AO ABRIR E FECHAR TAGS -->
+            <!-- CUIDADO AO ABRIR E FECHAR TAGS -->
 
-        <h:form id="menuSuperior">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="col-md-2">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+            <h:form id="menuSuperior">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="col-md-2">
+                            <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                        </div>
+                        <div class="col-md-10">
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="dropdown">
+                                    <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                </li>
+
+                                <li class="">
+                                    <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
+                                        Notificações
+                                        <span class="badge">
+                                            <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
+                                        </span>
+                                        <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
+                                    </h:outputLink>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
+                                        <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
+                                        <li>
+                                            <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                            </h:commandLink>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-10">
-                        <ul class="nav navbar-nav navbar-right">
+                </nav>
 
-                            <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
-                            </li>
+                <!-- Fim do menu superior -->
 
-                            <li class="">
-                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
-                                    Notificações
-                                    <span class="badge">
-                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
-                                    </span>
-                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
-                                </h:outputLink>
-                            </li>
+                <!-- Inicio dos Modais apresentadas -->
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
-                                </ul>
-                            </li>
+                <!-- Modal com as NOTIFICAÇÕES do usuário -->
+                <div class="modal fade" id="modalNotificacoes" role="dialog">
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
-                                    <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
-                                        </h:commandLink>
-                                    </li>
-                                </ul>
-                            </li>
+                    <div class="modal-dialog">
 
-                        </ul>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 class="panel-title">Notificações</h3>
+                            </div>
+                            <div class="panel-body" align="center">
+                                <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
+                                    <h:column>
+                                        <div class="bordas">
+                                            <h:outputText value="#{notificacao.descricao}"/>
+                                            <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                            <div class="panel-footer" align="right">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </nav>
+                <!-- Fim do Modal com as NOTIFICAÇÕES -->
 
-            <!-- Fim do menu superior -->
+                <!-- Fim das modais apresentadas -->
+                <p:poll interval="3" update="barraNotificacoes"/>
+                <p:poll interval="3" update="tabelaNotificacoes"/>
+            </h:form>
 
-            <!-- Inicio dos Modais apresentadas -->
-
-            <!-- Modal com as NOTIFICAÇÕES do usuário -->
-            <div class="modal fade" id="modalNotificacoes" role="dialog">
-
-                <div class="modal-dialog">
-
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 class="panel-title">Notificações</h3>
-                        </div>
-                        <div class="panel-body" align="center">
-                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
-                                <h:column>
-                                    <div class="bordas">
-                                        <h:outputText value="#{notificacao.descricao}"/>
-                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
-                                    </div>
-                                </h:column>
-                            </h:dataTable>
-                        </div>
-                        <div class="panel-footer" align="right">
-                            <button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar">Voltar</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Fim do Modal com as NOTIFICAÇÕES -->
-
-            <!-- Fim das modais apresentadas -->
-            <p:poll interval="3" update="barraNotificacoes"/>
-            <p:poll interval="3" update="tabelaNotificacoes"/>
-        </h:form>
-
-        <h:form id="lista_planos">
-            <p:growl id="mensagensFeed" showDetail="true"/>
-            <div>
+            <h:form id="lista_planos">
+                <p:growl id="mensagensFeed" showDetail="true"/>
+                
                 <div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus planos de negócio</h1>
+                    <div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h1 style="text-align: center;"><h:outputText value="${loginBean.nome}"></h:outputText>, estes são os seus planos de negócio</h1>
+                        </div>
+                        <div class="col-md-2 text-right" text-align="right">
+                            <h:commandLink class="btn btn-success" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
+                                <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-2x"></i> <br/> Criar novo plano de negócio</label>
+                            </h:commandLink>
+                        </div>
                     </div>
-                    <div class="col-md-2 text-right" text-align="right">
-                        <h:commandLink class="btn btn-success" title="Cadastre um novo plano de negócio" action="#{projetoBean.criarNovoPlano()}">
-                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-2x"></i> <br/> Criar novo plano de negócio</label>
-                        </h:commandLink>
-                    </div>
-                </div>
 
-                <div class="col-md-12">
-                    <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto" styleClass="tabelaEmpreendedores" emptyMessage="Não há planos cadastrados" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
-                        <p:column headerText="Nome" sortBy="#{projeto.nome}">
-                            <h:outputText value="#{projeto.nome}" />
-                        </p:column>
-                        <p:column headerText="Data de Criação" sortBy="#{projeto.dataCriacao}" style="text-align: center;">
-                            <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
-                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Data de Envio" sortBy="#{projeto.dataEnvio}" style="text-align: center;">
-                            <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
-                                <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Status" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center">
-                            <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
-                        </p:column>
-                        <p:column headerText="Ações" style="width: 23%; text-align: center">
-                            <div align="center">
-                                <div class="col-md-6"> 
-                                    <h:commandLink class="btn btn-primary botaoTabela" title="Visualizar o Plano de Negócio"
-                                                   action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
-                                </div>
-                                <div class="col-md-6">
-                                    <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                   action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
-                                    <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
-                                                   rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
-                                                   action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
-                                        <f:ajax execute="@form"></f:ajax>
-                                        <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
-                                        <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                    </h:commandLink>
+                    <div class="col-md-12">
+                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  styleClass="tabelaEmpreendedores" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                            <f:facet name="header">
+                                <p:outputPanel id="procurar">
+                                    <h:outputText value="Procurar: "/>
+                                    <p:inputText id="globalFilter"  onkeyup="PF('TabelaProjeto').filter()" style="width:40%" placeholder="Procure o plano de negócios com os dados de nome ou datas."/>
+                                <p:defaultCommand target="dummy"/>
+                                <p:commandButton id="dummy" process="@none" global="false" style="display:none;"/>
+                                </p:outputPanel> 
+                            </f:facet>
+                            <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}">
+                                <h:outputText value="#{projeto.nome}" />
+                            </p:column>
+                            <p:column headerText="Data de Criação" filterBy="#{projeto.dataCriacao}" filterStyle="display:none" sortBy="#{projeto.dataCriacao}" style="text-align: center;">
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
+                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Data de Envio" filterBy="#{projeto.dataEnvio}" filterStyle="display:none" sortBy="#{projeto.dataEnvio}" style="text-align: center;">
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataEnvio(projeto)}" >
+                                    <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Status" filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center">
+                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Ações" style="width: 23%; text-align: center">
+                                <div align="center">
+                                    <div class="col-md-6"> 
+                                        <h:commandLink class="btn btn-primary botaoTabela" id="visualizar" title="Visualizar o Plano de Negócio"
+                                                       action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                                       action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
+                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
+                                                       rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
+                                                       action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                            <f:ajax execute="@form"></f:ajax>
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
+                                            <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
+                                        </h:commandLink>
 
-                                </div>
-                                <script>
-                                    function confirmacaoDeExclusao() {
-                                        $("#modalInfoDeExclusao").modal();
-                                    }
-                                </script>
-                                <!-- Modal com a Informação do botão EXCLUIR PLANO DE NEGOCIO -->
-                                <div class="modal fade" id="modalInfoDeExclusao" role="dialog">
-                                    <div class="modal-dialog">
+                                    </div>
+                                    <script>
+                                        function confirmacaoDeExclusao() {
+                                            $("#modalInfoDeExclusao").modal();
+                                        }
+                                    </script>
+                                    <!-- Modal com a Informação do botão EXCLUIR PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeExclusao" role="dialog">
+                                        <div class="modal-dialog">
 
-                                        <!-- Conteúdo do Modal -->
-                                        <div class="modal-content">
-                                            <div class="modal-header fundoVerde">
-                                                <button type="button" class="close" data-dismiss="modal">×</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <strong>Você tem certeza que deseja excluir este plano de negócio?</strong>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="col-md-12"> 
+                                            <!-- Conteúdo do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Você tem certeza que deseja excluir este plano de negócio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
 
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 
-                                                    <h:commandButton class="btn btn-success" value="Confirmar exclusão" action="#{buscaProjetoEmpreendedorBean.deletarProjeto(projeto)}">
-                                                    </h:commandButton>
+                                                        <h:commandButton class="btn btn-success" value="Confirmar exclusão" action="#{buscaProjetoEmpreendedorBean.deletarProjeto(projeto)}">
+                                                        </h:commandButton>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </p:column>
-                    </p:dataTable>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
                 </div>
+            </h:form>
+            <div id="infoBotaoCadastrar" style="visibility: hidden" class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
             </div>
-        </h:form>
-        <div id="infoBotaoCadastrar" style="visibility: hidden" class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-        </div>
 
 
-    </h:body>
-</html>
+        </h:body>
+    </html>
