@@ -113,7 +113,7 @@
             <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
                 <ul id="progressbar">
                     <li id="etapa1" class="active" style="cursor: pointer;"><a href="../enviarProjeto.jsf">Elaboração</a></li>
-                    <li id="etapa2" class="active etapaAtual" style="cursor: pointer;"><a onclick="mostraDIV('divPreVisualizar'), mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
+                    <li id="etapa2" class="active etapaAtual" style="cursor: pointer;"><a href="revisarPlanoDeNegocio.jsf" onclick="mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
                     <li id="etapa3" class="" style="cursor: pointer;"><a onclick="mostra_avaliacao(), addFoco('etapa3')">Avaliação</a></li>
                     <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
                     <li id="etapa5" class="" style="cursor: pointer;"><a onclick="mostra_incubacao(), addFoco('etapa5')">Incubação</a></li>
@@ -126,11 +126,15 @@
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
             <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical noprint">
                 <div class="divPadding text-center">
-                    <h:commandButton  class="btn btn-success btnWorkflowV" type="button" title="Visualizar resultado do avaliador" id="botao_resultado_preavaliacao" value="Resultado do avaliador" onclick="addFocoBotao('menuSuperior:botao_resultado_preavaliacao'), mostraDIV('sessao_resultado_avaliador')"></h:commandButton><br/>
+                    <h:commandButton  class="btn btn-success btnWorkflowV" type="button" title="Visualizar resultado do avaliador" id="botao_resultado_preavaliacao" value="Resultado" 
+                                      onclick="mostraDIV('sessao_resultado_avaliador')">
+                                          
+                    </h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
                     <h:commandButton  class="btn btn-success btnWorkflowV" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}"
-                                      type="button" title="Revisar plano de negócio" id="botao_revisar" value="Revisar" onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')"></h:commandButton><br/>
+                                      type="button" title="Revisar plano de negócio" id="botao_revisar" value="Revisar" onclick=" mostraDIV('sessao_revisar_plano_pre_melhoria')">
+                    </h:commandButton><br/>
                 </div>
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
@@ -255,7 +259,7 @@
 
 
 
-            <div  id="sessao_revisar_plano_pre_melhoria" class="classeConteudo col-md-10 form-horizontal well bs-component ">
+            <div  id="sessao_revisar_plano_pre_melhoria" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
                 <h1>Revisar Plano de Negócio</h1>
                 <h:outputText id="tituloMensagem"></h:outputText>
                 <h:message for="tituloMensagem" errorClass="mensagemErro"></h:message>

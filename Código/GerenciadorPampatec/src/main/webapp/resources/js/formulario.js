@@ -454,8 +454,8 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
-//      SUBMETIDO = 1;
-        case 1:
+//      SUBMETIDO = 1, REPROVADO = 6, NECESSITA_MELHORIA = 7, RESUBMETIDO = 11;
+        case 1 || 6 || 7 || 11:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
@@ -542,8 +542,9 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
+            
             break;
-
+           
 //      DEFININDO_EQUIPE = 8;
         case 8:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
