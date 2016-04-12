@@ -1419,7 +1419,7 @@
                 <b>Observações <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.consideracoes}">
+                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
                     </h:inputTextarea>
                     <br />
                 </div>
