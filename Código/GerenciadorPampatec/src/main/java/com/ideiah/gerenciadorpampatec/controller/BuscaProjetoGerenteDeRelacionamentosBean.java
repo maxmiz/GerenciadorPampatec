@@ -8,7 +8,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
-import com.ideiah.gerenciadorpampatec.util.ComparadorUtil;
+import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
 import java.io.IOException;
 import java.io.Serializable;
@@ -338,7 +338,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     private void sortByDate(ArrayList<Projeto> lista) {
-        Collections.sort(lista, new ComparadorUtil().reversed());
+        Collections.sort(lista, new ComparadorEnvioUtil().reversed());
     }
 
 }

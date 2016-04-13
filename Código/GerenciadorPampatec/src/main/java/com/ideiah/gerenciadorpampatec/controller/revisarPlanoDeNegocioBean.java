@@ -9,6 +9,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -32,6 +33,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     private String estagioEvolucao;
+    private String estagioEvolucaoOutro;
 
     public revisarPlanoDeNegocioBean() {
 
@@ -164,6 +166,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void terminarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatus(Projeto.RESUBMETIDO);
+        Date dataEnvio = new Date(System.currentTimeMillis());
+        projeto.setDataEnvio(dataEnvio);
         projetoDao.salvar(projeto);
 
         getBuscarPlanoDeNegocio();
@@ -180,6 +184,17 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         } catch (Exception e) {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    /**
+     * <p>
+     * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
+     * estado do negócio.</p>
+     *
+     * @return <code>true</code> se o usuário clicar no checkbox "Outro".
+     */
+    public boolean exibeCampoOutro() {
+        return estagioEvolucao != null && estagioEvolucao.equals("Outro");
     }
 
     /**
@@ -230,5 +245,13 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     public void setEstagioEvolucao(String estagioEvolucao) {
         this.estagioEvolucao = estagioEvolucao;
+    }
+
+    public String getEstagioEvolucaoOutro() {
+        return estagioEvolucaoOutro;
+    }
+
+    public void setEstagioEvolucaoOutro(String estagioEvolucaoOutro) {
+        this.estagioEvolucaoOutro = estagioEvolucaoOutro;
     }
 }

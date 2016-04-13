@@ -3,10 +3,13 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.ComparadorCriacaoUtil;
+import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -32,10 +35,12 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public BuscaProjetoEmpreendedorBean() {
         projetoDao = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
+        sortByDateCriacao(listaProjetos);
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
-        this.listaProjetos = listaProjetos;
+
+        this.listaProjetos = sortByDateCriacao(listaProjetos);
     }
 
     public ArrayList<Projeto> getListaProjetos() {
@@ -108,10 +113,10 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
 
-            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA || 
-                projetoSelecionado.getStatus() == Projeto.SUBMETIDO ||
-                projetoSelecionado.getStatus() == Projeto.REPROVADO) {
-                
+            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA
+                    || projetoSelecionado.getStatus() == Projeto.SUBMETIDO
+                    || projetoSelecionado.getStatus() == Projeto.REPROVADO) {
+
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             
             }else if(projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO){
@@ -169,7 +174,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                 && projeto.verificarSendoAvaliado()
                 && projeto.verificarAceitoParaAvaliacao()
                 && projeto.verificarReprovado()
-                && projeto.verificarNecessitaAvaliacao();
+                && projeto.verificarNecessitaAvaliacao()
+                && projeto.verificaReSubmetido();
     }
 
     public String formatarDataCriacao(Projeto projeto) {
@@ -188,5 +194,10 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         } else {
             return "Plano não enviado.";
         }
+    }
+
+    private ArrayList<Projeto> sortByDateCriacao(ArrayList<Projeto> lista) {
+        Collections.sort(lista, new ComparadorCriacaoUtil().reversed());
+        return lista;
     }
 }
