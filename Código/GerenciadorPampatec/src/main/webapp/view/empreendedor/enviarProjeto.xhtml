@@ -976,13 +976,13 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
+                                <p:commandButton class="btn btn-success" title="Submeter Plano de Negócio" value="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
 
                                     <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>  
-                                </h:commandLink>
+                                </p:commandButton>
                             </div>
 
                         </div>
@@ -1157,9 +1157,9 @@
                     <br/>
 
                     <div class="noprint text-right">
-                        <h:commandLink class="btn btn-success" title="Imprimir Plano de Negócio" onclick="imprimirPaginaHtml();">
+                        <p:commandButton class="btn btn-success" title="Imprimir Plano de Negócio" value="Imprimir Plano de Negócio" onclick="imprimirPaginaHtml();">
                             <label style="color: white; cursor: pointer;"><i class="fa fa-print"></i>   Imprimir Plano de Negócio</label>
-                        </h:commandLink>
+                        </p:commandButton>
                         <br/><br/>
                     </div>
 
@@ -1169,7 +1169,7 @@
             </h:form>
         </div>
 
-        <script>
+        <script>    
             function imprimirPaginaHtml() {
                 window.print();
             }
