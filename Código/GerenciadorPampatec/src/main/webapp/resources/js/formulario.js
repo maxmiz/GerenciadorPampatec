@@ -415,8 +415,16 @@ function mostrarFeedBack(id) {
 
 
 /**
- * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
- * andamentoProjeto = status do projeto
+ * @description 
+ * Ao entrar em uma pagina na aba EM ELABORAÇÃO contendo o workflow 
+ * o metodo é chamado na declaração do body, passando o status do projeto
+ * então ele usa o método MostraDiv 
+ * para apresenta ou esconde componentes da tela conforme esse status 
+ * a variavel andamentoProjeto = status do projeto
+ * 
+ * cada caso seria a apresentação das divs para aquele status usando o metodo MostraDiv
+ * ja tranformando o workflow  clicavel ou nao dependendo do status
+ * 
  * @returns {undefined}
  */
 function carregaPagina() {
@@ -498,7 +506,7 @@ function carregaPagina() {
 
             break;
             
-//      NECESSITA_MELHORIA = 7, RESUBMETIDO = 11;
+//      NECESSITA_MELHORIA = 7;
         case 7:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";

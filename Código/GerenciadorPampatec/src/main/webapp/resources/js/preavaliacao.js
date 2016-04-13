@@ -4,6 +4,22 @@
  * and open the template in the editor.
  */
 
+
+
+
+/**
+ * @description 
+ * Ao entrar em uma pagina na aba PRE AVALIAÇÃO contendo o workflow 
+ * o metodo é chamado na declaração do body, passando o status do projeto
+ * então ele usa o método MostraDiv 
+ * para apresenta ou esconde componentes da tela conforme esse status 
+ * a variavel andamentoProjeto = status do projeto
+ * 
+ * cada caso seria a apresentação das divs para aquele status usando o metodo MostraDiv
+ * ja tranformando o workflow  clicavel ou nao dependendo do status
+ * 
+ * @returns {undefined}
+ */
 function carregaPagina() {
 
     var etapa1 = document.getElementById("etapa1");
@@ -103,25 +119,6 @@ function carregaPagina() {
             break;
     }
 }
-/**
- * @description Função que exibe o menu vertical referente a etapa de elaboração
- * @returns {undefined}
- */
-function mostra_vertical_elaboracao() {
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "esconder-div");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "esconder-div");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "esconder-div");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "esconder-div");
-}
-
-
 
 /**
  * @description Função que exibe o menu vertical referente a etapa de pré avaliação
@@ -140,66 +137,6 @@ function mostra_vertical_pre_avaliacao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-
-
-}
-
-/**
- * @description Função que exibe o menu vertical referente a etapa de Avaliação
- * @returns {undefined}
- */
-function mostra_avaliacao() {
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "esconder-div");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "esconder-div");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "esconder-div");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "esconder-div");
-
-}
-
-/**
- * @description Função que exibe o menu vertical referente a etapa de Formalização
- * @returns {undefined}
- */
-function mostra_formalizacao() {
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "esconder-div");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "esconder-div");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "esconder-div");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "esconder-div");
-
-
-}
-
-/**
- * @description Função que exibe o menu vertical referente a etapa de Incubação
- * @returns {undefined}
- */
-function mostra_incubacao() {
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "esconder-div");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "esconder-div");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "esconder-div");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "esconder-div");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-
 }
 
 /**
@@ -255,5 +192,3 @@ function mostraDIV2(referencia) {
         mostraDIV('div_revisar_plano');
     }
 }
-
-
