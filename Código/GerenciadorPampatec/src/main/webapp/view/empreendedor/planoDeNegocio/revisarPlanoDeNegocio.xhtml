@@ -24,9 +24,7 @@
         <script> 
             var andamentoProjeto = #{revisarPlanoDeNegocioBean.retornaStatusProjeto()};
         </script>
-        
-        
-        
+       
     </h:head>
     <h:body onload="carregaPagina();">
 
@@ -1435,7 +1433,7 @@
                                                          type="button"
                                                          rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
                                                          class="btn btn-success" 
-                                                         value="Terminar Revisão" 
+                                                         value="Re-enviar Plano" 
                                                          onclick="chamaModal(modalInfoDeEnvio)"
                                                          icon="fa fa-check"
                                                          title="Terminar e submeter a revisão do plano de negócio.">
