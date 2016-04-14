@@ -185,6 +185,21 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    
+    /**
+     * <p>
+     * Redireciona para a página da fase de Avaliação.
+     * </p>
+     */
+    public void redirecionaPaginaAvaliacao() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("avaliacaoPlanoDeNegocio.jsf");
+        } catch (Exception e) {
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    
 
     /**
      * <p>
