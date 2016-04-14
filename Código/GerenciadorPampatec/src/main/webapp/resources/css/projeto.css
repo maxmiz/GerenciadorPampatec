@@ -366,3 +366,16 @@ fieldset[disabled] .autoCompletar input {
 }
 
 
+.abaPlano{
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 
+Ocultando a aba de Terminar Avaliação 
+para projetos com Status "Aeito parta Avaliação". 
+*/
+li[value=true]{
+    display: none;
+    visibility: hidden;
+}
