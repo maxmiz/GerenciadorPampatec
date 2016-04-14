@@ -43,6 +43,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private final int MELHORIA = 3;
     private final int APROVADOS = 4;
     private final int REPROVADOS = 5;
+    private String campoProcurar;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
@@ -68,6 +69,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosPreAvaliacao() {
         filtrarPor = PRE_AVALIACAO;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
 
     }
@@ -102,6 +104,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosTodos() {
         filtrarPor = TODOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
@@ -110,6 +113,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosAprovados() {
         filtrarPor = APROVADOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
     }
 
@@ -118,6 +122,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosReprovados() {
         filtrarPor = REPROVADOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusReprovado());
     }
 
@@ -126,6 +131,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosnelhoria() {
         filtrarPor = MELHORIA;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusMelhoria());
     }
 
@@ -137,8 +143,17 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public ArrayList<Projeto> buscaProjetoPorStatusPreAvaliacao() {
         projetoDao = new ProjetoDao();
         ArrayList<Projeto> listaProjetosPorStatus = projetoDao.buscarListaProjetoPorStatus(Projeto.SUBMETIDO);
+        ArrayList<Projeto> listaProjetosResubmetidos = projetoDao.buscarListaProjetoPorStatus(Projeto.RESUBMETIDO);
+        ArrayList<Projeto> listaProjetosEmPreAvaliacao = projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
         ArrayList<Projeto> listaProjetosSendoAvaliado = projetoDao.buscarListaProjetoPorStatus(Projeto.SENDO_AVALIADO);
+        
         for (Projeto projeto : listaProjetosSendoAvaliado) {
+            listaProjetosPorStatus.add(projeto);
+        }
+        for (Projeto projeto : listaProjetosResubmetidos){
+            listaProjetosPorStatus.add(projeto);
+        }
+        for (Projeto projeto : listaProjetosEmPreAvaliacao){
             listaProjetosPorStatus.add(projeto);
         }
         return listaProjetosPorStatus;
@@ -337,5 +352,19 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     private void sortByDate(ArrayList<Projeto> lista) {
         Collections.sort(lista, new ComparadorEnvioUtil().reversed());
+    }
+
+    /**
+     * @return the campoProcurar
+     */
+    public String getCampoProcurar() {
+        return campoProcurar;
+    }
+
+    /**
+     * @param campoProcurar the campoProcurar to set
+     */
+    public void setCampoProcurar(String campoProcurar) {
+        this.campoProcurar = campoProcurar;
     }
 }
