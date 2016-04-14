@@ -149,9 +149,11 @@
                                     type="button" 
                                     title="Avançar para proxima frase" 
                                     id="botao_proxima_fase" value="Próxima Fase"
-                                    action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
-                    </h:commandLink><br/>
+                                    onclick=" mostraDIV('sessao_proxima_fase')">
+                    </h:commandLink>
+                    <br/>
                 </div>
+            </div>
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
 
@@ -1474,7 +1476,25 @@
                 </div>
             </div>
 
-
+            <div id="sessao_proxima_fase" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
+                <legend id="subTitulo2">Pré-Avaliação</legend>
+                
+                <h1>Avançar para Fase de Avaliação</h1>
+                
+                <b>Parábens, seu plano de negócio foi aceito para a fase de avaliação. 
+                    Clique no botão a baixo para levá-lo para a página da avaliação</b>                 
+                <br />
+                <div class="divPadding text-center">
+                    <h:commandLink  class="btn btn-success btnWorkflowV" 
+                                    rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                    type="button" 
+                                    title="Avançar para proxima frase" 
+                                    id="botao_proxima_fase" value="Próxima Fase"
+                                    action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
+                    </h:commandLink>
+                    <br/>
+                </div>
+            </div>
 
 
 
@@ -1482,7 +1502,6 @@
             <!-- INICIO DA DIV DE PRE AVALIAÇÂO PARA PROJETOS COM STATUS SUBMETIDO-->
 
             <div class="classeConteudo esconder-div" id="divPreVisualizar">
-
 
                 <div class="tab-pane fade active in well bs-component">
                     <h1>Pré-Avaliação - Plano de Negócio</h1>
