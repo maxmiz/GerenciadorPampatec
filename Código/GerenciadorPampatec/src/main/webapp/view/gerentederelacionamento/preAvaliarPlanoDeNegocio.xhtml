@@ -927,15 +927,13 @@
                                         <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                                     </div>
                                 </div>
-                                <b>Comentário Geral: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                                <b>Observações: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"  
                                                      id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoesPersonalizadas}">
                                         <f:ajax execute="@form"
                                                 render="formulario_comentarpreavalizar:campoObservacoes
-                                                formulario_comentarpreavalizar:mensagemErroObservacoes
                                                 formulario_comentarpreavalizar:mensagensFeed
-                                                formulario_comentarpreavalizar:mensagemStatusAvaliacao
                                                 formulario_comentarpreavalizar:botaoEnviar"
                                                 event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
                                     </h:inputTextarea>
@@ -944,7 +942,7 @@
                                 </div>
                                 
                                 <div class="col-md-12">
-                                    <b>Observação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('observacoesPreDefinidas')}"></p:commandLink></b> 
+                                    <b>Mensagem Padrão: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('observacoesPreDefinidas')}"></p:commandLink></b> 
                                     <h:inputTextarea class="form-control" id="observacoesPreDefinidas" disabled="true" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
                                     </h:inputTextarea>
                                     <br />                                 
@@ -952,7 +950,7 @@
                                 <br />                            
                                 <b>Avaliação: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
                                 <h:panelGroup id="mensagemStatusAvaliacao" class="mensagemErro">
-                                    É necessário pelo menos um comentário antes de mandar para realizar ajustes
+                                    Atenção: Para terminar a avaliação e requisitar melhorias é necessário adicionar pelo menos 1 comentário de sugestão de melhoria.
                                 </h:panelGroup><br/>                            
                                 <div class="col-md-12">
                                     <h:panelGrid cellpadding="5" columns="2" id="statusAvaliacao">
