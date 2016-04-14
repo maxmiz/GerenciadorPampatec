@@ -19,7 +19,9 @@ function mostrarMensagemCampoObrigatorio() {
 
     for (var i = 0; i < listacampos.tamanho; i++) {
         var campo = listacampos[i];
-        if (campo != null && campo.value != "" && campo.id != "formulario_comentarpreavalizar:campoObservacoes") {
+        if (campo != null && campo.value != "" &&
+                campo.id != "formulario_comentarpreavalizar:campoObservacoes" &&
+                campo.id != "formulario_comentarpreavalizar:observacoesPreDefinidas") {
             cont++;
             break;
         }
