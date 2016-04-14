@@ -254,11 +254,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * @return
      */
     public boolean verificaStatusProjeto(Projeto projeto) {
-        if (projeto.getStatus() == Projeto.SUBMETIDO) {
-            return true;
-        } else {
-            return false;
-        }
+        return (projeto.getStatus() == Projeto.SUBMETIDO)
+                || (projeto.getStatus() == Projeto.RESUBMETIDO);
     }
 
     /**
@@ -268,26 +265,20 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      * @return
      */
     public boolean verificaStatusProjetoSendoAvaliado(Projeto projeto) {
-        if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            return true;
-        } else {
-            return false;
-        }
+        return projeto.getStatus() == Projeto.SENDO_AVALIADO;
     }
 
     /**
-     * Verifica se o projeto não esta sendo avaliado nem em pre-avaliação e
+     * Verifica se o projeto não esta sendo avaliado nem em pré-avaliação e
      * retorna true se sim.
      *
      * @param projeto
      * @return
      */
     public boolean verificaStatusProjetoRestantes(Projeto projeto) {
-        if (projeto.getStatus() != Projeto.SENDO_AVALIADO && projeto.getStatus() != Projeto.SUBMETIDO) {
-            return true;
-        } else {
-            return false;
-        }
+        return projeto.getStatus() != Projeto.SENDO_AVALIADO
+                && projeto.getStatus() != Projeto.SUBMETIDO
+                && projeto.getStatus() != Projeto.RESUBMETIDO;
     }
 
     public void atualizaListaDeProjetos() {
@@ -297,7 +288,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     /**
      * <p>
      * Método que muda o status do projeto, atualizar essa informação no banco e
-     * chama o método para redirecionar para a página de pré-avalização do
+     * chama o método para redirecionar para a página de pré-avaliação do
      * pré-projeto selecionado.</p>
      *
      * @param projSelec
@@ -311,7 +302,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
             /**
              * Nesse if de baixo ele garante que 2 gerentes não poderão avaliar
              * o mesmo plano ao mesmo tempo.PS: Somente se eles clicarem para
-             * avaliar no mesmo tempo, bemm no mesmo tempo, tipo juntos, se
+             * avaliar no mesmo tempo, bem no mesmo tempo, tipo juntos, se
              * tiver diferença de meio segundo já não cai no if de baixo.
              *
              */
@@ -346,5 +337,4 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private void sortByDate(ArrayList<Projeto> lista) {
         Collections.sort(lista, new ComparadorEnvioUtil().reversed());
     }
-
 }
