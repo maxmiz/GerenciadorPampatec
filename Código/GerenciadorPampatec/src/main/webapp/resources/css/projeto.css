@@ -69,6 +69,10 @@ legend {
     display: block
 }
 
+.semResize{
+    resize: none;
+}
+
 .campoFeedBack{
     display: none;
 
@@ -360,3 +364,5 @@ fieldset[disabled] .autoCompletar input {
     position: absolute;
     bottom: 0px;
 }
+
+
