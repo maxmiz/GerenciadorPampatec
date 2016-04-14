@@ -321,6 +321,12 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
                 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 session.setAttribute("projetoSelecionado", projSelec);
                 getPreAvaliarProjeto();
+            } else {
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
+                } catch (Exception e) {
+                    Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+                }
             }
 
         }
