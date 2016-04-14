@@ -73,7 +73,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     }
 
     /**
-     * DAVI COMENTA ISSO AQUI, DEIXA DE PREGUIÇA!
+     * Método utilizado para verificar quais os tipos de projeto devem ser retornados
+     * para lista.
      */
     public void atualizaListaProjetosPreAvaliacaoFLAG() {
 
