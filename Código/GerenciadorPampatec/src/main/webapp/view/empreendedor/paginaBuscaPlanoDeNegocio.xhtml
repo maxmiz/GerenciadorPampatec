@@ -186,19 +186,19 @@
                             <p:column headerText="Ações" style="width: 23%; text-align: center">
                                 <div align="center">
                                     <div class="col-md-6"> 
-                                        <h:commandLink class="btn btn-primary botaoTabela" id="visualizar" title="Visualizar o Plano de Negócio"
+                                        <h:commandLink class="btn btn-success" id="visualizar" title="Visualizar o Plano de Negócio"
                                                        action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandLink>
                                     </div>
                                     <div class="col-md-6">
-                                        <h:commandLink class="btn btn-default botaoTabela" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                        <h:commandLink class="btn btn-default" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
                                                        action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </h:commandLink>
-                                        <h:commandLink class="btn btn-danger botaoTabela" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
+                                        <h:commandLink class="btn btn-danger" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
                                                        rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
                                             <f:ajax execute="@form"></f:ajax>

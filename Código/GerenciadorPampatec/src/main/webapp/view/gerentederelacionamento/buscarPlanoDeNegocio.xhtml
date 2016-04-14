@@ -19,7 +19,7 @@
         <h:outputScript library="js" name="sweetalert.min.js" />        
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>
-      
+
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
@@ -169,13 +169,13 @@
                                 </p:commandLink>
 
                                 <p:commandLink id="melhoria" title="Filtrar por planos em melhoria">
-                                    <h:outputText value="Em Pré-Melhoria" />
+                                    <h:outputText value="Em Melhoria" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
 
                                 </p:commandLink>
 
-                                <p:commandLink id="aprov" title="Filtrar por planos aprovados">
-                                    <h:outputText value="Aprovados" />
+                                <p:commandLink id="aprov" title="Filtrar por planos aceitos para avaliação">
+                                    <h:outputText value="Aceitos para avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
                                 <p:commandLink id="reprov" title="Filtrar por planos reprovados">
@@ -189,25 +189,30 @@
                     </div>
                     <div class="col-md-12">
 
-                        <p:dataTable id="tabelaDeNegocios" paginator="true" rows="20" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" paginatorPosition="bottom" paginator="true" rows="10" var="projeto" widgetVar="TabelaNegocios" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                             <f:facet name="header">
-                                Tabela de Planos de Negócio
+                                <p:outputPanel id="procurar">
+                                    <h:outputText value="Procurar: "/>
+                                    <p:inputText id="globalFilter"  onkeyup="PF('TabelaNegocios').filter()" style="width:40%" placeholder="Procure o plano de negócios com os dados de nome ou datas."/>
+                                    <p:defaultCommand target="dummy"/>
+                                    <p:commandLink id="dummy" process="@none" global="false" style="display:none;"/>
+                                </p:outputPanel> 
                             </f:facet>
                             <!--
                             <p:column headerText="Identificador">
                                 <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
                             -->
-                            <p:column headerText="Nome" sortBy="#{projeto.nome}" width="35%">
+                            <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}" width="35%">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column id="submissionDate" headerText="Data de submissão" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
+                            <p:column id="submissionDate" headerText="Data de submissão" filterBy="#{projeto.dataEnvio}" filterStyle="display:none" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
-                            <p:column headerText="Status" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center;" width="25%">
+                            <p:column headerText="Status"  filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center;" width="25%">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
                             </p:column>
 
@@ -217,10 +222,10 @@
                                         <h:commandLink class="btn btn-success botaoTabela" title="Avaliar Plano de Negócio"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-check-square-o"></i> Avaliar</label>
                                         </h:commandLink>
-                                        <h:outputLabel class="btn botaoTabela" style="background-color: red; cursor: not-allowed" title="Plano de Negócio em Avaliação"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
-                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i> Em Avaliação</label>
+                                        <h:outputLabel class="btn botaoTabela" style="background-color: red; cursor: not-allowed" title="O Plano de Negócio está sendo avaliado nesse momento"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
+                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i> Sendo Avaliado</label>
                                         </h:outputLabel>
-                                        <h:commandLink class="btn btn-primary" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
+                                        <h:commandLink class="btn botaoTabela" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
                                         </h:commandLink>  
                                     </div>
@@ -229,7 +234,7 @@
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
-                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
+                    <p:poll interval="60" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
                 </h:panelGroup>
             </div>
             <!-- Fim da lista de planos de negócio -->

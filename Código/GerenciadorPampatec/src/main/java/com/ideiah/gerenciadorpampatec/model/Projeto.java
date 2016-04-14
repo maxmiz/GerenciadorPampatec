@@ -189,7 +189,7 @@ public class Projeto implements java.io.Serializable {
                 statusDescricao = "Sendo Avaliado";
                 break;
             case SUBMETIDO:
-                statusDescricao = "Plano submetido";
+                statusDescricao = "Submetido";
                 break;
             case ACEITO_PARA_AVALIACAO:
                 statusDescricao = "Aceito para Avaliação";

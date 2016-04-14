@@ -301,9 +301,7 @@
                             <div id="formularioParte01">
 
                                 <div class="col-md-12">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
-                                    </div>
+                                   
                                 </div>
                                 <div class="col-md-4" id="">
                                     <b>Nome da Empresa ou Projeto* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
@@ -368,9 +366,7 @@
                             <br/>
                             <div id="formularioParte02">
                                 <div class="col-md-12">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 16.58%"></div>
-                                    </div>
+                                   
                                 </div>
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
@@ -397,7 +393,7 @@
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals(''))}"
                                                          id="comentarioSegCliente" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:segmentoDeClientes3')"
-                                                         value="Comentário"
+                                                         value="Comentário do Avaliador"
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -434,7 +430,7 @@
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals(''))}"
                                                          id="comentarioPropostaValor" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor3')"
-                                                         value="Comentário"
+                                                         value="Comentário do Avaliador"
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -471,7 +467,7 @@
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals(''))}"
                                                          id="comentarioAtividadesChaves" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:atividadesChaves3')"
-                                                         value="Comentário"
+                                                         value="Comentário do Avaliador"
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -506,9 +502,7 @@
                             <br/>
                             <div id="formularioParte03">
                                 <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 33.16%"></div>
-                                    </div>
+                                 
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
@@ -530,11 +524,12 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
-                                                         id="comentarioRelacoeClientes" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor4')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                       id="comentarioRelacoeClientes" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor4')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
+
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -564,12 +559,14 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
-                                                         id="comentarioParceriasChaves" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor5')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+
+                                                       disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
+                                                       id="comentarioParceriasChaves" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor5')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
+
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -600,11 +597,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
-                                                         id="comentarioCanais" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor6')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
+                                                       id="comentarioCanais" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor6')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -635,11 +632,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
-                                                         id="comentarioRecursosPrincipais" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor7')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
+                                                       id="comentarioRecursosPrincipais" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor7')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -669,11 +666,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
-                                                         id="comentarioConcorrentes" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor8')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
+                                                       id="comentarioConcorrentes" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor8')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -708,9 +705,7 @@
                             <br/>
                             <div id="formularioParte04">
                                 <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 49.75%"></div>
-                                    </div>
+                                  
                                 </div>
                                 <div class="col-md-12">
                                     <b>Estágio de evolução* </b>
@@ -772,11 +767,11 @@
                                     </h:panelGroup>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}"
-                                                         id="comentarioEstagioEvolucao" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor9')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}"
+                                                       id="comentarioEstagioEvolucao" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor9')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -809,11 +804,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
-                                                         id="comentarioTecnologiaProcessos" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor10')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
+                                                       id="comentarioTecnologiaProcessos" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor10')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -846,11 +841,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
-                                                         id="comentarioPotencialInovacao" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor11')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
+                                                       id="comentarioPotencialInovacao" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor11')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -883,11 +878,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
-                                                         id="comentarioAplicacoes" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor12')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
+                                                       id="comentarioAplicacoes" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor12')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -921,11 +916,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
-                                                         id="comentarioDificuldadesEsperadas" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor13')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
+                                                       id="comentarioDificuldadesEsperadas" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor13')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -958,11 +953,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
-                                                         id="comentarioInteracaoEmpresaUniversidade" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor14')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
+                                                       id="comentarioInteracaoEmpresaUniversidade" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor14')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -995,11 +990,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
-                                                         id="comentarioInteracaoEmpresaComunidadeGoverno" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor15')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
+                                                       id="comentarioInteracaoEmpresaComunidadeGoverno" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor15')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1032,11 +1027,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
-                                                         id="comentarioInteracaoInfraInstrutura" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor16')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
+                                                       id="comentarioInteracaoInfraInstrutura" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor16')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1074,9 +1069,7 @@
                             <br/>
                             <div id="formularioParte05">
                                 <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 66.33%"></div>
-                                    </div>
+                                
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
@@ -1100,11 +1093,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
-                                                         id="comentarioParticipacaoAcionaria" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor005')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
+                                                       id="comentarioParticipacaoAcionaria" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor005')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1136,11 +1129,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
-                                                         id="comentarioPotencialEmpregoRenda" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor006')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
+                                                       id="comentarioPotencialEmpregoRenda" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor006')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1178,9 +1171,7 @@
                             <br/>
                             <div id="formularioParte06">
                                 <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 82.91%"></div>
-                                    </div>
+                                
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
@@ -1204,11 +1195,11 @@
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
-                                                         id="comentarioFontesReceita" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor18')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
+                                                       id="comentarioFontesReceita" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor18')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1240,11 +1231,11 @@
                                     </p:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
-                                                         id="comentarioEstruturaCusto" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor19')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
+                                                       id="comentarioEstruturaCusto" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor19')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1274,11 +1265,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
-                                                         id="comentarioInvestimentoInicial" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor20')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
+                                                       id="comentarioInvestimentoInicial" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor20')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1332,11 +1323,11 @@
                                     </p:dataTable>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
-                                                         id="comentarioCustoFixo" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor21')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                       id="comentarioCustoFixo" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor21')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1391,11 +1382,11 @@
                                     </p:dataTable>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis.equals('')}"
-                                                         id="comentarioCustoVariavel" type="button"
-                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor23')"
-                                                         value="Comentário"
-                                                         icon="fa fa-pencil">
+                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis.equals('')}"
+                                                       id="comentarioCustoVariavel" type="button"
+                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor23')"
+                                                       value="Comentário do Avaliador"
+                                                       icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1431,7 +1422,7 @@
                         <div class="tab-pane fade" id="formParte07" >
                             <br/>
                             <div id="formularioParte07Terminar">
-                                <b>Observações <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                                <b>Observações do Avaliador <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoes">
                                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                                      id="campoObservacoes" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
@@ -1451,7 +1442,7 @@
                                                          type="button"
                                                          rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
                                                          class="btn btn-success" 
-                                                         value="Terminar Revisão" 
+                                                         value="Re-enviar Plano" 
                                                          onclick="chamaModal(modalInfoDeEnvio)"
                                                          icon="fa fa-check"
                                                          title="Terminar e submeter a revisão do plano de negócio.">
@@ -1472,9 +1463,9 @@
 
             </div>
             <div id="sessao_resultado_avaliador" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
-                <legend id="subTitulo2">Avaliação</legend>
+                <legend id="subTitulo2">Pré-Avaliação</legend>
 
-                <b>Observações <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                <b>Observações do Avaliador <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
                                      id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">

@@ -182,7 +182,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{preAvaliarPlanoBean.terminarPreAvaliacao()}"></h:commandButton>
+                                <h:commandButton class="btn btn-success" value="Confirmar Envio">
+                                    <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}" execute="@form"/>
+                                </h:commandButton>
                             </div>
                         </div>
                     </div>
