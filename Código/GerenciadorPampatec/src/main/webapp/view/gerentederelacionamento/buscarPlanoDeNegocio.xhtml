@@ -193,8 +193,8 @@
 
                             <f:facet name="header">
                                 <p:outputPanel id="procurar">
-                                    <h:outputText value="Procurar: "/>
-                                    <p:inputText id="globalFilter"  onkeyup="PF('TabelaNegocios').filter()" style="width:40%" placeholder="Informe nome, datas ou status do plano de negócios."/>
+                                    <h:outputText title="Procurar Plano de Negócio" value="Procurar: "/>
+                                    <p:inputText title="Procurar Plano de Negócio" id="globalFilter"  onkeyup="PF('TabelaNegocios').filter()" style="width:40%" value="#{buscaProjetoGerenteDeRelacionamentosBean.campoProcurar}" placeholder="Informe nome, datas ou status do plano de negócios."/>
                                     <p:defaultCommand target="dummy"/>
                                     <p:commandLink id="dummy" process="@none" global="false" style="display:none;"/>
                                 </p:outputPanel> 
