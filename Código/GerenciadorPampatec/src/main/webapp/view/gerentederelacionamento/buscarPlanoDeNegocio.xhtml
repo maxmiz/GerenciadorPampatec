@@ -19,7 +19,8 @@
         <h:outputScript library="js" name="sweetalert.min.js" />        
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>
-
+        <h:outputScript library="js" name="tabela.js" />
+        
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
@@ -156,32 +157,30 @@
                         <div class="row estilo">
                             <h:form>
                                 <p:growl id="growl" life="2000" />
-                                <h:outputLabel value="Filtrar Por:"></h:outputLabel>
-                                <p:commandLink id="todos">
+                                <h:outputLabel value="Filtrar Por: "></h:outputLabel>
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="todos">
                                     <h:outputText value="Todos" title="Filtrar por todos planos"/>
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
-                                <p:commandLink id="PreAvaliacao" title="Filtrar por planos em pré-avaliação">
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="PreAvaliacao" title="Filtrar por planos em pré-avaliação">
                                     <h:outputText value="Em Pré-Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
-                                <p:commandLink id="melhoria" title="Filtrar por planos em melhoria">
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="melhoria" title="Filtrar por planos em melhoria">
                                     <h:outputText value="Em Melhoria" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
-                                <p:commandLink id="aprov" title="Filtrar por planos aceitos para avaliação">
-                                    <h:outputText value="Aceitos para avaliação" />
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="aprov" title="Filtrar por planos aceitos para avaliação">
+                                    <h:outputText value="Aceitos para Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
-                                <p:commandLink id="reprov" title="Filtrar por planos reprovados">
+                                
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="reprov" title="Filtrar por planos reprovados">
                                     <h:outputText value="Reprovados" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosReprovados()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
                             </h:form>
