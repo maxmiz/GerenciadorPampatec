@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  styleClass="tabelaEmpreendedores" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  paginatorPosition="bottom" paginator="true" rows="10" styleClass="tabelaEmpreendedores" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
                             <f:facet name="header">
                                 <p:outputPanel id="procurar">
                                     <h:outputText value="Procurar: "/>
