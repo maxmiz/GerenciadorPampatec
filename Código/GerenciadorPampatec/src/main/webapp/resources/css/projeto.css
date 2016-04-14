@@ -379,3 +379,7 @@ li[value=true]{
     display: none;
     visibility: hidden;
 }
+
+semResize{
+    resize: none;
+}
