@@ -69,6 +69,10 @@ legend {
     display: block
 }
 
+.semResize{
+    resize: none;
+}
+
 .campoFeedBack{
     display: none;
 
@@ -359,4 +363,19 @@ fieldset[disabled] .autoCompletar input {
     text-align: center;
     position: absolute;
     bottom: 0px;
+}
+
+
+.abaPlano{
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 
+Ocultando a aba de Terminar Avaliação 
+para projetos com Status "Aeito parta Avaliação". 
+*/
+li[value=true]{
+    display: none;
+    visibility: hidden;
 }
