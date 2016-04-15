@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
+/* variavel para armazenar o objeto do botao anterior */
+var objetoBotaoAnterior = null;
 
+/* campo para armazenar a classe dO botao que o usuario esta visualizando antes de ir para outro */
+var classeBotaoAnterior = null;
 
 
 /**
@@ -59,13 +63,14 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active");
-            etapa3.setAttribute("class", "active, etapaAtual");
+            etapa3.setAttribute("class", "active, etapaAtual etapaSelecionada");
             
             etapaAtualDoWorkflow = "etapa3";
             
             mostraDIV('sessao_resultado_avaliador');
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
             
 
             var etapa = document.getElementById("etapa4");
@@ -81,9 +86,10 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
 
             mostraDIV('sessao_resultado_avaliador');
 
@@ -101,10 +107,11 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
+            
             mostraDIV('sessao_resultado_avaliador');
 
             var etapa = document.getElementById("etapa3");
@@ -191,4 +198,29 @@ function mostraDIV2(referencia) {
     } else {
         mostraDIV('div_revisar_plano');
     }
+}
+
+/**
+ * @description Coloca foco no botao em que o usuário está visualizando no workflow vertical
+ * @param {type} idDoItem
+ * @returns {undefined}
+ */
+function addFocoBotao(idDoItem) {
+    var etapaBotao = document.getElementById(idDoItem);
+    if (objetoBotaoAnterior !== null) {
+        retornarCorOriginalBotao();
+    }
+    classeBotaoAnterior = etapaBotao.getAttribute('class');
+    etapaBotao.setAttribute("class", classeBotaoAnterior + " pulse animated bordaEstadoVisualizado");
+    objetoBotaoAnterior = etapaBotao;
+
+}
+
+
+/**
+ * @description Retorna a classe original do botao que o usuário deixou de visualizar
+ * @returns {undefined}
+ */
+function retornarCorOriginalBotao() {
+    objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
