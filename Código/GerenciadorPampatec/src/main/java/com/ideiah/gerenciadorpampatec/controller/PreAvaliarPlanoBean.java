@@ -320,109 +320,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.loginBean = loginBean;
     }
 
-    /**
-     * <p>
-     * Retorna a quantidade de campos comentário vazios
-     * </p>
-     */
-    private int verificaCampos() {
-        int FLAG = 0;
 
-        //NEGOCIO
-        if (!comentarioProjeto.getComentarionegocio().getSegmentoClientes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarionegocio().getPropostaValor().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarionegocio().getAtividadesChaves().equals("")) {
-            FLAG++;
-        }
-        //ANALISE DE MERCADO
-        if (!comentarioProjeto.getComentarioanaliseemprego().getRelacoesClientes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getParceriasChaves().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getCanais().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getRecursosPrincipais().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getConcorrentes().equals("")) {
-            FLAG++;
-        }
-        //PRODUTO OU SERVIÇO
-        if (!comentarioProjeto.getComentarioprodutoouservico().getEstagioEvolucao().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getAplicacoes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInfraestrutura().equals("")) {
-            FLAG++;
-        }
-        //GESTAO DE PESSOAS
-        if (!comentarioProjeto.getParticipacaoacionaria().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getPotencialemprego().equals("")) {
-            FLAG++;
-        }
-        //PLANO FINANCEIRO
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getFontesReceita().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getEstruturaCusto().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosfixos().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
-            FLAG++;
-        }
-        return FLAG;
-    }
-    
     /**
      *
      * @return
@@ -449,7 +347,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         
         // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
         if(resultadoPreAvaliacao == 7){
-            if(verificaCampos() == 0){
+            if(comentarioProjeto.verificaCampos() == 0){
                 FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.", 
                         "formulario_comentarpreavalizar:statusAvaliacao");
                 flag_erro++;

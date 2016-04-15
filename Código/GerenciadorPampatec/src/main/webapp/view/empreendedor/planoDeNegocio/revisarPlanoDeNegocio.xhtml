@@ -124,15 +124,7 @@
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
             <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical noprint">
                 <div class="divPadding text-center">
-                    <h:commandButton  class="btn btn-success btnWorkflowV"
-                                      type="button" title="Visualizar resultado do avaliador"
-                                      id="botao_resultado_preavaliacao" 
-                                      value="Resultado" 
-                                      onclick="addFocoBotao('menuSuperior:botao_resultado_preavaliacao'), mostraDIV('sessao_resultado_avaliador')">
 
-                    </h:commandButton><br/>
-                </div>
-                <div class="divPadding text-center">
                     <h:commandButton  class="btn btn-success btnWorkflowV" 
                                       rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado) 
                                                   || revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -144,13 +136,13 @@
                     </h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
-                    <h:commandLink  class="btn btn-success btnWorkflowV" 
-                                    rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                    type="button" 
-                                    title="Avançar para proxima frase" 
-                                    id="botao_proxima_fase" value="Próxima Fase"
-                                    action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
-                    </h:commandLink><br/>
+                    <h:commandButton  class="btn btn-success btnWorkflowV"
+                                      type="button" title="Visualizar resultado do avaliador"
+                                      id="botao_resultado_preavaliacao" 
+                                      value="Resultado" 
+                                      onclick="mostraDIV('sessao_resultado_avaliador')">
+                    </h:commandButton>
+                    <br/>
                 </div>
             </div>
             <!-- FIM DA SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
@@ -1463,8 +1455,12 @@
 
             </div>
             <div id="sessao_resultado_avaliador" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
-                <legend id="subTitulo2">Pré-Avaliação</legend>
-
+                <h1>Resultado do Avaliador</h1>
+                
+                <h3>Atenção</h3>
+                <p>
+                    Confira a baixo as observações gerais feitas pelo gerente de relacionamento sobre o resultado do seu plano de negocios.
+                </p>
                 <b>Observações do Avaliador <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" 
@@ -1472,17 +1468,40 @@
                     </h:inputTextarea>
                     <br />
                 </div>
+                
+                <h:panelGroup rendered="#{revisarPlanoDeNegocioBean.verificaExistenciaComentarioProjeto(projetoSelecionado) 
+                                          and revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                
+                <p>
+                    <h3>Aceito para Avaliação contendo sugestões de melhoria</h3>
+                    <b>Selecione a aba "revisão" no menu lateral para conferir as sugestões feitas pelo Gerente</b> 
+                </p>
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                    <hr></hr>
+                    <p>
+                    <h3>Avançar para Fase de Avaliação</h3>
+                    <b>Parábens, seu plano de negócio foi aceito para a fase de avaliação. 
+                    Clique no botão a baixo para levá-lo para a página da avaliação</b> 
+                </p>
+                <div class="divPadding text-center">
+                    <h:commandLink  class="btn btn-success" 
+                                    rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                    type="button" 
+                                    title="Avançar para proxima frase" 
+                                    id="botao_proxima_fase" value="Próxima Fase"
+                                    action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
+                    </h:commandLink>
+                    <br/>
+                </div>
+                </h:panelGroup>
             </div>
-
-
-
-
 
 
             <!-- INICIO DA DIV DE PRE AVALIAÇÂO PARA PROJETOS COM STATUS SUBMETIDO-->
 
             <div class="classeConteudo esconder-div" id="divPreVisualizar">
-
 
                 <div class="tab-pane fade active in well bs-component">
                     <h1>Pré-Avaliação - Plano de Negócio</h1>
