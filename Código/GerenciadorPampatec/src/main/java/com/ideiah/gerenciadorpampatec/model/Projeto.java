@@ -27,6 +27,7 @@ public class Projeto implements java.io.Serializable {
     public static final int REPROVADO = 6;
     public static final int NECESSITA_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
+    public static final int EM_PRE_AVALIACAO = 12;
 
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
@@ -206,8 +207,11 @@ public class Projeto implements java.io.Serializable {
             case REPROVADO:
                 statusDescricao = "Reprovado";
                 break;
+            case EM_PRE_AVALIACAO:
+                statusDescricao = "Em Pré-Avaliação";
+                break;
             case RESUBMETIDO:
-                statusDescricao = "Re-Submetido";
+                statusDescricao = "Ressubmetido";
         }
 
         return statusDescricao;

@@ -207,7 +207,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void mudaStatusProjetoParaEmPreAvaliacao(Projeto projSelect) {
         if (projSelect.getStatus() == Projeto.SENDO_AVALIADO) {
-            projSelect.setStatus(Projeto.SUBMETIDO);
+            projSelect.setStatus(Projeto.EM_PRE_AVALIACAO);
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
         }
@@ -447,12 +447,6 @@ public class PreAvaliarPlanoBean implements Serializable {
         //O campo observacoes precisa estar preenchido 
         // aprovado = 2, melhorias, = 7 reprovado, = 6
         
-        // o campo observasões precisa estar preenchido
-        if(comentarioProjeto.getConsideracoes().equals("")){
-            FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", 
-                    "formulario_comentarpreavalizar:campoObservacoes");
-            flag_erro++;
-        }
         // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
         if(resultadoPreAvaliacao == 7){
             if(verificaCampos() == 0){
