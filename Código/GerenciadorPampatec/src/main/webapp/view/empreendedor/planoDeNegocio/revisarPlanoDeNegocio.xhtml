@@ -124,14 +124,15 @@
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
             <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical noprint">
                 <div class="divPadding text-center">
+
                     <h:commandButton  class="btn btn-success btnWorkflowV" 
                                       rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado) 
                                                   || revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                       type="button" 
                                       title="Revisar plano de negócio" 
-                                      id="botao_revisar" 
+                                      id="botao_revisar"
                                       value="Revisar" 
-                                      onclick=" mostraDIV('sessao_revisar_plano_pre_melhoria')">
+                                      onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')">
                     </h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
@@ -213,7 +214,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 class="modal-title">Salvar Projeto</h3>
+                            <h3 class="modal-title">Salvar Edições</h3>
                         </div>
                         <div class="modal-body">
                             Ao clicar no botão <strong><u>Salvar Revisão Pós Pré-Avaliação</u></strong> os campos preenchidos ficam salvos, 
@@ -245,10 +246,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 class="modal-title">Salvar Projeto</h3>
+                                <h3 class="modal-title">Terminar Revisão</h3>
                             </div>
                             <div class="modal-body">
-                                Ao clicar no botão <strong><u>Terminar Revisão Pós Pré-Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
+                                Ao clicar no botão <strong><u>Terminar Revisão Pós Pré-Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter e terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>

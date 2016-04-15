@@ -158,11 +158,11 @@
                     </div>
 
                     <div class="col-md-12">
-                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  styleClass="tabelaEmpreendedores" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  paginatorPosition="bottom" paginator="true" rows="10" styleClass="tabelaEmpreendedores" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
                             <f:facet name="header">
                                 <p:outputPanel id="procurar">
                                     <h:outputText value="Procurar: "/>
-                                    <p:inputText id="globalFilter"  onkeyup="PF('TabelaProjeto').filter()" style="width:40%" placeholder="Procure o plano de negócios com os dados de nome ou datas."/>
+                                    <p:inputText id="globalFilter"  onkeyup="PF('TabelaProjeto').filter()" style="width:40%" placeholder="Informe nome, datas ou status do plano de negócios."/>
                                 <p:defaultCommand target="dummy"/>
                                 <p:commandButton id="dummy" process="@none" global="false" style="display:none;"/>
                                 </p:outputPanel> 

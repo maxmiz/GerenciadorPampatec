@@ -43,6 +43,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     private final int MELHORIA = 3;
     private final int APROVADOS = 4;
     private final int REPROVADOS = 5;
+    private String campoProcurar;
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
@@ -68,12 +69,14 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosPreAvaliacao() {
         filtrarPor = PRE_AVALIACAO;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusPreAvaliacao());
 
     }
 
     /**
-     * DAVI COMENTA ISSO AQUI, DEIXA DE PREGUIÇA!
+     * Método utilizado para verificar quais os tipos de projeto devem ser
+     * retornados para lista.
      */
     public void atualizaListaProjetosPreAvaliacaoFLAG() {
 
@@ -101,6 +104,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosTodos() {
         filtrarPor = TODOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusTodos());
     }
 
@@ -109,6 +113,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosAprovados() {
         filtrarPor = APROVADOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusAprovado());
     }
 
@@ -117,6 +122,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosReprovados() {
         filtrarPor = REPROVADOS;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusReprovado());
     }
 
@@ -125,6 +131,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void atualizaListaProjetosnelhoria() {
         filtrarPor = MELHORIA;
+        campoProcurar = "";
         this.setListaProjetos(buscaProjetoPorStatusMelhoria());
     }
 
@@ -136,8 +143,17 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public ArrayList<Projeto> buscaProjetoPorStatusPreAvaliacao() {
         projetoDao = new ProjetoDao();
         ArrayList<Projeto> listaProjetosPorStatus = projetoDao.buscarListaProjetoPorStatus(Projeto.SUBMETIDO);
+        ArrayList<Projeto> listaProjetosResubmetidos = projetoDao.buscarListaProjetoPorStatus(Projeto.RESUBMETIDO);
+        ArrayList<Projeto> listaProjetosEmPreAvaliacao = projetoDao.buscarListaProjetoPorStatus(Projeto.EM_PRE_AVALIACAO);
         ArrayList<Projeto> listaProjetosSendoAvaliado = projetoDao.buscarListaProjetoPorStatus(Projeto.SENDO_AVALIADO);
+
         for (Projeto projeto : listaProjetosSendoAvaliado) {
+            listaProjetosPorStatus.add(projeto);
+        }
+        for (Projeto projeto : listaProjetosResubmetidos) {
+            listaProjetosPorStatus.add(projeto);
+        }
+        for (Projeto projeto : listaProjetosEmPreAvaliacao) {
             listaProjetosPorStatus.add(projeto);
         }
         return listaProjetosPorStatus;
@@ -255,7 +271,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public boolean verificaStatusProjeto(Projeto projeto) {
         return (projeto.getStatus() == Projeto.SUBMETIDO)
-                || (projeto.getStatus() == Projeto.RESUBMETIDO);
+                || (projeto.getStatus() == Projeto.RESUBMETIDO)
+                || (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO);
     }
 
     /**
@@ -278,7 +295,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public boolean verificaStatusProjetoRestantes(Projeto projeto) {
         return projeto.getStatus() != Projeto.SENDO_AVALIADO
                 && projeto.getStatus() != Projeto.SUBMETIDO
-                && projeto.getStatus() != Projeto.RESUBMETIDO;
+                && projeto.getStatus() != Projeto.RESUBMETIDO
+                && projeto.getStatus() != Projeto.EM_PRE_AVALIACAO;
     }
 
     public void atualizaListaDeProjetos() {
@@ -302,8 +320,8 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
             /**
              * Nesse if de baixo ele garante que 2 gerentes não poderão avaliar
              * o mesmo plano ao mesmo tempo.PS: Somente se eles clicarem para
-             * avaliar no mesmo tempo, bem no mesmo tempo, tipo juntos, se
-             * tiver diferença de meio segundo já não cai no if de baixo.
+             * avaliar no mesmo tempo, bem no mesmo tempo, tipo juntos, se tiver
+             * diferença de meio segundo já não cai no if de baixo.
              *
              */
             if (dao.buscar(projSelec.getIdProjeto()).getStatus() != Projeto.SENDO_AVALIADO) {
@@ -336,5 +354,19 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     private void sortByDate(ArrayList<Projeto> lista) {
         Collections.sort(lista, new ComparadorEnvioUtil().reversed());
+    }
+
+    /**
+     * @return the campoProcurar
+     */
+    public String getCampoProcurar() {
+        return campoProcurar;
+    }
+
+    /**
+     * @param campoProcurar the campoProcurar to set
+     */
+    public void setCampoProcurar(String campoProcurar) {
+        this.campoProcurar = campoProcurar;
     }
 }
