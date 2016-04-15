@@ -20,7 +20,7 @@ public class FacesUtil {
         FacesContext.getCurrentInstance().addMessage(idComponente,
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Salvo", "Sua alteração foi salva com sucesso."));
-        System.out.println("Feedback deveria aparecer.");
+
     }
 
     /**
