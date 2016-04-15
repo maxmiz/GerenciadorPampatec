@@ -306,7 +306,7 @@
                                                      class="form-control semResize"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -331,7 +331,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -358,7 +358,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.atividadesChaves}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -550,7 +550,6 @@
                                                      value="#{preAvaliarPlanoBean.verificaEstagioEvolucao()}"
                                                      id="estagioDeEvolucao"
                                                      disabled="true"
-                                                     rows="5"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
