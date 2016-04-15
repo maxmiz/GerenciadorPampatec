@@ -330,9 +330,9 @@
 
                                         <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
-                                        <p:inputText id="empresaProjeto" placeholder=""  class="form-control"
+                                        <p:inputText id="empresaProjeto" 
+                                                     class="form-control"
                                                      onblur="verificaNegocio();"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{projetoBean.projeto.nome}"
                                                      >
                                             <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroNome" event="change" listener="#{projetoBean.salvarProjeto()}"/>
@@ -345,28 +345,28 @@
                                         <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Segmento de Clientes" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                        <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control" 
+                                        <h:inputTextarea id="segmentoDeClientes" 
+                                                         class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroSegmento" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
-                                        </p:inputTextarea>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
                                     <div class="col-md-12" id="" title="Insira a Proposta de Valor">
                                         <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento de Proposta de Valor" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor"/><br/>
                                         O que é? O que faz? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado? Que valor proporcionamos a cada segmento de mercado?
-                                        <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" 
+                                        <h:inputTextarea id="propostaDeValor" 
+                                                         class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroProposta" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
-                                        </p:inputTextarea>
+                                        </h:inputTextarea>
 
                                         <br/>
                                     </div>
@@ -374,14 +374,14 @@
                                         <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Atividades Chave" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave"/><br/>
                                         Que atividades-chave garantem que as nossas "Propostas de valor", "Canais", "Fontes de renda" e "Relações com clientes" serão realizadas? 
-                                        <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" 
+                                        <h:inputTextarea id="atividadesChave" 
+                                                         class="form-control" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAtividades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
 
-                                        </p:inputTextarea>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
 
@@ -677,27 +677,27 @@
                                         <h:message id="mensagemErroFonteReceita" class="mensagemErro" for="fontesDeReceita"/><br/>
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
                                         Qual segmento de cliente pagará? Haverá segmentos de clientes com gratuidade?
-                                        <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control"
+                                        <h:inputTextarea id="fontesDeReceita" 
+                                                         class="form-control"
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroFonteReceita"  listener="#{projetoBean.salvarProjeto()}"/>
-                                        </p:inputTextarea>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
                                     <div class="col-md-12" title="Insira a Estrutura de custos">
                                         <b>Estrutura de custos* </b><br/>                                        
                                         <h:message id="mensagemErroEstruturaCusto" class="mensagemErro" for="estruturaCustos"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                        <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" 
+                                        <h:inputTextarea id="estruturaCustos" 
+                                                         class="form-control" 
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstruturaCusto" listener="#{projetoBean.salvarProjeto()}"/>
 
-                                        </p:inputTextarea>
+                                        </h:inputTextarea>
 
                                         <br/>
                                     </div>
@@ -705,10 +705,11 @@
                                         <b>Investimento inicial* </b><br/>
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial"/><br/>
                                         Quanto de recurso será necessário para iniciar?
-                                        <h:inputTextarea class="form-control"  
+                                        <h:inputTextarea id="investimentoInicial"
+                                                         class="form-control"  
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                         id="investimentoInicial">
+                                                         >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInvestimentoInicial" listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
