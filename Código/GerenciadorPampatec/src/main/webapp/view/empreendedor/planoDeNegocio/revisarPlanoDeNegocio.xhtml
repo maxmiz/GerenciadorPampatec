@@ -128,7 +128,7 @@
                                       type="button" title="Visualizar resultado do avaliador"
                                       id="botao_resultado_preavaliacao" 
                                       value="Resultado" 
-                                      onclick="mostraDIV('sessao_resultado_avaliador')">
+                                      onclick="addFocoBotao('menuSuperior:botao_resultado_preavaliacao'), mostraDIV('sessao_resultado_avaliador')">
 
                     </h:commandButton><br/>
                 </div>
@@ -138,9 +138,9 @@
                                                   || revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                       type="button" 
                                       title="Revisar plano de negócio" 
-                                      id="botao_revisar" 
+                                      id="botao_revisar"
                                       value="Revisar" 
-                                      onclick=" mostraDIV('sessao_revisar_plano_pre_melhoria')">
+                                      onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')">
                     </h:commandButton><br/>
                 </div>
                 <div class="divPadding text-center">
