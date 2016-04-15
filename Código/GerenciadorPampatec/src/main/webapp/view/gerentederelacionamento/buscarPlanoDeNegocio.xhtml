@@ -164,7 +164,7 @@
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
-                                <p:commandLink onclick="filtroTabela(this)" class="" id="PreAvaliacao" title="Filtrar por planos em pré-avaliação">
+                                <p:commandLink id="PreAvaliacao" onclick="filtroTabela(this)" class="filtro" title="Filtrar por planos em pré-avaliação">
                                     <h:outputText value="Em Pré-Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
