@@ -58,6 +58,12 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             }
         }
     }
+    
+    public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado){
+        
+        return comentarioProjeto.verificaCampos() != 0;
+    }
+    
 
     public boolean verificaStatusAceitoAvaliacao(Projeto projetoSelecionado) {
 
