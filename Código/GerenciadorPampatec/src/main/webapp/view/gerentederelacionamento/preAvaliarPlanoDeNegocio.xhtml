@@ -302,14 +302,15 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
-                                    <p:inputTextarea id="segmentoDeClientes" placeholder="" class="form-control"
+                                    <h:inputTextarea id="segmentoDeClientes" 
+                                                     class="form-control semResize"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      disabled="true"
+                                                     rows="5"
                                                      >
-
-                                    </p:inputTextarea>
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor1')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -325,14 +326,16 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Proposta de Valor* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
-                                    <p:inputTextarea id="propostaDeValor" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <h:inputTextarea id="propostaDeValor" 
+                                                     class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      disabled="true"
+                                                     rows="5"
                                                      >
-
-                                    </p:inputTextarea>
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -350,14 +353,16 @@
                                 <div class="col-md-12 espaco" id="">
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
-                                    <p:inputTextarea id="atividadesChave" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <h:inputTextarea id="atividadesChave" 
+                                                     class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.atividadesChaves}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      disabled="true"
+                                                     rows="5"
                                                      >
-
-                                    </p:inputTextarea>
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor3')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -398,10 +403,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.relacoesClientes}"
                                                      disabled="true"
-                                                     id="relacoComClientes">                 
+                                                     id="relacoComClientes"
+                                                     rows="5"
+                                                     >                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor4')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
@@ -419,10 +427,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.parceriasChaves}"
                                                      disabled="true"
-                                                     id="parceriasChaves">
+                                                     id="parceriasChaves"
+                                                     rows="5"
+                                                     >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor5')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
@@ -440,9 +451,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Canais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                     Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
-                                                     id="canais"  value="#{preAvaliarPlanoBean.projeto.analiseemprego.canais}"
-                                                     disabled="true">
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
+                                                     id="canais"  
+                                                     value="#{preAvaliarPlanoBean.projeto.analiseemprego.canais}"
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor6')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
@@ -460,10 +475,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Recursos principais* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                     Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      id="recursosPrincipais"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.recursosPrincipais}"
-                                                     disabled="true">
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor7')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
@@ -480,10 +498,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Concorrentes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
                                     Quem são nossos concorrentes? como trabalham?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      id="concorrentes"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor8')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -523,10 +545,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                     Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.verificaEstagioEvolucao()}"
                                                      id="estagioDeEvolucao"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor9')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -543,10 +569,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                      id="tecnologiaProcessos"
-                                                     disabled="true" ></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor10')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -563,10 +593,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                     Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                      id="potencialInovacaoTecnologica"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor11')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -583,10 +617,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
                                     A quem se aplica? como? de que maneira?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.aplicacoes}"
                                                      id="aplicacoes"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor12')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -603,10 +641,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
                                     Quais são nossas principais limitações?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                      id="dificuldadesEsperadas"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor13')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -623,10 +665,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                     Em que sentido seremos parceiros da Universidade? 
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                      id="interacaoEmpresaUniversidade"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5">
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor14')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -643,10 +688,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
                                     Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                      id="interacaoEmpresaComunidadeGoverno"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor15')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -663,10 +712,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
                                     Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.infraestrutura}"
                                                      id="infraestrutura"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor16')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -709,10 +762,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     Haverão sócios? Quanto de participação terão?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.participacaoacionaria}" 
                                                      id="participacaoAcionaria"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor005')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -728,10 +785,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
                                     Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.potencialEmprego}"
                                                      id="potencialEmprego"
-                                                     disabled="true"></h:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor006')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -774,13 +835,16 @@
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                                    <p:inputTextarea id="fontesDeReceita" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <h:inputTextarea id="fontesDeReceita" 
+                                                     class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.fontesReceita}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                     disabled="true">
-
-                                    </p:inputTextarea>
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioFontes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor18')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -796,13 +860,17 @@
                                 <div class="col-md-12 espaco">
                                     <b>Estrutura de custos* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
-                                    <p:inputTextarea id="estruturaCustos" placeholder="" class="form-control" onchange="precisaSalvar = true;"
+                                    <h:inputTextarea id="estruturaCustos" 
+                                                     class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                     disabled="true">
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
 
-                                    </p:inputTextarea>
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor19')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioEstruturaCustos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -819,9 +887,14 @@
                                 <div class="col-md-12 espaco">
                                     <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
                                     Quanto de recurso será necessário para iniciar?
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" 
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                     id="investimentoInicial" disabled="true"></h:inputTextarea>
+                                                     id="investimentoInicial" 
+                                                     disabled="true"
+                                                     rows="5"
+                                                     >
+                                    </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor20')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioInvestimentoInicial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
@@ -929,8 +1002,10 @@
                                 </div>
                                 <b>Observações: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
-                                    <h:inputTextarea class="form-control" onchange="precisaSalvar = true;"  
-                                                     id="campoObservacoes" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoesPersonalizadas}">
+                                    <h:inputTextarea class="form-control semResize" 
+                                                     onchange="precisaSalvar = true;"  
+                                                     id="campoObservacoes" 
+                                                     value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoesPersonalizadas}">
                                         <f:ajax execute="@form"
                                                 render="formulario_comentarpreavalizar:campoObservacoes
                                                 formulario_comentarpreavalizar:mensagensFeed
@@ -943,7 +1018,11 @@
                                 
                                 <div class="col-md-12">
                                     <b>Mensagem Padrão: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('observacoesPreDefinidas')}"></p:commandLink></b> 
-                                    <h:inputTextarea class="form-control" id="observacoesPreDefinidas" disabled="true" value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
+                                    <h:inputTextarea 
+                                        class="form-control semResize" 
+                                        id="observacoesPreDefinidas" 
+                                        disabled="true" 
+                                        value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoes}">
                                     </h:inputTextarea>
                                     <br />                                 
                                 </div>
