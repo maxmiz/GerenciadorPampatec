@@ -70,6 +70,7 @@ and open the template in the editor.
 }
 
 .bordaEstadoVisualizado {
+    border-style: solid;
     border-width: 2px;
     border-color: yellow;
 }
@@ -79,11 +80,14 @@ and open the template in the editor.
     border-color: yellow;
 }
 
+.bordaEstadoVisualizado:hover {
+    border-width: 2px;
+    border-color: yellow;
+}
+
 .btnEstadoAtual {
     width: 88%;
     text-align: center;
-    border-width: 1px;
-    border-color: black;
     color: black;
     text-emphasis-style: triangle;
     /*background-image: linear-gradient(to top, yellow, orange, red);*/
