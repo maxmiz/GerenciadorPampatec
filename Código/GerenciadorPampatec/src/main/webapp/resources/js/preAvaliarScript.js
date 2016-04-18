@@ -47,8 +47,10 @@ function mostrarMensagemCampoObrigatorio() {
  */
 function juntarListas(array1, array2) {
     var cont = 0;
+    var posicao;
     for (var i = 0; i < array2.length; i++) {
-        array1[array1.length + i] = array2[i];
+        posicao = array1.length + i;
+        array1[posicao] = array2[i];
         cont++;
     }
 
