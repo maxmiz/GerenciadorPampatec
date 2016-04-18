@@ -125,6 +125,9 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa3";
             
             mostraDIV('sessao_resultado_avaliador');
+            var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
+        
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
