@@ -125,11 +125,9 @@ public class PreAvaliarPlanoFiltro implements Filter {
             try {
                 chain.doFilter(request, response);
             } catch (NullPointerException e) {
-                System.out.println("chain = null");
+                System.out.println("Origem: "+this.getClass().getName()+ ":: \t chain = null");
             }
         }
-        
-        System.out.println("Tessssssssssssste");
     }
 
     /**

@@ -415,8 +415,16 @@ function mostrarFeedBack(id) {
 
 
 /**
- * @description Metodo que libera ou bloqueia componentes da tela conforme o status do projeto
- * andamentoProjeto = status do projeto
+ * @description 
+ * Ao entrar em uma pagina na aba EM ELABORAÇÃO contendo o workflow 
+ * o metodo é chamado na declaração do body, passando o status do projeto
+ * então ele usa o método MostraDiv 
+ * para apresenta ou esconde componentes da tela conforme esse status 
+ * a variavel andamentoProjeto = status do projeto
+ * 
+ * cada caso seria a apresentação das divs para aquele status usando o metodo MostraDiv
+ * ja tranformando o workflow  clicavel ou nao dependendo do status
+ * 
  * @returns {undefined}
  */
 function carregaPagina() {
@@ -435,11 +443,11 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "active, etapaAtual etapaSelecionada");
             mostra_vertical_elaboracao();
-            var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
 
-            //botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            addFocoBotao("botao_revisar");
+            
             mostraDIV2('div_apresentacao_formulario');
 
             etapaAtualDoWorkflow = "etapa1";
@@ -454,20 +462,69 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
-//      EM_PRE_AVALIACAO = 1;
+//      SUBMETIDO = 1;
         case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active");
+            etapa1.setAttribute("class", "active, etapaSelecionada");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("botao_preavaliacao");
-            mostra_vertical_pre_avaliacao();
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+            
+            addFocoBotao("botao_revisar");
+
+            mostraDIV('div_revisar_plano');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+ //      SENDO AVALIADO = 10;
+        case 10:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
 
-            mostraDIV('divPreVisualizar');
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      EM PRE AVALIAÇÃO = 12;
+        case 12:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+            
+
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -478,16 +535,93 @@ function carregaPagina() {
 
             break;
 
-//      AVALIACAO = 2;    
-        case 2:
+//      REPROVADO = 6;
+        case 6:
+            etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
 
-            etapaAtualDoWorkflow = "etapa3";
+            etapaAtualDoWorkflow = "etapa2";
 
-            etapa1.setAttribute("class", "active");
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      NECESSITA_MELHORIA = 7;
+        case 7:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      RESUBMETIDO = 11;
+        case 11:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      AVALIACAO = 2;    
+        case 2:
+
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
             etapa2.setAttribute("class", "active");
             etapa3.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+            
+            etapaAtualDoWorkflow = "etapa3";
+            
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
@@ -523,28 +657,7 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa5";
 
             break;
-
-//      PRE_APROVADO = 5;
-        case 5:
-            etapa3.innerHTML = "<b>Avaliação</b>";
-            etapa4.innerHTML = "<b>Formalização</b>";
-            etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
-            var botaoQueDeveSerPintado = document.getElementById("botao_resultado_preavaliacao");
-            mostra_vertical_pre_avaliacao();
-            botaoQueDeveSerPintado.setAttribute("class", "btn btn-danger btnEstadoAtual");
-
-            mostraDIV('divPreAvaliar_visualizar');
-
-            var etapa = document.getElementById("etapa3");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa4");
-            etapa.setAttribute("style", "cursor: default;");
-            var etapa = document.getElementById("etapa5");
-            etapa.setAttribute("style", "cursor: default;");
-            break;
-
+           
 //      DEFININDO_EQUIPE = 8;
         case 8:
             etapa2.innerHTML = "<b>Pré-Avaliação</b>";
@@ -568,6 +681,9 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
+            
+            break;
+
     }
 }
 

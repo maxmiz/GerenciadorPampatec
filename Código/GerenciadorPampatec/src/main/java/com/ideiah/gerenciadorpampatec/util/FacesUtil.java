@@ -9,6 +9,19 @@ import javax.faces.context.FacesContext;
  * @author Pedro
  */
 public class FacesUtil {
+    
+    
+    
+    /**
+     * Mensagem de socesso no salvamento.
+     * @param idComponente 
+     */
+    public static void addFeedbackSaveSuccess(String idComponente){
+        FacesContext.getCurrentInstance().addMessage(idComponente,
+                new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "Salvo", "Sua alteração foi salva com sucesso."));
+
+    }
 
     /**
      * Mensagem de sucesso.

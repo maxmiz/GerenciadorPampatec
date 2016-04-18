@@ -173,9 +173,9 @@ public class ProjetoBean implements Serializable {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
             projeto.setNome("Novo plano de negócio sem nome");
         }
-        FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:tituloMensagem", msg);
+        
+        FacesUtil.addFeedbackSaveSuccess("formulario_cadastro_projeto:tituloMensagem");
+        
         pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
@@ -699,7 +699,7 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("exceção = " + e);
+                System.out.println("Origem: "+this.getClass().getName()+ ":: \t Erro: " + e);
             }
         }
     }
@@ -942,8 +942,6 @@ public class ProjetoBean implements Serializable {
      * @return true se o usuário clicar no checkbox "Outro"
      */
     public boolean exibeCampo() {
-        System.out.println("" + selectedButton);
-
         return selectedButton != null && selectedButton.equals("Outro");
     }
 

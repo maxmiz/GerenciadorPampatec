@@ -97,7 +97,11 @@ public class PreAvaliarPlanoBean implements Serializable {
             }
         }
         if (comentarioProjeto != null) {
-            resultadoPreAvaliacao = projeto.getStatus();
+            if (projeto.getStatusTemp() == null) {
+                resultadoPreAvaliacao = 99;
+            } else {
+                resultadoPreAvaliacao = projeto.getStatusTemp();
+            }
         }
     }
 
@@ -146,14 +150,18 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
-     * para posterior continuar editando o mesmo
+     * Salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
+     * para posterior continuar editando o mesmo.
      */
     public void salvar() {
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
+        
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
+        projetoDao.salvar(projeto);
 
         /**
          * Para exibir a mensagem de salvo com sucesso.
@@ -164,12 +172,29 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
+     * <p>
+     * Método para salvar o pré-projeto quando via botão salvar pré-avaliação.
+     * </p>
+     */
+    public void salvarPreAvaliacao() {
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.setProjeto(projeto);
+        comentDao.salvar(comentarioProjeto);
+        
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
+        projetoDao.salvar(projeto);        
+
+        getBuscarPlanoDeNegocio();
+    }
+    
+    /**
      *
      * @param projSelect
      */
     public void mudaStatusProjetoParaSendoAvaliado(Projeto projSelect) {
 
-        if (projSelect.getStatus() == Projeto.EM_PRE_AVALIACAO) {
+        if (projSelect.getStatus() == Projeto.SUBMETIDO) {
             projSelect.setStatus(Projeto.SENDO_AVALIADO);
             ProjetoDao dao = new ProjetoDao();
             dao.update(projSelect);
@@ -194,18 +219,17 @@ public class PreAvaliarPlanoBean implements Serializable {
      * dos comentários.</p>
      */
     public void terminarPreAvaliacao() {
-
         if (validaAvaliacao()) {
-            System.out.println("Avaliação realizada. PreAvaliarPlanoBean.terminarPreAvaliacao()");
             if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
                 projeto.setStatus(getResultadoPreAvaliacao());
+                
                 mudaStatusComentarioProjetoFinalizar();
+                
                 ProjetoDao projDao = new ProjetoDao();
-                projDao.update(projeto);
+                projDao.salvar(projeto);
+                
                 getBuscarPlanoDeNegocio();
             }
-        }else{
-            System.out.println("Não foi possível completar a avaliação. PreAvaliarPlanoBean.terminarPreAvaliacao()");
         }
     }
 
@@ -215,8 +239,10 @@ public class PreAvaliarPlanoBean implements Serializable {
      * </p>
      */
     private void mudaStatusComentarioProjetoFinalizar() {
+        ComentarioDao comentarioDao = new ComentarioDao();
         if (Objects.equals(comentarioProjeto.getProjeto().getIdProjeto(), projeto.getIdProjeto())) {
             comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
+            comentarioDao.update(comentarioProjeto);
         }
     }
 
@@ -241,10 +267,10 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void preencheCampoObservacao() {
         switch (resultadoPreAvaliacao) {
-            case Projeto.PRE_MELHORIA:
+            case Projeto.NECESSITA_MELHORIA:
                 comentarioProjeto.setConsideracoes("O seu plano de negócio precisa de ajustes. Leia os comentários de cada item preenchido do plano de negócio e faça as alterações necessárias.");
                 break;
-            case Projeto.AVALIACAO:
+            case Projeto.ACEITO_PARA_AVALIACAO:
                 comentarioProjeto.setConsideracoes("O seu plano de negócio foi aprovado. Aguarde o agendamento da entrevista.");
                 break;
             case Projeto.REPROVADO:
@@ -253,6 +279,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             default:
                 break;
         }
+        salvar();
     }
 
     /**
@@ -293,110 +320,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.loginBean = loginBean;
     }
 
-    /**
-     * <p>
-     * Retorna a quantidade de campos comentário vazios
-     * </p>
-     */
-    private int verificaCampos() {
-        int FLAG = 0;
 
-        //NEGOCIO
-        if (!comentarioProjeto.getComentarionegocio().getSegmentoClientes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarionegocio().getPropostaValor().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarionegocio().getAtividadesChaves().equals("")) {
-            FLAG++;
-        }
-        //ANALISE DE MERCADO
-        if (!comentarioProjeto.getComentarioanaliseemprego().getRelacoesClientes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getParceriasChaves().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getCanais().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getRecursosPrincipais().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioanaliseemprego().getConcorrentes().equals("")) {
-            FLAG++;
-        }
-        //PRODUTO OU SERVIÇO
-        if (!comentarioProjeto.getComentarioprodutoouservico().getEstagioEvolucao().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getAplicacoes().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioprodutoouservico().getInfraestrutura().equals("")) {
-            FLAG++;
-        }
-        //GESTAO DE PESSOAS
-        if (!comentarioProjeto.getParticipacaoacionaria().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getPotencialemprego().equals("")) {
-            FLAG++;
-        }
-        //PLANO FINANCEIRO
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getFontesReceita().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getEstruturaCusto().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosfixos().equals("")) {
-            FLAG++;
-        }
-
-        if (!comentarioProjeto.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
-            FLAG++;
-        }
-        //System.out.println("Existem " + FLAG + " comentarios no projeto.");
-        return FLAG;
-    }
-    
     /**
      *
      * @return
@@ -404,7 +328,6 @@ public class PreAvaliarPlanoBean implements Serializable {
     public boolean campoObservacoesVazio(){
         boolean resultado;
         resultado = comentarioProjeto.getConsideracoes().equals("");
-        System.out.println("Observações vazio = " + resultado);
         return resultado;
     }
 
@@ -422,15 +345,9 @@ public class PreAvaliarPlanoBean implements Serializable {
         //O campo observacoes precisa estar preenchido 
         // aprovado = 2, melhorias, = 7 reprovado, = 6
         
-        // o campo observasões precisa estar preenchido
-        if(comentarioProjeto.getConsideracoes().equals("")){
-            FacesUtil.addErrorMessage("Campo observações não pode estar vazio.", 
-                    "formulario_comentarpreavalizar:campoObservacoes");
-            flag_erro++;
-        }
         // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
         if(resultadoPreAvaliacao == 7){
-            if(verificaCampos() == 0){
+            if(comentarioProjeto.verificaCampos() == 0){
                 FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.", 
                         "formulario_comentarpreavalizar:statusAvaliacao");
                 flag_erro++;

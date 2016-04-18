@@ -14,42 +14,19 @@
             <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
 
-        <h:outputScript library="js" name="bootstrap.js"/>
-        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
+        <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>    
+        <h:outputScript library="js" name="sweetalert.min.js" />        
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>
-        <h:outputScript library="js" name="sweetalert.min.js" />        
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+        <h:outputScript library="js" name="tabela.js" />
+        
         <title>Página Principal - Gerente de Relacionamentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
-            .pampaTec {
-                background-color: #00A859
-            }
-            .navbar-default {
-                background-color: #00A859;
-            }
-            .dropdown-menu > li > a:hover,
-            .dropdown-menu > li > a:focus {
-                background-color: #00A859;
-            }
-            .dropdown-menu > .active > a,
-            .dropdown-menu > .active > a:hover,
-            .dropdown-menu > .active > a:focus {
-                background-color: #00A859;
-            }
-            .btn-success {
-                background-color: #00A859;
-            }
             @font-face {
                 font-family: lilyUPC;
                 src: url(lily.ttf);
-            }
-            html {
-                font-family: lilyUPC;
             }
         </style>
         <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
@@ -168,44 +145,43 @@
                 <div>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <h1 style="text-align: center;"><h:outputText value="#{loginBean.nome}"></h:outputText>, estes são os planos de negócio que você deve avaliar</h1>
+                        <h1 style="text-align: center;"> Planos de negócio recebidos</h1>
                     </div>
                     <div class="col-md-2" text-align="center">
                     </div>
                 </div>
-
+                <br/>
+                <br/>
                 <h:panelGroup class="col-md-12">
                     <div class="col-md-1"></div>
                     <div class="col-md-12">
                         <div class="row estilo">
                             <h:form>
                                 <p:growl id="growl" life="2000" />
-                                <h:outputLabel value="Filtrar Por:"></h:outputLabel>
-                                <p:commandLink id="todos">
+                                <h:outputLabel value="Filtrar Por: "></h:outputLabel>
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="todos">
                                     <h:outputText value="Todos" title="Filtrar por todos planos"/>
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
-                                <p:commandLink id="PreAvaliacao" title="Filtrar por planos em pré-avaliação">
+                                <p:commandLink id="PreAvaliacao" onclick="filtroTabela(this)" class="filtro" title="Filtrar por planos em pré-avaliação">
                                     <h:outputText value="Em Pré-Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
-                                <p:commandLink id="melhoria" title="Filtrar por planos em melhoria">
-                                    <h:outputText value="Em Pré-Melhoria" />
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="melhoria" title="Filtrar por planos em melhoria">
+                                    <h:outputText value="Em Melhoria" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosnelhoria()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
-                                <p:commandLink id="aprov" title="Filtrar por planos aprovados">
-                                    <h:outputText value="Aprovados" />
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="aprov" title="Filtrar por planos aceitos para avaliação">
+                                    <h:outputText value="Aceitos para Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosAprovados()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink> 
-                                <p:commandLink id="reprov" title="Filtrar por planos reprovados">
+                                
+                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="reprov" title="Filtrar por planos reprovados">
                                     <h:outputText value="Reprovados" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosReprovados()}" render=":locovelho:tabelaDeNegocios"/>
-
                                 </p:commandLink>
 
                             </h:form>
@@ -213,36 +189,41 @@
                     </div>
                     <div class="col-md-12">
 
-                        <p:dataTable id="tabelaDeNegocios" var="projeto" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" paginatorPosition="bottom" paginator="true" rows="10" var="projeto" widgetVar="TabelaNegocios" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
 
                             <f:facet name="header">
-                                Tabela de Planos de Negócio
+                                <p:outputPanel id="procurar">
+                                    <h:outputText title="Procurar Plano de Negócio" value="Procurar: "/>
+                                    <p:inputText title="Procurar Plano de Negócio" id="globalFilter"  onkeyup="PF('TabelaNegocios').filter()" style="width:40%" value="#{buscaProjetoGerenteDeRelacionamentosBean.campoProcurar}" placeholder="Informe nome, datas ou status do plano de negócios."/>
+                                    <p:defaultCommand target="dummy"/>
+                                    <p:commandLink id="dummy" process="@none" global="false" style="display:none;"/>
+                                </p:outputPanel> 
                             </f:facet>
                             <!--
                             <p:column headerText="Identificador">
                                 <h:outputText value="{projeto.idProjeto}"/>
                             </p:column>
                             -->
-                            <p:column headerText="Nome" width="35%">
+                            <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}" width="35%">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
-                            <p:column headerText="Data de submissão" style="text-align: center; width: 150px" width="15%">
+                            <p:column id="submissionDate" headerText="Data de submissão" filterBy="#{projeto.dataEnvio}" filterStyle="display:none" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
 
-                            <p:column headerText="Status" style="text-align: center;" width="25%">
+                            <p:column headerText="Status"  filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center;" width="25%">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
                             </p:column>
 
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandLink class="btn btn-success botaoTabela" title="Avaliar Plano de Negócio"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-check-square-o"></i>Avaliar</label>
+                                        <h:commandLink class="btn btn-success" title="Avaliar Plano de Negócio"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
+                                            <label style="color: white; cursor: pointer;"><i class="fa fa-check-square-o"></i> Avaliar</label>
                                         </h:commandLink>
-                                        <h:outputLabel class="btn botaoTabela" style="background-color: red; cursor: not-allowed" title="Plano de Negócio em Avaliação"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
-                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i>Em Avaliação</label>
+                                        <h:outputLabel class="btn btn-danger" style="background-color: red; cursor: not-allowed" title="O Plano de Negócio está sendo avaliado nesse momento"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
+                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i> Sendo Avaliado</label>
                                         </h:outputLabel>
                                         <h:commandLink class="btn btn-primary" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
                                             <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
@@ -253,7 +234,7 @@
                         </p:dataTable>
                     </div>
                     <div class="col-md-1"></div>
-                    <p:poll interval="1" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
+                    <p:poll interval="20" update="locovelho:tabelaDeNegocios" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacaoFLAG()}"/>
                 </h:panelGroup>
             </div>
             <!-- Fim da lista de planos de negócio -->

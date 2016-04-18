@@ -3,10 +3,13 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.ComparadorCriacaoUtil;
+import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -32,10 +35,12 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public BuscaProjetoEmpreendedorBean() {
         projetoDao = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
+        sortByDateCriacao(listaProjetos);
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
-        this.listaProjetos = listaProjetos;
+
+        this.listaProjetos = sortByDateCriacao(listaProjetos);
     }
 
     public ArrayList<Projeto> getListaProjetos() {
@@ -88,21 +93,26 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
         empreendedor = Empreendedor.buscaPorEmail(empreendedor.getEmail());
 
-        Projeto selecaoProjeto;
         ArrayList<Projeto> projetosEmpreendedor = new ArrayList();
-
-        for (Object projeto : empreendedor.getProjetos().toArray()) {
-            selecaoProjeto = (Projeto) projeto;
-            //NÃO LISTA SE FOR LINHA DE BASE
-            if (selecaoProjeto.getStatus() != Projeto.LINHA_DE_BASE) {
-                projetosEmpreendedor.add(selecaoProjeto);
-            }
+        for (Object projeto : empreendedor.getProjetos()) {
+            projetosEmpreendedor.add((Projeto) projeto);
         }
         return projetosEmpreendedor;
     }
 
     public void setProjetoSelecionado(Projeto projetoSelecionado) {
         this.projetoSelecionado = projetoSelecionado;
+    }
+    /**
+     * Retorna o status do projeto de acordo com as necessidades do empreendedor,
+     * Empreendedor não sabe quando o projeto está sendo avaliado ou quando está em
+     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.
+     * @param proj 
+     */
+    public String retornaProjetoStatus(Projeto proj){
+        if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
+            return "Em Pré-Avaliação";
+        } return proj.getStatusString(proj.getStatus());
     }
 
     /**
@@ -114,13 +124,22 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projetoSelecionado);
         try {
 
-            if (projetoSelecionado.getStatus() == Projeto.PRE_MELHORIA) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
+            if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA
+                    || projetoSelecionado.getStatus() == Projeto.SUBMETIDO
+                    || projetoSelecionado.getStatus() == Projeto.RESUBMETIDO
+                    || projetoSelecionado.getStatus() == Projeto.REPROVADO
+                    || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO) {
+
+                FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
+            
             }else{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
+                
+                FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
             }
-            } catch (IOException ex) {
-				Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaProjetoEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -152,20 +171,24 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         return empreendedor.verificaTipoEmpreendedor(projeto.getEmpreendedorCorrespondente());
     }
-    
+
     /**
-     * Verifica se o botão excluir pode ser ativado olhando
-     * o tipo de empreendedor e se o projeto está em pre-avaliação.
+     * Verifica se o botão excluir pode ser ativado olhando o tipo de
+     * empreendedor e se o projeto está em pre-avaliação.
+     *
      * @param projeto Projeto para se verificar.
      * @return true se o botão pode ser ativado.
      */
-    public boolean verificaExcluir(Projeto projeto){
-        return verificarEmpreendedor(projeto) 
-                && projeto.verificarEmPreAvaliacao() 
+    public boolean verificaExcluir(Projeto projeto) {
+        return verificarEmpreendedor(projeto)
+                && projeto.verificaSubmetido()
                 && projeto.verificarSendoAvaliado()
-                && projeto.verificarEmAvaliacao()
+                && projeto.verificarAceitoParaAvaliacao()
                 && projeto.verificarReprovado()
-                && projeto.verificarPreMelhoria();
+                && projeto.verificarNecessitaAvaliacao()
+                && projeto.verificaReSubmetido()
+                && projeto.verificaEmPreAvaliacao();
+                
     }
 
     public String formatarDataCriacao(Projeto projeto) {
@@ -184,5 +207,16 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         } else {
             return "Plano não enviado.";
         }
+    }
+    /**
+     * Usa a classe Collection pra arrumar a lista por ordem de criação, com o mais velho primeiro
+     * depois reverte essa lista pra mostrar o ultimo criado.
+     * @param lista
+     *  Não retorna lista, ele ordena dentro dela mesma.
+     */
+    private ArrayList<Projeto> sortByDateCriacao(ArrayList<Projeto> lista) {
+        Collections.sort(lista, new ComparadorCriacaoUtil());
+        Collections.reverse(lista);
+        return lista;
     }
 }

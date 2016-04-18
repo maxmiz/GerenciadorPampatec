@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author Edison Jhonatan
+ * @author Ideiah
  * @since 10/11/15
  */
 public class ComentarioProjeto implements java.io.Serializable {
@@ -29,7 +29,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private String consideracoes;
     private Projeto projeto;
     private Integer status;
-
+    private String consideracoesPersonalizadas;
   
     
     public ComentarioProjeto() {
@@ -41,6 +41,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         participacaoacionaria = "";
         potencialemprego = "";
         consideracoes = "";
+        consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
         
     }
@@ -169,5 +170,127 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
         return statusDescricao;
     }
+
+    /**
+     * @return the consideracoesPersonalizadas
+     */
+    public String getConsideracoesPersonalizadas() {
+        return consideracoesPersonalizadas;
+    }
+
+    /**
+     * @param consideracoesPersonalizadas the consideracoesPersonalizadas to set
+     */
+    public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
+        this.consideracoesPersonalizadas = consideracoesPersonalizadas;
+    }
+    
+    public String todasConsideracoes(){
+        return consideracoes + "\n" + consideracoesPersonalizadas;
+    }
+    
+        /**
+     * <p>
+     * Retorna a quantidade de campos comentário vazios
+     * </p>
+     */
+    public int verificaCampos() {
+        int FLAG = 0;
+
+        //NEGOCIO
+        if (!this.getComentarionegocio().getSegmentoClientes().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarionegocio().getPropostaValor().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarionegocio().getAtividadesChaves().equals("")) {
+            FLAG++;
+        }
+        //ANALISE DE MERCADO
+        if (!this.getComentarioanaliseemprego().getRelacoesClientes().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioanaliseemprego().getParceriasChaves().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioanaliseemprego().getCanais().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioanaliseemprego().getRecursosPrincipais().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioanaliseemprego().getConcorrentes().equals("")) {
+            FLAG++;
+        }
+        //PRODUTO OU SERVIÇO
+        if (!this.getComentarioprodutoouservico().getEstagioEvolucao().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getAplicacoes().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioprodutoouservico().getInfraestrutura().equals("")) {
+            FLAG++;
+        }
+        //GESTAO DE PESSOAS
+        if (!this.getParticipacaoacionaria().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getPotencialemprego().equals("")) {
+            FLAG++;
+        }
+        //PLANO FINANCEIRO
+        if (!this.getComentarioplanofinanceiro().getFontesReceita().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioplanofinanceiro().getEstruturaCusto().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioplanofinanceiro().getCustosfixos().equals("")) {
+            FLAG++;
+        }
+
+        if (!this.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
+            FLAG++;
+        }
+        return FLAG;
+    }
+    
 
 }

@@ -31,6 +31,10 @@
         <property name="consideracoes" type="string">
             <column length="65535" name="consideracoes"/>
         </property>
+        <property name="consideracoesPersonalizadas" type="string">
+            <column length="65535" name="consideracoesPersonalizadas"/>
+        </property>
+      
         
         <property name="status" type="integer">
             <column  name="status"/>

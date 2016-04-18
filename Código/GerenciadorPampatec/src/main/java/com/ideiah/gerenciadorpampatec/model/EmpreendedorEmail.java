@@ -49,7 +49,6 @@ public class EmpreendedorEmail {
      * @return 
      */
     public boolean salvarEmpreendedorEmail(EmpreendedorEmail empreendedorEmail) {
-        System.out.println("Entrou no método de salvar no bd");
         return getEmpreededorEmailDao().salvar(empreendedorEmail);
     }
 
@@ -83,7 +82,6 @@ public class EmpreendedorEmail {
 
 
     public static EmpreendedorEmail buscaEmpreendedorMailID(String id) {
-        System.out.println("o id é: "+id);
         return getEmpreededorEmailDao().buscarPorIdUnico(id);
     }
     

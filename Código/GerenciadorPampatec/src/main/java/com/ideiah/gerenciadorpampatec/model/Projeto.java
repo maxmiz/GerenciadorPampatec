@@ -18,16 +18,16 @@ import javax.faces.context.FacesContext;
 public class Projeto implements java.io.Serializable {
 
     public static final int ELABORACAO = 0;
-    public static final int EM_PRE_AVALIACAO = 1;
+    public static final int SUBMETIDO = 1;
+    public static final int RESUBMETIDO = 11;
     public static final int SENDO_AVALIADO = 10;
-    public static final int AVALIACAO = 2;
+    public static final int ACEITO_PARA_AVALIACAO = 2;
     public static final int FORMALIZACAO = 3;
     public static final int INCUBACAO = 4;
-    public static final int PRE_APROVADO = 5;
     public static final int REPROVADO = 6;
-    public static final int PRE_MELHORIA = 7;
+    public static final int NECESSITA_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
-    public static final int LINHA_DE_BASE = 9;
+    public static final int EM_PRE_AVALIACAO = 12;
 
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
@@ -49,10 +49,16 @@ public class Projeto implements java.io.Serializable {
     //aberto para outro gerente no atualizar a página
     private int contAcesso;
     private Set<ComentarioProjeto> comentarioProjeto = new HashSet(0);
+    private Integer statusTemp;
 
     public Projeto() {
         //pegaObserver();
         contAcesso = 0;
+        /**
+         * O 99 é um status inexistente para definir a variável com um status
+         * inexistente como padrão inicial.
+         */
+        statusTemp = 99;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String participacaoacionaria) {
@@ -64,6 +70,7 @@ public class Projeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
         contAcesso = 0;
         pegaObserver();
+        statusTemp = 99;
     }
 
     public Projeto(Integer idProjeto, Analiseemprego analiseemprego, Negocio negocio, Planofinanceiro planofinanceiro, Produtoouservico produtoouservico, String nome, Date dataEnvio, Integer status, String potencialEmprego, Set empreendedors, String participacaoacionaria, String edital,
@@ -84,6 +91,7 @@ public class Projeto implements java.io.Serializable {
         this.gerenteRelacionamento = gerenteDeRelacionamento;
         pegaObserver();
         contAcesso = 0;
+        statusTemp = 99;
     }
 
     private void pegaObserver() {
@@ -181,14 +189,14 @@ public class Projeto implements java.io.Serializable {
             case SENDO_AVALIADO:
                 statusDescricao = "Sendo Avaliado";
                 break;
-            case EM_PRE_AVALIACAO:
-                statusDescricao = "Em Pré-Avaliação";
+            case SUBMETIDO:
+                statusDescricao = "Submetido";
                 break;
-            case AVALIACAO:
-                statusDescricao = "Em Avaliação";
+            case ACEITO_PARA_AVALIACAO:
+                statusDescricao = "Aceito para Avaliação";
                 break;
-            case PRE_MELHORIA:
-                statusDescricao = "Em Pré-Melhoria";
+            case NECESSITA_MELHORIA:
+                statusDescricao = "Necessita Melhoria";
                 break;
             case FORMALIZACAO:
                 statusDescricao = "Em Formalização";
@@ -199,6 +207,11 @@ public class Projeto implements java.io.Serializable {
             case REPROVADO:
                 statusDescricao = "Reprovado";
                 break;
+            case EM_PRE_AVALIACAO:
+                statusDescricao = "Em Pré-Avaliação";
+                break;
+            case RESUBMETIDO:
+                statusDescricao = "Ressubmetido";
         }
 
         return statusDescricao;
@@ -341,7 +354,13 @@ public class Projeto implements java.io.Serializable {
      * Verifica se o projeto está em pré-avaliação
      * @return 
      */
-    public boolean verificarEmPreAvaliacao(){
+    public boolean verificaSubmetido(){
+        return this.getStatus() != Projeto.SUBMETIDO;
+    }
+    public boolean verificaReSubmetido(){
+        return this.getStatus() != Projeto.RESUBMETIDO;
+    }
+    public boolean verificaEmPreAvaliacao(){
         return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
     }
     
@@ -357,15 +376,15 @@ public class Projeto implements java.io.Serializable {
      * Verifica se o projeto está em pré-melhoria
      * @return 
      */
-        public boolean verificarPreMelhoria(){
-        return this.getStatus() != Projeto.PRE_MELHORIA;
+        public boolean verificarNecessitaAvaliacao(){
+        return this.getStatus() != Projeto.NECESSITA_MELHORIA;
     }
             /**
      * Verifica se o projeto está em avaliação
      * @return 
      */
-    public boolean verificarEmAvaliacao(){
-        return this.getStatus() != Projeto.AVALIACAO;
+    public boolean verificarAceitoParaAvaliacao(){
+        return this.getStatus() != Projeto.ACEITO_PARA_AVALIACAO;
     }
     
         /**
@@ -402,6 +421,20 @@ public class Projeto implements java.io.Serializable {
      */
     public void setContAcesso(int contAcesso) {
         this.contAcesso = contAcesso;
+    }
+
+    /**
+     * @return the statusTemp
+     */
+    public Integer getStatusTemp() {
+        return statusTemp;
+    }
+
+    /**
+     * @param statusTemp the statusTemp to set
+     */
+    public void setStatusTemp(Integer statusTemp) {
+        this.statusTemp = statusTemp;
     }
 
 }
