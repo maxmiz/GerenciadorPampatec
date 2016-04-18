@@ -119,8 +119,8 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active");
-            etapa3.setAttribute("class", "active, etapaAtual etapaSelecionada");
+            etapa2.setAttribute("class", "active etapaSelecionada");
+            etapa3.setAttribute("class", "active etapaAtual");
             
             etapaAtualDoWorkflow = "etapa3";
             
