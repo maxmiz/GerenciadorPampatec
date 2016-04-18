@@ -360,6 +360,9 @@ public class Projeto implements java.io.Serializable {
     public boolean verificaReSubmetido(){
         return this.getStatus() != Projeto.RESUBMETIDO;
     }
+    public boolean verificaEmPreAvaliacao(){
+        return this.getStatus() != Projeto.EM_PRE_AVALIACAO;
+    }
     
         /**
      * Verifica se o projeto está em sendo avaliado
