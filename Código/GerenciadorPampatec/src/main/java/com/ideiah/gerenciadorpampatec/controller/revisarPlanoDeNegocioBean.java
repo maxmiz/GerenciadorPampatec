@@ -60,8 +60,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
     
     public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado){
-        
-        return comentarioProjeto.verificaCampos() != 0;
+        if (projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
+            
+            if(comentarioProjeto.verificaCampos() != 0){
+                return true;
+            }
+            
+        }
+        return false;
     }
     
 
@@ -71,7 +77,28 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
+    
+    public boolean verificaStatusSubmetido(Projeto projetoSelecionado) {
 
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.SUBMETIDO;
+    }
+    
+    public boolean verificaStatusReSubmetido(Projeto projetoSelecionado) {
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.RESUBMETIDO;
+    }
+
+    public boolean verificaStatusEmPreAvaliacao(Projeto projetoSelecionado) {
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO;
+    }
+    
     public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

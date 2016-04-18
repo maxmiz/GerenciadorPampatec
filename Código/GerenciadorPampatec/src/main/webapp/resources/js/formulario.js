@@ -462,8 +462,30 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
-//      SUBMETIDO = 1, REPROVADO = 6, NECESSITA_MELHORIA = 7, RESUBMETIDO = 11;
+//      SUBMETIDO = 1;
         case 1:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('div_revisar_plano');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      EM PRE AVALIAÇÃO = 12;
+        case 12:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";

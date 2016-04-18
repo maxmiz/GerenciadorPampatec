@@ -207,13 +207,13 @@
                 <div>
 
                     <ul class="nav nav-tabs">
-                        <li class="active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Informações</a></li>
-                        <li class=""><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
-                        <li class=""><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
-                        <li class=""><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
-                        <li class=""><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
-                        <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
-                        <li class=""><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliar</a></li>
+                        <li class="abaPlano active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Informações</a></li>
+                        <li class="abaPlano"><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
+                        <li class="abaPlano"><a id="tabAnaliseMercado" aria-expanded="false" href="#formParte03" data-toggle="tab">Análise de Mercado</a></li>
+                        <li class="abaPlano"><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
+                        <li class="abaPlano"><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
+                        <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
+                        <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliar</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content" >
 
@@ -223,11 +223,7 @@
 
                             <div id="formularioParte01">
                                 <legend id="subTitulo" >Informações Básicas</legend>
-                                <div class="col-md-12">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 0.5%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-4" id="">
                                     <b>Nome da Empresa ou Projeto* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" placeholder="" class="form-control" 
@@ -294,11 +290,7 @@
 
                             <div id="formularioParte02">
                                 <legend>O Negócio</legend>
-                                <div class="col-md-12">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 16.58%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
@@ -395,11 +387,7 @@
 
                             <div id="formularioParte03">
                                 <legend id="subTitulo">Análise de Mercado</legend>
-                                <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 33.16%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
@@ -537,11 +525,7 @@
 
                             <div id="formularioParte04">
                                 <legend id="subTitulo">Produto de Serviço</legend>
-                                <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 49.75%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-12 espaco">
                                     <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                     Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
@@ -753,11 +737,7 @@
 
                             <div id="formularioParte05">
                                 <legend id="subTitulo">Gestão de Pessoas</legend>
-                                <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 66.33%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     Haverão sócios? Quanto de participação terão?
@@ -826,11 +806,7 @@
 
                             <div id="formularioParte06">
                                 <legend id="subTitulo">Plano de Financeiro</legend>
-                                <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 82.91%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
@@ -994,11 +970,7 @@
                         <div class="tab-pane fade" id="formParte07" >
                             <div id="formularioParte07">
                                 <legend id="subTitulo" >Avaliar</legend>
-                                <div class="col-md-12 espaco">
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 100%"></div>
-                                    </div>
-                                </div>
+                                <br/>
                                 <b>Observações: <p:commandLink update="" value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                                 <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
                                     <h:inputTextarea class="form-control semResize" 
