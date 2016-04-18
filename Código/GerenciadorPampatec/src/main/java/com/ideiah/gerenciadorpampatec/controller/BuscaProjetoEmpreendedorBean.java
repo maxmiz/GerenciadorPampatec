@@ -103,6 +103,17 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public void setProjetoSelecionado(Projeto projetoSelecionado) {
         this.projetoSelecionado = projetoSelecionado;
     }
+    /**
+     * Retorna o status do projeto de acordo com as necessidades do empreendedor,
+     * Empreendedor não sabe quando o projeto está sendo avaliado ou quando está em
+     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.
+     * @param proj 
+     */
+    public String retornaProjetoStatus(Projeto proj){
+        if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
+            return "Em Pré-Avaliação";
+        } return proj.getStatusString(proj.getStatus());
+    }
 
     /**
      * Envia o usuário para a página de enviar projeto, de acordo com o projeto
@@ -115,8 +126,11 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
             if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA
                     || projetoSelecionado.getStatus() == Projeto.SUBMETIDO
+                    || projetoSelecionado.getStatus() == Projeto.RESUBMETIDO
                     || projetoSelecionado.getStatus() == Projeto.REPROVADO
-                    || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
+                    || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO) {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             
@@ -172,7 +186,9 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                 && projeto.verificarAceitoParaAvaliacao()
                 && projeto.verificarReprovado()
                 && projeto.verificarNecessitaAvaliacao()
-                && projeto.verificaReSubmetido();
+                && projeto.verificaReSubmetido()
+                && projeto.verificaEmPreAvaliacao();
+                
     }
 
     public String formatarDataCriacao(Projeto projeto) {

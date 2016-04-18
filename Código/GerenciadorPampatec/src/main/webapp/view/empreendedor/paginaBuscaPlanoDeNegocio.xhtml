@@ -181,7 +181,7 @@
                                 </h:outputText>
                             </p:column>
                             <p:column headerText="Status" filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center">
-                                <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
+                                <h:outputText value="#{buscaProjetoEmpreendedorBean.retornaProjetoStatus(projeto)}"></h:outputText>
                             </p:column>
                             <p:column headerText="Ações" style="width: 23%; text-align: center">
                                 <div align="center">

@@ -132,7 +132,57 @@ fieldset[disabled] .autoCompletar input {
     z-index: 10;
 }
 
+.template-mensagens {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+.template-mensagens h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.template-mensagens p:last-child {
+    margin-bottom: 0;
+}
+.template-mensagens code {
+    border-radius: 3px;
+}
+.template-mensagens+template-mensagens {
+    margin-top: -5px;
+}
+.template-mensagens-padrao {
+    border-left-color: #777;
+}
+.template-mensagens-padrao h4 {
+    color: #777;
+}
 
+.template-mensagens-sucesso {
+    border-left-color: #5cb85c;
+}
+.template-mensagens-sucesso h4 {
+    color: #5cb85c;
+}
+.template-mensagens-danger {
+    border-left-color: #d9534f;
+}
+.template-mensagens-danger h4 {
+    color: #d9534f;
+}
+.template-mensagens-aviso {
+    border-left-color: #f0ad4e;
+}
+.template-mensagens-aviso h4 {
+    color: #f0ad4e;
+}
+.template-mensagens-info {
+    border-left-color: #5bc0de;
+}
+.template-mensagens-info h4 {
+    color: #5bc0de;
+}
 
 .tabelaEmpreendedores {
     margin:0px;padding:0px;

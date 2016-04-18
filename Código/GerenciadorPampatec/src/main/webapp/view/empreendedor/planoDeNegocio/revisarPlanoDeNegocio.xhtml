@@ -358,11 +358,18 @@
                         <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto Referente ao NEGÓCIO -->
 
                         <div class="tab-pane fade" id="formParte02">
-                            <br/>
+                            
                             <div id="formularioParte02">
-                                <div class="col-md-12">
-                                   
-                                </div>
+                                
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
+                                    <h4>Atençao!</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
@@ -494,11 +501,17 @@
                         <!-- Ínicio da TERCEIRA PARTE do formulário para Envio de Projeto Referente a ANÁLISE DE MERCADO -->
 
                         <div class="tab-pane fade" id="formParte03">
-                            <br/>
                             <div id="formularioParte03">
-                                <div class="col-md-12 espaco">
-                                 
-                                </div>
+                                
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
+                                    <h4>Atençao!</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
@@ -697,11 +710,17 @@
                         <!-- Ínicio da QUARTA PARTE do formulário para Envio de Projeto Referente ao PRODUTO DE SERVIÇO -->
 
                         <div class="tab-pane fade" id="formParte04">
-                            <br/>
                             <div id="formularioParte04">
-                                <div class="col-md-12 espaco">
-                                  
-                                </div>
+                                
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
+                                    <h4>Atençao!</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12">
                                     <b>Estágio de evolução* </b>
                                     <br/>
@@ -1061,11 +1080,17 @@
                         <!-- Ínicio da QUINTA PARTE do formulário para Envio de Projeto Referente a GESTÃO DE PESSOAS -->
 
                         <div class="tab-pane fade" id="formParte05">
-                            <br/>
                             <div id="formularioParte05">
-                                <div class="col-md-12 espaco">
                                 
-                                </div>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
+                                    <h4>Atençao!</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     Haverão sócios? Quanto de participação terão?
@@ -1163,11 +1188,17 @@
                         <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
 
                         <div class="tab-pane fade" id="formParte06">
-                            <br/>
                             <div id="formularioParte06">
-                                <div class="col-md-12 espaco">
                                 
-                                </div>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
+                                    <h4>Atençao!</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso" rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
@@ -1458,16 +1489,16 @@
 
             </div>
             <div id="sessao_resultado_avaliador" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
-                <h1>Resultado do Avaliador</h1>
+                <h1>Parecer do Gerente de Relacionamentos</h1>
                 
-                <h3>Atenção</h3>
+                <h3>Atenção:</h3>
                 <p>
-                    Confira a baixo as observações gerais feitas pelo gerente de relacionamento sobre o resultado do seu plano de negocios.
+                    Confira a baixo as observações gerais feitas pelo Gerente de Relacionamentos sobre o resultado do seu plano de negócio.
                 </p>
-                <b>Observações do Avaliador <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                <b>Observações do Gerente de Relacionamentos <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" 
-                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
+                                     rows="10" id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
                     </h:inputTextarea>
                     <br />
                 </div>
