@@ -34,19 +34,56 @@ function carregaPagina() {
 
     switch (andamentoProjeto) {
 
-//      SUBMETIDO = 1 e RESUBMETIDO = 11;
-        case 1 || 11:
+//      SUBMETIDO = 1;
+        case 1:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual");
-            var botao_preavaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
-
             etapaAtualDoWorkflow = "etapa2";
 
-            mostraDIV('divPreVisualizar');
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            mostraDIV('sessao_plano_nao_avaliado');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      RESUBMETIDO = 11;
+        case 11:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('sessao_plano_nao_avaliado');
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+            
+//      EM PRE AVALIAÇÃO = 12;
+        case 12:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('sessao_plano_nao_avaliado');
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -68,10 +105,6 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa3";
             
             mostraDIV('sessao_resultado_avaliador');
-            var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
-            botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
-            
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
