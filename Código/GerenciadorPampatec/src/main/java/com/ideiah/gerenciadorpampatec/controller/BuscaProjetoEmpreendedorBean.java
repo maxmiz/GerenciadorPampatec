@@ -192,9 +192,15 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
             return "Plano não enviado.";
         }
     }
-
+    /**
+     * Usa a classe Collection pra arrumar a lista por ordem de criação, com o mais velho primeiro
+     * depois reverte essa lista pra mostrar o ultimo criado.
+     * @param lista
+     *  Não retorna lista, ele ordena dentro dela mesma.
+     */
     private ArrayList<Projeto> sortByDateCriacao(ArrayList<Projeto> lista) {
-        Collections.sort(lista, new ComparadorCriacaoUtil().reversed());
+        Collections.sort(lista, new ComparadorCriacaoUtil());
+        Collections.reverse(lista);
         return lista;
     }
 }
