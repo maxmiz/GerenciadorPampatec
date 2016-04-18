@@ -351,9 +351,15 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+/**
+     * Usa a classe Collection pra arrumar a lista por ordem de envio, com o mais velho primeiro
+     * depois reverte essa lista pra mostrar o ultimo enviado primeiro..
+     * @param lista
+     * Não retorna lista, ele ordena dentro dela mesma.
+     */
     private void sortByDate(ArrayList<Projeto> lista) {
-        Collections.sort(lista, new ComparadorEnvioUtil().reversed());
+        Collections.sort(lista, new ComparadorEnvioUtil());
+        Collections.reverse(lista);
     }
 
     /**
