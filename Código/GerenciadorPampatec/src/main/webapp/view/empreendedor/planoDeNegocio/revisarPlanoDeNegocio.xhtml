@@ -1490,16 +1490,16 @@
 
             </div>
             <div id="sessao_resultado_avaliador" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
-                <h1>Resultado do Avaliador</h1>
+                <h1>Parecer do Gerente de Relacionamentos</h1>
                 
-                <h3>Atenção</h3>
+                <h3>Atenção:</h3>
                 <p>
-                    Confira a baixo as observações gerais feitas pelo gerente de relacionamento sobre o resultado do seu plano de negocios.
+                    Confira a baixo as observações gerais feitas pelo Gerente de Relacionamentos sobre o resultado do seu plano de negócio.
                 </p>
-                <b>Observações do Avaliador <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                <b>Observações do Gerente de Relacionamentos <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                 <div class="col-md-12 espaco has-success" id="observacoes2">
                     <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" 
-                                     id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
+                                     rows="10" id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">
                     </h:inputTextarea>
                     <br />
                 </div>
@@ -1539,7 +1539,7 @@
             <div id="sessao_plano_nao_avaliado" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
 
                     <h1>Pré-Avaliação - Plano de Negócio</h1>
-                        <legend id="subTitulo">Pré-Avaliação de Plano de Negócio</legend>                                
+                             
 
                         <div class="well">
                             <strong> Situação: </strong> Este plano de negócio está sendo avaliado.
