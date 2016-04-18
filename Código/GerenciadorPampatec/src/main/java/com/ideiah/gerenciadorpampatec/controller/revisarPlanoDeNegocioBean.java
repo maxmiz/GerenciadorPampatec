@@ -70,6 +70,13 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return false;
     }
     
+    
+        public boolean verificaStatusSendoAvaliado(Projeto projetoSelecionado) {
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO;
+    }
 
     public boolean verificaStatusAceitoAvaliacao(Projeto projetoSelecionado) {
 
