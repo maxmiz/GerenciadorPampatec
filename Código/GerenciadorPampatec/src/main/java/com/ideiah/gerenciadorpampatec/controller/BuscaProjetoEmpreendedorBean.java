@@ -126,8 +126,11 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
             if (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA
                     || projetoSelecionado.getStatus() == Projeto.SUBMETIDO
+                    || projetoSelecionado.getStatus() == Projeto.RESUBMETIDO
                     || projetoSelecionado.getStatus() == Projeto.REPROVADO
-                    || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
+                    || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO
+                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO) {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             
