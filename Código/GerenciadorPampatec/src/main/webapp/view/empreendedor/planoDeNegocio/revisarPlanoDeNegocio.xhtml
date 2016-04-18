@@ -141,7 +141,8 @@
                                       id="botao_resultado_preavaliacao"
                                       disabled="#{(revisarPlanoDeNegocioBean.verificaStatusSubmetido(projetoSelecionado))
                                                   || (revisarPlanoDeNegocioBean.verificaStatusReSubmetido(projetoSelecionado))
-                                                  || (revisarPlanoDeNegocioBean.verificaStatusEmPreAvaliacao(projetoSelecionado))}"
+                                                  || (revisarPlanoDeNegocioBean.verificaStatusEmPreAvaliacao(projetoSelecionado))
+                                                  || (revisarPlanoDeNegocioBean.verificaStatusSendoAvaliado(projetoSelecionado))  }"
                                       value="Resultado" 
                                       onclick="mostraDIV('sessao_resultado_avaliador'),addFocoBotao('menuSuperior:botao_resultado_preavaliacao')">
                     </h:commandButton>

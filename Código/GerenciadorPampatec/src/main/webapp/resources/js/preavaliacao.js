@@ -40,7 +40,7 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('sessao_plano_nao_avaliado');
@@ -60,7 +60,7 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('sessao_plano_nao_avaliado');
@@ -80,11 +80,11 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('sessao_plano_nao_avaliado');
-
+            
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
@@ -100,11 +100,11 @@ function carregaPagina() {
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('sessao_plano_nao_avaliado');
-
+            
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");
@@ -125,8 +125,7 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa3";
             
             mostraDIV('sessao_resultado_avaliador');
-            var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
-        
+
             addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
 
             var etapa = document.getElementById("etapa4");
@@ -143,11 +142,12 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
+            
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
-            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
 
             mostraDIV('sessao_resultado_avaliador');
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -164,12 +164,13 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active, etapaAtual etapaSelecionada");
+            
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+
+            mostraDIV('sessao_resultado_avaliador');
             addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
             
-            mostraDIV('sessao_resultado_avaliador');
-
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa4");

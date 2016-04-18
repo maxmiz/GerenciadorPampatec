@@ -445,9 +445,9 @@ function carregaPagina() {
             etapa5.innerHTML = "<b>Incubação</b>";
             etapa1.setAttribute("class", "active, etapaAtual");
             mostra_vertical_elaboracao();
-            var botao_preavaliacao = document.getElementById("botao_elaboracao_editar");
 
-            //botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            addFocoBotao("botao_revisar");
+            
             mostraDIV2('div_apresentacao_formulario');
 
             etapaAtualDoWorkflow = "etapa1";
@@ -472,6 +472,8 @@ function carregaPagina() {
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
+            
+            addFocoBotao("botao_revisar");
 
             mostraDIV('div_revisar_plano');
 
@@ -496,6 +498,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -516,8 +520,11 @@ function carregaPagina() {
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
+            
 
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -540,6 +547,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -562,6 +571,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -584,6 +595,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa2";
 
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -607,6 +620,8 @@ function carregaPagina() {
             etapaAtualDoWorkflow = "etapa3";
             
             mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
 
             var etapa = document.getElementById("etapa4");
             etapa.setAttribute("style", "cursor: default;");
