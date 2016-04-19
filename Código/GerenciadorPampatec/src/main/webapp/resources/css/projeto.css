@@ -157,6 +157,7 @@ fieldset[disabled] .autoCompletar input {
 }
 .template-mensagens-padrao h4 {
     color: #777;
+    font-weight: bold;
 }
 
 .template-mensagens-sucesso {
@@ -164,24 +165,28 @@ fieldset[disabled] .autoCompletar input {
 }
 .template-mensagens-sucesso h4 {
     color: #5cb85c;
+    font-weight: bold;
 }
 .template-mensagens-danger {
     border-left-color: #d9534f;
 }
 .template-mensagens-danger h4 {
     color: #d9534f;
+    font-weight: bold;
 }
 .template-mensagens-aviso {
     border-left-color: #f0ad4e;
 }
 .template-mensagens-aviso h4 {
     color: #f0ad4e;
+    font-weight: bold;
 }
 .template-mensagens-info {
     border-left-color: #5bc0de;
 }
 .template-mensagens-info h4 {
     color: #5bc0de;
+    font-weight: bold;
 }
 
 .tabelaEmpreendedores {
