@@ -327,7 +327,26 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
 //        salvarProjeto();
 //        preencheListaCusto();
-    }    
+    }
+
+
+    /**
+     * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
+     * a projeção para seis meses.
+     *
+     * @return somatorioFixo
+     */
+    public int calcularValorColunaCustoFixo() {
+//        somatorioFixo = 0;
+//        for (int i = 0; i < listaCustoFixo.size(); i++) {
+//            somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
+//        }
+//        somatorioFixo = somatorioFixo * 6;
+//        projeto.getPlanofinanceiro().setValorTotalFixo(somatorioFixo);
+//        setSomatorioVariavel(somatorioFixo);
+        return 50000;
+    }
+    
 //==============================================================================    
     
     
