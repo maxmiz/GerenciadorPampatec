@@ -1339,8 +1339,13 @@
                                                     <h:outputText value="R$ #{custo.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
-                                                            <p:ajax event="change" update="formulario_resubmeterplano:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                        <p:inputText value="#{custo.total}" 
+                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                     onkeypress="return SomenteNumero(event);" 
+                                                                     style="width:96%">
+                                                            <p:ajax event="change" 
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
+                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
                                                         </p:inputText>
                                                     </f:facet>
                                             </p:cellEditor>
@@ -1356,14 +1361,18 @@
                                             <p:rowEditor style="width: "/>
                                             <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" render="formulario_resubmeterplano:panelCustoFixo"/>
+                                                    <f:ajax execute="panelCustoFixo" 
+                                                            onevent="atualizaTabAjax" 
+                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
+                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
                                             </h:commandLink>    
                                         </p:column>                                        
                                         
                                     </p:dataTable>
 
                                 
-                                    <p:dataTable id="revisar_custoFixo2" var="custo"
+                                    <p:dataTable id="revisar_custoFixo2" 
+                                                 var="custo"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
@@ -1389,8 +1398,13 @@
                                                     <h:outputText value="R$ #{custo.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
-                                                            <p:ajax event="change" update="formulario_resubmeterplano:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                        <p:inputText value="#{custo.total}" 
+                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                     onkeypress="return SomenteNumero(event);" 
+                                                                     style="width:96%">
+                                                            <p:ajax event="change" 
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
+                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
                                                         </p:inputText>
                                                     </f:facet>
                                             </p:cellEditor>
@@ -1406,30 +1420,42 @@
                                             <p:rowEditor style="width: "/>
                                             <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" render="formulario_resubmeterplano:panelCustoFixo"/>
+                                                    <f:ajax execute="panelCustoFixo" 
+                                                            onevent="atualizaTabAjax" 
+                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
+                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
                                             </h:commandLink>    
                                         </p:column>                                        
 
                                     </p:dataTable>
-                                    
+                                        <br/> 
                                         <div class="col-md-6">
-                                            <h:commandButton id="botao_adicionar_nova_linha" title="Adicionar nova linha de custo fixo" class="btn btn-default" value="Adicionar Linha" >
-                                                <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" render="formulario_resubmeterplano:revisar_custoFixo"
-                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
+                                            <h:commandButton id="botao_adicionar_nova_linha" 
+                                                             title="Adicionar nova linha de custo fixo" 
+                                                             class="btn btn-default" 
+                                                             value="Adicionar Linha"
+                                                             >
+                                                <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" 
+                                                        render="formulario_resubmeterplano:revisar_custoFixo"
+                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" 
+                                                        onevent="atualizaTabAjax"
+                                                        >
+                                                </f:ajax>                                
                                             </h:commandButton>
                                         </div>
 
-                                        <br/>
-                                        <br/>                                    
                                         <div class="col-md-6 text-center" align="center" >
-
-                                            <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.calcularValorColunaCustoFixo()}">
+                                            <p:dataTable id="colunaValorTotalFixo" 
+                                                         editable="false" 
+                                                         var="custofixo" 
+                                                         emptyMessage="Nenhum registro encontrado." 
+                                                         value="#{revisarPlanoDeNegocioBean.calcularValorColunaCustoFixo()}"
+                                                         >
                                                 <p:column headerText="Projeção total de custos fixos (6 meses)">
                                                     <p:outputLabel  value="R$ #{custo}"></p:outputLabel>
                                                 </p:column>
                                             </p:dataTable>
                                         </div>                                    
-                                    
                                     
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
