@@ -4,9 +4,10 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gerenciadorpampatec</property>
-    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.url">jdbc:mysql://192.168.137.1:3306/gerenciadorpampatec</property>
+    <property name="hibernate.connection.username">development</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.connection.password">semsenhabanco</property>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Planofinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Projeto.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Usuario.hbm.xml"/>
