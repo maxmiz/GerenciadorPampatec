@@ -949,7 +949,7 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                     Em que sentido seremos parceiros da Universidade? 
-                                    <h:inputTextarea class="form-control campoInvalido" onchange="precisaSalvar = true;"
+                                    <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                      id="interacaoEmpresaUniversidade1"
