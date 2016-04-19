@@ -370,7 +370,7 @@
                                     <h4>Aviso</h4>
                                     <p>Capos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
@@ -1306,48 +1306,131 @@
                                     <h:message class="mensagemErro" for="investimentoInicial"/>
                                     <br/>
                                 </div>
-                                <div class="col-md-12 espaco">
+                                
+                                    <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
-                                    <p:dataTable id="revisar_custoFixo1" var="custo" class="campoInvalido"
+                                    <p:dataTable id="revisar_custoFixo1" 
+                                                 var="custo" 
+                                                 class="campoInvalido"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                 editable="true"
                                                  >
 
+                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        
                                         <p:column headerText="Descrição ">
-                                            <h:outputText value="#{custo.descricao}" />
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <p:outputLabel value="#{custo.descricao}"></p:outputLabel>
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                    <p:inputText value="#{custo.descricao}" style="width:96%"/>
+                                                </f:facet>
+                                            </p:cellEditor>
                                         </p:column>
-
+                                        
                                         <p:column headerText="Valor Médio Mensal">
-                                            <h:outputText value="R$ #{custo.total}" />
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <h:outputText value="R$ #{custo.total}" />
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                        <p:inputText value="#{custo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
+                                                            <p:ajax event="change" update="formulario_resubmeterplano:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                        </p:inputText>
+                                                    </f:facet>
+                                            </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                            <h:outputText value="R$ #{custo.projecao}" />
+                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
+                                                                value="R$ #{custo.projecao}">
+                                                </p:outputLabel>
                                         </p:column>
 
+                                        <p:column width="8%" headerText="Opções">
+                                            <p:rowEditor style="width: "/>
+                                            <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
+                                                    <i class="fa fa-trash"></i>
+                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" render="formulario_resubmeterplano:panelCustoFixo"/>
+                                            </h:commandLink>    
+                                        </p:column>                                        
+                                        
                                     </p:dataTable>
 
+                                
                                     <p:dataTable id="revisar_custoFixo2" var="custo"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                 editable="true"
                                                  >
-
+                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        
                                         <p:column headerText="Descrição ">
-                                            <h:outputText value="#{custo.descricao}" />
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <p:outputLabel value="#{custo.descricao}"></p:outputLabel>
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                    <p:inputText value="#{custo.descricao}" style="width:96%"/>
+                                                </f:facet>
+                                            </p:cellEditor>
                                         </p:column>
-
+                                        
                                         <p:column headerText="Valor Médio Mensal">
-                                            <h:outputText value="R$ #{custo.total}" />
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <h:outputText value="R$ #{custo.total}" />
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                        <p:inputText value="#{custo.total}" converterMessage="Digite um número válido utilizando pontos, ex: 8.7" onkeypress="return SomenteNumero(event);" style="width:96%">
+                                                            <p:ajax event="change" update="formulario_resubmeterplano:colunaValorTotalFixo" listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                        </p:inputText>
+                                                    </f:facet>
+                                            </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                            <h:outputText value="R$ #{custo.projecao}" />
+                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
+                                                                value="R$ #{custo.projecao}">
+                                                </p:outputLabel>
                                         </p:column>
 
+                                        <p:column width="8%" headerText="Opções">
+                                            <p:rowEditor style="width: "/>
+                                            <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
+                                                    <i class="fa fa-trash"></i>
+                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" render="formulario_resubmeterplano:panelCustoFixo"/>
+                                            </h:commandLink>    
+                                        </p:column>                                        
+
                                     </p:dataTable>
+                                    
+                                        <div class="col-md-6">
+                                            <h:commandButton id="botao_adicionar_nova_linha" title="Adicionar nova linha de custo fixo" class="btn btn-default" value="Adicionar Linha" >
+                                                <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" render="formulario_resubmeterplano:revisar_custoFixo"
+                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
+                                            </h:commandButton>
+                                        </div>
+
+                                        <br/>
+                                        <br/>                                    
+                                        <div class="col-md-6 text-center" align="center" >
+
+                                            <p:dataTable id="colunaValorTotalFixo" editable="false" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.calcularValorColunaCustoFixo()}">
+                                                <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custo}"></p:outputLabel>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>                                    
+                                    
+                                    
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
                                                        rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
@@ -1358,13 +1441,23 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="2" disabled="true" id="propostaDeValor21" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                        <p:inputTextarea class="campoFeedBack" 
+                                                         cols="50" 
+                                                         rows="2" 
+                                                         disabled="true" 
+                                                         id="propostaDeValor21" 
+                                                         value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosfixos"/>
 
                                     <br/>
-                                </div>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </h:panelGroup>
+                                
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 

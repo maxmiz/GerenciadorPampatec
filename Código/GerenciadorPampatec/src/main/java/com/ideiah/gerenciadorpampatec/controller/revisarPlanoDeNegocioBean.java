@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +19,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -252,6 +254,84 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return estagioEvolucao != null && estagioEvolucao.equals("Outro");
     }
 
+//==============================================================================
+
+    /**
+     * *
+     * Método para ação após linha ser editada, atualizando valores na tabela.
+     *
+     * @param event
+     */
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg;
+        Custo custo = (Custo) event.getObject();
+
+        msg = new FacesMessage("Custo Editado", custo.getDescricao());
+        FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
+
+//        calcularValorColunaCustoVariavel();
+//        calcularValorColunaCustoFixo();
+
+        ProjetoDao projetoDao = new ProjetoDao();
+        projetoDao.salvar(custo);
+
+    }
+
+
+    /**
+     * Método que cancela edição da linha na tabela.
+     *
+     * @param event
+     */
+    public void onRowCancel(RowEditEvent event) {
+
+        FacesMessage msg = new FacesMessage("Edição Cancelada", ((Custo) event.getObject()).getDescricao());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    /**
+     * Deleta registro na tabela.
+     *
+     * @param custo
+     */
+    public void deletarLinha(Custo custo) {
+        FacesMessage msg;
+        if (custo.getTipo() == Custo.CUSTO_FIXO) {
+//            deletarCustoFixo(custo);
+//            calcularValorColunaCustoFixo();
+            msg = new FacesMessage("Custo fixo DELETADO");
+            FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
+        }
+        if (custo.getTipo() == Custo.CUSTO_VARIAVEL) {
+//            deletarCustoVariavel(custo);
+//            calcularValorColunaCustoVariavel();
+            msg = new FacesMessage("Custo variavel DELETADO");
+            FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
+        }
+        projeto.SalvarProjeto(projeto);
+
+    }
+    
+    /**
+     * Método para adicionar custo fixo ao projeto e à tabela.
+     */
+    public void adicionarLinhaFixo() {
+        Custo custo = new Custo();
+        int zero = 0;
+        custo.setDescricao("Novo Custo");
+        custo.setTipo(Custo.CUSTO_FIXO);
+        custo.setTotal(zero);
+        custo.setProjecao(zero);
+        custo.setPodeExcluir(true);
+        projeto.getPlanofinanceiro().getCusto().add(custo);
+        custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+//        salvarProjeto();
+//        preencheListaCusto();
+    }    
+//==============================================================================    
+    
+    
+    
     /**
      * @return the projeto
      */
