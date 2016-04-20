@@ -36,6 +36,7 @@ public class Projeto implements java.io.Serializable {
     private Produtoouservico produtoouservico;
     private String nome;
     private Date dataEnvio;
+    private Date dataEdicao;
     private Integer status;
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
@@ -173,6 +174,14 @@ public class Projeto implements java.io.Serializable {
 
     public void setDataEnvio(Date dataEnvio) {
         this.dataEnvio = dataEnvio;
+    }
+    
+    public Date getDataEdicao() {
+        return dataEdicao;
+    }
+
+    public void setDataEdicao(Date dataEdicao) {
+        this.dataEdicao = dataEdicao;
     }
 
     public Integer getStatus() {
@@ -436,5 +445,7 @@ public class Projeto implements java.io.Serializable {
     public void setStatusTemp(Integer statusTemp) {
         this.statusTemp = statusTemp;
     }
+
+    
 
 }
