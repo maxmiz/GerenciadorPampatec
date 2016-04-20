@@ -61,20 +61,19 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             }
         }
     }
-    
-    public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado){
+
+    public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado) {
         if (projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
-            
-            if(comentarioProjeto.verificaCampos() != 0){
+
+            if (comentarioProjeto.verificaCampos() != 0) {
                 return true;
             }
-            
+
         }
         return false;
     }
-    
-    
-        public boolean verificaStatusSendoAvaliado(Projeto projetoSelecionado) {
+
+    public boolean verificaStatusSendoAvaliado(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
@@ -87,14 +86,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
-    
+
     public boolean verificaStatusSubmetido(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.SUBMETIDO;
     }
-    
+
     public boolean verificaStatusReSubmetido(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -108,7 +107,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO;
     }
-    
+
     public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -201,96 +200,102 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
     }
 
-        public int verificarCampos() {
+    /**
+     * Método para verificar se todos os campos do plano de negócio estão
+     * preenchidos.
+     *
+     */
+    public int verificarCampos() {
         int FLAG = 0;
         if (projeto.getNome().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:empresaProjeto");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:empresaProjeto");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getSegmentoClientes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:segmentoDeClientes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:segmentoDeClientes");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getPropostaValor().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:propostaDeValor");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:propostaDeValor");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getAtividadesChaves().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:atividadesChave");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:atividadesChave");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRelacoesClientes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:relacoComClientes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:relacoComClientes");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getParceriasChaves().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:parceriasChaves");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:parceriasChaves");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getCanais().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:canais");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:canais");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRecursosPrincipais().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:recursosPrincipais");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:recursosPrincipais");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getConcorrentes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:concorrentes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:concorrentes");
             FLAG = FLAG + 1;
         }
 
         if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:tecnologiaProcessos");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:tecnologiaProcessos");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getPotencialInovacaoTecnologica().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialInovacaoTecnologica");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialInovacaoTecnologica");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getAplicacoes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:aplicacoes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:aplicacoes");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getDificuldadesEsperadas().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:dificuldadesEsperadas");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:dificuldadesEsperadas");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaUniversidade().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaUniversidade");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaUniversidade");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaComunidadeGoverno().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInfraestrutura().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:infraestrutura");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:infraestrutura");
             FLAG = FLAG + 1;
         }
         if (projeto.getParticipacaoacionaria().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:participacaoAcionaria");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:participacaoAcionaria");
             FLAG = FLAG + 1;
         }
         if (projeto.getPotencialEmprego().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:potencialEmprego");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialEmprego");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getFontesReceita().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:fontesDeReceita");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:fontesDeReceita");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getEstruturaCusto().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:estruturaCustos");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:estruturaCustos");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getInvestimentoInicial().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_cadastro_projeto:investimentoInicial");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:investimentoInicial");
             FLAG = FLAG + 1;
         }
 
         return FLAG;
     }
+
     /**
      * <p>
      * Método para salvar e terminar a revisão do projeto.
@@ -305,15 +310,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
                     "formulario_resubmeterplano:tituloMensagem");
 
         } else {
-        ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatus(Projeto.RESUBMETIDO);
-        Date dataEnvio = new Date(System.currentTimeMillis());
-        projeto.setDataEnvio(dataEnvio);
-        projetoDao.salvar(projeto);
-        
+            ProjetoDao projetoDao = new ProjetoDao();
+            projeto.setStatus(Projeto.RESUBMETIDO);
+            Date dataEnvio = new Date(System.currentTimeMillis());
+            projeto.setDataEnvio(dataEnvio);
+            projetoDao.salvar(projeto);
 
-        getBuscarPlanoDeNegocio();
-    }
+            getBuscarPlanoDeNegocio();
+        }
     }
 
     /**
@@ -328,7 +332,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     /**
      * <p>
      * Redireciona para a página da fase de Avaliação.
@@ -341,8 +345,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-    
 
     /**
      * <p>
@@ -356,7 +358,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
 //==============================================================================
-
     /**
      * *
      * Método para ação após linha ser editada, atualizando valores na tabela.
@@ -372,12 +373,10 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
 //        calcularValorColunaCustoVariavel();
 //        calcularValorColunaCustoFixo();
-
         ProjetoDao projetoDao = new ProjetoDao();
         projetoDao.salvar(custo);
 
     }
-
 
     /**
      * Método que cancela edição da linha na tabela.
@@ -412,7 +411,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projeto.SalvarProjeto(projeto);
 
     }
-    
+
     /**
      * Método para adicionar custo fixo ao projeto e à tabela.
      */
@@ -430,7 +429,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 //        preencheListaCusto();
     }
 
-
     /**
      * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
      * a projeção para seis meses.
@@ -447,11 +445,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 //        setSomatorioVariavel(somatorioFixo);
         return 50000;
     }
-    
+
 //==============================================================================    
-    
-    
-    
     /**
      * @return the projeto
      */
