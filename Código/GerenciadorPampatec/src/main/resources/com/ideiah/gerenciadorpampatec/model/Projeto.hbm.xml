@@ -28,6 +28,9 @@
         <property name="dataEnvio" type="timestamp">
             <column length="16" name="dataEnvio"/>
         </property>
+        <property name="dataEdicao" type="timestamp">
+            <column length="16" name="dataEdicao"/>
+        </property>
         <property name="status" type="java.lang.Integer">
             <column name="status"/>
         </property>
