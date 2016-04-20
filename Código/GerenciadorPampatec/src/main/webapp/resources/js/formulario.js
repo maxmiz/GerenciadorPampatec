@@ -244,9 +244,6 @@ function verificaTabelasCusto() {
     var preenchido;
 
     preenchido = percorrerTrs(listaTrFixo);
-    if (preenchido) {
-        preenchido = percorrerTrs(listaTrVariavel);
-    }
 
     return preenchido;
 }
@@ -944,6 +941,8 @@ function atualizaTabAjax(data) {
 
         case "success": // After update of HTML DOM based on ajax response.
             verificaPlanoFinanceiro();
+            clearTimeout(timeOutMensagem);
+            timeoutMensagemFeedBack(SALVO);
             break;
     }
 }
