@@ -281,3 +281,135 @@ function addFocoBotao(idDoItem) {
 function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
+
+
+function verificaComentarios(){
+    
+    verificaComentarioNegocio();
+    verificaComentarioAnaliseMercado();
+    verificaComentarioProdutoServico();
+    verificaComentarioGestaoPessoas();
+    verificaComentarioPlanoFinanceiro();
+    
+}
+
+function verificaComentarioNegocio(){
+    
+    var comentarioSegmentoDeClientes = document.getElementById("formulario_resubmeterplano:segmentoDeClientes3");
+    var comentarioPropostaDeValor = document.getElementById("formulario_resubmeterplano:propostaDeValor3");
+    var comentarioAtividadesChave = document.getElementById("formulario_resubmeterplano:atividadesChaves3");
+    var tabNegocio = document.getElementById("tabNegocio");
+    var listaCampos = new Array();
+    
+    listaCampos[0] = comentarioSegmentoDeClientes;
+    listaCampos[1] = comentarioPropostaDeValor;
+    listaCampos[2] = comentarioAtividadesChave;
+    
+    mudarCorLista(listaCampos, tabNegocio, "Negócio");    
+}
+
+function verificaComentarioAnaliseMercado(){
+    
+    var comentarioRelacoComClientes = document.getElementById("formulario_resubmeterplano:relacaoClientes3");
+    var comentarioParceriasChaves = document.getElementById("formulario_resubmeterplano:parceriasChaves3");
+    var comentarioCanais = document.getElementById("formulario_resubmeterplano:canais3");
+    var comentarioRecursosPrincipais = document.getElementById("formulario_resubmeterplano:recursosPrincipais3");
+    var comentarioConcorrentes = document.getElementById("formulario_resubmeterplano:concorrentes3");
+    var tabAnaliseMercado = document.getElementById("tabAnaliseMercado");
+    var listaCampos = new Array();
+    
+    listaCampos[0] = comentarioRelacoComClientes;
+    listaCampos[1] = comentarioParceriasChaves;
+    listaCampos[2] = comentarioCanais;
+    listaCampos[3] = comentarioRecursosPrincipais;
+    listaCampos[4] = comentarioConcorrentes;
+    
+    mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
+}
+
+function verificaComentarioProdutoServico(){
+    
+    var comentarioTecnologiaProcessos = document.getElementById("formulario_resubmeterplano:tecnologiaProcessos3");
+    var comentarioPotencialInovacaoTecnologica = document.getElementById("formulario_resubmeterplano:potencialInovacaoTecnologica3");
+    var comentarioAplicacoes = document.getElementById("formulario_resubmeterplano:aplicacoes3");
+    var comentarioDificuldadesEsperadas = document.getElementById("formulario_resubmeterplano:dificuldadesEsperadas3");
+    var comentarioInteracaoEmpresaUniversidade = document.getElementById("formulario_resubmeterplano:interacaoEmpresaUniversidade3");
+    var comentarioInteracaoEmpresaComunidadeGoverno = document.getElementById("formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3");
+    var comentarioInfraestrutura = document.getElementById("formulario_resubmeterplano:infraestrutura3");
+    var tabProdutoServico = document.getElementById("tabProdutoServico");
+    var listaCampos = new Array();
+
+    listaCampos[0] = comentarioTecnologiaProcessos;
+    listaCampos[1] = comentarioPotencialInovacaoTecnologica;
+    listaCampos[2] = comentarioAplicacoes;
+    listaCampos[3] = comentarioDificuldadesEsperadas;
+    listaCampos[4] = comentarioInteracaoEmpresaUniversidade;
+    listaCampos[5] = comentarioInteracaoEmpresaComunidadeGoverno;
+    listaCampos[6] = comentarioInfraestrutura;
+    
+    mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
+}
+function verificaComentarioGestaoPessoas(){
+    
+    var comentarioParticipacaoAcionaria = document.getElementById("formulario_resubmeterplano:participacaoAcionaria3");
+    var comentarioPotencialEmprego = document.getElementById("formulario_resubmeterplano:potencialEmprego3");
+    var tabGestaoPessoas = document.getElementById("tabGestaoPessoas");
+    var listaCampos = new Array();
+    
+    listaCampos[0] = comentarioParticipacaoAcionaria;
+    listaCampos[1] = comentarioPotencialEmprego;
+    
+    mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
+}
+
+function verificaComentarioPlanoFinanceiro(){
+    
+    var comentarioFontesDeReceita = document.getElementById("formulario_resubmeterplano:fontesDeReceita3");
+    var comentarioEstruturaCustos = document.getElementById("formulario_resubmeterplano:estruturaCustos3");
+    var comentarioInvestimentoInicial = document.getElementById("formulario_resubmeterplano:investimentoInicial3");
+    var comentarioTabelaCustoFixo = document.getElementById("formulario_resubmeterplano:comentarioCustoFixo2");
+    var comentarioTabelaCustoVariavel = document.getElementById("formulario_resubmeterplano:comentarioCustoVariavel2");
+    var tabPlanoFinanceiro = document.getElementById("tabPlanoFinanceiro");
+    var listaCampos = new Array();
+
+    listaCampos[0] = comentarioFontesDeReceita;
+    listaCampos[1] = comentarioEstruturaCustos;
+    listaCampos[2] = comentarioInvestimentoInicial;
+    listaCampos[3] = comentarioTabelaCustoFixo;
+    listaCampos[4] = comentarioTabelaCustoVariavel;
+
+    mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
+}
+
+function mudarCorLista(listaCampos, tab, nomeCampo) {
+    var flagCompleto = false;
+    for (var i = 0; i < listaCampos.length; i++) {
+        if (verificaPreenchimentoComentario(listaCampos[i])) {
+            flagCompleto = false;
+            break;
+        } else {
+            flagCompleto = true;
+        }
+    }
+
+    if (flagCompleto) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-check-square'></i>";
+        tab.style.color = "green";
+    } else {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
+        tab.style.color = "red";
+    }
+}
+
+/**
+ * @description Verifica o preenchimento do campo de formulário desejado
+ * @param {type} campo
+ * @returns {Boolean}
+ */
+function verificaPreenchimentoComentario(campo) {
+    if (campo.value.trim() === "" || campo.value.trim() === null) {
+        return false;
+    } else {
+        return true;
+    }
+}
