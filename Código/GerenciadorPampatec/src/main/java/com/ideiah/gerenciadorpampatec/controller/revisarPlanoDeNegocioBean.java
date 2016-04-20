@@ -208,88 +208,88 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public int verificarCampos() {
         int FLAG = 0;
         if (projeto.getNome().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:empresaProjeto");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:empresaProjeto1");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getSegmentoClientes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:segmentoDeClientes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:segmentoDeClientes1");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getPropostaValor().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:propostaDeValor");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:propostaDeValor1");
             FLAG = FLAG + 1;
         }
         if (projeto.getNegocio().getAtividadesChaves().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:atividadesChave");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:atividadesChave1");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRelacoesClientes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:relacoComClientes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:relacoComClientes1");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getParceriasChaves().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:parceriasChaves");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:parceriasChaves1");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getCanais().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:canais");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:canais1");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getRecursosPrincipais().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:recursosPrincipais");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:recursosPrincipais1");
             FLAG = FLAG + 1;
         }
         if (projeto.getAnaliseemprego().getConcorrentes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:concorrentes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:concorrentes1");
             FLAG = FLAG + 1;
         }
 
         if (projeto.getProdutoouservico().getTecnologiaProcessos().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:tecnologiaProcessos");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:tecnologiaProcessos1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getPotencialInovacaoTecnologica().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialInovacaoTecnologica");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialInovacaoTecnologica1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getAplicacoes().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:aplicacoes");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:aplicacoes1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getDificuldadesEsperadas().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:dificuldadesEsperadas");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:dificuldadesEsperadas1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaUniversidade().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaUniversidade");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaUniversidade1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInteracaoEmpresaComunidadeGoverno().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno1");
             FLAG = FLAG + 1;
         }
         if (projeto.getProdutoouservico().getInfraestrutura().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:infraestrutura");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:infraestrutura1");
             FLAG = FLAG + 1;
         }
         if (projeto.getParticipacaoacionaria().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:participacaoAcionaria");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:participacaoAcionaria1");
             FLAG = FLAG + 1;
         }
         if (projeto.getPotencialEmprego().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialEmprego");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:potencialEmprego1");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getFontesReceita().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:fontesDeReceita");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:fontesDeReceita1");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getEstruturaCusto().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:estruturaCustos");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:estruturaCustos1");
             FLAG = FLAG + 1;
         }
         if (projeto.getPlanofinanceiro().getInvestimentoInicial().trim().isEmpty()) {
-            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:investimentoInicial");
+            FacesUtil.addErrorMessage("Campo não pode estar vazio", "formulario_resubmeterplano:investimentoInicial1");
             FLAG = FLAG + 1;
         }
 
