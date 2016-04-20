@@ -444,7 +444,8 @@
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
 
-                                        <h:inputTextarea class="form-control" 
+                                        <h:inputTextarea class="form-control semResize"
+                                                         rows="5"
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
                                             <f:ajax execute="@form" render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroCanais" event="change" listener="#{projetoBean.salvarProjeto()}"/>
@@ -518,13 +519,15 @@
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
-                                                <p:inputText id="campoOutro" 
-                                                             class="form-control" 
+                                                <p:inputTextarea id="campoOutro" 
+                                                             class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{projetoBean.descricaoButtonOutro}" 
-                                                             rendered="#{projetoBean.exibeCampo()}">
+                                                             rendered="#{projetoBean.exibeCampo()}"
+                                                             rows="5"
+                                                             >
                                                     <f:ajax execute="@form" render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                                </p:inputText>
+                                                </p:inputTextarea>
                                             </div>
                                         </h:panelGroup>
                                         <br/>
@@ -533,9 +536,12 @@
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com os princípios da sustentabilidade empresarial?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
+                                                         rows="5"
                                                          > 
                                             <f:ajax execute="@form" render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroTecnologias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
@@ -546,9 +552,14 @@
                                         <b>Potencial de inovação tecnológica* </b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores que agreguem o uso de novas tecnologias?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                         id="potencialInovacaoTecnologica">
+                                                         id="potencialInovacaoTecnologica"
+                                                         rows="5"
+                                                         >
+                                                         
                                             <f:ajax execute="@form" render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInovacao" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
@@ -558,9 +569,12 @@
                                         <b>Aplicações* </b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes"/><br/>
                                         A quem se aplica? Como? De que maneira?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
+                                                         rows="5"
                                                          >
                                             <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAplicacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
@@ -571,9 +585,13 @@
                                         <b>Dificuldades esperadas* </b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas"/><br/>
                                         Quais são nossas principais limitações?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                         id="dificuldadesEsperadas">
+                                                         id="dificuldadesEsperadas"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroDificuldades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
@@ -583,9 +601,13 @@
                                         <b>Interação entre empresa e Universidade* </b><br/>
                                         <h:message id="mensagemErroInteracaoUniversidade" class="mensagemErro" for="interacaoEmpresaUniversidade"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                         id="interacaoEmpresaUniversidade">
+                                                         id="interacaoEmpresaUniversidade"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoUniversidade" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
@@ -595,9 +617,13 @@
                                         <b>Interação entre empresa, comunidade e governo* </b><br/>
                                         <h:message id="mensagemErroInteracaoGoverno" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                         id="interacaoEmpresaComunidadeGoverno">
+                                                         id="interacaoEmpresaComunidadeGoverno"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoGoverno" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
@@ -607,9 +633,13 @@
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção* </b><br/>
                                         <h:message id="mensagemErroEstrututura" class="mensagemErro" for="infraestrutura"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
-                                                         id="infraestrutura">
+                                                         id="infraestrutura"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstrututura" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
@@ -640,10 +670,12 @@
                                         <b>Descrição da participação acionária* </b><br/>
                                         <h:message id="mensagemErroAcionaria" class="mensagemErro" for="participacaoAcionaria"/><br/>
                                         Haverão sócios? Quanto de participação terão?
-                                        <h:inputTextarea class="form-control"  
+                                        <h:inputTextarea class="form-control semResize"  
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
-                                                         id="participacaoAcionaria">
+                                                         id="participacaoAcionaria"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAcionaria" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
@@ -652,10 +684,12 @@
                                         <b>Potencial de geração de emprego e renda* </b><br/>
                                         <h:message id="mensagemErroPotencialEmprego" class="mensagemErro" for="potencialEmprego"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                        <h:inputTextarea class="form-control" 
+                                        <h:inputTextarea class="form-control semResize" 
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
-                                                         id="potencialEmprego">
+                                                         id="potencialEmprego"
+                                                         rows="5"
+                                                         >
                                             <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroPotencialEmprego" event="change" listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
@@ -689,9 +723,10 @@
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
                                         Qual segmento de cliente pagará? Haverá segmentos de clientes com gratuidade?
                                         <h:inputTextarea id="fontesDeReceita" 
-                                                         class="form-control"
+                                                         class="form-control semResize"
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
+                                                         rows="5"
                                                          >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroFonteReceita"  listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
@@ -702,9 +737,10 @@
                                         <h:message id="mensagemErroEstruturaCusto" class="mensagemErro" for="estruturaCustos"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                         <h:inputTextarea id="estruturaCustos" 
-                                                         class="form-control" 
+                                                         class="form-control semResize" 
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
+                                                         rows="5"
                                                          >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstruturaCusto" listener="#{projetoBean.salvarProjeto()}"/>
 
@@ -717,9 +753,10 @@
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial"/><br/>
                                         Quanto de recurso será necessário para iniciar?
                                         <h:inputTextarea id="investimentoInicial"
-                                                         class="form-control"  
+                                                         class="form-control semResize"  
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
+                                                         rows="5"
                                                          >
                                             <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInvestimentoInicial" listener="#{projetoBean.salvarProjeto()}"/>
 
@@ -729,13 +766,17 @@
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                         <b>Custos fixos*</b><br/>
                                         Obrigatórios:<br/> 
-                                        -Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
-                                        -Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
+                                        - Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
+                                        - Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
 
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoFixo()}">
-
+                                        <p:dataTable id="novaTabelaCustosFixos" 
+                                                     editable="true" 
+                                                     var="custofixo" 
+                                                     emptyMessage="Nenhum registro encontrado." 
+                                                     value="#{projetoBean.retornaListaCustoFixo()}"
+                                                     >
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
