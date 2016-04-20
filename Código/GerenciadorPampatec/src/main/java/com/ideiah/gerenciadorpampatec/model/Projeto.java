@@ -36,7 +36,7 @@ public class Projeto implements java.io.Serializable {
     private Produtoouservico produtoouservico;
     private String nome;
     private Date dataEnvio;
-    private Date dataEdicao;
+    private Date dataAvaliacao;
     private Integer status;
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
@@ -119,6 +119,20 @@ public class Projeto implements java.io.Serializable {
             return "Plano não enviado.";
         }
     }
+        
+    /**
+     * Método para data de edição. Retorna a data de edição, ou 
+     * indica que o plano não foi editado ainda.
+     * @return dataAvaliacao
+     */
+    public String formatarDataAvaliacao() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (getDataAvaliacao() != null) {
+            return formato.format(getDataAvaliacao());
+        } else {
+            return "Plano não avaliado";
+        }
+    }
 
     public Integer getIdProjeto() {
         return this.idProjeto;
@@ -176,12 +190,12 @@ public class Projeto implements java.io.Serializable {
         this.dataEnvio = dataEnvio;
     }
     
-    public Date getDataEdicao() {
-        return dataEdicao;
+    public Date getDataAvaliacao() {
+        return dataAvaliacao;
     }
 
-    public void setDataEdicao(Date dataEdicao) {
-        this.dataEdicao = dataEdicao;
+    public void setDataAvaliacao(Date dataAvaliacao) {
+        this.dataAvaliacao = dataAvaliacao;
     }
 
     public Integer getStatus() {
