@@ -211,6 +211,10 @@
                             <p:column id="submissionDate" headerText="Data de submissão" filterBy="#{projeto.dataEnvio}" filterStyle="display:none" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
+                            
+                            <p:column id="editionDate" headerText="Data de avaliação" filterBy="#{projeto.dataAvaliacao}" filterStyle="display:none" sortBy="#{projeto.dataAvaliacao}" style="text-align: center; width: 150px" width="15%">
+                                <h:outputText value="#{projeto.formatarDataAvaliacao()}" />
+                            </p:column>
 
                             <p:column headerText="Status"  filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center;" width="25%">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
