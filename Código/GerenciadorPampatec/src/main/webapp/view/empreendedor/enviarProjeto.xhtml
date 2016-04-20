@@ -766,13 +766,17 @@
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                         <b>Custos fixos*</b><br/>
                                         Obrigatórios:<br/> 
-                                        -Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
-                                        -Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
+                                        - Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
+                                        - Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
 
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoFixo()}">
-
+                                        <p:dataTable id="novaTabelaCustosFixos" 
+                                                     editable="true" 
+                                                     var="custofixo" 
+                                                     emptyMessage="Nenhum registro encontrado." 
+                                                     value="#{projetoBean.retornaListaCustoFixo()}"
+                                                     >
 
                                             <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
                                             <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
