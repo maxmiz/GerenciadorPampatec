@@ -95,24 +95,6 @@ function exibeSextaParte() {
  */
 
 /**
- * @description text
- * @returns {undefined}
- */
-function carregaFeedBack() {
-    var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
-    feedBack.setAttribute("class", "modal-feedBackSalvar modal-feedBackSalvar-in");
-}
-
-/**
- * @description text
- * @returns {undefined}
- */
-function fechaFeedBack() {
-    var feedBack = document.getElementById("formulario_cadastro_projeto:modal-feedBackSalvar");
-    feedBack.style.display = "none";
-}
-
-/**
  * @description Chama a verificação de todos os formulários de cada aba do cadastro de Plano
  * para inserir o ícone de "Certo" ao lado do nada da aba correspondente.
  * @returns {undefined}
