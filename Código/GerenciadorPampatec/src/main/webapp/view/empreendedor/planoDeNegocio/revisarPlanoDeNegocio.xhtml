@@ -127,7 +127,8 @@
 
                     <h:commandButton  class="btn btn-success btnWorkflowV" 
                                       rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado) 
-                                                  || revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                  || revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)
+                                                  || revisarPlanoDeNegocioBean.verificaStatusRevisando(projetoSelecionado)}"
                                       type="button" 
                                       title="Revisar plano de negócio" 
                                       id="botao_revisar"
@@ -144,7 +145,7 @@
                                                   || (revisarPlanoDeNegocioBean.verificaStatusEmPreAvaliacao(projetoSelecionado))
                                                   || (revisarPlanoDeNegocioBean.verificaStatusSendoAvaliado(projetoSelecionado))  }"
                                       value="Resultado" 
-                                      onclick="mostraDIV('sessao_resultado_avaliador'),addFocoBotao('menuSuperior:botao_resultado_preavaliacao')">
+                                      onclick="mostraDIV('sessao_resultado_avaliador'), addFocoBotao('menuSuperior:botao_resultado_preavaliacao')">
                     </h:commandButton>
                     <br/>
                 </div>
@@ -257,7 +258,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{revisarPlanoDeNegocioBean.terminarRevisaoProjeto()}"></h:commandButton>
+                                <h:commandButton class="btn btn-success" value="Confirmar Envio" action="#{revisarPlanoDeNegocioBean.terminarRevisaoProjeto()}">
+                                </h:commandButton>
                             </div>
                         </div>
                     </div>
@@ -297,7 +299,7 @@
                             <div id="formularioParte01">
 
                                 <div class="col-md-12">
-                                   
+
                                 </div>
                                 <div class="col-md-4" id="">
                                     <b>Nome da Empresa ou Projeto* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
@@ -359,9 +361,9 @@
                         <!-- Ínicio da SEGUNDA PARTE do formulário para Envio de Projeto Referente ao NEGÓCIO -->
 
                         <div class="tab-pane fade" id="formParte02">
-                            
+
                             <div id="formularioParte02">
-                                
+
                                 <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
                                     <h4>Atenção!</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
@@ -506,7 +508,7 @@
 
                         <div class="tab-pane fade" id="formParte03">
                             <div id="formularioParte03">
-                                
+
                                 <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
                                     <h4>Atençao!</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
@@ -515,7 +517,7 @@
                                     <h4>Aviso</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes1"/><br/>
@@ -537,11 +539,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
-                                                       id="comentarioRelacoeClientes" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:relacaoClientes3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                         id="comentarioRelacoeClientes" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:relacaoClientes3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
 
                                         </p:commandButton>
                                     </div>
@@ -575,12 +577,12 @@
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco"
 
-                                                       disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
-                                                       id="comentarioParceriasChaves" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:parceriasChaves3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
+                                                         id="comentarioParceriasChaves" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:parceriasChaves3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
 
                                         </p:commandButton>
                                     </div>
@@ -614,11 +616,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
-                                                       id="comentarioCanais" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:canais3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
+                                                         id="comentarioCanais" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:canais3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -651,11 +653,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
-                                                       id="comentarioRecursosPrincipais" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:recursosPrincipais3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
+                                                         id="comentarioRecursosPrincipais" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:recursosPrincipais3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -687,11 +689,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
-                                                       id="comentarioConcorrentes" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:concorrentes3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
+                                                         id="comentarioConcorrentes" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:concorrentes3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -725,7 +727,7 @@
 
                         <div class="tab-pane fade" id="formParte04">
                             <div id="formularioParte04">
-                                
+
                                 <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
                                     <h4>Atençao!</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
@@ -734,7 +736,7 @@
                                     <h4>Aviso</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12">
                                     <b>Estágio de evolução* </b>
                                     <br/>
@@ -795,11 +797,11 @@
                                     </h:panelGroup>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}"
-                                                       id="comentarioEstagioEvolucao" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:estagioEvolucao3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}"
+                                                         id="comentarioEstagioEvolucao" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:estagioEvolucao3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -834,11 +836,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
-                                                       id="comentarioTecnologiaProcessos" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:tecnologiaProcessos3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
+                                                         id="comentarioTecnologiaProcessos" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:tecnologiaProcessos3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -873,11 +875,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
-                                                       id="comentarioPotencialInovacao" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:potencialInovacaoTecnologica3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
+                                                         id="comentarioPotencialInovacao" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:potencialInovacaoTecnologica3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -912,11 +914,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
-                                                       id="comentarioAplicacoes" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:aplicacoes3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
+                                                         id="comentarioAplicacoes" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:aplicacoes3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -952,11 +954,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
-                                                       id="comentarioDificuldadesEsperadas" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:dificuldadesEsperadas3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
+                                                         id="comentarioDificuldadesEsperadas" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:dificuldadesEsperadas3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -991,11 +993,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
-                                                       id="comentarioInteracaoEmpresaUniversidade" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaUniversidade3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
+                                                         id="comentarioInteracaoEmpresaUniversidade" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaUniversidade3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1030,11 +1032,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
-                                                       id="comentarioInteracaoEmpresaComunidadeGoverno" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
+                                                         id="comentarioInteracaoEmpresaComunidadeGoverno" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1069,11 +1071,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco"
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
-                                                       id="comentarioInteracaoInfraInstrutura" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:infraestrutura3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
+                                                         id="comentarioInteracaoInfraInstrutura" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:infraestrutura3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1110,7 +1112,7 @@
 
                         <div class="tab-pane fade" id="formParte05">
                             <div id="formularioParte05">
-                                
+
                                 <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
                                     <h4>Atençao!</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
@@ -1119,7 +1121,7 @@
                                     <h4>Aviso</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     <h:message id="mensagemErroDescricao" class="mensagemErro" for="participacaoAcionaria1"/><br/>
@@ -1143,11 +1145,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
-                                                       id="comentarioParticipacaoAcionaria" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:participacaoAcionaria3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
+                                                         id="comentarioParticipacaoAcionaria" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:participacaoAcionaria3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1181,11 +1183,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
-                                                       id="comentarioPotencialEmpregoRenda" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:potencialEmprego3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
+                                                         id="comentarioPotencialEmpregoRenda" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:potencialEmprego3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1222,7 +1224,7 @@
 
                         <div class="tab-pane fade" id="formParte06">
                             <div id="formularioParte06">
-                                
+
                                 <h:panelGroup layout="block" class="template-mensagens template-mensagens-danger" rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}">
                                     <h4>Atençao!</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários do Gerente de Relacionamento e <b>devem</b> ser seguidas essas orientações, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
@@ -1231,7 +1233,7 @@
                                     <h4>Aviso</h4>
                                     <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     <h:message id="mensagemErroFontes" class="mensagemErro" for="fontesDeReceita1"/><br/>
@@ -1255,11 +1257,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
-                                                       id="comentarioFontesReceita" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:fontesDeReceita3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
+                                                         id="comentarioFontesReceita" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:fontesDeReceita3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1293,11 +1295,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
-                                                       id="comentarioEstruturaCusto" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:estruturaCustos3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
+                                                         id="comentarioEstruturaCusto" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:estruturaCustos3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1329,11 +1331,11 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
-                                                       id="comentarioInvestimentoInicial" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:investimentoInicial3')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
+                                                         id="comentarioInvestimentoInicial" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:investimentoInicial3')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1344,8 +1346,8 @@
                                     <h:message class="mensagemErro" for="investimentoInicial"/>
                                     <br/>
                                 </div>
-                                
-                                    <h:panelGroup id="panelCustoFixo" class="col-md-12">
+
+                                <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
                                     <p:dataTable id="revisar_custoFixo1" 
@@ -1359,7 +1361,7 @@
 
                                         <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
                                         <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
-                                        
+
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
                                                 <f:facet name="output">
@@ -1370,45 +1372,45 @@
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
-                                        
+
                                         <p:column headerText="Valor Médio Mensal">
                                             <p:cellEditor>
                                                 <f:facet name="output">
                                                     <h:outputText value="R$ #{custo.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" 
-                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
-                                                                     onkeypress="return SomenteNumero(event);" 
-                                                                     style="width:96%">
-                                                            <p:ajax event="change" 
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
-                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
-                                                        </p:inputText>
-                                                    </f:facet>
+                                                    <p:inputText value="#{custo.total}" 
+                                                                 converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                 onkeypress="return SomenteNumero(event);" 
+                                                                 style="width:96%">
+                                                        <p:ajax event="change" 
+                                                                update="formulario_resubmeterplano:colunaValorTotalFixo" 
+                                                                listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                    </p:inputText>
+                                                </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
-                                                                value="R$ #{custo.projecao}">
-                                                </p:outputLabel>
+                                            <p:outputLabel  rendered="#{not empty custo.projecao}" 
+                                                            value="R$ #{custo.projecao}">
+                                            </p:outputLabel>
                                         </p:column>
 
                                         <p:column width="8%" headerText="Opções">
                                             <p:rowEditor style="width: "/>
                                             <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
-                                                    <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" 
-                                                            onevent="atualizaTabAjax" 
-                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
-                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
+                                                <i class="fa fa-trash"></i>
+                                                <f:ajax execute="panelCustoFixo" 
+                                                        onevent="atualizaTabAjax" 
+                                                        listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
+                                                        render="formulario_resubmeterplano:panelCustoFixo"/>
                                             </h:commandLink>    
                                         </p:column>                                        
-                                        
+
                                     </p:dataTable>
 
-                                
+
                                     <p:dataTable id="revisar_custoFixo2" 
                                                  var="custo"
                                                  rowKey="#{custo.idCusto}" 
@@ -1418,7 +1420,7 @@
                                                  >
                                         <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
                                         <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
-                                        
+
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
                                                 <f:facet name="output">
@@ -1429,79 +1431,79 @@
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
-                                        
+
                                         <p:column headerText="Valor Médio Mensal">
                                             <p:cellEditor>
                                                 <f:facet name="output">
                                                     <h:outputText value="R$ #{custo.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" 
-                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
-                                                                     onkeypress="return SomenteNumero(event);" 
-                                                                     style="width:96%">
-                                                            <p:ajax event="change" 
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
-                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
-                                                        </p:inputText>
-                                                    </f:facet>
+                                                    <p:inputText value="#{custo.total}" 
+                                                                 converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                 onkeypress="return SomenteNumero(event);" 
+                                                                 style="width:96%">
+                                                        <p:ajax event="change" 
+                                                                update="formulario_resubmeterplano:colunaValorTotalFixo" 
+                                                                listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                    </p:inputText>
+                                                </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
-                                                                value="R$ #{custo.projecao}">
-                                                </p:outputLabel>
+                                            <p:outputLabel  rendered="#{not empty custo.projecao}" 
+                                                            value="R$ #{custo.projecao}">
+                                            </p:outputLabel>
                                         </p:column>
 
                                         <p:column width="8%" headerText="Opções">
                                             <p:rowEditor style="width: "/>
                                             <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
-                                                    <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" 
-                                                            onevent="atualizaTabAjax" 
-                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
-                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
+                                                <i class="fa fa-trash"></i>
+                                                <f:ajax execute="panelCustoFixo" 
+                                                        onevent="atualizaTabAjax" 
+                                                        listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
+                                                        render="formulario_resubmeterplano:panelCustoFixo"/>
                                             </h:commandLink>    
                                         </p:column>                                        
 
                                     </p:dataTable>
-                                        <br/> 
-                                        <div class="col-md-6">
-                                            <h:commandButton id="botao_adicionar_nova_linha" 
-                                                             title="Adicionar nova linha de custo fixo" 
-                                                             class="btn btn-default" 
-                                                             value="Adicionar Linha"
-                                                             >
-                                                <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" 
-                                                        render="formulario_resubmeterplano:revisar_custoFixo"
-                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" 
-                                                        onevent="atualizaTabAjax"
-                                                        >
-                                                </f:ajax>                                
-                                            </h:commandButton>
-                                        </div>
-
-                                        <div class="col-md-6 text-center" align="center" >
-                                            <p:dataTable id="colunaValorTotalFixo" 
-                                                         editable="false" 
-                                                         var="custofixo" 
-                                                         emptyMessage="Nenhum registro encontrado." 
-                                                         value="#{revisarPlanoDeNegocioBean.calcularValorColunaCustoFixo()}"
+                                    <br/> 
+                                    <div class="col-md-6">
+                                        <h:commandButton id="botao_adicionar_nova_linha" 
+                                                         title="Adicionar nova linha de custo fixo" 
+                                                         class="btn btn-default" 
+                                                         value="Adicionar Linha"
                                                          >
-                                                <p:column headerText="Projeção total de custos fixos (6 meses)">
-                                                    <p:outputLabel  value="R$ #{custo}"></p:outputLabel>
-                                                </p:column>
-                                            </p:dataTable>
-                                        </div>                                    
-                                    
+                                            <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" 
+                                                    render="formulario_resubmeterplano:revisar_custoFixo"
+                                                    listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" 
+                                                    onevent="atualizaTabAjax"
+                                                    >
+                                            </f:ajax>                                
+                                        </h:commandButton>
+                                    </div>
+
+                                    <div class="col-md-6 text-center" align="center" >
+                                        <p:dataTable id="colunaValorTotalFixo" 
+                                                     editable="false" 
+                                                     var="custofixo" 
+                                                     emptyMessage="Nenhum registro encontrado." 
+                                                     value="#{revisarPlanoDeNegocioBean.calcularValorColunaCustoFixo()}"
+                                                     >
+                                            <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                <p:outputLabel  value="R$ #{custo}"></p:outputLabel>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>                                    
+
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
-                                                       id="comentarioCustoFixo" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoFixo2')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                         id="comentarioCustoFixo" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoFixo2')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1523,7 +1525,7 @@
                                     <br/>
                                     <br/>
                                 </h:panelGroup>
-                                
+
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
@@ -1568,11 +1570,11 @@
                                     </p:dataTable>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis.equals('')}"
-                                                       id="comentarioCustoVariavel" type="button"
-                                                       onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoVariavel2')"
-                                                       value="Comentário do Avaliador"
-                                                       icon="fa fa-pencil">
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis.equals('')}"
+                                                         id="comentarioCustoVariavel" type="button"
+                                                         onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoVariavel2')"
+                                                         value="Comentário do Avaliador"
+                                                         icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1627,7 +1629,6 @@
                                     <div class="rodape">
                                         <p:commandButton id="botaoEnviar" 
                                                          type="button"
-                                                         rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) == false}"
                                                          class="btn btn-success" 
                                                          value="Re-enviar Plano" 
                                                          onclick="chamaModal(modalInfoDeEnvio)"
@@ -1651,7 +1652,7 @@
             </div>
             <div id="sessao_resultado_avaliador" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
                 <h1>Parecer do Gerente de Relacionamentos</h1>
-                
+
                 <h3>Atenção:</h3>
                 <p>
                     Confira a baixo as observações gerais feitas pelo Gerente de Relacionamentos sobre o resultado do seu plano de negócio.
@@ -1663,33 +1664,33 @@
                     </h:inputTextarea>
                     <br />
                 </div>
-                
+
                 <h:panelGroup rendered="#{revisarPlanoDeNegocioBean.verificaExistenciaComentarioProjeto(projetoSelecionado) 
                                           and revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
-                
-                <p>
-                    <h3>Aceito para Avaliação contendo sugestões de melhoria</h3>
-                    <b>Selecione a aba "revisão" no menu lateral para conferir as sugestões feitas pelo Gerente</b> 
-                </p>
+
+                    <p>
+                        <h3>Aceito para Avaliação contendo sugestões de melhoria</h3>
+                        <b>Selecione a aba "revisão" no menu lateral para conferir as sugestões feitas pelo Gerente</b> 
+                    </p>
                 </h:panelGroup>
-                
+
                 <h:panelGroup rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}">
                     <hr></hr>
                     <p>
-                    <h3>Avançar para Fase de Avaliação</h3>
-                    <b>Parábens, seu plano de negócio foi aceito para a fase de avaliação. 
-                    Clique no botão a baixo para levá-lo para a página da avaliação</b> 
-                </p>
-                <div class="divPadding text-center">
-                    <h:commandLink  class="btn btn-success" 
-                                    rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                    type="button" 
-                                    title="Avançar para proxima frase" 
-                                    id="botao_proxima_fase" value="Próxima Fase"
-                                    action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
-                    </h:commandLink>
-                    <br/>
-                </div>
+                        <h3>Avançar para Fase de Avaliação</h3>
+                        <b>Parábens, seu plano de negócio foi aceito para a fase de avaliação. 
+                            Clique no botão a baixo para levá-lo para a página da avaliação</b> 
+                    </p>
+                    <div class="divPadding text-center">
+                        <h:commandLink  class="btn btn-success" 
+                                        rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
+                                        type="button" 
+                                        title="Avançar para proxima frase" 
+                                        id="botao_proxima_fase" value="Próxima Fase"
+                                        action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
+                        </h:commandLink>
+                        <br/>
+                    </div>
                 </h:panelGroup>
             </div>
 
@@ -1698,17 +1699,17 @@
 
             <div id="sessao_plano_nao_avaliado" class="classeConteudo col-md-10 form-horizontal well bs-component esconder-div">
 
-                    <h1>Pré-Avaliação - Plano de Negócio</h1>
-                             
+                <h1>Pré-Avaliação - Plano de Negócio</h1>
 
-                        <div class="well">
-                            <strong> Situação: </strong> Este plano de negócio está sendo avaliado.
-                        </div>
 
-                        <div class="col-md-12 text-center">
-                            <br/>
-                        </div>
+                <div class="well">
+                    <strong> Situação: </strong> Este plano de negócio está sendo avaliado.
                 </div>
+
+                <div class="col-md-12 text-center">
+                    <br/>
+                </div>
+            </div>
 
             <!-- FINAL DA DIV DE PRE AVALIAÇÂO PARA PROJETOS COM STATUS SUBMETIDO-->
 
