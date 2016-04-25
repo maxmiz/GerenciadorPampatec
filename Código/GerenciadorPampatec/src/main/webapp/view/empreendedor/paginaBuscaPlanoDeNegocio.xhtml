@@ -186,25 +186,37 @@
                             <p:column headerText="Ações" style="width: 23%; text-align: center">
                                 <div align="center">
                                     <div class="col-md-6"> 
-                                        <h:commandLink class="btn btn-success" id="visualizar" title="Visualizar o Plano de Negócio"
-                                                       action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}">
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
+                                        <p:commandButton class="botaoBase botaoVerde"
+                                                         id="visualizar" 
+                                                         title="Visualizar o Plano de Negócio"
+                                                         action="#{buscaProjetoEmpreendedorBean.enviaProjetoEditar()}" 
+                                                         icon="fa fa-eye"    
+                                                         value="Visualizar"
+                                                         >
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
+                                        </p:commandButton>
                                     </div>
                                     <div class="col-md-6">
-                                        <h:commandLink class="btn btn-default" title="Sair do Projeto" rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                       action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-sign-out"></i>  Sair </label>
+                                        <p:commandButton class="botaoBase botaoPreto" 
+                                                        title="Sair do Projeto" 
+                                                        rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
+                                                        action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}"
+                                                        icon="fa fa-sign-out"    
+                                                        value="Sair"
+                                                       >
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
-                                        <h:commandLink class="btn btn-danger" title="Excluir o Plano de Negócio" onclick="confirmacaoDeExclusao()"
-                                                       rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
-                                                       action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}">
+                                        </p:commandButton>
+                                        <p:commandButton class="botaoBase botaoVermelho" 
+                                                        title="Excluir o Plano de Negócio" 
+                                                        onclick="confirmacaoDeExclusao()"
+                                                        rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
+                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}"
+                                                        icon="fa fa-trash"    
+                                                        value="Excluir"
+                                                       >
                                             <f:ajax execute="@form"></f:ajax>
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-trash"></i>  Excluir </label>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
-                                        </h:commandLink>
+                                        </p:commandButton>
 
                                     </div>
                                     <script>
