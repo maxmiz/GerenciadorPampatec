@@ -28,6 +28,7 @@ public class Projeto implements java.io.Serializable {
     public static final int NECESSITA_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
     public static final int EM_PRE_AVALIACAO = 12;
+    public static final int REVISANDO = 13;
 
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
@@ -235,6 +236,8 @@ public class Projeto implements java.io.Serializable {
                 break;
             case RESUBMETIDO:
                 statusDescricao = "Ressubmetido";
+            case REVISANDO:
+                statusDescricao = "Necessita Melhoria";
         }
 
         return statusDescricao;
@@ -402,6 +405,9 @@ public class Projeto implements java.io.Serializable {
         public boolean verificarNecessitaAvaliacao(){
         return this.getStatus() != Projeto.NECESSITA_MELHORIA;
     }
+        public boolean verificarRevisando(){
+            return this.getStatus() != Projeto.REVISANDO;
+        }
             /**
      * Verifica se o projeto está em avaliação
      * @return 
