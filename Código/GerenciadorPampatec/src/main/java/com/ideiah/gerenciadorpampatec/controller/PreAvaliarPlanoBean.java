@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -154,6 +155,9 @@ public class PreAvaliarPlanoBean implements Serializable {
      * para posterior continuar editando o mesmo.
      */
     public void salvar() {
+        
+        Date data = new Date(System.currentTimeMillis());
+        projeto.setDataAvaliacao(data);
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);

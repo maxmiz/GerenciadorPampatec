@@ -75,7 +75,7 @@ legend {
 
 .campoFeedBack{
     display: none;
-
+    resize: none;
 }
 .campoFeedBackOn{
     display: block;

@@ -24,7 +24,6 @@
         <script>
             var andamentoProjeto = #{revisarPlanoDeNegocioBean.retornaStatusProjeto()};
         </script>
-
     </h:head>
     <h:body onload="carregaPagina(), verificaComentarios();">
 
@@ -373,6 +372,7 @@
 
                                 <div class="col-md-12 espaco" id="">
                                     <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes1"/><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                     <h:inputTextarea id="segmentoDeClientes1"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
@@ -411,6 +411,7 @@
 
                                 <div class="col-md-12 espaco" id="">
                                     <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor1"/><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                     <h:inputTextarea id="propostaDeValor1" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -449,6 +450,7 @@
 
                                 <div class="col-md-12 espaco" id="">
                                     <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave1"/><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                     <h:inputTextarea id="atividadesChave1" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -519,6 +521,7 @@
                                 
                                 <div class="col-md-12 espaco">
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes1"/><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                     <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -556,6 +559,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Parcerias chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChave1"/><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                     <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -596,6 +600,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Canais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroCanais" class="mensagemErro" for="canais1"/><br/>
                                     Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                     <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -633,6 +638,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Recursos principais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais1"/><br/>
                                     Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      id="recursosPrincipais1"
@@ -669,6 +675,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Concorrentes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes1"/><br/>
                                     Quem são nossos concorrentes? como trabalham?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      id="concorrentes1"
@@ -815,6 +822,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroTecnologia" class="mensagemErro" for="tecnologiaProcessos1"/><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -854,6 +862,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica1"/><br/>
                                     Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -893,6 +902,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Aplicações* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes1"/><br/>
                                     A quem se aplica? como? de que maneira?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -932,6 +942,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas1"/><br/>
                                     Quais são nossas principais limitações?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -972,6 +983,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroInteracao" class="mensagemErro" for="interacaoEmpresaUniversidade1"/><br/>
                                     Em que sentido seremos parceiros da Universidade? 
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1011,6 +1023,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroInteracaoEmpresa" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno1"/><br/>
                                     Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1050,6 +1063,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroInfraestrutura" class="mensagemErro" for="infraestrutura1"/><br/>
                                     Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1124,6 +1138,7 @@
                                 
                                 <div class="col-md-12 espaco">
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroDescricao" class="mensagemErro" for="participacaoAcionaria1"/><br/>
                                     Haverão sócios? Quanto de participação terão?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;"
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1162,6 +1177,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroPotencial" class="mensagemErro" for="potencialEmprego1"/><br/>
                                     Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1236,6 +1252,7 @@
                                 
                                 <div class="col-md-12 espaco">
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroFontes" class="mensagemErro" for="fontesDeReceita1"/><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                     <h:inputTextarea id="fontesDeReceita1" class="form-control campoInvalido semResize" 
                                                      onchange="precisaSalvar = true;"
@@ -1274,6 +1291,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Estrutura de custos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroEstruturaCustos" class="mensagemErro" for="estruturaCustos1"/><br/>
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                     <h:inputTextarea id="estruturaCustos1" class="form-control campoInvalido semResize" 
                                                      onchange="precisaSalvar = true;"
@@ -1312,6 +1330,7 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <b>Investimento inicial* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                    <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial1"/><br/>
                                     Quanto de recurso será necessário para iniciar?
                                     <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" 
                                                      disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -1346,7 +1365,7 @@
                                     <h:message class="mensagemErro" for="investimentoInicial"/>
                                     <br/>
                                 </div>
-                                
+<!-- =========================================================================================================================== --> 
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
@@ -1355,12 +1374,16 @@
                                                  class="campoInvalido"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
-                                                 rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                 rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                  editable="true"
                                                  >
 
-                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
-                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" 
+                                                update="formulario_resubmeterplano:mensagensFeed" />
+                                        
+                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" 
+                                                update="formulario_resubmeterplano:mensagensFeed" />
                                         
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
@@ -1376,7 +1399,7 @@
                                         <p:column headerText="Valor Médio Mensal">
                                             <p:cellEditor>
                                                 <f:facet name="output">
-                                                    <h:outputText value="R$ #{custo.total}" />
+                                                    <p:outputLabel value="R$ #{custo.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
                                                         <p:inputText value="#{custo.total}" 
@@ -1384,10 +1407,10 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
-                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo formulario_resubmeterplano:mensagensFeed" />
                                                         </p:inputText>
-                                                    </f:facet>
+                                                </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
@@ -1399,27 +1422,32 @@
 
                                         <p:column width="8%" headerText="Opções">
                                             <p:rowEditor style="width: "/>
-                                            <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
-                                                    <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" 
-                                                            onevent="atualizaTabAjax" 
-                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
-                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
-                                            </h:commandLink>    
+                                            <p:commandButton title="Excluir o Custo" 
+                                                             icon="fa fa-trash" 
+                                                             rendered="#{custo.podeExcluir}"
+                                                             >
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:mensagensFeed"/>
+                                            </p:commandButton>      
                                         </p:column>                                        
                                         
                                     </p:dataTable>
 
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->                                     
                                 
                                     <p:dataTable id="revisar_custoFixo2" 
                                                  var="custo"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
-                                                 rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
+                                                 rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                  editable="true"
                                                  >
-                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" update="formulario_resubmeterplano:mensagensFeed" />
-                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" update="formulario_resubmeterplano:mensagensFeed" />
+                                        <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" 
+                                                update="formulario_resubmeterplano:mensagensFeed" />
+                                        
+                                        <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" 
+                                                update="formulario_resubmeterplano:mensagensFeed" />
                                         
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
@@ -1443,8 +1471,8 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo" 
-                                                                    listener="#{projetoBean.caucularProjecaoCustoFixo(custofixo)}"/>
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo formulario_resubmeterplano:mensagensFeed" />
                                                         </p:inputText>
                                                     </f:facet>
                                             </p:cellEditor>
@@ -1458,30 +1486,45 @@
 
                                         <p:column width="8%" headerText="Opções">
                                             <p:rowEditor style="width: "/>
-                                            <h:commandLink title="Excluir o Custo" rendered="#{custo.podeExcluir}">
-                                                    <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" 
-                                                            onevent="atualizaTabAjax" 
-                                                            listener="#{revisarPlanoDeNegocioBean.deletarLinha(custofixo)}" 
-                                                            render="formulario_resubmeterplano:panelCustoFixo"/>
-                                            </h:commandLink>    
+                                            <p:commandButton title="Excluir o Custo" 
+                                                             icon="fa fa-trash" 
+                                                             rendered="#{custo.podeExcluir}"
+                                                             >
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:mensagensFeed"/>
+                                            </p:commandButton>    
                                         </p:column>                                        
 
                                     </p:dataTable>
                                         <br/> 
                                         <div class="col-md-6">
-                                            <h:commandButton id="botao_adicionar_nova_linha" 
-                                                             title="Adicionar nova linha de custo fixo" 
+                                            <p:commandButton id="botao_adicionar_nova_linha1" 
                                                              class="btn btn-default" 
                                                              value="Adicionar Linha"
+                                                             icon="fa fa-plus"
+                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
+                                                             title="Adicionar nova linha de custo fixo" 
                                                              >
-                                                <f:ajax execute="formulario_resubmeterplano:revisar_custoFixo2" 
-                                                        render="formulario_resubmeterplano:revisar_custoFixo"
-                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" 
-                                                        onevent="atualizaTabAjax"
+                                                <p:ajax update="formulario_resubmeterplano:revisar_custoFixo1 formulario_resubmeterplano:mensagensFeed"
+                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
                                                         >
-                                                </f:ajax>                                
-                                            </h:commandButton>
+                                                </p:ajax>                                
+                                            </p:commandButton>
+                                            
+                                            <p:commandButton id="botao_adicionar_nova_linha2" 
+                                                             class="btn btn-default" 
+                                                             value="Adicionar Linha"
+                                                             icon="fa fa-plus"
+                                                             rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
+                                                             title="Adicionar nova linha de custo fixo" 
+                                                             >
+                                                <p:ajax update="formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagensFeed"
+                                                        listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
+                                                        >
+                                                </p:ajax>                               
+                                            </p:commandButton>
                                         </div>
 
                                         <div class="col-md-6 text-center" align="center" >
@@ -1499,8 +1542,10 @@
                                     
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
-                                                       rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals('')}"
-                                                       id="comentarioCustoFixo" type="button"
+                                                       rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos)
+                                                                   and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
+                                                       id="comentarioCustoFixo" 
+                                                       type="button"
                                                        onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoFixo2')"
                                                        value="Comentário do Gerente"
                                                        title="Clique aqui para visualizar o comentário feito pelo gerente sobre a tabela a cima."
@@ -1508,17 +1553,16 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-
-                                        <p:inputTextarea class="campoFeedBack" 
+                                        <p:inputTextarea class="campoFeedBack"
+														 id="comentarioCustoFixo2"
+                                                         style="resize: none;"
                                                          cols="50" 
                                                          rows="2" 
                                                          disabled="true" 
-                                                         id="comentarioCustoFixo2" 
-                                                         value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
-
+                                                         value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}"
+														 >
                                         </p:inputTextarea>
                                     </div>
-                                    <h:message class="mensagemErro" for="custosfixos"/>
 
                                     <br/>
                                     <br/>
@@ -1526,7 +1570,8 @@
                                     <br/>
                                     <br/>
                                 </h:panelGroup>
-                                
+<!-- =========================================================================================================================== -->                                 
+
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
@@ -1580,8 +1625,14 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="2" disabled="true" id="comentarioCustoVariavel2" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
+                                        <p:inputTextarea class="campoFeedBack" 
+                                                         style="resize: none;" 
+                                                         cols="50" 
+                                                         rows="2" 
+                                                         disabled="true" 
+                                                         id="comentarioCustoVariavel2" 
+                                                         value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}"
+                                                         >
                                         </p:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="custosvariaveis"/>
@@ -1608,7 +1659,7 @@
 
                         <!-- Fim da sexta parte do formulário -->
 
-                        <!-- Inicio da setima parte do formulário -->
+                        <!-- Inicio da sétima parte do formulário -->
 
                         <div class="tab-pane fade" id="formParte07" >
                             <br/>
@@ -1681,7 +1732,7 @@
                     <hr></hr>
                     <p>
                     <h3>Avançar para Fase de Avaliação</h3>
-                    <b>Parábens, seu plano de negócio foi aceito para a fase de avaliação. 
+                    <b>Parabéns, seu plano de negócio foi aceito para a fase de avaliação. 
                     Clique no botão a baixo para levá-lo para a página da avaliação</b> 
                 </p>
                 <div class="divPadding text-center">

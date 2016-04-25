@@ -173,22 +173,25 @@ public class ProjetoBean implements Serializable {
         if (projeto.getNome() == null || projeto.getNome().equals("")) {
             projeto.setNome("Novo plano de negócio sem nome");
         }
-        
-        FacesUtil.addFeedbackSaveSuccess("formulario_cadastro_projeto:tituloMensagem");
-        
         pegaValorDropDown();
         EnviaEmails(projeto);
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
         salvou = true;
-
     }
-
-
-    public void salvarProjetoeSair() {
-        salvarProjeto();
-    }
+    
+    /**
+     * Verifica se o usuário fez a ação de salvar o projeto editado 
+     * @return true se ele salvou.
+     */
+    public boolean verificarSalvamento(){
+        if(salvou){
+            salvou = false;
+            return true;
+        }
+        return false;
+    } 
 
     /**
      * Envia emails de termino de cadastro para os empreendedores necessários
@@ -668,9 +671,8 @@ public class ProjetoBean implements Serializable {
         int FLAG_STATUS = 0;
 
         if (FLAG > 0) {
-            FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
+            FacesUtil.addErrorMessage("  O Sistema encontrou " + FLAG + " campos não preenchidos.",
                     "formulario_cadastro_projeto:tituloMensagem");
-
         } else {
             try {
 
@@ -1165,6 +1167,4 @@ public class ProjetoBean implements Serializable {
         }
                 
     }
-    
-
 }

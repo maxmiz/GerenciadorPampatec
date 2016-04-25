@@ -47,7 +47,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
-        this.atualizaListaProjetosPreAvaliacao();
+        this.atualizaListaProjetosTodos();
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
