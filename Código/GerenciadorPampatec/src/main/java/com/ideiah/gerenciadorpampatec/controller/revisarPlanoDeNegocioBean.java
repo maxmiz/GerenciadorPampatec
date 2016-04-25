@@ -86,6 +86,12 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
+        public boolean verificaStatusRevisando(Projeto projetoSelecionado) {
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
+        return projetoSelecionado.getStatus() == Projeto.REVISANDO;
+    }
 
     public boolean verificaStatusSubmetido(Projeto projetoSelecionado) {
 
@@ -190,7 +196,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
+        
 
         /**
          * Para exibir a mensagem de salvo com sucesso.

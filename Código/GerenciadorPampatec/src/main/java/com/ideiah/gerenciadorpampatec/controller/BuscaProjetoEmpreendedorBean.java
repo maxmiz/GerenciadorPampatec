@@ -112,7 +112,10 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     public String retornaProjetoStatus(Projeto proj){
         if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
             return "Em Pré-Avaliação";
-        } return proj.getStatusString(proj.getStatus());
+        }else if(proj.getStatus() == Projeto.REVISANDO) {
+            return "Necessita Melhoria";   
+        }
+        return proj.getStatusString(proj.getStatus());
     }
 
     /**
@@ -130,7 +133,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                     || projetoSelecionado.getStatus() == Projeto.REPROVADO
                     || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO
                     || projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO
-                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO) {
+                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO
+                    || projetoSelecionado.getStatus() == Projeto.REVISANDO) {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             
@@ -187,7 +191,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                 && projeto.verificarReprovado()
                 && projeto.verificarNecessitaAvaliacao()
                 && projeto.verificaReSubmetido()
-                && projeto.verificaEmPreAvaliacao();
+                && projeto.verificaEmPreAvaliacao()
+                && projeto.verificarRevisando();
                 
     }
 
