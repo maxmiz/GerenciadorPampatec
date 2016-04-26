@@ -86,6 +86,9 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
+        
+        atualizaDataAvaliacao();
+        
         ProjetoDao dao = new ProjetoDao();
         dao.update(projeto);
         session.setAttribute("projetoSelecionado", projeto);
@@ -149,15 +152,19 @@ public class PreAvaliarPlanoBean implements Serializable {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
         loginBean.fazLogout();
     }
+    /**
+     * Atualza a data de avaliação do projeto para data atual
+     */
+    private void atualizaDataAvaliacao(){
+        Date data = new Date(System.currentTimeMillis());
+        projeto.setDataAvaliacao(data);
+    }
 
     /**
      * Salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
      * para posterior continuar editando o mesmo.
      */
     public void salvar() {
-        
-        Date data = new Date(System.currentTimeMillis());
-        projeto.setDataAvaliacao(data);
 
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
@@ -229,8 +236,9 @@ public class PreAvaliarPlanoBean implements Serializable {
                 
                 mudaStatusComentarioProjetoFinalizar();
                 
-                ProjetoDao projDao = new ProjetoDao();
-                projDao.salvar(projeto);
+                atualizaDataAvaliacao();
+                
+                salvarPreAvaliacao();
                 
                 getBuscarPlanoDeNegocio();
             }
