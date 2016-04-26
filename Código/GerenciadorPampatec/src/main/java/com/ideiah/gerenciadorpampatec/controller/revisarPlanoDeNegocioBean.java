@@ -597,14 +597,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * @return somatorioFixo
      */
     public int calcularValorColunaCustoFixo() {
-//        somatorioFixo = 0;
-//        for (int i = 0; i < listaCustoFixo.size(); i++) {
-//            somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
-//        }
-//        somatorioFixo = somatorioFixo * 6;
-//        projeto.getPlanofinanceiro().setValorTotalFixo(somatorioFixo);
-//        setSomatorioVariavel(somatorioFixo);
-        return 50000;
+        somatorioFixo = 0;
+        for (int i = 0; i < listaCustoFixo.size(); i++) {
+            somatorioFixo = somatorioFixo + listaCustoFixo.get(i).getTotal();
+        }
+        somatorioFixo = somatorioFixo * 6;
+        projeto.getPlanofinanceiro().setValorTotalFixo(somatorioFixo);
+        setSomatorioVariavel(somatorioFixo);
+        return somatorioFixo;
     }
 
 //==============================================================================    
