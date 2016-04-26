@@ -8,10 +8,14 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Custo;
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -37,13 +41,22 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private LoginBean loginBean;
     private String estagioEvolucao;
     private String estagioEvolucaoOutro;
+    private Empreendedor empreendedorSession;
+    private List<Custo> listaCustoFixo;
+    private List<Custo> listaCustoVariavel;
+    private int somatorioFixo;
+    private int somatorioVariavel;
 
     public revisarPlanoDeNegocioBean() {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
+        empreendedorSession = (Empreendedor) session.getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
+        listaCustoFixo = new ArrayList<>();
+        listaCustoVariavel = new ArrayList<>();
+        preencheListaCusto();
     }
 
     /**
@@ -52,7 +65,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * o status finalizado.
      * </p>
      */
-    public void recuperaComentarioProjeto() {
+    private void recuperaComentarioProjeto() {
 
         for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
             if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.FINALIZADO) {
@@ -62,6 +75,75 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         }
     }
 
+
+    /**
+     * <p>
+     * Preenche a lista de custo com os custos do projeto.</p>
+     */
+    private void preencheListaCusto() {
+        if (projeto != null) {
+            /**
+             * lista de custos fixos recebe a lista de custos filtrada por
+             * atributo tipo = fixo
+             */
+            listaCustoFixo = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_FIXO);
+            /**
+             * lista de custos variáveis recebe a lista de custos filtrada por
+             * atributo tipo = variável
+             */
+            listaCustoVariavel = filtraCustoPorTipo(converteSetParaArrayListdeCusto(projeto.getPlanofinanceiro().getCusto()), Custo.CUSTO_VARIAVEL);
+        }
+    }
+
+    /**
+     * <p>
+     * Converte os registros do setCusto em um <code>ArrayList</code>.
+     * </p>
+     *
+     * @param setCusto
+     * @return arrayCusto
+     */
+    private ArrayList<Custo> converteSetParaArrayListdeCusto(Set<Custo> setCusto) {
+        ArrayList<Custo> arrayCusto = new ArrayList<>();
+        for (Custo custoSet : setCusto) {
+            arrayCusto.add(custoSet);
+        }
+        return arrayCusto;
+    }
+
+    /**
+     * <p>
+     * Filtra lista de custos por tipo, seguindo constantes definidas na classe
+     * Custo: FIXO ou VARIAVEL </p>
+     *
+     * @param listaCompleta
+     * @param tipo
+     * @return novaLista
+     */
+    private ArrayList<Custo> filtraCustoPorTipo(ArrayList<Custo> listaCompleta, int tipo) {
+        ArrayList<Custo> novaLista = new ArrayList<>();
+        for (Custo custoSelecionado : listaCompleta) {
+            if (custoSelecionado.getTipo() == tipo) {
+                novaLista.add(custoSelecionado);
+            }
+        }
+        return novaLista;
+    }
+
+    /**
+     * <p>
+     * Atualiza o projeto que está na sessão.</p>
+     */
+    public void atualizarProjetoSessao() {
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        secao.setAttribute("projetoSelecionado", projeto);
+    }
+
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado) {
         if (projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
 
@@ -73,6 +155,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return false;
     }
 
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusSendoAvaliado(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -80,6 +167,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO;
     }
 
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusAceitoAvaliacao(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -93,6 +185,12 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.REVISANDO;
     }
 
+
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusSubmetido(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -100,6 +198,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.SUBMETIDO;
     }
 
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusReSubmetido(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -107,6 +210,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.RESUBMETIDO;
     }
 
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusEmPreAvaliacao(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -114,6 +222,11 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO;
     }
 
+    /**
+     * 
+     * @param projetoSelecionado
+     * @return 
+     */
     public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -365,10 +478,28 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return estagioEvolucao != null && estagioEvolucao.equals("Outro");
     }
 
+    /**
+     * <p>
+     * Método que faz o calculo da projeção de cada custo fixo para seis
+     * meses.</p>
+     *
+     * @param custo
+     */
+    public void caucularProjecaoCustoFixo(Custo custo) {
+        if (custo != null) {
+
+            int valor = custo.getTotal() * 6;
+            custo.setProjecao(valor);
+
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(custo);
+        }
+    }
 //==============================================================================
     /**
-     * *
-     * Método para ação após linha ser editada, atualizando valores na tabela.
+     * <p>
+     * Método para ação após linha ser editada, atualizando valores na
+     * tabela.</p>
      *
      * @param event
      */
@@ -380,14 +511,16 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
 
 //        calcularValorColunaCustoVariavel();
-//        calcularValorColunaCustoFixo();
+        calcularValorColunaCustoFixo();
+
         ProjetoDao projetoDao = new ProjetoDao();
         projetoDao.salvar(custo);
 
     }
 
     /**
-     * Método que cancela edição da linha na tabela.
+     * <p>
+     * Método que cancela edição da linha na tabela.</p>
      *
      * @param event
      */
@@ -398,15 +531,16 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * Deleta registro na tabela.
+     * <p>
+     * Deleta registro na tabela.</p>
      *
      * @param custo
      */
     public void deletarLinha(Custo custo) {
         FacesMessage msg;
         if (custo.getTipo() == Custo.CUSTO_FIXO) {
-//            deletarCustoFixo(custo);
-//            calcularValorColunaCustoFixo();
+            deletarCustoFixo(custo);
+            calcularValorColunaCustoFixo();
             msg = new FacesMessage("Custo fixo DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
@@ -417,29 +551,48 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
         projeto.SalvarProjeto(projeto);
-
     }
 
     /**
-     * Método para adicionar custo fixo ao projeto e à tabela.
+     * <p>
+     * Método para adicionar custo fixo ao projeto e à tabela.</p>
      */
     public void adicionarLinhaFixo() {
         Custo custo = new Custo();
-        int zero = 0;
         custo.setDescricao("Novo Custo");
         custo.setTipo(Custo.CUSTO_FIXO);
-        custo.setTotal(zero);
-        custo.setProjecao(zero);
+        custo.setTotal(0);
+        custo.setProjecao(0);
         custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
-//        salvarProjeto();
-//        preencheListaCusto();
+        salvarProjeto();
+        preencheListaCusto();
     }
 
     /**
-     * Metodo que soma os valores de cada custo fixo adicionados na tabela e faz
-     * a projeção para seis meses.
+     * <p>
+     * Salva o projeto atual no banco de dados e na sessão.</p>
+     */
+    private void salvarProjeto() {
+        if (projeto.getNome() == null || projeto.getNome().equals("")) {
+            projeto.setNome("Novo plano de negócio sem nome");
+        }
+
+        FacesUtil.addFeedbackSaveSuccess("formulario_resubmeterplano:tituloMensagem");
+
+//        pegaValorDropDown();
+//        EnviaEmails(projeto);
+        ProjetoDao daoProj = new ProjetoDao();
+        projeto = daoProj.salvarRetornandoProjeto(projeto);
+        atualizarProjetoSessao();
+//        salvou = true;
+    }
+
+    /**
+     * <p>
+     * Método que soma os valores de cada custo fixo adicionados na tabela e faz
+     * a projeção para seis meses.</p>
      *
      * @return somatorioFixo
      */
@@ -455,6 +608,23 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
 //==============================================================================    
+
+    /**
+     * <p>
+     * Remove custo fixo da tabela e do projeto.</p>
+     *
+     * @param custoFixo
+     */
+    public void deletarCustoFixo(Custo custoFixo) {
+        ProjetoDao daoProj = new ProjetoDao();
+        listaCustoFixo.remove(custoFixo);
+        empreendedorSession.removeCustoProjeto(custoFixo);
+        projeto = daoProj.buscar(projeto.getIdProjeto());
+        atualizarProjetoSessao();
+        preencheListaCusto();
+    }
+//==============================================================================    
+
     /**
      * @return the projeto
      */
@@ -511,5 +681,37 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     public void setEstagioEvolucaoOutro(String estagioEvolucaoOutro) {
         this.estagioEvolucaoOutro = estagioEvolucaoOutro;
+    }
+
+    public List<Custo> getListaCustoFixo() {
+        return listaCustoFixo;
+    }
+
+    public void setListaCustoFixo(List<Custo> listaCustoFixo) {
+        this.listaCustoFixo = listaCustoFixo;
+    }
+
+    public List<Custo> getListaCustoVariavel() {
+        return listaCustoVariavel;
+    }
+
+    public void setListaCustoVariavel(List<Custo> listaCustoVariavel) {
+        this.listaCustoVariavel = listaCustoVariavel;
+    }
+
+    public int getSomatorioFixo() {
+        return somatorioFixo;
+    }
+
+    public void setSomatorioFixo(int somatorioFixo) {
+        this.somatorioFixo = somatorioFixo;
+    }
+
+    public int getSomatorioVariavel() {
+        return somatorioVariavel;
+    }
+
+    public void setSomatorioVariavel(int somatorioVariavel) {
+        this.somatorioVariavel = somatorioVariavel;
     }
 }
