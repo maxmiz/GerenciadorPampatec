@@ -1370,9 +1370,9 @@
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
                                     <p:dataTable id="revisar_custoFixo1" 
-                                                 var="custo" 
+                                                 var="custo1" 
                                                  class="campoInvalido"
-                                                 rowKey="#{custo.idCusto}" 
+                                                 rowKey="#{custo1.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
                                                              and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
@@ -1388,10 +1388,10 @@
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
                                                 <f:facet name="output">
-                                                    <p:outputLabel value="#{custo.descricao}"></p:outputLabel>
+                                                    <p:outputLabel value="#{custo1.descricao}"></p:outputLabel>
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                    <p:inputText value="#{custo.descricao}" style="width:96%"/>
+                                                    <p:inputText value="#{custo1.descricao}" style="width:96%"/>
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
@@ -1399,24 +1399,24 @@
                                         <p:column headerText="Valor Médio Mensal">
                                             <p:cellEditor>
                                                 <f:facet name="output">
-                                                    <p:outputLabel value="R$ #{custo.total}" />
+                                                    <p:outputLabel value="R$ #{custo1.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" 
+                                                        <p:inputText value="#{custo1.total}" 
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo)}"
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo formulario_resubmeterplano:mensagensFeed" />
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed" />
                                                         </p:inputText>
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
-                                                                value="R$ #{custo.projecao}">
+                                                <p:outputLabel  rendered="#{not empty custo1.projecao}" 
+                                                                value="R$ #{custo1.projecao}">
                                                 </p:outputLabel>
                                         </p:column>
 
@@ -1424,19 +1424,18 @@
                                             <p:rowEditor style="width: "/>
                                             <p:commandButton title="Excluir o Custo" 
                                                              icon="fa fa-trash" 
-                                                             rendered="#{custo.podeExcluir}"
+                                                             rendered="#{custo1.podeExcluir}"
                                                              >
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo)}" 
-                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:mensagensFeed"/>
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed"/>
                                             </p:commandButton>      
                                         </p:column>                                        
                                         
                                     </p:dataTable>
 
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->                                     
-                                
                                     <p:dataTable id="revisar_custoFixo2" 
-                                                 var="custo"
+                                                 var="custo2"
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
                                                  rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
@@ -1452,10 +1451,10 @@
                                         <p:column headerText="Descrição ">
                                             <p:cellEditor>
                                                 <f:facet name="output">
-                                                    <p:outputLabel value="#{custo.descricao}"></p:outputLabel>
+                                                    <p:outputLabel value="#{custo2.descricao}"></p:outputLabel>
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                    <p:inputText value="#{custo.descricao}" style="width:96%"/>
+                                                    <p:inputText value="#{custo2.descricao}" style="width:96%"/>
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
@@ -1463,35 +1462,33 @@
                                         <p:column headerText="Valor Médio Mensal">
                                             <p:cellEditor>
                                                 <f:facet name="output">
-                                                    <h:outputText value="R$ #{custo.total}" />
+                                                    <h:outputText value="R$ #{custo2.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                        <p:inputText value="#{custo.total}" 
+                                                        <p:inputText value="#{custo2.total}" 
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo)}"
-                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo formulario_resubmeterplano:mensagensFeed" />
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed" />
                                                         </p:inputText>
                                                     </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
-                                                <p:outputLabel  rendered="#{not empty custo.projecao}" 
-                                                                value="R$ #{custo.projecao}">
-                                                </p:outputLabel>
+                                                <p:outputLabel value="R$ #{custo2.projecao}"/>
                                         </p:column>
 
                                         <p:column width="8%" headerText="Opções">
                                             <p:rowEditor style="width: "/>
                                             <p:commandButton title="Excluir o Custo" 
                                                              icon="fa fa-trash" 
-                                                             rendered="#{custo.podeExcluir}"
+                                                             rendered="#{custo2.isPodeExcluir()}"
                                                              >
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo)}" 
-                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:mensagensFeed"/>
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed"/>
                                             </p:commandButton>    
                                         </p:column>                                        
 
@@ -1528,14 +1525,29 @@
                                         </div>
 
                                         <div class="col-md-6 text-center" align="center" >
-                                            <p:dataTable id="colunaValorTotalFixo" 
+                                            <p:dataTable id="colunaValorTotalFixo1" 
+                                                         rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                          editable="false" 
-                                                         var="custofixo" 
+                                                         var="custoProjTotal1" 
                                                          emptyMessage="Nenhum registro encontrado." 
                                                          value="#{revisarPlanoDeNegocioBean.calcularValorColunaCustoFixo()}"
                                                          >
                                                 <p:column headerText="Projeção total de custos fixos (6 meses)">
-                                                    <p:outputLabel  value="R$ #{custo}"></p:outputLabel>
+                                                    <p:outputLabel  value="R$ #{custoProjTotal1}"></p:outputLabel>
+                                                </p:column>
+                                            </p:dataTable>
+                                            
+                                            <p:dataTable id="colunaValorTotalFixo2" 
+                                                         rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                             || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
+                                                         editable="false" 
+                                                         var="custoProjTotal2" 
+                                                         emptyMessage="Nenhum registro encontrado." 
+                                                         value="#{revisarPlanoDeNegocioBean.calcularValorColunaCustoFixo()}"
+                                                         >
+                                                <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                    <p:outputLabel  value="R$ #{custoProjTotal2}"></p:outputLabel>
                                                 </p:column>
                                             </p:dataTable>
                                         </div>                                    
@@ -1554,13 +1566,13 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <p:inputTextarea class="campoFeedBack"
-														 id="comentarioCustoFixo2"
+                                                         id="comentarioCustoFixo2"
                                                          style="resize: none;"
-                                                         cols="50" 
-                                                         rows="2" 
-                                                         disabled="true" 
+                                                         cols="50"
+                                                         rows="2"
+                                                         disabled="true"
                                                          value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}"
-														 >
+							>
                                         </p:inputTextarea>
                                     </div>
 
@@ -1575,8 +1587,10 @@
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
-                                    <p:dataTable id="revisao_custoVariavel1" class="campoInvalido"
-                                                 var="custo" rowKey="#{custo.idCusto}" 
+                                    <p:dataTable id="revisao_custoVariavel1" 
+                                                 class="campoInvalido"
+                                                 var="custo" 
+                                                 rowKey="#{custo.idCusto}" 
                                                  value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                  rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis.equals('')}"
                                                  >
