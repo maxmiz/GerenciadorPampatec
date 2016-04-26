@@ -1514,13 +1514,12 @@
                                         </p:commandButton>
 
                                         <p:commandButton id="botao_adicionar_nova_linha2" 
-                                                         class="btn btn-default" 
+                                                         class="btn btn-default"
+                                                         rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
+                                                                 || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                          value="Adicionar Linha"
                                                          icon="fa fa-plus"
                                                          >
-                                                <p:column headerText="Projeção total de custos fixos (6 meses)">
-                                                    <p:outputLabel value="R$ #{custoProjTotal1}"></p:outputLabel>
-                                                </p:column>
                                             <p:ajax update="formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagensFeed"
                                                     listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
                                                     >
