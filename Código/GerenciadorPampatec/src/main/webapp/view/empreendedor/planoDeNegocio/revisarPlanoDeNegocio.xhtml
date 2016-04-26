@@ -117,7 +117,6 @@
                 </ul>
             </div>
 
-
             <!-- Fim das modais apresentadas -->
 
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
@@ -1403,14 +1402,15 @@
                                                     <p:outputLabel value="R$ #{custo1.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                    <p:inputText value="#{custo1.total}" 
-                                                                 converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
-                                                                 onkeypress="return SomenteNumero(event);" 
-                                                                 style="width:96%">
-                                                        <p:ajax event="change" 
-                                                                listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}"
-                                                                update="formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed" />
-                                                    </p:inputText>
+                                                        <p:inputText value="#{custo1.total}" 
+                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                     onkeypress="return SomenteNumero(event);" 
+                                                                     style="width:96%">
+                                                            <p:ajax event="change" 
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed">
+                                                            </p:ajax>
+                                                        </p:inputText>
                                                 </f:facet>
                                             </p:cellEditor>
                                         </p:column>
@@ -1421,15 +1421,16 @@
                                             </p:outputLabel>
                                         </p:column>
 
-                                        <p:column width="8%" headerText="Opções">
-                                            <p:rowEditor style="width: "/>
-                                            <p:commandButton title="Excluir o Custo" 
-                                                             icon="fa fa-trash" 
-                                                             rendered="#{custo1.podeExcluir}"
-                                                             >
-                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" 
-                                                        update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed"/>
-                                            </p:commandButton>      
+                                        <p:column width="10%" headerText="Opções">
+                                            <p:rowEditor />
+                                            <p:commandLink title="Excluir esse Custo" 
+                                                           rendered="#{custo1.podeExcluir}"
+                                                           >
+                                                            <i class="fa fa-trash"></i>
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagensFeed">
+                                                    </p:ajax>
+                                            </p:commandLink>      
                                         </p:column>                                        
 
                                     </p:dataTable>
@@ -1466,31 +1467,33 @@
                                                     <h:outputText value="R$ #{custo2.total}" />
                                                 </f:facet>
                                                 <f:facet name="input">
-                                                    <p:inputText value="#{custo2.total}" 
-                                                                 converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
-                                                                 onkeypress="return SomenteNumero(event);" 
-                                                                 style="width:96%">
-                                                        <p:ajax event="change" 
-                                                                listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}"
-                                                                update="formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed" />
-                                                    </p:inputText>
-                                                </f:facet>
+                                                        <p:inputText value="#{custo2.total}" 
+                                                                     converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
+                                                                     onkeypress="return SomenteNumero(event);" 
+                                                                     style="width:96%">
+                                                            <p:ajax event="change" 
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}"
+                                                                    update="formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed">
+                                                            </p:ajax>
+                                                        </p:inputText>
+                                                    </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
                                         <p:column headerText="Projeção em 6 Meses">
                                             <p:outputLabel value="R$ #{custo2.projecao}"/>
                                         </p:column>
-
-                                        <p:column width="8%" headerText="Opções">
-                                            <p:rowEditor style="width: "/>
-                                            <p:commandButton title="Excluir o Custo" 
-                                                             icon="fa fa-trash" 
-                                                             rendered="#{custo2.isPodeExcluir()}"
-                                                             >
-                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" 
-                                                        update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed"/>
-                                            </p:commandButton>    
+                                        
+                                        <p:column width="10%" headerText="Opções">
+                                            <p:rowEditor />
+                                            <p:commandLink title="Excluir esse Custo" 
+                                                           rendered="#{custo2.isPodeExcluir()}"
+                                                           >
+                                                    <i class="fa fa-trash"></i>
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" 
+                                                            update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagensFeed">
+                                                    </p:ajax>
+                                            </p:commandLink>    
                                         </p:column>                                        
 
                                     </p:dataTable>
@@ -1514,10 +1517,10 @@
                                                          class="btn btn-default" 
                                                          value="Adicionar Linha"
                                                          icon="fa fa-plus"
-                                                         rendered="#{(empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos) 
-                                                                     || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
-                                                         title="Adicionar nova linha de custo fixo" 
                                                          >
+                                                <p:column headerText="Projeção total de custos fixos (6 meses)">
+                                                    <p:outputLabel value="R$ #{custoProjTotal1}"></p:outputLabel>
+                                                </p:column>
                                             <p:ajax update="formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagensFeed"
                                                     listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
                                                     >
@@ -1583,7 +1586,7 @@
                                     <br/>
                                     <br/>
                                 </h:panelGroup>
-                                <!-- =========================================================================================================================== -->                                 
+<!-- =========================================================================================================================== -->                                 
 
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
