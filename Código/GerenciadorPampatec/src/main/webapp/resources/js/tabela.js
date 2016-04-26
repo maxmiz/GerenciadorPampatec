@@ -9,17 +9,23 @@ var botaoPadrao;
 /**
  * Função que muda a classe do botão quando ele foi clicado pelo usuário, 
  * mas antes disso armazena o valor padrão do mesmo.
- * 
- * @param {type} botao
+ * Ao inciiar a pagina, o todos ja vem clicado 
+ * entao foi adicionado um if para verificar se o mesmo foi clicado denovo
+ *´para nao mudar a classe para filtro
+ * @param {type} botaoClicado
  * @returns {undefined}
  */
-function filtroTabela(botao){
-    
-    if(botaoPadrao != null){
-            botaoPadrao.setAttribute("class", "filtro");
+function filtroTabela(botaoClicado) {
+
+    var botaoTodos = document.getElementById("locovelho:tabelaProjetoGerente:todos");
+
+    if (botaoPadrao !== undefined) {
+        botaoPadrao.setAttribute("class", "filtro");
     }
-    
-    botao.setAttribute("class", "filtro filtroClicado");
-    botaoPadrao=botao;
-    
+
+    botaoClicado.setAttribute("class", "filtro filtroClicado");
+    botaoPadrao =botaoClicado;
+    if (botaoClicado !== botaoTodos) {
+        botaoTodos.setAttribute("class", "filtro");
+    }
 }

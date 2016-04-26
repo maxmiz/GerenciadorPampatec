@@ -156,16 +156,16 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-12">
                         <div class="row estilo">
-                            <h:form>
+                            <h:form id="tabelaProjetoGerente">
                                 <p:growl id="growl" life="2000" />
                                 <h:outputLabel value="Filtrar Por: "></h:outputLabel>
-                                <p:commandLink onclick="filtroTabela(this)" class="filtro" id="todos">
+                                <p:commandLink onclick="filtroTabela(this)" class="filtroClicado" id="todos">
                                     <h:outputText value="Todos" title="Filtrar por todos planos"/>
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosTodos()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 
                                 <p:commandLink id="PreAvaliacao" onclick="filtroTabela(this)" class="filtro" title="Filtrar por planos em pré-avaliação">
-                                    <h:outputText value="Em Pré-Avaliação" />
+                                    <h:outputText  value="Em Pré-Avaliação" />
                                     <f:ajax event="click" listener="#{buscaProjetoGerenteDeRelacionamentosBean.atualizaListaProjetosPreAvaliacao()}" render=":locovelho:tabelaDeNegocios"/>
                                 </p:commandLink>
 

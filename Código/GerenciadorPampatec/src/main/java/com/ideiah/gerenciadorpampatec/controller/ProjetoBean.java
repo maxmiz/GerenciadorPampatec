@@ -181,17 +181,6 @@ public class ProjetoBean implements Serializable {
         salvou = true;
     }
     
-    /**
-     * Verifica se o usuário fez a ação de salvar o projeto editado 
-     * @return true se ele salvou.
-     */
-    public boolean verificarSalvamento(){
-        if(salvou){
-            salvou = false;
-            return true;
-        }
-        return false;
-    } 
 
     /**
      * Envia emails de termino de cadastro para os empreendedores necessários

@@ -11,7 +11,7 @@ function funcaoAjaxSalvo(data){
     }
 }
 
-function funcaoAjaxErro(){
+function funcaoAjaxErro(data){
     clearTimeout(timeOutMensagem);
     if(data.status === 'success'){
         timeOutMensagem = timeoutMensagemFeedBack(ERRO);
