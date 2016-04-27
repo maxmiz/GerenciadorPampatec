@@ -325,7 +325,7 @@ String.prototype.trim = function () {
 function verificarPreenchimentoRadioButton() {
     var elementos = document.getElementsByClassName('ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active');
     for (var i = 0; i < elementos.length; i++) {
-        console.log("Deu");
+        console.log(" Formulario.js - Preencheu RadioButton");
     }
 }
 

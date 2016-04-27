@@ -1095,8 +1095,14 @@
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoEnviar" type="button" class="btn btn-success" title="Terminar Avaliação" disabled="#{preAvaliarPlanoBean.validaAvaliacao() == false}" onclick="confirmacaoDeEnvio()" value="Terminar Avaliação">
-                                        </h:commandButton>
+                                        <p:commandButton id="botaoEnviar"
+                                                         class="botaoBase botaoVerde"
+                                                         value="Terminar Avaliação"
+                                                         title="Terminar Avaliação" 
+                                                         disabled="#{preAvaliarPlanoBean.validaAvaliacao() == false}" 
+                                                         onclick="confirmacaoDeEnvio()" 
+                                                         >
+                                        </p:commandButton>
 
                                         <h:message for="botaoEnviar"></h:message>
                                     </div>
