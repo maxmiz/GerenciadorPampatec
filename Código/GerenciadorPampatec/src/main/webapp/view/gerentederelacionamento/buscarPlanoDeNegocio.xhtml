@@ -189,7 +189,15 @@
                     </div>
                     <div class="col-md-12">
 
-                        <p:dataTable id="tabelaDeNegocios" paginatorPosition="bottom" paginator="true" rows="10" var="projeto" widgetVar="TabelaNegocios" emptyMessage="Nenhum Registro Encontrado." value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" >
+                        <p:dataTable id="tabelaDeNegocios" 
+                                     paginatorPosition="bottom" 
+                                     paginator="true" 
+                                     rows="10" 
+                                     var="projeto" 
+                                     widgetVar="TabelaNegocios" 
+                                     emptyMessage="Nenhum Registro Encontrado." 
+                                     value="#{buscaProjetoGerenteDeRelacionamentosBean.listaProjetos}" 
+                                     >
 
                             <f:facet name="header">
                                 <p:outputPanel id="procurar">
@@ -199,26 +207,24 @@
                                     <p:commandLink id="dummy" process="@none" global="false" style="display:none;"/>
                                 </p:outputPanel> 
                             </f:facet>
-                            <!--
-                            <p:column headerText="Identificador">
-                                <h:outputText value="{projeto.idProjeto}"/>
-                            </p:column>
-                            -->
-                            <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}" width="35%">
-                                <h:outputText value="#{projeto.nome}" />
-                            </p:column>
 
                             <p:column id="submissionDate" headerText="Data de submissão" filterBy="#{projeto.dataEnvio}" filterStyle="display:none" sortBy="#{projeto.dataEnvio}" style="text-align: center; width: 150px" width="15%">
                                 <h:outputText value="#{projeto.formatarDataEnvio()}" />
                             </p:column>
                             
-                            <p:column id="editionDate" headerText="Data de avaliação" filterBy="#{projeto.dataAvaliacao}" filterStyle="display:none" sortBy="#{projeto.dataAvaliacao}" style="text-align: center; width: 150px" width="15%">
-                                <h:outputText value="#{projeto.formatarDataAvaliacao()}" />
+                            <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}" width="35%">
+                                <h:outputText value="#{projeto.nome}" />
                             </p:column>
 
                             <p:column headerText="Status"  filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center;" width="25%">
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}" />
                             </p:column>
+                            
+                            <p:column id="editionDate" headerText="Última alteração" filterBy="#{projeto.dataAvaliacao}" filterStyle="display:none" sortBy="#{projeto.dataAvaliacao}" style="text-align: center; width: 150px" width="15%">
+                                <h:outputText value="#{projeto.formatarDataAvaliacao()}" />
+                            </p:column>
+
+                            
 
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
