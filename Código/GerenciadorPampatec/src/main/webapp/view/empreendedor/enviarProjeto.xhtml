@@ -1128,13 +1128,16 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
+                                <p:commandButton class="botaoBase botaoVerde"
+                                               title="Submeter Plano de Negócio" 
+                                               rendered="#{(projetoBean.projeto.getStatus()) == 0}" 
+                                               action="#{projetoBean.enviarProjeto()}"
+                                               icon="fa fa-paper-plane-o"
+                                               value="Submeter Plano de Negócio">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
-
-                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>  
-                                </h:commandLink>
+                                </p:commandButton>
                             </div>
 
                         </div>
