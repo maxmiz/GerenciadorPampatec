@@ -75,7 +75,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         }
     }
 
-
     /**
      * <p>
      * Preenche a lista de custo com os custos do projeto.</p>
@@ -140,9 +139,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado) {
         if (projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
@@ -156,9 +155,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusSendoAvaliado(Projeto projetoSelecionado) {
 
@@ -168,9 +167,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusAceitoAvaliacao(Projeto projetoSelecionado) {
 
@@ -178,18 +177,18 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO;
     }
-        public boolean verificaStatusRevisando(Projeto projetoSelecionado) {
+
+    public boolean verificaStatusRevisando(Projeto projetoSelecionado) {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
         return projetoSelecionado.getStatus() == Projeto.REVISANDO;
     }
 
-
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusSubmetido(Projeto projetoSelecionado) {
 
@@ -199,9 +198,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusReSubmetido(Projeto projetoSelecionado) {
 
@@ -211,9 +210,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusEmPreAvaliacao(Projeto projetoSelecionado) {
 
@@ -223,9 +222,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param projetoSelecionado
-     * @return 
+     * @return
      */
     public boolean verificaStatusNecessitaMelhoria(Projeto projetoSelecionado) {
 
@@ -281,7 +280,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * Método para verificar qual o tipo de estágio a empresa se encontra.
      * </p>
      *
-     * @return
+     * @return o estágio em que a empresa está. 
      */
     private String verificaEstagioEvolucao() {
         String status = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
@@ -311,7 +310,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
-        
 
         /**
          * Para exibir a mensagem de salvo com sucesso.
@@ -322,8 +320,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     }
 
     /**
+     * <p>
      * Método para verificar se todos os campos do plano de negócio estão
-     * preenchidos.
+     * preenchidos.</p>
      *
      */
     public int verificarCampos() {
@@ -456,8 +455,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     /**
      * <p>
-     * Redireciona para a página da fase de Avaliação.
-     * </p>
+     * Redireciona para a página da fase de Avaliação.</p>
      */
     public void redirecionaPaginaAvaliacao() {
         try {
@@ -472,7 +470,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
      * estado do negócio.</p>
      *
-     * @return <code>true</code> se o usuário clicar no checkbox "Outro".
+     * @return <code>true</code> se o usuário clicar no <i>checkbox</i> "Outro".
      */
     public boolean exibeCampoOutro() {
         return estagioEvolucao != null && estagioEvolucao.equals("Outro");
@@ -487,14 +485,34 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void caucularProjecaoCustoFixo(Custo custo) {
         if (custo != null) {
-
             int valor = custo.getTotal() * 6;
             custo.setProjecao(valor);
 
+//            salvarProjeto();
             ProjetoDao dao = new ProjetoDao();
             dao.update(custo);
         }
     }
+
+    /**
+     * <p>
+     * Método que faz o calculo da projeção de cada custo variável para seis
+     * meses.</p>
+     *
+     * @param custo
+     */
+    public void caucularProjecaoCustoVariavel(Custo custo) {
+        if (custo != null) {
+            int valor = custo.getTotal() * 6;
+            custo.setProjecao(valor);
+
+//            salvarProjeto();
+            ProjetoDao dao = new ProjetoDao();
+            dao.update(custo);
+        }
+
+    }
+
 //==============================================================================
     /**
      * <p>
@@ -510,7 +528,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         msg = new FacesMessage("Custo Editado", custo.getDescricao());
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
 
-//        calcularValorColunaCustoVariavel();
+        calcularValorColunaCustoVariavel();
         calcularValorColunaCustoFixo();
 
         ProjetoDao projetoDao = new ProjetoDao();
@@ -545,8 +563,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
         if (custo.getTipo() == Custo.CUSTO_VARIAVEL) {
-//            deletarCustoVariavel(custo);
-//            calcularValorColunaCustoVariavel();
+            deletarCustoVariavel(custo);
+            calcularValorColunaCustoVariavel();
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
@@ -572,6 +590,23 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     /**
      * <p>
+     * Método para adicionar custo variável a tabela.</p>
+     */
+    public void adicionarLinhaVariavel() {
+        Custo custo = new Custo();
+        custo.setDescricao("Novo Custo");
+        custo.setTipo(Custo.CUSTO_VARIAVEL);
+        custo.setTotal(0);
+        custo.setProjecao(0);
+        custo.setPodeExcluir(true);
+        projeto.getPlanofinanceiro().getCusto().add(custo);
+        custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvarProjeto();
+        preencheListaCusto();
+    }
+
+    /**
+     * <p>
      * Salva o projeto atual no banco de dados e na sessão.</p>
      */
     private void salvarProjeto() {
@@ -586,7 +621,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
-//        salvou = true;
     }
 
     /**
@@ -594,7 +628,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * Método que soma os valores de cada custo fixo adicionados na tabela e faz
      * a projeção para seis meses.</p>
      *
-     * @return somatorioFixo
+     * @return O somatório do custo fixo.
      */
     public int calcularValorColunaCustoFixo() {
         somatorioFixo = 0;
@@ -607,7 +641,23 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         return somatorioFixo;
     }
 
-//==============================================================================    
+    /**
+     * <p>
+     * Método que soma os valores de cada custo variável adicionados na tabela e
+     * faz a projeção para seis meses.</p>
+     *
+     * @return O somatório do custo variável.
+     */
+    public int calcularValorColunaCustoVariavel() {
+        somatorioVariavel = 0;
+        for (int i = 0; i < listaCustoVariavel.size(); i++) {
+            somatorioVariavel = somatorioVariavel + listaCustoVariavel.get(i).getTotal();
+        }
+        somatorioVariavel = somatorioVariavel * 6;
+        projeto.getPlanofinanceiro().setValorTotalVariavel(somatorioVariavel);
+        setSomatorioVariavel(somatorioVariavel);
+        return somatorioVariavel;
+    }
 
     /**
      * <p>
@@ -615,7 +665,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      *
      * @param custoFixo
      */
-    public void deletarCustoFixo(Custo custoFixo) {
+    private void deletarCustoFixo(Custo custoFixo) {
         ProjetoDao daoProj = new ProjetoDao();
         listaCustoFixo.remove(custoFixo);
         empreendedorSession.removeCustoProjeto(custoFixo);
@@ -623,8 +673,23 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         atualizarProjetoSessao();
         preencheListaCusto();
     }
-//==============================================================================    
 
+    /**
+     * <p>
+     * Remove custo variável da tabela e do projeto.</p>
+     *
+     * @param custoVariavel
+     */
+    private void deletarCustoVariavel(Custo custoVariavel) {
+        ProjetoDao daoProj = new ProjetoDao();
+        listaCustoVariavel.remove(custoVariavel);
+        empreendedorSession.removeCustoProjeto(custoVariavel);
+        projeto = daoProj.buscar(projeto.getIdProjeto());
+        atualizarProjetoSessao();
+        preencheListaCusto();
+    }
+
+//==============================================================================    
     /**
      * @return the projeto
      */
