@@ -36,7 +36,7 @@
         <meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
         -->
     </h:head>
-    <h:body onload="mostrarMensagemCampoObrigatorio();">
+    <h:body onload="mostrarMensagemCampoObrigatorio(); verificaComentariosPreAvaliar()">
 
         <!-- NOTIFICAÇÕES -->
 
@@ -309,7 +309,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="2" id="propostaDeValor1" onchange="mostrarMensagemCampoObrigatorio();" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="2" id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
                                             <f:ajax execute="@form" 
                                                     render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -367,7 +367,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="propostaDeValor3" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="AtividadesChaves2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -414,7 +414,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor4" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="relacaoClientes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor4 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -441,7 +441,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="propostaDeValor5" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="parceriasChave2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor5 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -468,7 +468,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="propostaDeValor6" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="2" id="canais2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor6 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -495,7 +495,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor7" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="recursosPrincipais2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor7 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -521,7 +521,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor8" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="concorrentes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor8 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -566,7 +566,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioEstagio" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor9" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="estagioEvolucao2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor9 mensagemSalvamento"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -593,7 +593,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioTecnologia" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor10" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="tecnologiaProcessos2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor10 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -620,7 +620,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencial" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor11" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="potencialInovacaoTecnologica2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor11 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -647,7 +647,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioAplicacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor12" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="aplicacoes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor12 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -674,7 +674,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDificuldades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor13" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="dificuldadesEsperadas2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor13 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -700,7 +700,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoUniversidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor14" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="interacaoEmpresaUniversidade2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor14 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -727,7 +727,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInteracaoComunidade" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor15" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="interacaoEmpresaComunidadeGoverno2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor15 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -754,7 +754,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioInfraEstrutura" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor16" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="infraestrutura2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor16 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -803,7 +803,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioDescricao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor005" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="participacaoAcionaria2" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor005 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -829,7 +829,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioPotencialRenda" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor006" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="potencialEmprego2" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor006 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -880,7 +880,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioFontes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor18" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="fontesDeReceita2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor18 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -910,7 +910,7 @@
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor19" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="estruturaCustos2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor19 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -937,7 +937,7 @@
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor20" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="investimentoInicial2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor20 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -973,7 +973,7 @@
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioCustosFixos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor21" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="comentarioCustoFixo2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor21 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -1010,7 +1010,7 @@
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="propostaDeValor23" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
+                                        <p:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="comentarioCustoVariavel2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor23 mensagemSalvamento "
                                                     event="change" onevent="funcaoAjaxSalvo"
