@@ -354,17 +354,18 @@
 
                                         <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
-                                        <p:inputText id="empresaProjeto" 
-                                                     class="form-control"
+                                        <h:inputTextarea id="empresaProjeto" 
+                                                     class="form-control semResize"
                                                      onblur="verificaNegocio();"
                                                      value="#{projetoBean.projeto.nome}"
+                                                     rows="1"
                                                      >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroNome"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{projetoBean.salvarProjeto()}"/>
                                             <!--<p:ajax update=":form_revisao" event="change"/>-->
-                                        </p:inputText>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
 
@@ -1128,13 +1129,16 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
+                                <p:commandButton class="botaoBase botaoVerde"
+                                               title="Submeter Plano de Negócio" 
+                                               rendered="#{(projetoBean.projeto.getStatus()) == 0}" 
+                                               action="#{projetoBean.enviarProjeto()}"
+                                               icon="fa fa-paper-plane-o"
+                                               value="Submeter Plano de Negócio">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
-
-                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>  
-                                </h:commandLink>
+                                </p:commandButton>
                             </div>
 
                         </div>

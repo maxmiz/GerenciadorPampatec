@@ -433,7 +433,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             ProjetoDao projetoDao = new ProjetoDao();
             projeto.setStatus(Projeto.RESUBMETIDO);
             Date dataEnvio = new Date(System.currentTimeMillis());
+            /**
+             * Altera a data de envio, setando a nova para a data atual da ressubmissão.
+             */
             projeto.setDataEnvio(dataEnvio);
+            /**
+             * A data de avaliação e alterada para null pois o projeto será ressubmetido.
+             */
+            projeto.setDataAvaliacao(null);
             projetoDao.salvar(projeto);
 
             getBuscarPlanoDeNegocio();

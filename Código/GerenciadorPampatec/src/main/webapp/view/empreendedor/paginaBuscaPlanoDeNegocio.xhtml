@@ -180,7 +180,12 @@
                                     <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Status" filterBy="#{projeto.getStatusString(projeto.status)}" filterStyle="display:none" sortBy="#{projeto.getStatusString(projeto.status)}" style="text-align: center">
+                            <p:column style="text-align: center"
+                                      headerText="Status" 
+                                      filterBy="#{projeto.getStatusString(projeto.status)}" 
+                                      filterStyle="display:none" 
+                                      sortBy="#{projeto.getStatusString(projeto.status)}" 
+                                      >
                                 <h:outputText value="#{buscaProjetoEmpreendedorBean.retornaProjetoStatus(projeto)}"></h:outputText>
                             </p:column>
                             <p:column headerText="Ações" style="width: 23%; text-align: center">
@@ -210,7 +215,7 @@
                                                         title="Excluir o Plano de Negócio" 
                                                         onclick="confirmacaoDeExclusao()"
                                                         rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
-                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto()}"
+                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto(projeto)}"
                                                         icon="fa fa-trash"    
                                                         value="Excluir"
                                                        >

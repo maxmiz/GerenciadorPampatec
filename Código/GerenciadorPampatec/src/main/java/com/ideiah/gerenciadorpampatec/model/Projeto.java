@@ -203,8 +203,19 @@ public class Projeto implements java.io.Serializable {
         return this.status;
     }
 
+    /**
+     * <p>
+     * Método que retorna o status do projeto para ser utilizado na interface.
+     * </p>
+     *
+     * @param status
+     * @return
+     */
     public String getStatusString(int status) {
-        String statusDescricao = "";
+        /**
+         * Caso não encontre o status procurado, retorna "Status Inexistente".
+         */
+        String statusDescricao = "Status Inexistente! [Projeto.java]";
 
         switch (status) {
             case ELABORACAO:
@@ -236,12 +247,14 @@ public class Projeto implements java.io.Serializable {
                 break;
             case RESUBMETIDO:
                 statusDescricao = "Ressubmetido";
+                break;
             case REVISANDO:
                 statusDescricao = "Necessita Melhoria";
+                break;
+            default:
+                break;
         }
-
         return statusDescricao;
-
     }
 
     public void setStatus(Integer status) {
