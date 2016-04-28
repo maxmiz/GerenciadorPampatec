@@ -354,17 +354,18 @@
 
                                         <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
-                                        <p:inputText id="empresaProjeto" 
-                                                     class="form-control"
+                                        <h:inputTextarea id="empresaProjeto" 
+                                                     class="form-control semResize"
                                                      onblur="verificaNegocio();"
                                                      value="#{projetoBean.projeto.nome}"
+                                                     rows="1"
                                                      >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroNome"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{projetoBean.salvarProjeto()}"/>
                                             <!--<p:ajax update=":form_revisao" event="change"/>-->
-                                        </p:inputText>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
 
