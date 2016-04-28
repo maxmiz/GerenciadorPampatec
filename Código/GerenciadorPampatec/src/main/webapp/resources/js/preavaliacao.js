@@ -344,7 +344,7 @@ function verificaComentarioNegocioPreAvaliar() {
 
     var comentarioSegmentoDeClientes = document.getElementById("formulario_comentarpreavalizar:segmentoDeCliente2");
     var comentarioPropostaDeValor = document.getElementById("formulario_comentarpreavalizar:propostaDeValor2");
-    var comentarioAtividadesChave = document.getElementById("formulario_comentarpreavalizar:atividadesChaves2");
+    var comentarioAtividadesChave = document.getElementById("formulario_comentarpreavalizar:atividadesChave2");
     var tabNegocio = document.getElementById("tabNegocio");
     var listaCampos = new Array();
 
@@ -352,7 +352,7 @@ function verificaComentarioNegocioPreAvaliar() {
     listaCampos[1] = comentarioPropostaDeValor;
     listaCampos[2] = comentarioAtividadesChave;
 
-    mudarCorLista(listaCampos, tabNegocio, "Negócio");
+    mudarCorListaPreAvaliar(listaCampos, tabNegocio, "Negócio");
 }
 
 
@@ -375,7 +375,7 @@ function verificaComentarioAnaliseMercadoRevisar() {
     mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
-function verificaComentarioAnaliseMercadoAvaliar() {
+function verificaComentarioAnaliseMercadoPreAvaliar() {
 
     var comentarioRelacaoComClientes = document.getElementById("formulario_comentarpreavalizar:relacaoClientes2");
     var comentarioParceriasChave = document.getElementById("formulario_comentarpreavalizar:parceriasChave2");
@@ -391,7 +391,7 @@ function verificaComentarioAnaliseMercadoAvaliar() {
     listaCampos[3] = comentarioRecursosPrincipais;
     listaCampos[4] = comentarioConcorrentes;
 
-    mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
+    mudarCorListaPreAvaliar(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
 function verificaComentarioProdutoServicoRevisar() {
@@ -418,9 +418,9 @@ function verificaComentarioProdutoServicoRevisar() {
     mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
 }
 
-function verificaComentarioProdutoServicoAvaliar() {
+function verificaComentarioProdutoServicoPreAvaliar() {
     
-    var comentarioEstagioEvolucao = document.getElementById("formulario_comentarpreavalizar:comentarioEstagioEvolucao2");
+    var comentarioEstagioEvolucao = document.getElementById("formulario_comentarpreavalizar:estagioEvolucao2");
     var comentarioTecnologiaProcessos = document.getElementById("formulario_comentarpreavalizar:tecnologiaProcessos2");
     var comentarioPotencialInovacaoTecnologica = document.getElementById("formulario_comentarpreavalizar:potencialInovacaoTecnologica2");
     var comentarioAplicacoes = document.getElementById("formulario_comentarpreavalizar:aplicacoes2");
@@ -440,7 +440,7 @@ function verificaComentarioProdutoServicoAvaliar() {
     listaCampos[6] = comentarioInteracaoEmpresaComunidadeGoverno;
     listaCampos[7] = comentarioInfraestrutura;
 
-    mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
+    mudarCorListaPreAvaliar(listaCampos, tabProdutoServico, "Produto ou Serviço");
 }
 
 function verificaComentarioGestaoPessoasRevisar() {
@@ -454,6 +454,19 @@ function verificaComentarioGestaoPessoasRevisar() {
     listaCampos[1] = comentarioPotencialEmprego;
 
     mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
+}
+
+function verificaComentarioGestaoPessoasPreAvaliar() {
+
+    var comentarioParticipacaoAcionaria = document.getElementById("formulario_comentarpreavalizar:participacaoAcionaria2");
+    var comentarioPotencialEmprego = document.getElementById("formulario_comentarpreavalizar:potencialEmprego2");
+    var tabGestaoPessoas = document.getElementById("tabGestaoPessoas");
+    var listaCampos = new Array();
+
+    listaCampos[0] = comentarioParticipacaoAcionaria;
+    listaCampos[1] = comentarioPotencialEmprego;
+
+    mudarCorListaPreAvaliar(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
 function verificaComentarioPlanoFinanceiroRevisar() {
@@ -475,7 +488,7 @@ function verificaComentarioPlanoFinanceiroRevisar() {
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
-function verificaComentarioPlanoFinanceiroAlaviar() {
+function verificaComentarioPlanoFinanceiroPreAvaliar() {
 
     var comentarioFontesDeReceita = document.getElementById("formulario_comentarpreavalizar:fontesDeReceita2");
     var comentarioEstruturaCustos = document.getElementById("formulario_comentarpreavalizar:estruturaCustos2");
@@ -491,7 +504,7 @@ function verificaComentarioPlanoFinanceiroAlaviar() {
     listaCampos[3] = comentarioTabelaCustoFixo;
     listaCampos[4] = comentarioTabelaCustoVariavel;
 
-    mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
+    mudarCorListaPreAvaliar(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
 function mudarCorLista(listaCampos, tab, nomeCampo) {
@@ -511,6 +524,25 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
     } else {
         tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
         tab.style.color = "red";
+    }
+}
+
+function mudarCorListaPreAvaliar(listaCampos, tab, nomeCampo) {
+    var flagCompleto = false;
+    for (var i = 0; i < listaCampos.length; i++) {
+        if (verificaPreenchimentoComentario(listaCampos[i])) {
+            flagCompleto = false;
+            break;
+        } else {
+            flagCompleto = true;
+        }
+    }
+
+    if (flagCompleto) {
+        tab.innerHTML = nomeCampo;
+    } else {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
+        tab.style.color = "orange";
     }
 }
 
