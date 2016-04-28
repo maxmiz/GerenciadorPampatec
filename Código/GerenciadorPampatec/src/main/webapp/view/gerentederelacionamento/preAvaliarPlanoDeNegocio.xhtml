@@ -124,7 +124,7 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
-            
+
             var myEvent = window.attachEvent || window.addEventListener;
             var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compitable
 
@@ -298,6 +298,7 @@
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                     <h:inputTextarea id="segmentoDeClientes" 
                                                      class="form-control semResize"
+                                                     onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
@@ -1091,6 +1092,7 @@
                                 <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
                                     <h:inputTextarea class="form-control semResize" 
                                                      onchange="precisaSalvar = true;"  
+                                                     rows="5"
                                                      id="campoObservacoes" 
                                                      value="#{preAvaliarPlanoBean.comentarioProjeto.consideracoesPersonalizadas}">
                                         <f:ajax execute="@form"
