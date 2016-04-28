@@ -104,10 +104,13 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         this.projetoSelecionado = projetoSelecionado;
     }
     /**
+     * <p>
      * Retorna o status do projeto de acordo com as necessidades do empreendedor,
      * Empreendedor não sabe quando o projeto está sendo avaliado ou quando está em
-     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.
-     * @param proj 
+     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.</p>
+     * 
+     * @param proj O objeto do projeto.
+     * @return O status do projeto.
      */
     public String retornaProjetoStatus(Projeto proj){
         if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
@@ -149,6 +152,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
     /**
      * Deleta o projeto que o usuário selecionou.
+     * @param projeto
      */
     public void deletarProjeto(Projeto projeto) {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
