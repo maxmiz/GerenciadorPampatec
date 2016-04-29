@@ -192,7 +192,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      * Salvar pré-avaliação do projeto via botão "Terminar Pré-avaliação".
      * </p>
      */
-    public void salvarPreAvaliacao() {
+    private void salvarPreAvaliacao() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
