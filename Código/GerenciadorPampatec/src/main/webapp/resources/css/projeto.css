@@ -457,10 +457,11 @@ fieldset[disabled] .autoCompletar input {
     color: white;
 }
 
-.ui.button.botaoPreto{
+.ui-button.botaoPreto{
     background-color: black;
     color: white;
 }
+
 .ui-button.botaoPreto:hover{
     background-image: -webkit-gradient(
         linear,
@@ -488,8 +489,8 @@ fieldset[disabled] .autoCompletar input {
     background-image: none;
     border: none;
     border: 1px solid transparent;
-    padding: 10px 18px;
-    font-size: 15px;
+    padding: 8px;
+    font-size: 16px;
     line-height: 1.42857143;
     border-radius: 0;
     margin-left: 1%;
