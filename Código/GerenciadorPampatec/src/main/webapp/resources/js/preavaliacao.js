@@ -396,7 +396,7 @@ function verificaComentarioAnaliseMercadoPreAvaliar() {
 
 function verificaComentarioProdutoServicoRevisar() {
     
-    var comentarioEstagioEvolucao = document.getElementById("formulario_resubmeterplano:comentarioEstagioEvolucao3");
+    var comentarioEstagioEvolucao = document.getElementById("formulario_resubmeterplano:estagioEvolucao3");
     var comentarioTecnologiaProcessos = document.getElementById("formulario_resubmeterplano:tecnologiaProcessos3");
     var comentarioPotencialInovacaoTecnologica = document.getElementById("formulario_resubmeterplano:potencialInovacaoTecnologica3");
     var comentarioAplicacoes = document.getElementById("formulario_resubmeterplano:aplicacoes3");
