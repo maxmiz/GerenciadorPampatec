@@ -163,7 +163,11 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-                            <h:commandButton action="#{preAvaliarPlanoBean.salvarPreAvaliacao()}" type="submit" class="btn btn-success" value="Salvar Plano de Projeto"></h:commandButton>
+                            <h:commandButton action="#{preAvaliarPlanoBean.salvarViaAjax()}" 
+                                             type="submit" 
+                                             class="btn btn-success" 
+                                             value="Salvar Plano de Projeto">
+                            </h:commandButton>
                         </div>
                     </div>
                 </div>
@@ -317,7 +321,7 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -345,7 +349,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -377,7 +381,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="atividadesChave"/>
@@ -426,7 +430,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor4 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="relacoComClientes"/>
@@ -455,7 +459,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor5 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="parceriasChaves"/>
@@ -484,7 +488,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor6 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="canais"/>
@@ -513,7 +517,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor7 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="recursosPrincipais"/>
@@ -541,7 +545,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor8 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="concorrentes"/>
@@ -589,7 +593,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor9 mensagemSalvamento"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="estagioDeEvolucao"/>
@@ -618,7 +622,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor10 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="tecnologiaProcessos"/>
@@ -647,7 +651,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor11 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="potencialInovacaoTecnologica"/>
@@ -676,7 +680,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor12 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="aplicacoes"/>
@@ -705,7 +709,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor13 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="dificuldadesEsperadas"/>
@@ -733,7 +737,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor14 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="interacaoEmpresaUniversidade"/>
@@ -762,7 +766,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor15 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/>
@@ -791,7 +795,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor16 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="infraestrutura"/>
@@ -842,7 +846,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor005 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="participacaoAcionaria"/>
@@ -870,7 +874,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor006 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="potencialEmprego"/>
@@ -923,7 +927,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor18 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="fontesDeReceita"/>
@@ -955,7 +959,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor19 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="estruturaCustos"/>
@@ -984,7 +988,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor20 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="investimentoInicial"/>
@@ -1022,7 +1026,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor21 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="preAvaliar_custoFixo"/>
@@ -1061,7 +1065,7 @@
                                             <f:ajax execute="@form"
                                                     render="formulario_comentarpreavalizar:propostaDeValor23 mensagemSalvamento "
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{preAvaliarPlanoBean.salvar()}"/>                                            
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
                                     </div>
                                     <h:message class="mensagemErro" for="revisao_custoVariavel"/>
@@ -1100,7 +1104,7 @@
                                                 mensagemSalvamento
                                                 formulario_comentarpreavalizar:botaoEnviar"
                                                 onevent="funcaoAjaxSalvo"
-                                                event="change" listener="#{preAvaliarPlanoBean.salvar()}"/>
+                                                event="change" listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                     </h:inputTextarea>
 
                                     <br />
