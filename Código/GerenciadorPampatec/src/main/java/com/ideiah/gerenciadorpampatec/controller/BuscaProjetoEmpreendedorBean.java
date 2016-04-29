@@ -106,14 +106,16 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     /**
      * <p>
      * Retorna o status do projeto de acordo com as necessidades do empreendedor,
-     * Empreendedor não sabe quando o projeto está sendo avaliado ou quando está em
-     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.</p>
+     * Empreendedor não sabe quando o projeto está sendo avaliado, quando está em
+     * avaliação, em submetido ou ressubmetido. Apenas  resultados de avaliação.</p>
      * 
      * @param proj O objeto do projeto.
      * @return O status do projeto.
      */
     public String retornaProjetoStatus(Projeto proj){
-        if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
+        if (proj.getStatus() == Projeto.SENDO_AVALIADO || 
+            proj.getStatus() == Projeto.SUBMETIDO ||
+            proj.getStatus() == Projeto.RESUBMETIDO) {
             return "Em Pré-Avaliação";
         }else if(proj.getStatus() == Projeto.REVISANDO) {
             return "Necessita Melhoria";   
