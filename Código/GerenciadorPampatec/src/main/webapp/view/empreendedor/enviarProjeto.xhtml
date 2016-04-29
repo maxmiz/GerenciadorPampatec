@@ -22,6 +22,7 @@
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js" />
         <h:outputScript library="js" name="mensagemFeedBack.js" />
+        <h:outputScript library="js" name="chamaModal.js"/>
 <!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 -->
@@ -136,6 +137,14 @@
         </h:form>
         <!-- Fim do menu superior -->
 
+        
+         <!-- Script para exibição da info do botão SALVAR -->
+         <script>
+
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
+        </script>
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
         <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
@@ -1134,7 +1143,8 @@
                                                rendered="#{(projetoBean.projeto.getStatus()) == 0}" 
                                                action="#{projetoBean.enviarProjeto()}"
                                                icon="fa fa-paper-plane-o"
-                                               value="Submeter Plano de Negócio">
+                                               value="Submeter Plano de Negócio"
+                                               onclick="chamaModal(modalInfoSalvar)">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->

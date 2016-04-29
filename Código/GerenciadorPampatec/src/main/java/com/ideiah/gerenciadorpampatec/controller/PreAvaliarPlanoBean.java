@@ -143,8 +143,8 @@ public class PreAvaliarPlanoBean implements Serializable {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void retirarSendoAvaliado(){
+
+    public void retirarSendoAvaliado() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         //Gambiarra para resolver o problema do usuário deixar a página
         if (contAnterior == projeto.getContAcesso()) {
@@ -157,26 +157,31 @@ public class PreAvaliarPlanoBean implements Serializable {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
         loginBean.fazLogout();
     }
+
     /**
-     * Atualza a data de avaliação do projeto para data atual
+     * Atualiza a data de avaliação do projeto para data atual
      */
-    private void atualizaDataAvaliacao(){
+    private void atualizaDataAvaliacao() {
         Date data = new Date(System.currentTimeMillis());
         projeto.setDataAvaliacao(data);
     }
 
     /**
-     * Salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
-     * para posterior continuar editando o mesmo.
+     * <p>
+     * Salva a pré-avaliação do projeto através do Ajax, definindo o status para "Em Pré Avaliação".
+     * Deve ser utilizado unicamente no Ajax!
+     * </p>
      */
-    public void salvar() {
-
+    public void salvarViaAjax() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
-        
+
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(getResultadoPreAvaliacao());
+        /**
+         * Deve ser utilizado unicamente nos Ajax.
+         */
+        projeto.setStatusTemp(Projeto.EM_PRE_AVALIACAO);
         projetoDao.salvar(projeto);
 
         salvo = true;
@@ -184,18 +189,18 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * <p>
-     * Método para salvar o pré-projeto quando via botão salvar pré-avaliação.
+     * Salvar pré-avaliação do projeto via botão "Terminar Pré-avaliação".
      * </p>
      */
-    public void salvarPreAvaliacao() {
+    private void salvarPreAvaliacao() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
-        
+
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto); 
-        
+        projetoDao.salvar(projeto);
+
         salvo = true;
 
         getBuscarPlanoDeNegocio();
@@ -293,7 +298,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             default:
                 break;
         }
-        salvar();
+        salvarViaAjax();
     }
 
     /**
