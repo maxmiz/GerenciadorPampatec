@@ -104,15 +104,23 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         this.projetoSelecionado = projetoSelecionado;
     }
     /**
+     * <p>
      * Retorna o status do projeto de acordo com as necessidades do empreendedor,
-     * Empreendedor não sabe quando o projeto está sendo avaliado ou quando está em
-     * avaliação, apenas em submetido, ressubmetido e resultados de avaliação.
-     * @param proj 
+     * Empreendedor não sabe quando o projeto está sendo avaliado, quando está em
+     * avaliação, em submetido ou ressubmetido. Apenas  resultados de avaliação.</p>
+     * 
+     * @param proj O objeto do projeto.
+     * @return O status do projeto.
      */
     public String retornaProjetoStatus(Projeto proj){
-        if (proj.getStatus() == Projeto.SENDO_AVALIADO) {
+        if (proj.getStatus() == Projeto.SENDO_AVALIADO || 
+            proj.getStatus() == Projeto.SUBMETIDO ||
+            proj.getStatus() == Projeto.RESUBMETIDO) {
             return "Em Pré-Avaliação";
-        } return proj.getStatusString(proj.getStatus());
+        }else if(proj.getStatus() == Projeto.REVISANDO) {
+            return "Necessita Melhoria";   
+        }
+        return proj.getStatusString(proj.getStatus());
     }
 
     /**
@@ -130,7 +138,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                     || projetoSelecionado.getStatus() == Projeto.REPROVADO
                     || projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO
                     || projetoSelecionado.getStatus() == Projeto.EM_PRE_AVALIACAO
-                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO) {
+                    || projetoSelecionado.getStatus() == Projeto.SENDO_AVALIADO
+                    || projetoSelecionado.getStatus() == Projeto.REVISANDO) {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("planoDeNegocio/revisarPlanoDeNegocio.jsf");
             
@@ -145,6 +154,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
 
     /**
      * Deleta o projeto que o usuário selecionou.
+     * @param projeto
      */
     public void deletarProjeto(Projeto projeto) {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -187,7 +197,8 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
                 && projeto.verificarReprovado()
                 && projeto.verificarNecessitaAvaliacao()
                 && projeto.verificaReSubmetido()
-                && projeto.verificaEmPreAvaliacao();
+                && projeto.verificaEmPreAvaliacao()
+                && projeto.verificarRevisando();
                 
     }
 

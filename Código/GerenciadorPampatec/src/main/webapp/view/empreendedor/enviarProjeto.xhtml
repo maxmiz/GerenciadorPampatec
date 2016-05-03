@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <f:facet name="last">
@@ -12,12 +13,16 @@
             <h:outputStylesheet library="css" name="outro.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="font-awesome.min.css"  />
+            <h:outputStylesheet library="css" name="ns-default.css"/>
+            <h:outputStylesheet library="css" name="ns-style-growl.css"/>
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js" />
+        <h:outputScript library="js" name="mensagemFeedBack.js" />
+        <h:outputScript library="js" name="chamaModal.js"/>
 <!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 -->
@@ -41,7 +46,7 @@
         </style>
         <meta http-equiv="refresh" content="#{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
     </h:head>
-    <h:body  onload="carregaPagina(), verificarCampos(), carregaFeedBack();">
+    <h:body  onload="carregaPagina(), verificarCampos(), timeoutMensagemFeedBack(SALVO), timeoutMensagemFeedBack(ERRO);">
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
@@ -132,6 +137,14 @@
         </h:form>
         <!-- Fim do menu superior -->
 
+        
+         <!-- Script para exibição da info do botão SALVAR -->
+         <script>
+
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
+        </script>
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
         <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
@@ -277,16 +290,36 @@
             <!-- Fim do Modal de informação do botão Salvar EQUIPE -->
 
 
-            <!-- Modal Plano salvo com sucesso. -->
-            <h:panelGroup class="modal-feedBackSalvar" id="modal-feedBackSalvar" rendered="#{projetoBean.salvou}">
-                <button type="button" onclick="fechaFeedBack();">
-                    <i class="fa fa-times"></i>
-                </button>
-                <br/>
-                <p>O projeto foi salvo com sucesso.</p>
-                <br/>
-            </h:panelGroup>
-            <!-- Fim Modal Plano salvo com sucesso. -->
+             <!-- NOTIFICAÇÕES -->
+
+                <!-- Notificação Plano salvo com sucesso. -->
+                <h:panelGroup layout="block" id="mensagemSalvamento">
+                    <h:panelGroup id="notificacaoSalvo" layout="block" rendered="#{projetoBean.salvou}" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
+                        <div>
+                            <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+                            <p style="padding-left: 15%; margin-top: -17%;">Suas informações foram salvas com sucesso!</p>
+                            <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
+                        </div>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <!-- Fim Notificação Plano salvo com sucesso. -->
+
+                <!-- Notificação erro ao submeter. -->
+                <h:panelGroup layout="block" id="mensagemErroSubmissao">
+                    <ui:repeat value="#{facesContext.getMessageList('formulario_cadastro_projeto:tituloMensagem')}" var="message">
+                        <h:panelGroup id="notificacaoErroSubmissao" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notErro ns-type-notice ns-show animated">
+                            <div>
+                                <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>
+                                <h:message for="formulario_cadastro_projeto:tituloMensagem"/>
+                                <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackErro();"></span>
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
+
+                <!-- Fim Notificação erro ao submeter.. -->
+
+                <!--FIM NOTIFICAÇÕES -->
 
             <!-- Fim dos MODAIS exibidos no formulário -->
 
@@ -330,14 +363,18 @@
 
                                         <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
-                                        <p:inputText id="empresaProjeto" 
-                                                     class="form-control"
+                                        <h:inputTextarea id="empresaProjeto" 
+                                                     class="form-control semResize"
                                                      onblur="verificaNegocio();"
                                                      value="#{projetoBean.projeto.nome}"
+                                                     rows="1"
                                                      >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroNome" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroNome"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                             <!--<p:ajax update=":form_revisao" event="change"/>-->
-                                        </p:inputText>
+                                        </h:inputTextarea>
                                         <br/>
                                     </div>
 
@@ -351,7 +388,10 @@
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroSegmento" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroSegmento"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
                                         <br/>
@@ -366,7 +406,10 @@
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroProposta" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroProposta"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
 
@@ -382,7 +425,10 @@
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAtividades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAtividades"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
                                         <br/>
@@ -418,7 +464,10 @@
                                                          id="relacoComClientes"
                                                          rows="5"
                                                          >    
-                                            <f:ajax execute="@form" render="form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroRelacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroRelacoes"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
 
@@ -434,7 +483,10 @@
                                                          id="parceriasChaves"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroParcerias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroParcerias"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -444,10 +496,14 @@
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
 
-                                        <h:inputTextarea class="form-control" 
+                                        <h:inputTextarea class="form-control semResize"
+                                                         rows="5"
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroCanais" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_canais formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroCanais"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -462,7 +518,10 @@
                                                          value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroRecursos" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroRecursos"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -477,7 +536,10 @@
                                                          value="#{projetoBean.projeto.analiseemprego.concorrentes}"
                                                          rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroConcorrentes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroConcorrentes"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
@@ -514,17 +576,25 @@
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <f:ajax execute="@form" render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                <f:ajax execute="@form"
+                                                        render="form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro"
+                                                        event="change" onevent="funcaoAjaxSalvo"
+                                                        listener="#{projetoBean.salvarProjeto()}"/>
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
-                                                <p:inputText id="campoOutro" 
-                                                             class="form-control" 
+                                                <p:inputTextarea id="campoOutro" 
+                                                             class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{projetoBean.descricaoButtonOutro}" 
-                                                             rendered="#{projetoBean.exibeCampo()}">
-                                                    <f:ajax execute="@form" render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed" event="change" listener="#{projetoBean.salvarProjeto()}"/>
-                                                </p:inputText>
+                                                             rendered="#{projetoBean.exibeCampo()}"
+                                                             rows="5"
+                                                             >
+                                                    <f:ajax execute="@form"
+                                                            render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagensFeed"
+                                                            event="change" onevent="funcaoAjaxSalvo"
+                                                            listener="#{projetoBean.salvarProjeto()}"/>
+                                                </p:inputTextarea>
                                             </div>
                                         </h:panelGroup>
                                         <br/>
@@ -533,11 +603,17 @@
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com os princípios da sustentabilidade empresarial?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
+                                                         rows="5"
                                                          > 
-                                            <f:ajax execute="@form" render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroTecnologias" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroTecnologias"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -546,10 +622,18 @@
                                         <b>Potencial de inovação tecnológica* </b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores que agreguem o uso de novas tecnologias?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                         id="potencialInovacaoTecnologica">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInovacao" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="potencialInovacaoTecnologica"
+                                                         rows="5"
+                                                         >
+                                                         
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_potencial formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInovacao"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -558,11 +642,17 @@
                                         <b>Aplicações* </b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes"/><br/>
                                         A quem se aplica? Como? De que maneira?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
+                                                         rows="5"
                                                          >
-                                            <f:ajax execute="@form" render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAplicacoes" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAplicacoes"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -571,10 +661,17 @@
                                         <b>Dificuldades esperadas* </b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas"/><br/>
                                         Quais são nossas principais limitações?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                         id="dificuldadesEsperadas">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroDificuldades" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="dificuldadesEsperadas"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroDificuldades"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -583,10 +680,17 @@
                                         <b>Interação entre empresa e Universidade* </b><br/>
                                         <h:message id="mensagemErroInteracaoUniversidade" class="mensagemErro" for="interacaoEmpresaUniversidade"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                         id="interacaoEmpresaUniversidade">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoUniversidade" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="interacaoEmpresaUniversidade"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoUniversidade"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -595,10 +699,17 @@
                                         <b>Interação entre empresa, comunidade e governo* </b><br/>
                                         <h:message id="mensagemErroInteracaoGoverno" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                         id="interacaoEmpresaComunidadeGoverno">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInteracaoGoverno" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="interacaoEmpresaComunidadeGoverno"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoGoverno"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -607,10 +718,17 @@
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção* </b><br/>
                                         <h:message id="mensagemErroEstrututura" class="mensagemErro" for="infraestrutura"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                        <h:inputTextarea class="form-control" onchange="precisaSalvar = true;" onblur="verificarProdutoServico()"
+                                        <h:inputTextarea class="form-control semResize" 
+                                                         onchange="precisaSalvar = true;" 
+                                                         onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
-                                                         id="infraestrutura">
-                                            <f:ajax execute="@form" render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstrututura" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="infraestrutura"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroEstrututura"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
 
                                         <br/>
@@ -640,11 +758,16 @@
                                         <b>Descrição da participação acionária* </b><br/>
                                         <h:message id="mensagemErroAcionaria" class="mensagemErro" for="participacaoAcionaria"/><br/>
                                         Haverão sócios? Quanto de participação terão?
-                                        <h:inputTextarea class="form-control"  
+                                        <h:inputTextarea class="form-control semResize"  
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
-                                                         id="participacaoAcionaria">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroAcionaria" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="participacaoAcionaria"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAcionaria"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
@@ -652,11 +775,16 @@
                                         <b>Potencial de geração de emprego e renda* </b><br/>
                                         <h:message id="mensagemErroPotencialEmprego" class="mensagemErro" for="potencialEmprego"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                        <h:inputTextarea class="form-control" 
+                                        <h:inputTextarea class="form-control semResize" 
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
-                                                         id="potencialEmprego">
-                                            <f:ajax execute="@form" render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroPotencialEmprego" event="change" listener="#{projetoBean.salvarProjeto()}"/>
+                                                         id="potencialEmprego"
+                                                         rows="5"
+                                                         >
+                                            <f:ajax execute="@form"
+                                                    render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroPotencialEmprego"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
@@ -676,8 +804,6 @@
 
                             <!-- Ínicio da SEXTA PARTE do formulário para Envio de Projeto Referente ao PLANO FINANCEIRO -->
 
-                            <p:growl id="mensagensFeed" for="formulario_cadastro_projeto:tituloMensagem" showDetail="true"/>
-
                             <div class="tab-pane fade" id="formParte06">
 
                                 <div id="formularioParte06">
@@ -689,11 +815,15 @@
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
                                         Qual segmento de cliente pagará? Haverá segmentos de clientes com gratuidade?
                                         <h:inputTextarea id="fontesDeReceita" 
-                                                         class="form-control"
+                                                         class="form-control semResize"
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
+                                                         rows="5"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroFonteReceita"  listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    render="form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroFonteReceita"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
@@ -702,11 +832,15 @@
                                         <h:message id="mensagemErroEstruturaCusto" class="mensagemErro" for="estruturaCustos"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                         <h:inputTextarea id="estruturaCustos" 
-                                                         class="form-control" 
+                                                         class="form-control semResize" 
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
+                                                         rows="5"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroEstruturaCusto" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    render="form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroEstruturaCusto"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
 
@@ -717,11 +851,15 @@
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial"/><br/>
                                         Quanto de recurso será necessário para iniciar?
                                         <h:inputTextarea id="investimentoInicial"
-                                                         class="form-control"  
+                                                         class="form-control semResize"  
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
+                                                         rows="5"
                                                          >
-                                            <f:ajax execute="@form" event="change" render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagensFeed formulario_cadastro_projeto:mensagemErroInvestimentoInicial" listener="#{projetoBean.salvarProjeto()}"/>
+                                            <f:ajax execute="@form"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    render="form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInvestimentoInicial"
+                                                    listener="#{projetoBean.salvarProjeto()}"/>
 
                                         </h:inputTextarea>
                                         <br/>
@@ -729,16 +867,20 @@
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                         <b>Custos fixos*</b><br/>
                                         Obrigatórios:<br/> 
-                                        -Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
-                                        -Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
+                                        - Pró-Labore (remuneração dos sócios que trabalham na empresa);<br/>
+                                        - Taxa de Participação na Incubadora: Valor médio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
 
                                         <br/>
 
-                                        <p:dataTable id="novaTabelaCustosFixos" editable="true" var="custofixo" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoFixo()}">
+                                        <p:dataTable id="novaTabelaCustosFixos" 
+                                                     editable="true" 
+                                                     var="custofixo" 
+                                                     emptyMessage="Nenhum registro encontrado." 
+                                                     value="#{projetoBean.retornaListaCustoFixo()}"
+                                                     >
 
-
-                                            <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update=" formulario_cadastro_projeto:mensagensFeed" />
-                                            <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update=" formulario_cadastro_projeto:mensagensFeed" />
+                                            <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)" update="formulario_cadastro_projeto:mensagemSalvamento" />
+                                            <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)" update="formulario_cadastro_projeto:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
                                                 <p:cellEditor>
@@ -767,7 +909,10 @@
                                                 <p:rowEditor style="width: "/>
                                                 <h:commandLink title="Excluir o Custo" rendered="#{custofixo.podeExcluir}">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panelCustoFixo" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custofixo)}" render="formulario_cadastro_projeto:panelCustoFixo"/>
+                                                    <f:ajax execute="panelCustoFixo"
+                                                            onevent="atualizaTabAjax"
+                                                            listener="#{projetoBean.deletarLinha(custofixo)}"
+                                                            render="formulario_cadastro_projeto:panelCustoFixo formulario_cadastro_projeto:mensagemSalvamento"/>
                                                 </h:commandLink>    
                                             </p:column>
 
@@ -777,7 +922,8 @@
 
                                         <div class="col-md-6">
                                             <h:commandButton id="botao_adicionar_nova_linha" title="Adicionar nova linha de custo fixo" class="btn btn-default" value="Adicionar Linha" >
-                                                <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos" render="formulario_cadastro_projeto:novaTabelaCustosFixos"
+                                                <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosFixos"
+                                                        render="formulario_cadastro_projeto:novaTabelaCustosFixos formulario_cadastro_projeto:mensagemSalvamento"
                                                         listener="#{projetoBean.adicionarLinhaFixo()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
 
@@ -819,8 +965,8 @@
                                         <p:dataTable id="novaTabelaCustosVariaveis" sortBy="#{custovariavel.descricao}" editable="true" var="custovariavel" emptyMessage="Nenhum registro encontrado." value="#{projetoBean.retornaListaCustoVariavel()}">
 
 
-                                            <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" update="formulario_cadastro_projeto:mensagensFeed " />
-                                            <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" update="formulario_cadastro_projeto:mensagensFeed" />
+                                            <p:ajax event="rowEdit" listener="#{projetoBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)" update="formulario_cadastro_projeto:mensagemSalvamento " />
+                                            <p:ajax event="rowEditCancel" listener="#{projetoBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)" update="formulario_cadastro_projeto:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
                                                 <p:cellEditor>
@@ -847,7 +993,10 @@
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <f:ajax execute="panel_custo_variavel" onevent="atualizaTabAjax" listener="#{projetoBean.deletarLinha(custovariavel)}" render="formulario_cadastro_projeto:panel_custo_variavel"/>
+                                                    <f:ajax execute="panel_custo_variavel"
+                                                            onevent="atualizaTabAjax" 
+                                                            listener="#{projetoBean.deletarLinha(custovariavel)}"
+                                                            render="formulario_cadastro_projeto:panel_custo_variavel formulario_cadastro_projeto:mensagemSalvamento"/>
                                                 </h:commandLink> 
                                             </p:column>
 
@@ -856,7 +1005,8 @@
                                         <div class="col-md-6">
 
                                             <h:commandButton id="botao_adicionar_nova_linhaVariavel" title="Adicionar nova linha de custo variável" class="btn btn-default" value="Adicionar Linha" >
-                                                <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis" render="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
+                                                <f:ajax execute="formulario_cadastro_projeto:novaTabelaCustosVariaveis"
+                                                        render="formulario_cadastro_projeto:novaTabelaCustosVariaveis formulario_cadastro_projeto:mensagemSalvamento"
                                                         listener="#{projetoBean.adicionarLinhaVariavel()}" onevent="atualizaTabAjax"></f:ajax>                                
                                             </h:commandButton>
                                         </div>
@@ -988,13 +1138,17 @@
                             <div class="col-md-12 text-center">
                                 <br/>
 
-                                <h:commandLink class="btn btn-success" title="Submeter Plano de Negócio" rendered="#{(projetoBean.projeto.getStatus()) == 0}" action="#{projetoBean.enviarProjeto()}">
+                                <p:commandButton class="botaoBase botaoVerde"
+                                               title="Submeter Plano de Negócio" 
+                                               rendered="#{(projetoBean.projeto.getStatus()) == 0}" 
+                                               action="#{projetoBean.enviarProjeto()}"
+                                               icon="fa fa-paper-plane-o"
+                                               value="Submeter Plano de Negócio"
+                                               onclick="chamaModal(modalInfoSalvar)">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
-
-                                    <label style="color: white; cursor: pointer;"><i class="fa fa-paper-plane-o"></i>  Submeter Plano de Negócio </label>  
-                                </h:commandLink>
+                                </p:commandButton>
                             </div>
 
                         </div>

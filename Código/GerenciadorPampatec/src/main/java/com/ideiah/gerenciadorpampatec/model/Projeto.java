@@ -28,6 +28,7 @@ public class Projeto implements java.io.Serializable {
     public static final int NECESSITA_MELHORIA = 7;
     public static final int DEFININDO_EQUIPE = 8;
     public static final int EM_PRE_AVALIACAO = 12;
+    public static final int REVISANDO = 13;
 
     private Integer idProjeto;
     private Analiseemprego analiseemprego;
@@ -36,6 +37,7 @@ public class Projeto implements java.io.Serializable {
     private Produtoouservico produtoouservico;
     private String nome;
     private Date dataEnvio;
+    private Date dataAvaliacao;
     private Integer status;
     private String potencialEmprego;
     private Set empreendedores = new HashSet(0);
@@ -118,6 +120,20 @@ public class Projeto implements java.io.Serializable {
             return "Plano não enviado.";
         }
     }
+        
+    /**
+     * Método para data de edição. Retorna a data de edição, ou 
+     * indica que o plano não foi editado ainda.
+     * @return dataAvaliacao
+     */
+    public String formatarDataAvaliacao() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (getDataAvaliacao() != null) {
+            return formato.format(getDataAvaliacao());
+        } else {
+            return "Plano não avaliado";
+        }
+    }
 
     public Integer getIdProjeto() {
         return this.idProjeto;
@@ -174,13 +190,32 @@ public class Projeto implements java.io.Serializable {
     public void setDataEnvio(Date dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
+    
+    public Date getDataAvaliacao() {
+        return dataAvaliacao;
+    }
+
+    public void setDataAvaliacao(Date dataAvaliacao) {
+        this.dataAvaliacao = dataAvaliacao;
+    }
 
     public Integer getStatus() {
         return this.status;
     }
 
+    /**
+     * <p>
+     * Método que retorna o status do projeto para ser utilizado na interface.
+     * </p>
+     *
+     * @param status
+     * @return
+     */
     public String getStatusString(int status) {
-        String statusDescricao = "";
+        /**
+         * Caso não encontre o status procurado, retorna "Status Inexistente".
+         */
+        String statusDescricao = "Status Inexistente! [Projeto.java]";
 
         switch (status) {
             case ELABORACAO:
@@ -212,10 +247,14 @@ public class Projeto implements java.io.Serializable {
                 break;
             case RESUBMETIDO:
                 statusDescricao = "Ressubmetido";
+                break;
+            case REVISANDO:
+                statusDescricao = "Necessita Melhoria";
+                break;
+            default:
+                break;
         }
-
         return statusDescricao;
-
     }
 
     public void setStatus(Integer status) {
@@ -379,6 +418,9 @@ public class Projeto implements java.io.Serializable {
         public boolean verificarNecessitaAvaliacao(){
         return this.getStatus() != Projeto.NECESSITA_MELHORIA;
     }
+        public boolean verificarRevisando(){
+            return this.getStatus() != Projeto.REVISANDO;
+        }
             /**
      * Verifica se o projeto está em avaliação
      * @return 
@@ -436,5 +478,7 @@ public class Projeto implements java.io.Serializable {
     public void setStatusTemp(Integer statusTemp) {
         this.statusTemp = statusTemp;
     }
+
+    
 
 }

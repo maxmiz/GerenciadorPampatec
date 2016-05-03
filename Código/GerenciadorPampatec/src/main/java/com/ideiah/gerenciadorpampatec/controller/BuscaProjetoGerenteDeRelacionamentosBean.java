@@ -8,6 +8,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.util.ComparadorAvaliacaoUtil;
 import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
-        this.atualizaListaProjetosPreAvaliacao();
+        this.atualizaListaProjetosTodos();
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
@@ -351,15 +352,39 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
             Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-/**
-     * Usa a classe Collection pra arrumar a lista por ordem de envio, com o mais velho primeiro
-     * depois reverte essa lista pra mostrar o ultimo enviado primeiro..
-     * @param lista
-     * Não retorna lista, ele ordena dentro dela mesma.
+
+    /**
+     * <p>
+     * Usa a classe Collection pra arrumar a lista por ordem de alteração
+     * e envio, com o mais novo alterado em cima, seguido dos mais novos 
+     * enviados. A lista é reordenada separadamente e reordenada
+     * @param lista Não retorna lista, ele ordena dentro dela mesma.
+     * </p>
      */
-    private void sortByDate(ArrayList<Projeto> lista) {
-        Collections.sort(lista, new ComparadorEnvioUtil());
-        Collections.reverse(lista);
+    public void sortByDate(ArrayList<Projeto> lista) {
+
+        ArrayList<Projeto> avaliados = new ArrayList();
+        ArrayList<Projeto> naoavaliados = new ArrayList();
+
+        for (Projeto plano : lista) {
+            if (plano.getDataAvaliacao() == null) {
+                naoavaliados.add(plano);
+            } else {
+                avaliados.add(plano);
+            }
+        }
+
+        Collections.sort(naoavaliados, new ComparadorEnvioUtil());
+        Collections.reverse(naoavaliados);
+
+        Collections.sort(avaliados, new ComparadorAvaliacaoUtil());
+        Collections.reverse(avaliados);
+
+        lista.clear();
+        
+        lista.addAll(avaliados);
+        lista.addAll(naoavaliados);
+
     }
 
     /**

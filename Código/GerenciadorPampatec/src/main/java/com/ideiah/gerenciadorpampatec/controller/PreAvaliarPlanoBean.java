@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -35,6 +36,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     private LoginBean loginBean;
     private int resultadoPreAvaliacao;
     private int contAnterior;
+    private boolean salvo;
 
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -85,6 +87,9 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
+        
+        atualizaDataAvaliacao();
+        
         ProjetoDao dao = new ProjetoDao();
         dao.update(projeto);
         session.setAttribute("projetoSelecionado", projeto);
@@ -131,16 +136,20 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     public void mudaStatusRedirecionaLista() {
+        mudaStatusProjetoParaEmPreAvaliacao(projeto);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
+        } catch (Exception ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void retirarSendoAvaliado() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         //Gambiarra para resolver o problema do usuário deixar a página
         if (contAnterior == projeto.getContAcesso()) {
             mudaStatusProjetoParaEmPreAvaliacao(projeto);
             session.removeAttribute("projetoSelecionado");
-        }
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
-        } catch (Exception ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -150,40 +159,49 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Salva a preavaliao do projeto realizada pelo Gerente de Relacionamentos
-     * para posterior continuar editando o mesmo.
+     * Atualiza a data de avaliação do projeto para data atual
      */
-    public void salvar() {
-
-        ComentarioDao comentDao = new ComentarioDao();
-        comentarioProjeto.setProjeto(projeto);
-        comentDao.salvar(comentarioProjeto);
-        
-        ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto);
-
-        /**
-         * Para exibir a mensagem de salvo com sucesso.
-         */
-        FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("formulario_comentarpreavalizar:tituloMensagem", msg);
+    private void atualizaDataAvaliacao() {
+        Date data = new Date(System.currentTimeMillis());
+        projeto.setDataAvaliacao(data);
     }
 
     /**
      * <p>
-     * Método para salvar o pré-projeto quando via botão salvar pré-avaliação.
+     * Salva a pré-avaliação do projeto através do Ajax, definindo o status para "Em Pré Avaliação".
+     * Deve ser utilizado unicamente no Ajax!
      * </p>
      */
-    public void salvarPreAvaliacao() {
+    public void salvarViaAjax() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
         comentDao.salvar(comentarioProjeto);
-        
+
+        ProjetoDao projetoDao = new ProjetoDao();
+        /**
+         * Deve ser utilizado unicamente nos Ajax.
+         */
+        projeto.setStatusTemp(Projeto.EM_PRE_AVALIACAO);
+        projetoDao.salvar(projeto);
+
+        salvo = true;
+    }
+
+    /**
+     * <p>
+     * Salvar pré-avaliação do projeto via botão "Terminar Pré-avaliação".
+     * </p>
+     */
+    private void salvarPreAvaliacao() {
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.setProjeto(projeto);
+        comentDao.salvar(comentarioProjeto);
+
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto);        
+        projetoDao.salvar(projeto);
+
+        salvo = true;
 
         getBuscarPlanoDeNegocio();
     }
@@ -225,8 +243,9 @@ public class PreAvaliarPlanoBean implements Serializable {
                 
                 mudaStatusComentarioProjetoFinalizar();
                 
-                ProjetoDao projDao = new ProjetoDao();
-                projDao.salvar(projeto);
+                atualizaDataAvaliacao();
+                
+                salvarPreAvaliacao();
                 
                 getBuscarPlanoDeNegocio();
             }
@@ -279,7 +298,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             default:
                 break;
         }
-        salvar();
+        salvarViaAjax();
     }
 
     /**
@@ -375,6 +394,20 @@ public class PreAvaliarPlanoBean implements Serializable {
         if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
             comentarioProjeto.setStatus(2);
         }
+    }
+
+    /**
+     * @return the salvo
+     */
+    public boolean isSalvo() {
+        return salvo;
+    }
+
+    /**
+     * @param salvo the salvo to set
+     */
+    public void setSalvo(boolean salvo) {
+        this.salvo = salvo;
     }
 
 }
