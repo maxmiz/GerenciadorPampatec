@@ -38,11 +38,11 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     }
 
-    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
+    public ComentarioProjeto(int idcomentario) {
         this.idcomentario = idcomentario;
     }
 
-    public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
+    public ComentarioProjeto(int idcomentario, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
         this.idcomentario = idcomentario;
         this.nome = nome;
         this.participacaoacionaria = participacaoacionaria;
@@ -152,95 +152,95 @@ public class ComentarioProjeto implements java.io.Serializable {
         int FLAG = 0;
 
         //NEGOCIO
-        if (!this.getComentarionegocio().getSegmentoClientes().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarionegocio().getPropostaValor().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.PROPOSTA_VALOR).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarionegocio().getAtividadesChaves().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE).equals("")) {
             FLAG++;
         }
         //ANALISE DE MERCADO
-        if (!this.getComentarioanaliseemprego().getRelacoesClientes().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.RELACOES_CLIENTE).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioanaliseemprego().getParceriasChaves().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioanaliseemprego().getCanais().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.CANAIS).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioanaliseemprego().getRecursosPrincipais().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioanaliseemprego().getConcorrentes().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.CONCORRENTES).equals("")) {
             FLAG++;
         }
         //PRODUTO OU SERVIÇO
-        if (!this.getComentarioprodutoouservico().getEstagioEvolucao().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getTecnologiaProcessos().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getPotencialInovacaoTecnologica().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getAplicacoes().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.APLICACOES).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getDificuldadesEsperadas().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getInteracaoEmpresaUniversidade().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getInteracaoEmpresaComunidadeGoverno().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioprodutoouservico().getInfraestrutura().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.INFRAESTRUTURA).equals("")) {
             FLAG++;
         }
         //GESTAO DE PESSOAS
-        if (!this.getParticipacaoacionaria().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA).equals("")) {
             FLAG++;
         }
 
-        if (!this.getPotencialemprego().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO).equals("")) {
             FLAG++;
         }
         //PLANO FINANCEIRO
-        if (!this.getComentarioplanofinanceiro().getFontesReceita().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.FONTES_RECEITA).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioplanofinanceiro().getEstruturaCusto().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioplanofinanceiro().getInvestimentoInicial().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioplanofinanceiro().getCustosfixos().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.CUSTOS_FIXOS).equals("")) {
             FLAG++;
         }
 
-        if (!this.getComentarioplanofinanceiro().getCustosvariaveis().equals("")) {
+        if (!retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS).equals("")) {
             FLAG++;
         }
         return FLAG;
