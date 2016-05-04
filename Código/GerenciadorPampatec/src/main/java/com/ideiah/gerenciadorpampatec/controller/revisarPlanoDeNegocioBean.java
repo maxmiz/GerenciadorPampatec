@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -46,12 +47,17 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private List<Custo> listaCustoVariavel;
     private int somatorioFixo;
     private int somatorioVariavel;
+    @ManagedProperty(value="#{sessionBean}")
+    private SessionBean sessionBean;
 
     public revisarPlanoDeNegocioBean() {
-
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        projeto = (Projeto) session.getAttribute("projetoSelecionado");
-        empreendedorSession = (Empreendedor) session.getAttribute("empreendedor");
+        
+    }
+    
+    @PostConstruct
+    private void init(){
+        projeto = (Projeto) sessionBean.getSession().getAttribute("projetoSelecionado");
+        empreendedorSession = (Empreendedor) sessionBean.getSession().getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
         listaCustoFixo = new ArrayList<>();
@@ -146,7 +152,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public boolean verificaExistenciaComentarioProjeto(Projeto projetoSelecionado) {
         if (projetoSelecionado.getStatus() == Projeto.ACEITO_PARA_AVALIACAO) {
 
-            if (comentarioProjeto.verificaCampos() != 0) {
+            if (comentarioProjeto != null && comentarioProjeto.verificaCampos() != 0) {
                 return true;
             }
 
@@ -785,5 +791,19 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     public void setSomatorioVariavel(int somatorioVariavel) {
         this.somatorioVariavel = somatorioVariavel;
+    }
+
+    /**
+     * @return the sessionBean
+     */
+    public SessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    /**
+     * @param sessionBean the sessionBean to set
+     */
+    public void setSessionBean(SessionBean sessionBean) {
+        this.sessionBean = sessionBean;
     }
 }
