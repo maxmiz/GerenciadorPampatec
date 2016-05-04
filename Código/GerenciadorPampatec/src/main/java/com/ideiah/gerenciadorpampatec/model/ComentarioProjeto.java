@@ -17,8 +17,7 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     public static final int EM_ANDAMENTO = 1;
     public static final int FINALIZADO = 2;
-    
-    
+
     private int idcomentario;
     private String nome;
     private String participacaoacionaria;
@@ -28,8 +27,30 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Integer status;
     private String consideracoesPersonalizadas;
     private Set textocomentarios = new HashSet(0);
-  
-    
+    public static final int SEGMENTO_CLIENTE = 1;
+    public static final int PROPOSTA_VALOR = 2;
+    public static final int ATIVIDADES_CHAVE = 3;
+    public static final int RELACOES_CLIENTE = 4;
+    public static final int PARCERIAS_CHAVE = 5;
+    public static final int CANAIS = 6;
+    public static final int RECURSOS_PRINCIPAIS = 7;
+    public static final int CONCORRENTES = 8;
+    public static final int ESTAGIO_EVOLUCAO = 9;
+    public static final int TECNOLOGIA_PROCESSOS = 10;
+    public static final int POTENCIAL_INOVACAO_TECNOLOGICA = 11;
+    public static final int APLICACOES = 12;
+    public static final int DIFICULDADES_ESPERADAS = 13;
+    public static final int INTERACAO_EMPRESA_UNIVERSIDADE = 14;
+    public static final int INTERACAO_EMPRESA_COMUNIDADE_GOVERNO = 15;
+    public static final int INFRAESTRUTURA = 16;
+    public static final int PARTICIPACAO_ACIONARIA = 17;
+    public static final int POTENCIAL_EMPREGO = 18;
+    public static final int FONTES_RECEITA = 19;
+    public static final int ESTRUTURA_CUSTO = 20;
+    public static final int INVESTIMENTO_INICIAL = 21;
+    public static final int CUSTOS_FIXOS = 22;
+    public static final int CUSTOS_VARIAVEISS = 23;
+
     public ComentarioProjeto() {
         nome = "";
         participacaoacionaria = "";
@@ -37,7 +58,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         consideracoes = "";
         consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
-        
+
     }
 
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
@@ -59,8 +80,6 @@ public class ComentarioProjeto implements java.io.Serializable {
     public void setIdcomentario(int idcomentario) {
         this.idcomentario = idcomentario;
     }
-
-    
 
     public String getNome() {
         return this.nome;
@@ -107,16 +126,18 @@ public class ComentarioProjeto implements java.io.Serializable {
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
     }
-      public Integer getStatus() {
+
+    public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
     }
-    public String getStatusString(int status){
+
+    public String getStatusString(int status) {
         String statusDescricao = "";
-        switch(status){
+        switch (status) {
             case EM_ANDAMENTO:
                 statusDescricao = "Em andamento";
                 break;
@@ -140,12 +161,12 @@ public class ComentarioProjeto implements java.io.Serializable {
     public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
         this.consideracoesPersonalizadas = consideracoesPersonalizadas;
     }
-    
-    public String todasConsideracoes(){
+
+    public String todasConsideracoes() {
         return consideracoes + "\n" + consideracoesPersonalizadas;
     }
-    
-        /**
+
+    /**
      * <p>
      * Retorna a quantidade de campos comentário vazios
      * </p>
@@ -261,6 +282,5 @@ public class ComentarioProjeto implements java.io.Serializable {
     public void setTextocomentarios(Set textocomentarios) {
         this.textocomentarios = textocomentarios;
     }
-    
 
 }
