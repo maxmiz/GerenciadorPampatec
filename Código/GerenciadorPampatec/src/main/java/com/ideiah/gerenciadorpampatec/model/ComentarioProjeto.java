@@ -26,7 +26,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Projeto projeto;
     private Integer status;
     private String consideracoesPersonalizadas;
-    private Set textocomentarios = new HashSet(0);
+    private Set<Textocomentario> textocomentarios = new HashSet(0);
 
     public ComentarioProjeto() {
         nome = "";
@@ -249,16 +249,28 @@ public class ComentarioProjeto implements java.io.Serializable {
     /**
      * @return the textocomentarios
      */
-    public Set getTextocomentarios() {
+    public Set<Textocomentario> getTextocomentarios() {
         return textocomentarios;
     }
 
     /**
      * @param textocomentarios the textocomentarios to set
      */
-    public void setTextocomentarios(Set textocomentarios) {
+    public void setTextocomentarios(Set<Textocomentario> textocomentarios) {
         this.textocomentarios = textocomentarios;
     }
 
+    
+    public String retornaTextoComentario(int tipo) {
+        
+        String textoComentario = null;
+        
+        for (Textocomentario objetoTextoComentario : textocomentarios) {
+            if(objetoTextoComentario.getTipo() == tipo){
+                textoComentario = objetoTextoComentario.getTexto();
+            }
+        }
+        return textoComentario;
+    }
 }
 
