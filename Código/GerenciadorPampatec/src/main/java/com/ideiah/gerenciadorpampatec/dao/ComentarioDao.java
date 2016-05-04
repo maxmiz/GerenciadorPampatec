@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import java.io.Serializable;
 import org.hibernate.HibernateException;
 
@@ -18,30 +19,21 @@ public class ComentarioDao extends Dao implements Serializable{
 //<editor-fold defaultstate="collapsed" desc="Salvar">
     
     
-    public boolean salvarComentarioAnalise(ComentarioAnaliseEmprego comentarioanaliseemprego){
-        return super.salvar(comentarioanaliseemprego);
-    }
-    
-  
-    public boolean salvarComentarioNegocio(ComentarioNegocio comentarionegocio){
-        return super.salvar(comentarionegocio);
-    }
-       
-    
-    public boolean salvarComentarioPlanoFinanceiro(ComentarioPlanoFinanceiro comentarioplanofinanceiro){
-        return super.salvar(comentarioplanofinanceiro);
-    }   
-    
-    
-    public boolean salvarComentarioProdutoOuServico(ComentarioProdutoOuServico comentarioproduto){
-        return super.salvar(comentarioproduto);
-    }
      
     //salva o objeto comentario inteiro no banco
     public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
         return super.salvar(comentarioprojeto);
-       
     }
+    
+    /**
+     * Salva o texto comentário no banco.
+     * @param comentario comentário a se salvar
+     * @return true se foi salvo
+     */
+    public boolean  salvarTextoComentario(Textocomentario comentario){
+        return super.salvar(comentario);
+    }
+    
     public ComentarioProjeto salvarRetornandoComentarioProjeto(ComentarioProjeto comentarioProjeto) {
         try {
             setTx(getSession().getTransaction());
