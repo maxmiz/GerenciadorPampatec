@@ -502,15 +502,6 @@ fieldset[disabled] .autoCompletar input {
     font-weight: bold;
 }
 
-/* 
-Ocultando a aba de Terminar Avaliação 
-para projetos com Status "Aeito parta Avaliação". 
-*/
-li[value=true]{
-    display: none;
-    visibility: hidden;
-}
-
 .filtro {
     background-color: #4CAF50;
     color: white;
