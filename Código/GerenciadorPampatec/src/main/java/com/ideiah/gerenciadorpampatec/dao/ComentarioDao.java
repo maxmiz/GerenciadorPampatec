@@ -5,10 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.dao;
 
-import com.ideiah.gerenciadorpampatec.model.ComentarioAnaliseEmprego;
-import com.ideiah.gerenciadorpampatec.model.ComentarioNegocio;
-import com.ideiah.gerenciadorpampatec.model.ComentarioPlanoFinanceiro;
-import com.ideiah.gerenciadorpampatec.model.ComentarioProdutoOuServico;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import java.io.Serializable;
 import org.hibernate.HibernateException;

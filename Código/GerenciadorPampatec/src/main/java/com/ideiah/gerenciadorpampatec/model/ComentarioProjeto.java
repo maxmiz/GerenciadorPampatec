@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,10 +20,6 @@ public class ComentarioProjeto implements java.io.Serializable {
     
     
     private int idcomentario;
-    private ComentarioAnaliseEmprego comentarioanaliseemprego;
-    private ComentarioNegocio comentarionegocio;
-    private ComentarioPlanoFinanceiro comentarioplanofinanceiro;
-    private ComentarioProdutoOuServico comentarioprodutoouservico;
     private String nome;
     private String participacaoacionaria;
     private String potencialemprego;
@@ -30,13 +27,10 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Projeto projeto;
     private Integer status;
     private String consideracoesPersonalizadas;
+    private Set textocomentarios = new HashSet(0);
   
     
     public ComentarioProjeto() {
-        comentarioanaliseemprego = new ComentarioAnaliseEmprego();
-        comentarionegocio = new ComentarioNegocio();
-        comentarioplanofinanceiro = new ComentarioPlanoFinanceiro();
-        comentarioprodutoouservico = new ComentarioProdutoOuServico();
         nome = "";
         participacaoacionaria = "";
         potencialemprego = "";
@@ -48,18 +42,10 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico) {
         this.idcomentario = idcomentario;
-        this.comentarioanaliseemprego = comentarioanaliseemprego;
-        this.comentarionegocio = comentarionegocio;
-        this.comentarioplanofinanceiro = comentarioplanofinanceiro;
-        this.comentarioprodutoouservico = comentarioprodutoouservico;
     }
 
     public ComentarioProjeto(int idcomentario, ComentarioAnaliseEmprego comentarioanaliseemprego, ComentarioNegocio comentarionegocio, ComentarioPlanoFinanceiro comentarioplanofinanceiro, ComentarioProdutoOuServico comentarioprodutoouservico, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
         this.idcomentario = idcomentario;
-        this.comentarioanaliseemprego = comentarioanaliseemprego;
-        this.comentarionegocio = comentarionegocio;
-        this.comentarioplanofinanceiro = comentarioplanofinanceiro;
-        this.comentarioprodutoouservico = comentarioprodutoouservico;
         this.nome = nome;
         this.participacaoacionaria = participacaoacionaria;
         this.potencialemprego = potencialemprego;
@@ -74,37 +60,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.idcomentario = idcomentario;
     }
 
-    public ComentarioAnaliseEmprego getComentarioanaliseemprego() {
-        return this.comentarioanaliseemprego;
-    }
-
-    public void setComentarioanaliseemprego(ComentarioAnaliseEmprego comentarioanaliseemprego) {
-        this.comentarioanaliseemprego = comentarioanaliseemprego;
-    }
-
-    public ComentarioNegocio getComentarionegocio() {
-        return this.comentarionegocio;
-    }
-
-    public void setComentarionegocio(ComentarioNegocio comentarionegocio) {
-        this.comentarionegocio = comentarionegocio;
-    }
-
-    public ComentarioPlanoFinanceiro getComentarioplanofinanceiro() {
-        return this.comentarioplanofinanceiro;
-    }
-
-    public void setComentarioplanofinanceiro(ComentarioPlanoFinanceiro comentarioplanofinanceiro) {
-        this.comentarioplanofinanceiro = comentarioplanofinanceiro;
-    }
-
-    public ComentarioProdutoOuServico getComentarioprodutoouservico() {
-        return this.comentarioprodutoouservico;
-    }
-
-    public void setComentarioprodutoouservico(ComentarioProdutoOuServico comentarioprodutoouservico) {
-        this.comentarioprodutoouservico = comentarioprodutoouservico;
-    }
+    
 
     public String getNome() {
         return this.nome;
@@ -290,6 +246,20 @@ public class ComentarioProjeto implements java.io.Serializable {
             FLAG++;
         }
         return FLAG;
+    }
+
+    /**
+     * @return the textocomentarios
+     */
+    public Set getTextocomentarios() {
+        return textocomentarios;
+    }
+
+    /**
+     * @param textocomentarios the textocomentarios to set
+     */
+    public void setTextocomentarios(Set textocomentarios) {
+        this.textocomentarios = textocomentarios;
     }
     
 
