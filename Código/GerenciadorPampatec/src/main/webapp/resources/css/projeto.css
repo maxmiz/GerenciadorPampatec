@@ -57,6 +57,12 @@ legend {
     margin: 1px;
 }
 
+.campoDestacado{
+    border-color: orange;
+    border-width: 2px;
+
+}
+
 .novaAba {
     target-new: tab ! important
 }
