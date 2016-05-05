@@ -296,13 +296,6 @@
                         <li class="abaPlano"><a id="tabProdutoServico" aria-expanded="false" title="Visualizar Produto de Serviço" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
                         <li class="abaPlano"><a id="tabGestaoPessoas" aria-expanded="false" title="Visualizar Gestão de Pessoas" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
                         <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" title="Visualizar Plano Financeiro" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
-                        <li class="abaPlano" value="#{(revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) || revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado))}">
-                            <a id="tabTerminarRevisao"  aria-expanded="false" 
-                               title="Visualizar Terminar Revisão" href="#formParte07" 
-                               data-toggle="tab">
-                                Terminar Revisão
-                            </a>
-                        </li>
                     </ul>
                     <div id="myTabContent" class="tab-content" >
 
@@ -420,7 +413,10 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <p:inputTextarea class="form-control campoFeedBack" rows="5" style="resize: none;"  disabled="true" id="segmentoDeClientes3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        <p:inputTextarea class="form-control campoFeedBack" 
+                                                         rows="5" style="resize: none;"  
+                                                         disabled="true" id="segmentoDeClientes3" 
+                                                         value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
                                         </p:inputTextarea>
                                         <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     </div>
