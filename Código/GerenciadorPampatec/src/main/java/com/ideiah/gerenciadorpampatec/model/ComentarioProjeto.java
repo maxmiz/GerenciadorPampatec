@@ -272,5 +272,75 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
         return textoComentario;
     }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao segmento de clientes.
+     */
+    public String retornarSegmentosClientes(){
+        return retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao proposta de valor.
+     */
+    public String retornarPropostoValor(){
+        return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao atividades chaves.
+     */
+    public String retornarAtividadesChave(){
+        return retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao relações de clientes.
+     */
+    public String retornarRelacoesClientes(){
+        return retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao parcerias chaves.
+     */
+    public String retornarParceriasChave(){
+        return retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao canais.
+     */
+    public String retornarCanais(){
+        return retornaTextoComentario(Textocomentario.CANAIS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a recursos principais.
+     */
+    public String retornarRecursosPrincipais(){
+        return retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a concorrentes.
+     */
+    public String retornarConcorrentes(){
+        return retornaTextoComentario(Textocomentario.CONCORRENTES);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a estagio de evolução.
+     */
+    public String retornarEstagioEvolucao(){
+        return retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a tecnologia e processos.
+     */
+    public String retornarTecnologiaProcesso(){
+        return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
+    }
 }
 
