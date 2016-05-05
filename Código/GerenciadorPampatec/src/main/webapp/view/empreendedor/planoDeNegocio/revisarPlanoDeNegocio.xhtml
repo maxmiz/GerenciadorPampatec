@@ -389,7 +389,7 @@
                                                      class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
-                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.retornarSegmentosClientes() and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.retornarSegmentosClientes() and !revisarPlanoDeNegocioBean.comentarioProjeto.retornarSegmentosClientes().equals('')}"
                                                      >
                                         <f:ajax execute="@form" render="formulario_resubmeterplano:segmentoDeClientes1 formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                     </h:inputTextarea>
@@ -1082,7 +1082,7 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                      id="interacaoEmpresaComunidadeGoverno1"
                                                      requiredMessage="Insira as atividades chave antes de enviar"
-                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
+                                                     rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.retornarInteracaoEmpresaComunidadeGoverno() and !revisarPlanoDeNegocioBean.comentarioProjeto.retornarInteracaoEmpresaComunidadeGoverno().equals('')}"
                                                      >
                                         <f:ajax execute="@form" render="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno1formulario_resubmeterplano:mensagensFeed" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                     </h:inputTextarea>
