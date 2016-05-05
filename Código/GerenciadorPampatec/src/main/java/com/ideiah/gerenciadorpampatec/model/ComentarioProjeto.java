@@ -260,19 +260,25 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.textocomentarios = textocomentarios;
     }
 
-    
+    /**
+     * Retorna o texto do comentario segundo seu tipo (segmento de cliente,
+     * proposta de valor, etc..)
+     *
+     * @param tipo
+     * @return textoCoentario
+     */
     public String retornaTextoComentario(int tipo) {
-        
+
         String textoComentario = null;
-        
+
         for (Textocomentario objetoTextoComentario : textocomentarios) {
-            if(objetoTextoComentario.getTipo() == tipo){
+            if (objetoTextoComentario.getTipo() == tipo) {
                 textoComentario = objetoTextoComentario.getTexto();
             }
         }
         return textoComentario;
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao segmento de clientes.
      */
@@ -342,5 +348,40 @@ public class ComentarioProjeto implements java.io.Serializable {
     public String retornarTecnologiaProcesso(){
         return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
     }
-}
 
+    private Textocomentario criaTextoComentario(int tipo) {
+
+        Textocomentario textoComentario = new Textocomentario();
+        textoComentario.setTipo(tipo);
+        textoComentario.setTexto("");
+        
+        return textoComentario;
+    }
+
+    private void adicionaListaComentario() {
+        textocomentarios.add(criaTextoComentario(Textocomentario.SEGMENTO_CLIENTE));
+        textocomentarios.add(criaTextoComentario(Textocomentario.PROPOSTA_VALOR));
+        textocomentarios.add(criaTextoComentario(Textocomentario.ATIVIDADES_CHAVE));
+        textocomentarios.add(criaTextoComentario(Textocomentario.RELACOES_CLIENTE));
+        textocomentarios.add(criaTextoComentario(Textocomentario.PARCERIAS_CHAVE));
+        textocomentarios.add(criaTextoComentario(Textocomentario.CANAIS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.CONCORRENTES));
+        textocomentarios.add(criaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO));
+        textocomentarios.add(criaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA));
+        textocomentarios.add(criaTextoComentario(Textocomentario.APLICACOES));
+        textocomentarios.add(criaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE));
+        textocomentarios.add(criaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO));
+        textocomentarios.add(criaTextoComentario(Textocomentario.INFRAESTRUTURA));
+        textocomentarios.add(criaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA));
+        textocomentarios.add(criaTextoComentario(Textocomentario.POTENCIAL_EMPREGO));
+        textocomentarios.add(criaTextoComentario(Textocomentario.FONTES_RECEITA));
+        textocomentarios.add(criaTextoComentario(Textocomentario.ESTRUTURA_CUSTO));
+        textocomentarios.add(criaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL));
+        textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_FIXOS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS));
+
+    }
+}
