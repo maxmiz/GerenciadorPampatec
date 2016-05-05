@@ -7,7 +7,7 @@
             <column name="idcomentario" />
             <generator class="identity" />
         </id>
-        <many-to-one name="projeto" class="model.Projeto" fetch="select" cascade="save-update">
+        <many-to-one name="projeto" class="com.ideiah.gerenciadorpampatec.model.Projeto" fetch="select" cascade="save-update">
             <column name="projeto_idProjeto" not-null="true" />
         </many-to-one>
         <property name="nome" type="string">
@@ -32,7 +32,7 @@
             <key>
                 <column name="comentarioprojeto_idcomentario" not-null="true" />
             </key>
-            <many-to-many entity-name="model.Textocomentario">
+            <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Textocomentario">
                 <column name="textocomentario_idtextocomentario" not-null="true" />
             </many-to-many>
         </set>
