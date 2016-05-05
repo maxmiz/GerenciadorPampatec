@@ -279,6 +279,172 @@ public class ComentarioProjeto implements java.io.Serializable {
         return textoComentario;
     }
 
+    /**
+     * @return Retorna o valor do comentário relacionado ao segmento de clientes.
+     */
+    public String retornarSegmentosClientes(){
+        return retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao proposta de valor.
+     */
+    public String retornarPropostoValor(){
+        return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao atividades chaves.
+     */
+    public String retornarAtividadesChave(){
+        return retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao relações de clientes.
+     */
+    public String retornarRelacoesClientes(){
+        return retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao parcerias chaves.
+     */
+    public String retornarParceriasChave(){
+        return retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao canais.
+     */
+    public String retornarCanais(){
+        return retornaTextoComentario(Textocomentario.CANAIS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a recursos principais.
+     */
+    public String retornarRecursosPrincipais(){
+        return retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a concorrentes.
+     */
+    public String retornarConcorrentes(){
+        return retornaTextoComentario(Textocomentario.CONCORRENTES);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a estagio de evolução.
+     */
+    public String retornarEstagioEvolucao(){
+        return retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a tecnologia e processos.
+     */
+    public String retornarTecnologiaProcesso(){
+        return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao potencial em inovação
+     * e tecnologia..
+     */
+    public String retornarPotencialInovacaoTecnologia(){
+        return retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a aplicações.
+     */
+    public String retornarAplicacoes(){
+        return retornaTextoComentario(Textocomentario.APLICACOES);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a difilcudades
+     * esperadas.
+     */
+    public String retornarDifilcudadesEsperadas(){
+        return retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a interacao entre a
+     * empresa e universidade.
+     */
+    public String retornarInteracaoEmpresaUniversidade(){
+        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a interacao entre a
+     * empresa, a comunidade e o governo.
+     */
+    public String retornarInteracaoEmpresaComunidadeGoverno(){
+        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a infraestrutura.
+     */
+    public String retornarInfraEstrutura(){
+        return retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a participacao
+     * acionário.
+     */
+    public String retornarParticipacaoAcionaria(){
+        return retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado o potencial de emprego.
+     */
+    public String retornarPotencialEmprego(){
+        return retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a fontes de receitas.
+     */
+    public String retornarFontesReceitas(){
+        return retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado a estrutura de custos..
+     */
+    public String retornarEstruturaCustos(){
+        return retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao investimento inicial.
+     */
+    public String retornarInvestimentoInicial(){
+        return retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao custos fixos.
+     */
+    public String retornarCustosFixos(){
+        return retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+    }
+    
+    /**
+     * @return Retorna o valor do comentário relacionado ao custos variáveis.
+     */
+    public String retornarCustosVariaveis(){
+        return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS);
+    }
+
     private Textocomentario criaTextoComentario(int tipo) {
 
         Textocomentario textoComentario = new Textocomentario();

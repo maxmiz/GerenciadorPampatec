@@ -7,7 +7,7 @@
             <column name="idcomentario" />
             <generator class="identity" />
         </id>
-        <many-to-one name="projeto" class="model.Projeto" fetch="select">
+        <many-to-one name="projeto" class="model.Projeto" fetch="select" cascade="save-update">
             <column name="projeto_idProjeto" not-null="true" />
         </many-to-one>
         <property name="nome" type="string">
@@ -28,7 +28,7 @@
         <property name="consideracoesPersonalizadas" type="string">
             <column name="consideracoesPersonalizadas" length="65535" />
         </property>
-        <set name="textocomentarios" table="comentarioprojeto_has_textocomentario" inverse="false" lazy="true" fetch="select">
+        <set name="textocomentarios" table="comentarioprojeto_has_textocomentario" inverse="false" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="comentarioprojeto_idcomentario" not-null="true" />
             </key>
