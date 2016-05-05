@@ -66,8 +66,10 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
+     * <p>
      * Construtor da classe utilizado para testes, recebe um projeto como
-     * parâmetro ao invés de pela sessão, assim os testes podem ser realizados
+     * parâmetro ao invés de pela sessão, assim os testes podem ser realizados.
+     * </p>
      *
      * @param proj
      */
@@ -87,14 +89,18 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
-        
+
         atualizaDataAvaliacao();
-        
+
         ProjetoDao dao = new ProjetoDao();
         dao.update(projeto);
         session.setAttribute("projetoSelecionado", projeto);
     }
 
+    /**
+     * 
+     * @param projetoSelecionado 
+     */
     public void buscarComentarioProjeto(Projeto projetoSelecionado) {
         for (ComentarioProjeto comentarioProjeto : projetoSelecionado.getComentarioProjeto()) {
             if (comentarioProjeto.getStatus() == ComentarioProjeto.EM_ANDAMENTO) {
@@ -159,7 +165,9 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Atualiza a data de avaliação do projeto para data atual
+     * <p>
+     * Atualiza a data de avaliação do projeto para data atual.
+     * </p>
      */
     private void atualizaDataAvaliacao() {
         Date data = new Date(System.currentTimeMillis());
@@ -168,8 +176,8 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     /**
      * <p>
-     * Salva a pré-avaliação do projeto através do Ajax, definindo o status para "Em Pré Avaliação".
-     * Deve ser utilizado unicamente no Ajax!
+     * Salva a pré-avaliação do projeto através do Ajax, definindo o status para
+     * "Em Pré Avaliação". Deve ser utilizado unicamente no Ajax!
      * </p>
      */
     public void salvarViaAjax() {
@@ -181,7 +189,8 @@ public class PreAvaliarPlanoBean implements Serializable {
         /**
          * Deve ser utilizado unicamente nos Ajax.
          */
-        projeto.setStatusTemp(Projeto.EM_PRE_AVALIACAO);
+        projeto.setStatus(Projeto.SENDO_AVALIADO);
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
         projetoDao.salvar(projeto);
 
         salvo = true;
@@ -202,10 +211,8 @@ public class PreAvaliarPlanoBean implements Serializable {
         projetoDao.salvar(projeto);
 
         salvo = true;
-
-        getBuscarPlanoDeNegocio();
     }
-    
+
     /**
      *
      * @param projSelect
@@ -238,15 +245,25 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void terminarPreAvaliacao() {
         if (validaAvaliacao()) {
-            if (projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+            if ((projeto.getStatus() == Projeto.SENDO_AVALIADO)
+                    || (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO)) {
+
                 projeto.setStatus(getResultadoPreAvaliacao());
-                
+
                 mudaStatusComentarioProjetoFinalizar();
-                
+
                 atualizaDataAvaliacao();
-                
+
                 salvarPreAvaliacao();
                 
+                /**
+                 * Zera o Status do projeto para quando voltar do "Fazer Melhoria", 
+                 * o radiobutton não ser marcado.
+                 */
+                ProjetoDao projetoDao = new ProjetoDao();
+                projeto.setStatusTemp(99);
+                projetoDao.salvar(projeto);
+
                 getBuscarPlanoDeNegocio();
             }
         }
@@ -302,6 +319,76 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
+     *
+     * @return
+     */
+    public boolean campoObservacoesVazio() {
+        boolean resultado;
+        resultado = comentarioProjeto.getConsideracoes().equals("");
+        return resultado;
+    }
+
+    /**
+     * <p>
+     * METODO PARA VALIDAR O PREENCHIMENTO DOS CAMPOS COMENTARIO NA AVALIAÇÃO DO
+     * PLANO. O BOTAO TERMINAR AVALIAÇÃO FICARÁ ABILITADO SE E SOMENTE SE: foi
+     * selecionado um dos campos aprovado, reprovado ou realizar ajustes se o
+     * campo realizar ajustes for selecionado, é necessário existir ao menos um
+     * comentario além das observações </p>
+     *
+     * @return Quantidade de erros
+     */
+    public boolean validaAvaliacao() {
+        int flag_erro = 0;
+        //O campo observacoes precisa estar preenchido 
+        // aprovado = 2, melhorias, = 7 reprovado, = 6
+
+        // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
+        if (resultadoPreAvaliacao == 7) {
+            if (comentarioProjeto.verificaCampos() == 0) {
+                FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.",
+                        "formulario_comentarpreavalizar:statusAvaliacao");
+                flag_erro++;
+            }
+        }
+        // se o resultado da pre avaliaçao for zero, significa que nenhum campo foi selecionado
+        if (resultadoPreAvaliacao == 0) {
+            FacesUtil.addErrorMessage("Você precisa selecionar um status de Avaliação.",
+                    "formulario_comentarpreavalizar:statusAvaliacao");
+            flag_erro++;
+        }
+
+        return flag_erro == 0;
+
+    }
+
+    /**
+     * <p>
+     * Método para mudar o status dos comentários automaticamente.
+     * </p>
+     */
+    public void mudaStatusComentarioProjetoFilanizar() {
+
+        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
+            comentarioProjeto.setStatus(2);
+        }
+    }
+
+    /**
+     * @return the salvo
+     */
+    public boolean isSalvo() {
+        return salvo;
+    }
+
+    /**
+     * @param salvo the salvo to set
+     */
+    public void setSalvo(boolean salvo) {
+        this.salvo = salvo;
+    }
+
+    /**
      * @return the projeto
      */
     public Projeto getProjeto() {
@@ -338,76 +425,4 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
-
-
-    /**
-     *
-     * @return
-     */
-    public boolean campoObservacoesVazio(){
-        boolean resultado;
-        resultado = comentarioProjeto.getConsideracoes().equals("");
-        return resultado;
-    }
-
-    /**
-     * <p>
-     * METODO PARA VALIDAR O PREENCHIMENTO DOS CAMPOS COMENTARIO NA AVALIAÇÃO DO PLANO.
-     *O BOTAO TERMINAR AVALIAÇÃO FICARÁ ABILITADO SE E SOMENTE SE:
-     * foi selecionado um dos campos aprovado, reprovado ou realizar ajustes
-     * se o campo realizar ajustes for selecionado, é necessário existir ao menos um comentario
-     *além das observações </p>
-     * @return Quantidade de erros
-     */
-    public boolean validaAvaliacao(){
-        int flag_erro = 0;
-        //O campo observacoes precisa estar preenchido 
-        // aprovado = 2, melhorias, = 7 reprovado, = 6
-        
-        // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
-        if(resultadoPreAvaliacao == 7){
-            if(comentarioProjeto.verificaCampos() == 0){
-                FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.", 
-                        "formulario_comentarpreavalizar:statusAvaliacao");
-                flag_erro++;
-            }
-        }
-        // se o resultado da pre avaliaçao for zero, significa que nenhum campo foi selecionado
-        if(resultadoPreAvaliacao == 0){
-            FacesUtil.addErrorMessage("Você precisa selecionar um status de Avaliação.", 
-                        "formulario_comentarpreavalizar:statusAvaliacao");
-            flag_erro++;
-        }
-       
-        return flag_erro == 0;
-
-
-    }
-
-    /**
-     * <p>
-     * Método para mudar o status dos comentários automaticamente.
-     * </p>
-     */
-    public void mudaStatusComentarioProjetoFilanizar() {
-
-        if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
-            comentarioProjeto.setStatus(2);
-        }
-    }
-
-    /**
-     * @return the salvo
-     */
-    public boolean isSalvo() {
-        return salvo;
-    }
-
-    /**
-     * @param salvo the salvo to set
-     */
-    public void setSalvo(boolean salvo) {
-        this.salvo = salvo;
-    }
-
 }
