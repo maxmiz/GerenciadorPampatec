@@ -289,7 +289,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     /**
      * @return Retorna o valor do comentário relacionado ao proposta de valor.
      */
-    public String retornarPropostoValor(){
+    public String retornarPropostaValor(){
         return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
     }
     
