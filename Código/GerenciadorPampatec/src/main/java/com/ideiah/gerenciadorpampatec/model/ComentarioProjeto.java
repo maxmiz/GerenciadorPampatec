@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         consideracoes = "";
         consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
-
+        adicionaListaComentario();
     }
 
     public ComentarioProjeto(int idcomentario) {
@@ -278,6 +279,20 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
         return textoComentario;
     }
+    
+    /**
+     * Retorna o objeto texto comentário
+     * @param tipo tipo para se retornar
+     * @return objeto encontrado
+     */
+    public Textocomentario retornarTextoComentario(int tipo){
+        for (Textocomentario objetoTextoComentario : textocomentarios) {
+            if (objetoTextoComentario.getTipo() == tipo) {
+                return objetoTextoComentario;
+            }
+        }
+        return null;
+    }
 
     /**
      * @return Retorna o valor do comentário relacionado ao segmento de clientes.
@@ -444,7 +459,13 @@ public class ComentarioProjeto implements java.io.Serializable {
     public String retornarCustosVariaveis(){
         return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS);
     }
+    
 
+    /**
+     * Cria um texto de comentário.
+     * @param tipo tipo do comentário a ser criado
+     * @return comentário criado
+     */
     private Textocomentario criaTextoComentario(int tipo) {
 
         Textocomentario textoComentario = new Textocomentario();
@@ -454,6 +475,9 @@ public class ComentarioProjeto implements java.io.Serializable {
         return textoComentario;
     }
 
+    /**
+     * Faz a inicialização dos campos de comentários.
+     */
     private void adicionaListaComentario() {
         textocomentarios.add(criaTextoComentario(Textocomentario.SEGMENTO_CLIENTE));
         textocomentarios.add(criaTextoComentario(Textocomentario.PROPOSTA_VALOR));
@@ -479,5 +503,57 @@ public class ComentarioProjeto implements java.io.Serializable {
         textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_FIXOS));
         textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS));
 
+    }
+    
+    /**
+     * Muda o texto de um TextoComentário dependendo do tipo.
+     * @param tipo tipo do comentário
+     * @param texto texto para se colocar.
+     */
+    public void setTextoComentario(int tipo,String texto){
+        for (Textocomentario textocomentario : textocomentarios) {
+            if(textocomentario.getTipo() == tipo){
+                textocomentario.setTexto(texto);
+            }
+        }
+    }
+    
+    /**
+     * Muda o gerente de um TextoComentário dependendo do tipo.
+     * @param tipo tipo do comentário
+     * @param gerenteRelacionamento gerente para se adicionar
+     */
+    public void setTextoComentario(int tipo, GerenteRelacionamento gerenteRelacionamento){
+        for (Textocomentario textocomentario : textocomentarios) {
+            if(textocomentario.getTipo() == tipo){
+                textocomentario.setGerenteRelacionamento(gerenteRelacionamento);
+            }
+        }
+    }
+    
+    /**
+     * Muda a data de alteração de um TextoComentário dependendo do tipo.
+     * @param tipo tipo do comentário
+     * @param dataAlteracao
+     */
+    public void setTextoComentarioDataAlteracao(int tipo, Date dataAlteracao){
+        for (Textocomentario textocomentario : textocomentarios) {
+            if(textocomentario.getTipo() == tipo){
+                textocomentario.setDataAlteracao(dataAlteracao);
+            }
+        }
+    }
+    
+    /**
+     * Muda a data de alteração de um TextoComentário dependendo do tipo.
+     * @param tipo tipo do comentário
+     * @param dataSubmissao
+     */
+    public void setTextoComentarioDataSubmissao(int tipo, Date dataSubmissao){
+        for (Textocomentario textocomentario : textocomentarios) {
+            if(textocomentario.getTipo() == tipo){
+                textocomentario.setDataSubmissao(dataSubmissao);
+            }
+        }
     }
 }
