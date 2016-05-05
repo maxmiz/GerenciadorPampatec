@@ -159,7 +159,9 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     /**
-     * Atualiza a data de avaliação do projeto para data atual
+     * <p>
+     * Atualiza a data de avaliação do projeto para data atual.
+     * </p>
      */
     private void atualizaDataAvaliacao() {
         Date data = new Date(System.currentTimeMillis());
@@ -181,7 +183,8 @@ public class PreAvaliarPlanoBean implements Serializable {
         /**
          * Deve ser utilizado unicamente nos Ajax.
          */
-        projeto.setStatusTemp(Projeto.EM_PRE_AVALIACAO);
+        projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+        projeto.setStatusTemp(getResultadoPreAvaliacao());        
         projetoDao.salvar(projeto);
 
         salvo = true;
@@ -202,8 +205,6 @@ public class PreAvaliarPlanoBean implements Serializable {
         projetoDao.salvar(projeto);
 
         salvo = true;
-
-        getBuscarPlanoDeNegocio();
     }
     
     /**
