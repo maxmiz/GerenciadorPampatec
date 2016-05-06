@@ -122,18 +122,6 @@
             <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
             <div id="vertical_etapa_pre_avaliacao" class="col-md-2 text-center estiloDivVertical noprint">
                 <div class="divPadding text-center">
-
-                    <h:commandButton  class="btn btn-success btnWorkflowV" 
-                                      rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)
-                                                  || revisarPlanoDeNegocioBean.verificaStatusRevisando(projetoSelecionado)}"
-                                      type="button" 
-                                      title="Revisar plano de negócio" 
-                                      id="botao_revisar"
-                                      value="Revisar" 
-                                      onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')">
-                    </h:commandButton><br/>
-                </div>
-                <div class="divPadding text-center">
                     <h:commandButton  class="btn btn-success btnWorkflowV"
                                       type="button" title="Visualizar resultado do avaliador"
                                       id="botao_resultado_preavaliacao"
@@ -146,6 +134,19 @@
                     </h:commandButton>
                     <br/>
                 </div>
+                <div class="divPadding text-center">
+
+                    <h:commandButton  class="btn btn-success btnWorkflowV" 
+                                      rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)
+                                                  || revisarPlanoDeNegocioBean.verificaStatusRevisando(projetoSelecionado)}"
+                                      type="button" 
+                                      title="Revisar plano de negócio" 
+                                      id="botao_revisar"
+                                      value="Revisar" 
+                                      onclick="addFocoBotao('menuSuperior:botao_revisar'), mostraDIV('sessao_revisar_plano_pre_melhoria')">
+                    </h:commandButton><br/>
+                </div>
+                
                 <div class="divPadding text-center">
                     <h:commandButton  class="btn btn-success btnWorkflowV"
                                       rendered="#{revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado)}"
