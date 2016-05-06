@@ -1673,7 +1673,7 @@
                                         <!--   <f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/>-->
                                         <br/>
 
-                                        <p:dataTable id="tabelaCustosVariaveis1"
+                                        <p:dataTable id="tabelaCustosVariaveis1" class="campoInvalido"
                                                      rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.retornarCustosVariaveis()) 
                                                              and (!revisarPlanoDeNegocioBean.comentarioProjeto.retornarCustosVariaveis().equals(''))}"
                                                      var="custovariavel1" 
