@@ -1045,11 +1045,12 @@
                                 <div class="col-md-12 espaco">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
-                                    <p:dataTable id="preAvaliar_custoFixo" 
+                                    <p:dataTable id="preAvaliar_custoFixo"
+                                                 class="campoDestacado"
                                                  var="custo" 
                                                  rowKey="#{custo.idCusto}" 
                                                  value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
-                                                 styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial ? 'form-control campoDestacado' : 'form-control semResize'}"
+                                                 styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos ? 'campoDestacado' : 'semResize'}"
                                                  >
 
                                         <p:column headerText="Descrição ">
@@ -1077,7 +1078,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="comentarioCustoFixo2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor21 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:preAvaliar_custoFixo formulario_comentarpreavalizar:comentarioCustoFixo2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
@@ -1089,7 +1090,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
-                                    <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}">
+                                    <p:dataTable id="revisao_custoVariavel" 
+                                                 var="custo" rowKey="#{custo.idCusto}" 
+                                                 value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
+                                                 styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis ? 'campoDestacado' : 'semResize'}"
+                                                 >
 
                                         <p:column headerText="Descrição ">
                                             <h:outputText value="#{custo.descricao}" />
@@ -1116,7 +1121,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="comentarioCustoVariavel2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor23 mensagemSalvamento "
+                                                    render="formulario_comentarpreavalizar:revisao_custoVariavel formulario_comentarpreavalizar:comentarioCustoVariavel2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
