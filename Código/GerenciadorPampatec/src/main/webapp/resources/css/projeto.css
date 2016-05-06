@@ -58,9 +58,7 @@ legend {
 }
 
 .campoDestacado{
-    border-color: orange;
-    border-width: 2px;
-
+    border: orange solid 2px !important;
 }
 
 .novaAba {
