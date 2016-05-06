@@ -57,6 +57,10 @@ legend {
     margin: 1px;
 }
 
+.campoDestacado{
+    border: orange solid 2px !important;
+}
+
 .novaAba {
     target-new: tab ! important
 }
@@ -521,15 +525,6 @@ Adicionar Comentário e Histórico de comentários
 .abaPlano{
     text-align: center;
     font-weight: bold;
-}
-
-/* 
-Ocultando a aba de Terminar Avaliação 
-para projetos com Status "Aeito parta Avaliação". 
-*/
-li[value=true]{
-    display: none;
-    visibility: hidden;
 }
 
 .filtro {

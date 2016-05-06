@@ -189,9 +189,14 @@
                                 Ao clicar no botão <strong><u>Terminar Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
-                                <h:commandButton class="btn btn-success" value="Confirmar Envio">
-                                    <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}" execute="@form"/>
+                                <button type="button" class="btn btn-default" 
+                                        data-dismiss="modal"
+                                        title="Voltar para a avaliação do plano de negócio.">Voltar para a edição</button>
+                                <h:commandButton class="btn btn-success" 
+                                                 value="Confirmar Avaliação" 
+                                                 title="Terminar a avaliação do plano de negócio">
+                                    <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}" 
+                                            execute="@form"/>
                                 </h:commandButton>
                             </div>
                         </div>
@@ -296,8 +301,13 @@
 
                             <div id="formularioParte02">
                                 <legend>O Negócio</legend>
-                                <br/>
                                 <div class="col-md-12 espaco" id="">
+                                    
+                                    <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: orange">amarelo</label> indicam que os mesmos já possuem comentários.</p>
+                                    </h:panelGroup>
+                                    
                                     <b>Segmento de Clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                     Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                     <h:inputTextarea id="segmentoDeClientes" 
@@ -305,7 +315,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -319,7 +329,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="5" id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
 
                                             <f:ajax execute="@form" 
-                                                    render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -335,7 +345,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -347,7 +357,7 @@
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="5" id="propostaDeValor2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor}">
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:propostaDeValor2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:propostaDeValor"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -365,7 +375,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.atividadesChaves}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control semResize'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -379,7 +389,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="5" id="atividadesChave2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor3 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:atividadesChave2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:atividadesChave"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -406,16 +416,24 @@
                         <div class="tab-pane fade" id="formParte03">
 
                             <div id="formularioParte03">
+                                
+                                
                                 <legend id="subTitulo">Análise de Mercado</legend>
-                                <br/>
+                                
                                 <div class="col-md-12 espaco">
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso">
+                                <h4>Aviso</h4>
+                                <p>Campos com bordas em <label style="color: orange">amarelo</label> indicam que os mesmos já possuem comentários.</p>
+                                </h:panelGroup>
+                                    
                                     <b>Relações com clientes* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                     Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="relacoComClientes"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.relacoesClientes}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
-                                                     id="relacoComClientes"
                                                      rows="5"
                                                      >                 
                                     </h:inputTextarea>
@@ -428,7 +446,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="relacaoClientes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor4 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:relacoComClientes formulario_comentarpreavalizar:relacaoClientes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -440,11 +458,12 @@
                                 <div class="col-md-12 espaco">
                                     <b>Parcerias chave* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="parceriasChaves"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.parceriasChaves}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
-                                                     id="parceriasChaves"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -457,7 +476,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="5" id="parceriasChave2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor5 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:parceriasChaves formulario_comentarpreavalizar:parceriasChave2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -473,6 +492,7 @@
                                                      onchange="precisaSalvar = true;" 
                                                      id="canais"  
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.canais}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -486,7 +506,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" onchange="mostrarMensagemCampoObrigatorio();" rows="5" id="canais2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.canais}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor6 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:canais formulario_comentarpreavalizar:canais2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -502,6 +522,7 @@
                                                      onchange="precisaSalvar = true;" 
                                                      id="recursosPrincipais"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.recursosPrincipais}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -515,7 +536,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="recursosPrincipais2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor7 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:recursosPrincipais formulario_comentarpreavalizar:recursosPrincipais2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -530,6 +551,7 @@
                                                      onchange="precisaSalvar = true;" 
                                                      id="concorrentes"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -543,7 +565,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="concorrentes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioanaliseemprego.concorrentes}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor8 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:concorrentes formulario_comentarpreavalizar:concorrentes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -570,14 +592,20 @@
 
                             <div id="formularioParte04">
                                 <legend id="subTitulo">Produto de Serviço</legend>
-                                <br/>
                                 <div class="col-md-12 espaco">
+                                    
+                                <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso">
+                                <h4>Aviso</h4>
+                                <p>Campos com bordas em <label style="color: orange">amarelo</label> indicam que os mesmos já possuem comentários.</p>
+                                </h:panelGroup>
+                                    
                                     <b>Estágio de evolução* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('estagioDeEvolucao')}"></p:commandLink></b><br/>
                                     Qual o estágio atual de evolução do produto ou serviço proposto?<br/>
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="estagioDeEvolucao"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.verificaEstagioEvolucao()}"
-                                                     id="estagioDeEvolucao"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -591,7 +619,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="estagioEvolucao2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor9 mensagemSalvamento"
+                                                    render="formulario_comentarpreavalizar:estagioDeEvolucao formulario_comentarpreavalizar:estagioEvolucao2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -603,10 +631,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="tecnologiaProcessos"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.tecnologiaProcessos}"
-                                                     id="tecnologiaProcessos"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -620,7 +649,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="tecnologiaProcessos2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor10 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:tecnologiaProcessos formulario_comentarpreavalizar:tecnologiaProcessos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -632,10 +661,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                     Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="potencialInovacaoTecnologica"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                     id="potencialInovacaoTecnologica"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica ? 'form-control campoDestacado' : 'form-control semResize'}"                                                    
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -649,7 +679,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="potencialInovacaoTecnologica2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor11 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:potencialInovacaoTecnologica formulario_comentarpreavalizar:potencialInovacaoTecnologica2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -661,10 +691,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Aplicações* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
                                     A quem se aplica? como? de que maneira?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="aplicacoes"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.aplicacoes}"
-                                                     id="aplicacoes"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                         
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -678,7 +709,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="aplicacoes2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor12 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:aplicacoes formulario_comentarpreavalizar:aplicacoes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -690,10 +721,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
                                     Quais são nossas principais limitações?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="dificuldadesEsperadas"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                     id="dificuldadesEsperadas"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -707,7 +739,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="dificuldadesEsperadas2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor13 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:dificuldadesEsperadas formulario_comentarpreavalizar:dificuldadesEsperadas2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -719,10 +751,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                     Em que sentido seremos parceiros da Universidade? 
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="interacaoEmpresaUniversidade"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                     id="interacaoEmpresaUniversidade"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      disabled="true"
                                                      rows="5">
                                     </h:inputTextarea>
@@ -735,7 +768,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="interacaoEmpresaUniversidade2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor14 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:interacaoEmpresaUniversidade formulario_comentarpreavalizar:interacaoEmpresaUniversidade2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -747,10 +780,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
                                     Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="interacaoEmpresaComunidadeGoverno"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                     id="interacaoEmpresaComunidadeGoverno"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -764,7 +798,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="interacaoEmpresaComunidadeGoverno2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor15 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -776,10 +810,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
                                     Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="infraestrutura"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.infraestrutura}"
-                                                     id="infraestrutura"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -793,7 +828,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="infraestrutura2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor16 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:infraestrutura formulario_comentarpreavalizar:infraestrutura2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -823,14 +858,20 @@
 
                             <div id="formularioParte05">
                                 <legend id="subTitulo">Gestão de Pessoas</legend>
-                                <br/>
                                 <div class="col-md-12 espaco">
+                                    
+                                    <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: orange">amarelo</label> indicam que os mesmos já possuem comentários.</p>
+                                    </h:panelGroup>
+                                    
                                     <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                     Haverão sócios? Quanto de participação terão?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="participacaoAcionaria"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.participacaoacionaria}" 
-                                                     id="participacaoAcionaria"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -844,7 +885,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="participacaoAcionaria2" value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoacionaria}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor005 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:participacaoAcionaria formulario_comentarpreavalizar:participacaoAcionaria2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -855,10 +896,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
                                     Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="potencialEmprego"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.potencialEmprego}"
-                                                     id="potencialEmprego"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialemprego ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -872,7 +914,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="potencialEmprego2" value="#{preAvaliarPlanoBean.comentarioProjeto.potencialemprego}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor006 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:potencialEmprego formulario_comentarpreavalizar:potencialEmprego2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -902,8 +944,13 @@
 
                             <div id="formularioParte06">
                                 <legend id="subTitulo">Plano de Financeiro</legend>
-                                <br/>
                                 <div class="col-md-12 espaco">
+                                    
+                                    <h:panelGroup layout="block" class="template-mensagens template-mensagens-aviso">
+                                    <h4>Aviso</h4>
+                                    <p>Campos com bordas em <label style="color: orange">amarelo</label> indicam que os mesmos já possuem comentários.</p>
+                                    </h:panelGroup>
+                                    
                                     <b>Fontes de receita* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                     <h:inputTextarea class="form-control" style="resize: none;"
@@ -911,7 +958,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.fontesReceita}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -925,7 +972,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="fontesDeReceita2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor18 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:fontesDeReceita formulario_comentarpreavalizar:fontesDeReceita2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -941,7 +988,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
-                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -957,7 +1004,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="estruturaCustos2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor19 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:estruturaCustos formulario_comentarpreavalizar:estruturaCustos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -968,10 +1015,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Investimento inicial* <p:commandLink update="" value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
                                     Quanto de recurso será necessário para iniciar?
-                                    <h:inputTextarea class="form-control semResize" 
+                                    <h:inputTextarea id="investimentoInicial"
+                                                     class="form-control semResize" 
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                     id="investimentoInicial" 
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -986,7 +1034,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="investimentoInicial2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor20 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:investimentoInicial formulario_comentarpreavalizar:investimentoInicial2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -997,7 +1045,13 @@
                                 <div class="col-md-12 espaco">
                                     <b>Custos fixos* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
-                                    <p:dataTable id="preAvaliar_custoFixo" var="custo" rowKey="#{custo.idCusto}" value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosFixos()}">
+                                    <p:dataTable id="preAvaliar_custoFixo"
+                                                 class="campoDestacado"
+                                                 var="custo" 
+                                                 rowKey="#{custo.idCusto}" 
+                                                 value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosFixos()}"
+                                                 styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos ? 'campoDestacado' : 'semResize'}"
+                                                 >
 
                                         <p:column headerText="Descrição ">
                                             <h:outputText value="#{custo.descricao}" />
@@ -1021,10 +1075,10 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
-                                        <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="2" id="comentarioCustoFixo2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
+                                        <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="comentarioCustoFixo2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor21 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:preAvaliar_custoFixo formulario_comentarpreavalizar:comentarioCustoFixo2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
@@ -1036,7 +1090,11 @@
                                 <div class="col-md-12 espaco">
                                     <b>Custos variáveis* <p:commandLink update="" value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
-                                    <p:dataTable id="revisao_custoVariavel" var="custo" rowKey="#{custo.idCusto}" value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}">
+                                    <p:dataTable id="revisao_custoVariavel" 
+                                                 var="custo" rowKey="#{custo.idCusto}" 
+                                                 value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
+                                                 styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis ? 'campoDestacado' : 'semResize'}"
+                                                 >
 
                                         <p:column headerText="Descrição ">
                                             <h:outputText value="#{custo.descricao}" />
@@ -1063,7 +1121,7 @@
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" onchange="mostrarMensagemCampoObrigatorio();" cols="50" rows="5" id="comentarioCustoVariavel2" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarioplanofinanceiro.custosvariaveis}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor23 mensagemSalvamento "
+                                                    render="formulario_comentarpreavalizar:revisao_custoVariavel formulario_comentarpreavalizar:comentarioCustoVariavel2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
                                         </h:inputTextarea>
