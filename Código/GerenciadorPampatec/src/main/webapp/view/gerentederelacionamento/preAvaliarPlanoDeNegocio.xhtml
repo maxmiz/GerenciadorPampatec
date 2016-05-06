@@ -315,7 +315,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
-                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes ? 'form-control campoDestacado' : 'form-control semResize'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.retornarSegmentosClientes() ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
@@ -326,7 +326,10 @@
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
-                                        <h:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="5" id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" value="#{preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                        <h:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                                         cols="50" rows="5" 
+                                                         id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" 
+                                                         value="#{preAvaliarPlanoBean.comentarioProjeto.retornarSegmentosClientes()}">
 
                                             <f:ajax execute="@form" 
                                                     render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes"
@@ -345,7 +348,7 @@
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
-                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.comentarionegocio.propostaValor ? 'form-control campoDestacado' : 'form-control semResize'}"
+                                                     styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.retornarPropostaValor() ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
                                                      rows="5"
                                                      >
