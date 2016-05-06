@@ -409,12 +409,12 @@
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals(''))}"
                                                          id="comentarioSegCliente" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:segmentoDeClientes3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
 
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
@@ -449,12 +449,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals(''))}"
                                                          id="comentarioPropostaValor" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -488,12 +488,12 @@
                                                     >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals(''))}"
                                                          id="comentarioAtividadesChaves" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:atividadesChaves3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -556,12 +556,12 @@
                                                      id="relacaoClientes2">                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
                                                          id="comentarioRelacoeClientes" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:relacaoClientes3')"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
-                                                         value="Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
+                                                         value="Visualizar Comentário do Gerente"
                                                          icon="fa fa-pencil">
 
                                         </p:commandButton>
@@ -594,14 +594,13 @@
                                                      id="parceriasChaves2">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco"
-
+                                        <p:commandButton class="botaoBaseComentario botaoVerde"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                          id="comentarioParceriasChaves" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:parceriasChaves3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
 
                                         </p:commandButton>
@@ -635,11 +634,11 @@
                                                      id="canais2">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
                                                          id="comentarioCanais" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:canais3')"
-                                                         value="Comentário do Gerente"
+                                                         value="Visualizar Comentário do Gerente"
                                                          title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
@@ -673,12 +672,12 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                          id="comentarioRecursosPrincipais" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:recursosPrincipais3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -710,12 +709,12 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                          id="comentarioConcorrentes" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:concorrentes3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -819,12 +818,12 @@
                                         </div>
                                     </h:panelGroup>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}"
                                                          id="comentarioEstagioEvolucao" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:estagioEvolucao3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -859,12 +858,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
                                                          id="comentarioTecnologiaProcessos" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:tecnologiaProcessos3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -899,12 +898,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
                                                          id="comentarioPotencialInovacao" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:potencialInovacaoTecnologica3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -939,12 +938,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
                                                          id="comentarioAplicacoes" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:aplicacoes3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -980,12 +979,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
                                                          id="comentarioDificuldadesEsperadas" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:dificuldadesEsperadas3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1020,12 +1019,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
                                                          id="comentarioInteracaoEmpresaUniversidade" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaUniversidade3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1060,12 +1059,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                          id="comentarioInteracaoEmpresaComunidadeGoverno" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1100,12 +1099,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco"
+                                        <p:commandButton class="botaoBaseComentario botaoVerde"
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.infraestrutura.equals('')}"
                                                          id="comentarioInteracaoInfraInstrutura" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:infraestrutura3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1175,12 +1174,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco"
+                                        <p:commandButton class="botaoBaseComentario botaoVerde"
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
                                                          id="comentarioParticipacaoAcionaria" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:participacaoAcionaria3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1214,12 +1213,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
                                                          id="comentarioPotencialEmpregoRenda" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:potencialEmprego3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1291,12 +1290,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
                                                          id="comentarioFontesReceita" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:fontesDeReceita3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1332,12 +1331,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
                                                          id="comentarioEstruturaCusto" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:estruturaCustos3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1371,12 +1370,12 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
                                                          id="comentarioInvestimentoInicial" type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:investimentoInicial3')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1576,14 +1575,14 @@
                                     </div>                                    
 
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos)
                                                                      and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                          id="comentarioCustoFixo" 
                                                          type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoFixo2')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre a tabela a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre a tabela acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
@@ -1793,14 +1792,14 @@
 
                                         
                                      <div class="col-md-12 espaco">
-                                        <p:commandButton class="btn btn-default btn-sm btn-success espaco" 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos)
                                                                      and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                          id="comentarioCustoVariavel" 
                                                          type="button"
                                                          onclick="mostrarFeedBack('formulario_resubmeterplano:comentarioCustoVariavel2')"
-                                                         value="Comentário do Gerente"
-                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre a tabela a cima."
+                                                         value="Visualizar Comentário do Gerente"
+                                                         title="Clique aqui para visualizar o comentário feito pelo gerente sobre a tabela acima."
                                                          icon="fa fa-pencil">
                                         </p:commandButton>
                                     </div>
