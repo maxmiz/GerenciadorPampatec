@@ -316,6 +316,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
+        projeto.getProdutoouservico().setEstagioEvolucao(estagioEvolucao);
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
         salvou = true;
