@@ -19,6 +19,7 @@ import org.junit.Ignore;
  *
  * @author Pedro
  */
+@Ignore
 public class ComentarioProjetoTest {
     
     public ComentarioProjetoTest() {

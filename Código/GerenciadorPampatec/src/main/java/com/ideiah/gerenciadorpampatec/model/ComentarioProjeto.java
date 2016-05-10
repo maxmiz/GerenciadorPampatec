@@ -28,7 +28,30 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Projeto projeto;
     private Integer status;
     private String consideracoesPersonalizadas;
-    private Set<Textocomentario> textocomentarios = new HashSet(0);
+    private Set<Textocomentario> textocomentarios;    
+    private Textocomentario segmentosClientes;
+    private Textocomentario propostaValor;
+    private Textocomentario atividadeChave;
+    private Textocomentario relacionamentoCliente;
+    private Textocomentario parceriasChave;
+    private Textocomentario canais;
+    private Textocomentario recursosPrincipais;
+    private Textocomentario concorrentes;
+    private Textocomentario estagioEvolucao;
+    private Textocomentario tecnologiaProcessos;
+    private Textocomentario potencialInovacaoTecnologica;
+    private Textocomentario aplicacoes;
+    private Textocomentario dificuldadesEsperadas;
+    private Textocomentario interacaoEmpresaUniversidade;
+    private Textocomentario interacaoEmpresaComunidadeGoverno;
+    private Textocomentario infraestrutura;
+    private Textocomentario participacaoAcionaria;
+    private Textocomentario potencialEmprego;
+    private Textocomentario fontesReceita;
+    private Textocomentario estruturaCusto;
+    private Textocomentario investimentoInicial;
+    private Textocomentario custoFixo;
+    private Textocomentario custoVariavel;
 
     public ComentarioProjeto() {
         nome = "";
@@ -37,11 +60,14 @@ public class ComentarioProjeto implements java.io.Serializable {
         consideracoes = "";
         consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
+        textocomentarios = new HashSet();
         adicionaListaComentario();
+        populandoVariaveisComentario();
     }
 
     public ComentarioProjeto(int idcomentario) {
         this.idcomentario = idcomentario;
+        textocomentarios = new HashSet();
     }
 
     public ComentarioProjeto(int idcomentario, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
@@ -50,95 +76,38 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.participacaoacionaria = participacaoacionaria;
         this.potencialemprego = potencialemprego;
         this.consideracoes = consideracoes;
-    }
-
-    public int getIdcomentario() {
-        return this.idcomentario;
-    }
-
-    public void setIdcomentario(int idcomentario) {
-        this.idcomentario = idcomentario;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getParticipacaoacionaria() {
-        return this.participacaoacionaria;
-    }
-
-    public void setParticipacaoacionaria(String participacaoacionaria) {
-        this.participacaoacionaria = participacaoacionaria;
-    }
-
-    public String getPotencialemprego() {
-        return this.potencialemprego;
-    }
-
-    public void setPotencialemprego(String potencialemprego) {
-        this.potencialemprego = potencialemprego;
-    }
-
-    public String getConsideracoes() {
-        return this.consideracoes;
-    }
-
-    public void setConsideracoes(String consideracoes) {
-        this.consideracoes = consideracoes;
+        textocomentarios = new HashSet();
     }
 
     /**
-     * @return the projeto
+     * <p>
+     * Método que popula as variáveis dos comentários, 
+     * que que essas possam ser utilizadas na interface da aplicação. </p>
      */
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    /**
-     * @param projeto the projeto to set
-     */
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getStatusString(int status) {
-        String statusDescricao = "";
-        switch (status) {
-            case EM_ANDAMENTO:
-                statusDescricao = "Em andamento";
-                break;
-            case FINALIZADO:
-                statusDescricao = "Finalizado";
-                break;
-        }
-        return statusDescricao;
-    }
-
-    /**
-     * @return the consideracoesPersonalizadas
-     */
-    public String getConsideracoesPersonalizadas() {
-        return consideracoesPersonalizadas;
-    }
-
-    /**
-     * @param consideracoesPersonalizadas the consideracoesPersonalizadas to set
-     */
-    public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
-        this.consideracoesPersonalizadas = consideracoesPersonalizadas;
+    private void populandoVariaveisComentario() {
+        segmentosClientes = retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+        propostaValor = retornarTextoComentario(Textocomentario.PROPOSTA_VALOR);
+        atividadeChave = retornarTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
+        relacionamentoCliente = retornarTextoComentario(Textocomentario.RELACOES_CLIENTE);
+        parceriasChave = retornarTextoComentario(Textocomentario.PARCERIAS_CHAVE);
+        canais = retornarTextoComentario(Textocomentario.CANAIS);
+        recursosPrincipais = retornarTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
+        concorrentes = retornarTextoComentario(Textocomentario.CONCORRENTES);
+        estagioEvolucao = retornarTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
+        tecnologiaProcessos = retornarTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
+        potencialInovacaoTecnologica = retornarTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
+        aplicacoes = retornarTextoComentario(Textocomentario.APLICACOES);
+        dificuldadesEsperadas = retornarTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
+        interacaoEmpresaUniversidade = retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        interacaoEmpresaComunidadeGoverno = retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
+        infraestrutura = retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        participacaoAcionaria = retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        potencialEmprego = retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        fontesReceita = retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        estruturaCusto = retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        investimentoInicial = retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        custoFixo = retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        custoVariavel = retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
     }
 
     public String todasConsideracoes() {
@@ -242,7 +211,7 @@ public class ComentarioProjeto implements java.io.Serializable {
             FLAG++;
         }
 
-        if (!retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS).equals("")) {
+        if (!retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS).equals("")) {
             FLAG++;
         }
         return FLAG;
@@ -463,7 +432,7 @@ public class ComentarioProjeto implements java.io.Serializable {
      * @return Retorna o valor do comentário relacionado ao custos variáveis.
      */
     public String retornarCustosVariaveis() {
-        return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS);
+        return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
     }
 
     /**
@@ -507,10 +476,11 @@ public class ComentarioProjeto implements java.io.Serializable {
         textocomentarios.add(criaTextoComentario(Textocomentario.ESTRUTURA_CUSTO));
         textocomentarios.add(criaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL));
         textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_FIXOS));
-        textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS));
+        textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS));
 
     }
-
+    
+    
     /**
      * Procura um texto comentário em uma lista e atualiza ele com o
      * texto comentério fornecido.
@@ -526,7 +496,6 @@ public class ComentarioProjeto implements java.io.Serializable {
             }
         }
     }
-
     /**
      * Muda o texto de um TextoComentário dependendo do tipo.
      *
@@ -581,5 +550,421 @@ public class ComentarioProjeto implements java.io.Serializable {
                 textocomentario.setDataSubmissao(dataSubmissao);
             }
         }
+    }
+
+    public int getIdcomentario() {
+        return this.idcomentario;
+    }
+
+    public void setIdcomentario(int idcomentario) {
+        this.idcomentario = idcomentario;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getParticipacaoacionaria() {
+        return this.participacaoacionaria;
+    }
+
+    public void setParticipacaoacionaria(String participacaoacionaria) {
+        this.participacaoacionaria = participacaoacionaria;
+    }
+
+    public String getPotencialemprego() {
+        return this.potencialemprego;
+    }
+
+    public void setPotencialemprego(String potencialemprego) {
+        this.potencialemprego = potencialemprego;
+    }
+
+    public String getConsideracoes() {
+        return this.consideracoes;
+    }
+
+    public void setConsideracoes(String consideracoes) {
+        this.consideracoes = consideracoes;
+    }
+
+    /**
+     * @return the projeto
+     */
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    /**
+     * @param projeto the projeto to set
+     */
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getStatusString(int status) {
+        String statusDescricao = "";
+        switch (status) {
+            case EM_ANDAMENTO:
+                statusDescricao = "Em andamento";
+                break;
+            case FINALIZADO:
+                statusDescricao = "Finalizado";
+                break;
+        }
+        return statusDescricao;
+    }
+
+    /**
+     * @return the consideracoesPersonalizadas
+     */
+    public String getConsideracoesPersonalizadas() {
+        return consideracoesPersonalizadas;
+    }
+
+    /**
+     * @param consideracoesPersonalizadas the consideracoesPersonalizadas to set
+     */
+    public void setConsideracoesPersonalizadas(String consideracoesPersonalizadas) {
+        this.consideracoesPersonalizadas = consideracoesPersonalizadas;
+    }
+
+    /**
+     * @return the segmentosClientes
+     */
+    public Textocomentario getSegmentosClientes() {
+        return segmentosClientes;
+    }
+
+    /**
+     * @param segmentosClientes the segmentosClientes to set
+     */
+    public void setSegmentosClientes(Textocomentario segmentosClientes) {
+        Textocomentario textoLista = retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+        textoLista.setTexto(segmentosClientes.getTexto());
+        this.segmentosClientes = segmentosClientes;
+    }
+
+    /**
+     * @return the propostaValor
+     */
+    public Textocomentario getPropostaValor() {
+        return propostaValor;
+    }
+
+    /**
+     * @param propostaValor the propostaValor to set
+     */
+    public void setPropostaValor(Textocomentario propostaValor) {
+        this.propostaValor = propostaValor;
+    }
+
+    /**
+     * @return the atividadeChave
+     */
+    public Textocomentario getAtividadeChave() {
+        return atividadeChave;
+    }
+
+    /**
+     * @param atividadeChave the atividadeChave to set
+     */
+    public void setAtividadeChave(Textocomentario atividadeChave) {
+        this.atividadeChave = atividadeChave;
+    }
+
+    /**
+     * @return the relacionamentoCliente
+     */
+    public Textocomentario getRelacionamentoCliente() {
+        return relacionamentoCliente;
+    }
+
+    /**
+     * @param relacionamentoCliente the relacionamentoCliente to set
+     */
+    public void setRelacionamentoCliente(Textocomentario relacionamentoCliente) {
+        this.relacionamentoCliente = relacionamentoCliente;
+    }
+
+    /**
+     * @return the parceriasChave
+     */
+    public Textocomentario getParceriasChave() {
+        return parceriasChave;
+    }
+
+    /**
+     * @param parceriasChave the parceriasChave to set
+     */
+    public void setParceriasChave(Textocomentario parceriasChave) {
+        this.parceriasChave = parceriasChave;
+    }
+
+    /**
+     * @return the canais
+     */
+    public Textocomentario getCanais() {
+        return canais;
+    }
+
+    /**
+     * @param canais the canais to set
+     */
+    public void setCanais(Textocomentario canais) {
+        this.canais = canais;
+    }
+
+    /**
+     * @return the recursosPrincipais
+     */
+    public Textocomentario getRecursosPrincipais() {
+        return recursosPrincipais;
+    }
+
+    /**
+     * @param recursosPrincipais the recursosPrincipais to set
+     */
+    public void setRecursosPrincipais(Textocomentario recursosPrincipais) {
+        this.recursosPrincipais = recursosPrincipais;
+    }
+
+    /**
+     * @return the concorrentes
+     */
+    public Textocomentario getConcorrentes() {
+        return concorrentes;
+    }
+
+    /**
+     * @param concorrentes the concorrentes to set
+     */
+    public void setConcorrentes(Textocomentario concorrentes) {
+        this.concorrentes = concorrentes;
+    }
+
+    /**
+     * @return the estagioEvolucao
+     */
+    public Textocomentario getEstagioEvolucao() {
+        return estagioEvolucao;
+    }
+
+    /**
+     * @param estagioEvolucao the estagioEvolucao to set
+     */
+    public void setEstagioEvolucao(Textocomentario estagioEvolucao) {
+        this.estagioEvolucao = estagioEvolucao;
+    }
+
+    /**
+     * @return the tecnologiaProcessos
+     */
+    public Textocomentario getTecnologiaProcessos() {
+        return tecnologiaProcessos;
+    }
+
+    /**
+     * @param tecnologiaProcessos the tecnologiaProcessos to set
+     */
+    public void setTecnologiaProcessos(Textocomentario tecnologiaProcessos) {
+        this.tecnologiaProcessos = tecnologiaProcessos;
+    }
+
+    /**
+     * @return the potencialInovacaoTecnologica
+     */
+    public Textocomentario getPotencialInovacaoTecnologica() {
+        return potencialInovacaoTecnologica;
+    }
+
+    /**
+     * @param potencialInovacaoTecnologica the potencialInovacaoTecnologica to
+     * set
+     */
+    public void setPotencialInovacaoTecnologica(Textocomentario potencialInovacaoTecnologica) {
+        this.potencialInovacaoTecnologica = potencialInovacaoTecnologica;
+    }
+
+    /**
+     * @return the aplicacoes
+     */
+    public Textocomentario getAplicacoes() {
+        return aplicacoes;
+    }
+
+    /**
+     * @param aplicacoes the aplicacoes to set
+     */
+    public void setAplicacoes(Textocomentario aplicacoes) {
+        this.aplicacoes = aplicacoes;
+    }
+
+    /**
+     * @return the dificuldadesEsperadas
+     */
+    public Textocomentario getDificuldadesEsperadas() {
+        return dificuldadesEsperadas;
+    }
+
+    /**
+     * @param dificuldadesEsperadas the dificuldadesEsperadas to set
+     */
+    public void setDificuldadesEsperadas(Textocomentario dificuldadesEsperadas) {
+        this.dificuldadesEsperadas = dificuldadesEsperadas;
+    }
+
+    /**
+     * @return the interacaoEmpresaUniversidade
+     */
+    public Textocomentario getInteracaoEmpresaUniversidade() {
+        return interacaoEmpresaUniversidade;
+    }
+
+    /**
+     * @param interacaoEmpresaUniversidade the interacaoEmpresaUniversidade to
+     * set
+     */
+    public void setInteracaoEmpresaUniversidade(Textocomentario interacaoEmpresaUniversidade) {
+        this.interacaoEmpresaUniversidade = interacaoEmpresaUniversidade;
+    }
+
+    /**
+     * @return the interacaoEmpresaComunidadeGoverno
+     */
+    public Textocomentario getInteracaoEmpresaComunidadeGoverno() {
+        return interacaoEmpresaComunidadeGoverno;
+    }
+
+    /**
+     * @param interacaoEmpresaComunidadeGoverno the
+     * interacaoEmpresaComunidadeGoverno to set
+     */
+    public void setInteracaoEmpresaComunidadeGoverno(Textocomentario interacaoEmpresaComunidadeGoverno) {
+        this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
+    }
+
+    /**
+     * @return the infraestrutura
+     */
+    public Textocomentario getInfraestrutura() {
+        return infraestrutura;
+    }
+
+    /**
+     * @param infraestrutura the infraestrutura to set
+     */
+    public void setInfraestrutura(Textocomentario infraestrutura) {
+        this.infraestrutura = infraestrutura;
+    }
+
+    /**
+     * @return the participacaoAcionaria
+     */
+    public Textocomentario getParticipacaoAcionaria() {
+        return participacaoAcionaria;
+    }
+
+    /**
+     * @param participacaoAcionaria the participacaoAcionaria to set
+     */
+    public void setParticipacaoAcionaria(Textocomentario participacaoAcionaria) {
+        this.participacaoAcionaria = participacaoAcionaria;
+    }
+
+    /**
+     * @return the potencialEmprego
+     */
+    public Textocomentario getPotencialEmprego() {
+        return potencialEmprego;
+    }
+
+    /**
+     * @param potencialEmprego the potencialEmprego to set
+     */
+    public void setPotencialEmprego(Textocomentario potencialEmprego) {
+        this.potencialEmprego = potencialEmprego;
+    }
+
+    /**
+     * @return the fontesReceita
+     */
+    public Textocomentario getFontesReceita() {
+        return fontesReceita;
+    }
+
+    /**
+     * @param fontesReceita the fontesReceita to set
+     */
+    public void setFontesReceita(Textocomentario fontesReceita) {
+        this.fontesReceita = fontesReceita;
+    }
+
+    /**
+     * @return the estruturaCusto
+     */
+    public Textocomentario getEstruturaCusto() {
+        return estruturaCusto;
+    }
+
+    /**
+     * @param estruturaCusto the estruturaCusto to set
+     */
+    public void setEstruturaCusto(Textocomentario estruturaCusto) {
+        this.estruturaCusto = estruturaCusto;
+    }
+
+    /**
+     * @return the investimentoInicial
+     */
+    public Textocomentario getInvestimentoInicial() {
+        return investimentoInicial;
+    }
+
+    /**
+     * @param investimentoInicial the investimentoInicial to set
+     */
+    public void setInvestimentoInicial(Textocomentario investimentoInicial) {
+        this.investimentoInicial = investimentoInicial;
+    }
+
+    /**
+     * @return the custoFixo
+     */
+    public Textocomentario getCustoFixo() {
+        return custoFixo;
+    }
+
+    /**
+     * @param custoFixo the custoFixo to set
+     */
+    public void setCustoFixo(Textocomentario custoFixo) {
+        this.custoFixo = custoFixo;
+    }
+
+    /**
+     * @return the custoVariavel
+     */
+    public Textocomentario getCustoVariavel() {
+        return custoVariavel;
+    }
+
+    /**
+     * @param custoVariavel the custoVariavel to set
+     */
+    public void setCustoVariavel(Textocomentario custoVariavel) {
+        this.custoVariavel = custoVariavel;
     }
 }
