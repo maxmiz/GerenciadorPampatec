@@ -438,6 +438,10 @@ fieldset[disabled] .autoCompletar input {
     background-image: linear-gradient(to bottom, #00A85A 0%, #1CC942 75%);
     color: #e8e8e8;
 }
+ui.button.botaoVerdeMarcado{
+   background-color: #04DB85;
+    
+}
 
 .ui-button.botaoVermelho{
     background-color: red;
@@ -482,6 +486,7 @@ fieldset[disabled] .autoCompletar input {
     background-image: linear-gradient(to bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
     color: white;
 }
+
 
 
 .ui-button.botaoBase{
@@ -569,4 +574,11 @@ Adicionar Comentário e Histórico de comentários
 .filtro:focus{
     color: black;
     text-decoration: none;
+}
+
+.textoInput{
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    box-sizing: content-box; 
 }
