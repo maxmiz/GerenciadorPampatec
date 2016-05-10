@@ -231,15 +231,38 @@
                             <p:column headerText="Ações Referentes ao Projeto" style=" text-align: center" width="25%">
                                 <div align="center">
                                     <div align="center">
-                                        <h:commandLink class="btn btn-success" title="Avaliar Plano de Negócio"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}" action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}">                                       
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-check-square-o"></i> Avaliar</label>
-                                        </h:commandLink>
-                                        <h:outputLabel class="btn btn-danger" style="background-color: red; cursor: not-allowed" title="O Plano de Negócio está sendo avaliado nesse momento"  rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}">                                       
-                                            <label style="color: white; cursor: not-allowed"><i class="fa fa-cog"></i> Sendo Avaliado</label>
-                                        </h:outputLabel>
-                                        <h:commandLink class="btn btn-primary" title="Visualizar Plano" rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}">                                       
-                                            <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Visualizar</label>
-                                        </h:commandLink>  
+                                        
+                                        <p:commandButton class="botaoBase botaoVerde"
+                                                         id="avaliarPlano"
+                                                         rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjeto(projeto)}"
+                                                         title="Avaliar Plano de Negócio"
+                                                         action="#{buscaProjetoGerenteDeRelacionamentosBean.enviarPreAvaliacaoPreProjeto(projeto)}"
+                                                         icon="fa fa-edit"    
+                                                         value="Avaliar"
+                                                         >
+                                        
+
+                                        </p:commandButton>
+                                        
+                                        <p:commandButton class="botaoDesabilitado"
+                                                         id="sendoAvaliado"
+                                                         rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoSendoAvaliado(projeto)}"
+                                                         title="O Plano de Negócio está sendo avaliado nesse momento"
+                                                         icon="fa fa-eye-slash"    
+                                                         value="Avaliando"
+                                                         >
+                                            
+                                        </p:commandButton>
+                                        
+                                        <p:commandButton class="botaoBase botaoAzul"
+                                                         id="visualizarPlano"
+                                                         rendered="#{buscaProjetoGerenteDeRelacionamentosBean.verificaStatusProjetoRestantes(projeto)}"
+                                                         title="Visualizar o plano de negócio"
+                                                         icon="fa fa-eye"  
+                                                         value="Visualizar"
+                                                         >
+                                            
+                                        </p:commandButton>
                                     </div>
                                 </div>
                             </p:column>
