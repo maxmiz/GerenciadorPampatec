@@ -183,7 +183,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void salvarViaAjax() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
-        comentDao.salvar(comentarioProjeto);
+        comentarioProjeto = comentDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();
         /**
