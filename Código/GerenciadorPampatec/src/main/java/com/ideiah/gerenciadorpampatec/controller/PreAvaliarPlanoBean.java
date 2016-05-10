@@ -53,7 +53,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         //o contador do projeto e o valor desse contador anteriormente(contAnterior). 
         projeto.setContAcesso(projeto.getContAcesso() + 1);
         contAnterior = projeto.getContAcesso();
-
+        atualizarProjetoSessao();
         buscarComentarioProjeto(projeto);
 
         mudaStatus();
@@ -63,6 +63,7 @@ public class PreAvaliarPlanoBean implements Serializable {
             comentarioProjeto.setProjeto(projeto);
             comentarioProjeto = comentarioDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
         }
+        comentarioProjeto.populandoVariaveisComentario();
     }
 
     /**
@@ -183,7 +184,8 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void salvarViaAjax() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
-        comentarioProjeto = comentDao.salvarRetornandoComentarioProjeto(comentarioProjeto);
+        comentarioProjeto.atualizaTodosOsTextoComentario();
+        comentDao.salvar(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();
         /**
@@ -372,6 +374,16 @@ public class PreAvaliarPlanoBean implements Serializable {
         if (comentarioProjeto.getProjeto().getIdProjeto() == projeto.getIdProjeto()) {
             comentarioProjeto.setStatus(2);
         }
+    }
+    
+    /**
+     * Atualiza o projeto que está na sessão.
+     */
+    public void atualizarProjetoSessao() {
+        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        ProjetoDao dao = new ProjetoDao();
+        projeto = dao.buscar(projeto.getIdProjeto());
+        secao.setAttribute("projetoSelecionado", projeto);
     }
 
     /**
