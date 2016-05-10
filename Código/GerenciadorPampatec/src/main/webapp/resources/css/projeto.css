@@ -435,6 +435,12 @@ fieldset[disabled] .autoCompletar input {
     text-shadow:0px 1px 0px #5b8a3c;
 
 }
+ui.button.botaoVerdeMarcado{
+   background-color: #04DB85;
+    
+}
+
+
 
 .ui-button.botaoVerde:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #05914f), color-stop(1, #00a85a));
@@ -541,6 +547,7 @@ fieldset[disabled] .autoCompletar input {
     background-color:#2c79c7;
     
 }
+
 
 .ui-button.botaoBase{
     -moz-border-radius:4px;
@@ -655,4 +662,11 @@ Adicionar Comentário e Histórico de comentários
 .filtro:focus{
     color: black;
     text-decoration: none;
+}
+
+.textoInput{
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    box-sizing: content-box; 
 }
