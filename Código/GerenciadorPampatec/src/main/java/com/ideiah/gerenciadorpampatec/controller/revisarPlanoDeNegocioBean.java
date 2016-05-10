@@ -239,7 +239,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
-        return projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA;
+        return (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) 
+                || (projetoSelecionado.getStatus() == Projeto.REVISANDO);
     }
 
     /**
