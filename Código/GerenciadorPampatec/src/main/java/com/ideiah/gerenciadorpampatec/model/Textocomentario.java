@@ -44,7 +44,7 @@ public class Textocomentario implements java.io.Serializable {
     public static final int ESTRUTURA_CUSTO = 20;
     public static final int INVESTIMENTO_INICIAL = 21;
     public static final int CUSTOS_FIXOS = 22;
-    public static final int CUSTOS_VARIAVEISS = 23;
+    public static final int CUSTOS_VARIAVEIS = 23;
 
     public Textocomentario() {
     }
