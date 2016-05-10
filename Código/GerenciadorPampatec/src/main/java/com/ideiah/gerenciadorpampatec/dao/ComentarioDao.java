@@ -15,7 +15,11 @@ import org.hibernate.HibernateException;
  * @author MAICON
  */
 public class ComentarioDao extends Dao implements Serializable{
+
+    public ComentarioDao() {
+    }
     
+        
 //<editor-fold defaultstate="collapsed" desc="Salvar">
     
     

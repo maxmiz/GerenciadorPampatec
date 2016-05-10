@@ -17,6 +17,11 @@ import org.hibernate.HibernateException;
  * @author Pedro
  */
 public class ProjetoDao extends Dao implements Serializable {
+
+    public ProjetoDao() {
+    }
+    
+    
 //<editor-fold defaultstate="collapsed" desc="Salvar">
 
     public boolean salvar(Projeto projeto) {
