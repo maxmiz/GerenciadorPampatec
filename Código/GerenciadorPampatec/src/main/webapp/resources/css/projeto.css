@@ -59,6 +59,7 @@ legend {
 
 .campoDestacado{
     border: orange solid 2px !important;
+    resize: none;
 }
 
 .novaAba {
