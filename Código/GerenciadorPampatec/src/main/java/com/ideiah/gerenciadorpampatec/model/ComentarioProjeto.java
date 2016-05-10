@@ -20,7 +20,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     public static final int EM_ANDAMENTO = 1;
     public static final int FINALIZADO = 2;
 
-    private int idcomentario;
+    private Integer idcomentario;
     private String nome;
     private String participacaoacionaria;
     private String potencialemprego;
@@ -28,7 +28,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Projeto projeto;
     private Integer status;
     private String consideracoesPersonalizadas;
-    private Set<Textocomentario> textocomentarios;    
+    private Set<Textocomentario> textocomentarios = new HashSet();   
     private Textocomentario segmentosClientes;
     private Textocomentario propostaValor;
     private Textocomentario atividadeChave;
@@ -60,9 +60,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         consideracoes = "";
         consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
-        textocomentarios = new HashSet();
         adicionaListaComentario();
-        populandoVariaveisComentario();
     }
 
     public ComentarioProjeto(int idcomentario) {
@@ -84,7 +82,7 @@ public class ComentarioProjeto implements java.io.Serializable {
      * Método que popula as variáveis dos comentários, 
      * que que essas possam ser utilizadas na interface da aplicação. </p>
      */
-    private void populandoVariaveisComentario() {
+    public void populandoVariaveisComentario() {
         segmentosClientes = retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
         propostaValor = retornarTextoComentario(Textocomentario.PROPOSTA_VALOR);
         atividadeChave = retornarTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
@@ -480,13 +478,42 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     }
     
+    /**
+     * Atualiza todos os campos da lista de textoComentários com o valor de seus
+     * campos de texto comentário.
+     */
+    public void atualizaTodosOsTextoComentario(){
+        atualizarTextoComentario(segmentosClientes);
+        atualizarTextoComentario(propostaValor);
+        atualizarTextoComentario(atividadeChave);
+        atualizarTextoComentario(relacionamentoCliente);
+        atualizarTextoComentario(parceriasChave);
+        atualizarTextoComentario(canais);
+        atualizarTextoComentario(recursosPrincipais);
+        atualizarTextoComentario(concorrentes);
+        atualizarTextoComentario(estagioEvolucao);
+        atualizarTextoComentario(tecnologiaProcessos);
+        atualizarTextoComentario(potencialInovacaoTecnologica);
+        atualizarTextoComentario(aplicacoes);
+        atualizarTextoComentario(dificuldadesEsperadas);
+        atualizarTextoComentario(interacaoEmpresaUniversidade);
+        atualizarTextoComentario(interacaoEmpresaComunidadeGoverno);
+        atualizarTextoComentario(infraestrutura);
+        atualizarTextoComentario(participacaoAcionaria);
+        atualizarTextoComentario(potencialEmprego);
+        atualizarTextoComentario(fontesReceita);
+        atualizarTextoComentario(estruturaCusto);
+        atualizarTextoComentario(investimentoInicial);
+        atualizarTextoComentario(custoFixo);
+        atualizarTextoComentario(custoVariavel);
+    }
     
     /**
      * Procura um texto comentário em uma lista e atualiza ele com o
      * texto comentério fornecido.
      * @param textocomentario 
      */
-    public void atualizarTextoComentario(Textocomentario textocomentario) {
+    private void atualizarTextoComentario(Textocomentario textocomentario) {
         for (Textocomentario textocomentarioLaco : textocomentarios) {
             if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
                 textocomentarioLaco.setTexto(textocomentario.getTexto());
@@ -552,11 +579,11 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
     }
 
-    public int getIdcomentario() {
+    public Integer getIdcomentario() {
         return this.idcomentario;
     }
 
-    public void setIdcomentario(int idcomentario) {
+    public void setIdcomentario(Integer idcomentario) {
         this.idcomentario = idcomentario;
     }
 

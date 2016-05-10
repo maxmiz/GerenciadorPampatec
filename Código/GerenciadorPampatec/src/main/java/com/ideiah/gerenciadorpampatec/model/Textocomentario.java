@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class Textocomentario implements java.io.Serializable {
 
-    private int idtextocomentario;
+    private Integer idtextocomentario;
     private GerenteRelacionamento gerenteRelacionamento;
     private String texto;
     private Date dataAlteracao;
@@ -64,11 +64,11 @@ public class Textocomentario implements java.io.Serializable {
         this.comentarioprojetos = comentarioprojetos;
     }
 
-    public int getIdtextocomentario() {
+    public Integer getIdtextocomentario() {
         return this.idtextocomentario;
     }
 
-    public void setIdtextocomentario(int idtextocomentario) {
+    public void setIdtextocomentario(Integer idtextocomentario) {
         this.idtextocomentario = idtextocomentario;
     }
 
