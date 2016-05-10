@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+﻿<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -263,7 +263,7 @@
                             <h:commandButton type="submit" 
                                              class="btn btn-success" 
                                              value="Salvar Plano de Projeto" 
-                                             action="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}">
+                                             action="#-{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}">
                             </h:commandButton>
                         </div>
                     </div>
@@ -316,13 +316,6 @@
                         <li class="abaPlano"><a id="tabProdutoServico" aria-expanded="false" title="Visualizar Produto de Serviço" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
                         <li class="abaPlano"><a id="tabGestaoPessoas" aria-expanded="false" title="Visualizar Gestão de Pessoas" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
                         <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" title="Visualizar Plano Financeiro" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
-                        <li class="abaPlano" value="#{(revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado) || revisarPlanoDeNegocioBean.verificaStatusNecessitaMelhoria(projetoSelecionado))}">
-                            <a id="tabTerminarRevisao"  aria-expanded="false" 
-                               title="Visualizar Terminar Revisão" href="#formParte07" 
-                               data-toggle="tab">
-                                Terminar Revisão
-                            </a>
-                        </li>
                     </ul>
                     <div id="myTabContent" class="tab-content" >
 
@@ -535,13 +528,18 @@
                                 </div>
                                 <br/>
                                 <hr></hr>
-                                <div class="col-md-4 rodape">
-                                    <p:commandButton id="botaoSalvar2" class="btn btn-success" 
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <p:commandButton id="botaoSalvar2" 
+                                                     class="botaoBase botaoVerde" 
                                                      type="button" 
-                                                     title="Salvar Revisão" 
-                                                     onclick="chamaModal(modalInfoSalvar)" 
+                                                     title="Salvar a revisão do projeto." 
                                                      value="Salvar Revisão"
                                                      icon="fa fa-save">
+                                            <p:ajax event="click"
+                                                    update="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    onsuccess="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/> 	                                        
                                     </p:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
                                 </div>
@@ -774,12 +772,15 @@
                                 <div class="col-md-4"><br /></div>
                                 <div class="col-md-4" align="center">
                                     <p:commandButton id="botaoSalvar3" 
-                                                     class="btn btn-success" 
+                                                     class="botaoBase botaoVerde" 
                                                      type="button" 
-                                                     title="Salvar Revisão" 
-                                                     onclick="infoSalvar()" 
+                                                     title="Salvar a revisão do projeto."
                                                      value="Salvar Revisão"
                                                      icon="fa fa-save">
+                                            <p:ajax event="click"
+                                                    update="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    onsuccess="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                     </p:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
                                 </div>
@@ -1195,12 +1196,15 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
                                     <p:commandButton id="botaoSalvar4" 
-                                                     class="btn btn-success" 
+                                                     class="botaoBase botaoVerde" 
                                                      type="button" 
-                                                     title="Salvar Revisão" 
-                                                     onclick="infoSalvar()" 
+                                                     title="Salvar a revisão do projeto." 
                                                      value="Salvar Revisão"
                                                      icon="fa fa-save">
+                                            <p:ajax event="click"
+                                                    update="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    onsuccess="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                     </p:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
@@ -1314,12 +1318,15 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
                                     <p:commandButton id="botaoSalvar5" 
-                                                     class="btn btn-success" 
+                                                     class="botaoBase botaoVerde" 
                                                      type="button" 
-                                                     title="Salvar Revisão" 
-                                                     onclick="infoSalvar()" 
+                                                     title="Salvar a revisão do projeto." 
                                                      value="Salvar Revisão"
                                                      icon="fa fa-save">
+                                            <p:ajax event="click"
+                                                    update="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    onsuccess="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                     </p:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
@@ -1919,12 +1926,15 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
                                     <p:commandButton id="botaoSalvar6" 
-                                                     class="btn btn-success" 
-                                                     type="button" 
-                                                     onclick="infoSalvar()" 
+                                                     class="botaoBase botaoVerde" 
+                                                     type="button"
                                                      value="Salvar Revisão"
                                                      title="Salvar a revisão do projeto."
                                                      icon="fa fa-save">
+                                            <p:ajax event="click"
+                                                    update="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    onsuccess="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                     </p:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
