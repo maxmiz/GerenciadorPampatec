@@ -47,6 +47,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private List<Custo> listaCustoVariavel;
     private int somatorioFixo;
     private int somatorioVariavel;
+    private boolean salvou;
     @ManagedProperty(value="#{sessionBean}")
     private SessionBean sessionBean;
 
@@ -63,6 +64,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
         preencheListaCusto();
+        salvou = false;
     }
 
     /**
@@ -316,6 +318,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
+        salvou = true;
 
         /**
          * Para exibir a mensagem de salvo com sucesso.
@@ -805,5 +808,18 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
+    }
+        /**
+     * @return the salvou
+     */
+    public boolean isSalvou() {
+        return salvou;
+    }
+
+    /**
+     * @param salvou the salvou to set
+     */
+    public void setSalvou(boolean salvou) {
+        this.salvou = salvou;
     }
 }
