@@ -419,91 +419,179 @@ fieldset[disabled] .autoCompletar input {
 }
 
 .ui-button.botaoVerde {
-    background-color: #00A859;
-    color: white;
-}
+    -moz-box-shadow: 0px 10px 14px -7px #3e7327;
+    -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+    box-shadow: 0px 10px 14px -7px #3e7327;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #00a85a), color-stop(1, #05914f));
+    background:-moz-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-webkit-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-o-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-ms-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:linear-gradient(to bottom, #00a85a 5%, #05914f 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a85a', endColorstr='#05914f',GradientType=0);
+    background-color:#00a85a;
+    border:1px solid #4b8f29;
+    padding:5px 10px;    
+    text-shadow:0px 1px 0px #5b8a3c;
 
-.ui-button.botaoVerde:hover {
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #00A85A),
-        color-stop(0.75, #1CC942)
-        );
-    background-image: -o-linear-gradient(bottom, #00A85A 0%, #1CC942 75%);
-    background-image: -moz-linear-gradient(bottom, #00A85A 0%, #1CC942 75%);
-    background-image: -webkit-linear-gradient(bottom, #00A85A 0%, #1CC942 75%);
-    background-image: -ms-linear-gradient(bottom, #00A85A 0%, #1CC942 75%);
-    background-image: linear-gradient(to bottom, #00A85A 0%, #1CC942 75%);
-    color: #e8e8e8;
 }
 ui.button.botaoVerdeMarcado{
    background-color: #04DB85;
     
 }
 
-.ui-button.botaoVermelho{
-    background-color: red;
-    color: white;
+
+
+.ui-button.botaoVerde:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #05914f), color-stop(1, #00a85a));
+    background:-moz-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-webkit-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-o-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-ms-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:linear-gradient(to bottom, #05914f 5%, #00a85a 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#05914f', endColorstr='#00a85a',GradientType=0);
+    background-color:#05914f;
+    
 }
 
-.ui-button.botaoVermelho:hover{
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #FF0000),
-        color-stop(1, #FF6B72),
-        color-stop(1, #F73138)
-        );
-    background-image: -o-linear-gradient(bottom, #FF0000 0%, #FF6B72 100%, #F73138 100%);
-    background-image: -moz-linear-gradient(bottom, #FF0000 0%, #FF6B72 100%, #F73138 100%);
-    background-image: -webkit-linear-gradient(bottom, #FF0000 0%, #FF6B72 100%, #F73138 100%);
-    background-image: -ms-linear-gradient(bottom, #FF0000 0%, #FF6B72 100%, #F73138 100%);
-    background-image: linear-gradient(to bottom, #FF0000 0%, #FF6B72 100%, #F73138 100%);
-    color: white;
+.ui-button.botaoVermelho {
+	-moz-box-shadow: 0px 10px 14px -7px #b53f3f;
+	-webkit-box-shadow: 0px 10px 14px -7px #b53f3f;
+	box-shadow: 0px 10px 14px -7px #b53f3f;
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eb4646), color-stop(1, #d61515));
+	background:-moz-linear-gradient(top, #eb4646 5%, #d61515 100%);
+	background:-webkit-linear-gradient(top, #eb4646 5%, #d61515 100%);
+	background:-o-linear-gradient(top, #eb4646 5%, #d61515 100%);
+	background:-ms-linear-gradient(top, #eb4646 5%, #d61515 100%);
+	background:linear-gradient(to bottom, #eb4646 5%, #d61515 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb4646', endColorstr='#d61515',GradientType=0);
+	background-color:#eb4646;
+	border:1px solid #bd3737;
+	padding:5px 10px;
+	text-shadow:0px 1px 0px #d61717;
+}
+.ui-button.botaoVermelho:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d61515), color-stop(1, #eb4646));
+	background:-moz-linear-gradient(top, #d61515 5%, #eb4646 100%);
+	background:-webkit-linear-gradient(top, #d61515 5%, #eb4646 100%);
+	background:-o-linear-gradient(top, #d61515 5%, #eb4646 100%);
+	background:-ms-linear-gradient(top, #d61515 5%, #eb4646 100%);
+	background:linear-gradient(to bottom, #d61515 5%, #eb4646 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#db2828', endColorstr='#fa3a3a',GradientType=0);
+	background-color:#db2828;
 }
 
 .ui-button.botaoPreto{
-    background-color: black;
-    color: white;
+    -moz-box-shadow: 0px 10px 16px -7px #21241d;
+	-webkit-box-shadow: 0px 10px 16px -7px #21241d;
+	box-shadow: 0px 10px 16px -7px #21241d;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #555754), color-stop(1, #121410));
+	background:-moz-linear-gradient(top, #555754 5%, #121410 100%);
+	background:-webkit-linear-gradient(top, #555754 5%, #121410 100%);
+	background:-o-linear-gradient(top, #555754 5%, #121410 100%);
+	background:-ms-linear-gradient(top, #555754 5%, #121410 100%);
+	background:linear-gradient(to bottom, #555754 5%, #121410 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#555754', endColorstr='#121410',GradientType=0);
+	background-color:#555754;
+        border:1px solid #34402b;
+	padding:5px 21px;
+	text-shadow:0px 1px 0px #131a0f;
 }
 
 .ui-button.botaoPreto:hover{
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #000000),
-        color-stop(1, #BFBFBF),
-        color-stop(1, #5C5C5C)
-        );
-    background-image: -o-linear-gradient(bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
-    background-image: -moz-linear-gradient(bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
-    background-image: -webkit-linear-gradient(bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
-    background-image: -ms-linear-gradient(bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
-    background-image: linear-gradient(to bottom, #000000 0%, #BFBFBF 100%, #5C5C5C 100%);
-    color: white;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #121410), color-stop(1, #555754));
+	background:-moz-linear-gradient(top, #121410 5%, #555754 100%);
+	background:-webkit-linear-gradient(top, #121410 5%, #555754 100%);
+	background:-o-linear-gradient(top, #121410 5%, #555754 100%);
+	background:-ms-linear-gradient(top, #121410 5%, #555754 100%);
+	background:linear-gradient(to bottom, #121410 5%, #555754 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#121410', endColorstr='#555754',GradientType=0);
+	background-color:#121410;
+}
+
+.ui-button.botaoAzul {
+    -moz-box-shadow: 0px 10px 14px -7px #1837c4;
+    -webkit-box-shadow: 0px 10px 14px -7px #1837c4;
+    box-shadow: 0px 10px 14px -7px #1837c4;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5492d1), color-stop(1, #2c79c7));
+    background:-moz-linear-gradient(top, #5492d1 5%, #2c79c7 100%);
+    background:-webkit-linear-gradient(top, #5492d1 5%, #2c79c7 100%);
+    background:-o-linear-gradient(top, #5492d1 5%, #2c79c7 100%);
+    background:-ms-linear-gradient(top, #5492d1 5%, #2c79c7 100%);
+    background:linear-gradient(to bottom, #5492d1 5%, #2c79c7 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5492d1', endColorstr='#2c79c7',GradientType=0);
+    background-color:#5492d1;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    border:1px solid #2d57c2;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:5px 0px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #324cd1;
+}
+
+.ui-button.botaoAzul:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2c79c7), color-stop(1, #5492d1));
+    background:-moz-linear-gradient(top, #2c79c7 5%, #5492d1 100%);
+    background:-webkit-linear-gradient(top, #2c79c7 5%, #5492d1 100%);
+    background:-o-linear-gradient(top, #2c79c7 5%, #5492d1 100%);
+    background:-ms-linear-gradient(top, #2c79c7 5%, #5492d1 100%);
+    background:linear-gradient(to bottom, #2c79c7 5%, #5492d1 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c79c7', endColorstr='#5492d1',GradientType=0);
+    background-color:#2c79c7;
+    
 }
 
 
-
 .ui-button.botaoBase{
-    display: inline-block;
-    margin: 0;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: none;
-    border: 1px solid transparent;
-    padding: 8px;
-    font-size: 16px;
-    line-height: 1.42857143;
-    border-radius: 0;
-    margin-left: 1%;
-    margin-right: 1%;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    margin: 3px;
+    text-decoration:none;
+}
+
+.ui-button.botaoDesabilitado{
+    -moz-box-shadow: 0px 10px 14px -7px #b53f3f;
+    -webkit-box-shadow: 0px 10px 14px -7px #b53f3f;
+    box-shadow: 0px 10px 14px -7px #b53f3f;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eb4646), color-stop(1, #d61515));
+    background:-moz-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-webkit-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-o-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-ms-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:linear-gradient(to bottom, #eb4646 5%, #d61515 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb4646', endColorstr='#d61515',GradientType=0);
+    background-color:#eb4646;
+    border:1px solid #bd3737;
+    padding:5px 0px;
+    text-shadow:0px 1px 0px #d61717;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    display:inline-block;
+    cursor: not-allowed;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    margin: 3px;
+    text-decoration:none;
+}
+
+.ui-button.botaoBase:active{
+    position:relative;
+    top:1px;
 }
 
 /*
