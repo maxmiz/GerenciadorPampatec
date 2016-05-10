@@ -7,6 +7,7 @@ package com.ideiah.gerenciadorpampatec.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -279,13 +280,14 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
         return textoComentario;
     }
-    
+
     /**
      * Retorna o objeto texto comentário
+     *
      * @param tipo tipo para se retornar
      * @return objeto encontrado
      */
-    public Textocomentario retornarTextoComentario(int tipo){
+    public Textocomentario retornarTextoComentario(int tipo) {
         for (Textocomentario objetoTextoComentario : textocomentarios) {
             if (objetoTextoComentario.getTipo() == tipo) {
                 return objetoTextoComentario;
@@ -295,174 +297,178 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
 
     /**
-     * @return Retorna o valor do comentário relacionado ao segmento de clientes.
+     * @return Retorna o valor do comentário relacionado ao segmento de
+     * clientes.
      */
-    public String retornarSegmentosClientes(){
+    public String retornarSegmentosClientes() {
         return retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao proposta de valor.
      */
-    public String retornarPropostaValor(){
+    public String retornarPropostaValor() {
         return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao atividades chaves.
      */
-    public String retornarAtividadesChave(){
+    public String retornarAtividadesChave() {
         return retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
     }
-    
+
     /**
-     * @return Retorna o valor do comentário relacionado ao relações de clientes.
+     * @return Retorna o valor do comentário relacionado ao relações de
+     * clientes.
      */
-    public String retornarRelacoesClientes(){
+    public String retornarRelacoesClientes() {
         return retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao parcerias chaves.
      */
-    public String retornarParceriasChave(){
+    public String retornarParceriasChave() {
         return retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao canais.
      */
-    public String retornarCanais(){
+    public String retornarCanais() {
         return retornaTextoComentario(Textocomentario.CANAIS);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a recursos principais.
      */
-    public String retornarRecursosPrincipais(){
+    public String retornarRecursosPrincipais() {
         return retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a concorrentes.
      */
-    public String retornarConcorrentes(){
+    public String retornarConcorrentes() {
         return retornaTextoComentario(Textocomentario.CONCORRENTES);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a estagio de evolução.
      */
-    public String retornarEstagioEvolucao(){
+    public String retornarEstagioEvolucao() {
         return retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
     }
-    
+
     /**
-     * @return Retorna o valor do comentário relacionado a tecnologia e processos.
+     * @return Retorna o valor do comentário relacionado a tecnologia e
+     * processos.
      */
-    public String retornarTecnologiaProcesso(){
+    public String retornarTecnologiaProcesso() {
         return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
     }
-    
+
     /**
-     * @return Retorna o valor do comentário relacionado ao potencial em inovação
-     * e tecnologia..
+     * @return Retorna o valor do comentário relacionado ao potencial em
+     * inovação e tecnologia..
      */
-    public String retornarPotencialInovacaoTecnologia(){
+    public String retornarPotencialInovacaoTecnologia() {
         return retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a aplicações.
      */
-    public String retornarAplicacoes(){
+    public String retornarAplicacoes() {
         return retornaTextoComentario(Textocomentario.APLICACOES);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a difilcudades
      * esperadas.
      */
-    public String retornarDifilcudadesEsperadas(){
+    public String retornarDifilcudadesEsperadas() {
         return retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a interacao entre a
      * empresa e universidade.
      */
-    public String retornarInteracaoEmpresaUniversidade(){
+    public String retornarInteracaoEmpresaUniversidade() {
         return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a interacao entre a
      * empresa, a comunidade e o governo.
      */
-    public String retornarInteracaoEmpresaComunidadeGoverno(){
+    public String retornarInteracaoEmpresaComunidadeGoverno() {
         return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a infraestrutura.
      */
-    public String retornarInfraEstrutura(){
+    public String retornarInfraEstrutura() {
         return retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a participacao
      * acionário.
      */
-    public String retornarParticipacaoAcionaria(){
+    public String retornarParticipacaoAcionaria() {
         return retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado o potencial de emprego.
      */
-    public String retornarPotencialEmprego(){
+    public String retornarPotencialEmprego() {
         return retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a fontes de receitas.
      */
-    public String retornarFontesReceitas(){
+    public String retornarFontesReceitas() {
         return retornaTextoComentario(Textocomentario.FONTES_RECEITA);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado a estrutura de custos..
      */
-    public String retornarEstruturaCustos(){
+    public String retornarEstruturaCustos() {
         return retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
     }
-    
+
     /**
-     * @return Retorna o valor do comentário relacionado ao investimento inicial.
+     * @return Retorna o valor do comentário relacionado ao investimento
+     * inicial.
      */
-    public String retornarInvestimentoInicial(){
+    public String retornarInvestimentoInicial() {
         return retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao custos fixos.
      */
-    public String retornarCustosFixos(){
+    public String retornarCustosFixos() {
         return retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
     }
-    
+
     /**
      * @return Retorna o valor do comentário relacionado ao custos variáveis.
      */
-    public String retornarCustosVariaveis(){
+    public String retornarCustosVariaveis() {
         return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS);
     }
-    
 
     /**
      * Cria um texto de comentário.
+     *
      * @param tipo tipo do comentário a ser criado
      * @return comentário criado
      */
@@ -471,7 +477,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         Textocomentario textoComentario = new Textocomentario();
         textoComentario.setTipo(tipo);
         textoComentario.setTexto("");
-        
+
         return textoComentario;
     }
 
@@ -504,54 +510,74 @@ public class ComentarioProjeto implements java.io.Serializable {
         textocomentarios.add(criaTextoComentario(Textocomentario.CUSTOS_VARIAVEISS));
 
     }
-    
+
+    /**
+     * Procura um texto comentário em uma lista e atualiza ele com o
+     * texto comentério fornecido.
+     * @param textocomentario 
+     */
+    public void atualizarTextoComentario(Textocomentario textocomentario) {
+        for (Textocomentario textocomentarioLaco : textocomentarios) {
+            if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
+                textocomentarioLaco.setTexto(textocomentario.getTexto());
+                textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
+                textocomentarioLaco.setDataAlteracao(textocomentario.getDataAlteracao());
+                break;
+            }
+        }
+    }
+
     /**
      * Muda o texto de um TextoComentário dependendo do tipo.
+     *
      * @param tipo tipo do comentário
      * @param texto texto para se colocar.
      */
-    public void setTextoComentario(int tipo,String texto){
+    public void setTextoComentario(int tipo, String texto) {
         for (Textocomentario textocomentario : textocomentarios) {
-            if(textocomentario.getTipo() == tipo){
+            if (textocomentario.getTipo() == tipo) {
                 textocomentario.setTexto(texto);
             }
         }
     }
-    
+
     /**
      * Muda o gerente de um TextoComentário dependendo do tipo.
+     *
      * @param tipo tipo do comentário
      * @param gerenteRelacionamento gerente para se adicionar
      */
-    public void setTextoComentario(int tipo, GerenteRelacionamento gerenteRelacionamento){
+    public void setTextoComentario(int tipo, GerenteRelacionamento gerenteRelacionamento) {
         for (Textocomentario textocomentario : textocomentarios) {
-            if(textocomentario.getTipo() == tipo){
+            if (textocomentario.getTipo() == tipo) {
                 textocomentario.setGerenteRelacionamento(gerenteRelacionamento);
             }
         }
     }
-    
+
     /**
      * Muda a data de alteração de um TextoComentário dependendo do tipo.
+     *
      * @param tipo tipo do comentário
      * @param dataAlteracao
      */
-    public void setTextoComentarioDataAlteracao(int tipo, Date dataAlteracao){
+    public void setTextoComentarioDataAlteracao(int tipo, Date dataAlteracao) {
         for (Textocomentario textocomentario : textocomentarios) {
-            if(textocomentario.getTipo() == tipo){
+            if (textocomentario.getTipo() == tipo) {
                 textocomentario.setDataAlteracao(dataAlteracao);
             }
         }
     }
-    
+
     /**
      * Muda a data de alteração de um TextoComentário dependendo do tipo.
+     *
      * @param tipo tipo do comentário
      * @param dataSubmissao
      */
-    public void setTextoComentarioDataSubmissao(int tipo, Date dataSubmissao){
+    public void setTextoComentarioDataSubmissao(int tipo, Date dataSubmissao) {
         for (Textocomentario textocomentario : textocomentarios) {
-            if(textocomentario.getTipo() == tipo){
+            if (textocomentario.getTipo() == tipo) {
                 textocomentario.setDataSubmissao(dataSubmissao);
             }
         }
