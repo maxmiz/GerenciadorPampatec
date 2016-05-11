@@ -1558,5 +1558,32 @@ public class ComentarioProjetoTest {
         String expResult = testeTextoGigante;
         String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
         assertEquals(expResult, result);
+
+   /**
+    * <p>Método para testar o histórico de comentários. 
+    * IMPLEMENTAÇÃO NÃO CONCLUIDA.</p>
+    *  
+    */
+    @Ignore
+    public void testHistoricoDeComentarios(){
+        System.out.println(">>> \ttestHistoricoDeComentarios");
+        String textoTeste = "Teste do histórico de comentátios.";
+        
+        ComentarioProjeto objComentProj = new ComentarioProjeto();
+//        objComentProj.setProjeto(projeto);
+        Textocomentario textocomentario = objComentProj.retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+        textocomentario.setTexto(textoTeste);
+        objComentProj.setStatus(ComentarioProjeto.FINALIZADO);
+                
+        ComentarioDao comentDao = new ComentarioDao();
+        comentDao.salvarTextoComentario(textocomentario);
+        comentDao.salvar(objComentProj);
+        
+//        ArrayList resultadoEsperado = new ArrayList();
+        ArrayList resultadoRecebido = objComentProj.historicoDeComentarios(Textocomentario.SEGMENTO_CLIENTE);
+        
+//        for (Object listaResultado : resultadoRecebido) {
+//
+//        }
     }
 }
