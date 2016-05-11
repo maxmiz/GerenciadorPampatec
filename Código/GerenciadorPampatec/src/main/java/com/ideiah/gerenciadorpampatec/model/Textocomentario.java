@@ -47,9 +47,11 @@ public class Textocomentario implements java.io.Serializable {
     public static final int CUSTOS_VARIAVEIS = 23;
 
     public Textocomentario() {
+        this.texto = "";
     }
 
     public Textocomentario(int idtextocomentario, GerenteRelacionamento gerenteRelacionamento) {
+        this.texto = "";
         this.idtextocomentario = idtextocomentario;
         this.gerenteRelacionamento = gerenteRelacionamento;
     }

@@ -276,13 +276,13 @@ public class ComentarioProjeto implements java.io.Serializable {
         ComentarioDao comentDao = new ComentarioDao();
         
         ArrayList<ComentarioProjeto> buscaHistoricoPorTipo;
-//        buscaHistoricoPorTipo = comentDao.buscaComentarioPorTipo(FINALIZADO);
+//        buscaHistoricoPorTipo = comentDao.buscaComentarioPorProjetoEStatus(FINALIZADO);
         
         HashMap<String, Object> mapaHistorico = new HashMap<>();
         mapaHistorico.put("status", FINALIZADO);
         mapaHistorico.put("projeto_idProjeto", projeto.getIdProjeto());
         
-        buscaHistoricoPorTipo = comentDao.buscaComentarioPorTipo(mapaHistorico);
+        buscaHistoricoPorTipo = comentDao.buscaComentarioPorProjetoEStatus(mapaHistorico);
             
         for (ComentarioProjeto comentarioProjeto : buscaHistoricoPorTipo) {
             for (Textocomentario listaTextoComentarios : comentarioProjeto.getTextocomentarios()) {
@@ -541,19 +541,23 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
     
     /**
-     * Procura um texto comentário em uma lista e atualiza ele com o
-     * texto comentério fornecido.
-     * @param textocomentario 
+     * Procura um texto comentário em uma lista e atualiza ele com o texto
+     * comentário fornecido.
+     *
+     * @param textocomentario
      */
     private void atualizarTextoComentario(Textocomentario textocomentario) {
-        for (Textocomentario textocomentarioLaco : textocomentarios) {
-            if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
-                textocomentarioLaco.setTexto(textocomentario.getTexto());
-                textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
-                textocomentarioLaco.setDataAlteracao(textocomentario.getDataAlteracao());
-                break;
+            for (Textocomentario textocomentarioLaco : textocomentarios) {
+                if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
+                    Date data = new Date(System.currentTimeMillis());
+
+                    textocomentarioLaco.setTexto(textocomentario.getTexto());
+                    textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
+                    textocomentarioLaco.setDataAlteracao(data);
+                    textocomentarioLaco.setGerenteRelacionamento(projeto.getGerenteRelacionamento());
+                    break;
+                }
             }
-        }
     }
     /**
      * Muda o texto de um TextoComentário dependendo do tipo.

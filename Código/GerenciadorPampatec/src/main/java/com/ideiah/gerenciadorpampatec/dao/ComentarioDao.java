@@ -85,7 +85,7 @@ public class ComentarioDao extends Dao implements Serializable{
      * @param mapaHistorico
      * @return A lista de comentários de acordo com o tipo recebido por parâmetro.
      */
-    public ArrayList<ComentarioProjeto> buscaComentarioPorTipo(HashMap<String, Object> mapaHistorico){
+    public ArrayList<ComentarioProjeto> buscaComentarioPorProjetoEStatus(HashMap<String, Object> mapaHistorico){
         return (ArrayList<ComentarioProjeto>) buscarObjetos(mapaHistorico, ComentarioProjeto.class);
     }
     
