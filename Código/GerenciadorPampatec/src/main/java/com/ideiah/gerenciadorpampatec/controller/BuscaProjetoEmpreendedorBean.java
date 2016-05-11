@@ -163,9 +163,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         this.projetoDao.deletar(projetoSelecionado.getIdProjeto());
         listaProjetos.remove(projetoSelecionado);
         secao.setAttribute("empreendedor", Empreendedor.buscaPorEmail(empreendedor.getEmail()));
-        FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano excluído", "O plano foi excluído com sucesso.");
-        FacesContext.getCurrentInstance().addMessage("lista_planos:mensagensFeed", msg);
+        
     }
 
     /**
