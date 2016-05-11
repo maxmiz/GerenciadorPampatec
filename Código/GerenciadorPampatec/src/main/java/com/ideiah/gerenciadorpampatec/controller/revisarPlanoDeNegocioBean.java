@@ -5,11 +5,13 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
+    private Textocomentario textocomentario;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     private String estagioEvolucao;
@@ -82,7 +85,27 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * Método que Ordena a Lista ja preenchida de comentarios por data
+     * para retornar o comentario certo a caixa de texto
+     */
+//    public void OrdenaListaComentariosProData(){
+//
+//        
+//        for (Textocomentario listaTextoComentario : comentarioProjeto.getTextocomentarios()) {
+//            if (comentarioProjeto.getStatus() == ComentarioProjeto.FINALIZADO) {
+//                listaTextoComentario.
+//            }
+//            
+//        }
+//        
+//        
+//        projeto.getComentarioProjeto().
+//        comentarioProjeto.getStatus().
+//        listaDeComentarios.getTipo()
+//    }
+   
     /**
      * <p>
      * Preenche a lista de custo com os custos do projeto.</p>
@@ -334,6 +357,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * Método para verificar se todos os campos do plano de negócio estão
      * preenchidos.</p>
      *
+     * @return FLAG
      */
     public int verificarCampos() {
         int FLAG = 0;
