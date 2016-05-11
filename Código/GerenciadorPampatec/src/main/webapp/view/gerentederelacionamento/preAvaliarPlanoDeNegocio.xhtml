@@ -321,15 +321,9 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <p:commandButton class="botaoBaseComentario botaoVerde"
-                                                        title="Inserir comentário" 
-                                                        id="adicionarComentarioSegmentoClientes" 
-                                                        type="button" 
-                                                        onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2')"
-                                                        icon="fa fa-plus" 
-                                                        value=" Adicionar Comentário"> 
-                                        </p:commandButton>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioSegmentoCliente" type="button"  onclick=""><i class="fa fa-bars"></i> Histórico de Comentários</button>
+
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -340,6 +334,9 @@
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
+                                        
+                                        <p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração às <input  class="textoInput" disabled="true" value="#{preAvaliarPlanoBean.comentarioProjeto}"></input> por <input class="textoInput" disabled="true" value="#{preAvaliarPlanoBean.projeto.idProjeto}"></input>. </i></p>
+                                        
                                     </div>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     <br/>

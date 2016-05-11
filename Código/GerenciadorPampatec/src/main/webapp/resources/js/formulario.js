@@ -382,20 +382,25 @@ function confirmacaoDeEnvio() {
  * @param {type} idBotao
  * @returns {undefined}
  */
-function mostrarFeedBack(id) {
-    var campo = document.getElementById(id);
-   // var textoBotaoComentario = document.getElementById(idBotao);
-    
+
+function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
+    var campo = document.getElementById(idCampo);
+    var botao = document.getElementById(idBotao);
+    var alteracao = document.getElementById(idAlteracao);
     if ($(campo).hasClass("form-control campoFeedBackOn")) {
         $(campo).fadeOut(900);
         campo.setAttribute("class", "form-control campoFeedBack");
-    //    textoBotaoComentario.setAttribute("value", "Fechar Comentário");
-    //    textoBotaoComentario.setAttribute("icon", "fa fa-minus");
+        botao.setAttribute("class", "botaoBaseComentario botaoVerde");
+		//    botao.setAttribute("value", "Fechar Comentário");
+		//    botao.setAttribute("icon", "fa fa-minus");
+        alteracao.setAttribute("class","campoFeedBack");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
-     //   textoBotaoComentario.setAttribute("value", "Adicionar Comentário");
-     //   textoBotaoComentario.setAttribute("icon", "fa fa-plus");
+        botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
+        alteracao.setAttribute("class","campoFeedBackOn");
+        //   botao.setAttribute("value", "Adicionar Comentário");
+		//   botao.setAttribute("icon", "fa fa-plus");
     }
 }
 
