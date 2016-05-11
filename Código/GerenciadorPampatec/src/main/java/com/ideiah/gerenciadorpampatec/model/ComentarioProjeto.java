@@ -5,7 +5,10 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -230,7 +233,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
 
     /**
-     * Retorna o texto do comentario segundo seu tipo (segmento de cliente,
+     * Retorna o texto do comentário segundo seu tipo (segmento de cliente,
      * proposta de valor, etc..)
      *
      * @param tipo
@@ -263,6 +266,35 @@ public class ComentarioProjeto implements java.io.Serializable {
         return null;
     }
 
+    /**
+     * 
+     * @param tipoComentario
+     * @return A lista de comentários finalizados de acordo com o tipo de comentário recebido por parâmetro.
+     */
+    public ArrayList<?> historicoDeComentarios(int tipoComentario){
+        ArrayList<Textocomentario> historicoComentarios = new ArrayList<>();
+        ComentarioDao comentDao = new ComentarioDao();
+        
+        ArrayList<ComentarioProjeto> buscaHistoricoPorTipo;
+//        buscaHistoricoPorTipo = comentDao.buscaComentarioPorTipo(FINALIZADO);
+        
+        HashMap<String, Object> mapaHistorico = new HashMap<>();
+        mapaHistorico.put("status", FINALIZADO);
+        mapaHistorico.put("projeto_idProjeto", projeto.getIdProjeto());
+        
+        buscaHistoricoPorTipo = comentDao.buscaComentarioPorTipo(mapaHistorico);
+            
+        for (ComentarioProjeto comentarioProjeto : buscaHistoricoPorTipo) {
+            for (Textocomentario listaTextoComentarios : comentarioProjeto.getTextocomentarios()) {
+                if(listaTextoComentarios.getTipo() == tipoComentario){
+                    historicoComentarios.add(listaTextoComentarios);
+                }
+            }
+        }
+    
+        return buscaHistoricoPorTipo;
+    }
+    
     /**
      * @return Retorna o valor do comentário relacionado ao segmento de
      * clientes.
