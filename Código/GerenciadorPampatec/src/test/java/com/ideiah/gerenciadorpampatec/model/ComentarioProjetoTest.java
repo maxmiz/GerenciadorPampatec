@@ -1464,6 +1464,109 @@ public class ComentarioProjetoTest {
      * teste que verifica um campo vazio
      * </p>
      */
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioInteracaoEmpresaUniversidade7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+        assertEquals(expResult, result);
+    }
+    
+    
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
     public void testRetornarTextoComentarioInteracaoEmpresa1() {
         System.out.println("testRetornarTextoComentarioVazio");
         ComentarioProjeto instance = new ComentarioProjeto();
@@ -1559,4 +1662,814 @@ public class ComentarioProjetoTest {
         String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
         assertEquals(expResult, result);
     }
+    
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioInfraEstrutura1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioInfraEstrutura2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.INFRAESTRUTURA, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInfraEstrutura3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.INFRAESTRUTURA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInfraEstrutura4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.INFRAESTRUTURA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioInfraEstrutura5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.INFRAESTRUTURA, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioInfraEstrutura6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioInfraEstrutura7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioParticipacaoAcionaria1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioParticipacaoAcionaria2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioParticipacaoAcionaria3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.PARTICIPACAO_ACIONARIA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioParticipacaoAcionaria4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.PARTICIPACAO_ACIONARIA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioParticipacaoAcionaria5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioParticipacaoAcionaria6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioParticipacaoAcionaria7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioPotencialEmprego1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioPotencialEmprego2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.POTENCIAL_EMPREGO, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioPotencialEmprego3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.POTENCIAL_EMPREGO, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioPotencialEmprego4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.POTENCIAL_EMPREGO, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioPotencialEmprego5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.POTENCIAL_EMPREGO, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioPotencialEmprego6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioPotencialEmprego7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioFontesReceita1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioFontesReceita2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.FONTES_RECEITA, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioFontesReceita3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.FONTES_RECEITA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioFontesReceita4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.FONTES_RECEITA, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioFontesReceita5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.FONTES_RECEITA, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioFontesReceita6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioFontesReceita7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+        assertEquals(expResult, result);
+    }
+   
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioEstruturaCustos1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioEstruturaCustos2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.ESTRUTURA_CUSTO, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioEstruturaCustos3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.ESTRUTURA_CUSTO, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioEstruturaCustos4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.ESTRUTURA_CUSTO, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioEstruturaCustos5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.ESTRUTURA_CUSTO, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioEstruturaCustos6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioEstruturaCustos7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioInvestimentoInicial1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioInvestimentoInicial2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.INVESTIMENTO_INICIAL, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInvestimentoInicial3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.INVESTIMENTO_INICIAL, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioInvestimentoInicial4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.INVESTIMENTO_INICIAL, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioInvestimentoInicial5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.INVESTIMENTO_INICIAL, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioInvestimentoInicial6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioInvestimentoInicial7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioCustoFixo1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoFixo2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.CUSTOS_FIXOS, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoFixo3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.CUSTOS_FIXOS, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoFixo4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.CUSTOS_FIXOS, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoFixo5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.CUSTOS_FIXOS, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoFixo6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioCustoFixo7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * <p>
+     * teste que verifica um campo vazio
+     * </p>
+     */
+    public void testRetornarTextoComentarioCustoVariavel1() {
+        System.out.println("testRetornarTextoComentarioVazio");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com o texto preechido.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoVariavel2() {
+        System.out.println("testRetornarTextoComentarioPreechido");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(Textocomentario.CUSTOS_VARIAVEIS, "Texto");
+        String expResult = "Texto";
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de alteração preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoVariavel3() {
+        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataAlteracao(Textocomentario.CUSTOS_VARIAVEIS, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result.getDataAlteracao());
+    }
+    
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a data
+     * de submissão preenchida.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoVariavel4() {
+        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Date date =  new Date();
+        instance.setTextoComentarioDataSubmissao(Textocomentario.CUSTOS_VARIAVEIS, date);
+        Date expResult = date;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result.getDataSubmissao());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * preenchido
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoVariavel5() {
+        System.out.println("testRetornarTextoComentarioGerente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        gerente.setIdgerente_relacionamento(2);
+        instance.setTextoComentario(Textocomentario.CUSTOS_VARIAVEIS, gerente);
+        GerenteRelacionamento expResult = gerente;
+        Textocomentario result = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result.getGerenteRelacionamento());
+    }
+    
+    /**
+     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testRetornarTextoComentarioCustoVariavel6() {
+        System.out.println("testRetornarTextoComentarioNull");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        textocomentario.setTexto(null);
+        String expResult = null;
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result);
+    }
+    
+    /** <p>
+     *  Teste para o texto extenso
+     * </p>
+     */
+    public void testRetornarTextoComentarioCustoVariavel7() {
+        System.out.println("testComentarioGiganteSegmentaoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        textocomentario.setTexto(testeTextoGigante);
+        String expResult = testeTextoGigante;
+        String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+        assertEquals(expResult, result);
+    }
+   
 }
