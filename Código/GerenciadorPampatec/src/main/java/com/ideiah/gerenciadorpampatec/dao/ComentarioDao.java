@@ -8,6 +8,8 @@ package com.ideiah.gerenciadorpampatec.dao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.hibernate.HibernateException;
 
 /**
@@ -57,14 +59,34 @@ public class ComentarioDao extends Dao implements Serializable{
     
 //<editor-fold defaultstate="collapsed" desc="Buscar">
     
-    //busca comentario pelo codigo
+    /**
+     * <p>busca comentário pelo código.</p>
+     * 
+     * @param codigo
+     * @return 
+     */
     public ComentarioProjeto buscar(int codigo) {
         return (ComentarioProjeto) buscarObjeto(codigo, ComentarioProjeto.class);
     }
     
-    //busca comentario pelo status
+    /**
+     * <p>busca comentário pelo status.</p>
+     * 
+     * @param status
+     * @return 
+     */
     public ComentarioProjeto buscarPorStatus(int status) {
         return (ComentarioProjeto) buscarObjetoCriteriaINT("status", status, ComentarioProjeto.class);
+    }
+    
+    /**
+     * <p>Método que acessa a classe <code>Dao.java</code> para buscar os 
+     * comentários conforme o tipo especificado.</p>
+     * @param mapaHistorico
+     * @return A lista de comentários de acordo com o tipo recebido por parâmetro.
+     */
+    public ArrayList<ComentarioProjeto> buscaComentarioPorTipo(HashMap<String, Object> mapaHistorico){
+        return (ArrayList<ComentarioProjeto>) buscarObjetos(mapaHistorico, ComentarioProjeto.class);
     }
     
     //busca comentario pelo projeto
