@@ -617,7 +617,7 @@ public class ComentarioProjetoTest {
     * 
     *  
     */
-    @Test
+    @Ignore
     public void testHistoricoDeComentarios(){
         System.out.println(">>> \ttestHistoricoDeComentarios_");
         String textoTeste = "Teste do histórico de comentátios.";
