@@ -5,6 +5,8 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import org.junit.After;
@@ -610,5 +612,31 @@ public class ComentarioProjetoTest {
         String result = instance.retornaTextoComentario(Textocomentario.CANAIS);
         assertEquals(expResult, result);
     }
-    
+
+   /**
+    * 
+    *  
+    */
+    @Test
+    public void testHistoricoDeComentarios(){
+        System.out.println(">>> \ttestHistoricoDeComentarios_");
+        String textoTeste = "Teste do histórico de comentátios.";
+        
+        ComentarioProjeto objComentProj = new ComentarioProjeto();
+//        objComentProj.setProjeto(projeto);
+        Textocomentario textocomentario = objComentProj.retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+        textocomentario.setTexto(textoTeste);
+        objComentProj.setStatus(ComentarioProjeto.FINALIZADO);
+                
+        ComentarioDao comentDao = new ComentarioDao();
+        comentDao.salvarTextoComentario(textocomentario);
+        comentDao.salvar(objComentProj);
+        
+//        ArrayList resultadoEsperado = new ArrayList();
+        ArrayList resultadoRecebido = objComentProj.historicoDeComentarios(Textocomentario.SEGMENTO_CLIENTE);
+        
+//        for (Object listaResultado : resultadoRecebido) {
+             System.out.println(resultadoRecebido);
+//        }
+    }
 }
