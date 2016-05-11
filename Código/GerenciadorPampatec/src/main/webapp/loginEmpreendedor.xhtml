@@ -9,6 +9,8 @@
         <f:facet name="last">
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="rodape.css"  />
+            <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="font-awesome.min.css"/>
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
@@ -69,8 +71,15 @@
                         </div>-->
                         <div class="col-md-5 modal-footer text-center" align="left">
                             <br/><br/>
-                            <h:commandButton id="botaoContinuaCadastro" class="btn btn-success" title="Cadastre-se para começar" style="margin-left: -30%" value="Cadastrar" action="cadastroEmpreendedor.jsf" >
-                            </h:commandButton>
+                            <p:commandButton id="botaoContinuaCadastro" 
+                                             class="botaoBase botaoVerde"
+                                             icon="fa fa-user"
+                                             style="padding: 5px 6px"
+                                             title="Cadastre-se para começar" 
+                                             value="Cadastrar" 
+                                             action="cadastroEmpreendedor.jsf" 
+                                             >
+                            </p:commandButton>
                         </div>
 
 
@@ -106,7 +115,15 @@
                         <div class="col-md-5 modal-footer" align="center">
                         </div>
                         <div class="col-md-5 modal-footer" align="center">
-                            <h:commandButton id="botaoLogin" class="btn btn-success" title="Acesse sua conta" value="Acessar" action="#{loginBean.submit()}"></h:commandButton>
+                            <p:commandButton id="botaoLogin" 
+                                             class="botaoBase botaoVerde"
+                                             icon="fa fa-sign-in"
+                                             title="Acesse sua conta"
+                                             style="padding: 5px 12px"
+                                             value="Acessar" 
+                                             action="#{loginBean.submit()}"
+                                             >
+                            </p:commandButton>
                         </div>
                         <!--                    <div class="col-md-5 modal-footer">
                                                 Não possui conta? <a href="faces/cadastroEmpreendedor.xhtml">Clique aqui</a> para se cadastrar.

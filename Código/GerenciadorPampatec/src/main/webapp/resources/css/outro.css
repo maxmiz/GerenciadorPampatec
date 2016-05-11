@@ -34,9 +34,10 @@ and open the template in the editor.
 
 }
 
+
 .fundoVerde {
     color: white;
-    background-color: #3FB618;
+    background-color: #00a859;
 }
 
 .espaco {
@@ -89,7 +90,7 @@ and open the template in the editor.
     width: 88%;
     text-align: center;
     color: black;
-    text-emphasis-style: triangle;
+
     /*background-image: linear-gradient(to top, yellow, orange, red);*/
     background-image: linear-gradient(to top, #FF7500, #FF3300, #FF0009);
     /*background-color: #EF7A37;*/
