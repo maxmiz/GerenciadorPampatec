@@ -379,16 +379,23 @@ function confirmacaoDeEnvio() {
 /**
  * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
  * @param {type} id
+ * @param {type} idBotao
  * @returns {undefined}
  */
 function mostrarFeedBack(id) {
     var campo = document.getElementById(id);
+   // var textoBotaoComentario = document.getElementById(idBotao);
+    
     if ($(campo).hasClass("form-control campoFeedBackOn")) {
         $(campo).fadeOut(900);
         campo.setAttribute("class", "form-control campoFeedBack");
+    //    textoBotaoComentario.setAttribute("value", "Fechar Comentário");
+    //    textoBotaoComentario.setAttribute("icon", "fa fa-minus");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
+     //   textoBotaoComentario.setAttribute("value", "Adicionar Comentário");
+     //   textoBotaoComentario.setAttribute("icon", "fa fa-plus");
     }
 }
 
