@@ -379,8 +379,10 @@ function confirmacaoDeEnvio() {
 /**
  * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
  * @param {type} id
+ * @param {type} idBotao
  * @returns {undefined}
  */
+
 function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
     var campo = document.getElementById(idCampo);
     var botao = document.getElementById(idBotao);
@@ -389,13 +391,16 @@ function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
         $(campo).fadeOut(900);
         campo.setAttribute("class", "form-control campoFeedBack");
         botao.setAttribute("class", "botaoBaseComentario botaoVerde");
+		//    botao.setAttribute("value", "Fechar Comentário");
+		//    botao.setAttribute("icon", "fa fa-minus");
         alteracao.setAttribute("class","campoFeedBack");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
         botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
         alteracao.setAttribute("class","campoFeedBackOn");
-        
+        //   botao.setAttribute("value", "Adicionar Comentário");
+		//   botao.setAttribute("icon", "fa fa-plus");
     }
 }
 

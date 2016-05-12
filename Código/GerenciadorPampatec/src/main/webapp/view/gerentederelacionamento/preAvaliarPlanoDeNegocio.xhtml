@@ -74,10 +74,10 @@
         <h:form id="locovelho">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <div class="col-md-2">
+                    <div class="col-md-6">
                         <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
@@ -157,7 +157,7 @@
 
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header fundoVerde">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="modal-title">Salvar Projeto</h4>
                         </div>
@@ -186,7 +186,7 @@
                     <!-- Conteúdo do Modal -->
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Confirmar envio</h4>
                             </div>
@@ -239,6 +239,7 @@
                         <div class="tab-pane fade active in" id="formParte01" >
 
                             <div id="formularioParte01">
+                                <br/>
                                 <legend id="subTitulo" >Informações Básicas</legend>
                                 <br/>
                                 <div class="col-md-4">
@@ -305,6 +306,7 @@
                         <div class="tab-pane fade" id="formParte02">
 
                             <div id="formularioParte02">
+                                <br/>
                                 <legend>O Negócio</legend>
                                 <div class="col-md-12 espaco">
                                     
@@ -326,6 +328,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
+
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
@@ -341,8 +344,8 @@
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
-                                        
-                                        <p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração às <input  class="textoInput" disabled="true" value="#{preAvaliarPlanoBean.comentarioProjeto}"></input> por <input class="textoInput" disabled="true" value="#{preAvaliarPlanoBean.projeto.idProjeto}"></input>. </i></p>
+                                        <!--<p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração às <input  class="textoInput" disabled="true" value="#/{preAvaliarPlanoBean.comentarioProjeto}"></input> por <input class="textoInput" disabled="true" value="#/{preAvaliarPlanoBean.projeto.idProjeto}"></input>. </i></p><br/>-->
+                                        <p class="campoFeedback" id="alteracaoSegmento"><i>Última alteração às <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto}"></h:outputText></strong> por <strong><h:outputText value="#{preAvaliarPlanoBean.projeto.idProjeto}"></h:outputText></strong>.</i></p>
                                         
                                     </div>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -362,8 +365,15 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                         title="Inserir comentário" 
+                                                         id="adicionarComentarioPropostaValor" 
+                                                         type="button"  
+                                                         onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2')"
+                                                         icon="fa fa-plus"
+                                                         value="Adicionar Comentário">
+                                        </p:commandButton>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick=""><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
@@ -417,15 +427,15 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar2" 
-                                                     class="btn btn-success" 
+                                    <p:commandButton id="botaoSalvar2" 
+                                                     class="botaoBase botaoVerde" 
                                                      title="Salvar Pré-Avaliação" 
                                                      value="Salvar Pré-Avaliação">
                                         <f:ajax execute="@form"
                                                     render="mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="click" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar2"></h:message>
                                 </div>
                                 <div class="col-md-4  text-right"></div>
@@ -440,8 +450,7 @@
                         <div class="tab-pane fade" id="formParte03">
 
                             <div id="formularioParte03">
-                                
-                                
+                                <br/>
                                 <legend id="subTitulo">Análise de Mercado</legend>
                                 
                                 <div class="col-md-12 espaco">
@@ -618,8 +627,8 @@
 
                                 <div class="col-md-4"><br /></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar3" 
-                                                     class="btn btn-success" 
+                                    <p:commandButton id="botaoSalvar3" 
+                                                     class="botaoBase botaoVerde" 
                                                      title="Salvar Pré-Avaliação" 
                                                      type="button" 
                                                      value="Salvar Pré-Avaliação"
@@ -629,7 +638,7 @@
                                                     event="click" 
                                                     onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar3"></h:message>
                                 </div>
                                 <div class="col-md-4 text-right"></div>
@@ -643,6 +652,7 @@
                         <div class="tab-pane fade" id="formParte04">
 
                             <div id="formularioParte04">
+                                <br/>
                                 <legend id="subTitulo">Produto de Serviço</legend>
                                 <div class="col-md-12 espaco">
                                     
@@ -917,8 +927,8 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4" align="center">
-                                    <h:commandButton id="botaoSalvar4" 
-                                                     class="btn btn-success" 
+                                    <p:commandButton id="botaoSalvar4" 
+                                                     class="botaoBase botaoVerde" 
                                                      title="Salvar Pré-Avaliação" 
                                                      type="button" 
                                                      value="Salvar Pré-Avaliação"
@@ -927,7 +937,7 @@
                                                     render="mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="click" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                                         
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar4"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -942,6 +952,7 @@
                         <div class="tab-pane fade" id="formParte05">
 
                             <div id="formularioParte05">
+                                <br/>
                                 <legend id="subTitulo">Gestão de Pessoas</legend>
                                 <div class="col-md-12 espaco">
                                     
@@ -1023,8 +1034,8 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar5" 
-                                                     class="btn btn-success" 
+                                    <p:commandButton id="botaoSalvar5" 
+                                                     class="botaoBase botaoVerde" 
                                                      title="Salvar Pré-Avaliação" 
                                                      type="button"
                                                      value="Salvar Pré-Avaliação"
@@ -1033,7 +1044,7 @@
                                                     render="mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="click" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                                         
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar5"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -1049,6 +1060,7 @@
                         <div class="tab-pane fade" id="formParte06">
 
                             <div id="formularioParte06">
+                                <br/>
                                 <legend id="subTitulo">Plano de Financeiro</legend>
                                 <div class="col-md-12 espaco">
                                     
@@ -1265,8 +1277,8 @@
 
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
-                                    <h:commandButton id="botaoSalvar6" 
-                                                     class="btn btn-success" 
+                                    <p:commandButton id="botaoSalvar6" 
+                                                     class="botaoBase botaoVerde" 
                                                      title="Salvar Pré-Avaliação" 
                                                      type="button" 
                                                      value="Salvar Pré-Avaliação"
@@ -1275,7 +1287,7 @@
                                                     render="mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="click" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                                         
-                                    </h:commandButton>
+                                    </p:commandButton>
                                     <h:message for="botaoSalvar6"></h:message>
                                 </div>
                                 <div class="col-md-4"></div>
@@ -1289,6 +1301,7 @@
 
                         <div class="tab-pane fade" id="formParte07" >
                             <div id="formularioParte07">
+                                <br/>
                                 <legend id="subTitulo" >Avaliar</legend>
                                 <br/>
                                 <b>Observações: <p:commandLink value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
@@ -1340,8 +1353,8 @@
                                 </div>
                                 <div class="col-md-12 espaco">
                                     <div class="col-md-6 text-center">
-                                        <h:commandButton id="botaoSalvar" 
-                                                         class="btn btn-success" 
+                                        <p:commandButton id="botaoSalvar" 
+                                                         class="botaoBase botaoVerde" 
                                                          title="Salvar Pré-Avaliação" 
                                                          type="button" 
                                                          value="Salvar Pré-Avaliação">
@@ -1349,7 +1362,7 @@
                                                     render="mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="click" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>                                            
-                                        </h:commandButton>
+                                        </p:commandButton>
                                         <h:message for="botaoSalvar"></h:message>
                                     </div>
                                     <div class="col-md-6 text-center">

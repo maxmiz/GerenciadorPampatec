@@ -22,6 +22,7 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     public static final int EM_ANDAMENTO = 1;
     public static final int FINALIZADO = 2;
+    public static final int HISTORICO = 3;
 
     private Integer idcomentario;
     private String nome;
