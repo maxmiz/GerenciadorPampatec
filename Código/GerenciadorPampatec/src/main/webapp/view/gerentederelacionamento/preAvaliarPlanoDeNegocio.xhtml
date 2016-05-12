@@ -330,7 +330,7 @@
                                     <div class="col-md-12 espaco">
 
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoSegmentoDeCliente')"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -344,10 +344,22 @@
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
-                                        <!--<p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração às <input  class="textoInput" disabled="true" value="#/{preAvaliarPlanoBean.comentarioProjeto}"></input> por <input class="textoInput" disabled="true" value="#/{preAvaliarPlanoBean.projeto.idProjeto}"></input>. </i></p><br/>-->
                                         <p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração em <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracao}"></h:outputText></strong> por <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.gerenteRelacionamento.nome}"></h:outputText></strong>.</i></p>
                                         
                                     </div>
+                                    <div class="has-success col-md-12 espaco">
+                                    <h:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                                         cols="50" rows="5" 
+                                                         id="historicoSegmentoDeCliente" onchange="mostrarMensagemCampoObrigatorio();" 
+                                                         value="#{comentarioProjeto.historicoDeComentarios(1)}"
+                                                         disabled="true">
+
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_comentarpreavalizar:historicoSegmentoDeCliente"
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
+                                        </h:inputTextarea>
+                                </div>
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                     <br/>
                                 </div>
