@@ -411,7 +411,7 @@
                                                          class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
                                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -423,7 +423,7 @@
                                                          class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
                                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
+                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto || revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -432,7 +432,7 @@
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
-                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals(''))}"
+                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto) and (!revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals(''))}"
                                                              id="comentarioSegCliente" type="button"
                                                              onclick="mostrarFeedBack('formulario_resubmeterplano:segmentoDeClientes3')"
                                                              value="Visualizar Comentário do Gerente"
@@ -442,7 +442,10 @@
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
-                                            <p:inputTextarea class="form-control campoFeedBack" rows="5" style="resize: none;"  disabled="true" id="segmentoDeClientes3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes}">
+                                            <p:inputTextarea class="form-control campoFeedBack" 
+                                                             rows="5" style="resize: none;"  
+                                                             disabled="true" id="segmentoDeClientes3" 
+                                                             value="#{revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto}">
                                             </p:inputTextarea>
                                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                         </div>
@@ -457,7 +460,7 @@
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira a proposta de valor antes de enviar"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -470,7 +473,7 @@
                                                          requiredMessage="Insira a proposta de valor antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
+                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto || revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -479,7 +482,7 @@
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
-                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals(''))}"
+                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto) and (!revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto.equals(''))}"
                                                              id="comentarioPropostaValor" type="button"
                                                              onclick="mostrarFeedBack('formulario_resubmeterplano:propostaDeValor3')"
                                                              value="Visualizar Comentário do Gerente"
@@ -488,7 +491,10 @@
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
-                                            <p:inputTextarea class="form-control campoFeedBack" rows="5" style="resize: none;" disabled="true" id="propostaDeValor3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor}">
+                                            <p:inputTextarea class="form-control campoFeedBack" 
+                                                             rows="5" style="resize: none;" 
+                                                             disabled="true" id="propostaDeValor3" 
+                                                             value="#{revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto}">
                                             </p:inputTextarea>
                                             <h:message class="mensagemErro" for="propostaDeValor"/>
                                         </div>
@@ -503,7 +509,7 @@
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.atividadesChave.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -516,7 +522,7 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
+                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto || revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -525,7 +531,7 @@
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
-                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves) and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals(''))}"
+                                                             rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto) and (!revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto.equals(''))}"
                                                              id="comentarioAtividadesChaves" type="button"
                                                              onclick="mostrarFeedBack('formulario_resubmeterplano:atividadesChaves3')"
                                                              value="Visualizar Comentário do Gerente"
@@ -535,7 +541,10 @@
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
-                                            <h:inputTextarea class="form-control campoFeedBack" rows="5" style="resize: none;" disabled="true" id="atividadesChaves3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves}">
+                                            <h:inputTextarea class="form-control campoFeedBack" 
+                                                             rows="5" style="resize: none;" 
+                                                             disabled="true" id="atividadesChaves3" 
+                                                             value="#{revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto}">
                                             </h:inputTextarea>                                        
                                         </div>
                                         <h:message class="mensagemErro" for="atividadesChave"/>
@@ -586,7 +595,7 @@
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto.equals('')}"
                                                          id="relacaoClientes1">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -596,7 +605,7 @@
                                         <h:inputTextarea class="form-control  semResize" onchange="precisaSalvar = true;" rows="5"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto || revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
                                                          id="relacaoClientes2">
                                             <f:ajax execute="@form" 
@@ -606,7 +615,7 @@
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
-                                                             rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
+                                                             rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto.equals('')}"
                                                              id="comentarioRelacoeClientes" type="button"
                                                              onclick="mostrarFeedBack('formulario_resubmeterplano:relacaoClientes3')"
                                                              title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
@@ -617,7 +626,10 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" cols="50" rows="5" disabled="true" id="relacaoClientes3" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes}">
+                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                                             cols="50" rows="5" 
+                                                             disabled="true" id="relacaoClientes3" 
+                                                             value="#{revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto}">
                                             </p:inputTextarea>
                                         </div>
                                         <h:message class="mensagemErro" for="relacoComClientes"/>
