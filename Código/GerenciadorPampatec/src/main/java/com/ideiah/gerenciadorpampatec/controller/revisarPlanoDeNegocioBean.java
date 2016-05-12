@@ -499,6 +499,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
              * A data de avaliação e alterada para null pois o projeto será ressubmetido.
              */
             projeto.setDataAvaliacao(null);
+            comentarioProjeto.setStatus(ComentarioProjeto.HISTORICO);
+            
+            projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
 
             getBuscarPlanoDeNegocio();
