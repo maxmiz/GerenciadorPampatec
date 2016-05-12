@@ -8,6 +8,7 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -37,12 +39,15 @@ public class PreAvaliarPlanoBean implements Serializable {
     private int resultadoPreAvaliacao;
     private int contAnterior;
     private boolean salvo;
-
+//    @ManagedProperty(value="#{sessionBean}")
+//    private SessionBean sessionBean;
+    private GerenteRelacionamento gerenteNaSessao;
+    
     public PreAvaliarPlanoBean() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto = (Projeto) session.getAttribute("projetoSelecionado");
         ComentarioDao comentarioDao = new ComentarioDao();
-
+        
         //Gambiarra para resolver o problema do usuário deixar a página.
         //Quando o usuário acessa a pagina de pré-avaliar ou atualiza a
         //página, o construtor é chamado adionando um ao contador de acessos do projeto.
@@ -87,6 +92,12 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+//    @PostConstruct
+//    private void init(){
+//        gerenteNaSessao = (GerenteRelacionamento) sessionBean.getAttribute("gerente"); 
+//    }
+    
+    
     public void mudaStatus() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projeto.setStatus(Projeto.SENDO_AVALIADO);
@@ -184,7 +195,10 @@ public class PreAvaliarPlanoBean implements Serializable {
     public void salvarViaAjax() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
-        comentarioProjeto.atualizaTodosOsTextoComentario();
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        gerenteNaSessao = (GerenteRelacionamento) session.getAttribute("gerente");
+        comentarioProjeto.atualizaTodosOsTextoComentario(gerenteNaSessao);
         comentDao.salvar(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();
@@ -192,23 +206,6 @@ public class PreAvaliarPlanoBean implements Serializable {
          * Deve ser utilizado unicamente nos Ajax.
          */
         projeto.setStatus(Projeto.SENDO_AVALIADO);
-        projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto);
-
-        salvo = true;
-    }
-
-    /**
-     * <p>
-     * Salvar pré-avaliação do projeto via botão "Terminar Pré-avaliação".
-     * </p>
-     */
-    private void salvarPreAvaliacao() {
-        ComentarioDao comentDao = new ComentarioDao();
-        comentarioProjeto.setProjeto(projeto);
-        comentDao.salvar(comentarioProjeto);
-
-        ProjetoDao projetoDao = new ProjetoDao();
         projeto.setStatusTemp(getResultadoPreAvaliacao());
         projetoDao.salvar(projeto);
 
@@ -271,6 +268,23 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+    /**
+     * <p>
+     * Salvar pré-avaliação do projeto via botão "Terminar Pré-avaliação".
+     * </p>
+     */
+    private void salvarPreAvaliacao() {
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.setProjeto(projeto);
+        comentDao.salvar(comentarioProjeto);
+
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
+        projetoDao.salvar(projeto);
+
+        salvo = true;
+    }    
+    
     /**
      * <p>
      * Método para atualizar o status dos comentários ao finalizar a avaliação.

@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -293,6 +295,12 @@ public class ComentarioProjeto implements java.io.Serializable {
             }
         }
     
+        /**
+         * Antes de retornar, é necessário ordenar a lista de comentários 
+         * por data de submissão.
+         * Mais novo para mais antigo.
+         */
+        
         return buscaHistoricoPorTipo;
     }
     
@@ -514,31 +522,32 @@ public class ComentarioProjeto implements java.io.Serializable {
     /**
      * Atualiza todos os campos da lista de textoComentários com o valor de seus
      * campos de texto comentário.
+     * @param gerente
      */
-    public void atualizaTodosOsTextoComentario(){
-        atualizarTextoComentario(segmentosClientes);
-        atualizarTextoComentario(propostaValor);
-        atualizarTextoComentario(atividadeChave);
-        atualizarTextoComentario(relacionamentoCliente);
-        atualizarTextoComentario(parceriasChave);
-        atualizarTextoComentario(canais);
-        atualizarTextoComentario(recursosPrincipais);
-        atualizarTextoComentario(concorrentes);
-        atualizarTextoComentario(estagioEvolucao);
-        atualizarTextoComentario(tecnologiaProcessos);
-        atualizarTextoComentario(potencialInovacaoTecnologica);
-        atualizarTextoComentario(aplicacoes);
-        atualizarTextoComentario(dificuldadesEsperadas);
-        atualizarTextoComentario(interacaoEmpresaUniversidade);
-        atualizarTextoComentario(interacaoEmpresaComunidadeGoverno);
-        atualizarTextoComentario(infraestrutura);
-        atualizarTextoComentario(participacaoAcionaria);
-        atualizarTextoComentario(potencialEmprego);
-        atualizarTextoComentario(fontesReceita);
-        atualizarTextoComentario(estruturaCusto);
-        atualizarTextoComentario(investimentoInicial);
-        atualizarTextoComentario(custoFixo);
-        atualizarTextoComentario(custoVariavel);
+    public void atualizaTodosOsTextoComentario(GerenteRelacionamento gerente){
+        atualizarTextoComentario(gerente, segmentosClientes);
+        atualizarTextoComentario(gerente, propostaValor);
+        atualizarTextoComentario(gerente, atividadeChave);
+        atualizarTextoComentario(gerente, relacionamentoCliente);
+        atualizarTextoComentario(gerente, parceriasChave);
+        atualizarTextoComentario(gerente, canais);
+        atualizarTextoComentario(gerente, recursosPrincipais);
+        atualizarTextoComentario(gerente,concorrentes);
+        atualizarTextoComentario(gerente,estagioEvolucao);
+        atualizarTextoComentario(gerente,tecnologiaProcessos);
+        atualizarTextoComentario(gerente,potencialInovacaoTecnologica);
+        atualizarTextoComentario(gerente,aplicacoes);
+        atualizarTextoComentario(gerente,dificuldadesEsperadas);
+        atualizarTextoComentario(gerente,interacaoEmpresaUniversidade);
+        atualizarTextoComentario(gerente,interacaoEmpresaComunidadeGoverno);
+        atualizarTextoComentario(gerente,infraestrutura);
+        atualizarTextoComentario(gerente,participacaoAcionaria);
+        atualizarTextoComentario(gerente,potencialEmprego);
+        atualizarTextoComentario(gerente,fontesReceita);
+        atualizarTextoComentario(gerente,estruturaCusto);
+        atualizarTextoComentario(gerente,investimentoInicial);
+        atualizarTextoComentario(gerente,custoFixo);
+        atualizarTextoComentario(gerente,custoVariavel);
     }
     
     /**
@@ -547,15 +556,15 @@ public class ComentarioProjeto implements java.io.Serializable {
      *
      * @param textocomentario
      */
-    private void atualizarTextoComentario(Textocomentario textocomentario) {
+    private void atualizarTextoComentario(GerenteRelacionamento gerente, Textocomentario textocomentario) {
             for (Textocomentario textocomentarioLaco : textocomentarios) {
                 if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
                     Date data = new Date(System.currentTimeMillis());
-
+                    
                     textocomentarioLaco.setTexto(textocomentario.getTexto());
                     textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
                     textocomentarioLaco.setDataAlteracao(data);
-                    textocomentarioLaco.setGerenteRelacionamento(projeto.getGerenteRelacionamento());
+                    textocomentarioLaco.setGerenteRelacionamento(gerente);
                     break;
                 }
             }

@@ -1,8 +1,6 @@
 
 package com.ideiah.gerenciadorpampatec.controller;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -37,4 +35,12 @@ public class SessionBean {
         return FacesContext.getCurrentInstance();
     }
     
+    /**
+     * 
+     * @param attribute
+     * @return O atributo da sessão.
+     */
+    public Object getAttribute(String attribute){
+        return getSession().getAttribute(attribute);
+    }
 }
