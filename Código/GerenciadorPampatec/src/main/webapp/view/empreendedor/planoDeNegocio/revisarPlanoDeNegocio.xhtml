@@ -1991,13 +1991,13 @@
                                     Clique no botão a baixo para levá-lo para a página da avaliação</b> 
                             </p>
                             <div class="divPadding text-center">
-                                <h:commandLink  class="btn btn-success" 
+                                <p:button  class="botaoBase botaoVerde" 
                                                 rendered="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                type="button" 
+                                                icon="fa fa-check"
+                                                outcome="avaliacaoPlanoDeNegocio.jsf" 
                                                 title="Avançar para proxima frase" 
-                                                id="botao_proxima_fase" value="Próxima Fase"
-                                                action="#{revisarPlanoDeNegocioBean.redirecionaPaginaAvaliacao()}">
-                                </h:commandLink>
+                                                id="botao_proxima_fase" value="Próxima Fase">
+                                </p:button>
                                 <br/>
                             </div>
                         </h:panelGroup>

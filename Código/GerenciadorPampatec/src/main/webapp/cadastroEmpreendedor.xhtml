@@ -196,19 +196,23 @@
                         <div class="col-md-4 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
 
-                        <p:commandButton class="botaoBase botaoPreto" 
+                        <p:button id="botaoVoltar"
+                                         class="botaoBase botaoPreto" 
                                          title="Voltar para a página de Login" 
-                                         value="Voltar" 
-                                         action="#{loginBean.voltar}"
+                                         value="Voltar"
+                                         outcome="loginEmpreendedor.jsf"
                                          >
-                        </p:commandButton>
+                                        
+                                         
+                        </p:button>
                     </div>
                         <div class="col-md-8 modal-footer">
                         <p:commandButton id="botaoEnviar" 
                                          class="botaoBase botaoVerde" 
                                          title="Enviar os dados para a realização do Cadastro" 
                                          value="Enviar dados para Cadastro" 
-                                         action="#{empreendedorBean.chamaCadastro()}">
+                                         action="#{empreendedorBean.chamaCadastro()}"
+                                         ajax="false">
                         </p:commandButton>
                         </div>
                     </div>
