@@ -3,17 +3,39 @@ var ERRO = 0;//Representa o tipo de mensagem erro.
 var SALVO = 1;//Representa o tipo de mensagem de salvar
 var timeOutMensagem;
 
-
-function funcaoAjaxSalvo(data){
+/**
+ * Recebe o resultado da requisição ajax. Se ela for positiva, começa um
+ * temporizador para fechar a mensagem de salvamento.
+ * @param {type} data
+ * @returns {undefined}
+ */
+function funcaoAjaxSalvo(data) {
     clearTimeout(timeOutMensagem);
-    if(data.status === 'success'){
+    if (data.status === 'success') {
         timeOutMensagem = timeoutMensagemFeedBack(SALVO);
     }
 }
 
-function funcaoAjaxErro(data){
+/**
+ * Começa um temporizador que irá fechar a mensagem de salvamento. OBS: Esse
+ * método é para ser utilizado nos resultados do 
+ * p:ajax(tags:"onsuccess","oncomplete").
+ * @returns {undefined}
+ */
+function funcaoAjaxSalvoPrimeFaces() {
     clearTimeout(timeOutMensagem);
-    if(data.status === 'success'){
+    timeOutMensagem = timeoutMensagemFeedBack(SALVO);
+}
+
+/**
+ * Recebe o resultado da requisição ajax. Se ela for positiva, começa um
+ * temporizador para fechar a mensagem de erro.
+ * @param {type} data
+ * @returns {undefined}
+ */
+function funcaoAjaxErro(data) {
+    clearTimeout(timeOutMensagem);
+    if (data.status === 'success') {
         timeOutMensagem = timeoutMensagemFeedBack(ERRO);
     }
 }
@@ -25,9 +47,9 @@ function funcaoAjaxErro(data){
  */
 function timeoutMensagemFeedBack(tipoNot) {
     return setTimeout(function () {
-        if(tipoNot == ERRO){
+        if (tipoNot == ERRO) {
             fecharMensagemFeedBackErro();
-        }else if(tipoNot == SALVO){
+        } else if (tipoNot == SALVO) {
             fecharMensagemFeedBackSalvo();
         }
     }, 4500);

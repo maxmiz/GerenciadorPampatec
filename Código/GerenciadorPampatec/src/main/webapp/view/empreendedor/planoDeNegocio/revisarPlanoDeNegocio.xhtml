@@ -48,7 +48,7 @@
                                 <h:commandLink value="Início" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
                             </li>
 
-                            <li class="">
+                            <li>
                                 <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
                                     Notificações
                                     <span class="badge">
@@ -118,9 +118,9 @@
                 <ul id="progressbar">
                     <li id="etapa1" class="active" style="cursor: pointer;"><a href="../enviarProjeto.jsf">Elaboração</a></li>
                     <li id="etapa2" class="active etapaAtual" style="cursor: pointer;"><a href="revisarPlanoDeNegocio.jsf" onclick="mostra_vertical_pre_avaliacao(), addFoco('etapa2')">Pré-Avaliação</a></li>
-                    <li id="etapa3" class="" style="cursor: pointer;"><a href="avaliacaoPlanoDeNegocio.jsf">Avaliação</a></li>
-                    <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
-                    <li id="etapa5" class="" style="cursor: pointer;"><a onclick="mostra_incubacao(), addFoco('etapa5')">Incubação</a></li>
+                    <li id="etapa3" style="cursor: pointer;"><a href="avaliacaoPlanoDeNegocio.jsf">Avaliação</a></li>
+                    <li id="etapa4" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
+                    <li id="etapa5" style="cursor: pointer;"><a onclick="mostra_incubacao(), addFoco('etapa5')">Incubação</a></li>
                 </ul>
             </div>
 
@@ -330,9 +330,9 @@
                                     <div class="col-md-12">
 
                                     </div>
-                                    <div class="col-md-4" id="">
-                                        <b>Nome da Empresa ou Projeto* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
-                                        <p:inputText id="empresaProjeto" placeholder="" class="form-control" 
+                                    <div class="col-md-4">
+                                        <b>Nome da Empresa ou Projeto* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                        <p:inputText id="empresaProjeto" class="form-control" 
                                                      value="#{revisarPlanoDeNegocioBean.projeto.nome}"
                                                      disabled="true"
                                                      >
@@ -341,8 +341,8 @@
                                         <br/>
                                     </div>
 
-                                    <div class="col-md-4" id="">
-                                        <b>Data de submissão <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <div class="col-md-4">
+                                        <b>Data de submissão <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                         <p:inputText id="dataSubmit" class="form-control"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.formatarDataEnvio()}"
                                                      disabled="true"
@@ -351,8 +351,8 @@
                                     </div>
 
 
-                                    <div class="col-md-4" id="">
-                                        <b>Edital <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
+                                    <div class="col-md-4">
+                                        <b>Edital <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                         <p:inputText id="edital" class="form-control"  
                                                      value="#{revisarPlanoDeNegocioBean.projeto.edital}"
                                                      disabled="true"
@@ -360,7 +360,7 @@
                                         <br/>
                                     </div>
 
-                                    <div class="col-md-12" id="">
+                                    <div class="col-md-12">
                                         <p:dataTable var="empreendedor"  styleClass="tabelaEmpreendedores" value="#{revisarPlanoDeNegocioBean.projeto.empreendedores}">
                                             <f:facet name="header">
                                                 Empreendedores
@@ -402,8 +402,8 @@
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
 
-                                    <div class="col-md-12 espaco" id="">
-                                        <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12 espaco">
+                                        <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes1"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <h:inputTextarea id="segmentoDeClientes1"
@@ -414,7 +414,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:segmentoDeClientes1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -425,6 +425,10 @@
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.segmentoClientes.equals('')}"
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -444,8 +448,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 espaco" id="">
-                                        <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12 espaco">
+                                        <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor1"/><br/>
                                         Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                         <h:inputTextarea id="propostaDeValor1"
@@ -456,9 +460,9 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:propostaDeValor1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                        
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                      
                                         </h:inputTextarea>
                                         <h:inputTextarea id="propostaDeValor2"
                                                          class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
@@ -468,6 +472,10 @@
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.propostaValor.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -486,8 +494,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 espaco" id="">
-                                        <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12 espaco">
+                                        <b>Atividades Chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave1"/><br/>
                                         Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                         <h:inputTextarea id="atividadesChave1" 
@@ -498,9 +506,9 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:atividadesChave1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                        
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                       
                                         </h:inputTextarea>
                                         <h:inputTextarea id="atividadesChave2"
                                                          class="form-control"  onchange="precisaSalvar = true;" rows="5"
@@ -510,6 +518,10 @@
                                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarionegocio.atividadesChaves.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -519,6 +531,7 @@
                                                              value="Visualizar Comentário do Gerente"
                                                              title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                              icon="fa fa-pencil">
+                                                
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
@@ -540,7 +553,7 @@
                                                          icon="fa fa-save">
                                             <p:ajax event="click"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    onsuccess="funcaoAjaxSalvo"
+                                                    onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/> 	                                        
                                         </p:commandButton>
                                         <h:message for="botaoSalvar2"></h:message>
@@ -566,7 +579,7 @@
                                     </h:panelGroup>
 
                                     <div class="col-md-12 espaco">
-                                        <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                        <b>Relações com clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes1"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                         <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
@@ -576,7 +589,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
                                                          id="relacaoClientes1">
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:relacoComClientes1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -585,7 +598,11 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.relacoesClientes.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
-                                                         id="relacaoClientes2">                 
+                                                         id="relacaoClientes2">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -595,7 +612,7 @@
                                                              title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                              value="Visualizar Comentário do Gerente"
                                                              icon="fa fa-pencil">
-
+                                                
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
@@ -607,7 +624,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Parcerias chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                        <b>Parcerias chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChave1"/><br/>
                                         Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                         <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
@@ -617,7 +634,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                          id="parceriasChaves1">
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:parceriasChaves1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -627,6 +644,10 @@
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.parceriasChaves.equals('')}"
                                                          id="parceriasChaves2">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -650,7 +671,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Canais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                        <b>Canais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais1"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                         <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
@@ -660,7 +681,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
                                                          id="canais1">
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:canais1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -670,6 +691,10 @@
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.canais.equals('')}"
                                                          id="canais2">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -679,6 +704,7 @@
                                                              value="Visualizar Comentário do Gerente"
                                                              title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo a cima."
                                                              icon="fa fa-pencil">
+                                                
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
@@ -691,7 +717,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Recursos principais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                        <b>Recursos principais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais1"/><br/>
                                         Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -701,7 +727,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:recursosPrincipais1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -711,6 +737,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.recursosPrincipais.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -720,6 +750,7 @@
                                                              value="Visualizar Comentário do Gerente"
                                                              title="Clique aqui para visualizar o comentário feito pelo gerente sobre o campo acima."
                                                              icon="fa fa-pencil">
+                                                
                                             </p:commandButton>
                                         </div>
                                         <div class="has-success col-md-12 espaco">
@@ -731,7 +762,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Concorrentes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
+                                        <b>Concorrentes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes1"/><br/>
                                         Quem são nossos concorrentes? como trabalham?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -741,7 +772,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:concorrentes1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -751,6 +782,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioanaliseemprego.concorrentes.equals('')}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -781,7 +816,7 @@
                                                          icon="fa fa-save">
                                             <p:ajax event="click"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    onsuccess="funcaoAjaxSalvo"
+                                                    onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                         </p:commandButton>
                                         <h:message for="botaoSalvar3"></h:message>
@@ -830,17 +865,17 @@
                                                         listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </h:selectOneMenu>
                                             <div>
-                                                <!-- Esse inputText não está sendo renderizado corretamente. -->
-                                                <p:inputText id="campoOutro1" 
-                                                             class="form-control semResize" 
+                                                <h:panelGroup id="campoOutro1" layout="block">
+                                                    <p:inputText class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                             value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.estagioEvolucao}" 
+                                                             value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
                                                              rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
-                                                    <f:ajax execute="@form" 
+                                                        <f:ajax execute="@form" 
                                                             render="formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagemSalvamento" 
                                                             event="change" onevent="funcaoAjaxSalvo"
                                                             listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                                </p:inputText>
+                                                    </p:inputText>
+                                                </h:panelGroup>
                                             </div>
                                         </h:panelGroup>
                                         <h:panelGroup class="checkbox" id="abc"
@@ -857,19 +892,20 @@
                                                 <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
                                                 <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
                                                 <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" 
+                                                <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1
+                                                        formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" 
                                                         event="change" onevent="funcaoAjaxSalvo"
                                                         listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </h:selectOneMenu>
                                             <div>
-                                                <!-- Esse inputText não está sendo renderizado corretamente. -->
-                                                <p:inputText id="campoOutro2" 
-                                                             class="form-control semResize" 
+                                                <h:panelGroup id="campoOutro2" layout="block">
+                                                    <p:inputText class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
                                                              rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
-                                                    <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                                </p:inputText>
+                                                        <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    </p:inputText>
+                                                </h:panelGroup>
                                             </div>
                                         </h:panelGroup>
                                         <div class="col-md-12 espaco">
@@ -892,7 +928,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologia" class="mensagemErro" for="tecnologiaProcessos1"/><br/>
                                         Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -903,7 +939,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:tecnologiaProcessos1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -914,6 +950,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.tecnologiaProcessos.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -935,7 +975,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Potencial de inovação tecnológica* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
+                                        <b>Potencial de inovação tecnológica* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica1"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -946,7 +986,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:potencialInovacaoTecnologica1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -957,6 +997,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.potencialInovacaoTecnologica.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -978,7 +1022,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Aplicações* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
+                                        <b>Aplicações* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes1"/><br/>
                                         A quem se aplica? como? de que maneira?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -989,7 +1033,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:aplicacoes1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1000,6 +1044,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.aplicacoes.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1021,7 +1069,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Dificuldades esperadas* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
+                                        <b>Dificuldades esperadas* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas1"/><br/>
                                         Quais são nossas principais limitações?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1032,7 +1080,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:dificuldadesEsperadas1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
 
@@ -1044,6 +1092,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.dificuldadesEsperadas.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1065,7 +1117,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Interação entre empresa e Universidade* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
+                                        <b>Interação entre empresa e Universidade* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInteracao" class="mensagemErro" for="interacaoEmpresaUniversidade1"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1076,7 +1128,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:interacaoEmpresaUniversidade1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1087,6 +1139,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaUniversidade.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1108,7 +1164,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Interação entre empresa, comunidade e governo* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
+                                        <b>Interação entre empresa, comunidade e governo* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInteracaoEmpresa" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno1"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1119,7 +1175,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno1formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1130,6 +1186,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1151,7 +1211,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
+                                        <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInfraestrutura" class="mensagemErro" for="infraestrutura1"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1162,7 +1222,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:infraestrutura1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1173,6 +1233,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.interacaoEmpresaComunidadeGoverno.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -1205,7 +1269,7 @@
                                                          icon="fa fa-save">
                                             <p:ajax event="click"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    onsuccess="funcaoAjaxSalvo"
+                                                    onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                         </p:commandButton>
                                         <h:message for="botaoSalvar4"></h:message>
@@ -1232,7 +1296,7 @@
                                     </h:panelGroup>
 
                                     <div class="col-md-12 espaco">
-                                        <b>Descrição da participação acionária* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
+                                        <b>Descrição da participação acionária* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('participacaoAcionaria')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroDescricao" class="mensagemErro" for="participacaoAcionaria1"/><br/>
                                         Haverão sócios? Quanto de participação terão?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1243,7 +1307,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:participacaoAcionaria1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1254,6 +1318,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria || revisarPlanoDeNegocioBean.comentarioProjeto.participacaoacionaria.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -1274,7 +1342,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Potencial de geração de emprego e renda* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
+                                        <b>Potencial de geração de emprego e renda* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroPotencial" class="mensagemErro" for="potencialEmprego1"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                         <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
@@ -1285,7 +1353,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:potencialEmprego1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1296,6 +1364,10 @@
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego || revisarPlanoDeNegocioBean.comentarioProjeto.potencialemprego.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1327,7 +1399,7 @@
                                                          icon="fa fa-save">
                                             <p:ajax event="click"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    onsuccess="funcaoAjaxSalvo"
+                                                    onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                         </p:commandButton>
                                         <h:message for="botaoSalvar5"></h:message>
@@ -1355,7 +1427,7 @@
                                     </h:panelGroup>
 
                                     <div class="col-md-12 espaco">
-                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
+                                        <b>Fontes de receita* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroFontes" class="mensagemErro" for="fontesDeReceita1"/><br/>
                                         Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                         <h:inputTextarea id="fontesDeReceita1" 
@@ -1367,7 +1439,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:fontesDeReceita1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1379,6 +1451,10 @@
                                                          value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.fontesReceita.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1399,7 +1475,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Estrutura de custos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
+                                        <b>Estrutura de custos* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroEstruturaCustos" class="mensagemErro" for="estruturaCustos1"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                         <h:inputTextarea id="estruturaCustos1" 
@@ -1411,7 +1487,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:estruturaCustos1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1423,6 +1499,10 @@
                                                          value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.estruturaCusto.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1443,7 +1523,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
-                                        <b>Investimento inicial* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
+                                        <b>Investimento inicial* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial1"/><br/>
                                         Quanto de recurso será necessário para iniciar?
                                         <h:inputTextarea class="form-control campoInvalido semResize" rows="5"
@@ -1454,7 +1534,7 @@
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial and !revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:investimentoInicial1 formulario_resubmeterplano:mensagemSalvamento" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
@@ -1465,6 +1545,10 @@
                                                          id="investimentoInicial2"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.investimentoInicial.equals('')}"
                                                          >
+                                            <f:ajax execute="@form" 
+                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
+                                                    event="change" onevent="funcaoAjaxSalvo"
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1486,7 +1570,7 @@
                                     </div>
 
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
-                                        <b>Custos fixos* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
+                                        <b>Custos fixos* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                         Salários, Aluguel...
                                         <p:dataTable id="revisar_custoFixo1" 
                                                      var="custo1" 
@@ -1498,10 +1582,10 @@
                                                      editable="true"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Descrição ">
@@ -1526,7 +1610,7 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                                     update="formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                             </p:ajax>
                                                         </p:inputText>
@@ -1546,7 +1630,7 @@
                                                                rendered="#{custo1.podeExcluir}"
                                                                >
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </p:commandLink>      
@@ -1561,10 +1645,10 @@
                                                                  || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                      editable="true"
                                                      >
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Descrição ">
@@ -1589,7 +1673,7 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                                     update="formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento">
                                                             </p:ajax>
                                                         </p:inputText>
@@ -1607,7 +1691,7 @@
                                                                rendered="#{custo2.isPodeExcluir()}"
                                                                >
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </p:commandLink>    
@@ -1624,7 +1708,7 @@
                                                                          and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                              title="Adicionar nova linha de custo fixo" 
                                                              >
-                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         update="formulario_resubmeterplano:revisar_custoFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                 </p:ajax>                                
                                             </p:commandButton>
@@ -1637,7 +1721,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
                                                         >
                                                 </p:ajax>                               
@@ -1724,10 +1808,10 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
@@ -1790,10 +1874,10 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
@@ -1837,7 +1921,7 @@
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custovariavel2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custovariavel2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoVariavel formulario_resubmeterplano:colunaValorTotalVariavel formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </h:commandLink> 
@@ -1856,7 +1940,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:tabelaCustosVariaveis1 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaVariavel()}" 
                                                         >
                                                 </p:ajax>                                
@@ -1871,7 +1955,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:tabelaCustosVariaveis2 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaVariavel()}" 
                                                         >
                                                 </p:ajax>                                
@@ -1935,7 +2019,7 @@
                                                          icon="fa fa-save">
                                             <p:ajax event="click"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    onsuccess="funcaoAjaxSalvo"
+                                                    onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                         
                                         </p:commandButton>
                                         <h:message for="botaoSalvar6"></h:message>
@@ -1966,7 +2050,7 @@
                         <p>
                             Confira a baixo as observações gerais feitas pelo Gerente de Relacionamentos sobre o resultado do seu plano de negócio.
                         </p>
-                        <b>Observações do Gerente de Relacionamentos <p:commandLink update="" value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                        <b>Observações do Gerente de Relacionamentos <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
                         <div class="col-md-12 espaco has-success" id="observacoes2">
                             <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;"
                                              rows="10" id="campoObservacoes2" disabled="true" value="#{revisarPlanoDeNegocioBean.comentarioProjeto.todasConsideracoes()}">

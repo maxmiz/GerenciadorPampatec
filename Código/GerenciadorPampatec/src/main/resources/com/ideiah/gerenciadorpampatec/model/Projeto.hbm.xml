@@ -16,7 +16,7 @@
     <many-to-one cascade="all" class="com.ideiah.gerenciadorpampatec.model.Planofinanceiro" fetch="select" lazy="false" name="planofinanceiro">
       <column name="PlanoFinanceiro_idPlanoFinanceiro"/>
     </many-to-one>
-    <many-to-one cascade="all" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select" name="produtoouservico">
+    <many-to-one cascade="all" class="com.ideiah.gerenciadorpampatec.model.Produtoouservico" fetch="select" lazy="false" name="produtoouservico">
       <column name="ProdutoOuServico_idProdutoOuServico"/>
     </many-to-one>
     <many-to-one cascade="save-update" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select" name="empreendedorCorrespondente">

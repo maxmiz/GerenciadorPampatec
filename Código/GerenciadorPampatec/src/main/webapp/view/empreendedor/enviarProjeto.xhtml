@@ -62,7 +62,7 @@
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
 
-                            <li class="">
+                            <li>
                                 <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
                                     Notificações
                                     <span class="badge">
@@ -150,10 +150,10 @@
         <div class="col-md-12 text-center noprint" style="background-color: #00A859;">
             <ul id="progressbar">
                 <li id="etapa1" class="active" style="cursor: pointer;"><a onclick="mostraDIV2('formParte01'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elaboração</a></li>
-                <li id="etapa2" class="" style="cursor: pointer;"><a href="planoDeNegocio/revisarPlanoDeNegocio.jsf">Pré-Avaliação</a></li>
-                <li id="etapa3" class="" style="cursor: pointer;"><a href="planoDeNegocio/avaliacaoPlanoDeNegocio.jsf">Avaliação</a></li>
-                <li id="etapa4" class="" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
-                <li id="etapa5" class="" style="cursor: pointer;"><a onclick="mostra_incubacao(), addFoco('etapa5')">Incubação</a></li>
+                <li id="etapa2" style="cursor: pointer;"><a href="planoDeNegocio/revisarPlanoDeNegocio.jsf">Pré-Avaliação</a></li>
+                <li id="etapa3" style="cursor: pointer;"><a href="planoDeNegocio/avaliacaoPlanoDeNegocio.jsf">Avaliação</a></li>
+                <li id="etapa4" style="cursor: pointer;"><a onclick="mostra_formalizacao(), addFoco('etapa4')">Formalização</a></li>
+                <li id="etapa5" style="cursor: pointer;"><a onclick="mostra_incubacao(), addFoco('etapa5')">Incubação</a></li>
 
             </ul>
         </div>
@@ -359,7 +359,7 @@
                                 <div id="formularioParte02">
                                     <legend>O Negócio</legend>
 
-                                    <div class="col-md-12" id="" title="Insira o nome da Empresa ou do Projeto">
+                                    <div class="col-md-12" title="Insira o nome da Empresa ou do Projeto">
 
                                         <b>Nome da Empresa ou do Projeto* </b><br/>
                                         <h:message id="mensagemErroNome" class="mensagemErro" for="empresaProjeto"/><br/>
@@ -378,8 +378,8 @@
                                         <br/>
                                     </div>
 
-                                    <div class="col-md-12" id="" title="Insira o Segmento de Clientes">
-                                        <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Segmento de Clientes" update="" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12" title="Insira o Segmento de Clientes">
+                                        <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Segmento de Clientes" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <h:inputTextarea id="segmentoDeClientes" 
@@ -396,8 +396,8 @@
                                         </h:inputTextarea>
                                         <br/>
                                     </div>
-                                    <div class="col-md-12" id="" title="Insira a Proposta de Valor">
-                                        <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento de Proposta de Valor" update="" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12" title="Insira a Proposta de Valor">
+                                        <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento de Proposta de Valor" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor"/><br/>
                                         O que é? O que faz? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado? Que valor proporcionamos a cada segmento de mercado?
                                         <h:inputTextarea id="propostaDeValor" 
@@ -415,8 +415,8 @@
 
                                         <br/>
                                     </div>
-                                    <div class="col-md-12" id="" title="Insira as Atividades Chave">
-                                        <b>Atividades Chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Atividades Chave" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
+                                    <div class="col-md-12" title="Insira as Atividades Chave">
+                                        <b>Atividades Chave* <p:commandLink value="(?)" title="Ajuda com preenchimento de Atividades Chave" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave"/><br/>
                                         Que atividades-chave garantem que as nossas "Propostas de valor", "Canais", "Fontes de renda" e "Relações com clientes" serão realizadas? 
                                         <h:inputTextarea id="atividadesChave" 
@@ -462,7 +462,7 @@
                                     <legend id="subTitulo">Análise de Mercado</legend>
 
                                     <div class="col-md-12" title="Insira as Relações com clientes">
-                                        <b>Relações com clientes* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Relações com clientes" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
+                                        <b>Relações com clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento de Relações com clientes" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? O que fazemos para manter e fidelizar os nossos segmentos de clientes?
                                         <h:inputTextarea class="form-control semResize" 
@@ -481,7 +481,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" title="Insira as Parcerias Chave">
-                                        <b>Parcerias chave* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Parcerias Chave" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
+                                        <b>Parcerias chave* <p:commandLink value="(?)" title="Ajuda com preenchimento de Parcerias Chave" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves"/><br/>
                                         Quem são nossos parceiros-chave? Que recursos-chave adquirimos de nossos parceiros? Quem são nossos principais fornecedores de matéria-prima, insumos, serviços, ...? Que atividades-chave desenvolvemos em conjunto com parceiros?
                                         <h:inputTextarea class="form-control semResize" 
@@ -499,7 +499,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" title="Insira os Canais">
-                                        <b>Canais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Canais" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
+                                        <b>Canais* <p:commandLink value="(?)" title="Ajuda com preenchimento de Canais" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
 
@@ -516,7 +516,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" title="Insira os Recursos principais">
-                                        <b>Recursos principais* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Recursos Principais" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
+                                        <b>Recursos principais* <p:commandLink value="(?)" title="Ajuda com preenchimento de Recursos Principais" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais"/><br/>
                                         Que recursos são necessários para que possamos cumprir nossas "Propostas de valor", operar nossos "Canais", manter nossas "Relações com clientes"? 
                                         <h:inputTextarea class="form-control semResize" 
@@ -614,7 +614,7 @@
                                         <br/>
                                     </div>
                                     <div class="col-md-12" title="Insira a Tecnologia e processos">
-                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
+                                        <b>Tecnologia e processos (não poluentes)* <p:commandLink value="(?)" title="Ajuda com preenchimento de Tecnologia e processos" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologias" class="mensagemErro" for="tecnologiaProcessos"/><br/>
                                         Como nosso projeto está alinhado com os princípios da sustentabilidade empresarial?
                                         <h:inputTextarea class="form-control semResize" 
@@ -838,7 +838,7 @@
                                     <legend id="subTitulo">Plano de Financeiro</legend>
 
                                     <div class="col-md-12" title="Insira as Fontes de receita">
-                                        <b>Fontes de receita* <p:commandLink update="" value="(?)" title="Ajuda com preenchimento de Fontes de Receitas" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
+                                        <b>Fontes de receita* <p:commandLink value="(?)" title="Ajuda com preenchimento de Fontes de Receitas" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>                                        
                                         <h:message id="mensagemErroFonteReceita" class="mensagemErro" for="fontesDeReceita"/><br/>
                                         Qual o modelo de receita (Freemium, Anúncios, Assinatura mensal, Assinatura por serviços,...)? <br/>
                                         Qual segmento de cliente pagará? Haverá segmentos de clientes com gratuidade?
@@ -1101,7 +1101,7 @@
                         <legend id="subTitulo" style="color: #727476;">Minha equipe</legend>                                
 
 
-                        <div class="col-md-12" id="">
+                        <div class="col-md-12">
                             <h:panelGroup rendered="#{projetoBean.verificarEmpreendedor()}">
                                 <b>Empreendedores </b><br/>
                                 Informe os emails de quem está propondo o empreendimento:
@@ -1170,7 +1170,7 @@
         <div class="classeConteudo esconder-div" id="divSubmeterPlano">
             <h:form id="form_enviar_projeto">
                 <br/>
-                <div class="" id="formSubmeterPlano">
+                <div id="formSubmeterPlano">
                     <div class="tab-pane fade active in well bs-component">
                         <h1>Cadastro - Plano de Negócio</h1>
                         <div id="formularioParte01">
