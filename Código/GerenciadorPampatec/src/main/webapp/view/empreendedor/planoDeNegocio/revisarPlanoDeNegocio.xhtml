@@ -1582,10 +1582,10 @@
                                                      editable="true"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Descrição ">
@@ -1610,7 +1610,7 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo1)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                                     update="formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                             </p:ajax>
                                                         </p:inputText>
@@ -1630,7 +1630,7 @@
                                                                rendered="#{custo1.podeExcluir}"
                                                                >
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo1)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </p:commandLink>      
@@ -1645,10 +1645,10 @@
                                                                  || (revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                      editable="true"
                                                      >
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Descrição ">
@@ -1673,7 +1673,7 @@
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
                                                             <p:ajax event="change" 
-                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                                    listener="#{revisarPlanoDeNegocioBean.caucularProjecaoCustoFixo(custo2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                                     update="formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento">
                                                             </p:ajax>
                                                         </p:inputText>
@@ -1691,7 +1691,7 @@
                                                                rendered="#{custo2.isPodeExcluir()}"
                                                                >
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custo2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoFixo formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </p:commandLink>    
@@ -1708,7 +1708,7 @@
                                                                          and (!revisarPlanoDeNegocioBean.comentarioProjeto.comentarioplanofinanceiro.custosfixos.equals(''))}"
                                                              title="Adicionar nova linha de custo fixo" 
                                                              >
-                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                <p:ajax listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         update="formulario_resubmeterplano:revisar_custoFixo1 formulario_resubmeterplano:mensagemSalvamento">
                                                 </p:ajax>                                
                                             </p:commandButton>
@@ -1721,7 +1721,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaFixo()}"
                                                         >
                                                 </p:ajax>                               
@@ -1808,10 +1808,10 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
@@ -1874,10 +1874,10 @@
                                                      value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                      >
 
-                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEdit" listener="#{revisarPlanoDeNegocioBean.onRowEdit}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
-                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                            <p:ajax event="rowEditCancel" listener="#{revisarPlanoDeNegocioBean.onRowCancel}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                     update="formulario_resubmeterplano:mensagemSalvamento" />
 
                                             <p:column headerText="Nome">
@@ -1921,7 +1921,7 @@
                                                 <p:rowEditor />
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
-                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custovariavel2)}" onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                    <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custovariavel2)}" onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                             update="formulario_resubmeterplano:panelCustoVariavel formulario_resubmeterplano:colunaValorTotalVariavel formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </h:commandLink> 
@@ -1940,7 +1940,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:tabelaCustosVariaveis1 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaVariavel()}" 
                                                         >
                                                 </p:ajax>                                
@@ -1955,7 +1955,7 @@
                                                              icon="fa fa-plus"
                                                              >
                                                 <p:ajax update="formulario_resubmeterplano:tabelaCustosVariaveis2 formulario_resubmeterplano:mensagemSalvamento"
-                                                        onsuccess="timeoutMensagemFeedBack(SALVO)"
+                                                        onsuccess="funcaoAjaxSalvoPrimeFaces()"
                                                         listener="#{revisarPlanoDeNegocioBean.adicionarLinhaVariavel()}" 
                                                         >
                                                 </p:ajax>                                
