@@ -57,10 +57,10 @@
             <h:form id="menuSuperior">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
-                        <div class="col-md-2">
+                        <div class="col-md-6">
                             <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-6">
                             <ul class="nav navbar-nav navbar-right">
 
                                 <li class="dropdown">
@@ -203,9 +203,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p:commandButton class="botaoBase botaoPreto"
-                                                        title="Sair do Projeto" 
-                                                        rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}"
-                                                        action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}"
+                                                        title="Sair do Projeto"
+                                                        onclick="confirmacaoDeSair()"
+                                                        rendered="#{!buscaProjetoEmpreendedorBean.verificarEmpreendedor(projeto)}" 
                                                         icon="fa fa-sign-out"    
                                                         value="Sair"
                                                        >
@@ -215,11 +215,9 @@
                                                         title="Excluir o Plano de Negócio" 
                                                         onclick="confirmacaoDeExclusao()"
                                                         rendered="#{buscaProjetoEmpreendedorBean.verificaExcluir(projeto)}"
-                                                        action="#{buscaProjetoEmpreendedorBean.deletarProjeto(projeto)}"
                                                         icon="fa fa-trash"    
                                                         value="Excluir"
                                                        >
-                                            <f:ajax execute="@form"></f:ajax>
                                             <f:setPropertyActionListener value="#{projeto}" target="#{buscaProjetoEmpreendedorBean.projetoSelecionado}"/>
                                         </p:commandButton>
 
@@ -227,6 +225,10 @@
                                     <script>
                                         function confirmacaoDeExclusao() {
                                             $("#modalInfoDeExclusao").modal();
+                                        }
+                                        
+                                        function confirmacaoDeSair() {
+                                            $("#modalInfoDeSair").modal();
                                         }
                                     </script>
                                     <!-- Modal com a Informação do botão EXCLUIR PLANO DE NEGOCIO -->
@@ -244,9 +246,36 @@
                                                 <div class="modal-footer">
                                                     <div class="col-md-12"> 
 
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                        <button type="button" class="btn btn-default" tittle="Cancelar exclusão do plano de negócio" data-dismiss="modal">Cancelar</button>
 
                                                         <h:commandButton class="btn btn-success" value="Confirmar exclusão" action="#{buscaProjetoEmpreendedorBean.deletarProjeto(projeto)}">
+                                                        
+                                                        </h:commandButton>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modal com a Informação do botão SAIR DO PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeSair" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Conteúdo do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Você tem certeza que deseja sair deste plano de negócio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
+
+                                                        <button type="button" class="btn btn-default" tittle="Cancelar sair do plano" data-dismiss="modal">Cancelar</button>
+
+                                                        <h:commandButton class="btn btn-success"  value="Confirmar sair do plano" action="#{buscaProjetoEmpreendedorBean.sairDoProjeto()}">
                                                         </h:commandButton>
 
                                                     </div>
