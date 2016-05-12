@@ -57,7 +57,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     
     @PostConstruct
     private void init(){
+        ProjetoDao projetoDao = new ProjetoDao();
         projeto = (Projeto) sessionBean.getSession().getAttribute("projetoSelecionado");
+        projeto = projetoDao.buscar(projeto.getIdProjeto());
         empreendedorSession = (Empreendedor) sessionBean.getSession().getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
@@ -316,7 +318,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.getProdutoouservico().setEstagioEvolucao(estagioEvolucao);
+        pegaValorDropDown();
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
         salvou = true;
@@ -327,6 +329,44 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+    }
+    
+    /**
+     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO
+     * DE EVOLUÇÃO APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR
+     * CORRESPONDENTE CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR
+     * DO CAMPO (descricaoButtonOutro)
+     */
+    public void pegaValorDropDown() {
+        switch (estagioEvolucao) {
+            case "Ideia Básica":
+                projeto.getProdutoouservico().setEstagioEvolucao("Ideia Básica");
+                estagioEvolucaoOutro = null;
+                break;
+            case "Projeto Básico":
+                projeto.getProdutoouservico().setEstagioEvolucao("Projeto Básico");
+                estagioEvolucaoOutro = null;
+                break;
+            case "Projeto Detalhado":
+                projeto.getProdutoouservico().setEstagioEvolucao("Projeto Detalhado");
+                estagioEvolucaoOutro = null;
+                break;
+            case "Protótipo Desenvolvido":
+                projeto.getProdutoouservico().setEstagioEvolucao("Protótipo Desenvolvido");
+                estagioEvolucaoOutro = null;
+                break;
+            case "Em teste no mercado":
+                projeto.getProdutoouservico().setEstagioEvolucao("Em teste no mercado");
+                estagioEvolucaoOutro = null;
+                break;
+            case "Clientes Pagando":
+                projeto.getProdutoouservico().setEstagioEvolucao("Clientes Pagando");
+                estagioEvolucaoOutro = null;
+                break;
+            default:
+                projeto.getProdutoouservico().setEstagioEvolucao(estagioEvolucaoOutro);
+                break;
+        }
     }
 
     /**
