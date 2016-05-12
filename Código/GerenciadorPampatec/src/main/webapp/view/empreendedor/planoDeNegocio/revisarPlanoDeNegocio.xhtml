@@ -827,19 +827,18 @@
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:selectOneMenu>
-                                        <div>
+                                        <h:panelGroup id="campoOutro1" layout="block">
                                             <!-- Esse inputText não está sendo renderizado corretamente. -->
-                                            <p:inputText id="campoOutro1" 
-                                                         class="form-control semResize" 
+                                            <p:inputText class="form-control semResize"
                                                          placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.estagioEvolucao}" 
+                                                         value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
                                                          rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
                                                 <f:ajax execute="@form" 
                                                         render="formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagemSalvamento" 
                                                         event="change" onevent="funcaoAjaxSalvo"
                                                         listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </p:inputText>
-                                        </div>
+                                        </h:panelGroup>
                                     </h:panelGroup>
                                     <h:panelGroup class="checkbox" id="abc"
                                                   rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao || revisarPlanoDeNegocioBean.comentarioProjeto.comentarioprodutoouservico.estagioEvolucao.equals('')}">
@@ -859,16 +858,15 @@
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:selectOneMenu>
-                                        <div>
+                                        <h:panelGroup id="campoOutro2" layout="block">
                                             <!-- Esse inputText não está sendo renderizado corretamente. -->
-                                            <p:inputText id="campoOutro2" 
-                                                         class="form-control semResize" 
+                                            <p:inputText class="form-control semResize" 
                                                          placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                          value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
                                                          rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
                                                 <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </p:inputText>
-                                        </div>
+                                        </h:panelGroup>
                                     </h:panelGroup>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
