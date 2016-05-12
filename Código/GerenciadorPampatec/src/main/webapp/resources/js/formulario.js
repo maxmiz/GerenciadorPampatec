@@ -390,14 +390,14 @@ function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
     if ($(campo).hasClass("form-control campoFeedBackOn")) {
         $(campo).fadeOut(900);
         campo.setAttribute("class", "form-control campoFeedBack");
-        botao.setAttribute("class", "botaoBaseComentario botaoVerde");
+        //botao.setAttribute("class", "botaoBaseComentario botaoVerde");
 		//    botao.setAttribute("value", "Fechar Comentário");
 		//    botao.setAttribute("icon", "fa fa-minus");
         alteracao.setAttribute("class","campoFeedBack");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
-        botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
+        //botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
         alteracao.setAttribute("class","campoFeedBackOn");
         //   botao.setAttribute("value", "Adicionar Comentário");
 		//   botao.setAttribute("icon", "fa fa-plus");

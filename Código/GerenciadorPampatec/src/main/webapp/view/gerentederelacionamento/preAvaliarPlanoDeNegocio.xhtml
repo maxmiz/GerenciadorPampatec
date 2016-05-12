@@ -340,7 +340,7 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
 
                                             <f:ajax execute="@form" 
-                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes formulario_comentarpreavalizar:alteracaoSegmento"
+                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes alteracaoSegmento formulario_comentarpreavalizar:adicionarComentarioAtividades"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
@@ -377,6 +377,7 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
+                                        <!--
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                          title="Inserir comentário" 
                                                          id="adicionarComentarioPropostaValor" 
@@ -385,6 +386,9 @@
                                                          icon="fa fa-plus"
                                                          value="Adicionar Comentário">
                                         </p:commandButton>
+                                        -->
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:propostaDeValor2','adicionarComentarioAtividades', 'alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick=""><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
