@@ -249,22 +249,12 @@ public class PreAvaliarPlanoBean implements Serializable {
             if ((projeto.getStatus() == Projeto.SENDO_AVALIADO)
                     || (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO)) {
 
-                projeto.setStatus(getResultadoPreAvaliacao());
-
                 mudaStatusComentarioProjetoFinalizar();
 
                 atualizaDataAvaliacao();
 
                 salvarPreAvaliacao();
                 
-                /**
-                 * Zera o Status do projeto para quando voltar do "Fazer Melhoria", 
-                 * o radiobutton não ser marcado.
-                 */
-                ProjetoDao projetoDao = new ProjetoDao();
-                projeto.setStatusTemp(99);
-                projetoDao.salvar(projeto);
-
                 getBuscarPlanoDeNegocio();
             }
         }
@@ -282,9 +272,14 @@ public class PreAvaliarPlanoBean implements Serializable {
         comentDao.salvar(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto);
-
+        projeto.setStatus(getResultadoPreAvaliacao());     
+         /**
+         * Zera o Status do projeto para quando voltar do "Fazer Melhoria", o
+         * radiobutton não ser marcado.
+         */
+       projeto.setStatusTemp(99);   
+       projetoDao.salvar(projeto);
+       
         salvo = true;
     }    
     
