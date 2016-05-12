@@ -60,7 +60,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     
     @PostConstruct
     private void init(){
+        ProjetoDao projetoDao = new ProjetoDao();
         projeto = (Projeto) sessionBean.getSession().getAttribute("projetoSelecionado");
+        projeto = projetoDao.buscar(projeto.getIdProjeto());
         empreendedorSession = (Empreendedor) sessionBean.getSession().getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
@@ -262,7 +264,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
-        return projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA;
+        return (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) 
+                || (projetoSelecionado.getStatus() == Projeto.REVISANDO);
     }
 
     /**
@@ -314,9 +317,13 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * @return o estágio em que a empresa está. 
      */
     private String verificaEstagioEvolucao() {
+        if(projeto.getProdutoouservico().getEstagioEvolucao() == null){
+            return "Ideia Básica";
+        }
         String status = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
         if (status.equals("Outro:")) {
-            return projeto.getProdutoouservico().getEstagioEvolucao();
+            estagioEvolucaoOutro = projeto.getProdutoouservico().getEstagioEvolucao();
+            return "Outro";
         } else {
             return status;
         }
@@ -339,7 +346,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarRevisaoProjeto() {
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.getProdutoouservico().setEstagioEvolucao(estagioEvolucao);
+        projeto.getProdutoouservico().setEstagioEvolucao(pegaValorDropDown());
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
         salvou = true;
@@ -350,6 +357,47 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+    }
+    
+    /**
+     * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO
+     * DE EVOLUÇÃO APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR
+     * CORRESPONDENTE CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR
+     * DO CAMPO (descricaoButtonOutro)
+     * @return 
+     */
+    public String pegaValorDropDown() {
+        String valorEstagioEvolucao = null;
+        switch (estagioEvolucao) {
+            case "Ideia Básica":
+                valorEstagioEvolucao = "Ideia Básica";
+                estagioEvolucaoOutro = null;
+                break;
+            case "Projeto Básico":
+                valorEstagioEvolucao = "Projeto Básico";
+                estagioEvolucaoOutro = null;
+                break;
+            case "Projeto Detalhado":
+                valorEstagioEvolucao = "Projeto Detalhado";
+                estagioEvolucaoOutro = null;
+                break;
+            case "Protótipo Desenvolvido":
+                valorEstagioEvolucao = "Protótipo Desenvolvido";
+                estagioEvolucaoOutro = null;
+                break;
+            case "Em teste no mercado":
+                valorEstagioEvolucao = "Em teste no mercado";
+                estagioEvolucaoOutro = null;
+                break;
+            case "Clientes Pagando":
+                valorEstagioEvolucao = "Clientes Pagando";
+                estagioEvolucaoOutro = null;
+                break;
+            default:
+                valorEstagioEvolucao = estagioEvolucaoOutro;
+                break;
+        }
+        return valorEstagioEvolucao;
     }
 
     /**
@@ -475,6 +523,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
              * A data de avaliação e alterada para null pois o projeto será ressubmetido.
              */
             projeto.setDataAvaliacao(null);
+            comentarioProjeto.setStatus(ComentarioProjeto.HISTORICO);
+            
+            projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
 
             getBuscarPlanoDeNegocio();
@@ -568,6 +619,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
         msg = new FacesMessage("Custo Editado", custo.getDescricao());
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
+        salvou = true;
 
         calcularValorColunaCustoVariavel();
         calcularValorColunaCustoFixo();
@@ -609,6 +661,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
+        salvou = true;
         projeto.SalvarProjeto(projeto);
     }
 
@@ -625,6 +678,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvou = true;
         salvarProjeto();
         preencheListaCusto();
     }
@@ -642,6 +696,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvou = true;
         salvarProjeto();
         preencheListaCusto();
     }

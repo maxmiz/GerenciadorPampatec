@@ -191,21 +191,33 @@
                     </div> 
 
                     <div class="col-md-12 modal-footer">
-                        <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
                         <h:message for="botaoEnviar" infoClass="mensagemSucesso" style="margin: 0 auto;" ></h:message>
-
-                        <h:commandButton id="botaoEnviar" class="btn btn-success" title="Enviar os dados para a realização do Cadastro" value="Enviar dados para Cadastro" action="#{empreendedorBean.chamaCadastro()}">
-
-                        </h:commandButton>
-                    </div>
-                </h:form>
-                <h:form><div class="col-md-12 modal-footer">
+                        
+                        <div class="col-md-4 modal-footer">
                         <!--<h:button class="btn btn-default" value="Voltar"></h:button>-->
 
-                        <h:commandButton class="btn btn-default" title="Voltar para a página de Login" value="Voltar" action="#{loginBean.voltar}"></h:commandButton>
-
+                        <p:button id="botaoVoltar"
+                                         class="botaoBase botaoPreto" 
+                                         title="Voltar para a página de Login" 
+                                         value="Voltar"
+                                         outcome="loginEmpreendedor.jsf"
+                                         >
+                                        
+                                         
+                        </p:button>
+                    </div>
+                        <div class="col-md-8 modal-footer">
+                        <p:commandButton id="botaoEnviar" 
+                                         class="botaoBase botaoVerde" 
+                                         title="Enviar os dados para a realização do Cadastro" 
+                                         value="Enviar dados para Cadastro" 
+                                         action="#{empreendedorBean.chamaCadastro()}"
+                                         ajax="false">
+                        </p:commandButton>
+                        </div>
                     </div>
                 </h:form>
+                
 
             </div>
         </div>

@@ -10,7 +10,6 @@ import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -275,8 +274,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -376,8 +374,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -474,8 +471,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -572,8 +568,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -670,8 +665,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -773,8 +767,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -876,8 +869,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -979,8 +971,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1082,8 +1073,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1185,8 +1175,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1288,8 +1277,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1391,8 +1379,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1494,8 +1481,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1597,8 +1583,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1700,8 +1685,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1804,8 +1788,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -1907,8 +1890,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2010,8 +1992,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2113,8 +2094,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2216,8 +2196,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2319,8 +2298,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2422,8 +2400,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2525,8 +2502,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * <
-     * p>
+     * <p>
      * Teste para o texto extenso
      * </p>
      */
@@ -2562,11 +2538,11 @@ public class ComentarioProjetoTest {
         comentDao.salvar(objComentProj);
 
 //        ArrayList resultadoEsperado = new ArrayList();
-        ArrayList resultadoRecebido = objComentProj.historicoDeComentarios(Textocomentario.SEGMENTO_CLIENTE);
+        ArrayList resultadoRecebido;
+        resultadoRecebido = objComentProj.historicoDeComentarios(Textocomentario.SEGMENTO_CLIENTE);
 
 //        for (Object listaResultado : resultadoRecebido) {
 //
 //        }
     }
-
 }
