@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8086/" />
-<title>AvaliarPlanoNegocio</title>
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Avalia Planos de Negocio [Selenium]</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">AvaliarPlanoNegocio</td></tr>
+<tr><td rowspan="1" colspan="3">Avalia Planos de Negocio [Selenium]</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -23,7 +23,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>id=locovelho:tabelaDeNegocios:0:avaliarPlano</td>
+	<td>id=locovelho:tabelaDeNegocios:2:avaliarPlano</td>
 	<td></td>
 </tr>
 <tr>
@@ -37,16 +37,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=formulario_comentarpreavalizar:segmentoDeCliente2</td>
-	<td>Comentário - </td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=adicionarComentarioAtividades</td>
-	<td></td>
-</tr>
-<tr>
 	<td>click</td>
 	<td>id=formulario_comentarpreavalizar:segmentoDeCliente2</td>
 	<td></td>
@@ -54,7 +44,22 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:segmentoDeCliente2</td>
-	<td>Comentário - Segmento de Clientes</td>
+	<td>Segmento de Clientes* (?)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:adicionarComentarioPropostaValor</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:propostaDeValor2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formulario_comentarpreavalizar:propostaDeValor2</td>
+	<td>Proposta de Valor* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -63,23 +68,13 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=formulario_comentarpreavalizar:propostaDeValor2</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=formulario_comentarpreavalizar:propostaDeValor2</td>
-	<td>Comentário - Proposta de Valor</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>xpath=(//button[@id='adicionarComentarioAtividades'])[3]</td>
+	<td>id=formulario_comentarpreavalizar:atividadesChave2</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:atividadesChave2</td>
-	<td>Comentário - Atividades Chave</td>
+	<td>Atividades Chave* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -92,9 +87,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:relacaoClientes2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:relacaoClientes2</td>
-	<td>Comentário - Relações com clientes</td>
+	<td>Relações com clientes* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -109,7 +109,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:parceriasChave2</td>
-	<td>Comentário - Parcerias chave</td>
+	<td>Parcerias chave* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -117,9 +117,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:canais2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:canais2</td>
-	<td>comentário - Canais</td>
+	<td>Canais* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -127,9 +132,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:recursosPrincipais2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:recursosPrincipais2</td>
-	<td>Comentário - Recursos principais</td>
+	<td>Recursos principais* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -137,9 +147,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:concorrentes2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:concorrentes2</td>
-	<td>Comentário - Concorrentes</td>
+	<td>Concorrentes* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -152,9 +167,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:estagioEvolucao2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:estagioEvolucao2</td>
-	<td>Comentário - Estágio de evolução</td>
+	<td>Estágio de evolução* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -162,9 +182,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:tecnologiaProcessos2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:tecnologiaProcessos2</td>
-	<td>Comentário - Tecnologia e processos (não poluentes)</td>
+	<td>Tecnologia e processos (não poluentes)* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -179,7 +204,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:potencialInovacaoTecnologica2</td>
-	<td>Comentário - Potencial de inovação tecnológica</td>
+	<td>Potencial de inovação tecnológica* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -194,7 +219,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:aplicacoes2</td>
-	<td>Comentário - Aplicações</td>
+	<td>Aplicações* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -202,9 +227,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:dificuldadesEsperadas2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:dificuldadesEsperadas2</td>
-	<td>Comentário - Dificuldades esperadas</td>
+	<td>Dificuldades esperadas* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -212,9 +242,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:interacaoEmpresaUniversidade2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:interacaoEmpresaUniversidade2</td>
-	<td>Comentário - Interação entre empresa e Universidade</td>
+	<td>Interação entre empresa e Universidade* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -222,9 +257,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno2</td>
-	<td>Comentário - Interação entre empresa, comunidade e governo</td>
+	<td>Interação entre empresa, comunidade e governo* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -232,9 +272,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:infraestrutura2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:infraestrutura2</td>
-	<td>Comentário - Infra-estrutura necessária para o desenvolvimento e produção</td>
+	<td>Infra-estrutura necessária para o desenvolvimento e produção* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -254,7 +299,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:participacaoAcionaria2</td>
-	<td>Comentário - Descrição da participação acionária</td>
+	<td>Descrição da participação acionária* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -269,7 +314,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:potencialEmprego2</td>
-	<td>Comentário - Potencial de geração de emprego e renda</td>
+	<td>Potencial de geração de emprego e renda* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -289,7 +334,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:fontesDeReceita2</td>
-	<td>Comentário - Fontes de receita</td>
+	<td>Fontes de receita* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -304,22 +349,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:estruturaCustos2</td>
-	<td>Comentário - </td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=adicionarComentarioEstruturaCustos</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=formulario_comentarpreavalizar:estruturaCustos2</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=formulario_comentarpreavalizar:estruturaCustos2</td>
-	<td>Comentário - Estrutura de custos</td>
+	<td>Estrutura de custos* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -327,9 +357,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:investimentoInicial2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:investimentoInicial2</td>
-	<td>Comentário - Investimento inicial</td>
+	<td>Investimento inicial* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -337,9 +372,19 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>id=formulario_comentarpreavalizar:comentarioCustoFixo2</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:comentarioCustoFixo2</td>
-	<td>Comentário - Custos fixos</td>
+	<td>Custos fixos* (?)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form[@id='formulario_comentarpreavalizar']/div[3]</td>
+	<td></td>
 </tr>
 <tr>
 	<td>click</td>
@@ -354,7 +399,7 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:comentarioCustoVariavel2</td>
-	<td>Comentários - Custos variáveis</td>
+	<td>Custos variáveis* (?)</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -364,11 +409,11 @@
 <tr>
 	<td>type</td>
 	<td>id=formulario_comentarpreavalizar:campoObservacoes</td>
-	<td>Precisa de alterações</td>
+	<td>Observações: (?) Observações: (?) Observações: (?) Observações: (?) Observações: (?) Observações: (?) v</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//table[@id='formulario_comentarpreavalizar:avaliacao']/tbody/tr[2]/td/div/div[2]/span</td>
+	<td>//table[@id='formulario_comentarpreavalizar:avaliacao']/tbody/tr[2]/td[2]/label</td>
 	<td></td>
 </tr>
 <tr>
@@ -384,6 +429,21 @@
 <tr>
 	<td>click</td>
 	<td>id=formulario_comentarpreavalizar:j_idt39</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Avaliar Planos de Negócio</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Início</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Avaliar Planos de Negócio</td>
 	<td></td>
 </tr>
 

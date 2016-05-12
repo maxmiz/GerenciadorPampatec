@@ -8,7 +8,6 @@ html {
 }
 
 body{
-    width: 100%;
     background: #fff;
     color: #727476;
 }
@@ -672,4 +671,11 @@ Adicionar Comentário e Histórico de comentários
     border: none;
     font-weight: bold;
     box-sizing: content-box; 
+}
+
+.exibiHistoricoComentario{
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50; /* Green */
+    border-radius: 4px;
 }

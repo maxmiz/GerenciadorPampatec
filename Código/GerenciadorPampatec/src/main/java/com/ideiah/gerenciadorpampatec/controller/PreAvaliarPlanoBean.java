@@ -10,8 +10,10 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -247,22 +249,12 @@ public class PreAvaliarPlanoBean implements Serializable {
             if ((projeto.getStatus() == Projeto.SENDO_AVALIADO)
                     || (projeto.getStatus() == Projeto.EM_PRE_AVALIACAO)) {
 
-                projeto.setStatus(getResultadoPreAvaliacao());
-
                 mudaStatusComentarioProjetoFinalizar();
 
                 atualizaDataAvaliacao();
 
                 salvarPreAvaliacao();
                 
-                /**
-                 * Zera o Status do projeto para quando voltar do "Fazer Melhoria", 
-                 * o radiobutton não ser marcado.
-                 */
-                ProjetoDao projetoDao = new ProjetoDao();
-                projeto.setStatusTemp(99);
-                projetoDao.salvar(projeto);
-
                 getBuscarPlanoDeNegocio();
             }
         }
@@ -276,12 +268,18 @@ public class PreAvaliarPlanoBean implements Serializable {
     private void salvarPreAvaliacao() {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.setProjeto(projeto);
+        comentarioProjeto.setStatus(ComentarioProjeto.FINALIZADO);
         comentDao.salvar(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto.setStatusTemp(getResultadoPreAvaliacao());
-        projetoDao.salvar(projeto);
-
+        projeto.setStatus(getResultadoPreAvaliacao());     
+         /**
+         * Zera o Status do projeto para quando voltar do "Fazer Melhoria", o
+         * radiobutton não ser marcado.
+         */
+       projeto.setStatusTemp(99);   
+       projetoDao.salvar(projeto);
+       
         salvo = true;
     }    
     
@@ -450,5 +448,11 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+    
+    
+    public ArrayList<?> historicoDeComentarios(int tipoComentario){
+        ComentarioProjeto cp = new ComentarioProjeto();
+        return cp.historicoDeComentarios(tipoComentario);
     }
 }

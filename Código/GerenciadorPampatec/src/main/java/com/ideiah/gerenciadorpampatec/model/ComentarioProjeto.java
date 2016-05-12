@@ -283,7 +283,7 @@ public class ComentarioProjeto implements java.io.Serializable {
         
         HashMap<String, Object> mapaHistorico = new HashMap<>();
         mapaHistorico.put("status", FINALIZADO);
-        mapaHistorico.put("projeto_idProjeto", projeto.getIdProjeto());
+        mapaHistorico.put("projeto", projeto);
         
         buscaHistoricoPorTipo = comentDao.buscaComentarioPorProjetoEStatus(mapaHistorico);
             
@@ -300,7 +300,7 @@ public class ComentarioProjeto implements java.io.Serializable {
          * por data de submissão.
          * Mais novo para mais antigo.
          */
-        
+        System.out.println(">>>> ComentarioProjeto.java: \t"+buscaHistoricoPorTipo);
         return buscaHistoricoPorTipo;
     }
     
