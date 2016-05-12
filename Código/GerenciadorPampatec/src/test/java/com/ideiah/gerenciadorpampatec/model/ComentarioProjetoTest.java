@@ -6,6 +6,8 @@
 package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
+import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
@@ -24,6 +26,30 @@ import org.junit.Ignore;
 public class ComentarioProjetoTest {
 
     private final String testeTextoGigante;
+        String textoSegmentoCliente                   = "Teste do histórico de comentário Segmento de Cliente.";
+        String textoPropostaValor                     = "Teste do histórico de comentário Proposta Valor.";
+        String textoAtividadesChave                   = "Teste do histórico de comentário Atividades Chave.";
+        String textoRelacoesCliente                   = "Teste do histórico de comentário Relações com Cliente.";
+        String textoParceriasChave                    = "Teste do histórico de comentário Parcerias Chave.";
+        String textoCanais                            = "Teste do histórico de comentário Canais.";
+        String textoRecursosPrincipais                = "Teste do histórico de comentário Recursos Principais.";
+        String textoConcorrentes                      = "Teste do histórico de comentário Concorrencias.";
+        String textoEstagioEvolucao                   = "Teste do histórico de comentário Estagio de Evolução.";
+        String textoTecnologiaProcessos               = "Teste do histórico de comentário Tecnologia de Processos.";
+        String textoPotencialInovacaoTecnologica      = "Teste do histórico de comentário Potencial de Inovação Tecnologica.";
+        String textoAplicacoes                        = "Teste do histórico de comentário Aplicações.";
+        String textoDificuldadesEsperadas             = "Teste do histórico de comentário Dificuldades Esperadas.";
+        String textoInteracaoEmpresaUniversidade      = "Teste do histórico de comentário Interação entre Empresa e Universidade.";
+        String textoInteracaoEmpresaComunidadeGoverno = "Teste do histórico de comentário Interação entreEmpresa, Comunidade e Governo.";
+        String textoInfraestrutura                    = "Teste do histórico de comentário Infraestrutura.";
+        String textoParticipacaoAcionaria             = "Teste do histórico de comentátio Participação Acionaria.";
+        String textoPotencialEmprego                  = "Teste do histórico de comentátio Potencial de Emprego.";
+        String textoFonteReceita                      = "Teste do histórico de comentátio Fontes de Receita.";
+        String textoEstruturaCusto                    = "Teste do histórico de comentátio Estrutura de Cutos.";
+        String textoInvestimentoInicial               = "Teste do histórico de comentátio Investimento Inicial.";
+        String textoCustoFixo                         = "Teste do histórico de comentátio Custos Fixos.";
+        String textoCustovariavel                     = "Teste do histórico de comentátio Custos variáveis.";
+    
 
     public ComentarioProjetoTest() {
 
