@@ -10,8 +10,10 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -450,5 +452,11 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+    
+    
+    public ArrayList<?> historicoDeComentarios(int tipoComentario){
+        ComentarioProjeto cp = new ComentarioProjeto();
+        return cp.historicoDeComentarios(tipoComentario);
     }
 }
