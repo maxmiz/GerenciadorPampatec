@@ -595,6 +595,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 
         msg = new FacesMessage("Custo Editado", custo.getDescricao());
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
+        salvou = true;
 
         calcularValorColunaCustoVariavel();
         calcularValorColunaCustoFixo();
@@ -636,6 +637,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
+        salvou = true;
         projeto.SalvarProjeto(projeto);
     }
 
@@ -652,6 +654,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvou = true;
         salvarProjeto();
         preencheListaCusto();
     }
@@ -669,6 +672,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         custo.setPodeExcluir(true);
         projeto.getPlanofinanceiro().getCusto().add(custo);
         custo.setPlanofinanceiro(projeto.getPlanofinanceiro());
+        salvou = true;
         salvarProjeto();
         preencheListaCusto();
     }
