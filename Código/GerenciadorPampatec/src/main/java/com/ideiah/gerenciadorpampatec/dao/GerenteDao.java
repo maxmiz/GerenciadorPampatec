@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,5 +31,13 @@ public class GerenteDao extends Dao{
         return (GerenteRelacionamento) buscarObjetoCriteria("cpf", cpf, GerenteRelacionamento.class);
 
     }
-    
+     /**
+      * Método que busca a lista inteira de gerentes de relacionamento.
+      * 
+     * @return a lista inteira de gerentes de Relacionamento 
+     */
+    public ArrayList<?> buscarTodosGerente() {
+        return  buscarObjetos(GerenteRelacionamento.class);
+
+    }
 }
