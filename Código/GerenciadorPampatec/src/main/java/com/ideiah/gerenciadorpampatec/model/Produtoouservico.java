@@ -10,9 +10,9 @@ import java.util.Set;
 public class Produtoouservico implements java.io.Serializable {
 
     public static final String IDEIA_BASICA = "Ideia Básica";
-    public static final String PROJETO_BASICO = "Projeto básico";
-    public static final String PROJETO_DETALHADO = "Projeto detalhado";
-    public static final String PROTOTIPO_DESENVOLVIDO = "Protótipo desenvolvido";
+    public static final String PROJETO_BASICO = "Projeto Básico";
+    public static final String PROJETO_DETALHADO = "Projeto Detalhado";
+    public static final String PROTOTIPO_DESENVOLVIDO = "Protótipo Desenvolvido";
     public static final String EM_TESTE_NO_MERCADO = "Em teste no mercado";
     public static final String CLIENTES_PAGANDO = "Clientes Pagando";
     private int idProdutoOuServico;
