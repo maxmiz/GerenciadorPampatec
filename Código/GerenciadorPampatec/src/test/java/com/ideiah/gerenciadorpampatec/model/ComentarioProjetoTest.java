@@ -6,8 +6,6 @@
 package com.ideiah.gerenciadorpampatec.model;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
-import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.After;
