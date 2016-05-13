@@ -574,6 +574,30 @@ function carregaPagina() {
 
             break;
             
+//      REVISANDO = 13;
+        case 13:
+            etapa3.innerHTML = "<b>Avaliação</b>";
+            etapa4.innerHTML = "<b>Formalização</b>";
+            etapa5.innerHTML = "<b>Incubação</b>";
+            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa2.setAttribute("class", "active, etapaAtual");
+            mostra_vertical_elaboracao();
+
+            etapaAtualDoWorkflow = "etapa2";
+
+            mostraDIV('div_revisar_plano');
+            
+            addFocoBotao("botao_revisar");
+
+            var etapa = document.getElementById("etapa3");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa4");
+            etapa.setAttribute("style", "cursor: default;");
+            var etapa = document.getElementById("etapa5");
+            etapa.setAttribute("style", "cursor: default;");
+
+            break;
+        
 //      RESUBMETIDO = 11;
         case 11:
             etapa3.innerHTML = "<b>Avaliação</b>";
