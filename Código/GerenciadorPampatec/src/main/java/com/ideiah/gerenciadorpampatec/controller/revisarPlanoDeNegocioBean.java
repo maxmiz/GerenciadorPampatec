@@ -86,6 +86,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
                 break;
             }
         }
+        comentarioProjeto.populandoVariaveisComentario();
     }
     
     /**

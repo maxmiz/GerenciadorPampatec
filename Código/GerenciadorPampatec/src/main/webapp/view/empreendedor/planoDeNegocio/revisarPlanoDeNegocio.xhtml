@@ -509,7 +509,7 @@
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.atividadesChave.texto.equals('')}"
+                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1919,7 +1919,8 @@
                                                 <h:commandLink title="Excluir o Custo">
                                                     <i class="fa fa-trash"></i>
                                                     <p:ajax listener="#{revisarPlanoDeNegocioBean.deletarLinha(custovariavel1)}"
-                                                            update="formulario_resubmeterplano:panelCustoVariavel formulario_resubmeterplano:colunaValorTotalVariavel formulario_resubmeterplano:mensagensFeed">
+                                                            onsuccess="funcaoAjaxSalvoPrimeFaces()"
+                                                            update="formulario_resubmeterplano:panelCustoVariavel formulario_resubmeterplano:colunaValorTotalVariavel formulario_resubmeterplano:mensagemSalvamento">
                                                     </p:ajax>
                                                 </h:commandLink> 
                                             </p:column>
@@ -1996,7 +1997,7 @@
                                         <div class="col-md-6">
                                             <p:commandButton id="adicionar_nova_linhaVariavel1"
                                                              rendered="#{(not empty revisarPlanoDeNegocioBean.comentarioProjeto.custoVariavel.texto) 
-                                                                         and (!revisarPlanoDeNegocioBean.comentarioProjeto.custovariavel.texto.equals(''))}"
+                                                                         and (!revisarPlanoDeNegocioBean.comentarioProjeto.custoVariavel.texto.equals(''))}"
                                                              title="Adicionar nova linha de custo variável" 
                                                              class="botaoBase botaoPreto" 
                                                              value="Adicionar Linha" 

@@ -558,3 +558,15 @@ function verificaPreenchimentoComentario(campo) {
         return true;
     }
 }
+
+/**
+ * @description Ao salvar via ajax atualiza a aba para amarela e adiciona o icone de comentario
+ * @param {type} data
+ * @returns {undefined}
+ */
+function funcaoAjaxSalvoAtualizandoAbas(data){
+    if(data.status === "success"){
+        verificaComentariosPreAvaliar();
+        funcaoAjaxSalvo(data);
+    }
+}
