@@ -674,8 +674,8 @@ Adicionar Comentário e Histórico de comentários
 }
 
 .exibiHistoricoComentario{
-    background-color: #4CAF50;
-    color: white;
+    margin-top:  1px;
+    padding-top: 2px;
     border: 2px solid #4CAF50; /* Green */
     border-radius: 4px;
 }

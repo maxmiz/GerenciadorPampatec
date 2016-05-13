@@ -6,6 +6,7 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,16 +78,6 @@ public class ComentarioDao extends Dao implements Serializable{
      */
     public ComentarioProjeto buscarPorStatus(int status) {
         return (ComentarioProjeto) buscarObjetoCriteriaINT("status", status, ComentarioProjeto.class);
-    }
-    
-    /**
-     * <p>Método que acessa a classe <code>Dao.java</code> para buscar os 
-     * comentários conforme o tipo especificado.</p>
-     * @param mapaHistorico
-     * @return A lista de comentários de acordo com o tipo recebido por parâmetro.
-     */
-    public ArrayList<ComentarioProjeto> buscaComentarioPorProjetoEStatus(HashMap<String, Object> mapaHistorico){
-        return (ArrayList<ComentarioProjeto>) buscarObjetos(mapaHistorico, ComentarioProjeto.class);
     }
     
     //busca comentario pelo projeto

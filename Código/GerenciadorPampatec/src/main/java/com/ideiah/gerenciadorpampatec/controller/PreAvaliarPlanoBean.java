@@ -281,6 +281,8 @@ public class PreAvaliarPlanoBean implements Serializable {
 
                 atualizaDataAvaliacao();
 
+                setDataSubmissaoComentarios();
+                
                 salvarPreAvaliacao();
                 
                 getBuscarPlanoDeNegocio();
@@ -324,6 +326,20 @@ public class PreAvaliarPlanoBean implements Serializable {
         }
     }
 
+    /**
+     * <p>Define a data de submissão para todos os comentários do projeto.</p>
+     */
+    private void setDataSubmissaoComentarios() {
+        /**
+         * Laço para varrer todos os comentários e definir as data de submissão dos mesmos.
+         */
+        for (Textocomentario listaTextoComentarios : comentarioProjeto.getTextocomentarios()) {
+            Date data = new Date(System.currentTimeMillis());
+            listaTextoComentarios.setDataSubmissao(data);
+        }
+    }
+    
+    
     /**
      * <p>
      * Redireciona para a página de lista de Planos de Negócio.
@@ -426,6 +442,36 @@ public class PreAvaliarPlanoBean implements Serializable {
         secao.setAttribute("projetoSelecionado", projeto);
     }
 
+    
+        /**
+     * <p>Método que retorna o histórico de comentários do projeto.</p>
+     * 
+     * @param tipoComentario
+     * @return A lista de comentários com status histórico.
+     */
+    public ArrayList<Textocomentario> historicoDeComentarios(int tipoComentario) {
+        ArrayList<Textocomentario> historicoComentarios = new ArrayList<>();
+
+        /**
+         * Laço que varre a lista de comentários do projeto, 
+         * filtrando apenas aqueles que contem o status histórico.
+         */
+        for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
+            if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.HISTORICO) {
+                /**
+                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto, 
+                 * buscando o tipo do texto recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
+                 */
+                for (Textocomentario listaTextoComentarios : objetoComentarioprojeto.getTextocomentarios()) {
+                    if (listaTextoComentarios.getTipo() == tipoComentario) {
+                        historicoComentarios.add(listaTextoComentarios);
+                    }
+                }
+            }
+        }
+        return historicoComentarios;
+    }
+    
     /**
      * @return the salvo
      */
@@ -476,11 +522,5 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
-    }
-    
-    
-    public ArrayList<?> historicoDeComentarios(int tipoComentario){
-        ComentarioProjeto cp = new ComentarioProjeto();
-        return cp.historicoDeComentarios(tipoComentario);
     }
 }
