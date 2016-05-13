@@ -144,6 +144,10 @@
             function infoSalvar() {
                 $("#modalInfoSalvar").modal();
             }
+            
+            function infoSubmeter(){
+                $("#modalInfoSubmeter").modal();
+            }
         </script>
 
         <!-- SEÇÃO DO WORKFLOW HORIZONTAL -->
@@ -266,6 +270,30 @@
             </div>
             <!-- Fim do Modal de informação do botão Salvar Plano de Negócio -->
 
+            <!-- Modal com a Informação do botão SUBMETER PLANO DE NEGÓCIO -->
+            <div class="modal fade" id="modalInfoSubmeter" role="dialog">
+
+                <div class="modal-dialog">
+                    <div class="modal-content panel-success">
+                        <div class="modal-header fundoVerde">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Submeter Projeto</h4>
+                        </div>
+                        <div class="modal-body">
+                            Ao clicar no botão <strong><u>Submeter Plano de Negócio</u></strong> o plano será submetido para pré-avaliação, 
+                            Você tem certeza que deseja submeter?<br/><br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
+
+                            <h:commandButton action="#{projetoBean.enviarProjeto()}" type="submit" class="btn btn-success" value="Submeter Plano de Negócio"></h:commandButton>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Modal de informação do botão Salvar Plano de Negócio -->
+            
             <!-- Modal com a Informação do botão SALVAR EQUIPE -->
             <div class="modal fade" id="modalInfoSalvarEquipe" role="dialog">
 
@@ -1187,10 +1215,10 @@
                                 <p:commandButton class="botaoBase botaoVerde"
                                                title="Submeter Plano de Negócio" 
                                                rendered="#{(projetoBean.projeto.getStatus()) == 0}" 
-                                               action="#{projetoBean.enviarProjeto()}"
+                                               
                                                icon="fa fa-paper-plane-o"
                                                value="Submeter Plano de Negócio"
-                                               onclick="chamaModal(modalInfoSalvar)">
+                                               onclick="infoSubmeter()">
                                     <!-- JS para verificar chamar as funções de atualização no workflow
                                     superior e desabilitação dos botões do workflow vertical referente 
                                     a etapa de ELABORAÇÃO -->
@@ -1209,7 +1237,9 @@
         <!-- INICIO DA PARTE DE REVISÃO -->
         <div class="conteudoDaRevisao">
             <h:form id="form_revisao">
-                <div class="classeConteudo esconder-div contentPrint" id="div_revisar_plano">
+                <div class="classeConteudo esconder-div" id="div_revisar_plano">
+                    <br/>
+                    <div class="col-md-11 divImprimir">
                     <div id="cabecalho_revisao">
                         <br/>
                         <div id="descricao_edital">
@@ -1237,9 +1267,9 @@
                             </div>
                         </div>
                     </div>
-
+                        
                     <div id="corpo_documento">
-
+                        <hr></hr>
                         <br/>
 
                         <div id="part_negocio" class="corpoDoTexto">
@@ -1362,12 +1392,15 @@
                             </div>
                         </div>
                     </div>
+                        <br/>
+                        <br/>
+                    </div>
 
-
-                    <br/>
-                    <br/>
+                    
 
                     <div class="noprint text-center">
+                        <br/>
+                        <br/>
                         <p:commandButton class="botaoBase botaoVerde" 
                                          title="Imprimir Plano de Negócio" 
                                          onclick="imprimirPaginaHtml();"
@@ -1377,7 +1410,7 @@
                         </p:commandButton>
                         <br/><br/>
                     </div>
-
+                    
 
                 </div>
 
