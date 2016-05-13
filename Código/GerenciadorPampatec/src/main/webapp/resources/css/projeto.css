@@ -578,18 +578,18 @@ Adicionar Comentário e Histórico de comentários
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    background-image: none;
-    border: none;
-    padding: 4px 2px;
+    padding: 2px 2px;
     font-size: 14px;
     color:#ffffff;
     line-height: 1.42857143;
-    margin-left: 1%;
-    margin-right: 0%;
     font-weight: normal;
     font-family: inherit; 
 }
 
+.ui-button.botaoBaseComentario:active{
+    position:relative;
+    top:1px;
+}
 .ui-button.botaoDesabilitado{
     -moz-box-shadow: 0px 10px 14px -7px #b53f3f;
     -webkit-box-shadow: 0px 10px 14px -7px #b53f3f;
