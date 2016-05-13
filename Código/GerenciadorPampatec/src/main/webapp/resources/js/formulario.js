@@ -437,12 +437,12 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active, etapaAtual etapaSelecionada");
             mostra_vertical_elaboracao();
 
-            addFocoBotao("botao_revisar");
+            etapaAtualDoWorkflow = "etapa1";
+            
+            addFocoBotao("botao_elaboracao_editar");
             
             mostraDIV2('div_apresentacao_formulario');
-
-            etapaAtualDoWorkflow = "etapa1";
-
+            
             var etapa = document.getElementById("etapa2");
             etapa.setAttribute("style", "cursor: default;");
             var etapa = document.getElementById("etapa3");
