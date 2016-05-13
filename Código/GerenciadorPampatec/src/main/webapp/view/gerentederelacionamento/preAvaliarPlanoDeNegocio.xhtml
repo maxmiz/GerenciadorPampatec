@@ -353,13 +353,11 @@
                                         </h:outputFormat>
                                         
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                         cols="50" rows="5" 
-                                                         id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" 
-                                                         value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}"
-                                                         onblur="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'formulario_comentarpreavalizar:alteracaoSegmento')">
-
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes formulario_comentarpreavalizar:alteracaoSegmento formulario_comentarpreavalizar:adicionarComentarioAtividades"
+                                                         cols="50" onchange="mostrarMensagemCampoObrigatorio();" 
+                                                         rows="5" id="segmentoDeCliente2" 
+                                                         value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
+                                            <f:ajax execute="@form"
+                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes)}"/>
                                         </h:inputTextarea>
@@ -391,9 +389,9 @@
                                     <b>Proposta de Valor* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                     <h:inputTextarea id="propostaDeValor" 
-                                                     class="form-control semResize" 
+                                                     class="form-control semResize"
                                                      onchange="precisaSalvar = true;"
-                                                     requiredMessage="Insira a proposta de valor antes de enviar"  
+                                                     requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      disabled="true"
@@ -420,7 +418,7 @@
                                                          rows="5" id="propostaDeValor2" 
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto}">
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:propostaDeValor2 formulario_comentarpreavalizar:propostaDeValor mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.propostaValor)}"/>
                                         </h:inputTextarea>
