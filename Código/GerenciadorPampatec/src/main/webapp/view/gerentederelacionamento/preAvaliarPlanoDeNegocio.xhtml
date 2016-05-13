@@ -560,8 +560,19 @@
                                                      >                 
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:relacaoClientes2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="adicionarComentarioRelacao" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Inserir comentário" 
+                                                id="adicionarComentarioRelacao" 
+                                                type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:relacaoClientes2')"> 
+                                        </p:commandButton>  
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Visualizar histórico de comentários" 
+                                                id="botaoHistoricoComentarioRelacaoCliente" 
+                                                type="button" icon="fa fa-bars" value="Histórico de Comentários"
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoComentarioRelacaoCliente')">
+                                        </p:commandButton>  
+                                        
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -575,6 +586,25 @@
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente)}"/>
                                         </h:inputTextarea>
+                                    </div>
+                                    <div class="has-success col-md-12 espaco">
+                                     <h:panelGroup class="campoFeedBack col-md-12"
+                                                      id="historicoComentarioRelacaoCliente" 
+                                                      style="resize: none; border: 1px solid black;"
+                                                      layout="block"
+                                                      >
+                                            <p><b>Histórico de comentários:</b></p>
+                                                         <ui:repeat var="comentario"
+                                                                    value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}"
+                                                                    >
+                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12">
+                                                                 #{comentario.gerenteRelacionamento.nome} às 
+                                                                 #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year}: 
+                                                                 <p>#{comentario.texto}</p>
+                                                             </h:panelGroup>
+                                                        </ui:repeat>
+                                        </h:panelGroup>
                                     </div>
                                     <h:message class="mensagemErro" for="relacoComClientes"/>
 
@@ -594,8 +624,18 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioParceria" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:parceriasChave2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioParceria" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Inserir comentário" 
+                                                id="adicionarComentarioParceria" 
+                                                type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:parceriasChave2')"> 
+                                        </p:commandButton> 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Visualizar histórico de comentários" 
+                                                id="botaoHistoricoComentarioParceria" 
+                                                type="button" icon="fa fa-bars" value="Histórico de Comentários"
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoComentarioParceriasChave')">
+                                        </p:commandButton>  
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -612,6 +652,26 @@
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.parceriasChave)}"/>
                                         </h:inputTextarea>
+                                    </div>
+                                    
+                                    <div class="has-success col-md-12 espaco">
+                                     <h:panelGroup class="campoFeedBack col-md-12"
+                                                      id="historicoComentarioParceriasChave" 
+                                                      style="resize: none; border: 1px solid black;"
+                                                      layout="block"
+                                                      >
+                                            <p><b>Histórico de comentários:</b></p>
+                                                         <ui:repeat var="comentario"
+                                                                    value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}"
+                                                                    >
+                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12">
+                                                                 #{comentario.gerenteRelacionamento.nome} às 
+                                                                 #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year}: 
+                                                                 <p>#{comentario.texto}</p>
+                                                             </h:panelGroup>
+                                                        </ui:repeat>
+                                        </h:panelGroup>
                                     </div>
                                     <h:message class="mensagemErro" for="parceriasChaves"/>
 
@@ -631,8 +691,18 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioCanais" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:canais2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioCanais" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Inserir comentário" 
+                                                id="adicionarComentarioCanais" 
+                                                type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:canais2')"> 
+                                        </p:commandButton> 
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Visualizar histórico de comentários" 
+                                                id="botaoHistoricoComentarioCanais" 
+                                                type="button" icon="fa fa-bars" value="Histórico de Comentários"
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoComentarioCanais')">
+                                        </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -646,6 +716,26 @@
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.canais)}"/>
                                         </h:inputTextarea>
+                                    </div>
+                                    
+                                    <div class="has-success col-md-12 espaco">
+                                     <h:panelGroup class="campoFeedBack col-md-12"
+                                                      id="historicoComentarioCanais" 
+                                                      style="resize: none; border: 1px solid black;"
+                                                      layout="block"
+                                                      >
+                                            <p><b>Histórico de comentários:</b></p>
+                                                         <ui:repeat var="comentario"
+                                                                    value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}"
+                                                                    >
+                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12">
+                                                                 #{comentario.gerenteRelacionamento.nome} às 
+                                                                 #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year}: 
+                                                                 <p>#{comentario.texto}</p>
+                                                             </h:panelGroup>
+                                                        </ui:repeat>
+                                        </h:panelGroup>
                                     </div>
                                     <h:message class="mensagemErro" for="canais"/>
 
@@ -665,8 +755,18 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioRecursos" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:recursosPrincipais2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioRecursos" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                       <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Inserir comentário" 
+                                                id="adicionarComentarioRecursos" 
+                                                type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:recursosPrincipais2')"> 
+                                        </p:commandButton>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Visualizar histórico de comentários" 
+                                                id="botaoHistoricoComentarioRecursosPrincipais" 
+                                                type="button" icon="fa fa-bars" value="Histórico de Comentários"
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoComentarioRecursosPrincipais')">
+                                        </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -680,6 +780,26 @@
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais)}"/>
                                         </h:inputTextarea>
+                                    </div>
+                                    
+                                    <div class="has-success col-md-12 espaco">
+                                     <h:panelGroup class="campoFeedBack col-md-12"
+                                                      id="historicoComentarioRecursosPrincipais" 
+                                                      style="resize: none; border: 1px solid black;"
+                                                      layout="block"
+                                                      >
+                                            <p><b>Histórico de comentários:</b></p>
+                                                         <ui:repeat var="comentario"
+                                                                    value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}"
+                                                                    >
+                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12">
+                                                                 #{comentario.gerenteRelacionamento.nome} às 
+                                                                 #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year}: 
+                                                                 <p>#{comentario.texto}</p>
+                                                             </h:panelGroup>
+                                                        </ui:repeat>
+                                        </h:panelGroup>
                                     </div>
                                     <h:message class="mensagemErro" for="recursosPrincipais"/>
                                     <br/>
@@ -698,8 +818,18 @@
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioConcorrentes" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:concorrentes2')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioConcorrentes" type="button"  onclick="mostrarFeedBack()"><i class="fa fa-bars"></i> Histórico de Comentários</button>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Inserir comentário" 
+                                                id="adicionarComentarioConcorrentes" 
+                                                type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:concorrentes2')"> 
+                                        </p:commandButton>
+                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
+                                                title="Visualizar histórico de comentários" 
+                                                id="botaoHistoricoComentarioConcorrentes" 
+                                                type="button" icon="fa fa-bars" value="Histórico de Comentários"
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoComentarioConcorrentes')">
+                                        </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
 
@@ -713,6 +843,26 @@
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.concorrentes)}"/>
                                         </h:inputTextarea>
+                                    </div>
+                                    
+                                    <div class="has-success col-md-12 espaco">
+                                     <h:panelGroup class="campoFeedBack col-md-12"
+                                                      id="historicoComentarioConcorrentes" 
+                                                      style="resize: none; border: 1px solid black;"
+                                                      layout="block"
+                                                      >
+                                            <p><b>Histórico de comentários:</b></p>
+                                                         <ui:repeat var="comentario"
+                                                                    value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}"
+                                                                    >
+                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12">
+                                                                 #{comentario.gerenteRelacionamento.nome} às 
+                                                                 #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year}: 
+                                                                 <p>#{comentario.texto}</p>
+                                                             </h:panelGroup>
+                                                        </ui:repeat>
+                                        </h:panelGroup>
                                     </div>
                                     <h:message class="mensagemErro" for="concorrentes"/>
                                     <br />
