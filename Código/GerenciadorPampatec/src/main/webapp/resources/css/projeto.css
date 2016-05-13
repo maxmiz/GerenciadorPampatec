@@ -359,7 +359,10 @@ fieldset[disabled] .autoCompletar input {
 
 .classeConteudo{
 
+}
 
+.divImprimir{
+    border: #cccccc solid 1px;
 }
 
 #div_revisar_plano{
