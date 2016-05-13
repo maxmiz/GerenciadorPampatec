@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package com.ideiah.gerenciadorpampatec.model;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -64,6 +65,37 @@ public class Textocomentario implements java.io.Serializable {
         this.dataSubmissao = dataSubmissao;
         this.tipo = tipo;
         this.comentarioprojetos = comentarioprojetos;
+    }
+    
+    /**
+     * <p>
+     * Retorna a data de alteração no formato dd/MM/yyy às HH:mm:ss
+     * </p>
+     * @return stringDataAlteracao
+     */
+    public String getDataAlteracaoFormatada(){
+        String stringDataAlteracao, Data, Hora;
+        Date dataDiaMesAno, dataHoraMinSeg;
+        
+        SimpleDateFormat diaMesAno = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat horaMinSeg = new SimpleDateFormat("HH:mm:ss");
+        
+        
+        if(this.getDataAlteracao() != null){
+       
+            dataHoraMinSeg = this.getDataAlteracao();
+            dataDiaMesAno = this.getDataAlteracao();
+
+            Hora = horaMinSeg.format(dataHoraMinSeg);
+            Data = diaMesAno.format(dataDiaMesAno);
+
+            stringDataAlteracao = (Hora + " em " + Data);
+
+            return stringDataAlteracao;
+        }
+        else{
+            return "";
+        }
     }
 
     public Integer getIdtextocomentario() {
