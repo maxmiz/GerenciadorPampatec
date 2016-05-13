@@ -200,7 +200,35 @@ public class PreAvaliarPlanoBean implements Serializable {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         gerenteNaSessao = (GerenteRelacionamento) session.getAttribute("gerente");
-        comentarioProjeto.atualizaTodosOsTextoComentario(gerenteNaSessao);
+        comentDao.salvar(comentarioProjeto);
+
+        ProjetoDao projetoDao = new ProjetoDao();
+        /**
+         * Deve ser utilizado unicamente nos Ajax.
+         */
+        projeto.setStatus(Projeto.SENDO_AVALIADO);
+        projeto.setStatusTemp(getResultadoPreAvaliacao());
+        projetoDao.salvar(projeto);
+
+        salvo = true;
+    }
+    
+    /**
+     * <p>
+     * Salva a pré-avaliação do projeto através do Ajax, definindo o status para
+     * "Em Pré Avaliação". Deve ser utilizado unicamente no Ajax!
+     * Atualiza data de alteracao e gerente de relacionamento unicamente no textocomentario
+     * selecionado
+     * @param textocomentario
+     * </p>
+     */
+    public void salvarViaAjax(Textocomentario textocomentario) {
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.setProjeto(projeto);
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        gerenteNaSessao = (GerenteRelacionamento) session.getAttribute("gerente");
+        comentarioProjeto.atualizarTextoComentario(gerenteNaSessao, textocomentario);
         comentDao.salvar(comentarioProjeto);
 
         ProjetoDao projetoDao = new ProjetoDao();

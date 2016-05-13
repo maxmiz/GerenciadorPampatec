@@ -246,7 +246,7 @@
 
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header fundoVerde">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h3 class="modal-title">Salvar Edições</h3>
                         </div>
@@ -278,7 +278,7 @@
                     <!-- Conteúdo do Modal -->
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h3 class="modal-title">Terminar Revisão</h3>
                             </div>
@@ -408,7 +408,7 @@
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <h:inputTextarea id="segmentoDeClientes1"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
-                                                         class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                                         class="form-control campoInvalido semResize" style="resize: none" onchange="precisaSalvar = true;" rows="5"
                                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                          rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
@@ -420,7 +420,7 @@
                                         </h:inputTextarea>
                                         <h:inputTextarea id="segmentoDeClientes2"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
+                                                         class="form-control semResize" style="resize: none" onchange="precisaSalvar = true;" rows="5"
                                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
                                                          rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto || revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
@@ -517,7 +517,7 @@
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                       
                                         </h:inputTextarea>
                                         <h:inputTextarea id="atividadesChave2"
-                                                         class="form-control"  onchange="precisaSalvar = true;" rows="5"
+                                                         class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"

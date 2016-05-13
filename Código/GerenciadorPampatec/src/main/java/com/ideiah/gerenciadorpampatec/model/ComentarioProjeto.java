@@ -553,10 +553,10 @@ public class ComentarioProjeto implements java.io.Serializable {
     /**
      * Procura um texto comentário em uma lista e atualiza ele com o texto
      * comentário fornecido.
-     *
+     * @param gerente
      * @param textocomentario
      */
-    private void atualizarTextoComentario(GerenteRelacionamento gerente, Textocomentario textocomentario) {
+    public void atualizarTextoComentario(GerenteRelacionamento gerente, Textocomentario textocomentario) {
             for (Textocomentario textocomentarioLaco : textocomentarios) {
                 if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
                     Date data = new Date(System.currentTimeMillis());
