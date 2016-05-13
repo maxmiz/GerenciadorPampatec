@@ -5,15 +5,10 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -269,41 +264,6 @@ public class ComentarioProjeto implements java.io.Serializable {
         return null;
     }
 
-    /**
-     * 
-     * @param tipoComentario
-     * @return A lista de comentários finalizados de acordo com o tipo de comentário recebido por parâmetro.
-     */
-    public ArrayList<?> historicoDeComentarios(int tipoComentario){
-        ArrayList<Textocomentario> historicoComentarios = new ArrayList<>();
-        ComentarioDao comentDao = new ComentarioDao();
-        
-        ArrayList<ComentarioProjeto> buscaHistoricoPorTipo;
-//        buscaHistoricoPorTipo = comentDao.buscaComentarioPorProjetoEStatus(FINALIZADO);
-        
-        HashMap<String, Object> mapaHistorico = new HashMap<>();
-        mapaHistorico.put("status", FINALIZADO);
-        mapaHistorico.put("projeto", projeto);
-        
-        buscaHistoricoPorTipo = comentDao.buscaComentarioPorProjetoEStatus(mapaHistorico);
-            
-        for (ComentarioProjeto comentarioProjeto : buscaHistoricoPorTipo) {
-            for (Textocomentario listaTextoComentarios : comentarioProjeto.getTextocomentarios()) {
-                if(listaTextoComentarios.getTipo() == tipoComentario){
-                    historicoComentarios.add(listaTextoComentarios);
-                }
-            }
-        }
-    
-        /**
-         * Antes de retornar, é necessário ordenar a lista de comentários 
-         * por data de submissão.
-         * Mais novo para mais antigo.
-         */
-        System.out.println(">>>> ComentarioProjeto.java: \t"+buscaHistoricoPorTipo);
-        return buscaHistoricoPorTipo;
-    }
-    
     /**
      * @return Retorna o valor do comentário relacionado ao segmento de
      * clientes.
