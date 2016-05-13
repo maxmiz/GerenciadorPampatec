@@ -329,25 +329,25 @@
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
 
-                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
+                                        <button class="btn btn-default btn-sm btn-success espaco" title="Inserir comentário" id="adicionarComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'formulario_comentarpreavalizar:alteracaoSegmento')"><i class="fa fa-pencil"></i> Adicionar Comentário</button>
                                         <button class="btn btn-default btn-sm btn-success espaco" title="Visualizar histórico de comentários" id="historicoComentarioAtividades" type="button"  onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoSegmentoDeCliente')"><i class="fa fa-bars"></i> Histórico de Comentários</button>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
+                                        <h:outputFormat class="campoFeedBack" id="alteracaoSegmento"><i>Comentário alterado em <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracao}"></h:outputText></strong> por <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.gerenteRelacionamento.nome}"></h:outputText></strong>.</i></h:outputFormat>
 
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          cols="50" rows="5" 
                                                          id="segmentoDeCliente2" onchange="mostrarMensagemCampoObrigatorio();" 
-                                                         value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
+                                                         value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}"
+                                                         onblur="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioAtividades', 'formulario_comentarpreavalizar:alteracaoSegmento')">
 
                                             <f:ajax execute="@form" 
-                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes alteracaoSegmento formulario_comentarpreavalizar:adicionarComentarioAtividades"
+                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:segmentoDeClientes formulario_comentarpreavalizar:alteracaoSegmento formulario_comentarpreavalizar:adicionarComentarioAtividades"
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                         </h:inputTextarea>
-                                        <p class="campoFeedBack" id="alteracaoSegmento"><i>Última alteração em <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracao}"></h:outputText></strong> por <strong><h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.gerenteRelacionamento.nome}"></h:outputText></strong>.</i></p>
-                                        
-                                    </div>
-                                    <div class="has-success col-md-12 espaco">
+                                     </div>
+                                   <div class="has-success col-md-12 espaco">
                                     <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          cols="50" rows="5" 
                                                          id="historicoSegmentoDeCliente" onchange="mostrarMensagemCampoObrigatorio();" 
@@ -366,6 +366,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Proposta de Valor* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                     Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                     <h:inputTextarea id="propostaDeValor" 
@@ -410,6 +411,7 @@
 
 
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Atividades Chave* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                     Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                     <h:inputTextarea id="atividadesChave" 
@@ -510,6 +512,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Parcerias chave* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                     Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                     <h:inputTextarea id="parceriasChaves"
@@ -546,6 +549,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Canais* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                     Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
                                     <h:inputTextarea class="form-control semResize" 
@@ -579,6 +583,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Recursos principais* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                     Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
                                     <h:inputTextarea class="form-control semResize" 
@@ -611,6 +616,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Concorrentes* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('concorrentes')}"></p:commandLink></b><br/>
                                     Quem são nossos concorrentes? como trabalham?
                                     <h:inputTextarea class="form-control semResize" 
@@ -712,6 +718,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Tecnologia e processos (não poluentes)* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                     Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
                                     <h:inputTextarea id="tecnologiaProcessos"
@@ -745,6 +752,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Potencial de inovação tecnológica* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('potencialInovacaoTecnologica')}"></p:commandLink></b><br/>
                                     Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
                                     <h:inputTextarea id="potencialInovacaoTecnologica"
@@ -778,6 +786,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Aplicações* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('aplicacoes')}"></p:commandLink></b><br/>
                                     A quem se aplica? como? de que maneira?
                                     <h:inputTextarea id="aplicacoes"
@@ -811,6 +820,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Dificuldades esperadas* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('dificuldadesEsperadas')}"></p:commandLink></b><br/>
                                     Quais são nossas principais limitações?
                                     <h:inputTextarea id="dificuldadesEsperadas"
@@ -844,6 +854,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Interação entre empresa e Universidade* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaUniversidade')}"></p:commandLink></b><br/>
                                     Em que sentido seremos parceiros da Universidade? 
                                     <h:inputTextarea id="interacaoEmpresaUniversidade"
@@ -876,6 +887,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Interação entre empresa, comunidade e governo* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('interacaoEmpresaComunidadeGoverno')}"></p:commandLink></b><br/>
                                     Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
                                     <h:inputTextarea id="interacaoEmpresaComunidadeGoverno"
@@ -909,6 +921,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Infra-estrutura necessária para o desenvolvimento e produção* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('infraestrutura')}"></p:commandLink></b><br/>
                                     Quanto de espaço será necessário? Mobiliário? Equipamentos?
                                     <h:inputTextarea id="infraestrutura"
@@ -1014,6 +1027,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Potencial de geração de emprego e renda* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('potencialEmprego')}"></p:commandLink></b><br/>
                                     Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
                                     <h:inputTextarea id="potencialEmprego"
@@ -1122,6 +1136,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Estrutura de custos* <p:commandLink value="(?)" actionListener="#/{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                     <h:inputTextarea id="estruturaCustos" 
@@ -1160,6 +1175,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Investimento inicial* <p:commandLink value="(?)" actionListener="#/{ajudaview.showMessage('investimentoInicial')}"></p:commandLink></b><br/>
                                     Quanto de recurso será necessário para iniciar?
                                     <h:inputTextarea id="investimentoInicial"
@@ -1196,6 +1212,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Custos fixos* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('custosfixos')}"></p:commandLink></b><br/>
                                     Salários, Aluguel...
                                     <p:dataTable id="preAvaliar_custoFixo"
@@ -1244,6 +1261,7 @@
                                     <br/>
                                 </div>
                                 <div class="col-md-12 espaco">
+                                    <hr></hr> 
                                     <b>Custos variáveis* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('custosvariaveis')}"></p:commandLink></b><br/>
                                     Impostos, combustível, matéria-prima... 
                                     <p:dataTable id="revisao_custoVariavel" 
