@@ -353,11 +353,11 @@
                                         </h:outputFormat>
                                         
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                         cols="50" onchange="mostrarMensagemCampoObrigatorio();" 
-                                                         rows="5" id="segmentoDeCliente2" 
+                                                         cols="50" onchange="mostrarMensagemCampoObrigatorio();"
+                                                         rows="5" id="segmentoDeCliente2"
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 formulario_comentarpreavalizar:segmentoDeClientes mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes)}"/>
                                         </h:inputTextarea>
