@@ -1,4 +1,4 @@
-
+﻿
 "Continuous delivery (CD) is a software engineering approach in which teams produce software in short cycles, 
 ensuring that the software can be reliably released at any time.[1] It aims at building, testing, 
 and releasing software faster and more frequently. The approach helps reduce the cost, time, 
