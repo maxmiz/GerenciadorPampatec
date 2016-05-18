@@ -540,6 +540,7 @@ function mudarCorListaPreAvaliar(listaCampos, tab, nomeCampo) {
 
     if (flagCompleto) {
         tab.innerHTML = nomeCampo;
+        tab.style.color = "#2780e3";
     } else {
         tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
         tab.style.color = "orange";
