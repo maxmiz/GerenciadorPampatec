@@ -571,3 +571,19 @@ function funcaoAjaxSalvoAtualizandoAbas(data){
         funcaoAjaxSalvo(data);
     }
 }
+
+/**
+ * @description Metodo que exibe ou esconde os campos de mostrar comentarios do historico na realizar pré-avaliação
+ * @param {type} idCampo
+ * @returns {undefined}
+ */
+function mostrarFeedBackHistorico(idCampo) {
+    var campo = document.getElementById(idCampo);
+    if ($(campo).hasClass("campoFeedBackOn historicoComentario")) {
+        $(campo).fadeOut(900);
+        campo.setAttribute("class", "campoFeedBack historicoComentario");
+    } else {
+        $(campo).fadeIn(900);
+        campo.setAttribute("class", "campoFeedBackOn historicoComentario");
+    }
+}

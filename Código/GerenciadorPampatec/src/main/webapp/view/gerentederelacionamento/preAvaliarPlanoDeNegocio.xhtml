@@ -336,7 +336,7 @@
                                                 title="Visualizar histórico de comentários" 
                                                 id="historicoComentarioSegmento" 
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:historicoSegmentoDeCliente')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoSegmentoDeCliente')">
                                         </p:commandButton>
 
                                     </div>
@@ -364,13 +364,12 @@
                                            
                                         </h:inputTextarea>
                                      </div>
-                                   <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup class="campoFeedBack"
+                                    <div class="col-md-12 espaco">
+                                        <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoSegmentoDeCliente" 
                                                       style="resize: none;"
                                                       layout="block"
                                                       >
-                                            <div class="historicoComentario">
                                             <p><b>Histórico de comentários:</b></p>
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}"
@@ -383,7 +382,6 @@
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
-                                            </div>
                                         </h:panelGroup>
                                     </div>                                        
                                     <h:message class="mensagemErro" for="segmentoDeClientes"/>
