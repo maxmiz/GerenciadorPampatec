@@ -373,15 +373,12 @@ fieldset[disabled] .autoCompletar input {
     font-size: 11pt;
     font-weight: bold;
     font-family: "Arial";
-
 }
 
 #div_revisar_plano h2{
     font-size: 11pt;
     font-family: "Arial";
-
 }
-
 
 #cabecalho_revisao{
     text-align: center;
@@ -675,6 +672,13 @@ Adicionar Comentário e Histórico de comentários
     font-weight: bold;
     box-sizing: content-box; 
 }
+
+hitoricoComentario{
+    overflow: auto;
+    border: 1px solid black;
+    padding: 5px;
+}
+
 
 .exibiHistoricoComentario{
     margin-top:  1px;
