@@ -678,12 +678,21 @@ Adicionar Comentário e Histórico de comentários
     overflow-y: auto;
     border: 1px; 
     border-style: solid; 
-    border-color: #3fb618;
-    padding: 5px;
+    border-color: #c1c1c1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    overflow-y: scroll;
+    height: 200px;
+    color: #34402b;
 }
 
 .exibeHistoricoComentario{
-    border-top: 1px;
+    border: 1px;
     border-style: solid;
     border-color: #3fb618;
+    margin: 5px;
+    box-shadow: 0px 10px 14px -7px #3e7327;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:#ffffff;
 }
