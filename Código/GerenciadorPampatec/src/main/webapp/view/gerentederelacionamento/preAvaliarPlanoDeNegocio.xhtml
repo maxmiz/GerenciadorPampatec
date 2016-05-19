@@ -368,12 +368,12 @@
                                                       style="resize: none;"
                                                       layout="block"
                                                       >
-                                            <div class="hitoricoComentario">
+                                            <div class="historicoComentario">
                                             <p><b>Histórico de comentários:</b></p>
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibiHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
                                                                            layout="block">
                                                                  #{comentario.gerenteRelacionamento.nome} às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 

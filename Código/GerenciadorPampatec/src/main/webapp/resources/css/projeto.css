@@ -673,14 +673,14 @@ Adicionar Comentário e Histórico de comentários
     box-sizing: content-box; 
 }
 
-hitoricoComentario{
-    overflow: auto;
+.ui-form-control.historicoComentario{
+    overflow: scroll;
     border: 1px solid black;
     padding: 5px;
 }
 
 
-.exibiHistoricoComentario{
+.ui-form-control.exibeHistoricoComentario{
     margin-top:  1px;
     padding-top: 2px;
     border: 2px solid #4CAF50; /* Green */
