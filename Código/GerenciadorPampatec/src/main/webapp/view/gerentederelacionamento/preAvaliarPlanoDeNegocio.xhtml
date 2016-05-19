@@ -341,15 +341,18 @@
 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoSegmento" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        
+                                        <h:panelGroup id="alteracaoSegmento">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
@@ -358,7 +361,7 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
                                             <f:ajax execute="@form"
                                                     
-                                                    render="formulario_comentarpreavalizar:segmentoDeCliente2 formulario_comentarpreavalizar:segmentoDeClientes mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:alteracaoSegmento"
+                                                    render="formulario_comentarpreavalizar:alteracaoSegmento formulario_comentarpreavalizar:segmentoDeCliente2 formulario_comentarpreavalizar:segmentoDeClientes mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar "
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes)}"/>
                                            
@@ -418,15 +421,17 @@
                                         </p:commandButton>    
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoProposta" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoProposta">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          cols="50" onchange="mostrarMensagemCampoObrigatorio();" 
@@ -493,15 +498,17 @@
                                         </p:commandButton>  
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoAtividade" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.atividadeChave.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.atividadeChave.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.atividadeChave.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoAtividade">
+                                            <h:panelGroup  rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.atividadeChave.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.atividadeChave.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.atividadeChave.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          cols="50" onchange="mostrarMensagemCampoObrigatorio();" 
@@ -598,15 +605,17 @@
                                         
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoRelacionamentoCliente" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoRelacionamentoCliente">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" 
@@ -670,15 +679,17 @@
                                         </p:commandButton>  
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoParcerias" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.parceriasChave.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.parceriasChave.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.parceriasChave.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoParcerias">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.parceriasChave.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.parceriasChave.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.parceriasChave.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
@@ -746,15 +757,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoCanais" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.canais.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.canais.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.canais.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoCanais">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.canais.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.canais.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.canais.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          cols="50" onchange="mostrarMensagemCampoObrigatorio();" 
@@ -819,15 +832,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoRecursos" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoRecursos">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -891,15 +906,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoConcorrentes" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.concorrentes.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoConcorrentes">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.concorrentes.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -907,7 +924,7 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteraConcorrentes formulario_comentarpreavalizar:concorrentes formulario_comentarpreavalizar:concorrentes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoConcorrentes formulario_comentarpreavalizar:concorrentes formulario_comentarpreavalizar:concorrentes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.concorrentes)}"/>
                                         </h:inputTextarea>
@@ -998,15 +1015,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoEstagio" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoEstagio">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1072,15 +1091,17 @@
                                     
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoTecnologiaProcessos" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoTecnologiaProcessos">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1145,15 +1166,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoPotencialInovacao" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoPotencialInovacao">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1218,15 +1241,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoAplicacoes" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.aplicacoes.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.aplicacoes.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.aplicacoes.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoAplicacoes">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.aplicacoes.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.aplicacoes.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.aplicacoes.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1291,15 +1316,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoDificuldades" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoDificuldades">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1363,15 +1390,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoInteracaoEmpresaUniversidade" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoInteracaoEmpresaUniversidade">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1436,15 +1465,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoInteracaoEmpresaComunidadeGoverno" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoInteracaoEmpresaComunidadeGoverno">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1509,15 +1540,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoInfraestrutura" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.infraestrutura.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.infraestrutura.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.infraestrutura.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoInfraestrutura">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.infraestrutura.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.infraestrutura.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.infraestrutura.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -1618,15 +1651,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoParticipacaoAcionaria" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoParticipacaoAcionaria">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
@@ -1693,17 +1728,19 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoPotencialEmprego" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoPotencialEmprego">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
-                                        <h:inputTextarea class="campoFeedBack" 
+                                            <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" 
                                                          cols="50" 
@@ -1805,15 +1842,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoFontesDeReceita" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.fontesReceita.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.fontesReceita.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.fontesReceita.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoFontesDeReceita">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.fontesReceita.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.fontesReceita.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.fontesReceita.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" 
@@ -1880,15 +1919,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoEstruturaCustos" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoEstruturaCustos">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
@@ -1955,15 +1996,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoInvestimentoInicial" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoInvestimentoInicial">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
@@ -2045,15 +2088,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoPreAvaliar_custoFixo" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoFixo.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoFixo.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoFixo.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoPreAvaliar_custoFixo">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoFixo.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoFixo.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoFixo.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" style="resize: none;" 
                                                          onchange="mostrarMensagemCampoObrigatorio();" cols="50" 
@@ -2129,15 +2174,17 @@
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
-                                        <h:panelGroup id="alteracaoRevisao_custoVariavel" rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoVariavel.dataAlteracaoFormatada}">
-                                            <i>Comentário alterado em 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoVariavel.dataAlteracaoFormatada}"></h:outputText>
-                                                </strong> por 
-                                                <strong>
-                                                    <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoVariavel.gerenteRelacionamento.nome}"></h:outputText>
-                                                </strong>.
-                                            </i>
+                                        <h:panelGroup id="alteracaoRevisao_custoVariavel">
+                                            <h:panelGroup rendered="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoVariavel.dataAlteracaoFormatada}">
+                                                <i>Comentário alterado em 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoVariavel.dataAlteracaoFormatada}"></h:outputText>
+                                                    </strong> por 
+                                                    <strong>
+                                                        <h:outputText value="#{preAvaliarPlanoBean.comentarioProjeto.custoVariavel.gerenteRelacionamento.nome}"></h:outputText>
+                                                    </strong>.
+                                                </i>
+                                            </h:panelGroup>
                                         </h:panelGroup>
                                         <h:inputTextarea class="campoFeedBack" 
                                                          style="resize: none;" 
