@@ -188,17 +188,17 @@
                         <div class="modal-content">
                             <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">Confirmar envio</h4>
+                                <h4 class="modal-title">Terminar Pré-Avaliação</h4>
                             </div>
                             <div class="modal-body">
-                                Ao clicar no botão <strong><u>Terminar Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
+                                Ao clicar no botão <strong><u>Confirmar Envio</u></strong> a sua avaliação do Plano de Negócio será salva e enviada para o <strong>Empreendedor</strong>. Após enviar o Plano de Negócio, este <strong>não poderá mais ser editado</strong>.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" 
                                         data-dismiss="modal"
                                         title="Voltar para a avaliação do plano de negócio.">Voltar para a edição</button>
                                 <h:commandButton class="btn btn-success" 
-                                                 value="Confirmar Avaliação" 
+                                                 value="Confirmar Envio" 
                                                  title="Terminar a avaliação do plano de negócio">
                                     <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}" 
                                             execute="@form"/>
