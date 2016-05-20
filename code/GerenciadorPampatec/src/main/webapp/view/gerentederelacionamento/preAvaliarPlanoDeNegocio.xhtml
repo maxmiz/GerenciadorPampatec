@@ -377,7 +377,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b><b>#{comentario.gerenteRelacionamento.nome}</b></b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -452,7 +453,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -530,7 +532,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -638,7 +641,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -716,7 +720,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -791,7 +796,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -866,7 +872,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -940,7 +947,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1049,7 +1057,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1125,7 +1134,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1200,7 +1210,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1275,7 +1286,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1350,7 +1362,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1424,7 +1437,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1499,7 +1513,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1574,7 +1589,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1688,7 +1704,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1765,7 +1782,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1879,7 +1897,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -1958,7 +1977,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -2035,7 +2055,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -2124,7 +2145,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
@@ -2213,7 +2235,8 @@
                                                          <ui:repeat var="comentario"
                                                                     value="#{preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}"
                                                                     >
-                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12"
+                                                             <h:panelGroup class="exibeHistoricoComentario col-md-12" 
+                                                                           rendered="#{comentario.texto != ''}"
                                                                            layout="block">
                                                                  <b><b>#{comentario.gerenteRelacionamento.nome}</b></b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
