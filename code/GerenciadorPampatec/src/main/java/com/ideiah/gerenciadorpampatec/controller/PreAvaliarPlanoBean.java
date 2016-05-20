@@ -11,9 +11,12 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
+import com.ideiah.gerenciadorpampatec.util.ComparadorAvaliacaoUtil;
+import com.ideiah.gerenciadorpampatec.util.ComparadorSubmissaoComentarioUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -469,7 +472,22 @@ public class PreAvaliarPlanoBean implements Serializable {
                 }
             }
         }
+        //Lista ordenada por data, do mais recente ao mais antigo
+        sortByAlteration(historicoComentarios);        
+        
         return historicoComentarios;
+    }
+    
+    /**
+     * <p>
+     * Método para ordenar a lista de historico ordenados por data de alteracao
+     * ordenados do mais recente ao mais antigo
+     * </p>
+     * @param lista 
+     */
+    private void sortByAlteration (ArrayList<Textocomentario> lista){
+        Collections.sort(lista, new ComparadorSubmissaoComentarioUtil());
+        Collections.reverse(lista);
     }
     
     /**
