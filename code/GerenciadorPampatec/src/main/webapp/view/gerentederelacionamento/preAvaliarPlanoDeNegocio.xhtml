@@ -1962,7 +1962,7 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoEstruturaCustos formulario_comentarpreavalizar:estruturaCustos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoEstruturaCustos formulario_comentarpreavalizar:estruturaCustos formulario_comentarpreavalizar:estruturaCustos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto)}"/>
                                         </h:inputTextarea>
@@ -2040,7 +2040,7 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoInvestimentoInicial formulario_comentarpreavalizar:investimentoInicial2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoInvestimentoInicial formulario_comentarpreavalizar:investimentoInicial2 formulario_comentarpreavalizar:investimentoInicial mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial)}"/>
                                         </h:inputTextarea>
