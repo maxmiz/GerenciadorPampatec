@@ -51,15 +51,15 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private int somatorioFixo;
     private int somatorioVariavel;
     private boolean salvou;
-    @ManagedProperty(value="#{sessionBean}")
+    @ManagedProperty(value = "#{sessionBean}")
     private SessionBean sessionBean;
 
     public revisarPlanoDeNegocioBean() {
-        
+
     }
-    
+
     @PostConstruct
-    private void init(){
+    private void init() {
         ProjetoDao projetoDao = new ProjetoDao();
         projeto = (Projeto) sessionBean.getSession().getAttribute("projetoSelecionado");
         projeto = projetoDao.buscar(projeto.getIdProjeto());
@@ -86,12 +86,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
                 break;
             }
         }
-        comentarioProjeto.populandoVariaveisComentario();
+        if (comentarioProjeto != null) {
+            comentarioProjeto.populandoVariaveisComentario();
+        }
     }
-    
+
     /**
-     * Método que Ordena a Lista ja preenchida de comentarios por data
-     * para retornar o comentario certo a caixa de texto
+     * Método que Ordena a Lista ja preenchida de comentarios por data para
+     * retornar o comentario certo a caixa de texto
      */
 //    public void OrdenaListaComentariosProData(){
 //
@@ -108,7 +110,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
 //        comentarioProjeto.getStatus().
 //        listaDeComentarios.getTipo()
 //    }
-   
     /**
      * <p>
      * Preenche a lista de custo com os custos do projeto.</p>
@@ -265,7 +266,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         projetoSelecionado = (Projeto) session.getAttribute("projetoSelecionado");
 
-        return (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA) 
+        return (projetoSelecionado.getStatus() == Projeto.NECESSITA_MELHORIA)
                 || (projetoSelecionado.getStatus() == Projeto.REVISANDO);
     }
 
@@ -315,10 +316,10 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * Método para verificar qual o tipo de estágio a empresa se encontra.
      * </p>
      *
-     * @return o estágio em que a empresa está. 
+     * @return o estágio em que a empresa está.
      */
     private String verificaEstagioEvolucao() {
-        if(projeto.getProdutoouservico().getEstagioEvolucao() == null){
+        if (projeto.getProdutoouservico().getEstagioEvolucao() == null) {
             return "Ideia Básica";
         }
         String status = projeto.getProdutoouservico().verificaStatusProjeto(projeto.getProdutoouservico().getEstagioEvolucao());
@@ -359,13 +360,14 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
     }
-    
+
     /**
      * METODO VERIFICA QUAL O BOTÃO FOI SELECIONADO NO RADIO BUTTON DE ESTAGIO
      * DE EVOLUÇÃO APÓS VERIFICAR QUAL BOTÃO, SETA NO ESTAGIO DE VOLUÇÃO O VALOR
      * CORRESPONDENTE CASO FOI SELECIONADO O BOTÃO (OUTRO) ENTÃO É SALVO O VALOR
      * DO CAMPO (descricaoButtonOutro)
-     * @return 
+     *
+     * @return
      */
     public String pegaValorDropDown() {
         String valorEstagioEvolucao = null;
@@ -509,7 +511,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         int FLAG_STATUS = 0;
 
         if (FLAG > 0) {
-            FacesUtil.addErrorMessage("Sistema encontrou " + FLAG + " campos não preenchidos",
+            FacesUtil.addErrorMessage(" O Sistema encontrou " + FLAG + " campos não preenchidos",
                     "formulario_resubmeterplano:tituloMensagem");
 
         } else {
@@ -517,15 +519,17 @@ public class revisarPlanoDeNegocioBean implements Serializable {
             projeto.setStatus(Projeto.RESUBMETIDO);
             Date dataEnvio = new Date(System.currentTimeMillis());
             /**
-             * Altera a data de envio, setando a nova para a data atual da ressubmissão.
+             * Altera a data de envio, setando a nova para a data atual da
+             * ressubmissão.
              */
             projeto.setDataEnvio(dataEnvio);
             /**
-             * A data de avaliação e alterada para null pois o projeto será ressubmetido.
+             * A data de avaliação e alterada para null pois o projeto será
+             * ressubmetido.
              */
             projeto.setDataAvaliacao(null);
             comentarioProjeto.setStatus(ComentarioProjeto.HISTORICO);
-            
+
             projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
 
@@ -890,7 +894,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
     }
-        /**
+
+    /**
      * @return the salvou
      */
     public boolean isSalvou() {
