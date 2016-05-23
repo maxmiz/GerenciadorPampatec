@@ -462,12 +462,15 @@ public class PreAvaliarPlanoBean implements Serializable {
         for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
             if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.HISTORICO) {
                 /**
-                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto, 
+                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto,
                  * buscando o tipo do texto recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
                  */
-                for (Textocomentario listaTextoComentarios : objetoComentarioprojeto.getTextocomentarios()) {
-                    if (listaTextoComentarios.getTipo() == tipoComentario) {
-                        historicoComentarios.add(listaTextoComentarios);
+                
+                
+                for (Textocomentario textoComentario : objetoComentarioprojeto.getTextocomentarios()) {
+                    //se o texto é do tipo recebido por parametro e o texto não é vazio, ele é adicionado na lista de comentários
+                    if (textoComentario.getTipo() == tipoComentario && !textoComentario.getTexto().equals("")) {
+                        historicoComentarios.add(textoComentario);
                     }
                 }
             }
