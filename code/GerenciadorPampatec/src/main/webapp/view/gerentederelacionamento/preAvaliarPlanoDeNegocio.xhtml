@@ -335,6 +335,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="historicoComentarioSegmento" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoSegmentoDeCliente')">
                                         </p:commandButton>
@@ -415,6 +416,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioProposta" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPropostaDeValor')">
                                         </p:commandButton>    
@@ -494,6 +496,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioAtividades" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAtividadesChave')">
                                         </p:commandButton>  
@@ -602,6 +605,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioRelacaoCliente" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRelacaoCliente')">
                                         </p:commandButton>  
@@ -679,6 +683,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioParceria" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParceriasChave')">
                                         </p:commandButton>  
@@ -758,6 +763,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioCanais" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCanais')">
                                         </p:commandButton>
@@ -834,6 +840,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioRecursosPrincipais" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRecursosPrincipais')">
                                         </p:commandButton>
@@ -909,6 +916,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioConcorrentes" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoConcorrentes')">
                                         </p:commandButton>
@@ -1019,6 +1027,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioEstagio" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstagioEvolucao')">
                                         </p:commandButton>
@@ -1095,6 +1104,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioTecnologia" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoTecnologiaProcessos')">
                                         </p:commandButton>
@@ -1172,6 +1182,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioPotencial" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialInovacaoTecnologica')">
                                         </p:commandButton>
@@ -1248,6 +1259,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioAplicacao" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAplicacao')">
                                         </p:commandButton>
@@ -1324,6 +1336,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioDificuldades" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoDificuldadesEsperadas')">
                                         </p:commandButton>
@@ -1399,6 +1412,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioInteracaoUniversidade" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoUniversidade')">
                                         </p:commandButton>
@@ -1475,6 +1489,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioInteracaoComunidade" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoComunidade')">
                                         </p:commandButton>
@@ -1551,6 +1566,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioInfraEstrutura" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInfraEstrutura')">
                                         </p:commandButton>
@@ -1663,6 +1679,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioDescricao" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParticipacaoAcionaria')">
                                         </p:commandButton>
@@ -1741,6 +1758,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioPotencialRenda" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialEmprego')">
                                         </p:commandButton>
@@ -1857,6 +1875,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioFontes" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoFontesReceita')">
                                         </p:commandButton>
@@ -1936,6 +1955,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioEstruturaCustos" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstruturaCustos')">
                                         </p:commandButton>
@@ -2014,6 +2034,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioInvestimentoInicial" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInvestimentoInicial')">
                                         </p:commandButton>
@@ -2107,6 +2128,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioCustosFixos" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosFixos')">
                                         </p:commandButton>
@@ -2194,6 +2216,7 @@
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="botaoHistoricoComentarioCustosVariaveis" 
+                                                rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosVariaveis')">
                                         </p:commandButton>
