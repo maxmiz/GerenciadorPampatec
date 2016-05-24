@@ -22,6 +22,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  * <p>
@@ -372,6 +373,15 @@ public class LoginBean {
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    /**
+     * Mostra a mensagem de fim de sessão chamando um método do javascript e
+     * invalidando a sessão.
+     */
+    public void mostraMensagemSessao(){
+        session.invalidate();
+        RequestContext.getCurrentInstance().execute("mostraMensagemFimSessao();");
     }
 
     /**

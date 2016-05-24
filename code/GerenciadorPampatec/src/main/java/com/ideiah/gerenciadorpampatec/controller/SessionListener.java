@@ -11,6 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.Projeto;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import org.primefaces.context.RequestContext;
 
 /**
  * Web application lifecycle listener.
