@@ -331,7 +331,7 @@
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioSegmento" 
                                                 type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
-                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioSegmento', 'alteracaoSegmento')"> </p:commandButton>
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','formulario_comentarpreavalizar:adicionarComentarioSegmento', 'formulario_comentarpreavalizar:alteracaoSegmento')"> </p:commandButton>
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="historicoComentarioSegmento" 
@@ -2190,6 +2190,7 @@
                                                  var="custo" rowKey="#{custo.idCusto}" 
                                                  value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                  styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoVariavel.texto ? 'campoDestacado' : 'semResize'}"
+                                                 emptyMessage="Nenhum registro encontrado." 
                                                  >
 
                                         <p:column headerText="Descrição ">
