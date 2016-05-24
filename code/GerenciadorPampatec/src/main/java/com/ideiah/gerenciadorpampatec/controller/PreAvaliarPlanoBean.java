@@ -11,9 +11,12 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
+import com.ideiah.gerenciadorpampatec.util.ComparadorAvaliacaoUtil;
+import com.ideiah.gerenciadorpampatec.util.ComparadorSubmissaoComentarioUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
@@ -459,17 +462,35 @@ public class PreAvaliarPlanoBean implements Serializable {
         for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
             if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.HISTORICO) {
                 /**
-                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto, 
+                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto,
                  * buscando o tipo do texto recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
                  */
-                for (Textocomentario listaTextoComentarios : objetoComentarioprojeto.getTextocomentarios()) {
-                    if (listaTextoComentarios.getTipo() == tipoComentario) {
-                        historicoComentarios.add(listaTextoComentarios);
+                
+                
+                for (Textocomentario textoComentario : objetoComentarioprojeto.getTextocomentarios()) {
+                    //se o texto é do tipo recebido por parametro e o texto não é vazio, ele é adicionado na lista de comentários
+                    if (textoComentario.getTipo() == tipoComentario && !textoComentario.getTexto().equals("")) {
+                        historicoComentarios.add(textoComentario);
                     }
                 }
             }
         }
+        //Lista ordenada por data, do mais recente ao mais antigo
+        sortByAlteration(historicoComentarios);        
+        
         return historicoComentarios;
+    }
+    
+    /**
+     * <p>
+     * Método para ordenar a lista de historico ordenados por data de alteracao
+     * ordenados do mais recente ao mais antigo
+     * </p>
+     * @param lista 
+     */
+    private void sortByAlteration (ArrayList<Textocomentario> lista){
+        Collections.sort(lista, new ComparadorSubmissaoComentarioUtil());
+        Collections.reverse(lista);
     }
     
     /**

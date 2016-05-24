@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <f:facet name="last">
@@ -238,6 +239,19 @@
                 </h:panelGroup>
             </h:panelGroup>
             <!-- Fim Notificação Plano salvo com sucesso. -->
+            
+                <!-- Notificação erro ao submeter. -->
+                <h:panelGroup layout="block" id="mensagemErroSubmissao">
+                    <ui:repeat value="#{facesContext.getMessageList('formulario_resubmeterplano:tituloMensagem')}" var="message">
+                        <h:panelGroup id="notificacaoErroSubmissao" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notErro ns-type-notice ns-show animated">
+                            <div>
+                                <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>
+                                <h:message for="formulario_resubmeterplano:tituloMensagem"/>
+                                <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackErro();"></span>
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
 
             <!-- Início dos MODAIS exibidos no formulário -->
 
@@ -280,10 +294,10 @@
                         <div class="modal-content">
                             <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 class="modal-title">Terminar Revisão</h3>
+                                <h3 class="modal-title">Ressubmeter</h3>
                             </div>
                             <div class="modal-body">
-                                Ao clicar no botão <strong><u>Terminar Revisão Pós Pré-Avaliação</u></strong> a sua avaliação do Plano de Negócio será salva. Após submeter e terminar a avaliação do Plano de Negócio esta <strong>não poderá mais ser editada</strong>.
+                                Ao clicar no botão <strong><u>Confirmar Envio</u></strong> suas alterações no Plano de Negócio serão salvas e submetidas para uma nova avaliação do <strong>Gerente de Relacionamento</strong>. Após enviar o Plano de Negócio, este <strong>não poderá mais ser editado</strong>.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
@@ -589,7 +603,7 @@
 
                                     <div class="col-md-12 espaco">
                                         <b>Relações com clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
-                                        <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacoComClientes1"/><br/>
+                                        <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacaoClientes1"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
                                         <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -632,12 +646,12 @@
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto}">
                                             </p:inputTextarea>
                                         </div>
-                                        <h:message class="mensagemErro" for="relacoComClientes"/>
+                                        <h:message class="mensagemErro" for="relacaoClientes1"/>
                                         <br/>
                                     </div>
                                     <div class="col-md-12 espaco">
                                         <b>Parcerias chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
-                                        <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChave1"/><br/>
+                                        <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves1"/><br/>
                                         Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
                                         <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
@@ -2094,9 +2108,6 @@
                             </div>
 
                             <!-- Fim da sexta parte do formulário -->
-
-
-                            <p:growl id="mensagensFeed" for="formulario_resubmeterplano:tituloMensagem" showDetail="true"/>
                             <!-- Fim da sétima parte do formulário -->
 
                         </div>
