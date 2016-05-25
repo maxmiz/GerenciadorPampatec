@@ -436,8 +436,8 @@ fieldset[disabled] .autoCompletar input {
 
 }
 ui.button.botaoVerdeMarcado{
-   background-color: #04DB85;
-    
+    background-color: #04DB85;
+
 }
 
 
@@ -451,62 +451,62 @@ ui.button.botaoVerdeMarcado{
     background:linear-gradient(to bottom, #05914f 5%, #00a85a 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#05914f', endColorstr='#00a85a',GradientType=0);
     background-color:#05914f;
-    
+
 }
 
 .ui-button.botaoVermelho {
-	-moz-box-shadow: 0px 10px 14px -7px #b53f3f;
-	-webkit-box-shadow: 0px 10px 14px -7px #b53f3f;
-	box-shadow: 0px 10px 14px -7px #b53f3f;
-        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eb4646), color-stop(1, #d61515));
-	background:-moz-linear-gradient(top, #eb4646 5%, #d61515 100%);
-	background:-webkit-linear-gradient(top, #eb4646 5%, #d61515 100%);
-	background:-o-linear-gradient(top, #eb4646 5%, #d61515 100%);
-	background:-ms-linear-gradient(top, #eb4646 5%, #d61515 100%);
-	background:linear-gradient(to bottom, #eb4646 5%, #d61515 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb4646', endColorstr='#d61515',GradientType=0);
-	background-color:#eb4646;
-	border:1px solid #bd3737;
-	padding:5px 10px;
-	text-shadow:0px 1px 0px #d61717;
+    -moz-box-shadow: 0px 10px 14px -7px #b53f3f;
+    -webkit-box-shadow: 0px 10px 14px -7px #b53f3f;
+    box-shadow: 0px 10px 14px -7px #b53f3f;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eb4646), color-stop(1, #d61515));
+    background:-moz-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-webkit-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-o-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:-ms-linear-gradient(top, #eb4646 5%, #d61515 100%);
+    background:linear-gradient(to bottom, #eb4646 5%, #d61515 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb4646', endColorstr='#d61515',GradientType=0);
+    background-color:#eb4646;
+    border:1px solid #bd3737;
+    padding:5px 10px;
+    text-shadow:0px 1px 0px #d61717;
 }
 .ui-button.botaoVermelho:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d61515), color-stop(1, #eb4646));
-	background:-moz-linear-gradient(top, #d61515 5%, #eb4646 100%);
-	background:-webkit-linear-gradient(top, #d61515 5%, #eb4646 100%);
-	background:-o-linear-gradient(top, #d61515 5%, #eb4646 100%);
-	background:-ms-linear-gradient(top, #d61515 5%, #eb4646 100%);
-	background:linear-gradient(to bottom, #d61515 5%, #eb4646 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#db2828', endColorstr='#fa3a3a',GradientType=0);
-	background-color:#db2828;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d61515), color-stop(1, #eb4646));
+    background:-moz-linear-gradient(top, #d61515 5%, #eb4646 100%);
+    background:-webkit-linear-gradient(top, #d61515 5%, #eb4646 100%);
+    background:-o-linear-gradient(top, #d61515 5%, #eb4646 100%);
+    background:-ms-linear-gradient(top, #d61515 5%, #eb4646 100%);
+    background:linear-gradient(to bottom, #d61515 5%, #eb4646 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#db2828', endColorstr='#fa3a3a',GradientType=0);
+    background-color:#db2828;
 }
 
 .ui-button.botaoPreto{
     -moz-box-shadow: 0px 10px 16px -7px #21241d;
-	-webkit-box-shadow: 0px 10px 16px -7px #21241d;
-	box-shadow: 0px 10px 16px -7px #21241d;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #555754), color-stop(1, #121410));
-	background:-moz-linear-gradient(top, #555754 5%, #121410 100%);
-	background:-webkit-linear-gradient(top, #555754 5%, #121410 100%);
-	background:-o-linear-gradient(top, #555754 5%, #121410 100%);
-	background:-ms-linear-gradient(top, #555754 5%, #121410 100%);
-	background:linear-gradient(to bottom, #555754 5%, #121410 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#555754', endColorstr='#121410',GradientType=0);
-	background-color:#555754;
-        border:1px solid #34402b;
-	padding:5px 21px;
-	text-shadow:0px 1px 0px #131a0f;
+    -webkit-box-shadow: 0px 10px 16px -7px #21241d;
+    box-shadow: 0px 10px 16px -7px #21241d;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #555754), color-stop(1, #121410));
+    background:-moz-linear-gradient(top, #555754 5%, #121410 100%);
+    background:-webkit-linear-gradient(top, #555754 5%, #121410 100%);
+    background:-o-linear-gradient(top, #555754 5%, #121410 100%);
+    background:-ms-linear-gradient(top, #555754 5%, #121410 100%);
+    background:linear-gradient(to bottom, #555754 5%, #121410 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#555754', endColorstr='#121410',GradientType=0);
+    background-color:#555754;
+    border:1px solid #34402b;
+    padding:5px 21px;
+    text-shadow:0px 1px 0px #131a0f;
 }
 
 .ui-button.botaoPreto:hover{
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #121410), color-stop(1, #555754));
-	background:-moz-linear-gradient(top, #121410 5%, #555754 100%);
-	background:-webkit-linear-gradient(top, #121410 5%, #555754 100%);
-	background:-o-linear-gradient(top, #121410 5%, #555754 100%);
-	background:-ms-linear-gradient(top, #121410 5%, #555754 100%);
-	background:linear-gradient(to bottom, #121410 5%, #555754 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#121410', endColorstr='#555754',GradientType=0);
-	background-color:#121410;
+    background:-moz-linear-gradient(top, #121410 5%, #555754 100%);
+    background:-webkit-linear-gradient(top, #121410 5%, #555754 100%);
+    background:-o-linear-gradient(top, #121410 5%, #555754 100%);
+    background:-ms-linear-gradient(top, #121410 5%, #555754 100%);
+    background:linear-gradient(to bottom, #121410 5%, #555754 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#121410', endColorstr='#555754',GradientType=0);
+    background-color:#121410;
 }
 
 .ui-button.botaoAzul {
@@ -545,7 +545,7 @@ ui.button.botaoVerdeMarcado{
     background:linear-gradient(to bottom, #2c79c7 5%, #5492d1 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c79c7', endColorstr='#5492d1',GradientType=0);
     background-color:#2c79c7;
-    
+
 }
 
 
@@ -693,4 +693,30 @@ Adicionar Comentário e Histórico de comentários
     padding: 10px;
     border-radius: 10px;
     background-color:#ffffff;
+}
+.abaCentralizada{
+    text-align: center;
+}
+
+.abaCentralizada ul {
+    display: inline-block;
+    zoom:1;
+    *display: inline;
+}
+
+.abaCentralizada li {
+}
+
+.nav-tabs > li.active > a{
+    color: #2780e3;
+}
+.nav-tabs > li.active > a:hover{
+    color: #2780e3;
+}
+.nav-tabs > li.active > a:active{
+    color: #2780e3;
+}
+
+.nav-tabs > li.active > a:focus{
+    color: #2780e3;
 }
