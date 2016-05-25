@@ -16,6 +16,8 @@ public class ComparadorSubmissaoComentarioUtil implements Comparator<Textocoment
 
     @Override
     public int compare(Textocomentario o1, Textocomentario o2) {
+        if(o1.getDataSubmissao() == null || o2.getDataSubmissao() == null)
+            return 0;
         return o1.getDataSubmissao().compareTo(o2.getDataSubmissao());
     }
     
