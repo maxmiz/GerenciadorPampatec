@@ -61,17 +61,17 @@
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
-
+                            <!--
                             <li class="">
                                 <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
                                     Notificações
                                     <span class="badge">
-                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
+                                        <h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
                                     </span>
-                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
+                                    <f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
                                 </h:outputLink>
                             </li>
-
+                            -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
                                     <span class="caret"></span>
@@ -102,8 +102,9 @@
             <!-- Fim do menu superior -->
 
             <!-- Inicio dos Modais apresentadas -->
-
+            
             <!-- Modal com as NOTIFICAÇÕES do usuário -->
+            <!--
             <div class="modal fade" id="modalNotificacoes" role="dialog">
 
                 <div class="modal-dialog">
@@ -114,11 +115,11 @@
                             <h3 class="panel-title">Notificações</h3>
                         </div>
                         <div class="panel-body" align="center">
-                            <h:dataTable id="tabelaNotificacoes" value="#{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
+                            <h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao">
                                 <h:column>
                                     <div class="bordas">
-                                        <h:outputText value="#{notificacao.descricao}"/>
-                                        <a href="#{notificacao.link}"> Clique aqui </a> Para ver detalhes.
+                                        <h:outputText value="#-{notificacao.descricao}"/>
+                                        <a href="#-{notificacao.link}"> Clique aqui </a> Para ver detalhes.
                                     </div>
                                 </h:column>
                             </h:dataTable>
@@ -132,6 +133,7 @@
 
                 </div>
             </div>
+            -->
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
             <!-- Fim das modais apresentadas -->
             

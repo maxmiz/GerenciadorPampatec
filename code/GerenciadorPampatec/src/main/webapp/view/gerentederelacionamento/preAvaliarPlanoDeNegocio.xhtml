@@ -217,12 +217,12 @@
             <div class="col-md-1"> </div>
 
             <div class="col-md-10 form-horizontal well bs-component">
-                <h1>Avaliar Plano de Negócio</h1>
+                <center><h1>Avaliar Plano de Negócio</h1></center>
                 <h:outputText id="tituloMensagem"></h:outputText>
                 <br/>
                 <br/>
                 <div>
-
+                    <div class="abaCentralizada">
                     <ul class="nav nav-tabs">
                         <li class="abaPlano active"><a id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab" >Informações</a></li>
                         <li class="abaPlano"><a id="tabNegocio" aria-expanded="false" href="#formParte02" data-toggle="tab" >O Negócio</a></li>
@@ -232,6 +232,7 @@
                         <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
                         <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliar</a></li>
                     </ul>
+                    </div>
                     <div id="myTabContent" class="tab-content" >
 
                         <!-- Ínicio da PRIMEIRA PARTE do formulário para Envio de Projeto Referente ao CONTATO -->
@@ -322,7 +323,8 @@
                                                      requiredMessage="Insira o segmento de clientes antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.segmentoClientes}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -331,7 +333,7 @@
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioSegmento" 
                                                 type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
-                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','adicionarComentarioSegmento', 'alteracaoSegmento')"> </p:commandButton>
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','formulario_comentarpreavalizar:adicionarComentarioSegmento', 'formulario_comentarpreavalizar:alteracaoSegmento')"> </p:commandButton>
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="historicoComentarioSegmento" 
@@ -406,7 +408,8 @@
                                                      requiredMessage="Insira a proposta de valor antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.propostaValor}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -489,7 +492,8 @@
                                                      requiredMessage="Insira as atividades chave antes de enviar"  
                                                      value="#{preAvaliarPlanoBean.projeto.negocio.atividadesChaves}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.atividadeChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -603,7 +607,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.relacoesClientes}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >                 
                                     </h:inputTextarea>
@@ -685,7 +690,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.parceriasChaves}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.parceriasChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -769,7 +775,8 @@
                                                      id="canais"  
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.canais}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.canais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -850,7 +857,8 @@
                                                      id="recursosPrincipais"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.recursosPrincipais}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -930,7 +938,8 @@
                                                      id="concorrentes"
                                                      value="#{preAvaliarPlanoBean.projeto.analiseemprego.concorrentes}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.concorrentes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1045,7 +1054,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.verificaEstagioEvolucao()}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1126,7 +1136,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1208,7 +1219,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                    
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1289,7 +1301,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.aplicacoes}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.aplicacoes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                         
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1370,7 +1383,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1451,7 +1465,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1531,7 +1546,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1612,7 +1628,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.produtoouservico.infraestrutura}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.infraestrutura.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1729,7 +1746,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.participacaoacionaria}" 
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1812,7 +1830,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.potencialEmprego}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -1927,13 +1946,13 @@
                                     
                                     <b>Fontes de receita* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                     Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
-                                    <h:inputTextarea class="form-control" style="resize: none;"
+                                    <h:inputTextarea class="form-control" style="resize: none; cursor: not-allowed;"
                                                      id="fontesDeReceita" 
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira as fontes de receita antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.fontesReceita}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.fontesReceita.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -2011,12 +2030,12 @@
                                     <b>Estrutura de custos* <p:commandLink value="(?)" actionListener="#{ajudaview.showMessage('estruturaCustos')}"></p:commandLink></b><br/>
                                     Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                     <h:inputTextarea id="estruturaCustos" 
-                                                     class="form-control" style="resize: none;"
+                                                     class="form-control" style="resize: none; cursor: not-allowed"
                                                      onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
                                                      rows="5"
                                                      >
 
@@ -2100,7 +2119,8 @@
                                                      onchange="precisaSalvar = true;" 
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.investimentoInicial}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
-                                                     disabled="true"
+                                                     readonly="true"
+                                                     style="cursor: not-allowed"
                                                      rows="5"
                                                      >
                                     </h:inputTextarea>
@@ -2279,6 +2299,7 @@
                                                  var="custo" rowKey="#{custo.idCusto}" 
                                                  value="#{preAvaliarPlanoBean.projeto.planofinanceiro.retornaListaCustosVariaveis()}"
                                                  styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.custoVariavel.texto ? 'campoDestacado' : 'semResize'}"
+                                                 emptyMessage="Nenhum registro encontrado." 
                                                  >
 
                                         <p:column headerText="Descrição ">

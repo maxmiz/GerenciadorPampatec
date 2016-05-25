@@ -10,6 +10,11 @@ var objetoBotaoAnterior = null;
 /* campo para armazenar a classe dO botao que o usuario esta visualizando antes de ir para outro */
 var classeBotaoAnterior = null;
 
+/* armazena o temporizador da sessão para mostrar a mensagem*/
+var timeOutSessao = null;
+
+var time = 1800;
+
 
 /**
  * @description 
@@ -179,7 +184,7 @@ function carregaPagina() {
             etapa.setAttribute("style", "cursor: default;");
             break;
 
- //     REVISANDO = 13
+            //     REVISANDO = 13
         case 13:
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
@@ -395,7 +400,7 @@ function verificaComentarioAnaliseMercadoPreAvaliar() {
 }
 
 function verificaComentarioProdutoServicoRevisar() {
-    
+
     var comentarioEstagioEvolucao = document.getElementById("formulario_resubmeterplano:estagioEvolucao3");
     var comentarioTecnologiaProcessos = document.getElementById("formulario_resubmeterplano:tecnologiaProcessos3");
     var comentarioPotencialInovacaoTecnologica = document.getElementById("formulario_resubmeterplano:potencialInovacaoTecnologica3");
@@ -419,7 +424,7 @@ function verificaComentarioProdutoServicoRevisar() {
 }
 
 function verificaComentarioProdutoServicoPreAvaliar() {
-    
+
     var comentarioEstagioEvolucao = document.getElementById("formulario_comentarpreavalizar:estagioEvolucao2");
     var comentarioTecnologiaProcessos = document.getElementById("formulario_comentarpreavalizar:tecnologiaProcessos2");
     var comentarioPotencialInovacaoTecnologica = document.getElementById("formulario_comentarpreavalizar:potencialInovacaoTecnologica2");
@@ -430,7 +435,7 @@ function verificaComentarioProdutoServicoPreAvaliar() {
     var comentarioInfraestrutura = document.getElementById("formulario_comentarpreavalizar:infraestrutura2");
     var tabProdutoServico = document.getElementById("tabProdutoServico");
     var listaCampos = new Array();
-    
+
     listaCampos[0] = comentarioEstagioEvolucao;
     listaCampos[1] = comentarioTecnologiaProcessos;
     listaCampos[2] = comentarioPotencialInovacaoTecnologica;
@@ -565,11 +570,15 @@ function verificaPreenchimentoComentario(campo) {
  * @param {type} data
  * @returns {undefined}
  */
-function funcaoAjaxSalvoAtualizandoAbas(data){
-    if(data.status === "success"){
+function funcaoAjaxSalvoAtualizandoAbas(data) {
+    if (data.status === "success") {
         verificaComentariosPreAvaliar();
         funcaoAjaxSalvo(data);
     }
+}
+
+function atualizaTimeOutSessao(){
+    
 }
 
 /**
@@ -586,4 +595,65 @@ function mostrarFeedBackHistorico(idCampo) {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "campoFeedBackOn historicoComentario");
     }
+}
+
+/**
+ * @description Metodo que exibe ou esconde os campos do botao adicionar comentarios na realizar pré-avaliação
+ * alem de mudar o botao ao clicar nele ("+ Adicionar Comentario" ou "- Fechar Comentario") 
+ * @param {type} idCampo
+ * @param {type} idBotao
+ * @param {type} idUltimaAlteracao
+ * @returns {undefined}
+ */
+function mostrarFeedBack(idCampo,idBotao, idUltimaAlteracao) {
+    var campo = document.getElementById(idCampo);
+    var botao = document.getElementById(idBotao);
+    var alteracao = document.getElementById(idUltimaAlteracao);
+    if ($(campo).hasClass("form-control campoFeedBackOn")) {
+        
+        $(campo).fadeOut(900);
+        campo.setAttribute("class", "form-control campoFeedBack");
+        
+        alteracao.setAttribute("class","campoFeedBack");
+        
+	
+        //  botao.setAttribute("value", "Fechar Comentário");
+	//  botao.setAttribute("icon", "fa fa-minus");
+    } else {
+        $(campo).fadeIn(900);
+        campo.setAttribute("class", "form-control campoFeedBackOn");
+        
+        alteracao.setAttribute("class","campoFeedBackOn");
+        
+        //  botao.setAttribute("value", "Adicionar Comentário");
+	//  botao.setAttribute("icon", "fa fa-plus");
+    }
+	
+/**
+ * Seta um tempo para exibir a mensagem de término da sessão.
+ * @returns {undefined}
+ */
+function temporizadorSessao(){
+    clearTimeout(timeOutSessao);
+    setTimeout(function (){
+        mostraMensagemFimSessao();
+    },60000);
+}
+
+/**
+ * Mostra a mensagem de termino da sessão.
+ * @returns {undefined}
+ */
+function mostraMensagemFimSessao() {
+    sweetAlert({
+        title: "Bah!",
+        text: "Sua sessão expirou!",
+        type: "error",
+        confirmButtonColor: '#00A859'
+    }, function () {
+        // Redireciona o usuário para a página de login.
+        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
+    });
+
+}
 }

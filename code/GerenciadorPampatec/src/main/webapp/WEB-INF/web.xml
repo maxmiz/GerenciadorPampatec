@@ -83,6 +83,11 @@
     
     <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-        <location>/loginEmpreendedor.jsf</location>
+        <location>/WEB-INF/errorpages/expired.jsf</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>com.sun.faces.mgbean.ManagedBeanCreationException</exception-type>
+        <location>/WEB-INF/errorpages/expired.jsf</location>
     </error-page>
 </web-app>
