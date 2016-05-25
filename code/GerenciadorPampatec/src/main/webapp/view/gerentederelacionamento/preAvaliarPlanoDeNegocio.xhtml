@@ -362,7 +362,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
                                             <f:ajax execute="@form"
                                                     
-                                                    render="formulario_comentarpreavalizar:alteracaoSegmento formulario_comentarpreavalizar:segmentoDeCliente2 formulario_comentarpreavalizar:segmentoDeClientes mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar "
+                                                    render="formulario_comentarpreavalizar:alteracaoSegmento 
+                                                    formulario_comentarpreavalizar:segmentoDeCliente2 
+                                                    formulario_comentarpreavalizar:segmentoDeClientes 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar 
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes)}"/>
                                            
@@ -439,7 +443,11 @@
                                                          rows="5" id="propostaDeValor2" 
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto}">
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:propostaDeValor2 formulario_comentarpreavalizar:propostaDeValor formulario_comentarpreavalizar:alteracaoProposta mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:propostaDeValor2 
+                                                    formulario_comentarpreavalizar:propostaDeValor 
+                                                    formulario_comentarpreavalizar:alteracaoProposta 
+                                                    mensagemSalvamento  formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.propostaValor)}"/>
                                         </h:inputTextarea>
@@ -520,7 +528,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.atividadeChave.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoAtividade formulario_comentarpreavalizar:atividadesChave2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:atividadesChave"
+                                                    render="formulario_comentarpreavalizar:alteracaoAtividade 
+                                                    formulario_comentarpreavalizar:atividadesChave2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar 
+                                                    formulario_comentarpreavalizar:atividadesChave
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.atividadeChave)}"/>
                                         </h:inputTextarea>
@@ -630,7 +642,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoRelacionamentoCliente formulario_comentarpreavalizar:relacoComClientes formulario_comentarpreavalizar:relacaoClientes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoRelacionamentoCliente 
+                                                    formulario_comentarpreavalizar:relacoComClientes 
+                                                    formulario_comentarpreavalizar:relacaoClientes2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente)}"/>
                                         </h:inputTextarea>
@@ -710,7 +726,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.parceriasChave.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoParcerias formulario_comentarpreavalizar:parceriasChaves formulario_comentarpreavalizar:parceriasChave2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoParcerias 
+                                                    formulario_comentarpreavalizar:parceriasChaves 
+                                                    formulario_comentarpreavalizar:parceriasChave2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.parceriasChave)}"/>
                                         </h:inputTextarea>
@@ -787,7 +807,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.canais.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoCanais formulario_comentarpreavalizar:canais formulario_comentarpreavalizar:canais2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoCanais 
+                                                    formulario_comentarpreavalizar:canais 
+                                                    formulario_comentarpreavalizar:canais2 mensagemSalvamento
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.canais)}"/>
                                         </h:inputTextarea>
@@ -864,7 +888,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoRecursos formulario_comentarpreavalizar:recursosPrincipais formulario_comentarpreavalizar:recursosPrincipais2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoRecursos 
+                                                    formulario_comentarpreavalizar:recursosPrincipais 
+                                                    formulario_comentarpreavalizar:recursosPrincipais2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais)}"/>
                                         </h:inputTextarea>
@@ -940,7 +968,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.concorrentes.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoConcorrentes formulario_comentarpreavalizar:concorrentes formulario_comentarpreavalizar:concorrentes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoConcorrentes 
+                                                    formulario_comentarpreavalizar:concorrentes 
+                                                    formulario_comentarpreavalizar:concorrentes2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.concorrentes)}"/>
                                         </h:inputTextarea>
@@ -1051,7 +1083,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoEstagio formulario_comentarpreavalizar:estagioDeEvolucao formulario_comentarpreavalizar:estagioEvolucao2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoEstagio 
+                                                    formulario_comentarpreavalizar:estagioDeEvolucao 
+                                                    formulario_comentarpreavalizar:estagioEvolucao2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao)}"/>
                                         </h:inputTextarea>
@@ -1129,7 +1165,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoTecnologiaProcessos formulario_comentarpreavalizar:tecnologiaProcessos formulario_comentarpreavalizar:tecnologiaProcessos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoTecnologiaProcessos 
+                                                    formulario_comentarpreavalizar:tecnologiaProcessos 
+                                                    formulario_comentarpreavalizar:tecnologiaProcessos2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos)}"/>
                                         </h:inputTextarea>
@@ -1206,7 +1246,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoPotencialInovacao formulario_comentarpreavalizar:potencialInovacaoTecnologica formulario_comentarpreavalizar:potencialInovacaoTecnologica2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoPotencialInovacao 
+                                                    formulario_comentarpreavalizar:potencialInovacaoTecnologica 
+                                                    formulario_comentarpreavalizar:potencialInovacaoTecnologica2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica)}"/>
                                         </h:inputTextarea>
@@ -1283,7 +1327,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.aplicacoes.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoAplicacoes formulario_comentarpreavalizar:aplicacoes formulario_comentarpreavalizar:aplicacoes2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoAplicacoes 
+                                                    formulario_comentarpreavalizar:aplicacoes 
+                                                    formulario_comentarpreavalizar:aplicacoes2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.aplicacoes)}"/>
                                         </h:inputTextarea>
@@ -1360,7 +1408,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoDificuldades formulario_comentarpreavalizar:dificuldadesEsperadas formulario_comentarpreavalizar:dificuldadesEsperadas2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoDificuldades 
+                                                    formulario_comentarpreavalizar:dificuldadesEsperadas 
+                                                    formulario_comentarpreavalizar:dificuldadesEsperadas2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas)}"/>
                                         </h:inputTextarea>
@@ -1436,7 +1488,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoInteracaoEmpresaUniversidade formulario_comentarpreavalizar:interacaoEmpresaUniversidade formulario_comentarpreavalizar:interacaoEmpresaUniversidade2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoInteracaoEmpresaUniversidade 
+                                                    formulario_comentarpreavalizar:interacaoEmpresaUniversidade 
+                                                    formulario_comentarpreavalizar:interacaoEmpresaUniversidade2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade)}"/>
                                         </h:inputTextarea>
@@ -1513,7 +1569,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoInteracaoEmpresaComunidadeGoverno formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoInteracaoEmpresaComunidadeGoverno 
+                                                    formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno 
+                                                    formulario_comentarpreavalizar:interacaoEmpresaComunidadeGoverno2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno)}"/>
                                         </h:inputTextarea>
@@ -1590,7 +1650,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.infraestrutura.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoInfraestrutura formulario_comentarpreavalizar:infraestrutura formulario_comentarpreavalizar:infraestrutura2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoInfraestrutura 
+                                                    formulario_comentarpreavalizar:infraestrutura 
+                                                    formulario_comentarpreavalizar:infraestrutura2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.infraestrutura)}"/>
                                         </h:inputTextarea>
@@ -1706,7 +1770,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoParticipacaoAcionaria formulario_comentarpreavalizar:participacaoAcionaria formulario_comentarpreavalizar:participacaoAcionaria2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoParticipacaoAcionaria 
+                                                    formulario_comentarpreavalizar:participacaoAcionaria 
+                                                    formulario_comentarpreavalizar:participacaoAcionaria2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria)}"/>
                                         </h:inputTextarea>
@@ -1785,7 +1853,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoPotencialEmprego formulario_comentarpreavalizar:potencialEmprego formulario_comentarpreavalizar:potencialEmprego2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoPotencialEmprego 
+                                                    formulario_comentarpreavalizar:potencialEmprego 
+                                                    formulario_comentarpreavalizar:potencialEmprego2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego)}"/>
                                         </h:inputTextarea>
@@ -1901,7 +1973,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.fontesReceita.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoFontesDeReceita formulario_comentarpreavalizar:fontesDeReceita formulario_comentarpreavalizar:fontesDeReceita2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoFontesDeReceita 
+                                                    formulario_comentarpreavalizar:fontesDeReceita 
+                                                    formulario_comentarpreavalizar:fontesDeReceita2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.fontesReceita)}"/>
                                         </h:inputTextarea>
@@ -1982,7 +2058,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoEstruturaCustos formulario_comentarpreavalizar:estruturaCustos formulario_comentarpreavalizar:estruturaCustos2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoEstruturaCustos 
+                                                    formulario_comentarpreavalizar:estruturaCustos 
+                                                    formulario_comentarpreavalizar:estruturaCustos2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto)}"/>
                                         </h:inputTextarea>
@@ -2061,7 +2141,12 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoInvestimentoInicial formulario_comentarpreavalizar:investimentoInicial2 formulario_comentarpreavalizar:investimentoInicial mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoInvestimentoInicial 
+                                                    formulario_comentarpreavalizar:investimentoInicial2 
+                                                    formulario_comentarpreavalizar:investimentoInicial 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial)}"/>
                                         </h:inputTextarea>
@@ -2152,7 +2237,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.custoFixo.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoPreAvaliar_custoFixo formulario_comentarpreavalizar:preAvaliar_custoFixo formulario_comentarpreavalizar:comentarioCustoFixo2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoPreAvaliar_custoFixo 
+                                                    formulario_comentarpreavalizar:preAvaliar_custoFixo 
+                                                    formulario_comentarpreavalizar:comentarioCustoFixo2 
+                                                    mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.custoFixo)}"/>                                            
                                         </h:inputTextarea>
@@ -2243,7 +2332,11 @@
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.custoVariavel.texto}">
 
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:alteracaoRevisao_custoVariavel formulario_comentarpreavalizar:revisao_custoVariavel formulario_comentarpreavalizar:comentarioCustoVariavel2 mensagemSalvamento formulario_comentarpreavalizar:botaoEnviar"
+                                                    render="formulario_comentarpreavalizar:alteracaoRevisao_custoVariavel 
+                                                    formulario_comentarpreavalizar:revisao_custoVariavel 
+                                                    formulario_comentarpreavalizar:comentarioCustoVariavel2 mensagemSalvamento 
+                                                    formulario_comentarpreavalizar:botaoEnviar
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.salvarViaAjax(preAvaliarPlanoBean.comentarioProjeto.custoVariavel)}"/>                                            
                                         </h:inputTextarea>
@@ -2313,7 +2406,8 @@
                                         <f:ajax execute="@form"
                                                 render="formulario_comentarpreavalizar:campoObservacoes
                                                 mensagemSalvamento
-                                                formulario_comentarpreavalizar:botaoEnviar"
+                                                formulario_comentarpreavalizar:botaoEnviar
+                                                formulario_comentarpreavalizar:mensagemStatusAvaliacao"
                                                 onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                 event="change" listener="#{preAvaliarPlanoBean.salvarViaAjax()}"/>
                                     </h:inputTextarea>
@@ -2333,8 +2427,16 @@
                                 </div>
                                 <br />                            
                                 <b>Avaliação: <p:commandLink value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
-                                <h:panelGroup id="mensagemStatusAvaliacao" class="mensagemErro">
-                                    Atenção: Para terminar a avaliação e requisitar melhorias é necessário adicionar pelo menos 1 comentário de sugestão de melhoria.
+                                <h:panelGroup id="mensagemStatusAvaliacao">
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroAceito()}" class="mensagemErro">
+                                        Um plano aceito para avaliação não pode conter sugestões de melhorias.
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroMelhoria()}" class="mensagemErro">
+                                        Para solicitar melhorias é necessário adicionar ao menos um comentário sugerindo melhorias.
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroSemStatus()}" class="mensagemErro">
+                                        Você precisa selecionar um status de avaliação para terminar a avaliação.
+                                    </h:panelGroup>
                                 </h:panelGroup><br/>                            
                                 <div class="col-md-12">
                                     <h:panelGrid cellpadding="5" columns="2" id="statusAvaliacao">
@@ -2343,7 +2445,10 @@
                                             <f:selectItem itemLabel=" Realizar Ajustes " itemValue="7" /><br/>
                                             <f:selectItem itemLabel=" Reprovado " itemValue="6" />
                                             <f:ajax execute="@form"
-                                                    render="formulario_comentarpreavalizar:botaoEnviar formulario_comentarpreavalizar:observacoesPreDefinidas mensagemSalvamento"
+                                                    render="formulario_comentarpreavalizar:botaoEnviar 
+                                                    formulario_comentarpreavalizar:observacoesPreDefinidas
+                                                    formulario_comentarpreavalizar:mensagemStatusAvaliacao 
+                                                    mensagemSalvamento"
                                                     event="change" onevent="funcaoAjaxSalvoAtualizandoAbas"
                                                     listener="#{preAvaliarPlanoBean.preencheCampoObservacao()}"/>
                                         </p:selectOneRadio>
