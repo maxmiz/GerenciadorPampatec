@@ -656,3 +656,4 @@ function mostraMensagemFimSessao() {
     });
 
 }
+}
