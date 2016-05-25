@@ -36,29 +36,29 @@
                 <div id="empreendedorCadastro">
                     <h:form id="formularioDeCadastro">
                         <!--<h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>-->
-                        <div class="col-md-4 modal-footer" align="center">
+                        <div class="col-md-4 modal-footer" 
+                             align="center">
                             <!--<h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>-->
                         </div>
                         <div class ="col-md-12">
                             O Plano de Negócio define o que sua empresa faz, como ela vai gerar lucro e se sustentar no mercado. Definir o Plano é o primeiro passo para um negócio de sucesso.
                         </div>
-<!--                        <div class="col-md-12">
-                            Insira seu nome<h:inputText class="form-control" id="nomeInput" value="#{loginBean.user}"></h:inputText>
+                        
+                        <!--                    
+                        <div class="col-md-12">
+                            Insira seu nome<h:inputText class="form-control" id="nomeInput" value="#-{loginBean.user}"></h:inputText>
                         </div>
                         <div class="col-md-12">
-                            Informe seu CPF<h:inputText class="form-control" id="cpfInput" value="#{loginBean.senha}"></h:inputText>
+                            Informe seu CPF<h:inputText class="form-control" id="cpfInput" value="#-{loginBean.senha}"></h:inputText>
                             <br/>  
                             
-                        </div>-->
+                        </div>
+                        -->
 
-
-                        <div class="col-md-5 modal-footer" align="left">
+                        <div class="col-md-5 modal-footer" 
+                             align="left">
                         </div>
 
-                       
-
-                        
-                        
                          <div class ="col-md-12">
                             <br/>
                             Efetue o cadastro para começar.
@@ -82,23 +82,31 @@
                             </p:commandButton>
                         </div>
 
-
                     </h:form>
                 </div>
             </div>
-
 
 
             <div class="col-md-4 form-horizontal well bs-component" style="margin-left: 1%">
                 <h1>Acesse sua conta</h1>
                 <div id="empreendedorLogin">
                     <h:form id="formularioDeLogin">
-                        <h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/>
+                        <h:message for="botaoRecuperarSenha" 
+                                   errorClass="mensagemErro" 
+                                   infoClass="mensagemSucesso" 
+                                   id="mensagemErro"/>
                         <div class="col-md-4 modal-footer" align="center">
-                            <h:message for="botaoLogin" errorClass="erro" infoClass="erro"> </h:message>
+                            <h:message for="botaoLogin" 
+                                       errorClass="erro" 
+                                       infoClass="erro"> 
+                            </h:message>
                         </div>
                         <div class="col-md-12" title="Digite seu email ou CPF">
-                            Insira seu E-mail ou CPF<h:inputText class="form-control" id="emailInput" value="#{loginBean.user}"></h:inputText>
+                            Insira seu E-mail ou CPF
+                            <h:inputText class="form-control" 
+                                         id="emailInput" 
+                                         value="#{loginBean.user}">
+                            </h:inputText>
                         </div>
                         <div class="col-md-12" title="Digite sua senha">
                             Senha<h:inputSecret class="form-control" id="senhaInput" value="#{loginBean.senha}"></h:inputSecret>
