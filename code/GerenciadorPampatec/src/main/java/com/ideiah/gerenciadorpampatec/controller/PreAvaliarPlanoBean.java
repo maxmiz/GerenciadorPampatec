@@ -407,20 +407,71 @@ public class PreAvaliarPlanoBean implements Serializable {
         // se o resultado da pre avaliação for melhorias, é necessário inserir comentários no plano
         if (resultadoPreAvaliacao == 7) {
             if (comentarioProjeto.verificaCampos() == 0) {
-                FacesUtil.addErrorMessage("Você precisa comentar pelo menos um campo para pedir melhorias no plano de negócio.",
-                        "formulario_comentarpreavalizar:statusAvaliacao");
                 flag_erro++;
             }
         }
+        
+        if (resultadoPreAvaliacao == 2){
+            // se o resultado da pre avaliacao for 2, significa que o plano foi aceito para avaliacao.
+            // então não pode conter comentários.
+            if (comentarioProjeto.verificaCampos() > 0){
+                flag_erro++;
+            }
+        
+        }
         // se o resultado da pre avaliaçao for zero, significa que nenhum campo foi selecionado
         if (resultadoPreAvaliacao == 0) {
-            FacesUtil.addErrorMessage("Você precisa selecionar um status de Avaliação.",
-                    "formulario_comentarpreavalizar:statusAvaliacao");
             flag_erro++;
         }
 
         return flag_erro == 0;
 
+    }
+    
+    /**
+     * métodos para exibir mensagem de erro no final da pre-avaliacao
+     * um plano aceito não pode conter comentários
+     * um plano que precisa melhorias precisa ter uma sugestão de melhoria
+     * é necessário selecionar um status para o plano
+     * @return
+     */
+    public boolean exibeMensagemErroAceito(){
+        int flag_erro = 0;
+        if (resultadoPreAvaliacao == 2){
+            if (comentarioProjeto.verificaCampos() > 0) flag_erro++;
+        }
+        return flag_erro > 0;
+    }
+    
+     /**
+     * métodos para exibir mensagem de erro no final da pre-avaliacao
+     * um plano aceito não pode conter comentários
+     * um plano que precisa melhorias precisa ter uma sugestão de melhoria
+     * é necessário selecionar um status para o plano
+     * @return
+     */
+    
+    public boolean exibeMensagemErroMelhoria(){
+        int flag_erro = 0;
+        if (resultadoPreAvaliacao == 7) {
+            if (comentarioProjeto.verificaCampos() == 0) flag_erro++;
+        }
+        return flag_erro > 0;
+    }
+    
+     /**
+     * métodos para exibir mensagem de erro no final da pre-avaliacao
+     * um plano aceito não pode conter comentários
+     * um plano que precisa melhorias precisa ter uma sugestão de melhoria
+     * é necessário selecionar um status para o plano
+     * @return
+     */
+    public boolean exibeMensagemErroSemStatus(){
+        int flag_erro = 0;
+        if (resultadoPreAvaliacao == 0){
+            flag_erro++;
+        }
+        return flag_erro > 0;
     }
 
     /**
