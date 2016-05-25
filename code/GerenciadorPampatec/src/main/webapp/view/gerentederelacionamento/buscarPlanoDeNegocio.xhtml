@@ -60,7 +60,9 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicioGerente()}"></h:commandLink>
+                                <h:commandLink value="Início" 
+                                               action="#{loginBean.getInicioGerente()}">
+                                </h:commandLink>
                             </li>
                             
                             <!--
@@ -73,17 +75,23 @@
                             </li>
                             -->
 
-                            <li class="">
-                                <a class="dropdown-toggle" href="buscarPlanoDeNegocio.jsf"  data-toggle="dropdown" aria-expanded="false">Avaliar Planos de Negócio 
-                                </a>
+                            <li>
+                                <h:commandLink value="Avaliar Planos de Negócio"
+                                               action="#{loginBean.getVisualizarPlanosGerente()}">
+                                    
+                                </h:commandLink>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink value="Perfil"></h:commandLink></li>
                                     <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        <h:commandLink value="Perfil">
+                                        </h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandLink  value="Sair" 
+                                                        action="#{loginBean.fazLogout()}">
                                         </h:commandLink>
                                     </li>
                                 </ul>
