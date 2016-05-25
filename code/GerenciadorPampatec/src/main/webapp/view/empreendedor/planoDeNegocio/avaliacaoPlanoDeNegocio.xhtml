@@ -43,17 +43,17 @@
                             <li class="dropdown">
                                 <h:commandLink value="Início" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
                             </li>
-
+                            <!--
                             <li class="">
                                 <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
                                     Notificações
                                     <span class="badge">
-                                        <h:outputText value="#{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
+                                        <h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
                                     </span>
-                                    <f:ajax execute="@form" event="click" listener="#{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
+                                    <f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
                                 </h:outputLink>
                             </li>
-
+                            -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
                                     <span class="caret"></span>
