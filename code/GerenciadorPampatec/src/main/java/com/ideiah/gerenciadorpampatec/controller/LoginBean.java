@@ -114,19 +114,23 @@ public class LoginBean {
 
     /**
      * <p>
-     * Página inicial redirecionada para lista de projetos para pré-avaliar.
-     * Razão: O gerente recebia uma tela em branco ao logar no sistema. Agora
-     * redireciona para a função principal do Sprint 2016
+     * Redireciona para a página que contem a tabela de de plano de negócio, na
+     * visão do Gerente de Relacionamento.
      * </p>
      */
     public void getVisualizarPlanosGerente() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("view/gerentederelacionamento/buscarPlanoDeNegocio.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * <p>
+     * Redireciona para a página que contem a tabela de de plano de negócio do
+     * empreendedor.</p>
+     */
     public void getVisualizarPlanos() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
