@@ -457,8 +457,9 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
                                             <p:inputTextarea class="form-control campoFeedBack" 
-                                                             rows="5" style="resize: none;"  
-                                                             disabled="true" id="segmentoDeClientes3" 
+                                                             rows="5" style="resize: none; cursor: not-allowed"
+                                                             readonly="true"
+                                                             id="segmentoDeClientes3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto}">
                                             </p:inputTextarea>
                                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
@@ -506,8 +507,9 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
                                             <p:inputTextarea class="form-control campoFeedBack" 
-                                                             rows="5" style="resize: none;" 
-                                                             disabled="true" id="propostaDeValor3" 
+                                                             rows="5" style="resize: none; cursor: not-allowed"
+                                                             readonly="true"
+                                                             id="propostaDeValor3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto}">
                                             </p:inputTextarea>
                                             <h:message class="mensagemErro" for="propostaDeValor"/>
@@ -556,8 +558,9 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
                                             <h:inputTextarea class="form-control campoFeedBack" 
-                                                             rows="5" style="resize: none;" 
-                                                             disabled="true" id="atividadesChaves3" 
+                                                             rows="5" style="resize: none; cursor: not-allowed"
+                                                             readonly="true"
+                                                             id="atividadesChaves3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto}">
                                             </h:inputTextarea>                                        
                                         </div>
@@ -640,7 +643,9 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                            <p:inputTextarea class="campoFeedBack"
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
                                                              cols="50" rows="5" 
                                                              disabled="true" id="relacaoClientes3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto}">
@@ -689,9 +694,10 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="parceriasChaves3" 
+                                            <p:inputTextarea class="campoFeedBack"
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5" id="parceriasChaves3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -738,9 +744,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="canais3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="canais3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -787,9 +795,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="recursosPrincipais3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="recursosPrincipais3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -834,9 +844,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
                                                              cols="50" rows="5" 
-                                                             disabled="true" id="concorrentes3" 
+                                                             id="concorrentes3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -958,9 +970,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="estagioEvolucao3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="estagioEvolucao3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1008,9 +1022,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
+                                            <p:inputTextarea class="campoFeedBack"
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
                                                              cols="50" rows="5" 
-                                                             disabled="true" id="tecnologiaProcessos3" 
+                                                             id="tecnologiaProcessos3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1058,9 +1074,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="potencialInovacaoTecnologica3" 
+                                            <p:inputTextarea class="campoFeedBack"
+                                                             style="resize: none;  cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="potencialInovacaoTecnologica3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1108,9 +1126,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="aplicacoes3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="aplicacoes3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1159,9 +1179,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="dificuldadesEsperadas3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="dificuldadesEsperadas3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1209,9 +1231,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="interacaoEmpresaUniversidade3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="interacaoEmpresaUniversidade3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1259,9 +1283,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="interacaoEmpresaComunidadeGoverno3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="interacaoEmpresaComunidadeGoverno3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1309,9 +1335,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="infraestrutura3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="infraestrutura3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.infraestrutura.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1397,9 +1425,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="participacaoAcionaria3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="participacaoAcionaria3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1446,9 +1476,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="potencialEmprego3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="potencialEmprego3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1536,9 +1568,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="fontesDeReceita3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="fontesDeReceita3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1587,9 +1621,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;"
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="estruturaCustos3" 
+                                            <p:inputTextarea class="campoFeedBack" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true"
+                                                             cols="50" rows="5"
+                                                             id="estruturaCustos3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1636,9 +1672,11 @@
                                         </div>
                                         <div class="has-success col-md-12 espaco">
 
-                                            <p:inputTextarea class="campoFeedBack" style="resize: none;" 
-                                                             cols="50" rows="5" 
-                                                             disabled="true" id="investimentoInicial3" 
+                                            <p:inputTextarea class="campoFeedBack"
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
+                                                             cols="50" rows="5"
+                                                             id="investimentoInicial3" 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto}">
                                             </p:inputTextarea>
                                         </div>
@@ -1848,10 +1886,10 @@
                                         <div class="has-success col-md-12 espaco">
                                             <p:inputTextarea class="campoFeedBack"
                                                              id="comentarioCustoFixo2"
-                                                             style="resize: none;"
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true"
                                                              cols="50"
                                                              rows="2"
-                                                             disabled="true"
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.custoFixo.texto}"
                                                              >
                                             </p:inputTextarea>
@@ -2068,10 +2106,10 @@
                                         <div class="has-success col-md-12 espaco">
 
                                             <p:inputTextarea class="campoFeedBack" 
-                                                             style="resize: none;" 
+                                                             style="resize: none; cursor: not-allowed"
+                                                             readonly="true" 
                                                              cols="50" 
-                                                             rows="5" 
-                                                             disabled="true" 
+                                                             rows="5"
                                                              id="comentarioCustoVariavel2" 
 
                                                              value="#{revisarPlanoDeNegocioBean.comentarioProjeto.custoVariavel.texto}"
