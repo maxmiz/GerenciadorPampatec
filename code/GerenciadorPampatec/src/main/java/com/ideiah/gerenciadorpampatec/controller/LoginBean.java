@@ -155,6 +155,18 @@ public class LoginBean {
     }
 
     /**
+     * <p>Método para redirecionar o usuário para a página de login, 
+     * invocado de uma das páginas de erro do diretório WEB-INF.</p>
+     */
+    public void voltarDoErroParaLogin(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../../loginEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
      *
      * @param user
      * @param senha
