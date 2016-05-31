@@ -160,7 +160,7 @@ public class LoginBean {
      */
     public void voltarDoErroParaLogin(){
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../../loginEmpreendedor.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/loginEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -454,5 +454,12 @@ public class LoginBean {
      */
     public void setSession(HttpSession session) {
         this.session = session;
+    }
+    
+    /**
+     * <p>Método que força uma exceção para testar o tratamento das mesmas.</p>
+     */
+    public void geraExcecao(){
+        int zero = 1/0;
     }
 }
