@@ -95,4 +95,9 @@
         <error-code>404</error-code>
         <location>/WEB-INF/errorpages/404.jsf</location>
     </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/errorpages/500.jsf</location>
+    </error-page>
 </web-app>
