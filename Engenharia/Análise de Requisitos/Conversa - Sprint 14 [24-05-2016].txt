@@ -1,0 +1,53 @@
+﻿
+				Conversa com o Po Peterson
+
+Data/Hora: 24/05/2016 - 16:00
+
+	->	Pergunta do PO: 
+			Um usuário pode fazer multiplos logins em abas diferentes do navegador?
+			
+		Resposta da equipe:
+			Não. Por questões de segurança, a ação de executar login em abas diferentes no mesmo navegador, deve inválidar todas as demais e deixar unicamente a nova sessão "viva" no servidor.
+			
+		Status:
+			NÃO IMPLEMENTADO/ACEITO PELO Po/Cliente.
+			
+			
+	->	O sistema não deve permitir que o um gerente submeta um plano como Aprovado, contendo comentários.
+
+		Status:
+			Issue do Sprint 14, em IMPLEMENTAÇÃO.
+			
+						
+----------------	Discussão sobre a prioridade da implementação do requisito a seguir		----------------
+	
+
+	->	A equipe negociou com o PO, que a funcionalidade de mudar o ícone do botão comentário, bem como seu texto, será desenvolvida em Sprints futuros, pois sua prioridade para o Sprint atual (13) é baixa, perante as demais necessidades.
+	
+
+	---		Requisito		---
+	
+	->	Todos os botões de comentários, na visão do gerente, ao pré-avaliar um plano de negócio, devem possuir as seguintes características:
+
+		=>	Texto do botão:
+				- Por padrão, quando não existirem comentários:
+					"Adicionar comentário"
+				- Após comentar:
+					"Editar comentário"
+				- Após apagar todo o conteudo do campo:
+					"Adicionar comentário"
+				value="#{bean.retornaNomve(bean.comentario1)}"
+		=>	Icones:
+				- Por padrão, com o campo comentário fechado (botão não clicado):
+					"Ícone de [Seta para baixo]"
+				- Com campo comentário aberto (botão clicado):
+					"Ícone de [Seta para cima]"
+					
+					
+	->	Para terminar a pré-avaliação de uma plano de negócio, na visão do gerente.
+	
+		=>	Não é permitido enviar uma plano de negócio "Aprovado" contendo comentário.
+		
+		=>	O sistema deve validar quando existem comentários e bloquear o botão de "Terminar pré-avaliação".		
+					
+		
