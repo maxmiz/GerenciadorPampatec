@@ -181,7 +181,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     gerente = gerente.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 gerente = gerente.buscarPorEmail(user);
@@ -208,12 +208,12 @@ public class LoginBean {
 //                }
 
             } else {
-                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
 
         }
@@ -256,7 +256,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
@@ -273,12 +273,12 @@ public class LoginBean {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
 
         }
