@@ -30,16 +30,14 @@
             <h:form>
                 <div>
                     <br/><br/>
-                    <p:commandButton id="botaoLogin" 
-                                     class="botaoBase botaoVerde"
-                                     icon="fa fa-sign-in"
+                    <a id="botaoLogin" 
+                                     class="aComoBotao"
+                                     href="/GerenciadorPampatec/loginEmpreendedor.jsf"
                                      title="Redireciona para a página de login."
-                                     style="padding: 5px 12px"
-                                     value="Realizar Login" 
-                                     action="#{loginBean.voltarDoErroParaLogin()}"
-                                     ajax="false"
+                                     style="padding: 8px 25px"
                                     >
-                    </p:commandButton>
+                        <i fa fa-sign-in></i> <strong>Realizar login</strong>
+                    </a>
                 </div>
             </h:form>
         </div>
