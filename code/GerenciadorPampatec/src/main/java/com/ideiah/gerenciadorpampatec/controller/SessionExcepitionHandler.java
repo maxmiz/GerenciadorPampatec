@@ -79,23 +79,23 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
      *
      * @param nomeExecption
      */
-    private void lidaExcepition(String nomeExecption) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        String errorPageLocation = null;
-        if (nomeExecption.equals("javax.faces.application.ViewExpiredException")) {
-            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
-            redirecionaPagina(facesContext, errorPageLocation);
-        } else if (nomeExecption.equals("com.sun.faces.mgbean.ManagedBeanCreationException")) {
-            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
-            redirecionaPagina(facesContext, errorPageLocation);
-        } else {
-            try {
-                facesContext.getExternalContext().redirect("loginEmpreendedor.jsf");
-            } catch (IOException ex) {
-                Logger.getLogger(SessionExcepitionHandler.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
+//    private void lidaExcepition(String nomeExecption) {
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        String errorPageLocation = null;
+//        if (nomeExecption.equals("javax.faces.application.ViewExpiredException")) {
+//            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
+//            redirecionaPagina(facesContext, errorPageLocation);
+//        } else if (nomeExecption.equals("com.sun.faces.mgbean.ManagedBeanCreationException")) {
+//            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
+//            redirecionaPagina(facesContext, errorPageLocation);
+//        } else {
+//            try {
+//                facesContext.getExternalContext().redirect("loginEmpreendedor.jsf");
+//            } catch (IOException ex) {
+//                Logger.getLogger(SessionExcepitionHandler.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//    }
 
     /**
      * <p>
