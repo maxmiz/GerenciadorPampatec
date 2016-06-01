@@ -15,14 +15,18 @@
     <h:body>
 
         <h:form>
-            <div class="well">
-                <p:commandButton
-                    value="Botão de erro"
-                    action="#{loginBean.geraExcecao()}">
-                </p:commandButton>
+            <div class="well">              
+                <button class="btn btn-danger"
+                        value="Botão de erro" 
+                        title="Botão para gerar uma exceção e testar o filtros de exceções do sistema."
+                        name="Gerar Exceção">
+                    <f:ajax execute="@form"
+                            event="click"
+                            listener="#{loginBean.geraExcecao()}"/>
+                    Gerar Exceção
+                </button>
             </div>
         </h:form>
-
 
         <!-- Início do footer profissional em HTML5+CCS3  -->
         <footer class="rodape">
