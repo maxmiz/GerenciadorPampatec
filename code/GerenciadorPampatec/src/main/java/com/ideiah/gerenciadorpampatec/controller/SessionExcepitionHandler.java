@@ -49,23 +49,28 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
             Throwable t = context.getException();
             Throwable tCausa = retornaCausa(t);
 
-            //here you do what ever you want with exception
-            try {
-                //log error
-                //log.log(Level.SEVERE, "Critical Exception!", t);
-                mudaStatusProjeto();
+            if (getSessao() != null) {
+                //here you do what ever you want with exception
+                try {
+                    //log error
+                    //log.log(Level.SEVERE, "Critical Exception!", t);
+                    mudaStatusProjeto();
 //                lidaExcepition(tCausa.getClass().toString());
-            } finally {
-                /**
-                 * Mata a sessão após uma exceção ser gerada no sistema.
-                 */
-                getSessao().invalidate();
-                /**
-                 * Método que redireciona o usuário para a página de erro 500.
-                 */
+                } finally {
+                    /**
+                     * Mata a sessão após uma exceção ser gerada no sistema.
+                     */
+                    getSessao().invalidate();
+                    /**
+                     * Método que redireciona o usuário para a página de erro
+                     * 500.
+                     */
+                    redirecionaPaginaErro();
+                    //after exception is handeled, remove it from queue
+                    i.remove();
+                }
+            }else{
                 redirecionaPaginaErro();
-                //after exception is handeled, remove it from queue
-                i.remove();
             }
         }
         //let the parent handle the rest
@@ -129,7 +134,6 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     private HttpSession getSessao() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-
         return session;
     }
 
