@@ -104,7 +104,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     private void redirecionaPaginaErro() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String errorPageLocation;
-        errorPageLocation = "/WEB-INF/errorpages/500.jsf";
+        errorPageLocation = "/WEB-INF/errorpages/500.xhtml";
         redirecionaPagina(facesContext, errorPageLocation);
     }
 
