@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.util.Iterator;
@@ -52,10 +53,17 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
             try {
                 //log error
                 //log.log(Level.SEVERE, "Critical Exception!", t);
-
                 mudaStatusProjeto();
                 lidaExcepition(tCausa.getClass().toString());
             } finally {
+                /**
+                 * Mata a sessão após uma exceção ser gerada no sistema.
+                 */
+                getSessao().invalidate();
+                /**
+                 * Método que redireciona o usuário para a página de erro 500.
+                 */
+                redirecionaPaginaErro();
                 //after exception is handeled, remove it from queue
                 i.remove();
             }
@@ -89,6 +97,16 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
+     * <p>Método para redirecionar o usuário para a página de erro 500.</p>
+     */
+    private void redirecionaPaginaErro(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        String errorPageLocation = null;
+        errorPageLocation = "/WEB-INF/errorpages/500.xhtml";
+        redirecionaPagina(facesContext, errorPageLocation);
+    }
+    
+    /**
      * Redireciona para a página especificada.
      * @param errorPageLocation 
      */
@@ -96,6 +114,18 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
         facesContext.setViewRoot(facesContext.getApplication().getViewHandler().createView(facesContext, errorPageLocation));
         facesContext.getPartialViewContext().setRenderAll(true);
         facesContext.renderResponse();
+    }
+    
+    /**
+     * <p>Método que retorna a sessão do usuário logado.</p>
+     * 
+     * @return sessão do tipo HttpSession.
+     */
+    private HttpSession getSessao() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+
+        return session;
     }
 
     /**
@@ -105,7 +135,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     private void mudaStatusProjeto() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        GerenteDeRelacionamentosBean gerente = (GerenteDeRelacionamentosBean) session.getAttribute("gerente");
+        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
         Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
 
         if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {

@@ -720,3 +720,8 @@ Adicionar Comentário e Histórico de comentários
 .nav-tabs > li.active > a:focus{
     color: #2780e3;
 }
+
+.paginaErro {
+    width: 90%;
+    text-align: center;
+}
