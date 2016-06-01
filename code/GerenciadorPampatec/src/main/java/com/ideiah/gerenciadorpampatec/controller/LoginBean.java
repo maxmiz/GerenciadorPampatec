@@ -228,17 +228,14 @@ public class LoginBean {
     public String retornaNomeLogado(){
         
         String usuarioLogado;
-        GerenteRelacionamento gerente = new GerenteRelacionamento();
-        Empreendedor empreendedor = new Empreendedor();
+        GerenteRelacionamento gerente;
+        Empreendedor empreendedor = (Empreendedor) getSession().getAttribute("empreendedor");
         
-        getSession().setAttribute("empreendedor",empreendedor);
-        
-        if (empreendedor.getNome() == null) {
-            
-        getSession().setAttribute("gerente", gerente);
+        if (empreendedor == null) { 
+        gerente = (GerenteRelacionamento) getSession().getAttribute("gerente");
         usuarioLogado = gerente.getNome(); 
+        
         }else{
-            
             usuarioLogado = empreendedor.getNome();
         }
         return usuarioLogado;
