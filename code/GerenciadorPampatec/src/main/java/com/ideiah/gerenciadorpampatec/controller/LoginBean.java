@@ -209,6 +209,30 @@ public class LoginBean {
     }
 
     /**
+     * método verifica a pessoa se a pessoa logada na sessao é um empreendedor, se for, retorna seu nome.
+     * se não, retorna o nome do gerente logado na sessao
+     * @return usuario Logado
+     */
+    public String retornaNomeLogado(){
+        
+        String usuarioLogado;
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        Empreendedor empreendedor = new Empreendedor();
+        
+        getSession().setAttribute("empreendedor",empreendedor);
+        
+        if (empreendedor.getNome() == null) {
+            
+        getSession().setAttribute("gerente", gerente);
+        usuarioLogado = gerente.getNome(); 
+        }else{
+            
+            usuarioLogado = empreendedor.getNome();
+        }
+        return usuarioLogado;
+    }
+    
+    /**
      *
      * @param user
      * @param senha
