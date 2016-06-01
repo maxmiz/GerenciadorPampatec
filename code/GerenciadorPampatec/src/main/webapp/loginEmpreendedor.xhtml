@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <f:facet name="last">
@@ -195,17 +196,11 @@
                 </div>
             </div>
             <!-- Fim do Modal de Recuperação de Senha -->
-
+            
             <!-- Início do footer profissional em HTML5+CCS3  -->
-            <footer class="rodape">
-                <nav>
-                    <hr></hr>
-                    <p>
-                        <small>Copyright © 2015-2016 </small> - <strong> Ideiah Soluções em Software</strong>
-                    </p>
-                    <hr></hr>
-                </nav>
-            </footer>
+            <ui:insert name="rodape">
+                <ui:include src="view/templateRodaPe.xhtml" />
+            </ui:insert>
             <!-- Fim do footer profissional em HTML5+CCS3  -->
         </h:body>
     </html>
