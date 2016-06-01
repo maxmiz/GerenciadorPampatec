@@ -721,7 +721,17 @@ Adicionar Comentário e Histórico de comentários
     color: #2780e3;
 }
 
+.rodapePaginaErro {
+    /*Expande o rodape por toda a extensão do monitor.*/
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+}
+
 .paginaErro {
+    float: left;
     width: 90%;
+    margin-left: 5%;    
     text-align: center;
 }
