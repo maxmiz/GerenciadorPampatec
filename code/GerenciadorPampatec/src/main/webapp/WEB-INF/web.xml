@@ -80,7 +80,9 @@
         <filter-name>CompletarCadastroFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
     </filter>
-    
+    <!--
+    Mapeamento para tratar as exceções geradas quandoa Sessão é finalizada.
+
     <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
         <location>/WEB-INF/errorpages/expired.jsf</location>
@@ -90,7 +92,7 @@
         <exception-type>com.sun.faces.mgbean.ManagedBeanCreationException</exception-type>
         <location>/WEB-INF/errorpages/expired.jsf</location>
     </error-page>
-    
+    -->
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/errorpages/404.jsf</location>
