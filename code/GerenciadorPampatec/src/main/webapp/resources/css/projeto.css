@@ -741,3 +741,7 @@ Adicionar Comentário e Histórico de comentários
     color: red;
     font-weight: bold;
 }
+
+#imagemPaginaErro{
+   /*Estilizar a imagem das páginas de erro.*/
+}
