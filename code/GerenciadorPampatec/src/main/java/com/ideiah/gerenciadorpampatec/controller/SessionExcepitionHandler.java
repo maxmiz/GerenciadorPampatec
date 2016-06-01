@@ -54,7 +54,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
                 //log error
                 //log.log(Level.SEVERE, "Critical Exception!", t);
                 mudaStatusProjeto();
-                lidaExcepition(tCausa.getClass().toString());
+//                lidaExcepition(tCausa.getClass().toString());
             } finally {
                 /**
                  * Mata a sessão após uma exceção ser gerada no sistema.
@@ -73,8 +73,9 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
+     * <p>
      * Redireciona o usuário para uma tela dependendo da excepition que ele
-     * recebe.
+     * recebe.</p>
      *
      * @param nomeExecption
      */
@@ -97,28 +98,32 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
-     * <p>Método para redirecionar o usuário para a página de erro 500.</p>
+     * <p>
+     * Método para redirecionar o usuário para a página de erro 500.</p>
      */
-    private void redirecionaPaginaErro(){
+    private void redirecionaPaginaErro() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        String errorPageLocation = null;
-        errorPageLocation = "/WEB-INF/errorpages/500.xhtml";
+        String errorPageLocation;
+        errorPageLocation = "/WEB-INF/errorpages/500.jsf";
         redirecionaPagina(facesContext, errorPageLocation);
     }
-    
+
     /**
-     * Redireciona para a página especificada.
-     * @param errorPageLocation 
+     * <p>
+     * Redireciona para a página especificada.</p>
+     *
+     * @param errorPageLocation
      */
     private void redirecionaPagina(FacesContext facesContext, String errorPageLocation) {
         facesContext.setViewRoot(facesContext.getApplication().getViewHandler().createView(facesContext, errorPageLocation));
         facesContext.getPartialViewContext().setRenderAll(true);
         facesContext.renderResponse();
     }
-    
+
     /**
-     * <p>Método que retorna a sessão do usuário logado.</p>
-     * 
+     * <p>
+     * Método que retorna a sessão do usuário logado.</p>
+     *
      * @return sessão do tipo HttpSession.
      */
     private HttpSession getSessao() {
@@ -129,8 +134,9 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
+     * <p>
      * Muda o status do projeto para em pré-avaliação quando o gerente recebe
-     * uma excepition na página de pré-avaliar.
+     * uma excepition na página de pré-avaliar.</p>
      */
     private void mudaStatusProjeto() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -145,7 +151,8 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
-     * Procura a causa de uma exeção jogada.
+     * <p>
+     * Procura a causa de uma exceção jogada.</p>
      *
      * @param t
      * @return
