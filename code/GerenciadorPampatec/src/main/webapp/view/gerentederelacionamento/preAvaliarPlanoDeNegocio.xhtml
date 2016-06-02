@@ -37,23 +37,7 @@
         <meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
         -->
         
-        <script>
-             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-                setTimeout(function () {
-                    // sweetAlert: http://t4t5.github.io/sweetalert/
-                     sweetAlert({
-                        title: "Bah!", 
-                        text: "Sua sessão expirou!", 
-                        type: "error",
-                        confirmButtonColor: '#00A859'
-                    },function() {
-                        // Redireciona o usuário para a página de login.
-                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
-                });
-                }, (tempoMaxSessao - 1) * 1000);
-            // Falta retirar o tempo de redireção e espera, 
-            // para faze-lo unicamente quando o usuário clicar no OK.
-        </script>
+        
     </h:head>
     <h:body onload="mostrarMensagemCampoObrigatorio(); verificaComentariosPreAvaliar()">
 
