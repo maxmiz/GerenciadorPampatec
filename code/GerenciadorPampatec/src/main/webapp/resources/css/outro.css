@@ -165,11 +165,8 @@ and open the template in the editor.
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-    /*background-color: #62C462;*/
     color: black;
     background-image: linear-gradient(to top, #04DB22, #04DB85, #05FFE2);
-    /*    border-style: solid;
-        border-color: white;*/
 }
 
 #progressbar li.etapaAtual:before,  #progressbar li.etapaAtual:after{
@@ -181,7 +178,6 @@ and open the template in the editor.
 }
 
 #progressbar li.etapaSelecionada:before,  #progressbar li.etapaSelecionada:after{
-    /*background-color: #62C462;*/
     border-width: 2px;
     border-style: solid;
     border-color: yellow;
