@@ -60,7 +60,7 @@ public class LoginBean {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Origem: "+this.getClass().getName()+ ":: \t Exceção inesperada" + e);
+            System.out.println("Origem: " + this.getClass().getName() + ":: \t Exceção inesperada" + e);
         }
         return false;
     }
@@ -88,7 +88,8 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getInicioRevisar() {
+
+    public void getInicioRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
         } catch (IOException ex) {
@@ -138,7 +139,8 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getVisualizarPlanosRevisar() {
+
+    public void getVisualizarPlanosRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
@@ -155,17 +157,18 @@ public class LoginBean {
     }
 
     /**
-     * <p>Método para redirecionar o usuário para a página de login, 
-     * invocado de uma das páginas de erro do diretório WEB-INF.</p>
+     * <p>
+     * Método para redirecionar o usuário para a página de login, invocado de
+     * uma das páginas de erro do diretório WEB-INF.</p>
      */
-    public void voltarDoErroParaLogin(){
+    public void voltarDoErroParaLogin() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/loginEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      *
      * @param user
@@ -221,26 +224,28 @@ public class LoginBean {
     }
 
     /**
-     * método verifica a pessoa se a pessoa logada na sessao é um empreendedor, se for, retorna seu nome.
-     * se não, retorna o nome do gerente logado na sessao
+     * método verifica a pessoa se a pessoa logada na sessao é um empreendedor,
+     * se for, retorna seu nome. se não, retorna o nome do gerente logado na
+     * sessao
+     *
      * @return usuario Logado
      */
-    public String retornaNomeLogado(){
-        
+    public String retornaNomeLogado() {
+
         String usuarioLogado;
         GerenteRelacionamento gerente;
         Empreendedor empreendedor = (Empreendedor) getSession().getAttribute("empreendedor");
-        
-        if (empreendedor == null) { 
-        gerente = (GerenteRelacionamento) getSession().getAttribute("gerente");
-        usuarioLogado = gerente.getNome(); 
-        
-        }else{
+
+        if (empreendedor == null) {
+            gerente = (GerenteRelacionamento) getSession().getAttribute("gerente");
+            usuarioLogado = gerente.getNome();
+
+        } else {
             usuarioLogado = empreendedor.getNome();
         }
         return usuarioLogado;
     }
-    
+
     /**
      *
      * @param user
@@ -327,13 +332,29 @@ public class LoginBean {
         }
 
     }
+/**
+ * <p>
+ * Metodo verifica se a sessão nao é nula,
+ * Então força a morte dela (Invalida a Sessão).
+ * </p>
+ */
+    public void mataSessao() {
+        if (getSession() != null) {
+
+            getSession().invalidate();
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
+        }else{
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
+        }
+    }
 
     /**
      * <p>
      * Verifica se a String contem apenas números.
      * </p>
+     *
      * @param texto
-     * @return 
+     * @return
      */
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
@@ -411,12 +432,12 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Mostra a mensagem de fim de sessão chamando um método do javascript e
      * invalidando a sessão.
      */
-    public void mostraMensagemSessao(){
+    public void mostraMensagemSessao() {
         session.invalidate();
         RequestContext.getCurrentInstance().execute("mostraMensagemFimSessao();");
     }
@@ -476,11 +497,12 @@ public class LoginBean {
     public void setSession(HttpSession session) {
         this.session = session;
     }
-    
+
     /**
-     * <p>Método que força uma exceção para testar o tratamento das mesmas.</p>
+     * <p>
+     * Método que força uma exceção para testar o tratamento das mesmas.</p>
      */
-    public void geraExcecao(){
-        int zero = 1/0;
+    public void geraExcecao() {
+        int zero = 1 / 0;
     }
 }
