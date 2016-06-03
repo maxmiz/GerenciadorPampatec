@@ -726,6 +726,7 @@ Adicionar Comentário e Histórico de comentários
     border-style: solid; 
     border-color: #c1c1c1;
     padding: 15px 25px 15px 15px;
+    margin-top: 3px;
     background-color: #f1f1f1;
     max-height: 300px;
     color: #34402b;
@@ -791,4 +792,57 @@ Adicionar Comentário e Histórico de comentários
 
 #imagemPaginaErro{
    /*Estilizar a imagem das páginas de erro.*/
+}
+
+.div-separacao{
+    padding: 6px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.navbar-default{
+    box-shadow: 0px 10px 14px -7px #3e7327;
+    background:linear-gradient(to bottom, #00a85a 5%, #05914f 100%);
+    background-color:#00a85a;
+    border:1px solid #4b8f29;
+    text-shadow:0px 1px 0px #5b8a3c;
+    
+}
+
+.aComoBotaoMenu{
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    text-decoration:none;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #00a85a), color-stop(1, #05914f));
+    background:-moz-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-webkit-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-o-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:-ms-linear-gradient(top, #00a85a 5%, #05914f 100%);
+    background:linear-gradient(to bottom, #00a85a 5%, #05914f 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a85a', endColorstr='#05914f',GradientType=0);
+    background-color:#00a85a;
+    text-shadow:0px 1px 0px #5b8a3c;
+}
+
+.aComoBotaoMenu:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #05914f), color-stop(1, #00a85a));
+    background:-moz-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-webkit-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-o-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:-ms-linear-gradient(top, #05914f 5%, #00a85a 100%);
+    background:linear-gradient(to bottom, #05914f 5%, #00a85a 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#05914f', endColorstr='#00a85a',GradientType=0);
+    background-color:#05914f;
+    text-decoration:none;
+    color:#ffffff;
+
+}
+.aComoBotaoMenu:active{
+    position:relative;
+    top:1px;
 }
