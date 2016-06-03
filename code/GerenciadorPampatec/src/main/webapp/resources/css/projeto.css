@@ -792,3 +792,15 @@ Adicionar Comentário e Histórico de comentários
 #imagemPaginaErro{
    /*Estilizar a imagem das páginas de erro.*/
 }
+
+.flip-clock-wrapper.sessionCoutdown{
+    float: right;
+    position: absolute;
+    padding: 10px;
+    z-index: 50;
+    background-color: aquamarine;
+    opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+    width: inherit;
+    border-radius: 3px;
+}
