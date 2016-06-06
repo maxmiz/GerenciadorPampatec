@@ -4,27 +4,34 @@
      * and open the template in the editor.
      */
 
+var clock;
+
 /**
+ * <p>Função ainda em implementaçao, não utilizar!</p>
  * 
  * @returns {undefined}
  */
 function sessionCountdown() {
-    var clock, countup;
-    clock = $('.your-clock').FlipClock(10, {
+    var countup;
+    clock = $('.your-clock').FlipClock(60, {
         countdown: true,
         clockFace: 'MinuteCounter',
         language: 'pt-br'
     });
 
     countup = setInterval(function () {
-        if (clock.getTime().time === -1) {
+        console.log(clock.getTime().time);
+        if (clock.getTime().time <= 0) {
+            console.log("No if: "+clock.getTime().time);
             showSweetAlert();
             clearInterval(countup);
         }
-    }, 500);
+    }, 800);
 }
 
 /**
+ * <p>Método que implementa o alerta da API SweetAlert, 
+ * para notificar o usuário que a sessão acabou. </p>
  * 
  * @returns {undefined}
  */
@@ -42,12 +49,4 @@ function showSweetAlert() {
             window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
         });
 //    }, (tempoMaxSessao - 1) * 1000);
-
-    /**
-     * O metodo é chamado no sweetAlert somente para ativar um controle remoto 
-     * esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
-     * @returns {undefined}
-     */
-    function triggerParaInvalidarSessao() {
-    }
 }
