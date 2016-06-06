@@ -61,7 +61,8 @@
 
                             <li class="dropdown">
                                 <h:commandLink value="Início" 
-                                               action="#{loginBean.getInicioGerente()}">
+                                               action="#{loginBean.getInicioGerente()}"
+                                               class="aComoBotaoMenu">
                                 </h:commandLink>
                             </li>
                             
@@ -75,15 +76,17 @@
                             </li>
                             -->
 
-                            <li>
-                                <h:commandLink value="Avaliar Planos de Negócio"
-                                               action="#{loginBean.getVisualizarPlanosGerente()}">
-                                    
-                                </h:commandLink>
+                            <li class="dropdown">
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Planos de negócio <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:commandLink value="Avaliar Planos de Negócio" action="#{gerenteDeRelacionamentosBean.visualizarProjetos()}"></h:commandLink>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <h:commandLink value="Perfil">

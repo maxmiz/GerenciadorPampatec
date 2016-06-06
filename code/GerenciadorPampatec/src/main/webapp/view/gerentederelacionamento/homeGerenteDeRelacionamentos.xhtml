@@ -9,6 +9,7 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="botaoCadastroNovoProjeto.css"  />
             <h:outputStylesheet library="css" name="sweetalert.css" />
+            <h:outputStylesheet library="css" name="projeto.css"  />
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
@@ -65,7 +66,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicioGerente()}"></h:commandLink>
+                                <h:commandLink value="Início" class="aComoBotaoMenu" action="#{loginBean.getInicioGerente()}"></h:commandLink>
                             </li>
                             
                             <!--
@@ -79,11 +80,16 @@
                             -->
                             
                             <li class="dropdown">
-                                <h:commandLink value="Avaliar Planos de Negócio" action="#{gerenteDeRelacionamentosBean.visualizarProjetos()}"></h:commandLink>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Planos de negócio <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:commandLink value="Avaliar Planos de Negócio" action="#{gerenteDeRelacionamentosBean.visualizarProjetos()}"></h:commandLink>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><h:commandLink value="Perfil"></h:commandLink></li>
                                     <li>
