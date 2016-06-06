@@ -249,6 +249,7 @@
                                     <b>Nome da Empresa ou Projeto* <p:commandLink  value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" class="form-control" 
                                                  value="#{preAvaliarPlanoBean.projeto.nome}"
+                                                 title="#{preAvaliarPlanoBean.projeto.nome}"
                                                  disabled="true"
                                                  >
                                     </p:inputText>
@@ -327,7 +328,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -413,7 +414,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -498,7 +499,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.atividadeChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -698,7 +699,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.parceriasChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -784,7 +785,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.canais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -867,7 +868,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -949,7 +950,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.concorrentes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1066,7 +1067,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="2"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1149,7 +1150,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="2"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1233,7 +1234,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                    
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1316,7 +1317,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.aplicacoes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                         
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1399,7 +1400,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1482,7 +1483,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5">
+                                                     rows="4">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1564,7 +1565,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1647,7 +1648,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.infraestrutura.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1766,7 +1767,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1851,7 +1852,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1973,7 +1974,7 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.fontesReceita}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.fontesReceita.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -2057,7 +2058,7 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
 
                                     </h:inputTextarea>
@@ -2143,7 +2144,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -2539,4 +2540,3 @@
         </h:form>
     </h:body>
 </html>
-
