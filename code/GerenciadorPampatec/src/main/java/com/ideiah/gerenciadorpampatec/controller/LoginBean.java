@@ -332,18 +332,19 @@ public class LoginBean {
         }
 
     }
-/**
- * <p>
- * Metodo verifica se a sessão nao é nula,
- * Então força a morte dela (Invalida a Sessão).
- * </p>
- */
+    
+    /**
+     * <p>
+     * método verifica se a sessão não é nula, Então força a morte dela
+     * (Invalida a Sessão).
+     * </p>
+     */
     public void mataSessao() {
         if (getSession() != null) {
 
             getSession().invalidate();
             System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
-        }else{
+        } else {
             System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
         }
     }
@@ -504,5 +505,16 @@ public class LoginBean {
      */
     public void geraExcecao() {
         int zero = 1 / 0;
+    }
+    
+    /**
+     * <p>
+     * Método que renova a sessão do usuário, pois ele é chamado pelo botão
+     * "Renovar Sessão" presente no relógio da sessão, e ao realizar uma
+     * requisição no servidor, a mesma é renovada.</p>
+     */
+    public void renovaSessaoUsuario() {
+        System.out.println("From: LoginBean Method: renovaSessaoUsuario()"
+                + "\t Message: Sessão renovada com sucesso!");
     }
 }
