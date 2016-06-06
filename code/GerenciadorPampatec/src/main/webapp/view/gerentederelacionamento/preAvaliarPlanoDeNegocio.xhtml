@@ -36,7 +36,16 @@
                mas respeitando o tempo sessão de forma correta.
         <meta http-equiv="refresh" content="{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>
         -->
-        
+        <script>
+            $(document).ready(function() {                        
+                $('#submit').click(function(event) {  
+                    var username=$('#user').val();
+                 $.get('#{request.contextPath}/SessionServlet',{user:username},function(responseText) { 
+                        //$('#welcometext').text(responseText);         
+                    });
+                });
+            });
+        </script>
         
     </h:head>
     <h:body onload="mostrarMensagemCampoObrigatorio(); verificaComentariosPreAvaliar()">
@@ -2513,6 +2522,8 @@
                 </div>
             </div>
             <div class="col-md-1"></div>
+            <button id="submit" type="button" style="display: none;">TESTE</button>
+            <input id="user" type="text"style="display: none;"></input>
         </h:form>
     </h:body>
 </html>
