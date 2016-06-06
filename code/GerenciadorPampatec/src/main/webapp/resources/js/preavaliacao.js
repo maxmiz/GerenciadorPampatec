@@ -584,16 +584,22 @@ function atualizaTimeOutSessao(){
 /**
  * @description Metodo que exibe ou esconde os campos de mostrar comentarios do historico na realizar pré-avaliação
  * @param {type} idCampo
+ * @param {type} idDiv
  * @returns {undefined}
  */
-function mostrarFeedBackHistorico(idCampo) {
+function mostrarFeedBackHistorico(idCampo, idDiv) {
     var campo = document.getElementById(idCampo);
+    var div = document.getElementById(idDiv);
     if ($(campo).hasClass("campoFeedBackOn historicoComentario")) {
         $(campo).fadeOut(900);
+        $(div).fadeOut(900);
         campo.setAttribute("class", "campoFeedBack historicoComentario");
+        div.setAttribute("class", "campoFeedBack col-md-12 div-separacao");
     } else {
         $(campo).fadeIn(900);
+        $(div).fadeIn(900);
         campo.setAttribute("class", "campoFeedBackOn historicoComentario");
+        div.setAttribute("class", "campoFeedBackOn col-md-12 div-separacao");
     }
 }
 
