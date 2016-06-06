@@ -830,7 +830,7 @@ Adicionar Comentário e Histórico de comentários
     text-shadow:0px 1px 0px #5b8a3c;
 }
 
-.aComoBotaoMenu:hover {
+.aComoBotaoMenu:hover, .aComoBotaoMenu:focus {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #05914f), color-stop(1, #00a85a));
     background:-moz-linear-gradient(top, #05914f 5%, #00a85a 100%);
     background:-webkit-linear-gradient(top, #05914f 5%, #00a85a 100%);
@@ -839,7 +839,7 @@ Adicionar Comentário e Histórico de comentários
     background:linear-gradient(to bottom, #05914f 5%, #00a85a 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#05914f', endColorstr='#00a85a',GradientType=0);
     background-color:#05914f;
-    text-decoration:none;
+    text-shadow: 5px 5px 4px #004F2B;
     color:#ffffff;
 
 }
