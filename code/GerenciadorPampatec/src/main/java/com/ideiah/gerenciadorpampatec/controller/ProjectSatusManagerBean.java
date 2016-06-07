@@ -27,9 +27,7 @@ public class ProjectSatusManagerBean {
      * é finalizada.
      * </p>
      */
-    protected void tratamentoSessaoSendoAvaliado() {
-        System.out.println("Entou no PSMB...");
-        
+    public void tratamentoSessaoSendoAvaliado() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");

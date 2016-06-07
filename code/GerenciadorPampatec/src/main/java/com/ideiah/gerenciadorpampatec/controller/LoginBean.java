@@ -342,7 +342,10 @@ public class LoginBean {
     public void mataSessao() {
         if (getSession() != null) {
 
+            ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+            psmb.tratamentoSessaoSendoAvaliado();            
             getSession().invalidate();
+            
             System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
         } else {
             System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
