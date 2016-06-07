@@ -257,7 +257,7 @@
                         <li class="abaPlano"><a id="tabProdutoServico" aria-expanded="false" href="#formParte04" data-toggle="tab">Produto de Serviço</a></li>
                         <li class="abaPlano"><a id="tabGestaoPessoas" aria-expanded="false" href="#formParte05" data-toggle="tab">Gestão de Pessoas</a></li>
                         <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
-                        <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliar</a></li>
+                        <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" href="#formParte07" data-toggle="tab">Avaliar<f:ajax execute="@form" render="formulario_comentarpreavalizar:mensagemStatusAvaliacao" event="click" /></a></li>
                     </ul>
                     </div>
                     <div id="myTabContent" class="tab-content" >
@@ -274,7 +274,7 @@
                                     <b>Nome da Empresa ou Projeto* <p:commandLink  value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" class="form-control" 
                                                  value="#{preAvaliarPlanoBean.projeto.nome}"
-                                             
+                                                 
                                                  disabled="true"
                                                  
                                                  >
