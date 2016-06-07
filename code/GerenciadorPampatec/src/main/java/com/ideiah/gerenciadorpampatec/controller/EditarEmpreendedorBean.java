@@ -7,7 +7,6 @@ import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -25,7 +24,7 @@ import org.primefaces.context.RequestContext;
 @ManagedBean(name = "editarEmpreendedorBean")
 @ViewScoped
 
-public class EditarEmpreendedorBean implements Serializable{
+public class EditarEmpreendedorBean {
 
     private Empreendedor empreendedor;
     private EmpreendedorEmail empreendedorEmail;
