@@ -23,19 +23,22 @@ public class ProjectSatusManagerBean {
 
     /**
      * <p>
-     * Muda o status do projeto para em pré-avaliação quando a sessão do gerente
-     * é finalizada.
+     * Muda o status do projeto para em pré-avaliação quando antes da sessão do
+     * gerente ser finalizada.
      * </p>
      */
-    public void tratamentoSessaoSendoAvaliado() {
+    public synchronized void tratamentoSessaoSendoAvaliado() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
         Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
 
-        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+        if (gerente != null && projeto != null
+                && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+
             projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
             session.removeAttribute("projetoSelecionado");
+            session.invalidate();
         }
     }
 }

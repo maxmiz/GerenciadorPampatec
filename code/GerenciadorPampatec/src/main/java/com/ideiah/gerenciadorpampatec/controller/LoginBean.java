@@ -332,25 +332,6 @@ public class LoginBean {
         }
 
     }
-    
-    /**
-     * <p>
-     * método verifica se a sessão não é nula, Então força a morte dela
-     * (Invalida a Sessão).
-     * </p>
-     */
-    public void mataSessao() {
-        if (getSession() != null) {
-
-            ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
-            psmb.tratamentoSessaoSendoAvaliado();            
-            getSession().invalidate();
-            
-            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
-        } else {
-            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
-        }
-    }
 
     /**
      * <p>
@@ -504,14 +485,6 @@ public class LoginBean {
 
     /**
      * <p>
-     * Método que força uma exceção para testar o tratamento das mesmas.</p>
-     */
-    public void geraExcecao() {
-        int zero = 1 / 0;
-    }
-    
-    /**
-     * <p>
      * Método que renova a sessão do usuário, pois ele é chamado pelo botão
      * "Renovar Sessão" presente no relógio da sessão, e ao realizar uma
      * requisição no servidor, a mesma é renovada.</p>
@@ -519,5 +492,23 @@ public class LoginBean {
     public void renovaSessaoUsuario() {
         System.out.println("From: LoginBean Method: renovaSessaoUsuario()"
                 + "\t Message: Sessão renovada com sucesso!");
+    }
+    
+    /**
+     * <p>
+     * Método verifica se a sessão existe, caso positivo chama o método que
+     * trabalha com a sessão e o status do projeto, da classe
+     * <code>ProjectSatusManagerBean</code>.</p>
+     */
+    public synchronized void mataSessao() {
+        if (getSession() != null) {
+
+            ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+            psmb.tratamentoSessaoSendoAvaliado();
+
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
+        } else {
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
+        }
     }
 }
