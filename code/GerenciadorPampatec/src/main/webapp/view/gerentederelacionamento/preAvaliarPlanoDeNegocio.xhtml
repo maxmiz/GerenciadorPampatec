@@ -33,7 +33,7 @@
                 .noprint { display:none; } 
             }
         </style>
-       <script>
+        <script>
             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
 
             /**
@@ -105,8 +105,12 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaInicio()}" />       
-
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Planos de negócio <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:commandLink value="Avaliar Planos de Negócio" action="#{gerenteDeRelacionamentosBean.visualizarProjetos()}"></h:commandLink>
+                                    </li>
+                                </ul>
                             </li>
 
                             <!--
@@ -120,11 +124,11 @@
                             -->
 
                             <li class="dropdown">
-                                <h:commandLink value="Avaliar Planos de Negócio" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}"/>
+                                <h:commandLink class="aComoBotaoMenu" value="Avaliar Planos de Negócio" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaLista()}"/>
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><h:commandLink  value="Perfil"></h:commandLink></li>
                                     <li>
@@ -271,7 +275,9 @@
                                     <b>Nome da Empresa ou Projeto* <p:commandLink  value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" class="form-control" 
                                                  value="#{preAvaliarPlanoBean.projeto.nome}"
+                                                 title="#{preAvaliarPlanoBean.projeto.nome}"
                                                  disabled="true"
+                                                 title="#{preAvaliarPlanoBean.projeto.nome}"
                                                  >
                                     </p:inputText>
                                     <br/>
@@ -349,7 +355,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -357,13 +363,13 @@
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioSegmento" 
                                                 type="button" icon="fa fa-pencil" value="Adicionar Comentário"  
-                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2','formulario_comentarpreavalizar:adicionarComentarioSegmento', 'formulario_comentarpreavalizar:alteracaoSegmento')"> </p:commandButton>
+                                                onclick="mostrarFeedBack('formulario_comentarpreavalizar:segmentoDeCliente2')"> </p:commandButton>
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Visualizar histórico de comentários" 
                                                 id="historicoComentarioSegmento" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoSegmentoDeCliente')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoSegmentoDeCliente', 'separacaoHistoricoSegmento')">
                                         </p:commandButton>
 
                                     </div>
@@ -399,6 +405,7 @@
                                         </h:inputTextarea>
                                      </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoSegmento" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoSegmentoDeCliente" 
                                                       style="resize: none;"
@@ -434,7 +441,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.propostaValor.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -449,7 +456,7 @@
                                                 id="botaoHistoricoComentarioProposta" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPropostaDeValor')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPropostaDeValor', 'separacaoHistoricoProposta')">
                                         </p:commandButton>    
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -481,6 +488,7 @@
 
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoProposta" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoPropostaDeValor" 
                                                       style="resize: none;"
@@ -518,7 +526,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.atividadeChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -534,7 +542,7 @@
                                                 id="botaoHistoricoComentarioAtividades" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAtividadesChave')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAtividadesChave', 'separacaoHistoricoAtividades')">
                                         </p:commandButton>  
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -566,6 +574,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoAtividades" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoAtividadesChave" 
                                                       style="resize: none;"
@@ -648,7 +657,7 @@
                                                 id="botaoHistoricoComentarioRelacaoCliente" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRelacaoCliente')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRelacaoCliente', 'separacaoHistoricoRelacionamentoCliente')">
                                         </p:commandButton>  
                                         
                                     </div>
@@ -681,6 +690,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoRelacionamentoCliente" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoRelacaoCliente" 
                                                       style="resize: none;"
@@ -716,7 +726,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.parceriasChave.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -731,7 +741,7 @@
                                                 id="botaoHistoricoComentarioParceria" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParceriasChave')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParceriasChave', 'separacaoHistoricoParcerias')">
                                         </p:commandButton>  
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -766,6 +776,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoParcerias" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoParceriasChave" 
                                                       style="resize: none;"
@@ -801,7 +812,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.canais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -816,7 +827,7 @@
                                                 id="botaoHistoricoComentarioCanais" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCanais')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCanais', 'separacaoHistoricoCanais')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -848,6 +859,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoCanais" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoCanais" 
                                                       style="resize: none;"
@@ -883,7 +895,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -898,7 +910,7 @@
                                                 id="botaoHistoricoComentarioRecursosPrincipais" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRecursosPrincipais')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoRecursosPrincipais', 'separacaoHistoricoRecursosP')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -930,6 +942,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoRecursosP" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoRecursosPrincipais" 
                                                       style="resize: none;"
@@ -964,7 +977,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.concorrentes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -979,7 +992,7 @@
                                                 id="botaoHistoricoComentarioConcorrentes" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoConcorrentes')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoConcorrentes', 'separacaoHistoricoConcorrentes')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1011,6 +1024,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoConcorrentes" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoConcorrentes" 
                                                       style="resize: none;"
@@ -1080,7 +1094,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="2"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1095,7 +1109,7 @@
                                                 id="botaoHistoricoComentarioEstagio" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstagioEvolucao')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstagioEvolucao', 'separacaoHistoricoEstagioEv')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1127,6 +1141,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoEstagioEv" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoEstagioEvolucao" 
                                                       style="resize: none;"
@@ -1162,7 +1177,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="2"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1177,7 +1192,7 @@
                                                 id="botaoHistoricoComentarioTecnologia" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoTecnologiaProcessos')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoTecnologiaProcessos', 'separacaoHistoricoTecnologiaP')">
                                         </p:commandButton>
                                     
                                     </div>
@@ -1210,6 +1225,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoTecnologiaP" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoTecnologiaProcessos" 
                                                       style="resize: none;"
@@ -1245,7 +1261,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                    
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1260,7 +1276,7 @@
                                                 id="botaoHistoricoComentarioPotencial" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialInovacaoTecnologica')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialInovacaoTecnologica', 'separacaoHistoricoPotencialInovacao')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1292,6 +1308,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoPotencialInovacao" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoPotencialInovacaoTecnologica" 
                                                       style="resize: none;"
@@ -1327,7 +1344,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.aplicacoes.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                         
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1342,7 +1359,7 @@
                                                 id="botaoHistoricoComentarioAplicacao" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAplicacao')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoAplicacao', 'separacaoHistoricoAplicacoes')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1374,6 +1391,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoAplicacoes" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoAplicacao" 
                                                       style="resize: none;"
@@ -1409,7 +1427,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1424,7 +1442,7 @@
                                                 id="botaoHistoricoComentarioDificuldades" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoDificuldadesEsperadas')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoDificuldadesEsperadas', 'separacaoHistoricoDificuldades')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1456,6 +1474,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoDificuldades" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoDificuldadesEsperadas" 
                                                       style="resize: none;"
@@ -1491,7 +1510,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5">
+                                                     rows="4">
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1505,7 +1524,7 @@
                                                 id="botaoHistoricoComentarioInteracaoUniversidade" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoUniversidade')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoUniversidade', 'separacaoHistoricoInteracaoUniversidade')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1537,6 +1556,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoInteracaoUniversidade" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoInteracaoUniversidade" 
                                                       style="resize: none;"
@@ -1572,7 +1592,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1587,7 +1607,7 @@
                                                 id="botaoHistoricoComentarioInteracaoComunidade" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoComunidade')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInteracaoComunidade', 'separacaoHistoricoInteracaoComunidade')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1619,6 +1639,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoInteracaoComunidade" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoInteracaoComunidade" 
                                                       style="resize: none;"
@@ -1654,7 +1675,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.infraestrutura.texto ? 'form-control campoDestacado' : 'form-control semResize'}"                                                                                                                                                              
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1669,7 +1690,7 @@
                                                 id="botaoHistoricoComentarioInfraEstrutura" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInfraEstrutura')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInfraEstrutura', 'separacaoHistoricoInfra')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1701,6 +1722,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoInfra" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoInfraEstrutura" 
                                                       style="resize: none;"
@@ -1772,7 +1794,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1787,7 +1809,7 @@
                                                 id="botaoHistoricoComentarioDescricao" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParticipacaoAcionaria')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoParticipacaoAcionaria', 'separacaoHistoricoParticipacaoAcionaria')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1822,6 +1844,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoParticipacaoAcionaria" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoParticipacaoAcionaria" 
                                                       style="resize: none;"
@@ -1856,7 +1879,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="3"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1871,7 +1894,7 @@
                                                 id="botaoHistoricoComentarioPotencialRenda" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialEmprego')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPotencialEmprego', 'separacaoHistoricoPotencialEmprego')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -1906,6 +1929,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoPotencialEmprego" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoPotencialEmprego" 
                                                       style="resize: none;"
@@ -1977,7 +2001,7 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.fontesReceita}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.fontesReceita.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -1992,7 +2016,7 @@
                                                 id="botaoHistoricoComentarioFontes" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoFontesReceita')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoFontesReceita', 'separacaoHistoricoFontesReceita')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -2026,6 +2050,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoFontesReceita" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoFontesReceita" 
                                                       style="resize: none;"
@@ -2060,7 +2085,7 @@
                                                      value="#{preAvaliarPlanoBean.projeto.planofinanceiro.estruturaCusto}"
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
-                                                     rows="5"
+                                                     rows="6"
                                                      >
 
                                     </h:inputTextarea>
@@ -2076,7 +2101,7 @@
                                                 id="botaoHistoricoComentarioEstruturaCustos" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstruturaCustos')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoEstruturaCustos', 'separacaoHistoricoEstruturaCustos')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -2111,6 +2136,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoEstruturaCustos" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoEstruturaCustos" 
                                                       style="resize: none;"
@@ -2145,7 +2171,7 @@
                                                      styleClass="#{not empty preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.texto ? 'form-control campoDestacado' : 'form-control semResize'}"
                                                      readonly="true"
                                                      style="cursor: not-allowed"
-                                                     rows="5"
+                                                     rows="4"
                                                      >
                                     </h:inputTextarea>
                                     <div class="col-md-12 espaco">
@@ -2160,7 +2186,7 @@
                                                 id="botaoHistoricoComentarioInvestimentoInicial" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInvestimentoInicial')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoInvestimentoInicial', 'separacaoHistoricoInvestimentoInicial')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -2196,6 +2222,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoInvestimentoInicial" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoInvestimentoInicial" 
                                                       style="resize: none;"
@@ -2259,7 +2286,7 @@
                                                 id="botaoHistoricoComentarioCustosFixos" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosFixos')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosFixos', 'separacaoHistoricoCustosFixos')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -2291,6 +2318,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoCustosFixos" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoCustosFixos" 
                                                       style="resize: none;"
@@ -2352,7 +2380,7 @@
                                                 id="botaoHistoricoComentarioCustosVariaveis" 
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
-                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosVariaveis')">
+                                                onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoCustosVariaveis', 'separacaoHistoricoCustosVariaveis')">
                                         </p:commandButton>
                                     </div>
                                     <div class="has-success col-md-12 espaco">
@@ -2387,6 +2415,7 @@
                                         </h:inputTextarea>
                                     </div>
                                     <div class="col-md-12 espaco">
+                                        <div id="separacaoHistoricoCustosVariaveis" class="campoFeedBack col-md-12 div-separacao" align="center"></div>
                                         <h:panelGroup class="campoFeedBack historicoComentario"
                                                       id="historicoCustosVariaveis" 
                                                       style="resize: none;"
@@ -2535,7 +2564,8 @@
                 </div>
             </div>
             <div class="col-md-1"></div>
+            <button id="submit" type="button" style="display: none;">TESTE</button>
+            <input id="user" type="text"style="display: none;"></input>
         </h:form>
     </h:body>
 </html>
-
