@@ -218,7 +218,7 @@
                                 <h4 class="modal-title">Terminar Pré-Avaliação</h4>
                             </div>
                             <div class="modal-body">
-                                Ao clicar no botão <strong><u>Confirmar Envio</u></strong> a sua avaliação do Plano de Negócio será salva e enviada para o <strong>Empreendedor</strong>. Após enviar o Plano de Negócio, este <strong>não poderá mais ser editado</strong>.
+                                Ao clicar no botão <strong><u>Confirmar Envio</u></strong> a sua avaliação do Plano de Negócio será enviada para o <strong>Empreendedor</strong>. Após enviar o Plano de Negócio, este <strong>não poderá mais ser editado</strong>.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" 
@@ -274,7 +274,7 @@
                                     <b>Nome da Empresa ou Projeto* <p:commandLink  value="(?)" actionListener="#{ajudaview.showMessage('nome')}"></p:commandLink></b><br/>
                                     <p:inputText id="empresaProjeto" class="form-control" 
                                                  value="#{preAvaliarPlanoBean.projeto.nome}"
-                                                 
+                                                 title="#{preAvaliarPlanoBean.projeto.nome}"
                                                  disabled="true"
                                                  
                                                  >
@@ -2270,9 +2270,7 @@
                                         </p:column>
 
                                     </p:dataTable>
-
-                                    <br/>     
-
+                                    
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
@@ -2469,7 +2467,7 @@
                                 <br/>
                                 <legend id="subTitulo" >Avaliar</legend>
                                 <br/>
-                                <b>Observações: <p:commandLink value="(?) " actionListener="#{ajudaview.showMessage('campoObservacoes')}"></p:commandLink></b>
+                                <b>Observações: </b>
                                 <div class="col-md-12 espaco has-success" id="observacoesPersonalizadas" title="Inserir Observações">
                                     <h:inputTextarea class="form-control semResize" 
                                                      onchange="precisaSalvar = true;"  
