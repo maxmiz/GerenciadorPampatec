@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.util.logging.Level;
@@ -43,6 +44,11 @@ public class ProjectSatusManagerBean {
                     && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
 
                 projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+                /**
+                 * Atualizando o objeto do projeto no banco de dados.
+                 */
+                ProjetoDao projetoDao = new ProjetoDao();
+                projetoDao.update(projeto);
                 session.removeAttribute("projetoSelecionado");
             }
             /**
