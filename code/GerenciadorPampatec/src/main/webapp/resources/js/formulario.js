@@ -679,7 +679,7 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_equipe");
 
