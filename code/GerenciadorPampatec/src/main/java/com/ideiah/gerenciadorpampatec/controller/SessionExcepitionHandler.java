@@ -52,16 +52,20 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
             if (getSessao() != null) {
                 //here you do what ever you want with exception
                 try {
-                    //log error
-                    //log.log(Level.SEVERE, "Critical Exception!", t);
+                    /**
+                     * Muda o status do projeto caso o usuário seja um gerente.
+                     */
                     ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
                     psmb.tratamentoSessaoSendoAvaliado();
-//                lidaExcepition(tCausa.getClass().toString());
                 } finally {
                     /**
-                     * Mata a sessão após uma exceção ser gerada no sistema.
+                     * Verifica se a sessão ainda não foi finalizada, caso
+                     * positivo mata a sessão após uma exceção ser gerada no
+                     * sistema.
                      */
-                    getSessao().invalidate();
+                    if (getSessao() != null) {
+                        getSessao().invalidate();
+                    }
                     /**
                      * Método que redireciona o usuário para a página de erro
                      * 500.
@@ -70,7 +74,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
                     //after exception is handeled, remove it from queue
                     i.remove();
                 }
-            }else{
+            } else {
                 redirecionaPaginaErro();
             }
         }
@@ -102,7 +106,6 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
 //            }
 //        }
 //    }
-
     /**
      * <p>
      * Método para redirecionar o usuário para a página de erro 500.</p>
@@ -154,7 +157,6 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
 //            session.removeAttribute("projetoSelecionado");
 //        }
 //    }
-
     /**
      * <p>
      * Procura a causa de uma exceção jogada.</p>
