@@ -411,7 +411,6 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
