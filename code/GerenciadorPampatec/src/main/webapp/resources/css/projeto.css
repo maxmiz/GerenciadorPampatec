@@ -8,10 +8,11 @@ html {
 }
 
 body{
+    margin: 0;
+    padding: 0;
     background: #fff;
     color: #727476;
 }
-
 
 .mensagemErro{
     background-color: #fc2f2f;
