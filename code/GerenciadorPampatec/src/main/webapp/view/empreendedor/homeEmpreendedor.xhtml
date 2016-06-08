@@ -3,8 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+<<<<<<< HEAD
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+=======
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+>>>>>>> develop
     <h:head>
 
         <f:facet name="last">
@@ -61,6 +65,7 @@
     <body>
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
+<<<<<<< HEAD
 
             <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
             <p:remoteCommand name="triggerParaInvalidarSessao" 
@@ -70,6 +75,13 @@
             <ui:insert name="menu">
                 <ui:include src="../templateMenuSuperior.xhtml" />
             </ui:insert>
+=======
+                <ui:insert name="menu">
+                    <ui:include src="../templateMenuSuperior.xhtml" />
+                </ui:insert>
+
+            
+>>>>>>> develop
             <!-- Fim do menu superior -->
 
             <!-- Inicio dos Modais apresentadas -->
@@ -109,6 +121,7 @@
             <!-- Fim das modais apresentadas -->
 
             <!-- Div botão Vizualizar/criar formulario e botão visualizar edital-->
+      
             <div class="col-md-12" text-align="center" style="padding-top: 1%">
 
                 <div class="col-md-4">

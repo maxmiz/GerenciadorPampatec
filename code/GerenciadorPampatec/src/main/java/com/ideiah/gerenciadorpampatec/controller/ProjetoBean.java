@@ -487,11 +487,18 @@ public class ProjetoBean implements Serializable {
         }
 
     }
+<<<<<<< HEAD
     
     /**
      * <p>
      * Cria o objeto plano de negocio e redireciona para a pagina EnviarProjeto,
      * voltando uma pasta no projeto.</p>
+=======
+    /**
+     * Cria o objeto plano de negocio 
+     * e redireciona para a pagina EnviarProjeto, 
+     * voltando uma pastano projeto.
+>>>>>>> develop
      */
     public void criarNovoPlanoRevisar(){
             criarObjetoPlano();
