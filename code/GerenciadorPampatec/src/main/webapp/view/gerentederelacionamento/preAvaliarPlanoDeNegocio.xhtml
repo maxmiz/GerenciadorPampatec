@@ -99,13 +99,13 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-6">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
                     </div>
                     <div class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" class="aComoBotaoMenu" action="#{loginBean.getInicioGerente()}"></h:commandLink>
+                                <h:commandLink value="Início" class="aComoBotaoMenu" action="#{preAvaliarPlanoBean.mudaStatusRedirecionaInicio()}"></h:commandLink>
                             </li>
 
                             <!--
@@ -419,7 +419,7 @@
                                                                            layout="block">
                                                                  <b><b>#{comentario.gerenteRelacionamento.nome}</b></b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -502,7 +502,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -588,7 +588,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -704,7 +704,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -790,7 +790,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -873,7 +873,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -956,7 +956,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1038,7 +1038,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1155,7 +1155,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1239,7 +1239,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1322,7 +1322,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1405,7 +1405,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1488,7 +1488,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1570,7 +1570,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1653,7 +1653,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1736,7 +1736,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1858,7 +1858,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -1943,7 +1943,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -2064,7 +2064,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -2150,7 +2150,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -2236,7 +2236,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -2330,7 +2330,7 @@
                                                                            layout="block">
                                                                  <b>#{comentario.gerenteRelacionamento.nome}</b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
@@ -2427,7 +2427,7 @@
                                                                            layout="block">
                                                                  <b><b>#{comentario.gerenteRelacionamento.nome}</b></b> às 
                                                                  #{comentario.dataSubmissao.hours}:#{comentario.dataSubmissao.minutes}:#{comentario.dataSubmissao.seconds} de 
-                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month}/#{comentario.dataSubmissao.year+1900}: 
+                                                                 #{comentario.dataSubmissao.date}/#{comentario.dataSubmissao.month+1}/#{comentario.dataSubmissao.year+1900}: 
                                                                  <p>#{comentario.texto}</p>
                                                              </h:panelGroup>
                                                         </ui:repeat>
