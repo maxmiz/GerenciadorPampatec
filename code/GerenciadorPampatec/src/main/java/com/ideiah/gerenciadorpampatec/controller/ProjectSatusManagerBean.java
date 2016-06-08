@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  * <p>
- * Classe para gerenciar o status do projeto em todo o sistema. 
- * Migrar para essa classe os tratamentos de status do projeto.</p>
+ * Classe para gerenciar o status do projeto em todo o sistema. Migrar para essa
+ * classe os tratamentos de status do projeto.</p>
  *
  * @author Ideiah PC
  * @since 07-06-2016
@@ -27,8 +27,9 @@ public class ProjectSatusManagerBean {
 
     /**
      * <p>
-     * Muda o status do projeto para em pré-avaliação quando antes da sessão do
-     * gerente ser finalizada.
+     * Muda o status do projeto para em pré-avaliação antes da sessão do gerente
+     * ser finalizada. Caso o usuário logado seja um Empreendedor, a sessão é
+     * encerrada sem alterar os dados dos projetos.
      * </p>
      */
     public synchronized void tratamentoSessaoSendoAvaliado() {
