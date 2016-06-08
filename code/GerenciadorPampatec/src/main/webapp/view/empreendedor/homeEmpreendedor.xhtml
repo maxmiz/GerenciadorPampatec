@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <f:facet name="last">
@@ -50,55 +51,11 @@
     <body>
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
-            <nav class="navbar navbar-default pampaTec">
-                <div class="container-fluid pampaTec">
-                    <div class="col-md-6">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{empreendedorBean.empreendedor.nome}!"></h:outputText></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="nav navbar-nav navbar-right pampaTec">
+                <ui:insert name="menu">
+                    <ui:include src="../templateMenuSuperior.xhtml" />
+                </ui:insert>
 
-                            <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
-                            </li>
-                            <!--
-                            <li class="">
-                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
-                                    Notificações
-                                    <span class="badge">
-                                        <h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
-                                    </span>
-                                    <f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
-                                </h:outputLink>
-                            </li>
-                            -->
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
-                                    <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
-                                        </h:commandLink>
-                                    </li>
-                                </ul>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
-
+            
             <!-- Fim do menu superior -->
 
             <!-- Inicio dos Modais apresentadas -->
@@ -138,6 +95,7 @@
             <!-- Fim das modais apresentadas -->
             
             <!-- Div botão Vizualizar/criar formulario e botão visualizar edital-->
+      
             <div class="col-md-12" text-align="center" style="padding-top: 1%">
 
                 <div class="col-md-4">
