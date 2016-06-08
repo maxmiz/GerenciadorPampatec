@@ -54,7 +54,8 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
                 try {
                     //log error
                     //log.log(Level.SEVERE, "Critical Exception!", t);
-                    mudaStatusProjeto();
+                    ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+                    psmb.tratamentoSessaoSendoAvaliado();
 //                lidaExcepition(tCausa.getClass().toString());
                 } finally {
                     /**
@@ -142,17 +143,17 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
      * Muda o status do projeto para em pré-avaliação quando o gerente recebe
      * uma excepition na página de pré-avaliar.</p>
      */
-    private void mudaStatusProjeto() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
-        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
-
-        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-            session.removeAttribute("projetoSelecionado");
-        }
-    }
+//    private void mudaStatusProjeto() {
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+//        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
+//        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
+//
+//        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+//            session.removeAttribute("projetoSelecionado");
+//        }
+//    }
 
     /**
      * <p>
