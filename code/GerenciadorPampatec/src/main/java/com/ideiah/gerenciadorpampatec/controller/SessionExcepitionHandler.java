@@ -52,15 +52,20 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
             if (getSessao() != null) {
                 //here you do what ever you want with exception
                 try {
-                    //log error
-                    //log.log(Level.SEVERE, "Critical Exception!", t);
-                    mudaStatusProjeto();
-//                lidaExcepition(tCausa.getClass().toString());
+                    /**
+                     * Muda o status do projeto caso o usuário seja um gerente.
+                     */
+                    ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+                    psmb.tratamentoSessaoSendoAvaliado();
                 } finally {
                     /**
-                     * Mata a sessão após uma exceção ser gerada no sistema.
+                     * Verifica se a sessão ainda não foi finalizada, caso
+                     * positivo mata a sessão após uma exceção ser gerada no
+                     * sistema.
                      */
-                    getSessao().invalidate();
+                    if (getSessao() != null) {
+                        getSessao().invalidate();
+                    }
                     /**
                      * Método que redireciona o usuário para a página de erro
                      * 500.
@@ -69,7 +74,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
                     //after exception is handeled, remove it from queue
                     i.remove();
                 }
-            }else{
+            } else {
                 redirecionaPaginaErro();
             }
         }
@@ -101,7 +106,6 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
 //            }
 //        }
 //    }
-
     /**
      * <p>
      * Método para redirecionar o usuário para a página de erro 500.</p>
@@ -142,18 +146,17 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
      * Muda o status do projeto para em pré-avaliação quando o gerente recebe
      * uma excepition na página de pré-avaliar.</p>
      */
-    private void mudaStatusProjeto() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
-        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
-
-        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-            session.removeAttribute("projetoSelecionado");
-        }
-    }
-
+//    private void mudaStatusProjeto() {
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+//        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
+//        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
+//
+//        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+//            session.removeAttribute("projetoSelecionado");
+//        }
+//    }
     /**
      * <p>
      * Procura a causa de uma exceção jogada.</p>
