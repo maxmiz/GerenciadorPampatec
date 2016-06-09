@@ -66,13 +66,10 @@ public class LoginBean {
     }
 
     public void fazLogout() {
-
-        getSession().removeAttribute("empreendedor");
-        getSession().removeAttribute("projetoSelecionado");
-        MudarNome(null);
-        LoginBean.MudarSenha(null);
-        LoginBean.MudarUser(null);
-
+        ProjectSatusManagerBean managerBean = new ProjectSatusManagerBean();
+        managerBean.tratamentoSessaoSendoAvaliado();
+            //session.invalidate();
+        
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec");
         } catch (IOException ex) {
