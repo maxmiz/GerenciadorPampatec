@@ -17,53 +17,60 @@
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>        
         <h:outputScript library="js" name="sweetalert.min.js" />  
+        <h:outputScript library="js" name="sessionManager.js"/> 
         
         <title>Editar dados cadastrais</title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
+
         <script>
-             var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
-                setTimeout(function () {
-                    // sweetAlert: http://t4t5.github.io/sweetalert/
-                     sweetAlert({
-                        title: "Bah!", 
-                        text: "Sua sessão expirou!", 
-                        type: "error",
-                        confirmButtonColor: '#00A859'
-                    },function() {
-                        // Redireciona o usuário para a página de login.
-                        window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
-                });
-                }, (tempoMaxSessao - 1) * 1000);
-            // Falta retirar o tempo de redireção e espera, 
-            // para faze-lo unicamente quando o usuário clicar me OK.
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};            
+    
+            /**
+             * 
+             * @returns {undefined}
+             */
+            setTimeout(function () {
+                console.log("Mata a sessão e chama o Bah!");
+                showSweetAlert();
+            }, (tempoMaxSessao - 1) * 1000);
+
+            /**
+             * <p> Método de gatilho para invalidar a sessão do usuário, 
+             * caso essa ainda exista indevidamente.</p>
+             * 
+             * @returns {undefined}
+             */
+            function triggerParaInvalidarSessao() {
+                // O metodo é chamado no sweetAlert somente para ativar um controle remoto
+                // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
+            }
         </script>
     </h:head>
     <h:body>
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
+            
+            <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
+                <p:remoteCommand name="triggerParaInvalidarSessao" 
+                                 actionListener="#{loginBean.mataSessao()}"/>
+            <!-- Fim do Controle Remoto-->            
+            
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <div class="col-md-10">
+                    <div class="col-md-8">
+                    <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
+                </div>
+                <div class="col-md-4">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                <h:commandLink class="aComoBotaoMenu" value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
                             </li>
-                            <!--
-                            <li class="">
-                                <h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes">
-                                    Notificações
-                                    <span class="badge">
-                                        <h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"></h:outputText> 
-                                    </span>
-                                    <f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/>
-                                </h:outputLink>
-                            </li>
-                            -->
+
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -73,7 +80,7 @@
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
                                     <li>
@@ -82,9 +89,7 @@
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
                     </div>
                 </div>
             </nav>
@@ -131,8 +136,8 @@
         <!-- Fim do menu superior -->
 
 
-        <div class="col-md-3"></div>
-        <div class="col-md-6 form-horizontal well bs-component">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 form-horizontal well bs-component">
             <h1>Edite seus dados</h1>
             <div id="empreendedorLogin">
                 <legend>Dados do cadastro</legend>
@@ -355,6 +360,6 @@
             </div>
 
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-1"></div>
     </h:body>
 </html>

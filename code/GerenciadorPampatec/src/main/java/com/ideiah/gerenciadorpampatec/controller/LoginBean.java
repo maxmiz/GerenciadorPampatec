@@ -60,7 +60,7 @@ public class LoginBean {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Origem: "+this.getClass().getName()+ ":: \t Exceção inesperada" + e);
+            System.out.println("Origem: " + this.getClass().getName() + ":: \t Exceção inesperada" + e);
         }
         return false;
     }
@@ -88,7 +88,8 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getInicioRevisar() {
+
+    public void getInicioRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
         } catch (IOException ex) {
@@ -138,7 +139,8 @@ public class LoginBean {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void getVisualizarPlanosRevisar() {
+
+    public void getVisualizarPlanosRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
@@ -149,6 +151,19 @@ public class LoginBean {
     public void voltar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * <p>
+     * Método para redirecionar o usuário para a página de login, invocado de
+     * uma das páginas de erro do diretório WEB-INF.</p>
+     */
+    public void voltarDoErroParaLogin() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/loginEmpreendedor.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,7 +184,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     gerente = gerente.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 gerente = gerente.buscarPorEmail(user);
@@ -196,16 +211,39 @@ public class LoginBean {
 //                }
 
             } else {
-                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
 
         }
         return false;
+    }
+
+    /**
+     * método verifica a pessoa se a pessoa logada na sessao é um empreendedor,
+     * se for, retorna seu nome. se não, retorna o nome do gerente logado na
+     * sessao
+     *
+     * @return usuario Logado
+     */
+    public String retornaNomeLogado() {
+
+        String usuarioLogado;
+        GerenteRelacionamento gerente;
+        Empreendedor empreendedor = (Empreendedor) getSession().getAttribute("empreendedor");
+
+        if (empreendedor == null) {
+            gerente = (GerenteRelacionamento) getSession().getAttribute("gerente");
+            usuarioLogado = gerente.getNome();
+
+        } else {
+            usuarioLogado = empreendedor.getNome();
+        }
+        return usuarioLogado;
     }
 
     /**
@@ -223,7 +261,7 @@ public class LoginBean {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" CPF Inválido ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
@@ -240,12 +278,12 @@ public class LoginBean {
                     Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                FacesUtil.addErrorMessage(" Senha incorreta ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
 
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" Usuário não cadastrado ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
 
         }
@@ -299,8 +337,9 @@ public class LoginBean {
      * <p>
      * Verifica se a String contem apenas números.
      * </p>
+     *
      * @param texto
-     * @return 
+     * @return
      */
     public static boolean soContemNumeros(String texto) {
         if (texto == null) {
@@ -372,18 +411,17 @@ public class LoginBean {
 
     public void enviaBuscaProjeto() {
         try {
-
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Mostra a mensagem de fim de sessão chamando um método do javascript e
      * invalidando a sessão.
      */
-    public void mostraMensagemSessao(){
+    public void mostraMensagemSessao() {
         session.invalidate();
         RequestContext.getCurrentInstance().execute("mostraMensagemFimSessao();");
     }
@@ -442,5 +480,34 @@ public class LoginBean {
      */
     public void setSession(HttpSession session) {
         this.session = session;
+    }
+
+    /**
+     * <p>
+     * Método que renova a sessão do usuário, pois ele é chamado pelo botão
+     * "Renovar Sessão" presente no relógio da sessão, e ao realizar uma
+     * requisição no servidor, a mesma é renovada.</p>
+     */
+    public void renovaSessaoUsuario() {
+        System.out.println("From: LoginBean Method: renovaSessaoUsuario()"
+                + "\t Message: Sessão renovada com sucesso!");
+    }
+    
+    /**
+     * <p>
+     * Método verifica se a sessão existe, caso positivo chama o método que
+     * trabalha com a sessão e o status do projeto, da classe
+     * <code>ProjectSatusManagerBean</code>.</p>
+     */
+    public synchronized void mataSessao() {
+        if (getSession() != null) {
+
+            ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+            psmb.tratamentoSessaoSendoAvaliado();
+
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
+        } else {
+            System.out.println("From: LoginBean,  Method: mataSessao(), Message: Sessão Já Finalizada");
+        }
     }
 }

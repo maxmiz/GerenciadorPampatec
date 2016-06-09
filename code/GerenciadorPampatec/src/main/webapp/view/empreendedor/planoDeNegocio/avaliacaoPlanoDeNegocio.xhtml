@@ -10,19 +10,42 @@
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="outro.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js"/>
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>
 	<h:outputScript library="js" name="avaliacao.js" />		
         <h:outputScript library="js" name="chamaModal.js"/>        
-
+        <h:outputScript library="js" name="sweetalert.min.js" />  
+        <h:outputScript library="js" name="sessionManager.js"/> 
 
         <title>Avaliação do Plano de Negócio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
         <script> 
             var andamentoProjeto = #{revisarPlanoDeNegocioBean.retornaStatusProjeto()};
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};            
+    
+            /**
+             * 
+             * @returns {undefined}
+             */
+            setTimeout(function () {
+                console.log("Mata a sessão e chama o Bah!");
+                showSweetAlert();
+            }, (tempoMaxSessao - 1) * 1000);
+
+            /**
+             * <p> Método de gatilho para invalidar a sessão do usuário, 
+             * caso essa ainda exista indevidamente.</p>
+             * 
+             * @returns {undefined}
+             */
+            function triggerParaInvalidarSessao() {
+                // O metodo é chamado no sweetAlert somente para ativar um controle remoto
+                // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
+            }            
         </script>
         
         
@@ -32,16 +55,22 @@
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
+            
+            <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
+            <p:remoteCommand name="triggerParaInvalidarSessao" 
+                             actionListener="#{loginBean.mataSessao()}"/>
+            <!-- Fim do Controle Remoto-->   
+            
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-2">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.nome}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
                     </div>
                     <div class="col-md-10">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
+                                <h:commandLink class="aComoBotaoMenu" value="Início" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
                             </li>
                             <!--
                             <li class="">
@@ -55,7 +84,7 @@
                             </li>
                             -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Planos de Negócio
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -65,7 +94,7 @@
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedorRevisar()}" value="Perfil"></h:commandLink></li>
                                     <li>

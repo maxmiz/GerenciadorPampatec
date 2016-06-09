@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.io.IOException;
 import java.util.Iterator;
@@ -48,16 +49,33 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
             Throwable t = context.getException();
             Throwable tCausa = retornaCausa(t);
 
-            //here you do what ever you want with exception
-            try {
-                //log error
-                //log.log(Level.SEVERE, "Critical Exception!", t);
-
-                mudaStatusProjeto();
-                lidaExcepition(tCausa.getClass().toString());
-            } finally {
-                //after exception is handeled, remove it from queue
-                i.remove();
+            if (getSessao() != null) {
+                //here you do what ever you want with exception
+                try {
+                    /**
+                     * Muda o status do projeto caso o usuário seja um gerente.
+                     */
+                    ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+                    psmb.tratamentoSessaoSendoAvaliado();
+                } finally {
+                    /**
+                     * Verifica se a sessão ainda não foi finalizada, caso
+                     * positivo mata a sessão após uma exceção ser gerada no
+                     * sistema.
+                     */
+                    if (getSessao() != null) {
+                        getSessao().invalidate();
+                    }
+                    /**
+                     * Método que redireciona o usuário para a página de erro
+                     * 500.
+                     */
+                    redirecionaPaginaErro();
+                    //after exception is handeled, remove it from queue
+                    i.remove();
+                }
+            } else {
+                redirecionaPaginaErro();
             }
         }
         //let the parent handle the rest
@@ -65,32 +83,45 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
+     * <p>
      * Redireciona o usuário para uma tela dependendo da excepition que ele
-     * recebe.
+     * recebe.</p>
      *
      * @param nomeExecption
      */
-    private void lidaExcepition(String nomeExecption) {
+//    private void lidaExcepition(String nomeExecption) {
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        String errorPageLocation = null;
+//        if (nomeExecption.equals("javax.faces.application.ViewExpiredException")) {
+//            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
+//            redirecionaPagina(facesContext, errorPageLocation);
+//        } else if (nomeExecption.equals("com.sun.faces.mgbean.ManagedBeanCreationException")) {
+//            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
+//            redirecionaPagina(facesContext, errorPageLocation);
+//        } else {
+//            try {
+//                facesContext.getExternalContext().redirect("loginEmpreendedor.jsf");
+//            } catch (IOException ex) {
+//                Logger.getLogger(SessionExcepitionHandler.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//    }
+    /**
+     * <p>
+     * Método para redirecionar o usuário para a página de erro 500.</p>
+     */
+    private void redirecionaPaginaErro() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        String errorPageLocation = null;
-        if (nomeExecption.equals("javax.faces.application.ViewExpiredException")) {
-            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
-            redirecionaPagina(facesContext, errorPageLocation);
-        } else if (nomeExecption.equals("com.sun.faces.mgbean.ManagedBeanCreationException")) {
-            errorPageLocation = "/WEB-INF/errorpages/expired.xhtml";
-            redirecionaPagina(facesContext, errorPageLocation);
-        } else {
-            try {
-                facesContext.getExternalContext().redirect("loginEmpreendedor.jsf");
-            } catch (IOException ex) {
-                Logger.getLogger(SessionExcepitionHandler.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        String errorPageLocation;
+        errorPageLocation = "/WEB-INF/errorpages/500.xhtml";
+        redirecionaPagina(facesContext, errorPageLocation);
     }
 
     /**
-     * Redireciona para a página especificada.
-     * @param errorPageLocation 
+     * <p>
+     * Redireciona para a página especificada.</p>
+     *
+     * @param errorPageLocation
      */
     private void redirecionaPagina(FacesContext facesContext, String errorPageLocation) {
         facesContext.setViewRoot(facesContext.getApplication().getViewHandler().createView(facesContext, errorPageLocation));
@@ -99,23 +130,36 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
     }
 
     /**
-     * Muda o status do projeto para em pré-avaliação quando o gerente recebe
-     * uma excepition na página de pré-avaliar.
+     * <p>
+     * Método que retorna a sessão do usuário logado.</p>
+     *
+     * @return sessão do tipo HttpSession.
      */
-    private void mudaStatusProjeto() {
+    private HttpSession getSessao() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        GerenteDeRelacionamentosBean gerente = (GerenteDeRelacionamentosBean) session.getAttribute("gerente");
-        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
-
-        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
-            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
-            session.removeAttribute("projetoSelecionado");
-        }
+        return session;
     }
 
     /**
-     * Procura a causa de uma exeção jogada.
+     * <p>
+     * Muda o status do projeto para em pré-avaliação quando o gerente recebe
+     * uma excepition na página de pré-avaliar.</p>
+     */
+//    private void mudaStatusProjeto() {
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+//        GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
+//        Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
+//
+//        if (gerente != null && projeto != null && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
+//            projeto.setStatus(Projeto.EM_PRE_AVALIACAO);
+//            session.removeAttribute("projetoSelecionado");
+//        }
+//    }
+    /**
+     * <p>
+     * Procura a causa de uma exceção jogada.</p>
      *
      * @param t
      * @return

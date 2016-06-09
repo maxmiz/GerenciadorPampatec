@@ -458,8 +458,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "active etapaSelecionada");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -482,8 +482,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "etapaSelecionada active");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -506,8 +506,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "etapaSelecionada active");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -531,8 +531,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "etapaSelecionada active");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -555,8 +555,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "etapaSelecionada active");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -579,8 +579,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "etapaSelecionada active");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -603,8 +603,8 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
-            etapa2.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "active etapaSelecionada");
+            etapa2.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa2";
@@ -627,9 +627,9 @@ function carregaPagina() {
 
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaSelecionada");
+            etapa1.setAttribute("class", "active etapaSelecionada");
             etapa2.setAttribute("class", "active");
-            etapa3.setAttribute("class", "active, etapaAtual");
+            etapa3.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
             
             etapaAtualDoWorkflow = "etapa3";
@@ -654,7 +654,7 @@ function carregaPagina() {
             etapa1.setAttribute("class", "active");
             etapa2.setAttribute("class", "active");
             etapa3.setAttribute("class", "active");
-            etapa4.setAttribute("class", "active, etapaAtual");
+            etapa4.setAttribute("class", "active etapaAtual");
 
             var etapa = document.getElementById("etapa5");
             etapa.setAttribute("style", "cursor: default;");
@@ -668,7 +668,7 @@ function carregaPagina() {
             etapa2.setAttribute("class", "active");
             etapa3.setAttribute("class", "active");
             etapa4.setAttribute("class", "active");
-            etapa5.setAttribute("class", "active, etapaAtual");
+            etapa5.setAttribute("class", "active etapaAtual");
             etapaAtualDoWorkflow = "etapa5";
 
             break;
@@ -679,7 +679,7 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual");
+            etapa1.setAttribute("class", "active etapaAtual");
             mostra_vertical_elaboracao();
             var botao_preavaliacao = document.getElementById("botao_elaboracao_equipe");
 

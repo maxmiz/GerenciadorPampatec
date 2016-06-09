@@ -160,7 +160,10 @@ public class AjudaView {
             case "statusAvaliacao":
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atribuir Status de Avaliação", "Descricao");
                 break;
-
+                
+            case "observacoesPreDefinidas":
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Mensagem Pré Definida", "Este campo não pode ser alterado, ele trará uma mensagem padrão conforme a opção selecionada em avaliação.");
+                break;
         }
 
         RequestContext.getCurrentInstance().showMessageInDialog(message);
