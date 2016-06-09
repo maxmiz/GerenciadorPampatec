@@ -5,7 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
@@ -19,23 +18,15 @@ import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -180,7 +171,6 @@ public class ProjetoBean implements Serializable {
         atualizarProjetoSessao();
         salvou = true;
     }
-    
 
     /**
      * Envia emails de termino de cadastro para os empreendedores necessários
@@ -248,7 +238,7 @@ public class ProjetoBean implements Serializable {
             projeto.getEmpreendedores().remove(empreendedorSelected);
             //Percorre a lista achar o empreendedor selecionado e remove ele da lista de adicionados.
             for (int i = 0; i < empreedendoresAdicionados.size(); i++) {
-                if(empreedendoresAdicionados.get(i).getEmail().equals(empreendedorSelected.getEmail())){
+                if (empreedendoresAdicionados.get(i).getEmail().equals(empreendedorSelected.getEmail())) {
                     empreedendoresAdicionados.remove(i);
                     break;
                 }
@@ -454,7 +444,7 @@ public class ProjetoBean implements Serializable {
         ProjetoDao daoP = new ProjetoDao();
 
         alocaCustosIniciais(planofinanceiro);
-        
+
         pjto.setAnaliseemprego(analiseemprego);
         pjto.setNegocio(negocio);
         pjto.setPlanofinanceiro(planofinanceiro);
@@ -470,15 +460,15 @@ public class ProjetoBean implements Serializable {
         pjto.setEdital("2015abc123");
         Date data = new Date(System.currentTimeMillis());
         pjto.setDataCriacao(data);
-        
+
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedorSession = Empreendedor.buscaPorEmail(empreendedorSession.getEmail());
         secao.setAttribute("empreendedor", empreendedorSession);
         secao.setAttribute("projetoSelecionado", pjto);
     }
-    
-    public void criarNovoPlano(){ 
-    criarObjetoPlano();
+
+    public void criarNovoPlano() {
+        criarObjetoPlano();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf");
         } catch (IOException ex) {
@@ -487,21 +477,14 @@ public class ProjetoBean implements Serializable {
         }
 
     }
-<<<<<<< HEAD
-    
+
     /**
      * <p>
      * Cria o objeto plano de negocio e redireciona para a pagina EnviarProjeto,
      * voltando uma pasta no projeto.</p>
-=======
-    /**
-     * Cria o objeto plano de negocio 
-     * e redireciona para a pagina EnviarProjeto, 
-     * voltando uma pastano projeto.
->>>>>>> develop
      */
-    public void criarNovoPlanoRevisar(){
-            criarObjetoPlano();
+    public void criarNovoPlanoRevisar() {
+        criarObjetoPlano();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../enviarProjeto.jsf");
         } catch (IOException ex) {
@@ -510,30 +493,30 @@ public class ProjetoBean implements Serializable {
         }
 
     }
-    
-    
+
     /**
      * Cria os custos obrigatórios do empreendedor
-     * @param planofinanceiro 
+     *
+     * @param planofinanceiro
      */
-    public void alocaCustosIniciais(Planofinanceiro planofinanceiro){
+    public void alocaCustosIniciais(Planofinanceiro planofinanceiro) {
         Custo prolabore = new Custo(planofinanceiro);
-        Custo aluguel =  new Custo(planofinanceiro);
-        
+        Custo aluguel = new Custo(planofinanceiro);
+
         prolabore.setDescricao("Prolabore");
         prolabore.setPodeExcluir(false);
         prolabore.setProjecao(0);
         prolabore.setTipo(Custo.CUSTO_FIXO);
         prolabore.setTotal(0);
         planofinanceiro.getCusto().add(prolabore);
-        
+
         aluguel.setDescricao("Aluguel com o Pampatec");
         aluguel.setPodeExcluir(false);
         aluguel.setProjecao(270);
         aluguel.setTipo(Custo.CUSTO_FIXO);
         aluguel.setTotal(45);
         planofinanceiro.getCusto().add(aluguel);
-        
+
     }
 
     /**
@@ -692,7 +675,7 @@ public class ProjetoBean implements Serializable {
                         FacesMessage msg;
                         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado!");
                         FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
-                        
+
                     } else {
 
                         FacesUtil.addErrorMessage("Ainda há Empreendedores que precisam terminar o cadastro no sistema.",
@@ -702,7 +685,7 @@ public class ProjetoBean implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Origem: "+this.getClass().getName()+ ":: \t Erro: " + e);
+                System.out.println("Origem: " + this.getClass().getName() + ":: \t Erro: " + e);
             }
         }
     }
@@ -936,11 +919,12 @@ public class ProjetoBean implements Serializable {
     public void atualizaStatus() {
         projeto.setStatus(Projeto.ELABORACAO);
         salvarProjeto();
- 
+
     }
+
     /**
      * Exibe o campo de texto para inserir conteúdo referente a opção OUTRO no
-     * estado do negócio
+     * estado do negócio.
      *
      * @return true se o usuário clicar no checkbox "Outro"
      */
@@ -1009,8 +993,8 @@ public class ProjetoBean implements Serializable {
     }
 
     /**
-     * metodo que faz o calculo da projecao de cada custo variavel para seis
-     * meses
+     * Método que faz o calculo da projeção de cada custo variável para seis
+     * meses.
      *
      * @param custo
      */
@@ -1048,7 +1032,8 @@ public class ProjetoBean implements Serializable {
     /**
      * Metodo que soma os valores de cada custo variavel adicionados na tabela e
      * faz a projeção para seis meses.
-     * @return 
+     *
+     * @return
      */
     public int calcularValorColunaCustoVariavel() {
         somatorioVariavel = 0;
@@ -1109,8 +1094,6 @@ public class ProjetoBean implements Serializable {
         this.somatorioVariavel = somatorioVariavel;
     }
 
-
-
     public List<Projeto> getListaProjetoFiltradaPorBase() {
         return listaProjetoFiltradaPorBase;
     }
@@ -1150,22 +1133,25 @@ public class ProjetoBean implements Serializable {
         }
         return selectedButton;
     }
-      
+
     /**
-     * Verifica se o empreendedor detalhou seu cadastro, com formação e antecedentes,
-     * se não tiver escrito nada ele retorna campo nao expecificado
+     * <p>
+     * Verifica se o empreendedor detalhou seu cadastro, com formação e
+     * antecedentes, se não tiver escrito nada ele retorna campo não
+     * especificado.</p>
+     *
      * @param detalhe
-     * @return 
+     * @return
      */
-    public String verificaTextoDetalhesEmpreendedor(String detalhe){
-        
-        if(detalhe == null){
+    public String verificaTextoDetalhesEmpreendedor(String detalhe) {
+
+        if (detalhe == null) {
             return "Campo não expecificado";
-        }else if (detalhe.trim().isEmpty()){
+        } else if (detalhe.trim().isEmpty()) {
             return "Campo não expecificado";
-        }else {
+        } else {
             return detalhe;
         }
-                
+
     }
 }
