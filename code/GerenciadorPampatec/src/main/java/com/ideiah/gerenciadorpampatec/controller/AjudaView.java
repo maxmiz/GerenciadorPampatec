@@ -27,11 +27,17 @@ public class AjudaView {
         switch (referencia) {
             case "nome":
 
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Nome", "Para mais informações: <a href=https://www.google.com target=_blank> Clique aqui</a>");
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Nome", "Esse é o nome da empresa, seja criativo, pois<br/>"
+                        + "um nome de empresa coerente é essencial para<br/>"
+                        + "um plano de negócio de sucesso.");
                 break;
 
             case "email":
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Email", "Descrição");
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Email", "Adicione empreendedores sócios para visualizarem<br/> "
+                        + "o plano de negócio junto com você. Insira<br/>"
+                        + "seus emails para os incluir nesse plano de negócio. <br/>"
+                        + "Caso eles não possuam cadastro no sistema, eles se-<br/>"
+                        + "rão direcionados ao cadastro de usuário.");
                 break;
 
             case "segmentoDeClientes":
@@ -158,11 +164,13 @@ public class AjudaView {
                 break;
 
             case "statusAvaliacao":
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atribuir Status de Avaliação", "Descricao");
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atribuir Status de Avaliação", "O status de avaliação indica a situação do <br/>"
+                        + "plano de negócio, escolha uma das opções disponívels.");
                 break;
                 
             case "observacoesPreDefinidas":
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Mensagem Pré Definida", "Este campo não pode ser alterado, ele trará uma mensagem padrão conforme a opção selecionada em avaliação.");
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Campo Mensagem Pré Definida", "Este campo não pode ser alterado, ele trará uma <br/>"
+                        + "mensagem padrão conforme a opção selecionada em avaliação.");
                 break;
         }
 
