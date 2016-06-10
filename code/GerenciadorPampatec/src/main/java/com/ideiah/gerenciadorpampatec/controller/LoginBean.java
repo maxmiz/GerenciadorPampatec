@@ -82,6 +82,10 @@ public class LoginBean {
 
     }
 
+    /**
+     * <p>
+     * Método que redireciona para a página inicial do empreendedor.</p>
+     */
     public void getInicio() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
@@ -90,6 +94,11 @@ public class LoginBean {
         }
     }
 
+    /**
+     * <p>
+     * Método que redireciona para a página inicial do empreendedor, voltando da
+     * página de revisar plano de negócio.</p>
+     */
     public void getInicioRevisar() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
@@ -98,6 +107,10 @@ public class LoginBean {
         }
     }
 
+    /**
+     * <p>
+     * Método que redireciona para a página inicial do gerente.</p>
+     */
     public void getInicioGerente() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.jsf");
@@ -106,6 +119,11 @@ public class LoginBean {
         }
     }
 
+    /**
+     * <p>
+     * Método que redireciona para a página de criar planos de negócio do
+     * empreendedor.</p>
+     */
     public void getEnviarProjeto() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.jsf");
@@ -493,7 +511,7 @@ public class LoginBean {
         System.out.println("From: LoginBean Method: renovaSessaoUsuario()"
                 + "\t Message: Sessão renovada com sucesso!");
     }
-    
+
     /**
      * <p>
      * Método verifica se a sessão existe, caso positivo chama o método que
