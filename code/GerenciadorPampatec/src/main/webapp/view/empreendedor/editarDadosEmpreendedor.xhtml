@@ -59,10 +59,10 @@
             
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                     <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
@@ -320,8 +320,8 @@
                     
                     <div class="col-md-12 text-right">
                         <br/>
-                        <h:commandButton id="botaoFinalizarEdicao" title="Finalizar edição do perfil" type="button" class="btn btn-success" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
-                                         action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
+                        <p:commandButton id="botaoFinalizarEdicao" title="Finalizar edição do perfil" type="button" class="botaoBase botaoVerde" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
+                                         action="#{editarEmpreendedorBean.finalizarEdicao()}"></p:commandButton>
                         <h:message for="botaoFinalizarEdicao"></h:message>
 
                     </div>
