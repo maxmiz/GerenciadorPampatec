@@ -11,21 +11,21 @@
             <h:outputStylesheet library="css" name="outro.css"  />
             <h:outputStylesheet library="css" name="sweetalert.css" />            
         </f:facet>
-        
+
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>        
         <h:outputScript library="js" name="sweetalert.min.js" />  
         <h:outputScript library="js" name="sessionManager.js"/> 
-        
+
         <title>Editar dados cadastrais</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <script>
-            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};            
-    
+            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+
             /**
              * 
              * @returns {undefined}
@@ -51,18 +51,18 @@
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
-            
+
             <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
-                <p:remoteCommand name="triggerParaInvalidarSessao" 
-                                 actionListener="#{loginBean.mataSessao()}"/>
+            <p:remoteCommand name="triggerParaInvalidarSessao" 
+                             actionListener="#{loginBean.mataSessao()}"/>
             <!-- Fim do Controle Remoto-->            
-            
+
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-7">
-                    <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
-                </div>
-                <div class="col-md-5">
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
+                    </div>
+                    <div class="col-md-5">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
@@ -130,8 +130,8 @@
             <!-- Fim do Modal com as NOTIFICAÇÕES -->
 
             <!-- Fim das modais apresentadas -->
-           <!-- <p:poll interval="3" update="barraNotificacoes"/>
-            <p:poll interval="3" update="tabelaNotificacoes"/> -->
+            <!-- <p:poll interval="3" update="barraNotificacoes"/>
+             <p:poll interval="3" update="tabelaNotificacoes"/> -->
         </h:form>
         <!-- Fim do menu superior -->
 
@@ -164,7 +164,7 @@
 
 
                     </div>
-                    
+
                     <div class="col-md-6" title="Digite seu telefone">
                         Telefone* <br/>
                         <h:message class="mensagemErro" for="telefone"/>
@@ -248,9 +248,9 @@
                     </div>
 
                     <legend>Dados de Acesso</legend>
-                    
-                    <div class="col-md-6" title="Digite o seu CPF">
-                        CPF*<br/>
+
+                    <div class="col-md-6" title="Este é o seu o seu CPF">
+                        CPF<br/>
                         <h:message class="mensagemErro" for="cpf"/>
                         <p:inputMask id="cpf" class="form-control" 
                                      placeholder="ex: 999.999.999-99"
@@ -264,7 +264,7 @@
 
                     </div>
 
-                    <div class="col-md-12" title="Digite o seu email">
+                    <div class="col-md-6" title="Digite o seu email">
                         E-mail* <br/>
                         <h:message class="mensagemErro" for="email"/>
                         <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
@@ -278,21 +278,19 @@
 
                     </div>
 
-                    <div class="col-md-7" title="Digite a sua senha atual">
-                        Senha atual <p:password id="senhaAtual" class="form-control"
-                                                placeholder="Digite sua senha" onchange="precisaSalvar = true;"
-                                                requiredMessage="Insira sua senha atual"
-                                                required="false"
-                                                promptLabel="Força da senha" weakLabel="Fraca"
-                                                goodLabel="Mediana" strongLabel="Forte"
-                                                feedback="true"
-                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                value="#{editarEmpreendedorBean.senha}"
-                                                validatorMessage="Senha deve ser igual"></p:password>
+                    <div class="col-md-12" title="Digite a sua senha atual">
+                        Senha atual* <p:password id="senhaAtual" class="form-control"
+                                                 placeholder="Digite sua senha" onchange="precisaSalvar = true;"
+                                                 requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
+                                                 required="true"
+                                                 feedback="false"
+                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                 value="#{editarEmpreendedorBean.senha}"
+                                                 validatorMessage="Você deve fornecer sua senha atual"></p:password>
                         <h:message class="mensagemErro" for="senhaAtual"/>
                     </div>
 
-                    <div class="col-md-7" title="Digite a sua nova senha">
+                    <div class="col-md-6" title="Digite a sua nova senha">
                         Nova senha <p:password id="senhaNova" class="form-control" 
                                                placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
                                                requiredMessage="Insira sua nova senha"
@@ -300,13 +298,14 @@
                                                promptLabel="Força da senha" weakLabel="Fraca"
                                                goodLabel="Mediana" strongLabel="Forte"
                                                feedback="true"
+                                               inline="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                value="#{editarEmpreendedorBean.novaSenha}"
                                                match="senhaConfig" validatorMessage="Senhas não conferem"></p:password>
                         <h:message class="mensagemErro" for="senhaNova"/>
 
                     </div> 
-                    <div class="col-md-7" title="Digite novamente a sua nova senha para confirmação">
+                    <div class="col-md-6" title="Digite novamente a sua nova senha para confirmação">
                         Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
                                                        placeholder="Confirme sua nova senha" 
                                                        requiredMessage="Confirme sua nova senha"
@@ -316,12 +315,26 @@
                         <h:message class="mensagemErro" for="senhaNova"/>
                         <br/>
                     </div> 
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    
+
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
                     <div class="col-md-12 text-right">
-                        <br/>
-                        <p:commandButton id="botaoFinalizarEdicao" title="Finalizar edição do perfil" type="button" class="botaoBase botaoVerde" onclick="confirmacaoDeEnvio()" value="Finalizar edição"
-                                         action="#{editarEmpreendedorBean.finalizarEdicao()}"></p:commandButton>
+                        <br/><br/>
+
+
+                        <p:button id="botaoVoltar"
+                                  class="botaoBase botaoPreto" 
+                                  title="Voltar para a página de Login" 
+                                  value="Cancelar edição"
+                                  outcome="homeEmpreendedor.jsf"
+                                  >
+
+
+                        </p:button>                        
+
+                        <p:commandButton id="botaoFinalizarEdicao" title="Finalizar edição do perfil" type="button" class="botaoBase botaoVerde" onclick="confirmacaoDeEnvio()" value="Finalizar edição">
+
+                        </p:commandButton>
                         <h:message for="botaoFinalizarEdicao"></h:message>
 
                     </div>
