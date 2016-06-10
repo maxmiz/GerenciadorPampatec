@@ -2,20 +2,18 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
-import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +22,7 @@ import org.primefaces.context.RequestContext;
 @ManagedBean(name = "editarEmpreendedorBean")
 @ViewScoped
 
-public class EditarEmpreendedorBean {
+public class EditarEmpreendedorBean implements Serializable {
 
     private Empreendedor empreendedor;
     private EmpreendedorEmail empreendedorEmail;
@@ -51,6 +49,7 @@ public class EditarEmpreendedorBean {
         if (empreendedor != null) {
             empreendedor.getEmail();
         }
+        this.senha = "";
         this.telefone = empreendedor.getTelefone();
         this.nome = empreendedor.getNome();
         this.bairro = empreendedor.getBairro();
@@ -61,6 +60,7 @@ public class EditarEmpreendedorBean {
         this.complemento = empreendedor.getComplemento();
         this.numero = String.valueOf(empreendedor.getNumero());
         this.experiencia = empreendedor.getExperiencia();
+
     }
 
     public String getNome() {
@@ -187,7 +187,8 @@ public class EditarEmpreendedorBean {
         }
 
     }
-        public void editarEmpreendedorRevisar() {
+
+    public void editarEmpreendedorRevisar() {
         HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         empreendedor = (Empreendedor) secao.getAttribute("empreendedor");
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -200,76 +201,73 @@ public class EditarEmpreendedorBean {
 
     }
 
+    /**
+     * <p>
+     * A senha atual precisa estar preenchida para salvar os dados. Esta senha
+     * precisa coincidir com a senha salva no banco. Se o campo nova senha
+     * estiver preenchido, então a senha será alterada. O cpf não poderá ser
+     * alterado, pois cada pessoa possui um cpf, e ele é único, e a validação de
+     * cpf já foi feita no cadastro do empreendedor
+     *
+     * </p>
+     */
     public void finalizarEdicao() {
-        String numeroTelefone;
-        this.empreendedor.setNome(nome);
-        cpf = FacesUtil.removeCaracteres(cpf);
-        if (empreendedor.buscarPorCpf(cpf) != null) {
-            if (!verificarAlterarSenha()) {
-                FacesUtil.addErrorMessage("Senha não preenchida", "formularioCadastro:senhaAtual");
-            } else {
-                empreendedor.setCpf(cpf);
-                empreendedor.setFormacao(formacao);
-                if (CpfUtil.isValidCPF(cpf) == false) {
-                    FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
-                } else {
-                    numeroTelefone = String.valueOf(telefone);
-                    empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(numeroTelefone));
 
-                    empreendedor.setRua(rua);
-                    empreendedor.setNumero(Integer.parseInt(numero));
-                    empreendedor.setBairro(bairro);
-                    empreendedor.setComplemento(complemento);
-                    empreendedor.setExperiencia(experiencia);
+        senha = CriptografiaUtil.md5(senha);
 
-                    //Confere se a intenção do usuário é também alterar a senha,
-                    //usando o boolean @alterarSenha para indicar.
-                    //Se for falso, significa que: a senha está em branco e não
-                    //deve ser alterada, ou que ela foi alterada com sucesso, 
-                    //permitindo que o processo siga em frente.
-                    boolean alterarSenha = false;
-                    if (!senha.isEmpty()) {
-                        alterarSenha = true;
-                        senha = CriptografiaUtil.md5(senha);
-                        if (empreendedor.getSenha().equals(senha)) {
-                            empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
-                            alterarSenha = false;
+        if (empreendedor.getSenha().equals(senha)) {
+            String numeroTelefone;
+            this.empreendedor.setNome(nome);
+            empreendedor.setRua(rua);
+            empreendedor.setNumero(Integer.parseInt(numero));
+            empreendedor.setBairro(bairro);
+            empreendedor.setComplemento(complemento);
+            empreendedor.setExperiencia(experiencia);
+            numeroTelefone = String.valueOf(telefone);
+            empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(numeroTelefone));
+            empreendedor.setFormacao(formacao);
+            empreendedor.setEmail(email);
 
-                        } else {
-                            FacesUtil.addErrorMessage("Senha incorreta.", "formularioCadastro:senhaAtual");
-                        }
-                    }
+            if (!novaSenha.isEmpty()) {
+                empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
+            }
+            boolean passou = false;
+            if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                try {
+                    getLoginBean().setNome(nome);
+                    LoginBean.MudarSenha(empreendedor.getSenha());
+                    LoginBean.MudarUser(empreendedor.getEmail());
+                    session.setAttribute("empreendedor", empreendedor);
+                    passou = true;
+                } catch (NullPointerException e) {
+                    System.out.println("Ocorreu um erro ao substituir o empreendedor na sessão" + this.getClass().getName());
+                    FacesUtil.addErrorMessage("Cadastro não realizado! Ocorreu um ao tentar salvar as informações", "formularioCadastro:botaoEnviar");
+                    passou = false;
+                }
 
-                    if (empreendedor.atualizarEmpreendedor(empreendedor) && alterarSenha == false) {
-                        try {
-                            //  LoginBean.MudarNome(empreendedor.getNome());
-                            getLoginBean().setNome(nome);
-                            LoginBean.MudarSenha(empreendedor.getSenha());
-                            LoginBean.MudarUser(empreendedor.getEmail());
-                            session.setAttribute("empreendedor", empreendedor);
-                            FacesContext.getCurrentInstance().getExternalContext().dispatch("homeEmpreendedor.jsf");
-                        } catch (IOException ex) {
-                            Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else {
-                        FacesUtil.addErrorMessage("Cadastro não realizado!", "formularioCadastro:botaoEnviar");
+                if (passou) {
+                    try {
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
+                    } catch (IOException ex) {
+                        Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            } else {
+                FacesUtil.addErrorMessage("Atualização de cadastro não realizada!", "formularioCadastro:botaoEnviar");
             }
 
+        } else {
+            FacesUtil.addErrorMessage("Senha incorreta", "formularioCadastro:senhaAtual");
         }
+
     }
 
-    public boolean verificarAlterarSenha() {
-        if (senha.isEmpty()) {                // senha está em branco
-            if (!novaSenha.isEmpty()) {       // e nova senha não está em branco
-                return false;                 // não altera a senha. 
-            }
-        } else if (novaSenha.isEmpty()) {        // e nova senha está em branco
-            return false;                 // não altera a senha.
+    public void cancelarEdicao() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;                          // se senha Atual e nova senha não estiverem em branco, altera a senha.
-
     }
 
     public void showMessage() {
