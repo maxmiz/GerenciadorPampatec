@@ -55,7 +55,7 @@ public class SessionExcepitionHandler extends ExceptionHandlerWrapper {
                     /**
                      * Muda o status do projeto caso o usuário seja um gerente.
                      */
-                    ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+                    ProjectSatusManager psmb = new ProjectSatusManager();
                     psmb.tratamentoSessaoSendoAvaliado();
                 } finally {
                     /**

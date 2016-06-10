@@ -65,11 +65,15 @@ public class LoginBean {
         return false;
     }
 
+    /**
+     * <p>
+     * Método que realiza logout do sistema, garantido o status correto do
+     * projeto e finalizando a sessão do usuário.</p>
+     */
     public void fazLogout() {
-        ProjectSatusManagerBean managerBean = new ProjectSatusManagerBean();
+        ProjectSatusManager managerBean = new ProjectSatusManager();
         managerBean.tratamentoSessaoSendoAvaliado();
-            //session.invalidate();
-        
+
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec");
         } catch (IOException ex) {
@@ -494,12 +498,12 @@ public class LoginBean {
      * <p>
      * Método verifica se a sessão existe, caso positivo chama o método que
      * trabalha com a sessão e o status do projeto, da classe
-     * <code>ProjectSatusManagerBean</code>.</p>
+     * <code>ProjectSatusManager</code>.</p>
      */
     public synchronized void mataSessao() {
         if (getSession() != null) {
 
-            ProjectSatusManagerBean psmb = new ProjectSatusManagerBean();
+            ProjectSatusManager psmb = new ProjectSatusManager();
             psmb.tratamentoSessaoSendoAvaliado();
 
             System.out.println("From: LoginBean,  Method: mataSessao(), Message: Finalizou a Sessão");
