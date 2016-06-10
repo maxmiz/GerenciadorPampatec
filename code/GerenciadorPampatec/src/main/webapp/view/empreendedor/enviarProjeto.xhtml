@@ -1169,7 +1169,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-md-9" title="Digite o email de quem está propondo o empreendimento">
-                                        <p:autoComplete validatorMessage="Email Invalido." id="autocomplete" class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.sugerirEmpreendedorCadastrado}">
+                                        <p:autoComplete validatorMessage="Email Invalido." id="autocomplete" required="true" requiredMessage="Digite um email." class="autoCompletar" style="width: 100%;" value="#{projetoBean.emailEmpreendedor}" completeMethod="#{projetoBean.sugerirEmpreendedorCadastrado}">
                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                                         </p:autoComplete>
                                     </div>
@@ -1197,8 +1197,8 @@
                                 <p:column headerText="Ação" rendered="#{projetoBean.verificarEmpreendedor()}">
 
                                     <!--<h:commandButton  class="btn btn-default" value="Deletar" action="#/{projetoBean.deletarEmpreendedor()}" disabled="#/{projetoBean.verificarEmpreendedor(empreendedor)}">-->
-                                    <p:commandButton  class="botaoBase botaoPreto" title="Excluir este empreendedor" value="Deletar" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
-                                        <f:ajax execute="formEquipe" render="formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe" listener="#{projetoBean.deletarEmpreendedor(empreendedor)}" 
+                                    <p:commandButton id="botaoExcluirEmpreendedor" class="botaoBase botaoPreto" title="Excluir este empreendedor" value="Deletar" disabled="#{projetoBean.verificarEmpreendedor(empreendedor)}">
+                                        <f:ajax execute="formEquipe:botaoExcluirEmpreendedor" render="formEquipe:tabelaEmpreendedores" listener="#{projetoBean.deletarEmpreendedor(empreendedor)}" 
                                                 event="click"></f:ajax>
                                     </p:commandButton>
                                 </p:column>
