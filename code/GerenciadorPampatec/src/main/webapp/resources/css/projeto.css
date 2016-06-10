@@ -29,10 +29,6 @@ legend {
 .pampaTec {
     background-color: #00A859
 }
-.navbar-default {
-    background-color: #00A859;
-    text-shadow: unset;
-}
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
     background-color: #00A859;
@@ -803,11 +799,11 @@ Adicionar Comentário e Histórico de comentários
 }
 
 .navbar-default{
+    background-color: #00A859;
     box-shadow: 0px 10px 14px -7px #3e7327;
     background:linear-gradient(to bottom, #00a85a 5%, #05914f 100%);
-    background-color:#00a85a;
     border:1px solid #4b8f29;
-    text-shadow:0px 1px 0px #5b8a3c;
+    text-shadow:none;
     
 }
 
@@ -841,7 +837,7 @@ Adicionar Comentário e Histórico de comentários
     background:linear-gradient(to bottom, #05914f 5%, #00a85a 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#05914f', endColorstr='#00a85a',GradientType=0);
     background-color:#05914f;
-    text-shadow: 5px 5px 4px #004F2B;
+    text-shadow: 6px 6px 3px #004F2B;
     color:#ffffff;
 
 }
