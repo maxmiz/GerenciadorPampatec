@@ -239,6 +239,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Deletar empreendedor de um projeto desde que ele não seja o dono do mesmo
+     * @param empreendedorSelected
      */
     public void deletarEmpreendedor(Empreendedor empreendedorSelected) {
 
