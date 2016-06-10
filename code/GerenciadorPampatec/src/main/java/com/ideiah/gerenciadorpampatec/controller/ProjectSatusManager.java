@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
  * @author Ideiah PC
  * @since 07-06-2016
  */
-public class ProjectSatusManagerBean {
+public class ProjectSatusManager {
 
-    public ProjectSatusManagerBean() {
+    public ProjectSatusManager() {
     }
 
     /**
@@ -57,7 +57,7 @@ public class ProjectSatusManagerBean {
              */
             session.invalidate();
         } catch (Exception e) {
-            Logger.getLogger(ProjectSatusManagerBean.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ProjectSatusManager.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
