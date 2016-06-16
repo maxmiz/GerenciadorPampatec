@@ -1,0 +1,9 @@
+﻿
+
+	Avaliar um  Plano de Negócio
+
+		==> Avaliar um plano como Aceito.
+		
+		==> Avaliar um plano como Reprovado.
+		
+		==> Avaliar um plano como Necessita Melhorias.		

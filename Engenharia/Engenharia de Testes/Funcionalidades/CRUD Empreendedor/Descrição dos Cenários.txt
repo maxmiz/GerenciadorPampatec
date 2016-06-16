@@ -1,0 +1,9 @@
+﻿
+
+	Editar dados de um Empreendedor
+
+		==> Um usuário Empreendedor autenticado no sistema e sem planos de negócio;
+
+		==> Um usuário Empreendedor autenticado no sistema e com planos de negócio, onde ele seja o Empreendedor Correspondente;
+
+		==> Um usuário Empreendedor autenticado no sistema e sem planos de negócio, onde ele seja um Empreendedor Observador.
