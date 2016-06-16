@@ -434,12 +434,10 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active, etapaAtual etapaSelecionada");
+            etapa1.setAttribute("class", "active etapaAtual etapaSelecionada");
             mostra_vertical_elaboracao();
 
             etapaAtualDoWorkflow = "etapa1";
-            
-            addFocoBotao("botao_elaboracao_editar");
             
             mostraDIV2('div_apresentacao_formulario');
             
@@ -845,11 +843,14 @@ function mostraDIV2(referencia) {
     // se andamento está em elaboração
     if (andamentoProjeto === 0) {
         // se o empreendedor é correspondente
+        
         if (tipoEmpreededor) {
             mostraDIV(referencia);
+            addFocoBotao("botao_elaboracao_editar");
         } else {
             // se empreendedor não é correspondente, apenas mostra plano para revisar
             mostraDIV('div_revisar_plano');
+            addFocoBotao("botao_revisar");
         }
     } else {
         mostraDIV('div_revisar_plano');

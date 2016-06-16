@@ -198,15 +198,16 @@
 
         <!-- SEÇÃO DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
         <div id="vertical_etapa_elaboracao" class="col-md-2 text-center estiloDivVertical noprint">
-            <div class="divPadding">
+            <br/>
+            <h:panelGroup layout="block" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="divPadding">
                 <h:commandButton id="botao_elaboracao_equipe" title="Equipe do Plano de Negócio" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="btn btn-success btnWorkflowV" value="Equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')"></h:commandButton><br/>
-            </div>
-            <div class="divPadding">
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" class="divPadding">
                 <!-- A compração do STATUS do projeto a partir de um número (nesse caso 0 e 8) está errado, o coreto seria puxar A CONSTANTE para comparar, porém não consegui fazer isso agora.
                 Porquê comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as comparações de status que foram realizadas comparando um
                 número inteiro, inves da CONSNTANTE -->
                 <h:commandButton disabled="#{projetoBean.projeto.status != 0}" rendered="#{(((projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)) and (buscaProjetoEmpreendedorBean.verificarEmpreendedor(projetoBean.projeto)))}" id="botao_elaboracao_editar" title="Editar Plano de Negócio" class="btn btn-success btnWorkflowV" value="Editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')"></h:commandButton><br/>
-            </div>
+            </h:panelGroup>
             <div class="divPadding">
                 <h:commandButton disabled="#{projetoBean.projeto.status == 8}"  id="botao_revisar" title="Revisar Plano de Negócio" class="btn btn-success btnWorkflowV" value="Revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')"></h:commandButton><br/>
             </div>
