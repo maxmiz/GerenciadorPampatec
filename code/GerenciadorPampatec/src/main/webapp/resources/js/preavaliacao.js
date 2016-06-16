@@ -558,7 +558,7 @@ function mudarCorListaPreAvaliar(listaCampos, tab, nomeCampo) {
  * @returns {Boolean}
  */
 function verificaPreenchimentoComentario(campo) {
-    if (campo.value.trim() === "" || campo.value.trim() === null) {
+    if (campo.value === "") {
         return false;
     } else {
         return true;
