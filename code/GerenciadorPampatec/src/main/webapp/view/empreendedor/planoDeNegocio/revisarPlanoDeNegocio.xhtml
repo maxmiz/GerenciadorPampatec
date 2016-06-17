@@ -20,7 +20,8 @@
 
 
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>
-        <h:outputScript library="js" name="preavaliacao.js" />          
+        <h:outputScript library="js" name="preavaliacao.js" />   
+        <h:outputScript library="js" name="validaCampo.js" />
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="mensagemFeedBack.js" />	
         <h:outputScript library="js" name="chamaModal.js"/>        
@@ -1753,6 +1754,7 @@
                                                     </f:facet>
                                                     <f:facet name="input">
                                                         <p:inputText value="#{custo1.total}" 
+                                                                     maxlength="6"
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
@@ -1816,6 +1818,7 @@
                                                     </f:facet>
                                                     <f:facet name="input">
                                                         <p:inputText value="#{custo2.total}" 
+                                                                     maxlength="6"
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
@@ -1982,6 +1985,7 @@
                                                     </f:facet>
                                                     <f:facet name="input">
                                                         <p:inputText value="#{custovariavel1.total}" 
+                                                                     maxlength="6"
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
@@ -2049,6 +2053,7 @@
                                                     </f:facet>
                                                     <f:facet name="input">
                                                         <p:inputText value="#{custovariavel2.total}" 
+                                                                     maxlength="6"
                                                                      converterMessage="Digite um número válido utilizando pontos, ex: 8.7" 
                                                                      onkeypress="return SomenteNumero(event);" 
                                                                      style="width:96%">
