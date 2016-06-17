@@ -21,7 +21,6 @@ import org.primefaces.context.RequestContext;
 
 @ManagedBean(name = "editarEmpreendedorBean")
 @ViewScoped
-
 public class EditarEmpreendedorBean implements Serializable {
 
     private Empreendedor empreendedor;
