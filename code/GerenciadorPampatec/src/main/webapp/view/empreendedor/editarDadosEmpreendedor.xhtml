@@ -247,9 +247,10 @@
                         <br/>
                     </div>
 
+                    <div class="col-md-6">
                     <legend>Dados de Acesso</legend>
 
-                    <div class="col-md-6" title="Este é o seu o seu CPF">
+                    <div title="Este é o seu o seu CPF">
                         CPF<br/>
                         <h:message class="mensagemErro" for="cpf"/>
                         <p:inputMask id="cpf" class="form-control" 
@@ -264,7 +265,7 @@
 
                     </div>
 
-                    <div class="col-md-6" title="Digite o seu email">
+                    <div title="Digite o seu email">
                         E-mail* <br/>
                         <h:message class="mensagemErro" for="email"/>
                         <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
@@ -278,7 +279,7 @@
 
                     </div>
 
-                    <div class="col-md-12" title="Digite a sua senha atual">
+                    <div title="Digite a sua senha atual">
                         Senha atual* <p:password id="senhaAtual" class="form-control"
                                                  placeholder="Digite sua senha" onchange="precisaSalvar = true;"
                                                  requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
@@ -289,15 +290,19 @@
                                                  validatorMessage="Você deve fornecer sua senha atual"></p:password>
                         <h:message class="mensagemErro" for="senhaAtual"/>
                     </div>
-
-                    <div class="col-md-6" title="Digite a sua nova senha">
+                    <div class="col-md-6"></div>
+                    
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Redefinição de senha</legend>
+                        <div class="col-md-6" title="Digite a sua nova senha">
                         Nova senha <p:password id="senhaNova" class="form-control" 
                                                placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
                                                requiredMessage="Insira sua nova senha"
                                                required="false"
                                                promptLabel="Força da senha" weakLabel="Fraca"
                                                goodLabel="Mediana" strongLabel="Forte"
-                                               feedback="true"
+                                               feedback="true" 
                                                inline="true"
                                                styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                value="#{editarEmpreendedorBean.novaSenha}"
@@ -305,17 +310,22 @@
                         <h:message class="mensagemErro" for="senhaNova"/>
 
                     </div> 
+                    <div class="col-md-6"></div>
+                    
                     <div class="col-md-6" title="Digite novamente a sua nova senha para confirmação">
                         Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
                                                        placeholder="Confirme sua nova senha" 
                                                        requiredMessage="Confirme sua nova senha"
                                                        required="false"
+                                                       style=""
                                                        styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
                                                        value="#{editarEmpreendedorBean.novaSenha}"></p:password>
                         <h:message class="mensagemErro" for="senhaNova"/>
                         <br/>
                     </div> 
-
+                    <br/><br/><br/><br/><br/><br/><br/>
+                    </div>
+                    <div class="col-md-6" style="font-size: 16pt; text-align: left">Você precisará informar sua senha para finalizar a edição</div>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                     <div class="col-md-12 text-right">
@@ -323,7 +333,7 @@
 
                         <p:button id="botaoVoltar"
                                   class="botaoBase botaoPreto" 
-                                  title="Cancelar a edição e voltar para a página de Login" 
+                                  title="Cancelar a edição e voltar para o início." 
                                   value="Cancelar edição"
                                   outcome="homeEmpreendedor.jsf"
                                   >
