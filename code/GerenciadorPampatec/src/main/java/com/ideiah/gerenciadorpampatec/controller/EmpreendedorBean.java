@@ -18,6 +18,7 @@ import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedProperty;
@@ -29,7 +30,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean(name = "empreendedorBean")
 @SessionScoped
-public class EmpreendedorBean {
+public class EmpreendedorBean implements Serializable{
 
     private String outcome = "LoginEmpreendedor";
     private String userInput = "";
@@ -50,9 +51,11 @@ public class EmpreendedorBean {
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
     private EmailUtil emailUtil;
-    @ManagedProperty(value = "#{loginBean}")
-    private LoginBean loginBean; // +setter
-
+//    @ManagedProperty(value = "#{loginBean}")
+//    private LoginBean loginBean; // +setter
+    @ManagedProperty(value = "#{userBean}")
+    private UserBean userBean;
+    
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
@@ -126,8 +129,8 @@ public class EmpreendedorBean {
 
                     try {
                         // LoginBean.MudarNome(empreendedor.getNome());
-                        LoginBean.MudarSenha(empreendedor.getSenha());
-                        LoginBean.MudarUser(empreendedor.getEmail());
+                        UserBean.MudarSenha(empreendedor.getSenha());
+                        UserBean.MudarUser(empreendedor.getEmail());
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
                         FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
@@ -186,9 +189,9 @@ public class EmpreendedorBean {
 
                     try {
                         // LoginBean.MudarNome(empreendedor.getNome());
-                        getLoginBean().setNome(nome);
-                        LoginBean.MudarSenha(empreendedor.getSenha());
-                        LoginBean.MudarUser(empreendedor.getEmail());
+                        getUserBean().setNome(nome);
+                        UserBean.MudarSenha(empreendedor.getSenha());
+                        UserBean.MudarUser(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
                         empreendedor.setTelefone(null);
                         empreendedor.setSenha(CriptografiaUtil.md5(null));
@@ -406,18 +409,25 @@ public class EmpreendedorBean {
         this.competencia = competencia;
     }
 
-    /**
-     * @return the loginBean
-     */
-    public LoginBean getLoginBean() {
-        return loginBean;
+//    /**
+//     * @return the loginBean
+//     */
+//    public LoginBean getLoginBean() {
+//        return loginBean;
+//    }
+//
+//    /**
+//     * @param loginBean the loginBean to set
+//     */
+//    public void setLoginBean(LoginBean loginBean) {
+//        this.loginBean = loginBean;
+//    }
+
+    public UserBean getUserBean() {
+        return userBean;
     }
 
-    /**
-     * @param loginBean the loginBean to set
-     */
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
-
 }
