@@ -8,6 +8,12 @@ public final class CpfUtil {
 
     private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
+    /**
+     * 
+     * @param str
+     * @param peso
+     * @return 
+     */
     private static int calcularDigito(String str, int[] peso) {
         int soma = 0;
         for (int indice = str.length() - 1, digito; indice >= 0; indice--) {
@@ -18,6 +24,11 @@ public final class CpfUtil {
         return soma > 9 ? 0 : soma;
     }
 
+    /**
+     * 
+     * @param cpf
+     * @return 
+     */
     public static boolean isValidCPF(String cpf) {
         if (cpf.equals("00000000000")
                 || cpf.equals("11111111111")
