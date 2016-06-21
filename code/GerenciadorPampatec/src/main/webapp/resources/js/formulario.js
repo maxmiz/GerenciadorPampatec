@@ -677,11 +677,14 @@ function carregaPagina() {
             etapa3.innerHTML = "<b>Avaliação</b>";
             etapa4.innerHTML = "<b>Formalização</b>";
             etapa5.innerHTML = "<b>Incubação</b>";
-            etapa1.setAttribute("class", "active etapaAtual");
+            etapa1.setAttribute("class", "active etapaAtual etapaSelecionada");
             mostra_vertical_elaboracao();
-            var botao_preavaliacao = document.getElementById("botao_elaboracao_equipe");
-
-            botao_preavaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            var botao_elaboracao = document.getElementById("botao_elaboracao_equipe");
+            
+            botao_elaboracao.setAttribute("class", "btn btn-danger btnEstadoAtual");
+            
+            addFocoBotao("botao_elaboracao_equipe");
+            
             mostraDIV('formParte01');
 
             etapaAtualDoWorkflow = "etapa1";
