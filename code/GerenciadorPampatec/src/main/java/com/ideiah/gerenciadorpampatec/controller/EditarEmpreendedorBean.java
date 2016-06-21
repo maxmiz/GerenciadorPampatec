@@ -39,8 +39,10 @@ public class EditarEmpreendedorBean implements Serializable {
     private String complemento;
     private String senha;
     private String novaSenha;
-    @ManagedProperty(value = "#{loginBean}")
-    private LoginBean loginBean; // +setter
+//    @ManagedProperty(value = "#{loginBean}")
+//    private LoginBean loginBean; // +setter
+    @ManagedProperty(value = "#{userBean}")
+    private UserBean userBean;
 
     public EditarEmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -233,9 +235,9 @@ public class EditarEmpreendedorBean implements Serializable {
             boolean passou = false;
             if (empreendedor.atualizarEmpreendedor(empreendedor)) {
                 try {
-                    getLoginBean().setNome(nome);
-                    LoginBean.MudarSenha(empreendedor.getSenha());
-                    LoginBean.MudarUser(empreendedor.getEmail());
+                    getUserBean().setNome(nome);
+                    UserBean.MudarSenha(empreendedor.getSenha());
+                    UserBean.MudarUser(empreendedor.getEmail());
                     session.setAttribute("empreendedor", empreendedor);
                     passou = true;
                 } catch (NullPointerException e) {
@@ -274,17 +276,25 @@ public class EditarEmpreendedorBean implements Serializable {
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
-    /**
-     * @return the loginBean
-     */
-    public LoginBean getLoginBean() {
-        return loginBean;
+//    /**
+//     * @return the loginBean
+//     */
+//    public LoginBean getLoginBean() {
+//        return loginBean;
+//    }
+//
+//    /**
+//     * @param loginBean the loginBean to set
+//     */
+//    public void setLoginBean(LoginBean loginBean) {
+//        this.loginBean = loginBean;
+//    }
+
+    public UserBean getUserBean() {
+        return userBean;
     }
 
-    /**
-     * @param loginBean the loginBean to set
-     */
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 }

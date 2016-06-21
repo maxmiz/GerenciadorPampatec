@@ -51,8 +51,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private int somatorioFixo;
     private int somatorioVariavel;
     private boolean salvou;
-    @ManagedProperty(value = "#{sessionBean}")
-    private SessionBean sessionBean;
+//    @ManagedProperty(value = "#{sessionBean}")
+//    private SessionBean sessionBean;
 
     public revisarPlanoDeNegocioBean() {
 
@@ -61,9 +61,9 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     @PostConstruct
     private void init() {
         ProjetoDao projetoDao = new ProjetoDao();
-        projeto = (Projeto) sessionBean.getSession().getAttribute("projetoSelecionado");
+        projeto = (Projeto) SessionManager.getAttribute("projetoSelecionado");
         projeto = projetoDao.buscar(projeto.getIdProjeto());
-        empreendedorSession = (Empreendedor) sessionBean.getSession().getAttribute("empreendedor");
+        empreendedorSession = (Empreendedor) SessionManager.getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
         listaCustoFixo = new ArrayList<>();
@@ -881,19 +881,19 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         this.somatorioVariavel = somatorioVariavel;
     }
 
-    /**
-     * @return the sessionBean
-     */
-    public SessionBean getSessionBean() {
-        return sessionBean;
-    }
-
-    /**
-     * @param sessionBean the sessionBean to set
-     */
-    public void setSessionBean(SessionBean sessionBean) {
-        this.sessionBean = sessionBean;
-    }
+//    /**
+//     * @return the sessionBean
+//     */
+//    public SessionBean getSessionBean() {
+//        return sessionBean;
+//    }
+//
+//    /**
+//     * @param sessionBean the sessionBean to set
+//     */
+//    public void setSessionBean(SessionBean sessionBean) {
+//        this.sessionBean = sessionBean;
+//    }
 
     /**
      * @return the salvou

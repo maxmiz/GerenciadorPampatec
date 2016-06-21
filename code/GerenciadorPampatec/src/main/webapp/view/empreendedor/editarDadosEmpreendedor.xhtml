@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <script>
-            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+            var tempoMaxSessao = #{userBean.tempoMaximoSessao()};
 
             /**
              * 
@@ -54,13 +54,13 @@
 
             <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
             <p:remoteCommand name="triggerParaInvalidarSessao" 
-                             actionListener="#{loginBean.mataSessao()}"/>
+                             actionListener="#{userBean.finalizaSessao()}"/>
             <!-- Fim do Controle Remoto-->            
 
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="col-md-7">
-                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{loginBean.retornaNomeLogado()}!"></h:outputText></h4>
+                        <h4 style="color: white;">Bem-vindo(a) <h:outputText value="#{userBean.retornaNomeLogado()}!"></h:outputText></h4>
                     </div>
                     <div class="col-md-5">
                         <ul class="nav navbar-nav navbar-right">
