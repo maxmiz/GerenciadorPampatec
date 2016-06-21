@@ -81,6 +81,7 @@ legend {
 }
 .campoFeedBackOn{
     display: block;
+    max-height: 130px;
 }
 
 
