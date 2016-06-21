@@ -947,18 +947,21 @@
                                                         event="change" onevent="funcaoAjaxSalvo"
                                                         listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </h:selectOneMenu>
+                                            <br/>
                                             <div>
-                                                <h:panelGroup id="campoOutro1" layout="block">
-                                                    <p:inputText class="form-control semResize" 
+                                                
+                                                    <p:inputTextarea class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
-                                                             rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
+                                                             rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}"
+                                                             maxlength="299"
+                                                             rows="3">
                                                         <f:ajax execute="@form" 
                                                             render="formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagemSalvamento" 
                                                             event="change" onevent="funcaoAjaxSalvo"
                                                             listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                                    </p:inputText>
-                                                </h:panelGroup>
+                                                    </p:inputTextarea>
+                                               
                                             </div>
                                         </h:panelGroup>
                                         <h:panelGroup class="checkbox" id="abc"
@@ -980,15 +983,19 @@
                                                         event="change" onevent="funcaoAjaxSalvo"
                                                         listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                             </h:selectOneMenu>
+                                            <br/>
                                             <div>
-                                                <h:panelGroup id="campoOutro2" layout="block">
-                                                    <p:inputText class="form-control semResize" 
+                                                
+                                                    <p:inputTextarea class="form-control semResize" 
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
-                                                             rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}">
+                                                             rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}"
+                                                             maxlength="299"
+                                                             rows="3"
+                                                             >
                                                         <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                                    </p:inputText>
-                                                </h:panelGroup>
+                                                    </p:inputTextarea>
+                                                
                                             </div>
                                         </h:panelGroup>
                                         <div class="col-md-12 espaco">
