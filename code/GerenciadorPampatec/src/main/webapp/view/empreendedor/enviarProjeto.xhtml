@@ -664,7 +664,8 @@
                                                              placeholder="Digite aqui o estágio de evolução de seu Negócio"
                                                              value="#{projetoBean.descricaoButtonOutro}" 
                                                              rendered="#{projetoBean.exibeCampo()}"
-                                                             rows="5"
+                                                             rows="1"
+                                                             maxlength="299"
                                                              >
                                                     <f:ajax execute="@form"
                                                             render="form_revisao:revisao_tecnologia formulario_cadastro_projeto:mensagemSalvamento"
