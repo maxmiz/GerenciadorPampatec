@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import static com.ideiah.gerenciadorpampatec.controller.SessionManager.getSession;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * Classe para gerenciar o status do projeto em todo o sistema. Migrar para essa
  * classe os tratamentos de status do projeto.</p>
  *
- * @author Ideiah PC
+ * @author unipampa
  * @since 07-06-2016
  */
 public class ProjectSatusManager {
@@ -33,12 +34,10 @@ public class ProjectSatusManager {
      * encerrada sem alterar os dados dos projetos.
      * </p>
      */
-    public synchronized void tratamentoSessaoSendoAvaliado() {
+    public static synchronized void tratamentoStatusSendoAvaliado() {
         try {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-            GerenteRelacionamento gerente = (GerenteRelacionamento) session.getAttribute("gerente");
-            Projeto projeto = (Projeto) session.getAttribute("projetoSelecionado");
+            GerenteRelacionamento gerente = (GerenteRelacionamento) SessionManager.getAttribute("gerente");
+            Projeto projeto = (Projeto) SessionManager.getAttribute("projetoSelecionado");
 
             if (gerente != null && projeto != null
                     && projeto.getStatus() == Projeto.SENDO_AVALIADO) {
@@ -49,13 +48,9 @@ public class ProjectSatusManager {
                  */
                 ProjetoDao projetoDao = new ProjetoDao();
                 projetoDao.update(projeto);
-                session.removeAttribute("projetoSelecionado");
+                SessionManager.removeAttribute("projetoSelecionado");
             }
-            /**
-             * É executado de qualquer forma, independente se é um gerente ou
-             * empreendedor.
-             */
-            session.invalidate();
+
         } catch (Exception e) {
             Logger.getLogger(ProjectSatusManager.class.getName()).log(Level.SEVERE, null, e);
         }
