@@ -1,0 +1,3 @@
+Descrição dos cenários
+	O usuário do sistema deve estar logado como empreendedor e estar visualizando uma das paginas à sua disposição.
+	O usuário do sistema deve estar logado como gerente de relacionamentos e estar visualizando uma das paginas à sua disposição.
