@@ -852,10 +852,14 @@ function mostraDIV2(referencia) {
             mostraDIV('div_revisar_plano');
             addFocoBotao("botao_revisar");
         }
+        
+    } else if (andamentoProjeto === 8){
+        mostraDIV('formParte01');
+        
     } else {
         mostraDIV('div_revisar_plano');
+        }
     }
-}
 /**
  * @description Coloca foco na etapa (círculo com nome e número) em que o usuário está visualizando no workflow
  * @param {type} idDoItem
