@@ -34,7 +34,7 @@
             }
         </style>
         <script>
-            var tempoMaxSessao = #{loginBean.session.maxInactiveInterval};
+            var tempoMaxSessao = #{userBean.tempoMaximoSessao()};
 
             /**
              * 
@@ -56,7 +56,7 @@
                 // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
             }
         </script>
-        <!--<meta http-equiv="refresh" content="#-{loginBean.session.maxInactiveInterval};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
+        <!--<meta http-equiv="refresh" content="#-{userBean.tempoMaximoSessao()};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/>-->
     </h:head>
     <body>
         <!-- Início do menu superior -->
@@ -64,7 +64,7 @@
 
             <!-- Controle Remoto que invalida a sessão, ele é acionado quando o sweetAlert (Bah!) é chamado -->
             <p:remoteCommand name="triggerParaInvalidarSessao" 
-                             actionListener="#{loginBean.mataSessao()}"/>
+                             actionListener="#{userBean.finalizaSessao()}"/>
             <!-- Fim do Controle Remoto-->           
 
             <ui:insert name="menu">
