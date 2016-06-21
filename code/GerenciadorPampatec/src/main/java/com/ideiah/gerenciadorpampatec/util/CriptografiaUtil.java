@@ -10,6 +10,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * <p>
+ * Classe responsável por aplicar uma função Hash Criptográfica aos dados
+ * sensíveis do usuário como modo de segurança dos mesmos. </p>
  *
  * @author AugustoCesar
  */
@@ -27,7 +30,7 @@ public final class CriptografiaUtil {
             senha = String.format("%1$032X", i);
 
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Erro: "+e);
+            System.out.println("Erro: " + e);
             e.printStackTrace();
             return null;
         }
