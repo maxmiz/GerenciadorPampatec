@@ -163,7 +163,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (Exception ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
