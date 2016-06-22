@@ -39,8 +39,6 @@ public class EditarEmpreendedorBean implements Serializable {
     private String complemento;
     private String senha;
     private String novaSenha;
-//    @ManagedProperty(value = "#{loginBean}")
-//    private LoginBean loginBean; // +setter
     @ManagedProperty(value = "#{userBean}")
     private UserBean userBean;
 
@@ -275,20 +273,6 @@ public class EditarEmpreendedorBean implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Edição", "Edição realizda com sucesso!");
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
-
-//    /**
-//     * @return the loginBean
-//     */
-//    public LoginBean getLoginBean() {
-//        return loginBean;
-//    }
-//
-//    /**
-//     * @param loginBean the loginBean to set
-//     */
-//    public void setLoginBean(LoginBean loginBean) {
-//        this.loginBean = loginBean;
-//    }
 
     public UserBean getUserBean() {
         return userBean;

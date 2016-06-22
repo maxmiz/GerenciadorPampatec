@@ -51,8 +51,6 @@ public class EmpreendedorBean implements Serializable{
     private EmpreendedorEmail empreendedorEmail;
     private HttpSession session;
     private EmailUtil emailUtil;
-//    @ManagedProperty(value = "#{loginBean}")
-//    private LoginBean loginBean; // +setter
     @ManagedProperty(value = "#{userBean}")
     private UserBean userBean;
     
@@ -408,20 +406,6 @@ public class EmpreendedorBean implements Serializable{
     public void setCompetencia(String competencia) {
         this.competencia = competencia;
     }
-
-//    /**
-//     * @return the loginBean
-//     */
-//    public LoginBean getLoginBean() {
-//        return loginBean;
-//    }
-//
-//    /**
-//     * @param loginBean the loginBean to set
-//     */
-//    public void setLoginBean(LoginBean loginBean) {
-//        this.loginBean = loginBean;
-//    }
 
     public UserBean getUserBean() {
         return userBean;

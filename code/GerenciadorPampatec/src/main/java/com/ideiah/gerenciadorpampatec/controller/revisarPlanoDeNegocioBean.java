@@ -5,7 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Custo;
@@ -41,8 +40,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
     private Textocomentario textocomentario;
-    @ManagedProperty(value = "#{loginBean}")
-    private LoginBean loginBean;
     private String estagioEvolucao;
     private String estagioEvolucaoOutro;
     private Empreendedor empreendedorSession;
@@ -51,11 +48,8 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private int somatorioFixo;
     private int somatorioVariavel;
     private boolean salvou;
-//    @ManagedProperty(value = "#{sessionBean}")
-//    private SessionBean sessionBean;
 
     public revisarPlanoDeNegocioBean() {
-
     }
 
     @PostConstruct
@@ -337,8 +331,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
      * </p>
      */
     public void mudaStatusRedirecionaInicio() {
-        getLoginBean().getInicio();
-
+        RedirectManager.getInicio();
     }
 
     /**
@@ -819,19 +812,19 @@ public class revisarPlanoDeNegocioBean implements Serializable {
         this.comentarioProjeto = comentarioProjeto;
     }
 
-    /**
-     * @return the loginBean
-     */
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
-
-    /**
-     * @param loginBean the loginBean to set
-     */
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
+//    /**
+//     * @return the loginBean
+//     */
+//    public RedirectManager getLoginBean() {
+//        return loginBean;
+//    }
+//
+//    /**
+//     * @param loginBean the loginBean to set
+//     */
+//    public void setLoginBean(RedirectManager loginBean) {
+//        this.loginBean = loginBean;
+//    }
 
     public String getEstagioEvolucao() {
         return estagioEvolucao;
@@ -880,20 +873,6 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     public void setSomatorioVariavel(int somatorioVariavel) {
         this.somatorioVariavel = somatorioVariavel;
     }
-
-//    /**
-//     * @return the sessionBean
-//     */
-//    public SessionBean getSessionBean() {
-//        return sessionBean;
-//    }
-//
-//    /**
-//     * @param sessionBean the sessionBean to set
-//     */
-//    public void setSessionBean(SessionBean sessionBean) {
-//        this.sessionBean = sessionBean;
-//    }
 
     /**
      * @return the salvou

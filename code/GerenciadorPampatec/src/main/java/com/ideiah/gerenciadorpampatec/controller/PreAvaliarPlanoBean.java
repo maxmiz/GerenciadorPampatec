@@ -11,9 +11,7 @@ import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
-import com.ideiah.gerenciadorpampatec.util.ComparadorAvaliacaoUtil;
 import com.ideiah.gerenciadorpampatec.util.ComparadorSubmissaoComentarioUtil;
-import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +22,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -39,13 +34,9 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
-    @ManagedProperty(value = "#{loginBean}")
-    private LoginBean loginBean;
     private int resultadoPreAvaliacao;
     private int contAnterior;
     private boolean salvo;
-//    @ManagedProperty(value="#{sessionBean}")
-//    private SessionBean sessionBean;
     private GerenteRelacionamento gerenteNaSessao;
     
     public PreAvaliarPlanoBean() {
@@ -154,7 +145,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void mudaStatusRedirecionaInicio() {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        loginBean.getInicioGerente();
+        RedirectManager.getInicioGerente();
 
     }
 
@@ -178,7 +169,7 @@ public class PreAvaliarPlanoBean implements Serializable {
 
     public void mudaStatusFazLogout() {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        loginBean.fazLogout();
+        SystemAccessBean.fazLogout();
     }
 
     /**
@@ -588,11 +579,4 @@ public class PreAvaliarPlanoBean implements Serializable {
         this.resultadoPreAvaliacao = resultadoPreAvaliacao;
     }
 
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
 }
