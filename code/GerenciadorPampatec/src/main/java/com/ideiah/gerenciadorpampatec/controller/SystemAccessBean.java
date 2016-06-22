@@ -6,12 +6,14 @@
 package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -19,21 +21,23 @@ import javax.faces.bean.RequestScoped;
 
 /**
  *
- * <p></p>
- * 
+ * <p>
+ * </p>
+ *
  * @author unipampa
  * @since 16-06-2016
  */
 @ManagedBean
 @RequestScoped
-public class LoginNoSessionBean implements Serializable {
+public class SystemAccessBean implements Serializable {
 
     private String user;
     private String passphrase;
     private String nome;
     private String emailRecuperarSenha;
+    boolean cadastroIncompleto;
 
-    public LoginNoSessionBean() {
+    public SystemAccessBean() {
     }
 
     /**
@@ -81,10 +85,10 @@ public class LoginNoSessionBean implements Serializable {
                 this.setNome(gerente.getNome());
 
                 try {
-                    getInicioGerente();
+                    RedirectManager.getInicioGerente();
                     return true;
                 } catch (Exception ex) {
-                    Logger.getLogger(LoginNoSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             } else {
@@ -96,18 +100,6 @@ public class LoginNoSessionBean implements Serializable {
             return false;
         }
         return false;
-    }
-
-    /**
-     * <p>
-     * Método que redireciona para a página inicial do gerente.</p>
-     */
-    private void getInicioGerente() {
-        try {
-            SessionManager.getFacesContext().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.jsf");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginNoSessionBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -140,10 +132,10 @@ public class LoginNoSessionBean implements Serializable {
 
                 this.setNome(empreendedor.getNome());
                 try {
-                    getInicioEmpreendedor();
+                    RedirectManager.getInicioEmpreendedor();
                     return true;
                 } catch (Exception ex) {
-                    Logger.getLogger(LoginNoSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
@@ -154,18 +146,6 @@ public class LoginNoSessionBean implements Serializable {
             return false;
         }
         return false;
-    }
-
-    /**
-     * <p>
-     * Método que redireciona para a página inicial do empreendedor.</p>
-     */
-    private void getInicioEmpreendedor() {
-        try {
-            SessionManager.getFacesContext().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginNoSessionBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -190,10 +170,59 @@ public class LoginNoSessionBean implements Serializable {
 
     /**
      * <p>
+     * Método que realiza logout do sistema, garantindo o status correto do
+     * projeto, finalizando a sessão do usuário e chamando o método para
+     * redirecionar para a página inicial do sistema.</p>
+     *
+     */
+    public static void fazLogout() {
+        ProjectSatusManager.tratamentoStatusSendoAvaliado();
+        SessionManager.finalizaSessao();
+
+        RedirectManager.getLogout();
+    }
+
+    /**
+     * <p>
+     * Método para recuperação de senha do usuário. Envia um email para o
+     * destino inserido (email) com um link para alterar a senha. Cria um novo
+     * empreendedorEmail e seta os valores com tipo (recuperação de senha),
+     * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
+     * inserido e gera um idUnico que é setado no campo de id do
+     * empreendedorEmail.</p>
+     *
+     */
+    public void recuperarSenha() {
+        Empreendedor empreendedor;
+        empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+        if (emailRecuperarSenha == null || emailRecuperarSenha.equals("")) {
+            FacesUtil.addErrorMessage("Insira um email!", "formularioRecuperarSenha:botaoRecuperarSenha");
+        } else if (empreendedor != null) {
+            if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
+                cadastroIncompleto = true;
+                FacesUtil.addErrorMessage("Alguem j\u00e1 adicionou voc\u00ea ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha");
+            } else {
+                String idUnico = UUID.randomUUID().toString();
+                EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+                empreendedorEmail.setEmpreendedor(empreendedor);
+                empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+                empreendedorEmail.setTipo("Recupera\u00e7\u00e3o de Senha");
+                empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+                EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+                FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instru\u00e7\u00f5es para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+            }
+        } else {
+            FacesUtil.addErrorMessage("O e-mail inserido n\u00e3o est\u00e1 cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+        }
+    }
+
+    /**
+     * <p>
      * Retorna o valor da variável <code>user</code> para manipulação no sistema
      * de login.</p>
      *
-     * @return O valor da variável <code>user</code> do tipo  <code>String</code>.
+     * @return O valor da variável <code>user</code> do tipo
+     * <code>String</code>.
      */
     public String getUser() {
         return user;
@@ -212,10 +241,11 @@ public class LoginNoSessionBean implements Serializable {
 
     /**
      * <p>
-     * Retorna o valor da variável <code>passphrase</code> para manipulação no sistema
-     * de login.</p>
-     * 
-     * @return O valor da variável <code>passphrase</code> do tipo  <code>String</code>.
+     * Retorna o valor da variável <code>passphrase</code> para manipulação no
+     * sistema de login.</p>
+     *
+     * @return O valor da variável <code>passphrase</code> do tipo
+     * <code>String</code>.
      */
     public String getPassphrase() {
         return passphrase;
@@ -223,9 +253,9 @@ public class LoginNoSessionBean implements Serializable {
 
     /**
      * <p>
-     * Define o valor da variável <code>passphrase</code> para manipulação no sistema
-     * de login.</p>
-     * 
+     * Define o valor da variável <code>passphrase</code> para manipulação no
+     * sistema de login.</p>
+     *
      * @param aSenha
      */
     public void setPassphrase(String aSenha) {
@@ -246,5 +276,28 @@ public class LoginNoSessionBean implements Serializable {
 
     public void setEmailRecuperarSenha(String emailRecuperarSenha) {
         this.emailRecuperarSenha = emailRecuperarSenha;
+    }
+
+    /**
+     * <p>
+     * Verifica se o empreendedor está com o cadastro completo.</p>
+     *
+     * @return
+     */
+    public boolean verificaCadastroIncompleto() {
+        if (cadastroIncompleto) {
+            cadastroIncompleto = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isCadastroIncompleto() {
+        return cadastroIncompleto;
+    }
+
+    public void setCadastroIncompleto(boolean cadastroIncompleto) {
+        this.cadastroIncompleto = cadastroIncompleto;
     }
 }
