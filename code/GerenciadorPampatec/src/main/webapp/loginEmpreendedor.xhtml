@@ -103,14 +103,14 @@
                                 Insira seu E-mail ou CPF
                                 <h:inputText class="form-control" 
                                              id="emailInput" 
-                                             value="#{loginNoSessionBean.user}">
+                                             value="#{systemAccessBean.user}">
                                 </h:inputText>
                             </div>
                             <div class="col-md-12" title="Digite sua senha">
                                 Senha
                                 <h:inputSecret class="form-control" 
                                                id="senhaInput" 
-                                               value="#{loginNoSessionBean.passphrase}">
+                                               value="#{systemAccessBean.passphrase}">
                                 </h:inputSecret>
                             </div> 
                             <div class="col-md-12" title="Recupere sua senha">
@@ -131,7 +131,7 @@
                                                  title="Acesse sua conta"
                                                  style="padding: 5px 12px"
                                                  value="Acessar" 
-                                                 action="#{loginNoSessionBean.submit()}"
+                                                 action="#{systemAccessBean.submit()}"
                                                  ajax="false">
                                 </p:commandButton>
                             </div>
@@ -160,29 +160,47 @@
                                 <fieldset>
                                     <div class="col-md-12">
                                         E-mail
-                                        <h:messages class="mensagemErro" for="formularioRecuperarSenha:botaoRecuperarSenha" id="teste2"/>
-                                        <h:panelGroup id="painelCadastroIncompleto" rendered="#{userBean.verificaCadastroIncompleto()}">
+                                        <h:messages class="mensagemErro" 
+                                                    for="formularioRecuperarSenha:botaoRecuperarSenha" 
+                                                    id="teste2"/>
+                                        <h:panelGroup id="painelCadastroIncompleto" 
+                                                      rendered="#{systemAccessBean.verificaCadastroIncompleto()}">
                                             <p>Alguém já adicionou você ao plano <a href="#">Clique Aqui</a>
                                                 para completar o seu cadastro.
                                             </p>
                                         </h:panelGroup>
-                                        <p:inputText class="form-control" placeholder="Insira o seu e-mail" id="email" value="#{userBean.emailRecuperarSenha}"></p:inputText>
+                                        <p:inputText class="form-control" 
+                                                     placeholder="Insira o seu e-mail" 
+                                                     id="email" 
+                                                     value="#{systemAccessBean.emailRecuperarSenha}"></p:inputText>
                                         <br/>
 
                                     </div>
 
-                                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                                    <p:ajaxStatus onstart="PF('statusDialog').show()" 
+                                                  onsuccess="PF('statusDialog').hide()" />
 
-                                    <p:dialog widgetVar="statusDialog" style="margin-left: 35%;" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                    <p:dialog widgetVar="statusDialog" 
+                                              style="margin-left: 35%;" 
+                                              modal="true" 
+                                              draggable="false" 
+                                              closable="false" 
+                                              resizable="false" 
+                                              showHeader="false">
                                         <p:graphicImage url="http://i.imgur.com/XGw5fjp.gif" />
                                     </p:dialog>
 
                                     <div class="text-right col-md-12"> 
                                         <div class="col-md-10">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                                            <button type="button" 
+                                                    class="btn btn-default" 
+                                                    data-dismiss="modal">Voltar</button>
                                         </div>
 
-                                        <h:commandButton id="botaoRecuperarSenha" class="btn btn-success" value="Enviar" action="#{userBean.recuperarSenha()}">
+                                        <h:commandButton id="botaoRecuperarSenha"
+                                                         class="btn btn-success" 
+                                                         value="Enviar" 
+                                                         action="#{systemAccessBean.recuperarSenha()}">
                                             <f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
                                                     formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/>
                                         </h:commandButton>
