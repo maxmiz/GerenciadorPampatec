@@ -74,7 +74,7 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 <li class="dropdown">
-                                    <h:commandLink class="aComoBotaoMenu" value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                    <h:commandLink class="aComoBotaoMenu" value="Início" action="#{redirectManager.getInicio()}"></h:commandLink>
                                 </li>
                                 
 
@@ -84,7 +84,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
-                                        <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
+                                        <li><h:commandLink action="#{redirectManager.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
                                     </ul>
                                 </li>
 
@@ -93,7 +93,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
                                         <li>
-                                            <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                            <h:commandLink  value="Sair" action="#{systemAccessBean.fazLogout()}">
                                             </h:commandLink>
                                         </li>
                                     </ul>

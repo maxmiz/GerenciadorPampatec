@@ -66,7 +66,10 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink class="aComoBotaoMenu" value="Início" action="#{loginBean.getInicio()}"></h:commandLink>
+                                <h:commandLink class="aComoBotaoMenu" 
+                                               value="Início" 
+                                               action="#{redirectManager.getInicio()}">
+                                </h:commandLink>
                             </li>
 
                             <li class="dropdown">
@@ -74,17 +77,33 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.criarNovoPlano()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanos()}" value="Lista de Planos"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink action="#{projetoBean.criarNovoPlano()}" 
+                                                       value="Novo Plano">
+                                        </h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandLink action="#{redirectManager.getVisualizarPlanos()}" 
+                                                       value="Lista de Planos">
+                                        </h:commandLink>
+                                    </li>
                                 </ul>
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
+                                <a href="#" class="aComoBotaoMenu" 
+                                   data-toggle="dropdown" 
+                                   role="button" 
+                                   aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" value="Perfil"></h:commandLink></li>
                                     <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        <h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedor()}" 
+                                                       value="Perfil">
+                                        </h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandLink  value="Sair" 
+                                                        action="#{systemAccessBean.fazLogout()}">
                                         </h:commandLink>
                                     </li>
                                 </ul>
@@ -248,82 +267,82 @@
                     </div>
 
                     <div class="col-md-6">
-                    <legend>Dados de Acesso</legend>
+                        <legend>Dados de Acesso</legend>
 
-                    <div title="Este é o seu o seu CPF">
-                        CPF<br/>
-                        <h:message class="mensagemErro" for="cpf"/>
-                        <p:inputMask id="cpf" class="form-control" 
-                                     placeholder="ex: 999.999.999-99"
-                                     requiredMessage="Insira o seu CPF antes de enviar"
-                                     required="true"
-                                     mask="999.999.999-99"
-                                     disabled ="true"
-                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{editarEmpreendedorBean.cpf}">
-                        </p:inputMask>
+                        <div title="Este é o seu o seu CPF">
+                            CPF<br/>
+                            <h:message class="mensagemErro" for="cpf"/>
+                            <p:inputMask id="cpf" class="form-control" 
+                                         placeholder="ex: 999.999.999-99"
+                                         requiredMessage="Insira o seu CPF antes de enviar"
+                                         required="true"
+                                         mask="999.999.999-99"
+                                         disabled ="true"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         value="#{editarEmpreendedorBean.cpf}">
+                            </p:inputMask>
 
-                    </div>
+                        </div>
 
-                    <div title="Digite o seu email">
-                        E-mail* <br/>
-                        <h:message class="mensagemErro" for="email"/>
-                        <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
-                                     requiredMessage="Insira o seu E-mail antes de enviar"
-                                     required="true"
-                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{editarEmpreendedorBean.email}"
-                                     validatorMessage="Email Invalido">
-                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                        </p:inputText>
+                        <div title="Digite o seu email">
+                            E-mail* <br/>
+                            <h:message class="mensagemErro" for="email"/>
+                            <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
+                                         requiredMessage="Insira o seu E-mail antes de enviar"
+                                         required="true"
+                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                         value="#{editarEmpreendedorBean.email}"
+                                         validatorMessage="Email Invalido">
+                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            </p:inputText>
 
-                    </div>
+                        </div>
 
-                    <div title="Digite a sua senha atual">
-                        Senha atual* <p:password id="senhaAtual" class="form-control"
-                                                 placeholder="Digite sua senha" onchange="precisaSalvar = true;"
-                                                 requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
-                                                 required="true"
-                                                 feedback="false"
-                                                 styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                 value="#{editarEmpreendedorBean.senha}"
-                                                 validatorMessage="Você deve fornecer sua senha atual"></p:password>
-                        <h:message class="mensagemErro" for="senhaAtual"/>
-                    </div>
-                    <div class="col-md-6"></div>
-                    
+                        <div title="Digite a sua senha atual">
+                            Senha atual* <p:password id="senhaAtual" class="form-control"
+                                                     placeholder="Digite sua senha" onchange="precisaSalvar = true;"
+                                                     requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
+                                                     required="true"
+                                                     feedback="false"
+                                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                     value="#{editarEmpreendedorBean.senha}"
+                                                     validatorMessage="Você deve fornecer sua senha atual"></p:password>
+                            <h:message class="mensagemErro" for="senhaAtual"/>
+                        </div>
+                        <div class="col-md-6"></div>
+
                     </div>
                     <div class="col-md-6">
                         <legend>Redefinição de senha</legend>
                         <div class="col-md-6" title="Digite a sua nova senha">
-                        Nova senha <p:password id="senhaNova" class="form-control" 
-                                               placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
-                                               requiredMessage="Insira sua nova senha"
-                                               required="false"
-                                               promptLabel="Força da senha" weakLabel="Fraca"
-                                               goodLabel="Mediana" strongLabel="Forte"
-                                               feedback="true" 
-                                               inline="true"
-                                               styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                               value="#{editarEmpreendedorBean.novaSenha}"
-                                               match="senhaConfig" validatorMessage="Senhas não conferem"></p:password>
-                        <h:message class="mensagemErro" for="senhaNova"/>
+                            Nova senha <p:password id="senhaNova" class="form-control" 
+                                                   placeholder="Digite sua nova senha" onchange="precisaSalvar = true;"
+                                                   requiredMessage="Insira sua nova senha"
+                                                   required="false"
+                                                   promptLabel="Força da senha" weakLabel="Fraca"
+                                                   goodLabel="Mediana" strongLabel="Forte"
+                                                   feedback="true" 
+                                                   inline="true"
+                                                   styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
+                                                   value="#{editarEmpreendedorBean.novaSenha}"
+                                                   match="senhaConfig" validatorMessage="Senhas não conferem"></p:password>
+                            <h:message class="mensagemErro" for="senhaNova"/>
 
-                    </div> 
-                    <div class="col-md-6"></div>
-                    
-                    <div class="col-md-6" title="Digite novamente a sua nova senha para confirmação">
-                        Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
-                                                       placeholder="Confirme sua nova senha" 
-                                                       requiredMessage="Confirme sua nova senha"
-                                                       required="false"
-                                                       style=""
-                                                       styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
-                                                       value="#{editarEmpreendedorBean.novaSenha}"></p:password>
-                        <h:message class="mensagemErro" for="senhaNova"/>
-                        <br/>
-                    </div> 
-                    <br/><br/><br/><br/><br/><br/><br/>
+                        </div> 
+                        <div class="col-md-6"></div>
+
+                        <div class="col-md-6" title="Digite novamente a sua nova senha para confirmação">
+                            Confirme sua senha <p:password id="senhaConfig" class="form-control" onchange="precisaSalvar = true;"
+                                                           placeholder="Confirme sua nova senha" 
+                                                           requiredMessage="Confirme sua nova senha"
+                                                           required="false"
+                                                           style=""
+                                                           styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
+                                                           value="#{editarEmpreendedorBean.novaSenha}"></p:password>
+                            <h:message class="mensagemErro" for="senhaNova"/>
+                            <br/>
+                        </div> 
+                        <br/><br/><br/><br/><br/><br/><br/>
                     </div>
                     <div class="col-md-6" style="font-size: 16pt; text-align: left">Você precisará informar sua senha para finalizar a edição</div>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

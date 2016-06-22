@@ -76,7 +76,10 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <h:commandLink value="Início" class="aComoBotaoMenu" action="#{loginBean.getInicioRevisar()}"></h:commandLink>
+                                <h:commandLink value="Início" 
+                                               class="aComoBotaoMenu" 
+                                               action="#{redirectManager.getInicioRevisar()}">
+                                </h:commandLink>
                             </li>
                             <!--
                             <li>
@@ -94,17 +97,30 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{projetoBean.criarNovoPlanoRevisar()}" value="Novo Plano"></h:commandLink></li>
-                                    <li><h:commandLink action="#{loginBean.getVisualizarPlanosRevisar()}" value="Lista de Planos"></h:commandLink></li>
+                                    <li>
+                                        <h:commandLink action="#{projetoBean.criarNovoPlanoRevisar()}" 
+                                                       value="Novo Plano">
+                                        </h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandLink action="#{redirectManager.getVisualizarPlanosRevisar()}" 
+                                                       value="Lista de Planos">
+                                        </h:commandLink>
+                                    </li>
                                 </ul>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="aComoBotaoMenu" data-toggle="dropdown" role="button" aria-expanded="false">Opções <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedorRevisar()}" value="Perfil"></h:commandLink></li>
                                     <li>
-                                        <h:commandLink  value="Sair" action="#{loginBean.fazLogout()}">
+                                        <h:commandLink action="#{editarEmpreendedorBean.editarEmpreendedorRevisar()}" 
+                                                       value="Perfil">
+                                        </h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandLink  value="Sair" 
+                                                        action="#{systemAccessBean.fazLogout()}">
                                         </h:commandLink>
                                     </li>
                                 </ul>
