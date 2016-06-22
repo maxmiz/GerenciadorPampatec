@@ -10,53 +10,43 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
  * <p>
- * Classe com código legado, pois no futuro ela deverá se chamar
- * <code>RedirectManager</code> a qual manipulará somente os redirecionamentos
- * dentro do sistema, juntamente com o mapeamento das URLs do mesmo. A tag
- * @Deprecated foi utilizada para demarcar que essa é uma classe com depreciada
- * e que deve ser refatorada.</p>
+ * Classe responsável por manipular os redirecionamentos dentro do sistema, 
+ * futuramente ela irá utilizar o mapeamento de URLs também.</p>
  *
- * @author Augusto César Görgen
+ * @author PC Unipampa
  */
-@Deprecated
 @ManagedBean
-@SessionScoped
-public class LoginBean implements Serializable {
+public class RedirectManager implements Serializable {
 
-    public LoginBean() {
+    public RedirectManager() {
     }
 
     /**
      * <p>
-     * Método que realiza logout do sistema, garantido o status correto do
-     * projeto e finalizando a sessão do usuário. ESSE MÉTODO DEVE SER MOVIDO PARA A CLASSE <code>LoginNoSessionBean</code></p>
+     * Método responsável por redirecionar para a página inicial do sistema.</p>
+     *
      */
-    public void fazLogout() {
-        ProjectSatusManager.tratamentoStatusSendoAvaliado();
-        SessionManager.finalizaSessao();
-        
+    public static void getLogout() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
      * <p>
      * Método que redireciona para a página inicial do empreendedor.</p>
      */
-    public void getInicio() {
+    public static void getInicio() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -69,7 +59,19 @@ public class LoginBean implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../homeEmpreendedor.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * <p>
+     * Método que redireciona para a página inicial do empreendedor.</p>
+     */
+    public static void getInicioEmpreendedor() {
+        try {
+            SessionManager.getFacesContext().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -77,11 +79,11 @@ public class LoginBean implements Serializable {
      * <p>
      * Método que redireciona para a página inicial do gerente.</p>
      */
-    public void getInicioGerente() {
+    public static void getInicioGerente() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("homeGerenteDeRelacionamentos.jsf");
+            SessionManager.getFacesContext().getExternalContext().redirect("view/gerentederelacionamento/homeGerenteDeRelacionamentos.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -94,7 +96,7 @@ public class LoginBean implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("empreendedor/enviarProjeto.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,7 +110,7 @@ public class LoginBean implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("buscarPlanoDeNegocio.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -121,44 +123,31 @@ public class LoginBean implements Serializable {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void getVisualizarPlanosRevisar() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void voltar() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     /**
      * <p>
-     * Método para redirecionar o usuário para a página de login, invocado de
-     * uma das páginas de erro do diretório WEB-INF.</p>
+     * </p>
+     *
      */
-    public void voltarDoErroParaLogin() {
+    public void getVisualizarPlanosRevisar() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/GerenciadorPampatec/loginEmpreendedor.jsf");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void enviaBuscaProjeto() {
+    /**
+     *<p>Método que redireciona para a página com a Lista de Planos de Negócio. </p>
+     */
+    public static void enviaBuscaProjeto() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("paginaBuscaPlanoDeNegocio.jsf");
         } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
