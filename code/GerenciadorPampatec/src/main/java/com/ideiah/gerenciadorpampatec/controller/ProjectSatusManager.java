@@ -5,14 +5,11 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import static com.ideiah.gerenciadorpampatec.controller.SessionManager.getSession;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  * <p>
@@ -22,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author unipampa
  * @since 07-06-2016
  */
-public class ProjectSatusManager {
+public abstract class ProjectSatusManager {
 
     public ProjectSatusManager() {
     }
