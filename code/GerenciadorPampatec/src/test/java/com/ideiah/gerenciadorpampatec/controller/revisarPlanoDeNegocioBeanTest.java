@@ -451,9 +451,9 @@ public class revisarPlanoDeNegocioBeanTest {
     public void testGetLoginBean() {
         System.out.println("getLoginBean");
         revisarPlanoDeNegocioBean instance = new revisarPlanoDeNegocioBean();
-        LoginBean expResult = null;
-        LoginBean result = instance.getLoginBean();
-        assertEquals(expResult, result);
+//        RedirectManager expResult = null;
+//        RedirectManager result = instance.getLoginBean();
+//        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -464,9 +464,9 @@ public class revisarPlanoDeNegocioBeanTest {
     @Ignore
     public void testSetLoginBean() {
         System.out.println("setLoginBean");
-        LoginBean loginBean = null;
+        RedirectManager loginBean = null;
         revisarPlanoDeNegocioBean instance = new revisarPlanoDeNegocioBean();
-        instance.setLoginBean(loginBean);
+//        instance.setLoginBean(loginBean);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
