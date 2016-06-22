@@ -5,7 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
@@ -19,23 +18,15 @@ import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -80,9 +71,8 @@ public class ProjetoBean implements Serializable {
         salvou = false;
         listaEmpreendedor = Empreendedor.retornarEmpreendedores();
         empreedendoresAdicionados = new ArrayList<>();
-        HttpSession secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        projeto = (Projeto) secao.getAttribute("projetoSelecionado");
-        empreendedorSession = (Empreendedor) secao.getAttribute("empreendedor");
+        projeto = (Projeto) SessionManager.getAttribute("projetoSelecionado");
+        empreendedorSession = (Empreendedor) SessionManager.getAttribute("empreendedor");
         preencheDropDown();
         listaCustoFixo = new ArrayList<>();
         listaCustoVariavel = new ArrayList<>();
@@ -536,10 +526,8 @@ public class ProjetoBean implements Serializable {
      * @return true se o empreendedor não tem projetos cadastrados.
      */
     public boolean verificaCadastroProjeto() {
-        HttpSession secao;
-        secao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Empreendedor emp;
-        emp = (Empreendedor) secao.getAttribute("empreendedor");
+        emp = (Empreendedor) SessionManager.getAttribute("empreendedor");
 
         EmpreendedorDao empreendedorDao = new EmpreendedorDao();
         emp = empreendedorDao.buscar(emp.getIdUsuario());
