@@ -23,7 +23,7 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author Pedro
  */
-@Ignore
+
 public class revisarPlanoDeNegocioBeanTest {
     
     public SessionBean sb;
