@@ -2500,13 +2500,13 @@
                                 <br />                            
                                 <b>Avaliação: <p:commandLink value="(?) " actionListener="#{ajudaview.showMessage('statusAvaliacao')}"></p:commandLink></b>
                                 <h:panelGroup id="mensagemStatusAvaliacao">
-                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroAceito()}" class="mensagemErro">
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroAceito()}" class="mensagemAviso">
                                         Um plano aceito para avaliação não pode conter sugestões de melhoria.
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroMelhoria()}" class="mensagemErro">
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroMelhoria()}" class="mensagemAviso">
                                         Para solicitar melhorias é necessário adicionar ao menos um comentário sugerindo melhoria.
                                     </h:panelGroup>
-                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroSemStatus()}" class="mensagemErro">
+                                    <h:panelGroup rendered="#{preAvaliarPlanoBean.exibeMensagemErroSemStatus()}" class="mensagemAviso">
                                         Você precisa selecionar um status de avaliação para terminar a avaliação.
                                     </h:panelGroup>
                                 </h:panelGroup><br/>                            
