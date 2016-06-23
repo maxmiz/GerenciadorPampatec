@@ -145,7 +145,7 @@ public class PreAvaliarPlanoBean implements Serializable {
      */
     public void mudaStatusRedirecionaInicio() {
         mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        RedirectManager.getInicioGerente();
+        RedirectManager.getInicioGerenteLogado();
 
     }
 

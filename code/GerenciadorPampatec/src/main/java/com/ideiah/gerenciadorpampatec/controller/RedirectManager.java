@@ -86,7 +86,19 @@ public class RedirectManager implements Serializable {
             Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * <p>
+     * Método que redireciona para a página inicial do gerente após estar logado.</p>
+     */
+    public static void getInicioGerenteLogado() {
+        try {
+            SessionManager.getFacesContext().getExternalContext().redirect("homeGerenteDeRelacionamentos.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * <p>
      * Método que redireciona para a página de criar planos de negócio do
