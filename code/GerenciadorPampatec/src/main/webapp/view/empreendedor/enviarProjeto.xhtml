@@ -1289,16 +1289,16 @@
                         <div id="identificacao_empresa">
                             <p><b>Nome da Empresa ou do Projeto: </b> <h:outputText id="revisao_nomeEmpresa" value="#{projetoBean.projeto.nome}"/></p>
                             <div class="col-md-12">
-                                <div class="col-md-5"></div> 
-                                <div class="col-md-2">
+                                <div class="col-md-1"></div> 
+                                <div class="col-md-10 " align="center">
                                     <h:dataTable var="empreendedor" value="#{projetoBean.projeto.retornaListaEmpreendedores()}">
-                                        <h:column > 
+                                        <h:column headerClass="textoCentralizado"> 
                                             <f:facet name="header"><b>EMPREENDEDORES</b></f:facet>
                                             <h:outputText id="revisao_nomeEmpreendedor" value="#{empreendedor.nome}" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>
-                                <div class="col-md-5"></div> 
+                                <div class="col-md-1"></div> 
                             </div>
                         </div>
                     </div>

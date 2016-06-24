@@ -876,3 +876,6 @@ Adicionar Comentário e Histórico de comentários
     border-radius: 3px;
 
 }
+th.textoCentralizado{
+    text-align: center;
+}
