@@ -22,6 +22,7 @@ import javax.faces.bean.RequestScoped;
 /**
  *
  * <p>
+ * Classe responsável por gerenciar o acesso dos usuários ao sistema.
  * </p>
  *
  * @author unipampa
