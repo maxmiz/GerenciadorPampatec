@@ -163,7 +163,17 @@
                     </div>
 
                     <div class="col-md-12">
-                        <p:dataTable id="singleDT" var="projeto" widgetVar="TabelaProjeto"  paginatorPosition="bottom" paginator="true" rows="10" emptyMessage="Nenhum plano foi encontrado" value="#{buscaProjetoEmpreendedorBean.listaProjetos}">
+                        
+                        <p:dataTable id="singleDT"
+                                     var="projeto" 
+                                     widgetVar="TabelaProjeto"  
+                                     paginatorPosition="bottom" 
+                                     paginator="true" 
+                                     rows="10"
+                                     emptyMessage="Nenhum plano foi encontrado" 
+                                     value="#{buscaProjetoEmpreendedorBean.listaProjetos}"
+                                     >
+                            
                             <f:facet name="header">
                                 <p:outputPanel id="procurar">
                                     <h:outputText value="Procurar: "/>
@@ -172,9 +182,11 @@
                                 <p:commandButton id="dummy" process="@none" global="false" style="display:none;"/>
                                 </p:outputPanel> 
                             </f:facet>
+                            
                             <p:column headerText="Nome" filterBy="#{projeto.nome}" filterStyle="display:none" sortBy="#{projeto.nome}">
                                 <h:outputText value="#{projeto.nome}" />
                             </p:column>
+                            
                             <p:column headerText="Data de Criação" filterBy="#{projeto.dataCriacao}" filterStyle="display:none" sortBy="#{projeto.dataCriacao}" style="text-align: center;">
                                 <h:outputText value="#{buscaProjetoEmpreendedorBean.formatarDataCriacao(projeto)}" >
                                     <!--<f:convertDateTime pattern="dd/MM/yyyy-hh:mm"/>--> 
