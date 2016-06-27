@@ -5,12 +5,10 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.Dao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.ComparadorAvaliacaoUtil;
 import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ import javax.servlet.http.HttpSession;
 public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     private ArrayList<Projeto> listaProjetos;
+    private ArrayList<String> listaStatusProjeto;
     private Projeto projetoSelecionado;
     private ProjetoDao projetoDao;
     private ProjetoBean projetoBean;
@@ -49,6 +48,18 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
     public BuscaProjetoGerenteDeRelacionamentosBean() {
         projetoDao = new ProjetoDao();
         this.atualizaListaProjetosTodos();
+        listaStatusProjeto = new ArrayList<>();
+        
+        //Adicionando os Status para o Filtro na tabela
+        listaStatusProjeto.add("Sendo Avaliado");
+        listaStatusProjeto.add("Submetido");
+        listaStatusProjeto.add("Ressubmetido");
+        listaStatusProjeto.add("Em Pré-Avaliação");
+        listaStatusProjeto.add("Necessita Melhoria");
+        listaStatusProjeto.add("Aceito para Avaliação");
+        listaStatusProjeto.add("Em Formalização");
+        listaStatusProjeto.add("Incubação");
+        listaStatusProjeto.add("Reprovado");
     }
 
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
@@ -399,5 +410,19 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
      */
     public void setCampoProcurar(String campoProcurar) {
         this.campoProcurar = campoProcurar;
+    }
+
+    /**
+     * @return the listaStatusProjeto
+     */
+    public ArrayList<String> getListaStatusProjeto() {
+        return listaStatusProjeto;
+    }
+
+    /**
+     * @param listaStatusProjeto the listaStatusProjeto to set
+     */
+    public void setListaStatusProjeto(ArrayList<String> listaStatusProjeto) {
+        this.listaStatusProjeto = listaStatusProjeto;
     }
 }
