@@ -28,8 +28,8 @@ public class ComentarioDao extends Dao implements Serializable{
     
      
     //salva o objeto comentario inteiro no banco
-    public boolean salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
-        return super.salvar(comentarioprojeto);
+    public ComentarioProjeto salvarComentarioProjeto(ComentarioProjeto comentarioprojeto){
+        return (ComentarioProjeto) super.salvar(comentarioprojeto);
     }
     
     /**
@@ -37,8 +37,8 @@ public class ComentarioDao extends Dao implements Serializable{
      * @param comentario comentário a se salvar
      * @return true se foi salvo
      */
-    public boolean  salvarTextoComentario(Textocomentario comentario){
-        return super.salvar(comentario);
+    public Textocomentario  salvarTextoComentario(Textocomentario comentario){
+        return (Textocomentario) super.salvar(comentario);
     }
     
     public ComentarioProjeto salvarRetornandoComentarioProjeto(ComentarioProjeto comentarioProjeto) {

@@ -48,7 +48,7 @@ public class EmpreendedorEmail {
      * @param empreendedorEmail
      * @return 
      */
-    public boolean salvarEmpreendedorEmail(EmpreendedorEmail empreendedorEmail) {
+    public EmpreendedorEmail salvarEmpreendedorEmail(EmpreendedorEmail empreendedorEmail) {
         return getEmpreededorEmailDao().salvar(empreendedorEmail);
     }
 

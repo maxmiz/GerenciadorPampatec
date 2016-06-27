@@ -34,64 +34,34 @@ public abstract class Dao {
      * @param obj
      * @return boolean se salvou ou não
      */
-    public boolean salvar(Object obj) {
-        boolean salvou = false;
+    public Object salvar(Object obj) {
+        Object salvo = null;
         try {
             setTx(getSession().getTransaction());
             getTx().begin();
-            getSession().merge(obj);
-            salvou = true;
+            salvo = getSession().merge(obj);
             getTx().commit();
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             getSession().getTransaction().rollback();
-            salvou = false;
         }
-        return salvou;
+        return salvo;
     }
 
     // <editor-fold defaultstate="collapsed" desc="INSERT and UPDATE"> 
-    /**
-     * Salva um objeto que contêm um arquivo nele
-     *
-     * @param obj
-     * @return Resultado
-     */
-    protected int salvarComArquivo(Object obj) {
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        Transaction tx = null;
-        int result = SALVOU;
-        try {
-            setTx(getSession().getTransaction());
-            getTx().begin();
-            getSession().saveOrUpdate(obj);
-            getTx().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            getSession().getTransaction().rollback();
-            result = ERRO_SALVAR;
-        } catch (OutOfMemoryError error) {
-            error.printStackTrace();
-            getSession().getTransaction().rollback();
-            result = ARQUIVO_GRANDE;
-        }
-        return result;
-    }
 
-    public boolean update(Object obj) {
-        boolean salvou = false;
+    public Object update(Object obj) {
+        Object salvo = null;
         try {
             setTx(getSession().getTransaction());
             getTx().begin();
-            getSession().merge(obj);
-            salvou = true;
+            salvo = getSession().merge(obj);
             getTx().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
             getSession().getTransaction().rollback();
-            salvou = false;
         }
-        return salvou;
+        return salvo;
     }
         // </editor-fold>
 
@@ -120,7 +90,7 @@ public abstract class Dao {
         try {
             setTx(getSession().getTransaction());
             getTx().begin();
-            Object object = getSession().get(type, codigo);
+            Object object = getSession().get(type, Integer.parseInt(codigo));
             getSession().delete(object);
             getTx().commit();
 

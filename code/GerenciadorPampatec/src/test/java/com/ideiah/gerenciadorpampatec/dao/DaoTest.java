@@ -7,6 +7,8 @@ package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
+import com.ideiah.gerenciadorpampatec.model.Projeto;
+import com.ideiah.gerenciadorpampatec.model.Usuario;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.hibernate.Session;
@@ -21,8 +23,9 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
-@Ignore
 public class DaoTest {
+
+    private static final int CODIGO_EMPREENDEDOR = 99999999;
 
     Dao instance;
 
@@ -41,198 +44,121 @@ public class DaoTest {
     }
 
     /**
-     * Salvar um Empreendedor sem setar o e-mail;
+     * Salvar um Empreendedor;
      */
-    @Ignore
+    @Test
     public void testSalvar1() {
-        Empreendedor empreendedor = new Empreendedor();
-        boolean result = instance.salvar(empreendedor);
-        assertFalse("Criando um empreendedor não adicionando e-mail. Espero que não salve", result);
+        Usuario empreendedor = new Empreendedor();
+        Usuario result = (Usuario) instance.salvar(empreendedor);
+        assertNotNull("Criando um obj não adicionando e-mail. Espero que salve", result);
+        instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
     /**
-     * Salvar um Empreendedor setando e-mail. OBS.: A validação do e-mail deve
-     * estar na classe empreendedor, logo independe do formato do E-mail a Dao
-     * vai aceitar sempre qualquer e-mail.
+     * Salvar um Empreendedor nulo;
      */
-    @Ignore
+    @Test
     public void testSalvar2() {
-        Empreendedor empreendedor = new Empreendedor();
-        empreendedor.setEmail("teste@gmail.com");
-        boolean result = instance.salvar(empreendedor);
-        assertTrue("Criando um empreendedor adicionando e-mail. Espero que salve", result);
-    }
-
-    /**
-     * Salvar um Empreendedor setando e-mail. OBS.: A validação do e-mail deve
-     * estar na classe empreendedor, logo independe do formato do E-mail a Dao
-     * vai aceitar sempre qualquer e-mail.
-     */
-    @Ignore
-    public void testSalvar3() {
-        Empreendedor empreendedor = new Empreendedor();
-        empreendedor.setEmail("teste...");
-        boolean result = instance.salvar(empreendedor);
-        assertTrue("Criando um empreendedor adicionando e-mail inválido. Espero que salve", result);
-    }
-
-    /**
-     * Test of salvarComArquivo method, of class Dao.
-     */
-    @Ignore
-    public void testSalvarComArquivo() {
-        System.out.println("salvarComArquivo");
-        Object obj = null;
-        Dao instance = new DaoImpl();
-        int expResult = 0;
-        int result = instance.salvarComArquivo(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Empreendedor empreendedor = null;
+        Usuario result = (Usuario) instance.salvar(empreendedor);
+        assertNull("Criando um obj vazio. Espero que não salve", result);
+        if (result != null) {
+            instance.excluir(result.getIdUsuario(), Usuario.class);
+        }
     }
 
     /**
      * Test of update method, of class Dao.
      */
-    @Ignore
+    @Test
     public void testUpdate() {
-        System.out.println("update");
-        Object obj = null;
-        Dao instance = new DaoImpl();
-        boolean expResult = false;
-        boolean result = instance.update(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Usuario empreendedor = new Empreendedor();
+        empreendedor.setNome("Nome Antes");
+        Usuario result = (Usuario) instance.salvar(empreendedor);
+        result.setNome("Nome Depois");
+        result = (Usuario) instance.update(result);
+        assertEquals("Criando um obj não adicionando e-mail. Espero que salve","Nome Depois", result.getNome());
+        instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
     /**
-     * Test of excluir method, of class Dao.
+     * Teste de excluir um objeto da dao.
      */
-    @Ignore
-    public void testExcluir() {
-        System.out.println("excluir");
-        int codigo = 0;
-        Class type = null;
-        Dao instance = new DaoImpl();
-        boolean expResult = false;
-        boolean result = instance.excluir(codigo, type);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testExcluir1() {
+        Usuario usuario = new Empreendedor();
+        usuario = (Usuario) instance.salvar(usuario);
+        boolean result = instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
+        assertTrue("Excluindo objeto. Espero que exclua", result);
+    }
+    
+    /**
+     * Teste de excluir um objeto da dao que não existe.
+     */
+    @Test
+    public void testExcluir2() {
+        boolean result = instance.excluir(-1, Empreendedor.class);
+        assertFalse("Excluindo objeto que não existe. Espero que não exclua", result);
+    }
+    
+    /**
+     * Teste de excluir um objeto da dao.
+     */
+    @Test
+    public void testExcluirString1() {
+        Usuario usuario = new Empreendedor();
+        String id;
+        usuario = (Usuario) instance.salvar(usuario);
+        id = ""+usuario.getIdUsuario();
+        boolean result = instance.excluir(id, Empreendedor.class);
+        assertTrue("Excluindo objeto. Espero que exclua", result);
+    }
+    
+    /**
+     * Teste de excluir um objeto da dao que não existe.
+     */
+    @Test
+    public void testExcluir2String() {
+        boolean result = instance.excluir("1", Empreendedor.class);
+        assertFalse("Excluindo objeto que não existe. Espero que não exclua", result);
     }
 
     /**
-     * Test of buscarObjeto method, of class Dao.
+     * Testa busca Objetos no banco de dados.
      */
-    @Ignore
-    public void testBuscarObjeto_int_Class() {
-        System.out.println("buscarObjeto");
-        int codigo = 0;
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjeto(codigo, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testBuscarObjetos() {
+        ArrayList result = instance.buscarObjetos(Usuario.class);
+        assertNotNull(result);
     }
-
+    
     /**
-     * Test of buscarObjetoCriteria method, of class Dao.
+     * Testa o método de buscar objetos com critérios. Primeiro cria objetos no
+     * banco com status diferentes para garantir que o banco esteja preenchdi.
+     * Depois busca os objetos com um critério definido. Depois se os objetos
+     * retornados respeitam os critérios estabelecidos. Depois apaga os registros
+     * criados.
      */
-    @Ignore
-    public void testBuscarObjetoCriteria() {
-        System.out.println("buscarObjetoCriteria");
-        String propriedade = "";
-        String valor = "";
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjetoCriteria(propriedade, valor, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscarObjetoCriteriaINT method, of class Dao.
-     */
-    @Ignore
-    public void testBuscarObjetoCriteriaINT() {
-        System.out.println("buscarObjetoCriteriaINT");
-        String propriedade = "";
-        int valor = 0;
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjetoCriteriaINT(propriedade, valor, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscarObjeto method, of class Dao.
-     */
-    @Ignore
-    public void testBuscarObjeto_String_Class() {
-        System.out.println("buscarObjeto");
-        String codigo = "";
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjeto(codigo, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscarObjeto method, of class Dao.
-     */
-    @Ignore
-    public void testBuscarObjeto_HashMap_Class() {
-        System.out.println("buscarObjeto");
-        HashMap<String, Object> filtros = null;
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjeto(filtros, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscarObjetos method, of class Dao.
-     */
-    @Ignore
-    public void testBuscarObjetos_HashMap_Class() {
-        System.out.println("buscarObjetos");
-        HashMap<String, Object> filtros = null;
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        Object expResult = null;
-        Object result = instance.buscarObjetos(filtros, classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscarObjetos method, of class Dao.
-     */
-    @Ignore
-    public void testBuscarObjetos_Class() {
-        System.out.println("buscarObjetos");
-        Class classe = null;
-        Dao instance = new DaoImpl();
-        ArrayList expResult = null;
-        ArrayList result = instance.buscarObjetos(classe);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testBuscarObjetosCriteria() {
+        boolean flag = false;
+        Projeto projeto = new Projeto();
+        Projeto projetoStatus2 = new Projeto();
+        projeto.setStatus(1);
+        projetoStatus2.setStatus(2);
+        projeto = (Projeto) instance.salvar(projeto);
+        projetoStatus2 = (Projeto) instance.salvar(projetoStatus2);
+        ArrayList<Projeto> result = (ArrayList<Projeto>) instance.buscarObjetosCritera("status",
+                1,Projeto.class);
+        for (Projeto projetoLaco : result) {
+            if(projetoLaco.getStatus() != 1){
+                flag = true;
+                break;
+            }
+        }
+        assertFalse(flag);
+        instance.excluir(projeto.getIdProjeto(), Projeto.class);
+        instance.excluir(projetoStatus2.getIdProjeto(), Projeto.class);
     }
 
     /**

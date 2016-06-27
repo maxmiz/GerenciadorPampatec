@@ -158,12 +158,12 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         this.projetos = projetos;
     }
 
-    public static boolean salvarProjeto(Projeto projeto) {
+    public static Projeto salvarProjeto(Projeto projeto) {
 
         return getProjetoDao().salvar(projeto);
     }
 
-    public static boolean atualizarProjeto(Projeto projeto) {
+    public static Projeto atualizarProjeto(Projeto projeto) {
 
         return getProjetoDao().update(projeto);
     }
@@ -177,7 +177,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         return getEmpreededorDao().buscar();
     }
 
-    public boolean cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
+    public Empreendedor cadastrarEmpreendedor(Empreendedor empreendedorNovo) {
 //        boolean retorno = empreendedorDao.buscarDados(empreendedorNovo.getEmail(), empreendedorNovo.getNome());
 //        int idEndereco = 0;
 //        if (retorno == true) {
@@ -204,7 +204,7 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
 
         Date data = new Date(System.currentTimeMillis());
         projeto.setDataEnvio(data);
-        if (getProjetoDao().update(projeto)) {
+        if (getProjetoDao().update(projeto) != null) {
             return ENVIADO;
         } else {
             return ERRO_AO_SALVAR;
@@ -243,8 +243,8 @@ public class Empreendedor extends Usuario implements java.io.Serializable {
         return completo;
     }
 
-    public boolean atualizarEmpreendedor(Empreendedor emp) {
-        return getEmpreededorDao().update(emp);
+    public Empreendedor atualizarEmpreendedor(Empreendedor emp) {
+        return (Empreendedor) getEmpreededorDao().update(emp);
     }
 
     public Empreendedor buscarPorEmail(String user) {

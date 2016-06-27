@@ -231,7 +231,7 @@ public class EditarEmpreendedorBean implements Serializable {
                 empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
             }
             boolean passou = false;
-            if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+            if (empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                 try {
                     getUserBean().setNome(nome);
                     UserBean.MudarSenha(empreendedor.getSenha());

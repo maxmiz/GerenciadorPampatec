@@ -22,7 +22,7 @@
             <column name="email" length="45" />
         </property>
     
-        <joined-subclass name="com.ideiah.gerenciadorpampatec.model.Empreendedor" extends="Usuario">
+        <joined-subclass name="com.ideiah.gerenciadorpampatec.model.Empreendedor" table="empreendedor" extends="usuario">
             <key column="usuario_id_usuario"/>
         
             <property name="formacao" type="string">

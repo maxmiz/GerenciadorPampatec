@@ -24,8 +24,8 @@ public class ProjetoDao extends Dao implements Serializable {
     
 //<editor-fold defaultstate="collapsed" desc="Salvar">
 
-    public boolean salvar(Projeto projeto) {
-        return super.salvar(projeto);
+    public Projeto salvar(Projeto projeto) {
+        return (Projeto) super.salvar(projeto);
     }
 
     public Projeto salvarRetornandoProjeto(Projeto projeto) {
@@ -42,8 +42,8 @@ public class ProjetoDao extends Dao implements Serializable {
         return null;
     }
 
-    public boolean update(Projeto projeto) {
-        return super.update(projeto);
+    public Projeto update(Projeto projeto) {
+        return (Projeto) super.update(projeto);
     }
 //</editor-fold>
 

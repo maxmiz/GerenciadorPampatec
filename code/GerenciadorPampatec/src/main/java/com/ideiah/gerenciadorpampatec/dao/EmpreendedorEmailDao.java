@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class EmpreendedorEmailDao extends Dao {
 
     //<editor-fold defaultstate="collapsed" desc="Salvar">
-    public boolean salvar(EmpreendedorEmail empreendedorEmail) {
-        return super.salvar(empreendedorEmail);
+    public EmpreendedorEmail salvar(EmpreendedorEmail empreendedorEmail) {
+        return (EmpreendedorEmail) super.salvar(empreendedorEmail);
     }
 //</editor-fold>
 

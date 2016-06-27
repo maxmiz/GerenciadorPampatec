@@ -108,7 +108,7 @@ public class EmpreendedorBean implements Serializable{
                 empreendedor.setComplemento(complemento);
                 empreendedor.setExperiencia(experiencia);
 
-                if (empreendedor.cadastrarEmpreendedor(empreendedor)) {
+                if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
 //                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
 //                        como nulos. Portanto, ele salva no banco depois limpa a tela. (só funciona com refresh)
@@ -182,7 +182,7 @@ public class EmpreendedorBean implements Serializable{
                 empreendedor.setComplemento(complemento);
                 empreendedor.setExperiencia(experiencia);
 
-                if (empreendedor.atualizarEmpreendedor(empreendedor)) {
+                if (empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro finalizado com sucesso!", "formularioCadastro:botaoEnviar");
 
                     try {

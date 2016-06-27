@@ -17,12 +17,12 @@ import java.util.List;
 public class EmpreendedorDao extends Dao {
 
 //<editor-fold defaultstate="collapsed" desc="Salvar">
-    public boolean salvar(Empreendedor empreendedor) {
-        return super.salvar(empreendedor);
+    public Empreendedor salvar(Empreendedor empreendedor) {
+        return (Empreendedor) super.salvar(empreendedor);
     }
     
-    public boolean salvarNotificacao(Notificacao notificacao) {
-        return super.salvar(notificacao);
+    public Notificacao salvarNotificacao(Notificacao notificacao) {
+        return (Notificacao) super.salvar(notificacao);
     }
 //</editor-fold>
 
