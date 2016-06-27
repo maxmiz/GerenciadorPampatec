@@ -15,13 +15,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
  * @author Claudio
  */
-@Ignore
 public class PreAvaliarPlanoBeanTest {
 
     PreAvaliarPlanoBean instance;
@@ -31,7 +29,6 @@ public class PreAvaliarPlanoBeanTest {
     ProjetoDao projDao;
 
     public PreAvaliarPlanoBeanTest() {
-
     }
 
     @BeforeClass
@@ -44,14 +41,12 @@ public class PreAvaliarPlanoBeanTest {
 
     @Before
     public void setUp() {
-
         projeto = new Projeto();
         projDao = new ProjetoDao();
         comentDao = new ComentarioDao();
         projeto = projDao.buscar(1);
         comentarioProjeto = comentDao.buscar(1);
         instance = new PreAvaliarPlanoBean(projeto);
-
     }
 
     @After
@@ -67,11 +62,8 @@ public class PreAvaliarPlanoBeanTest {
     /**
      * Test of buscarComentarioProjeto method, of class PreAvaliarPlanoBean.
      */
-    @Ignore
+    @Test
     public void testBuscarComentarioProjeto() {
-        //ajustando variáveis de teste
-
-//        System.out.println("projeto tal: " + comentarioProjeto.getProjeto().getNome());
         System.out.println("buscar Comentario do Projeto");
         instance.buscarComentarioProjeto(projeto);
         System.out.println("intance nome projeto: " + instance.getComentarioProjeto());
@@ -82,19 +74,15 @@ public class PreAvaliarPlanoBeanTest {
     /**
      * Test of verificaEstagioEvolucao method, of class PreAvaliarPlanoBean.
      */
-    @Ignore
+    @Test
     public void testVerificaEstagioEvolucao() {
-
         String esperado = "Projeto Básico";
-
         assertEquals(esperado, projeto.getProdutoouservico().getEstagioEvolucao());
-
     }
 
-    @Ignore
+    @Test
     public void testVerificaEstagioFalso() {
         String esperado = "Idéia Básica";
-
         assertNotSame(esperado, projeto.getProdutoouservico().getEstagioEvolucao());
     }
 
@@ -102,24 +90,19 @@ public class PreAvaliarPlanoBeanTest {
      * Test of mudaStatusProjetoParaSendoAvaliado method, of class
      * PreAvaliarPlanoBean.
      */
-    @Ignore
+    @Test
     public void testMudaStatusProjetoParaSendoAvaliadoFalse() {
-
         System.out.println(projeto.getStatusString(projeto.getStatus()));
 
         //int statusProjeto = Projeto.SUBMETIDO;
-
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
 
         //assertFalse("Verifica se o status do projeto é mudado de Pré Avaliacao para Sendo avaliado deve ser False", statusProjeto == instance.getProjeto().getStatus());
-
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
-
     }
 
-    @Ignore
+    @Test
     public void testMudaStatusProjetoParaSendoAvaliadoTrue() {
-
         System.out.println(projeto.getStatusString(projeto.getStatus()));
 
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
@@ -133,27 +116,25 @@ public class PreAvaliarPlanoBeanTest {
      * Test of mudaStatusProjetoParaEmPreAvaliacao method, of class
      * PreAvaliarPlanoBean.
      */
-    @Ignore
+    @Test
     public void testMudaStatusProjetoParaEmPreAvaliacaoTrue() {
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
-        
+
         System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
-        
+
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        
+
         //assertTrue("Verifica se o status do projeto é: Em Pre Avaliação Deve ser True", Projeto.SUBMETIDO == projeto.getStatus());
-        
-    }
-    @Ignore
-    public void testMudaStatusProjetoParaEmPreAvaliacaoFalse() {
-        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
-        
-        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
-        
-        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
-        
-        assertFalse("Verifica se o status do projeto é: Em Pre Avaliação, Deve ser falso", Projeto.SENDO_AVALIADO == projeto.getStatus());
-        
     }
 
+    @Test
+    public void testMudaStatusProjetoParaEmPreAvaliacaoFalse() {
+        instance.mudaStatusProjetoParaSendoAvaliado(projeto);
+
+        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
+
+        instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
+
+        assertFalse("Verifica se o status do projeto é: Em Pre Avaliação, Deve ser falso", Projeto.SENDO_AVALIADO == projeto.getStatus());
+    }
 }
