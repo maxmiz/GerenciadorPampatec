@@ -225,11 +225,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testSalvarProjeto() {
-        System.out.println("salvarProjeto");
-        Projeto projeto = null;
-        boolean expResult = false;
-        boolean result = Empreendedor.salvarProjeto(projeto);
-        assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -239,11 +235,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testAtualizarProjeto() {
-        System.out.println("atualizarProjeto");
-        Projeto projeto = null;
-        boolean expResult = false;
-        boolean result = Empreendedor.atualizarProjeto(projeto);
-        assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -266,12 +258,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testCadastrarEmpreendedor() {
-        System.out.println("cadastrarEmpreendedor");
-        Empreendedor empreendedorNovo = null;
-        Empreendedor instance = new Empreendedor();
-        boolean expResult = false;
-        boolean result = instance.cadastrarEmpreendedor(empreendedorNovo);
-        assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -325,12 +312,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testAtualizarEmpreendedor() {
-        System.out.println("atualizarEmpreendedor");
-        Empreendedor emp = null;
-        Empreendedor instance = new Empreendedor();
-        boolean expResult = false;
-        boolean result = instance.atualizarEmpreendedor(emp);
-        assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
