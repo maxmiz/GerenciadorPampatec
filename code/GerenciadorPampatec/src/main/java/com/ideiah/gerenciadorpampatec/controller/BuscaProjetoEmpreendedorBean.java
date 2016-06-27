@@ -4,25 +4,19 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.ComparadorCriacaoUtil;
-import com.ideiah.gerenciadorpampatec.util.ComparadorEnvioUtil;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name = "buscaProjetoEmpreendedorBean")
 @ViewScoped
@@ -37,7 +31,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         projetoDao = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
         listaStatusProjeto = new ArrayList<>();
-        
+    
         //Adicionando os Status para o Filtro na tabela
         listaStatusProjeto.add("Em elaboração");
         listaStatusProjeto.add("Em Pré-Avaliação");
