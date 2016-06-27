@@ -5,11 +5,8 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.sun.javafx.geom.CubicApproximator;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;

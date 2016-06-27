@@ -5,7 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -17,7 +16,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 public class TextocomentarioTest {
     
