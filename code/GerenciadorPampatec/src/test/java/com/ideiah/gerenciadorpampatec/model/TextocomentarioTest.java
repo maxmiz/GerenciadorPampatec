@@ -5,8 +5,11 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +20,80 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 public class TextocomentarioTest {
+    
+    Integer id = 1;
+    GerenteRelacionamento gerente = new GerenteRelacionamento();
+    String textoComentario = "comentario";
+    Date dataAlteracao = new Date();
+    Date dataSubmissao = new Date();
+    Integer tipo = 1;
+    Set<ComentarioProjeto> comentarioProjeto = new Set<ComentarioProjeto>() {
+        @Override
+        public int size() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean isEmpty() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public Iterator<ComentarioProjeto> iterator() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public Object[] toArray() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public <T> T[] toArray(T[] a) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean add(ComentarioProjeto e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean containsAll(Collection<?> c) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends ComentarioProjeto> c) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean retainAll(Collection<?> c) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean removeAll(Collection<?> c) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void clear() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    };
+    
     
     public TextocomentarioTest() {
     }
@@ -37,6 +114,41 @@ public class TextocomentarioTest {
     public void tearDown() {
     }
 
+    
+    /**
+     * test of Constructor TextoComentario
+     */
+    @Test
+    public void textTextoComentario(){
+        
+        Textocomentario texto = new Textocomentario(id, gerente);
+        
+        texto.setGerenteRelacionamento(gerente);
+        texto.setIdtextocomentario(id);
+        
+        assertEquals(gerente, texto.getGerenteRelacionamento());
+        assertEquals(id, texto.getIdtextocomentario());
+    }
+        /**
+     * test of Constructor TextoComentario
+     */
+    @Test
+    public void textTextoComentario2(){
+        
+        Textocomentario texto = new Textocomentario(id, gerente, textoComentario, dataAlteracao, dataSubmissao, tipo, comentarioProjeto);
+        
+        texto.setGerenteRelacionamento(gerente);
+        texto.setIdtextocomentario(id);
+        
+        assertEquals(gerente, texto.getGerenteRelacionamento());
+        assertEquals(id, texto.getIdtextocomentario());
+        assertEquals(textoComentario, texto.getTexto());
+        assertEquals(dataAlteracao, texto.getDataAlteracao());
+        assertEquals(dataSubmissao, texto.getDataSubmissao());
+        assertEquals(tipo, texto.getTipo());
+        assertEquals(comentarioProjeto, texto.getComentarioprojetos());
+    }
+    
     /**
      * Test of getDataAlteracaoFormatada method, of class Textocomentario.
      */
@@ -61,11 +173,20 @@ public class TextocomentarioTest {
 
         String result = instance.getDataAlteracaoFormatada();
         
-        System.out.println(""+result);
-        
         assertEquals(stringDataAlteracao, result);
     }
+    /**
+     * Test of getDataAlteracaoFormatada method, of class Textocomentario.
+     */
+    @Test
+    public void testGetDataAlteracaoFormatada2() {
+        Textocomentario instance = new Textocomentario();
+        instance.setDataAlteracao(null);
 
+        
+        assertEquals(instance.getDataAlteracaoFormatada(), "");
+    }
+    
     /**
      * Test of getIdtextocomentario method, of class Textocomentario.
      */

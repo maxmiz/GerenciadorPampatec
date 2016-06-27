@@ -5,10 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +15,12 @@ import org.junit.Ignore;
 
 
 public class CustoTest {
+    
+        Planofinanceiro planofinanceiro = new Planofinanceiro();
+        String descricao = "Novo Custo";
+        Integer total = 10;
+        Integer tipo = 1;
+        
     
     public CustoTest() {
     }
@@ -45,12 +47,25 @@ public class CustoTest {
      */
     @Test
     public void testCusto(){
-        Planofinanceiro planofinanceiro = new Planofinanceiro();
-        String descricao = "Novo Custo";
-        Integer total = 10;
-        Integer tipo = 1;
-        
+
         Custo valor = new Custo(planofinanceiro, descricao, total, tipo);
+        
+        valor.setPlanofinanceiro(planofinanceiro);
+        valor.setTotal(total);
+        valor.setDescricao(descricao);
+        valor.setIdCusto(1);
+        valor.setTipo(tipo);
+        valor.setPodeExcluir(true);
+        
+        assertEquals(descricao, valor.getDescricao());
+        assertEquals(planofinanceiro, valor.getPlanofinanceiro());
+        assertEquals(total, valor.getTotal());
+        assertEquals(tipo, valor.getTipo());  
+    }
+    
+        @Test
+    public void testCusto2(){
+        Custo valor = new Custo(planofinanceiro);
         
         valor.setPlanofinanceiro(planofinanceiro);
         valor.setTotal(total);

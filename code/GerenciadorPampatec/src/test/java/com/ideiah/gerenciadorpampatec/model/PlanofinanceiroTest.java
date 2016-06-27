@@ -5,7 +5,11 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.sun.javafx.geom.CubicApproximator;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,6 +19,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlanofinanceiroTest {
+    
+    int id = 1;
+    String estruturaCusto = "estrutura";
+    String fonteReceita = "fonte";
+    String investimento = "investimento";
+    
     
     public PlanofinanceiroTest() {
     }
@@ -36,6 +46,31 @@ public class PlanofinanceiroTest {
     }
 
     /**
+     * Test of Constructor
+     */
+    @Test
+    public void testPlanoFinanceiro(){
+        Planofinanceiro pf = new Planofinanceiro(id, fonteReceita, estruturaCusto);
+        
+        assertEquals(id, pf.getIdPlanoFinanceiro());
+        assertEquals(fonteReceita, pf.getFontesReceita());
+        assertEquals(estruturaCusto, pf.getEstruturaCusto());
+    }
+    
+    /**
+     * Test of Constructor
+     */
+    @Test
+    public void testPlanoFinanceiro2(){
+        Planofinanceiro pf = new Planofinanceiro(id, fonteReceita, estruturaCusto, investimento);
+        
+        assertEquals(id, pf.getIdPlanoFinanceiro());
+        assertEquals(fonteReceita, pf.getFontesReceita());
+        assertEquals(estruturaCusto, pf.getEstruturaCusto());
+        assertEquals(investimento, pf.getInvestimentoInicial());
+    }
+    
+    /**
      * Test of retornaListaCustosFixos method, of class Planofinanceiro.
      */
     @Test
@@ -45,7 +80,39 @@ public class PlanofinanceiroTest {
         ArrayList result = instance.retornaListaCustosFixos();
         assertEquals(lista, result);
     }
-
+    
+    /**
+     * Test of retornaListaCustosFixos method, of class Planofinanceiro.
+     * tente se o custo é fixo, se é adiciona na lista do metodo
+     * A lista do teste contem ambos, ou seja o resultado nao pode ser igual a lista do metodo
+     */
+    @Test
+    public void testRetornaListaCustosFixos2() {
+        Planofinanceiro instance = new Planofinanceiro();
+        
+        Custo custo = new Custo();
+        custo.setTipo(Custo.CUSTO_FIXO);
+        
+        Custo custo2 = new Custo();
+        custo2.setTipo(Custo.CUSTO_VARIAVEL);
+        
+        Set<Custo> custos = new HashSet<>();
+        
+        custos.add(custo);
+        custos.add(custo2);
+        
+        ArrayList lista = new ArrayList();
+        for (Custo ObjCusto : custos) {
+            if (ObjCusto.getTipo() == Custo.CUSTO_FIXO) {
+                lista.add(ObjCusto);
+            }
+        }
+        
+        instance.setCusto(custos);
+        
+        ArrayList result = instance.retornaListaCustosFixos();
+        assertEquals(lista, result);
+    }
     /**
      * Test of retornaListaCustosVariaveis method, of class Planofinanceiro.
      */
@@ -53,6 +120,38 @@ public class PlanofinanceiroTest {
     public void testRetornaListaCustosVariaveis() {
         Planofinanceiro instance = new Planofinanceiro();
         ArrayList lista = new ArrayList();
+        ArrayList result = instance.retornaListaCustosVariaveis();
+        assertEquals(lista, result);
+    }
+       /**
+     * Test of retornaListaCustosVariaveis method, of class Planofinanceiro.
+     * teste se é custo variavel, se for adiciona na lista do metodo.
+     * A lista do teste contem ambos, ou seja o resultado nao pode ser igual a lista do metodo
+     */
+    @Test
+    public void testRetornaListaCustosVariaveis2() {
+        Planofinanceiro instance = new Planofinanceiro();
+        
+        Custo custo = new Custo();
+        custo.setTipo(Custo.CUSTO_FIXO);
+        
+        Custo custo2 = new Custo();
+        custo2.setTipo(Custo.CUSTO_VARIAVEL);
+        
+        Set<Custo> custos = new HashSet<>();
+        
+        custos.add(custo);
+        custos.add(custo2);
+        
+        ArrayList lista = new ArrayList();
+        for (Custo ObjCusto : custos) {
+            if (ObjCusto.getTipo() == Custo.CUSTO_VARIAVEL) {
+                lista.add(ObjCusto);
+            }
+        }
+        
+        instance.setCusto(custos);
+        
         ArrayList result = instance.retornaListaCustosVariaveis();
         assertEquals(lista, result);
     }
