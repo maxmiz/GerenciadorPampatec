@@ -34,10 +34,10 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     
         //Adicionando os Status para o Filtro na tabela
         listaStatusProjeto.add("Em elaboração");
-        listaStatusProjeto.add("Em Pré-Avaliação");
-        listaStatusProjeto.add("Necessita Melhoria");
-        listaStatusProjeto.add("Aceito para Avaliação");
-        listaStatusProjeto.add("Em Formalização");
+        listaStatusProjeto.add("Em pré-avaliação");
+        listaStatusProjeto.add("Necessita melhoria");
+        listaStatusProjeto.add("Aceito para avaliação");
+        listaStatusProjeto.add("Em formalização");
         listaStatusProjeto.add("Incubação");
         listaStatusProjeto.add("Reprovado");
 
