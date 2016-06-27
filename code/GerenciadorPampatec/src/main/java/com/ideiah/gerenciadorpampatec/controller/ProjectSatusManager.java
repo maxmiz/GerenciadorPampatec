@@ -21,9 +21,6 @@ import java.util.logging.Logger;
  */
 public abstract class ProjectSatusManager {
 
-    public ProjectSatusManager() {
-    }
-
     /**
      * <p>
      * Muda o status do projeto para em pré-avaliação antes da sessão do gerente

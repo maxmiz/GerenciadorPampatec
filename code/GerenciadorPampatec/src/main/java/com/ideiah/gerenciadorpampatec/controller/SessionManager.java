@@ -13,7 +13,15 @@ import javax.servlet.http.HttpSession;
  */
 public abstract class SessionManager {
 
-    public SessionManager() {
+    /**
+     * <p>
+     * Método para criar uma nova sessão no sistema caso ela não exista.</p>
+     *
+     * @return Retorna uma nova sessão. Tipo <code>HttpSession</code>.
+     */
+    public static HttpSession getCreateSession() {
+        HttpSession session = (HttpSession) getFacesContext().getExternalContext().getSession(true);
+        return session;
     }
 
     /**
@@ -28,18 +36,7 @@ public abstract class SessionManager {
         HttpSession session = (HttpSession) getFacesContext().getExternalContext().getSession(false);
         return session;
     }
-
-    /**
-     * <p>
-     * Método para criar uma nova sessão no sistema caso ela não exista.</p>
-     *
-     * @return Retorna uma nova sessão. Tipo <code>HttpSession</code>.
-     */
-    public static HttpSession getCreateSession() {
-        HttpSession session = (HttpSession) getFacesContext().getExternalContext().getSession(true);
-        return session;
-    }
-
+    
     /**
      * <p>
      * Método que retorna o FacesContext para a sessão.</p>
@@ -84,11 +81,12 @@ public abstract class SessionManager {
     }
 
     /**
+     * <p>Método para remover um atributo da sessão.</p>
      *
      * @param string
      */
     public static void removeAttribute(String string) {
-        getSession().removeAttribute(string);
+        getSession().removeAttribute(string); 
     }
 
     /**
