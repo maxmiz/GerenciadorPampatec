@@ -29,15 +29,27 @@ import org.primefaces.event.SelectEvent;
 public class BuscaProjetoEmpreendedorBean implements Serializable {
 
     private ArrayList<Projeto> listaProjetos;//Lista de projetos exibidos
+    private ArrayList<String> listaStatusProjeto; //Lista de Status de projetos exibidos
     private ProjetoDao projetoDao;//Dao para acessar o banco de dados
     private Projeto projetoSelecionado;//Projeto que foi selecionado quando um usuário escolhe algum item da lista.
 
     public BuscaProjetoEmpreendedorBean() {
         projetoDao = new ProjetoDao();
         listaProjetos = buscaProjetoPorEmpreendedor();
+        listaStatusProjeto = new ArrayList<>();
+        
+        //Adicionando os Status para o Filtro na tabela
+        listaStatusProjeto.add("Em elaboração");
+        listaStatusProjeto.add("Em Pré-Avaliação");
+        listaStatusProjeto.add("Necessita Melhoria");
+        listaStatusProjeto.add("Aceito para Avaliação");
+        listaStatusProjeto.add("Em Formalização");
+        listaStatusProjeto.add("Incubação");
+        listaStatusProjeto.add("Reprovado");
+
         sortByDateCriacao(listaProjetos);
     }
-
+    
     public void setListaProjetos(ArrayList<Projeto> listaProjetos) {
 
         this.listaProjetos = sortByDateCriacao(listaProjetos);
@@ -227,5 +239,19 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
         Collections.sort(lista, new ComparadorCriacaoUtil());
         Collections.reverse(lista);
         return lista;
+    }
+
+    /**
+     * @return the listaStatusProjeto
+     */
+    public ArrayList<String> getListaStatusProjeto() {
+        return listaStatusProjeto;
+    }
+
+    /**
+     * @param listaStatusProjeto the listaStatusProjeto to set
+     */
+    public void setListaStatusProjeto(ArrayList<String> listaStatusProjeto) {
+        this.listaStatusProjeto = listaStatusProjeto;
     }
 }
