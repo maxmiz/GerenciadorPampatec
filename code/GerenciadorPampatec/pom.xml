@@ -68,7 +68,7 @@
         <dependency>  
             <groupId>org.primefaces</groupId>  
             <artifactId>primefaces</artifactId>  
-            <version>5.2</version>  
+            <version>6.0</version>  
         </dependency>  
     </dependencies>
 
@@ -147,6 +147,11 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
+                    <!--
+                    <instrumentation>
+                        <ignoreTrivial>true</ignoreTrivial>                 
+                    </instrumentation>
+                    -->
                     <argLine>-XX:-UseSplitVerifier</argLine>
                     <formats>
                         <format>xml</format>
