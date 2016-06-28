@@ -6,6 +6,10 @@ package com.ideiah.gerenciadorpampatec.util;
  */
 public final class CpfUtil {
 
+    public CpfUtil() {
+    }
+    
+
     private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
     /**
@@ -30,6 +34,9 @@ public final class CpfUtil {
      * @return 
      */
     public static boolean isValidCPF(String cpf) {
+        if ((cpf == null) || (cpf.length() != 11)) {
+            return false;
+        }
         if (cpf.equals("00000000000")
                 || cpf.equals("11111111111")
                 || cpf.equals("22222222222")
@@ -42,9 +49,7 @@ public final class CpfUtil {
                 || cpf.equals("99999999999")) {
             return false;
         }
-        if ((cpf == null) || (cpf.length() != 11)) {
-            return false;
-        }
+        
 
         Integer digito1 = calcularDigito(cpf.substring(0, 9), pesoCPF);
         Integer digito2 = calcularDigito(cpf.substring(0, 9) + digito1, pesoCPF);
