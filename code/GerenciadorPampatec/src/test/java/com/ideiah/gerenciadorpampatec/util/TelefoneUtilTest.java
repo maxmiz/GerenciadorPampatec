@@ -46,8 +46,8 @@ public class TelefoneUtilTest {
      * Teste para validar se o objeto da classe é gerado corretamente.</p>
      */
     @Test
-    public void testRemoveParentesesTelefone() {
-        System.out.println("removeParentesesTelefone");
+    public void testConstrutorTelefoneUtil() {
+        System.out.println("testConstrutorTelefoneUtil");
         TelefoneUtil result = new TelefoneUtil();
         assertNotNull(result);
     }
@@ -59,8 +59,8 @@ public class TelefoneUtilTest {
      * <code>nullPointerException</code>.</p>
      */
     @Test
-    public void testRemoveParentesesTelefone2() {
-        System.out.println("removeParentesesTelefone2");
+    public void testRemoveParentesesTelefone() {
+        System.out.println("removeParentesesTelefone_Null");
         String telefone = null;
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -74,8 +74,8 @@ public class TelefoneUtilTest {
      * </p>
      */
     @Test
-    public void testRemoveParentesesTelefone3() {
-        System.out.println("removeParentesesTelefone3");
+    public void testRemoveParentesesTelefone2() {
+        System.out.println("removeParentesesTelefone_StringVazia");
         String telefone = "";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -90,8 +90,8 @@ public class TelefoneUtilTest {
      * </p>
      */
     @Test
-    public void testRemoveParentesesTelefone4() {
-        System.out.println("removeParentesesTelefone4");
+    public void testRemoveParentesesTelefone3() {
+        System.out.println("removeParentesesTelefone_EspacoTracoParenteses");
         String telefone = "(55) 5555-5555";
         String expResult = "5555555555";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -106,8 +106,8 @@ public class TelefoneUtilTest {
      * </p>
      */
     @Test
-    public void testRemoveParentesesTelefone5() {
-        System.out.println("removeParentesesTelefone5");
+    public void testRemoveParentesesTelefone4() {
+        System.out.println("removeParentesesTelefone_EspacoParenteses");
         String telefone = "(55) 55555555";
         String expResult = "5555555555";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -122,8 +122,8 @@ public class TelefoneUtilTest {
      * </p>
      */
     @Test
-    public void testRemoveParentesesTelefone6() {
-        System.out.println("removeParentesesTelefone6");
+    public void testRemoveParentesesTelefone5() {
+        System.out.println("removeParentesesTelefone_LetrasEspacoTracoParenteses");
         String telefone = "(ABC) ABCD-EFGH";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -138,8 +138,8 @@ public class TelefoneUtilTest {
      * </p>
      */
     @Test
-    public void testRemoveParentesesTelefone7() {
-        System.out.println("removeParentesesTelefone7");
+    public void testRemoveParentesesTelefone6() {
+        System.out.println("removeParentesesTelefone_CaracteresEspeciais");
         String telefone = "(:<<) }+_%-'!@#";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
