@@ -42,13 +42,9 @@ public final class CriptografiaUtil {
 //Formatando o resuldado em uma cadeia de 32 caracteres, completando com 0 caso falte 
             senha = String.format("%1$032X", i);
 
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(CriptografiaUtil.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         } catch (Exception ex) {
             Logger.getLogger(CriptografiaUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return senha;
     }
-
 }
