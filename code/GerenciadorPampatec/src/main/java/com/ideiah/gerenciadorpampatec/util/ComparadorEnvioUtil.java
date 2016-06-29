@@ -14,6 +14,9 @@ import java.util.Comparator;
  */
 public class ComparadorEnvioUtil implements Comparator<Projeto> {
 
+    public ComparadorEnvioUtil() {
+    }
+
     /**
      * @param Projeto o1 para ser comparado
      * @param Projeto o2 para ser comparado COmpara pela data utilizando uma
