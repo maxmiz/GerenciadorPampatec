@@ -42,6 +42,9 @@ public class DaoTest {
     public void tearDown() {
         instance = null;
     }
+    
+     public class DaoImpl extends Dao {
+    }
 
     /**
      * Salvar um Empreendedor;
@@ -49,8 +52,10 @@ public class DaoTest {
     @Test
     public void testSalvar1() {
         Usuario empreendedor = new Empreendedor();
+        empreendedor.setCpf("71957794240");
         Usuario result = (Usuario) instance.salvar(empreendedor);
-        assertNotNull("Criando um obj não adicionando e-mail. Espero que salve", result);
+        Usuario expected = (Usuario) instance.buscarObjetoCriteria("cpf", "71957794240", Empreendedor.class);
+        assertEquals(expected, result);
         instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
@@ -61,7 +66,7 @@ public class DaoTest {
     public void testSalvar2() {
         Empreendedor empreendedor = null;
         Usuario result = (Usuario) instance.salvar(empreendedor);
-        assertNull("Criando um obj vazio. Espero que não salve", result);
+        assertNull(result);
         if (result != null) {
             instance.excluir(result.getIdUsuario(), Usuario.class);
         }
@@ -71,13 +76,14 @@ public class DaoTest {
      * Test of update method, of class Dao.
      */
     @Test
-    public void testUpdate() {
+    public void testUpdatePositivo() {
         Usuario empreendedor = new Empreendedor();
         empreendedor.setNome("Nome Antes");
         Usuario result = (Usuario) instance.salvar(empreendedor);
         result.setNome("Nome Depois");
-        result = (Usuario) instance.update(result);
-        assertEquals("Criando um obj não adicionando e-mail. Espero que salve","Nome Depois", result.getNome());
+        instance.update(result);
+        Usuario expected = (Usuario) instance.buscarObjetoCriteria("nome", "Nome Depois", Empreendedor.class);
+        assertEquals(expected.getNome(), result.getNome());
         instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
@@ -85,52 +91,45 @@ public class DaoTest {
      * Teste de excluir um objeto da dao.
      */
     @Test
-    public void testExcluir1() {
+    public void testExcluirPositivo() {
         Usuario usuario = new Empreendedor();
-        usuario = (Usuario) instance.salvar(usuario);
+        instance.salvar(usuario);
+        int id = usuario.getIdUsuario();
+        instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
+        Usuario result = (Usuario) instance.buscarObjeto(id, Empreendedor.class);
+        assertNull(result);
+    }
+    
+    /**
+     * Teste de excluir um objeto da dao que não existe.
+     */
+    @Test
+    public void testExcluirNegativo() {
+        
+        Usuario usuario = new Empreendedor();       
         boolean result = instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
-        assertTrue("Excluindo objeto. Espero que exclua", result);
+        assertFalse(result);
     }
     
-    /**
-     * Teste de excluir um objeto da dao que não existe.
-     */
-    @Test
-    public void testExcluir2() {
-        boolean result = instance.excluir(-1, Empreendedor.class);
-        assertFalse("Excluindo objeto que não existe. Espero que não exclua", result);
-    }
-    
-    /**
-     * Teste de excluir um objeto da dao.
-     */
-    @Test
-    public void testExcluirString1() {
-        Usuario usuario = new Empreendedor();
-        String id;
-        usuario = (Usuario) instance.salvar(usuario);
-        id = ""+usuario.getIdUsuario();
-        boolean result = instance.excluir(id, Empreendedor.class);
-        assertTrue("Excluindo objeto. Espero que exclua", result);
-    }
-    
-    /**
-     * Teste de excluir um objeto da dao que não existe.
-     */
-    @Test
-    public void testExcluir2String() {
-        boolean result = instance.excluir("1", Empreendedor.class);
-        assertFalse("Excluindo objeto que não existe. Espero que não exclua", result);
-    }
 
-    /**
-     * Testa busca Objetos no banco de dados.
-     */
-    @Test
-    public void testBuscarObjetos() {
-        ArrayList result = instance.buscarObjetos(Usuario.class);
-        assertNotNull(result);
-    }
+//    /**
+//     * Testa busca Objetos no banco de dados.
+//     */
+//    @Test
+//    public void testBuscarObjetos() {
+//        
+//        Usuario usuario1 = new Empreendedor();        
+//        instance.salvar(usuario1);        
+//        Usuario usuario2 = new Empreendedor();        
+//        instance.salvar(usuario2);
+//        
+//        ArrayList list = instance.buscarObjetos(Empreendedor.class);       
+//        assertNotNull(list);
+//        
+//        instance.excluir(usuario1.getIdUsuario(), Empreendedor.class);
+//        instance.excluir(usuario2.getIdUsuario(), Empreendedor.class);
+//        
+//    }
     
     /**
      * Testa o método de buscar objetos com critérios. Primeiro cria objetos no
@@ -160,62 +159,4 @@ public class DaoTest {
         instance.excluir(projeto.getIdProjeto(), Projeto.class);
         instance.excluir(projetoStatus2.getIdProjeto(), Projeto.class);
     }
-
-    /**
-     * Test of getTx method, of class Dao.
-     */
-    @Ignore
-    public void testGetTx() {
-        System.out.println("getTx");
-        Dao instance = new DaoImpl();
-        Transaction expResult = null;
-        Transaction result = instance.getTx();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTx method, of class Dao.
-     */
-    @Ignore
-    public void testSetTx() {
-        System.out.println("setTx");
-        Transaction tx = null;
-        Dao instance = new DaoImpl();
-        instance.setTx(tx);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSession method, of class Dao.
-     */
-    @Ignore
-    public void testGetSession() {
-        System.out.println("getSession");
-        Dao instance = new DaoImpl();
-        Session expResult = null;
-        Session result = instance.getSession();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setSession method, of class Dao.
-     */
-    @Ignore
-    public void testSetSession() {
-        System.out.println("setSession");
-        Session session = null;
-        Dao instance = new DaoImpl();
-        instance.setSession(session);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    public class DaoImpl extends Dao {
-    }
-
 }
