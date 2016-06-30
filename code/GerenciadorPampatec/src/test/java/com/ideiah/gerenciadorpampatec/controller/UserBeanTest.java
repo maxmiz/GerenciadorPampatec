@@ -100,6 +100,7 @@ public class UserBeanTest {
         System.out.println("getNome");
         UserBean instance = new UserBean();
         String expResult = "";
+        instance.setNome(expResult);
         String result = instance.getNome();
         assertEquals(expResult, result);
     }
@@ -123,6 +124,7 @@ public class UserBeanTest {
         System.out.println("getUser");
         UserBean instance = new UserBean();
         String expResult = "";
+        instance.setUser(expResult);
         String result = instance.getUser();
         assertEquals(expResult, result);
     }
@@ -146,6 +148,7 @@ public class UserBeanTest {
         System.out.println("getSenha");
         UserBean instance = new UserBean();
         String expResult = "";
+        instance.setSenha(expResult);
         String result = instance.getSenha();
         assertEquals(expResult, result);
     }
