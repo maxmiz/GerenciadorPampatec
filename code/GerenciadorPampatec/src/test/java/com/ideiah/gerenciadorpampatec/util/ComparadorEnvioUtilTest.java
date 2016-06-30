@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -53,7 +54,7 @@ public class ComparadorEnvioUtilTest {
     /**
      * Test of compare method, of class ComparadorEnvioUtil.
      */
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testCompare() {
         System.out.println("compare_Null");
         Projeto o1 = null;
@@ -88,7 +89,7 @@ public class ComparadorEnvioUtilTest {
     /**
      * Test of compare method, of class ComparadorEnvioUtil.
      */
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testCompare3() {
         System.out.println("compare");
         

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  * <p>
@@ -61,9 +62,9 @@ public class CriptografiaUtilTest {
     public void testMd5() {
         System.out.println("md5_Null");
         String senha = null;
-        String expResult = null;
         String result = CriptografiaUtil.md5(senha);
-        assertEquals(expResult, result);
+        assertNull(result);
+
     }
 
     /**
