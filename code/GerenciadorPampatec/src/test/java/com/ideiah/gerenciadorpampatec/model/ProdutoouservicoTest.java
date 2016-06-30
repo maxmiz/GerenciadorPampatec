@@ -65,5 +65,76 @@ public class ProdutoouservicoTest {
         String result = instance.verificaStatusProjeto(status);
         assertEquals(expResult, result);
     }
-
+     /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * case Projeto Básico
+     */
+    @Test
+    public void testVerificaStatusProjeto3() {
+        String status = "Projeto Básico";
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = Produtoouservico.PROJETO_BASICO;
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * case Em teste no mercado
+     */
+    @Test
+    public void testVerificaStatusProjeto4() {
+        String status = "Em teste no mercado";
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = Produtoouservico.EM_TESTE_NO_MERCADO;
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * case Projeto Detalhado
+     */
+    @Test
+    public void testVerificaStatusProjeto5() {
+        String status = "Projeto Detalhado";
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = Produtoouservico.PROJETO_DETALHADO;
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * case Protótipo Desenvolvido
+     */
+    @Test
+    public void testVerificaStatusProjeto6() {
+        String status = "Protótipo Desenvolvido";
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = Produtoouservico.PROTOTIPO_DESENVOLVIDO;
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * case Protótipo Desenvolvido
+     */
+    @Test
+    public void testVerificaStatusProjeto7() {
+        String status = "AEHOOOO";
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = "Outro:";
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
+         /**
+     * Test of verificaStatusProjeto method, of class Produtoouservico.
+     * com status null
+     */
+    @Test
+    public void testVerificaStatusProjeto8() {
+        String status = null;
+        Produtoouservico instance = new Produtoouservico();
+        String expResult = "Status Indefinido";
+        String result = instance.verificaStatusProjeto(status);
+        assertEquals(expResult, result);
+    }
 }
