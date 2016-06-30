@@ -17,24 +17,23 @@ import org.junit.Ignore;
  *
  * @author unipampa
  */
-@Ignore
 public class UserBeanTest {
-    
+
     public UserBeanTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,41 +41,35 @@ public class UserBeanTest {
     /**
      * Test of retornaNomeLogado method, of class UserBean.
      */
-    @Test
+    @Ignore
     public void testRetornaNomeLogado() {
         System.out.println("retornaNomeLogado");
         UserBean instance = new UserBean();
         String expResult = "";
         String result = instance.retornaNomeLogado();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of tempoMaximoSessao method, of class UserBean.
      */
-    @Test
+    @Ignore
     public void testTempoMaximoSessao() {
         System.out.println("tempoMaximoSessao");
         UserBean instance = new UserBean();
         int expResult = 0;
         int result = instance.tempoMaximoSessao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of finalizaSessao method, of class UserBean.
      */
-    @Test
+    @Ignore
     public void testFinalizaSessao() {
         System.out.println("finalizaSessao");
         UserBean instance = new UserBean();
         instance.finalizaSessao();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +80,6 @@ public class UserBeanTest {
         System.out.println("MudarUser");
         String user = "";
         UserBean.MudarUser(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -99,8 +90,6 @@ public class UserBeanTest {
         System.out.println("MudarSenha");
         String senha = "";
         UserBean.MudarSenha(senha);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,8 +102,6 @@ public class UserBeanTest {
         String expResult = "";
         String result = instance.getNome();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -126,8 +113,6 @@ public class UserBeanTest {
         String user = "";
         UserBean instance = new UserBean();
         instance.setUser(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -140,8 +125,6 @@ public class UserBeanTest {
         String expResult = "";
         String result = instance.getUser();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -153,8 +136,6 @@ public class UserBeanTest {
         String nome = "";
         UserBean instance = new UserBean();
         instance.MudarNome(nome);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -167,8 +148,6 @@ public class UserBeanTest {
         String expResult = "";
         String result = instance.getSenha();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -180,8 +159,6 @@ public class UserBeanTest {
         String senha = "";
         UserBean instance = new UserBean();
         instance.setSenha(senha);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -193,8 +170,5 @@ public class UserBeanTest {
         String nome = "";
         UserBean instance = new UserBean();
         instance.setNome(nome);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }
