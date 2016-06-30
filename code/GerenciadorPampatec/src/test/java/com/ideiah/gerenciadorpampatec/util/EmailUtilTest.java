@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  * <p>
@@ -89,7 +90,7 @@ public class EmailUtilTest {
      * <p>
      * Teste para validar o envio de emails para conclusão do cadastro.</p>
      */
-    @Test
+    @Ignore
     public void testMandarEmailConcluirCadastro3() {
         System.out.println("mandarEmailConcluirCadastro_EnvioEmail");
         String empreendedorNome = "Ideiah Dev Tests";
@@ -134,7 +135,7 @@ public class EmailUtilTest {
      * <p>Teste para validar o envio de email para recuperação de senha.
      * </p>
      */
-    @Test
+    @Ignore
     public void testEnviarEmailRecuperarSenha3() {
         System.out.println("enviarEmailRecuperarSenha_EnvioEmail");
         String email = "ideiahdev@gmail.com";
