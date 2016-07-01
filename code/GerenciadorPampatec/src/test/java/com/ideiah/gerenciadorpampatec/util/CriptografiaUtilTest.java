@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  * <p>
@@ -50,20 +49,6 @@ public class CriptografiaUtilTest {
         System.out.println("testConstrutorCriptografiaUtil");
         CriptografiaUtil expResult = new CriptografiaUtil();
         assertNotNull(expResult);
-
-    }
-
-    /**
-     * Test of md5 method, of class CriptografiaUtil.
-     * <p>
-     * Teste para forçar o lançamento da exceção nullpointer no método.</p>
-     */
-    @Test
-    public void testMd5() {
-        System.out.println("md5_Null");
-        String senha = null;
-        String result = CriptografiaUtil.md5(senha);
-        assertNull(result);
 
     }
 
