@@ -5,6 +5,8 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import com.ideiah.gerenciadorpampatec.dao.Dao;
+import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -40,18 +42,26 @@ public class ProjetoTest {
     }
 
     /**
-     * Test of SalvarProjeto method, of class Projeto.
+     * teste executa o método de dalvar um projeto já existente
+     * primeiro é criado um projeto e depois editado
      */
-    @Ignore
-    public void testSalvarProjeto() {
-        System.out.println("SalvarProjeto");
-        Projeto projeto = null;
+    @Test
+    public void testSalvarProjetoExistente() {
+        
         Projeto instance = new Projeto();
-        boolean expResult = false;
-        boolean result = instance.SalvarProjeto(projeto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Projeto projeto = new Projeto();
+        ProjetoDao dao = new ProjetoDao();
+        
+        projeto = (Projeto) dao.salvar(projeto);
+        projeto.setEdital("Edital 123");
+        instance.SalvarProjetoExistente(projeto);
+        String edital = projeto.getEdital();
+        
+        Projeto projeto2 = (Projeto) dao.buscarObjetoCriteria("edital", edital, Projeto.class);
+        
+        assertEquals(projeto, projeto2);
+        
+        dao.excluir(projeto.getIdProjeto(), Projeto.class);       
     }
 
     /**
@@ -394,12 +404,6 @@ public class ProjetoTest {
         instance.setDataAvaliacao(dataAvaliacao);
         assertEquals(dataAvaliacao, instance.getDataAvaliacao());
     }
-
-
-    
-    
-    
-    
 
     
     /**

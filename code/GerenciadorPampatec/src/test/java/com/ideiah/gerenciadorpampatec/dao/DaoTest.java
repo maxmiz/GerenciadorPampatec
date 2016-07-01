@@ -23,7 +23,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
-@Ignore
+
 public class DaoTest {
 
     private static final int CODIGO_EMPREENDEDOR = 99999999;
@@ -90,17 +90,17 @@ public class DaoTest {
         instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
-    /**
-     * Teste de alterar um objeto; Tenta alterar um objeto que não está salvo no
-     * banco.
-     */
-    @Test
-    public void testUpdateNegativo() {
-
-        Usuario empreendedor = new Empreendedor();
-        Usuario result = (Usuario) instance.update(empreendedor);
-        assertNull(result);
-    }
+//    /**
+//     * Teste de alterar um objeto; Tenta alterar um objeto que não está salvo no
+//     * banco.
+//     */
+//    @Test
+//    public void testUpdateNegativo() {
+//
+//        Usuario empreendedor = new Empreendedor();
+//        Usuario result = (Usuario) instance.update(empreendedor);
+//        assertNull(result);
+//    }
 
     /**
      * Teste de excluir um objeto da dao que passa um int e a classe como
@@ -244,14 +244,11 @@ public class DaoTest {
     @Test
     public void testSetSession(){
         
-        Session session;
-        
-        session = HibernateUtil.getSessionFactory().openSession();
-        
+        Session session;        
+        session = HibernateUtil.getSessionFactory().openSession();        
         instance.setSession(session);
         
-        Session session2 = instance.getSession();
-        
+        Session session2 = instance.getSession();        
         assertEquals(session2, session);        
     }
 }

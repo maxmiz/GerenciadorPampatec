@@ -949,7 +949,7 @@ public class ProjetoBean implements Serializable {
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_cadastro_projeto:mensagensFeed", msg);
         }
-        projeto.SalvarProjeto(projeto);
+        projeto.SalvarProjetoExistente(projeto);
 
     }
 

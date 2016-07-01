@@ -55,7 +55,7 @@ public abstract class Dao {
         try {
             setTx(getSession().getTransaction());
             getTx().begin();
-            getSession().update(obj);
+            getSession().merge(obj);
             getTx().commit();
         } catch (HibernateException e) {
             e.printStackTrace();

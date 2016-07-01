@@ -659,7 +659,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
         salvou = true;
-        projeto.SalvarProjeto(projeto);
+        projeto.SalvarProjetoExistente(projeto);
     }
 
     /**

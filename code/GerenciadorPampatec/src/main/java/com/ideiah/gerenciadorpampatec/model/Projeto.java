@@ -102,7 +102,12 @@ public class Projeto implements java.io.Serializable {
         notificacoesBean = bean;
     }
 
-    public boolean SalvarProjeto(Projeto projeto) {
+    /**
+     * Salva modificações realizadas em um projeto já existente.
+     * @param projeto
+     * @return 
+     */
+    public boolean SalvarProjetoExistente(Projeto projeto) {
         ProjetoDao projetoDao = new ProjetoDao();
         try {
             projetoDao.update(projeto);
