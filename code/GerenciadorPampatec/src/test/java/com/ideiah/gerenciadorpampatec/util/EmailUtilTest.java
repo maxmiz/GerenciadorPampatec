@@ -132,7 +132,8 @@ public class EmailUtilTest {
 
     /**
      * Test of enviarEmailRecuperarSenha method, of class EmailUtil.
-     * <p>Teste para validar o envio de email para recuperação de senha.
+     * <p>
+     * Teste para validar o envio de email para recuperação de senha.
      * </p>
      */
     @Ignore
@@ -142,4 +143,50 @@ public class EmailUtilTest {
         String idUnico = "1";
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
     }
+
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para validar se o método evita o lançamento de
+     * <code>nullPointerException</code>.</p>
+     */
+    @Test
+    public void testMandarEmailAvaliacao() {
+        System.out.println("mandarEmailAvaliacao_Null");
+        String empreendedorNome = null;
+        String projetoNome = null;
+        String email = null;
+        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+    }
+
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para validar se o método evita a tentativa de envio de email com
+     * todos os campos vazios.</p>
+     */
+    @Test
+    public void testMandarEmailAvaliacao2() {
+        System.out.println("mandarEmailAvaliacao_StringVazia");
+        String empreendedorNome = "";
+        String projetoNome = "";
+        String email = "";
+        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+    }
+
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para verificar o correto funcionamento do método que envia email
+     * após um plano de negócio ser Avaliado.</p>
+     */
+    @Ignore
+    public void testMandarEmailAvaliacao3() {
+        System.out.println("mandarEmailAvaliacao");
+        String empreendedorNome = "Dev Empreendedor";
+        String projetoNome = "Ideiah Dev Testes";
+        String email = "ideiahdev@gmail.com";
+        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+    }
+
 }
