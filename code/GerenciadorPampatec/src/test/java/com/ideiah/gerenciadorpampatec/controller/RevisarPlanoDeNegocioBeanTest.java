@@ -16,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.mockito.Mockito;
 import org.primefaces.event.RowEditEvent;
 
@@ -23,7 +24,6 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author Pedro
  */
-@Ignore
 public class RevisarPlanoDeNegocioBeanTest {
     
     public SessionBean sb;
@@ -75,8 +75,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusSendoAvaliado(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -90,8 +88,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusAceitoAvaliacao(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -105,8 +101,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusRevisando(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,8 +114,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusSubmetido(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -135,8 +127,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusReSubmetido(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -150,8 +140,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusEmPreAvaliacao(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -165,8 +153,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         boolean expResult = false;
         boolean result = instance.verificaStatusNecessitaMelhoria(projetoSelecionado);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -179,8 +165,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         int expResult = 0;
         int result = instance.retornaStatusProjeto();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -193,8 +177,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         String expResult = "";
         String result = instance.retornaResultadoAvaliacao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -205,8 +187,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         System.out.println("mudaStatusRedirecionaInicio");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.mudaStatusRedirecionaInicio();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -217,8 +197,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         System.out.println("salvarRevisaoProjeto");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.salvarRevisaoProjeto();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -231,8 +209,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         int expResult = 0;
         int result = instance.verificarCampos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -243,60 +219,50 @@ public class RevisarPlanoDeNegocioBeanTest {
         System.out.println("terminarRevisaoProjeto");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.terminarRevisaoProjeto();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of redirecionaPaginaAvaliacao method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testRedirecionaPaginaAvaliacao() {
         System.out.println("redirecionaPaginaAvaliacao");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.redirecionaPaginaAvaliacao();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of exibeCampoOutro method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testExibeCampoOutro() {
         System.out.println("exibeCampoOutro");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
         boolean result = instance.exibeCampoOutro();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of caucularProjecaoCustoFixo method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testCaucularProjecaoCustoFixo() {
         System.out.println("caucularProjecaoCustoFixo");
         Custo custo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.caucularProjecaoCustoFixo(custo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of caucularProjecaoCustoVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testCaucularProjecaoCustoVariavel() {
         System.out.println("caucularProjecaoCustoVariavel");
         Custo custo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.caucularProjecaoCustoVariavel(custo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -308,8 +274,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         RowEditEvent event = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.onRowEdit(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -321,8 +285,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         RowEditEvent event = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.onRowCancel(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -331,13 +293,24 @@ public class RevisarPlanoDeNegocioBeanTest {
     @Ignore
     public void testDeletarLinha() {
         System.out.println("deletarLinha");
-        Custo custo = null;
+        Custo custo = new Custo();
+        custo.setTipo(Custo.CUSTO_FIXO);
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.deletarLinha(custo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+        /**
+     * Test of deletarLinha method, of class RevisarPlanoDeNegocioBean.
+     */
+    @Ignore
+    public void testDeletarLinha2() {
+        System.out.println("deletarLinha");
+        Custo custo = new Custo();
+        custo.setTipo(Custo.CUSTO_VARIAVEL);
+        RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
+        instance.deletarLinha(custo);
+    }
+    
     /**
      * Test of adicionarLinhaFixo method, of class RevisarPlanoDeNegocioBean.
      */
@@ -346,8 +319,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         System.out.println("adicionarLinhaFixo");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.adicionarLinhaFixo();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -358,8 +329,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         System.out.println("adicionarLinhaVariavel");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.adicionarLinhaVariavel();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -372,8 +341,6 @@ public class RevisarPlanoDeNegocioBeanTest {
         int expResult = 0;
         int result = instance.calcularValorColunaCustoFixo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -386,62 +353,52 @@ public class RevisarPlanoDeNegocioBeanTest {
         int expResult = 0;
         int result = instance.calcularValorColunaCustoVariavel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getProjeto method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetProjeto() {
         System.out.println("getProjeto");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         Projeto expResult = null;
         Projeto result = instance.getProjeto();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setProjeto method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetProjeto() {
         System.out.println("setProjeto");
         Projeto projeto = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setProjeto(projeto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getComentarioProjeto method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetComentarioProjeto() {
         System.out.println("getComentarioProjeto");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         ComentarioProjeto expResult = null;
         ComentarioProjeto result = instance.getComentarioProjeto();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setComentarioProjeto method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetComentarioProjeto() {
         System.out.println("setComentarioProjeto");
         ComentarioProjeto comentarioProjeto = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setComentarioProjeto(comentarioProjeto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -455,182 +412,203 @@ public class RevisarPlanoDeNegocioBeanTest {
 //        RedirectManager result = instance.getLoginBean();
 //        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setLoginBean method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetLoginBean() {
         System.out.println("setLoginBean");
         RedirectManager loginBean = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
 //        instance.setLoginBean(loginBean);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getEstagioEvolucao method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetEstagioEvolucao() {
         System.out.println("getEstagioEvolucao");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = "";
+        instance.setEstagioEvolucao(expResult);
         String result = instance.getEstagioEvolucao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setEstagioEvolucao method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetEstagioEvolucao() {
         System.out.println("setEstagioEvolucao");
         String estagioEvolucao = "";
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setEstagioEvolucao(estagioEvolucao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getEstagioEvolucaoOutro method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetEstagioEvolucaoOutro() {
         System.out.println("getEstagioEvolucaoOutro");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = "";
+        instance.setEstagioEvolucaoOutro(expResult);
         String result = instance.getEstagioEvolucaoOutro();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setEstagioEvolucaoOutro method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetEstagioEvolucaoOutro() {
         System.out.println("setEstagioEvolucaoOutro");
         String estagioEvolucaoOutro = "";
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setEstagioEvolucaoOutro(estagioEvolucaoOutro);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getListaCustoFixo method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetListaCustoFixo() {
         System.out.println("getListaCustoFixo");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         List<Custo> expResult = null;
         List<Custo> result = instance.getListaCustoFixo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setListaCustoFixo method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetListaCustoFixo() {
         System.out.println("setListaCustoFixo");
         List<Custo> listaCustoFixo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setListaCustoFixo(listaCustoFixo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getListaCustoVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetListaCustoVariavel() {
         System.out.println("getListaCustoVariavel");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         List<Custo> expResult = null;
         List<Custo> result = instance.getListaCustoVariavel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setListaCustoVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetListaCustoVariavel() {
         System.out.println("setListaCustoVariavel");
         List<Custo> listaCustoVariavel = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setListaCustoVariavel(listaCustoVariavel);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getSomatorioFixo method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetSomatorioFixo() {
         System.out.println("getSomatorioFixo");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.getSomatorioFixo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setSomatorioFixo method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetSomatorioFixo() {
         System.out.println("setSomatorioFixo");
         int somatorioFixo = 0;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setSomatorioFixo(somatorioFixo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getSomatorioVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testGetSomatorioVariavel() {
         System.out.println("getSomatorioVariavel");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.getSomatorioVariavel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of setSomatorioVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Ignore
+    @Test
     public void testSetSomatorioVariavel() {
         System.out.println("setSomatorioVariavel");
         int somatorioVariavel = 0;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setSomatorioVariavel(somatorioVariavel);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of atualizarProjetoSessao method, of class RevisarPlanoDeNegocioBean.
+     */
+    @Ignore
+    public void testAtualizarProjetoSessao() {
+        System.out.println("atualizarProjetoSessao");
+        RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
+        instance.atualizarProjetoSessao();
+    }
+
+    /**
+     * Test of pegaValorDropDown method, of class RevisarPlanoDeNegocioBean.
+     */
+    @Ignore
+    public void testPegaValorDropDown() {
+        System.out.println("pegaValorDropDown");
+        RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
+        String expResult = null;
+        String result = instance.pegaValorDropDown();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isSalvou method, of class RevisarPlanoDeNegocioBean.
+     */
+    @Test
+    public void testIsSalvou() {
+        System.out.println("isSalvou");
+        RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
+        boolean expResult = false;
+        instance.setSalvou(expResult);
+        boolean result = instance.isSalvou();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setSalvou method, of class RevisarPlanoDeNegocioBean.
+     */
+    @Test
+    public void testSetSalvou() {
+        System.out.println("setSalvou");
+        boolean salvou = false;
+        RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
+        instance.setSalvou(salvou);
     }
     
 }
