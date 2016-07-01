@@ -31,28 +31,32 @@ public class Produtoouservico implements java.io.Serializable {
 //    Metodo para verificar qual o status do estagio de evolucao do projeto
 
     public String verificaStatusProjeto(String status) {
-        switch (status) {
-            case "Ideia Básica":
-                return IDEIA_BASICA;
-            case "Projeto Básico":
-                return PROJETO_BASICO;
-            case "Projeto Detalhado":
-                return PROJETO_DETALHADO;
-            case "Protótipo Desenvolvido":
-                return PROTOTIPO_DESENVOLVIDO;
-            case "Em teste no mercado":
-                return EM_TESTE_NO_MERCADO;
-            case "Clientes Pagando":
-                return CLIENTES_PAGANDO;
-            default:
-                break;
+        if (status != null) {
+            switch (status) {
+                case "Ideia Básica":
+                    return IDEIA_BASICA;
+                case "Projeto Básico":
+                    return PROJETO_BASICO;
+                case "Projeto Detalhado":
+                    return PROJETO_DETALHADO;
+                case "Protótipo Desenvolvido":
+                    return PROTOTIPO_DESENVOLVIDO;
+                case "Em teste no mercado":
+                    return EM_TESTE_NO_MERCADO;
+                case "Clientes Pagando":
+                    return CLIENTES_PAGANDO;
+                default:
+                    break;
+            }
+            return "Outro:";
+        } else {
+            return "Status Indefinido";
         }
-        return "Outro:";
     }
 
     public Produtoouservico(int idProdutoOuServico, String estagioEvolucao) {
         this.idProdutoOuServico = idProdutoOuServico;
-        this.estagioEvolucao = verificaStatusProjeto(estagioEvolucao);       
+        this.estagioEvolucao = verificaStatusProjeto(estagioEvolucao);
     }
 
     public Produtoouservico(int idProdutoOuServico, String estagioEvolucao, String tecnologiaProcessos, String potencialInovacaoTecnologica, String aplicacoes, String dificuldadesEsperadas, String interacaoEmpresaUniversidade, String interacaoEmpresaComunidadeGoverno, String infraestrutura, Set projetos) {
@@ -66,7 +70,7 @@ public class Produtoouservico implements java.io.Serializable {
         this.interacaoEmpresaComunidadeGoverno = interacaoEmpresaComunidadeGoverno;
         this.infraestrutura = infraestrutura;
         this.projetos = projetos;
-        this.estagioEvolucao = verificaStatusProjeto(estagioEvolucao);       
+        this.estagioEvolucao = verificaStatusProjeto(estagioEvolucao);
 
     }
 

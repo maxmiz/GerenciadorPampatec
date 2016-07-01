@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  * <p>
@@ -46,8 +47,8 @@ public class EmailUtilTest {
      * Teste para validar se o objeto da classe é gerado corretamente.</p>
      */
     @Test
-    public void testMandarEmailConcluirCadastro() {
-        System.out.println("mandarEmailConcluirCadastro");
+    public void testConstrutorEmailUtil() {
+        System.out.println("testConstrutorEmailUtil");
         EmailUtil result = new EmailUtil();
         assertNotNull(result);
     }
@@ -59,8 +60,8 @@ public class EmailUtilTest {
      * <code>nullPointerException</code>.</p>
      */
     @Test
-    public void testMandarEmailConcluirCadastro2() {
-        System.out.println("mandarEmailConcluirCadastro2");
+    public void testMandarEmailConcluirCadastro() {
+        System.out.println("mandarEmailConcluirCadastro_Null");
         String empreendedorNome = null;
         String projetoNome = null;
         String email = null;
@@ -75,12 +76,27 @@ public class EmailUtilTest {
      * todos os campos vazios.</p>
      */
     @Test
-    public void testMandarEmailConcluirCadastro3() {
-        System.out.println("mandarEmailConcluirCadastro3");
+    public void testMandarEmailConcluirCadastro2() {
+        System.out.println("mandarEmailConcluirCadastro_StringVazia");
         String empreendedorNome = "";
         String projetoNome = "";
         String email = "";
         String idUnico = "";
+        EmailUtil.mandarEmailConcluirCadastro(empreendedorNome, projetoNome, email, idUnico);
+    }
+
+    /**
+     * Test of mandarEmailConcluirCadastro method, of class EmailUtil.
+     * <p>
+     * Teste para validar o envio de emails para conclusão do cadastro.</p>
+     */
+    @Ignore
+    public void testMandarEmailConcluirCadastro3() {
+        System.out.println("mandarEmailConcluirCadastro_EnvioEmail");
+        String empreendedorNome = "Ideiah Dev Tests";
+        String projetoNome = "Projeto Email Teste";
+        String email = "ideiahdev@gmail.com";
+        String idUnico = "2";
         EmailUtil.mandarEmailConcluirCadastro(empreendedorNome, projetoNome, email, idUnico);
     }
 
@@ -93,7 +109,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviarEmailRecuperarSenha() {
-        System.out.println("enviarEmailRecuperarSenha");
+        System.out.println("enviarEmailRecuperarSenha_Null");
         String email = null;
         String idUnico = null;
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
@@ -108,7 +124,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviarEmailRecuperarSenha2() {
-        System.out.println("enviarEmailRecuperarSenha2");
+        System.out.println("enviarEmailRecuperarSenha_StringVazia");
         String email = "";
         String idUnico = "";
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
@@ -116,15 +132,14 @@ public class EmailUtilTest {
 
     /**
      * Test of enviarEmailRecuperarSenha method, of class EmailUtil.
-     * <p>
+     * <p>Teste para validar o envio de email para recuperação de senha.
      * </p>
      */
-    @Test
+    @Ignore
     public void testEnviarEmailRecuperarSenha3() {
-        System.out.println("enviarEmailRecuperarSenha3");
-        String email = "";
-        String idUnico = "";
+        System.out.println("enviarEmailRecuperarSenha_EnvioEmail");
+        String email = "ideiahdev@gmail.com";
+        String idUnico = "1";
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
     }
-
 }

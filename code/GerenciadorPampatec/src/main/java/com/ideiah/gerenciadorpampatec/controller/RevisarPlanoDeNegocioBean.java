@@ -34,8 +34,7 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @ViewScoped
-
-public class revisarPlanoDeNegocioBean implements Serializable {
+public class RevisarPlanoDeNegocioBean implements Serializable {
 
     private Projeto projeto;
     private ComentarioProjeto comentarioProjeto;
@@ -49,7 +48,7 @@ public class revisarPlanoDeNegocioBean implements Serializable {
     private int somatorioVariavel;
     private boolean salvou;
 
-    public revisarPlanoDeNegocioBean() {
+    public RevisarPlanoDeNegocioBean() {
     }
 
     @PostConstruct
