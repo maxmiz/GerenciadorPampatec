@@ -42,8 +42,8 @@ public class DaoTest {
     public void tearDown() {
         instance = null;
     }
-    
-     public class DaoImpl extends Dao {
+
+    public class DaoImpl extends Dao {
     }
 
     /**
@@ -73,7 +73,9 @@ public class DaoTest {
     }
 
     /**
-     * Test of update method, of class Dao.
+     * Teste de alterar um objeto; Primeiro é salvo um objeto no banco e depois
+     * alterado o seu nome. Buscamos o objeto pelo nome alterado e esperamos que
+     * a consulta venha com o objeto.
      */
     @Test
     public void testUpdatePositivo() {
@@ -88,55 +90,111 @@ public class DaoTest {
     }
 
     /**
-     * Teste de excluir um objeto da dao.
+     * Teste de alterar um objeto; Tenta alterar um objeto que não está salvo no
+     * banco.
+     */
+    @Test
+    public void testUpdateNegativo() {
+
+        Usuario empreendedor = new Empreendedor();
+        Usuario result = (Usuario) instance.update(empreendedor);
+        assertNull(result);
+    }
+
+    /**
+     * Teste de excluir um objeto da dao que passa um int e a classe como
+     * parametros. é criado um objeto empreendedor e salvo no banco de dados
+     * depois é excluído esse mesmo objeto. Consultamos pelo o id que era do
+     * objeto e esperamos que a consulta venha nula pois o objeto não existe
+     * mais no banco
      */
     @Test
     public void testExcluirPositivo() {
         Usuario usuario = new Empreendedor();
-        instance.salvar(usuario);
+        usuario = (Usuario) instance.salvar(usuario);
         int id = usuario.getIdUsuario();
-        instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
+        instance.excluir(usuario.getIdUsuario(), Usuario.class);
         Usuario result = (Usuario) instance.buscarObjeto(id, Empreendedor.class);
         assertNull(result);
     }
-    
+
     /**
-     * Teste de excluir um objeto da dao que não existe.
+     * Teste de excluir um objeto da dao que não existe passa um int e a classe
+     * como parametros. é setado uma id que não existe e chama o excluir por
+     * aquele id o método retorna falso pois não existe o objeto
      */
     @Test
     public void testExcluirNegativo() {
-        
-        Usuario usuario = new Empreendedor();       
+
+        Usuario usuario = new Empreendedor();
+        usuario.setIdUsuario(10000000);
         boolean result = instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
         assertFalse(result);
     }
-    
 
-//    /**
-//     * Testa busca Objetos no banco de dados.
-//     */
-//    @Test
-//    public void testBuscarObjetos() {
-//        
-//        Usuario usuario1 = new Empreendedor();        
-//        instance.salvar(usuario1);        
-//        Usuario usuario2 = new Empreendedor();        
-//        instance.salvar(usuario2);
-//        
-//        ArrayList list = instance.buscarObjetos(Empreendedor.class);       
-//        assertNotNull(list);
-//        
-//        instance.excluir(usuario1.getIdUsuario(), Empreendedor.class);
-//        instance.excluir(usuario2.getIdUsuario(), Empreendedor.class);
-//        
-//    }
-    
+    /**
+     * Teste de excluir um objeto da dao que passa uma String e a classe como
+     * parametros. é criado um objeto empreendedor e salvo no banco de dados
+     * depois é excluído esse mesmo objeto. Consultamos pelo o id que era do
+     * objeto e esperamos que a consulta venha nula pois o objeto não existe
+     * mais no banco
+     */
+    @Test
+    public void testExcluir2Positivo() {
+        Usuario usuario = new Empreendedor();
+        usuario = (Usuario) instance.salvar(usuario);
+        String id = String.valueOf(usuario.getIdUsuario());
+        instance.excluir(id, Usuario.class);
+        Usuario result = (Usuario) instance.buscarObjeto(usuario.getIdUsuario(), Empreendedor.class);
+        assertNull(result);
+    }
+
+    /**
+     * Teste de excluir um objeto da dao que não existe, passa uma String e a
+     * classe como parametros. é setado uma id que não existe e chama o excluir
+     * por aquele id o método retorna falso pois não existe o objeto
+     */
+    @Test
+    public void testExcluir2Negativo() {
+
+        Usuario usuario = new Empreendedor();
+        usuario.setIdUsuario(10000000);
+        String id = String.valueOf(usuario.getIdUsuario());
+        boolean result = instance.excluir(id, Empreendedor.class);
+        assertFalse(result);
+    }
+
+    /**
+     * Testa busca Objetos no banco de dados. Criam-se dois objetos de
+     * empreendedor e após são salvos no banco de dados chama-se o método de
+     * buscar e verifica-se se a lista contém os dois objetos salvos
+     * anteriormente
+     */
+    @Test
+    public void testBuscarObjetos() {
+
+        Usuario usuario1 = new Empreendedor();
+        usuario1 = (Usuario) instance.salvar(usuario1);
+        Usuario usuario2 = new Empreendedor();
+        usuario2 = (Usuario) instance.salvar(usuario2);
+
+        ArrayList list = instance.buscarObjetos(Empreendedor.class);
+
+        boolean result = list.contains(usuario1) && list.contains(usuario2);
+
+        assertTrue(result);
+
+        instance.excluir(usuario1.getIdUsuario(), Empreendedor.class);
+        instance.excluir(usuario2.getIdUsuario(), Empreendedor.class);
+
+    }
+
     /**
      * Testa o método de buscar objetos com critérios. Primeiro cria objetos no
      * banco com status diferentes para garantir que o banco esteja preenchdi.
      * Depois busca os objetos com um critério definido. Depois se os objetos
-     * retornados respeitam os critérios estabelecidos. Depois apaga os registros
-     * criados.
+     * retornados respeitam os critérios estabelecidos. Depois apaga os
+     * registros criados.
      */
     @Test
     public void testBuscarObjetosCriteria() {
@@ -147,10 +205,11 @@ public class DaoTest {
         projetoStatus2.setStatus(2);
         projeto = (Projeto) instance.salvar(projeto);
         projetoStatus2 = (Projeto) instance.salvar(projetoStatus2);
+
         ArrayList<Projeto> result = (ArrayList<Projeto>) instance.buscarObjetosCritera("status",
-                1,Projeto.class);
+                1, Projeto.class);
         for (Projeto projetoLaco : result) {
-            if(projetoLaco.getStatus() != 1){
+            if (projetoLaco.getStatus() != 1) {
                 flag = true;
                 break;
             }
@@ -158,5 +217,40 @@ public class DaoTest {
         assertFalse(flag);
         instance.excluir(projeto.getIdProjeto(), Projeto.class);
         instance.excluir(projetoStatus2.getIdProjeto(), Projeto.class);
+    }
+
+    /**
+     * teste que executa o método "buscarObjetoCriteriaINT". É salvo um objeto e
+     * buscado pelo campo de id no banco. Deposi são comparados os objetos.
+     */
+    @Test
+    public void testeBuscarObjetoCriteriaINT() {
+
+        Projeto projeto = new Projeto();
+        projeto.setStatus(1);
+        projeto = (Projeto) instance.salvar(projeto);
+
+        int id = projeto.getIdProjeto();
+        Projeto result = (Projeto) instance.buscarObjetoCriteriaINT("idProjeto", id, Projeto.class);
+        assertEquals(result, projeto);
+
+        instance.excluir(projeto.getIdProjeto(), Projeto.class);
+    }
+    
+    /**
+     * teste que executa o método modificador da sessão.     * 
+     */
+    @Test
+    public void testSetSession(){
+        
+        Session session;
+        
+        session = HibernateUtil.getSessionFactory().openSession();
+        
+        instance.setSession(session);
+        
+        Session session2 = instance.getSession();
+        
+        assertEquals(session2, session);        
     }
 }

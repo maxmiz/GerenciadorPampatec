@@ -44,24 +44,25 @@ public abstract class Dao {
         } catch (Exception e) {
             e.printStackTrace();
             getSession().getTransaction().rollback();
+            return null;
         }
         return salvo;
     }
 
     // <editor-fold defaultstate="collapsed" desc="INSERT and UPDATE"> 
-
     public Object update(Object obj) {
-        Object salvo = null;
+
         try {
             setTx(getSession().getTransaction());
             getTx().begin();
-            salvo = getSession().merge(obj);
+            getSession().update(obj);
             getTx().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
             getSession().getTransaction().rollback();
+            return null;
         }
-        return salvo;
+        return obj;
     }
         // </editor-fold>
 
@@ -117,64 +118,22 @@ public abstract class Dao {
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObject(criteria);
     }
-    
+
     public Object buscarObjetoCriteriaINT(String propriedade, int valor, Class<?> classe) {
         Object objeto = null;
         Criteria criteria = getCriteria(classe);
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObject(criteria);
     }
-    
-        public Object buscarObjetoCriteriaINTEGER(String propriedade, Integer valor, Class<?> classe) {
-        Object objeto = null;
-        Criteria criteria = getCriteria(classe);
-        criteria.add(Restrictions.eq(propriedade, valor));
-        return getObject(criteria);
-    }
 
-    public Object buscarObjeto(String codigo, Class<?> classe) {
-        Criteria criteria = getCriteria(classe);
-        criteria.add(Restrictions.idEq(codigo));
-        return getObject(criteria);
-    }
-
-    public Object buscarObjeto(HashMap<String, Object> filtros, Class<?> classe) {
-        Criteria criteria = getCriteria(classe);
-        for (Map.Entry<String, Object> entry : filtros.entrySet()) {
-            String campo = entry.getKey();
-            Object valor = entry.getValue();
-            criteria.add(Restrictions.eq(campo, valor));
-        }
-        criteria.setMaxResults(1);//no maximo 1 resultado
-        return getObject(criteria);
-    }
-    
-    public ArrayList<?> buscarObjetosCritera(String propriedade, int valor, Class<?> classe){
+    public ArrayList<?> buscarObjetosCritera(String propriedade, int valor, Class<?> classe) {
         Criteria criteria = getCriteria(classe);
         criteria.add(Restrictions.eq(propriedade, valor));
         return getObjects(criteria);
     }
-    
-    public ArrayList<?> buscarObjetoCriteria(String propriedade, Object object, Class<?> classe) {
-        Object objeto = null;
-        Criteria criteria = getCriteria(classe);
-        criteria.add(Restrictions.eq(propriedade, object));
-        return getObjects(criteria);
-    }
-        // </editor-fold>
+
 
     // <editor-fold defaultstate="collapsed" desc="SEARCH OBJECTS"> 
-    public Object buscarObjetos(HashMap<String, Object> filtros, Class<?> classe) {
-        Object objeto = null;
-        Criteria criteria = getCriteria(classe);
-        for (Map.Entry<String, Object> entry : filtros.entrySet()) {
-            String campo = entry.getKey();
-            Object valor = entry.getValue();
-            criteria.add(Restrictions.eq(campo, valor));
-        }
-        return getObjects(criteria);
-    }
-
     public ArrayList<?> buscarObjetos(Class<?> classe) {
         Criteria criteria = getCriteria(classe);
         return getObjects(criteria);
