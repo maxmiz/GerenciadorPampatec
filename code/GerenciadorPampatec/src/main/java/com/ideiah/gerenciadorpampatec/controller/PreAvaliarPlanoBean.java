@@ -553,7 +553,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     
     /**
      * <p>
-     * Método para ordenar a lista de historico ordenados por data de alteracao
+     * Método para ordenar a lista de histórico ordenados por data de alteração
      * ordenados do mais recente ao mais antigo
      * </p>
      * @param lista 
