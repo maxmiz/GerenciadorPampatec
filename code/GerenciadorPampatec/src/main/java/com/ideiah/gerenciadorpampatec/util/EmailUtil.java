@@ -5,6 +5,8 @@ package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.dao.EmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmailSystemConfig;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -21,7 +23,7 @@ import org.apache.commons.mail.SimpleEmail;
  * @author Pedro
  */
 public class EmailUtil {
-
+    
     private static SimpleEmail emailSimples;
     private static HtmlEmail emailHtml;
     private static MultiPartEmail emailAnexo;
@@ -31,7 +33,7 @@ public class EmailUtil {
      */
     private static String authEmail;
     private static String authPassphrase;
-
+    
     public EmailUtil() {
     }
 
@@ -48,7 +50,7 @@ public class EmailUtil {
             String projetoNome, String email, String idUnico) {
         if (empreendedorNome != null && projetoNome != null && email != null && idUnico != null) {
             if (!empreendedorNome.isEmpty() && !projetoNome.isEmpty() && !email.isEmpty() && !idUnico.isEmpty()) {
-
+                
                 emailHtml = new HtmlEmail();
                 try {
                     emailHtml.setHostName("smtp.googlemail.com");
@@ -60,9 +62,9 @@ public class EmailUtil {
                     emailHtml.addTo(email);
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
-
-                    StringBuffer msg = new StringBuffer();
                     
+                    StringBuffer msg = new StringBuffer();
+
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
                     msg.append("<html lang=\"pt-br\">\n"
                             + "  <head>\n"
@@ -96,9 +98,9 @@ public class EmailUtil {
                     // </editor-fold>
                     
                     emailHtml.setHtmlMsg(msg.toString());
-
+                    
                     emailHtml.send();
-
+                    
                 } catch (EmailException ex) {
                     ex.printStackTrace();
                 }
@@ -117,14 +119,14 @@ public class EmailUtil {
      */
     public static void mandarEmailAvaliacao(String empreendedorNome,
             String projetoNome, String email) {
-
+        
         if (empreendedorNome != null
                 && projetoNome != null
                 && email != null) {
             if (!email.isEmpty()
                     && !empreendedorNome.isEmpty()
                     && !projetoNome.isEmpty()) {
-
+                
                 emailHtml = new HtmlEmail();
                 try {
                     emailHtml.setHostName("smtp.googlemail.com");
@@ -136,7 +138,7 @@ public class EmailUtil {
                     emailHtml.addTo(email);
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
-
+                    
                     StringBuffer msg = new StringBuffer();
 
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email"> 
@@ -152,7 +154,7 @@ public class EmailUtil {
                             + "			<h1>Boas notícias!</h1>\n"
                             + "			<form>\n"
                             + "				<div style=\"margin-bottom: 15px;\">\n"
-                            + "					<a>Olá <strong>"+ empreendedorNome +"</strong>! Notificamos que o projeto <strong><i>"+ projetoNome +"</i></strong> foi avaliado e está a sua disposição.\n"
+                            + "					<a>Olá <strong>" + empreendedorNome + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi avaliado e está a sua disposição.\n"
                             + "							<br/>\n"
                             + "							<br/>Para visualizar o seu plano de negócio, clique na opção abaixo.</a>\n"
                             + "							<br/>\n"
@@ -174,14 +176,90 @@ public class EmailUtil {
                             + "</html>");
                     // </editor-fold>
 
-                    
                     emailHtml.setHtmlMsg(msg.toString());
-
+                    
                     emailHtml.send();
-
+                    
                 } catch (EmailException ex) {
                     Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+        }
+    }
+
+    /**
+     * <P>
+     * Método responsável por enviar email à todos os GERENTES quando um novo projeto
+     * e submitido para a Pré-Avaliação.</P>
+     *
+     * @param listaDeGerentes
+     * @param projetoNome
+     */
+    public synchronized static void mandarEmailPrimeiraSubmissao(String projetoNome, ArrayList<GerenteRelacionamento> listaDeGerentes) {
+        
+        if (projetoNome != null && listaDeGerentes != null) {
+            if (!projetoNome.isEmpty() && !listaDeGerentes.isEmpty()) {
+                
+                for (int i = 0; i < listaDeGerentes.size(); i++) {
+
+                    emailHtml = new HtmlEmail();
+                    try {
+                        emailHtml.setHostName("smtp.googlemail.com");
+                        emailHtml.setSmtpPort(465);
+                        emailHtml.setAuthenticator(
+                                new DefaultAuthenticator(getAuthEmail(), getAuthPassphrase())
+                        );
+                        emailHtml.setSSLOnConnect(true);
+                        emailHtml.addTo(listaDeGerentes.get(i).getEmail());
+                        emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
+                        emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
+                        
+                        StringBuffer msg = new StringBuffer();
+
+                        // <editor-fold defaultstate="collapsed" desc="Mensagem do Email"> 
+                        msg.append("<!DOCTYPE html>\n"
+                                + "<html lang=\"pt-br\">\n"
+                                + "	<head>\n"
+                                + "		<meta charset=\"utf-8\"/>\n"
+                                + "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
+                                + "    </head>\n"
+                                + "    <body style=\"margin: 0;padding-top: 10px;\">                    \n"
+                                + "		<div style=\"width: 15%;\"></div>\n"
+                                + "		<div style=\"text-align: center; width: 70%; min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #f5f5f5; border: 2px solid #3FB618; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\">\n"
+                                + "			<h1>Novo Plano de Negócio Enviado!</h1>\n"
+                                + "			<form>\n"
+                                + "				<div style=\"margin-bottom: 15px;\">\n"
+                                + "					<a>Olá <strong>" + listaDeGerentes.get(i).getNome() + "</strong>! Notificamos que um novo Plano de Negócio chamado <strong><i>" + projetoNome + "</i></strong> foi enviado.\n"
+                                + "							<br/>\n"
+                                + "							<br/>Para visualizar o novo plano de negócio, clique na opção abaixo.</a>\n"
+                                + "							<br/>\n"
+                                + "							<br/>\n"
+                                + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"http://localhost:8084/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml\">\n"
+                                + "								<strong>Acessar o sistema</strong>\n"
+                                + "							</a>\n"
+                                + "				</div>\n"
+                                + "			</form>\n"
+                                + "			<div style=\"padding: 10px; overflow: auto; border-top: 1px solid #e5e5e5;\">\n"
+                                + "				<img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width: 100px;height: 65px;float: left;\"/>\n"
+                                + "				\n"
+                                + "				<img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width: 100px;height: 65px;float: right;\"/> \n"
+                                + "			</div>\n"
+                                + "		</div>\n"
+                                + "		<div style=\"width: 15%;\"></div>\n"
+                                + "		<!-- CSS embutido in line -->               \n"
+                                + "    </body>\n"
+                                + "</html>");
+                        // </editor-fold>
+
+                        emailHtml.setHtmlMsg(msg.toString());
+                        
+                        emailHtml.send();
+                        
+                    } catch (EmailException ex) {
+                        Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
             }
         }
     }
@@ -197,7 +275,7 @@ public class EmailUtil {
     public static void enviarEmailRecuperarSenha(String email, String idUnico) {
         if (email != null && idUnico != null) {
             if (!email.isEmpty() && !idUnico.isEmpty()) {
-
+                
                 emailHtml = new HtmlEmail();
                 try {
                     emailHtml.setHostName("smtp.googlemail.com");
@@ -209,9 +287,9 @@ public class EmailUtil {
                     emailHtml.addTo(email);
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
-
-                    StringBuffer msg = new StringBuffer();
                     
+                    StringBuffer msg = new StringBuffer();
+
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
                     msg.append("<html lang=\"pt-br\">\n"
                             + "  <head>\n"
@@ -239,9 +317,9 @@ public class EmailUtil {
                     // </editor-fold>
                     
                     emailHtml.setHtmlMsg(msg.toString());
-
+                    
                     emailHtml.send();
-
+                    
                 } catch (EmailException ex) {
                     Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -257,7 +335,7 @@ public class EmailUtil {
      * @return o email do sistema do tipo <code>String</code>.
      */
     private static String getAuthEmail() {
-
+        
         EmailDao emailDao = new EmailDao();
 //        ArrayList<EmailSystemConfig> buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
 //
