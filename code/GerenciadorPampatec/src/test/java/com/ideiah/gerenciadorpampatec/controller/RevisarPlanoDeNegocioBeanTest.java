@@ -224,7 +224,7 @@ public class RevisarPlanoDeNegocioBeanTest {
     /**
      * Test of redirecionaPaginaAvaliacao method, of class RevisarPlanoDeNegocioBean.
      */
-    @Test
+    @Ignore
     public void testRedirecionaPaginaAvaliacao() {
         System.out.println("redirecionaPaginaAvaliacao");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
@@ -545,7 +545,7 @@ public class RevisarPlanoDeNegocioBeanTest {
     /**
      * Test of getSomatorioVariavel method, of class RevisarPlanoDeNegocioBean.
      */
-    @Test
+    @Ignore
     public void testGetSomatorioVariavel() {
         System.out.println("getSomatorioVariavel");
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();

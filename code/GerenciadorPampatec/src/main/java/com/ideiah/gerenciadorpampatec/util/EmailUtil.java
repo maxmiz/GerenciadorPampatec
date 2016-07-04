@@ -102,7 +102,7 @@ public class EmailUtil {
                     emailHtml.send();
                     
                 } catch (EmailException ex) {
-                    ex.printStackTrace();
+                    Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -335,17 +335,15 @@ public class EmailUtil {
      * @return o email do sistema do tipo <code>String</code>.
      */
     private static String getAuthEmail() {
-        
         EmailDao emailDao = new EmailDao();
-//        ArrayList<EmailSystemConfig> buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
-//
-//        for (EmailSystemConfig emailSystemConfig : buscarTodosEmailsSystema) {
-//            authEmail = emailSystemConfig.getEmail();
-//            break;
-//        }
+        ArrayList<EmailSystemConfig> buscarTodosEmailsSystema;
+        buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
 
-        EmailSystemConfig email = emailDao.buscarPorId(1);
-        return authEmail = email.getEmail();
+        for (EmailSystemConfig emailSystemConfig : buscarTodosEmailsSystema) {
+            authEmail = emailSystemConfig.getEmail();
+            break;
+        }
+        return authEmail;
     }
 
     /**
@@ -357,13 +355,13 @@ public class EmailUtil {
      */
     private static String getAuthPassphrase() {
         EmailDao emailDao = new EmailDao();
-//        ArrayList<EmailSystemConfig> buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
-//
-//        for (EmailSystemConfig emailSystemConfig : buscarTodosEmailsSystema) {
-//            authPassphrase = emailSystemConfig.getPassphrase();
-//            break;
-//        }
-        EmailSystemConfig email = emailDao.buscarPorId(1);
-        return authPassphrase = email.getPassphrase();
+        ArrayList<EmailSystemConfig> buscarTodosEmailsSystema;
+        buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
+
+        for (EmailSystemConfig emailSystemConfig : buscarTodosEmailsSystema) {
+            authPassphrase = emailSystemConfig.getPassphrase();
+            break;
+        }
+        return authPassphrase;
     }
 }

@@ -188,5 +188,20 @@ public class EmailUtilTest {
         String email = "ideiahdev@gmail.com";
         EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
     }
+    
+    
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para verificar o envio de email para um endereço inexistente.</p>
+     */
+    @Ignore
+    public void testMandarEmailAvaliacao4() {
+        System.out.println("mandarEmailAvaliacao");
+        String empreendedorNome = "Dev Empreendedor";
+        String projetoNome = "Ideiah Dev Testes";
+        String email = "vitor@gerente.com";
+        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+    }
 
 }
