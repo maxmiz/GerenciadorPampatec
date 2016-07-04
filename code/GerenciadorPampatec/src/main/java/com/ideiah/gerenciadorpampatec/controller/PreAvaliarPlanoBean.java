@@ -8,15 +8,18 @@ package com.ideiah.gerenciadorpampatec.controller;
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import com.ideiah.gerenciadorpampatec.util.ComparadorSubmissaoComentarioUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -280,8 +283,33 @@ public class PreAvaliarPlanoBean implements Serializable {
                 salvarPreAvaliacao();
                 
                 getBuscarPlanoDeNegocio();
+                
+                enviaEmailAvaliacao();
             }
         }
+    }
+    
+    /** <p> Método para enviar email para o empreendedor correspondente quando o gerente
+     * avaliar o plano.
+     * </p>
+     */
+    
+    private void enviaEmailAvaliacao(){
+        try {
+        String nomeProjeto = projeto.getNome(); 
+        
+        
+        for (Object objeto : projeto.getEmpreendedores()) {
+            Empreendedor empreendedor = (Empreendedor) objeto;
+            String nomeEmpreendedor = empreendedor.getNome();
+            String email = empreendedor.getEmail();
+            EmailUtil.mandarEmailAvaliacao(nomeEmpreendedor, nomeProjeto, email);
+        }
+        } catch (Exception e) {
+                    Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        
     }
 
     /**
