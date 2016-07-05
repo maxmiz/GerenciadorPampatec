@@ -5,12 +5,15 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -524,11 +527,33 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 
             projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
-
+            enviaEmailRessubmissao();
             getBuscarPlanoDeNegocio();
         }
     }
 
+    /** <p> Método para enviar email para os gerentes quando o empreendedor
+     * ressubmete o plano.
+     * </p>
+     */
+    
+    private void enviaEmailRessubmissao(){
+        try {
+        String nomeProjeto = projeto.getNome(); 
+        ArrayList<GerenteRelacionamento> listaDeGerentes;
+        GerenteDao gerenteDAO = new GerenteDao();
+        
+        listaDeGerentes = (ArrayList<GerenteRelacionamento>) gerenteDAO.buscarTodosGerente();
+        
+        EmailUtil.mandarEmailRessubmissao(nomeProjeto, listaDeGerentes);
+        
+        } catch (Exception e) {
+                    Logger.getLogger(RevisarPlanoDeNegocioBean.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        
+    }
+    
     /**
      * <p>
      * Redireciona para a página de lista de Planos de Negócio.
