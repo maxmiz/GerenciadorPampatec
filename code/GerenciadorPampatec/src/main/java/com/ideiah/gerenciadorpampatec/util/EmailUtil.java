@@ -265,8 +265,8 @@ public class EmailUtil {
     }
     /**
      * <P>
-     * Método responsável por enviar email à todos os GERENTES quando um novo projeto
-     * e submitido para a Pré-Avaliação.</P>
+     * Método responsável por enviar email à todos os GERENTES quando um projeto
+     * e resubmitido para a Pré-Avaliação.</P>
      *
      * @param listaDeGerentes
      * @param projetoNome
