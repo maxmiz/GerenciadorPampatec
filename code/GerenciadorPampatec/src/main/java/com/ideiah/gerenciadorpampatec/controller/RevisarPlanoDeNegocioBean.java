@@ -527,31 +527,11 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 
             projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
-            enviaEmailRessubmissao();
+            
+            EmailManager.enviaEmailParaGerentes(projeto);
+            
             getBuscarPlanoDeNegocio();
         }
-    }
-
-    /** <p> Método para enviar email para os gerentes quando o empreendedor
-     * ressubmete o plano.
-     * </p>
-     */
-    
-    private void enviaEmailRessubmissao(){
-        try {
-        String nomeProjeto = projeto.getNome(); 
-        ArrayList<GerenteRelacionamento> listaDeGerentes;
-        GerenteDao gerenteDAO = new GerenteDao();
-        
-        listaDeGerentes = (ArrayList<GerenteRelacionamento>) gerenteDAO.buscarTodosGerente();
-        
-        EmailUtil.mandarEmailRessubmissao(nomeProjeto, listaDeGerentes);
-        
-        } catch (Exception e) {
-                    Logger.getLogger(RevisarPlanoDeNegocioBean.class.getName()).log(Level.SEVERE, null, e);
-
-        }
-        
     }
     
     /**

@@ -164,7 +164,10 @@ public class ProjetoBean implements Serializable {
             projeto.setNome("Novo plano de negócio sem nome");
         }
         pegaValorDropDown();
+        
         EnviaEmails(projeto);
+        EmailManager.enviaEmailParaGerentes(projeto);
+        
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
         atualizarProjetoSessao();
@@ -174,7 +177,7 @@ public class ProjetoBean implements Serializable {
 
     /**
      * Envia emails de termino de cadastro para os empreendedores necessários
-     * dentro do projeto e atauliza os empreendedores.
+     * dentro do projeto e atualiza os empreendedores.
      *
      * @param projeto Projeto que contém os empreendedores para se enviar os
      * emails
