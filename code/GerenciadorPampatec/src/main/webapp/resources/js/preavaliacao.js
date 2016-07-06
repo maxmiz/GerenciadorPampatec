@@ -5,6 +5,8 @@
  */
 
 /* variavel para armazenar o objeto do botao anterior */
+/* global andamentoProjeto */
+
 var objetoBotaoAnterior = null;
 
 /* campo para armazenar a classe dO botao que o usuario esta visualizando antes de ir para outro */
@@ -195,8 +197,7 @@ function carregaPagina() {
             var botaoResultadoPreAvaliacao = document.getElementById("menuSuperior:botao_resultado_preavaliacao");
             botaoResultadoPreAvaliacao.setAttribute("class", "btn btn-danger btnEstadoAtual");
 
-            mostraDIV('sessao_revisar_plano_pre_melhoria');
-            addFocoBotao("menuSuperior:botao_revisar");
+            mostraDIV2('sessao_revisar_plano_pre_melhoria');
 
             var etapa = document.getElementById("etapa3");
             etapa.setAttribute("style", "cursor: default;");
@@ -266,23 +267,25 @@ function mostraDIV(referencia) {
     }
 }
 /**
- * @description Esta função é chamada para validar que quando o plano está em pre avalaição os empreendedores poderão só Revisar o plano.
+ * @description Esta função é chamada para validar que quando o plano está em melhoria 
+ * e os empreendedores observadores tentarem acessar o plano.
  * @param {type} referencia
  */
 function mostraDIV2(referencia) {
     // se andamento está em elaboração
-    if (andamentoProjeto === 0) {
+    if (andamentoProjeto === 13) {
         // se o empreendedor é correspondente
         if (tipoEmpreededor) {
             mostraDIV(referencia);
+            addFocoBotao("menuSuperior:botao_revisar");
         } else {
             // se empreendedor não é correspondente, apenas mostra plano para revisar
-            mostraDIV('div_revisar_plano');
+            mostraDIV('sessao_resultado_avaliador');
+            addFocoBotao("menuSuperior:botao_resultado_preavaliacao");
         }
-    } else {
-        mostraDIV('div_revisar_plano');
     }
 }
+
 
 /**
  * @description Coloca foco no botao em que o usuário está visualizando no workflow vertical
