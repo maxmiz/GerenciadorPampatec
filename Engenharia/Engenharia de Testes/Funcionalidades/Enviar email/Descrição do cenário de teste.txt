@@ -1,0 +1,7 @@
+Descrição dos cenários
+	O usuário Gerente de Relacionamentos avalia um plano (independentemente do status) e finaliza avaliação. Um email é enviado aos empreendedores relacionados à um plano, referentes à mudança de estado do projeto.
+	O usuário Empreendedor Correspondente cria um plano de negócio e submete para pré-avaliação. Um email é enviado aos Gerentes de relacionamento indicando essa atualização do projeto.
+	O usuário Empreendedor Correspondente revisa um plano de negócio e submete melhorias realizadas. Um email é enviado aos Gerentes de Relacionamento indicando essa atualização do projeto.
+
+
+	
