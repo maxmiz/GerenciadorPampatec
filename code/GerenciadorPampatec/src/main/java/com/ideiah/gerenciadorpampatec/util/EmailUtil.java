@@ -46,7 +46,7 @@ public class EmailUtil {
      * @param projetoNome
      * @param email
      */
-    public static void mandarEmailAvaliacao(String empreendedorNome,
+    public synchronized static void mandarEmailAvaliacao(String empreendedorNome,
             String projetoNome, String email) {
 
         if (empreendedorNome != null
@@ -83,9 +83,9 @@ public class EmailUtil {
                             + "			<h1>Boas notícias!</h1>\n"
                             + "			<form>\n"
                             + "				<div style=\"margin-bottom: 15px;\">\n"
-                            + "					<a>Olá <strong>" + empreendedorNome + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi avaliado e está a sua disposição.\n"
+                            + "					<a>Olá <strong>" + empreendedorNome + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi pré-avaliado e está a sua disposição.\n"
                             + "							<br/>\n"
-                            + "							<br/>Para visualizar o seu plano de negócio, clique na opção abaixo.</a>\n"
+                            + "							<br/>Para acessar o sistema gerenciador de projetos, clique na opção abaixo.</a>\n"
                             + "							<br/>\n"
                             + "							<br/>\n"
                             + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"http://localhost:8084/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml\">\n"
@@ -235,12 +235,12 @@ public class EmailUtil {
                                 + "    <body style=\"margin: 0;padding-top: 10px;\">                    \n"
                                 + "		<div style=\"width: 15%;\"></div>\n"
                                 + "		<div style=\"text-align: center; width: 70%; min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #f5f5f5; border: 2px solid #3FB618; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\">\n"
-                                + "			<h1>Plano de Negócio em Melhoria Renviado!</h1>\n"
+                                + "			<h1>Plano de negócio disponível para avaliação!</h1>\n"
                                 + "			<form>\n"
                                 + "				<div style=\"margin-bottom: 15px;\">\n"
-                                + "					<a>Olá <strong>" + listaDeGerentes.get(i).getNome() + "</strong>! Notificamos que Plano de Negócio chamado <strong><i>" + projetoNome + "</i></strong> foi " + statusProjeto + ".\n"
+                                + "					<a>Olá <strong>" + listaDeGerentes.get(i).getNome() + "</strong>! Notificamos que Plano de Negócio chamado <strong><i>" + projetoNome + "</i></strong> atualizou seu status para " + statusProjeto + ".\n"
                                 + "							<br/>\n"
-                                + "							<br/>Para visualizar o plano de negócio melhorado, clique na opção abaixo.</a>\n"
+                                + "							<br/>Para acessar o sistema Gerenciador Pampatec, clique na opção abaixo.</a>\n"
                                 + "							<br/>\n"
                                 + "							<br/>\n"
                                 + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"http://localhost:8084/GerenciadorPampatec/faces/terminarCadastroEmpreendedor.xhtml\">\n"
