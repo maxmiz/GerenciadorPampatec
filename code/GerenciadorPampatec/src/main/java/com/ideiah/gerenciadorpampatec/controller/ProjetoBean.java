@@ -166,7 +166,8 @@ public class ProjetoBean implements Serializable {
         pegaValorDropDown();
         
         EnviaEmails(projeto);
-        EmailManager.enviaEmailParaGerentes(projeto);
+        
+        
         
         ProjetoDao daoProj = new ProjetoDao();
         projeto = daoProj.salvarRetornandoProjeto(projeto);
@@ -671,8 +672,8 @@ public class ProjetoBean implements Serializable {
                     salvarProjeto();
                     if (emp.enviarProjeto(projeto) == Empreendedor.ENVIADO) {
                         atualizarProjetoSessao();
-//                        FacesContext.getCurrentInstance().getExternalContext().redirect("enviarProjeto.jsf"); 
-
+                        // ENVIA EMAIL PARA GERENTES APÓS SUBMETER O PLANO
+                        EmailManager.enviaEmailParaGerentes(projeto);
 //                        TRECHO PARA EXIBIR A MENSAGEM DE CONFIRMAÇÃO À SUBMISSÃO DO PROJETO.                        
                         FacesMessage msg;
                         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Negócio enviado!", "Seu plano de negócio foi enviado com sucesso. Aguarde o resultado!");
