@@ -471,24 +471,11 @@
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes1"/><br/>
                                         Para quem criamos valor? Quais são os nossos clientes mais importantes? 
                                         <h:inputTextarea id="segmentoDeClientes1"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
-                                                         class="form-control campoInvalido semResize" style="resize: none" onchange="precisaSalvar = true;" rows="5"
-                                                         requiredMessage="Insira o segmento de clientes antes de enviar" 
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea id="segmentoDeClientes2"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         class="form-control semResize" style="resize: none" onchange="precisaSalvar = true;" rows="5"
+                                                         class="form-control semResize" style="resize: none" onchange="precisaSalvar = true;" rows="3"
                                                          requiredMessage="Insira o segmento de clientes antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto || revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto.equals('')}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}">
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes.texto ? 'form-control campoInvalido' : 'form-control'}">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -521,29 +508,16 @@
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor1"/><br/>
                                         Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
                                         <h:inputTextarea id="propostaDeValor1"
-                                                         class="form-control campoInvalido" style="resize: none" onchange="precisaSalvar = true;" rows="5"
+                                                         class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="6"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira a proposta de valor antes de enviar"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                      
-                                        </h:inputTextarea>
-                                        <h:inputTextarea id="propostaDeValor2"
-                                                         class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira a proposta de valor antes de enviar"  
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.negocio.propostaValor}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto || revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -571,29 +545,16 @@
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave1"/><br/>
                                         Que atividades chave requerem nossas propostas de valor? Nossos canais de distribuição?
                                         <h:inputTextarea id="atividadesChave1" 
-                                                         class="form-control campoInvalido" style="resize: none" onchange="precisaSalvar = true;" rows="5" 
+                                                         class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="6" 
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"  
                                                          value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                       
-                                        </h:inputTextarea>
-                                        <h:inputTextarea id="atividadesChave2"
-                                                         class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"  
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves}"
-                                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto || revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -658,23 +619,12 @@
                                         <b>Relações com clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacaoClientes1"/><br/>
                                         Que tipo de relação esperam os diferentes segmentos de mercado? Que tipo de relações temos estabelecido?
-                                        <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          id="relacaoClientes1">
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control  semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"  
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto || revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente.texto.equals('')}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes}"
-                                                         id="relacaoClientes2">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -708,23 +658,12 @@
                                         <b>Parcerias chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves1"/><br/>
                                         Quem são nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
-                                        <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="6"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"   
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          id="parceriasChaves1">
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control  semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto || revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave.texto.equals('')}"
-                                                         id="parceriasChaves2">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -759,23 +698,12 @@
                                         <b>Canais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais1"/><br/>
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais têm melhores resultados?
-                                        <h:inputTextarea class="form-control campoInvalido  semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="6"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          id="canais1">
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control  semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.canais}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto || revisarPlanoDeNegocioBean.comentarioProjeto.canais.texto.equals('')}"
-                                                         id="canais2">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -810,22 +738,11 @@
                                         <b>Recursos principais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais1"/><br/>
                                         Que recursos chave requerem nossas propostas de valor? Nossos canais de distribuição? Relações com clientes? Fontes de renda?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="6"
                                                          id="recursosPrincipais1"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto.equals('')}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         id="recursosPrincipais2"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto || revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais}">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -860,22 +777,11 @@
                                         <b>Concorrentes*</b><br/>
                                         <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes1"/><br/>
                                         Quem são nossos concorrentes? como trabalham?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="5"
                                                          id="concorrentes1"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto.equals('')}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         id="concorrentes2"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto || revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes}">
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -945,11 +851,11 @@
                                         <b>Estágio de evolução* </b>
                                         <br/>
                                         Qual o estágio atual de evolução do produto ou serviço proposto?
-                                        <h:panelGroup class="checkbox" id="abc1"
-                                                      rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto.equals('')}">
+                                        <h:panelGroup class="checkbox" id="abc1">
                                             <h:selectOneMenu id="estagioDeEvolucao1" 
                                                              disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
-                                                             class="form-control campoInvalido" 
+                                                             class="form-control"
+                                                             styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                              value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" 
                                                              onchange="precisaSalvar = true;">
                                                 <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
@@ -978,41 +884,6 @@
                                                             event="change" onevent="funcaoAjaxSalvo"
                                                             listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                                     </p:inputTextarea>
-                                               
-                                            </div>
-                                        </h:panelGroup>
-                                        <h:panelGroup class="checkbox" id="abc"
-                                                      rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto || revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao.texto.equals('')}">
-                                            <h:selectOneMenu id="estagioDeEvolucao2" 
-                                                             disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}" 
-                                                             class="form-control" 
-                                                             value="#{revisarPlanoDeNegocioBean.estagioEvolucao}" 
-                                                             onchange="precisaSalvar = true;">
-                                                <f:selectItem itemValue="Ideia Básica" itemLabel="Ideia Básica"/>
-                                                <f:selectItem itemValue="Projeto Básico" itemLabel="Projeto Básico"/>
-                                                <f:selectItem itemValue="Projeto Detalhado" itemLabel="Projeto Detalhado"/>
-                                                <f:selectItem itemValue="Protótipo Desenvolvido" itemLabel="Protótipo Desenvolvido"/>
-                                                <f:selectItem itemValue="Em teste no mercado" itemLabel="Em teste no mercado"/>
-                                                <f:selectItem itemValue="Clientes Pagando" itemLabel="Clientes Pagando"/>
-                                                <f:selectItem itemValue="Outro" itemLabel="Outro" />
-                                                <f:ajax execute="@form" render="formulario_resubmeterplano:estagioDeEvolucao1
-                                                        formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" 
-                                                        event="change" onevent="funcaoAjaxSalvo"
-                                                        listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                            </h:selectOneMenu>
-                                            <br/>
-                                            <div>
-                                                
-                                                    <p:inputTextarea class="form-control semResize" 
-                                                             placeholder="Digite aqui o estágio de evolução de seu Negócio"
-                                                             value="#{revisarPlanoDeNegocioBean.estagioEvolucaoOutro}" 
-                                                             rendered="#{revisarPlanoDeNegocioBean.exibeCampoOutro()}"
-                                                             maxlength="299"
-                                                             rows="3"
-                                                             >
-                                                        <f:ajax execute="@form" render="formulario_resubmeterplano:campoOutro2 formulario_resubmeterplano:mensagemSalvamento" event="change" listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                                    </p:inputTextarea>
-                                                
                                             </div>
                                         </h:panelGroup>
                                         <div class="col-md-12 espaco">
@@ -1043,24 +914,12 @@
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologia" class="mensagemErro" for="tecnologiaProcessos1"/><br/>
                                         Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="2"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos}"
-                                                         id="tecnologiaProcessos2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto || revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1095,24 +954,12 @@
                                         <b>Potencial de inovação tecnológica* </b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica1"/><br/>
                                         Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="4"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                          id="potencialInovacaoTecnologica1"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
-                                                         id="potencialInovacaoTecnologica2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto || revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica.texto.equals('')}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1147,24 +994,12 @@
                                         <b>Aplicações*</b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes1"/><br/>
                                         A quem se aplica? como? de que maneira?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="4"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes}"
-                                                         id="aplicacoes2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto || revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1199,30 +1034,18 @@
                                         <b>Dificuldades esperadas*</b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas1"/><br/>
                                         Quais são nossas principais limitações?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="4"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                          id="dificuldadesEsperadas1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
                                                     listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
 
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;"  rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas}"
-                                                         id="dificuldadesEsperadas2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto || revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1252,24 +1075,12 @@
                                         <b>Interação entre empresa e Universidade* </b><br/>
                                         <h:message id="mensagemErroInteracao" class="mensagemErro" for="interacaoEmpresaUniversidade1"/><br/>
                                         Em que sentido seremos parceiros da Universidade? 
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="4"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                          id="interacaoEmpresaUniversidade1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
-                                                         id="interacaoEmpresaUniversidade2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto || revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1304,24 +1115,12 @@
                                         <b>Interação entre empresa, comunidade e governo* </b><br/>
                                         <h:message id="mensagemErroInteracaoEmpresa" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno1"/><br/>
                                         Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="3"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                          id="interacaoEmpresaComunidadeGoverno1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
-                                                         id="interacaoEmpresaComunidadeGoverno2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto || revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1356,24 +1155,12 @@
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção*</b><br/>
                                         <h:message id="mensagemErroInfraestrutura" class="mensagemErro" for="infraestrutura1"/><br/>
                                         Quanto de espaço será necessário? Mobiliário? Equipamentos?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="3"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura}"
                                                          id="infraestrutura1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura}"
-                                                         id="infraestrutura2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto || revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.infraestrutura.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1446,24 +1233,12 @@
                                         <b>Descrição da participação acionária* </b><br/>
                                         <h:message id="mensagemErroDescricao" class="mensagemErro" for="participacaoAcionaria1"/><br/>
                                         Haverão sócios? Quanto de participação terão?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="3"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.participacaoacionaria}" 
                                                          id="participacaoAcionaria1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.participacaoacionaria}" 
-                                                         id="participacaoAcionaria2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto || revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1497,24 +1272,12 @@
                                         <b>Potencial de geração de emprego e renda* </b><br/>
                                         <h:message id="mensagemErroPotencial" class="mensagemErro" for="potencialEmprego1"/><br/>
                                         Quantos empregos diretos e indiretos serão criados? Qual estimativa de renda total gerada?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" onchange="precisaSalvar = true;" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" onchange="precisaSalvar = true;" rows="3"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.potencialEmprego}"
                                                          id="potencialEmprego1"
                                                          requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" onchange="precisaSalvar = true;" rows="5"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.potencialEmprego}"
-                                                         id="potencialEmprego2"
-                                                         requiredMessage="Insira as atividades chave antes de enviar"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto || revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1588,25 +1351,12 @@
                                         <h:message id="mensagemErroFontes" class="mensagemErro" for="fontesDeReceita1"/><br/>
                                         Por que valor estão dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
                                         <h:inputTextarea id="fontesDeReceita1" 
-                                                         class="form-control campoInvalido semResize" rows="5"
+                                                         class="form-control" style="resize: none" rows="4"
                                                          onchange="precisaSalvar = true;"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira as fontes de receita antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea id="fontesDeReceita2" 
-                                                         class="form-control semResize" rows="5"
-                                                         onchange="precisaSalvar = true;"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira as fontes de receita antes de enviar" 
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto || revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1641,25 +1391,12 @@
                                         <h:message id="mensagemErroEstruturaCustos" class="mensagemErro" for="estruturaCustos1"/><br/>
                                         Quais são os custos mais importantes inerentes ao nosso modelo de negócio? Quais são os recursos chave mais caros? Quais são as atividades chave mais caras?
                                         <h:inputTextarea id="estruturaCustos1" 
-                                                         class="form-control campoInvalido semResize" rows="5"
+                                                         class="form-control" style="resize: none" rows="6"
                                                          onchange="precisaSalvar = true;"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          requiredMessage="Insira a estrutura de custos antes de enviar" 
                                                          value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea id="estruturaCustos2" 
-                                                         class="form-control semResize" rows="5"
-                                                         onchange="precisaSalvar = true;"
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         requiredMessage="Insira a estrutura de custos antes de enviar" 
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto}"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto || revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
@@ -1693,24 +1430,12 @@
                                         <b>Investimento inicial*</b><br/>
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial1"/><br/>
                                         Quanto de recurso será necessário para iniciar?
-                                        <h:inputTextarea class="form-control campoInvalido semResize" rows="5"
+                                        <h:inputTextarea class="form-control" style="resize: none" rows="4"
                                                          onchange="precisaSalvar = true;"
                                                          disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
                                                          value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial}"
                                                          id="investimentoInicial1"
-                                                         rendered="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto and !revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto.equals('')}"
-                                                         >
-                                            <f:ajax execute="@form" 
-                                                    render="formulario_resubmeterplano:mensagemSalvamento" 
-                                                    event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
-                                        </h:inputTextarea>
-                                        <h:inputTextarea class="form-control semResize" rows="5"
-                                                         onchange="precisaSalvar = true;" 
-                                                         disabled="#{revisarPlanoDeNegocioBean.verificaStatusAceitoAvaliacao(projetoSelecionado)}"
-                                                         value="#{revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial}"
-                                                         id="investimentoInicial2"
-                                                         rendered="#{empty revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto || revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto.equals('')}"
+                                                         styleClass="#{not empty revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial.texto ? 'form-control campoInvalido' : 'form-control'}"
                                                          >
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 

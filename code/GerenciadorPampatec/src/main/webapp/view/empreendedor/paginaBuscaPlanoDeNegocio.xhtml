@@ -202,10 +202,10 @@
                                       filterMatchMode="exact"
                                       >
                                 <f:facet name="filter">
-                                    <p:selectOneMenu onchange="PF('TabelaProjeto').filter()">
+                                    <h:selectOneMenu style="color: black" onchange="PF('TabelaProjeto').filter()">
                                         <f:selectItem itemLabel="Todos" itemValue="#{null}" noSelectionOption="true"/>
                                         <f:selectItems value="#{buscaProjetoEmpreendedorBean.listaStatusProjeto}"/>
-                                    </p:selectOneMenu>
+                                    </h:selectOneMenu>
                                 </f:facet>
                                 <h:outputText value="#{buscaProjetoEmpreendedorBean.retornaProjetoStatus(projeto)}"></h:outputText>
                             </p:column>
