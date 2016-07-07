@@ -117,6 +117,7 @@ public class ComentarioProjeto implements java.io.Serializable {
      * <p>
      * Retorna a quantidade de campos comentário vazios
      * </p>
+     * @return 
      */
     public int verificaCampos() {
         int FLAG = 0;

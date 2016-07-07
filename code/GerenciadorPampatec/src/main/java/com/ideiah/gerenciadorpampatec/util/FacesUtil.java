@@ -1,4 +1,3 @@
-
 package com.ideiah.gerenciadorpampatec.util;
 
 import javax.faces.application.FacesMessage;
@@ -12,14 +11,13 @@ public class FacesUtil {
 
     public FacesUtil() {
     }
-    
-    
-    
+
     /**
      * Mensagem de socesso no salvamento.
-     * @param idComponente 
+     *
+     * @param idComponente
      */
-    public static void addFeedbackSaveSuccess(String idComponente){
+    public static void addFeedbackSaveSuccess(String idComponente) {
         FacesContext.getCurrentInstance().addMessage(idComponente,
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Salvo", "Sua alteração foi salva com sucesso."));
@@ -112,13 +110,11 @@ public class FacesUtil {
      * @return valor convertido
      */
     public static String removeCaracteres(String valor) {
-                if (valor == null) {
-                    return "";
-                } else {
+        if (valor == null) {
+            return "";
+        } else {
             return valor.replaceAll("\\D", "");
-                }
-        
+        }
     }
 
 }
-
