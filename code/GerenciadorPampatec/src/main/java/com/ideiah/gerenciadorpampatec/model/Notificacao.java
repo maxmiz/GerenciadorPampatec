@@ -5,8 +5,6 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
-
 /**
  *
  * @author Edison Moura
