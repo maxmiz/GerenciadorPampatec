@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.util;
 
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -153,10 +154,12 @@ public class EmailUtilTest {
     @Test
     public void testMandarEmailAvaliacao() {
         System.out.println("mandarEmailAvaliacao_Null");
-        String empreendedorNome = null;
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome(null);
+        empreendedor.setEmail(null);
         String projetoNome = null;
-        String email = null;
-        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+        
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
 
     /**
@@ -168,10 +171,12 @@ public class EmailUtilTest {
     @Test
     public void testMandarEmailAvaliacao2() {
         System.out.println("mandarEmailAvaliacao_StringVazia");
-        String empreendedorNome = "";
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome("");
+        empreendedor.setEmail("");
         String projetoNome = "";
-        String email = "";
-        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+       
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
 
     /**
@@ -183,10 +188,12 @@ public class EmailUtilTest {
     @Ignore
     public void testMandarEmailAvaliacao3() {
         System.out.println("mandarEmailAvaliacao");
-        String empreendedorNome = "Dev Empreendedor";
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome("Dev Empreendedor");
+        empreendedor.setEmail("ideiahdev@gmail.com");
         String projetoNome = "Ideiah Dev Testes";
-        String email = "ideiahdev@gmail.com";
-        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+        
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
     
     
@@ -198,10 +205,11 @@ public class EmailUtilTest {
     @Ignore
     public void testMandarEmailAvaliacao4() {
         System.out.println("mandarEmailAvaliacao");
-        String empreendedorNome = "Dev Empreendedor";
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome("Dev Empreendedor");
+        empreendedor.setEmail("vitor@gerente.com");
         String projetoNome = "Ideiah Dev Testes";
-        String email = "vitor@gerente.com";
-        EmailUtil.mandarEmailAvaliacao(empreendedorNome, projetoNome, email);
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
 
 }
