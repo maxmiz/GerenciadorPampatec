@@ -466,7 +466,8 @@
                                         <h4>Aviso</h4>
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
-
+                                    
+                                    <!-- Campo Segmento de Cliente -->
                                     <div class="col-md-12 espaco">
                                         <b>Segmento de Clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('segmentoDeClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroSegmento" class="mensagemErro" for="segmentoDeClientes1"/><br/>
@@ -503,7 +504,9 @@
                                             <h:message class="mensagemErro" for="segmentoDeClientes"/>
                                         </div>
                                     </div>
-
+                                    
+                                    <!-- Campo Proposta de Valor -->
+                                    
                                     <div class="col-md-12 espaco">
                                         <b>Proposta de Valor* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('propostaDeValor')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroProposta" class="mensagemErro" for="propostaDeValor1"/><br/>
@@ -541,6 +544,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- Campo Atividades Chave -->
                                     <div class="col-md-12 espaco">
                                         <b>Atividades Chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('atividadesChave')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroAtividades" class="mensagemErro" for="atividadesChave1"/><br/>
@@ -579,6 +583,7 @@
                                         <h:message class="mensagemErro" for="atividadesChave"/>
                                         <br/>
                                     </div>
+                                    
                                     <br/>
                                     <hr></hr>
                                     <div class="col-md-4"></div>
@@ -615,7 +620,8 @@
                                         <h4>Aviso</h4>
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
-
+                                    
+                                    <!-- Campo Relações com Cliente -->
                                     <div class="col-md-12 espaco">
                                         <b>Relações com clientes* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('relacoComClientes')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRelacoes" class="mensagemErro" for="relacaoClientes1"/><br/>
@@ -655,6 +661,8 @@
                                         <h:message class="mensagemErro" for="relacaoClientes1"/>
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Parcerias Chave -->
                                     <div class="col-md-12 espaco">
                                         <b>Parcerias chave* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('parceriasChaves')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroParcerias" class="mensagemErro" for="parceriasChaves1"/><br/>
@@ -695,6 +703,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Canais -->
                                     <div class="col-md-12 espaco">
                                         <b>Canais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('canais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroCanais" class="mensagemErro" for="canais1"/><br/>
@@ -735,6 +745,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Recursos Principais -->
                                     <div class="col-md-12 espaco">
                                         <b>Recursos principais* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('recursosPrincipais')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroRecursos" class="mensagemErro" for="recursosPrincipais1"/><br/>
@@ -774,6 +786,8 @@
                                         <h:message class="mensagemErro" for="recursosPrincipais"/>
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Concorrentes -->
                                     <div class="col-md-12 espaco">
                                         <b>Concorrentes*</b><br/>
                                         <h:message id="mensagemErroConcorrentes" class="mensagemErro" for="concorrentes1"/><br/>
@@ -812,7 +826,7 @@
                                         <h:message class="mensagemErro" for="concorrentes"/>
                                         <br />
                                     </div>
-
+                                    
                                     <div class="col-md-4"><br /></div>
                                     <div class="col-md-4" align="center">
                                         <p:commandButton id="botaoSalvar3" 
@@ -847,7 +861,8 @@
                                         <h4>Aviso</h4>
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
-
+                                    
+                                    <!-- Campo Estágio de Evolução -->
                                     <div class="col-md-12">
                                         <b>Estágio de evolução* </b>
                                         <br/>
@@ -911,6 +926,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Tecnologia e processos (não poluentes) -->
                                     <div class="col-md-12 espaco">
                                         <b>Tecnologia e processos (não poluentes)* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('tecnologiaProcessos')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroTecnologia" class="mensagemErro" for="tecnologiaProcessos1"/><br/>
@@ -951,6 +968,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Potencial de inovação tecnológica -->
                                     <div class="col-md-12 espaco">
                                         <b>Potencial de inovação tecnológica* </b><br/>
                                         <h:message id="mensagemErroInovacao" class="mensagemErro" for="potencialInovacaoTecnologica1"/><br/>
@@ -991,6 +1010,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Aplicações -->
                                     <div class="col-md-12 espaco">
                                         <b>Aplicações*</b><br/>
                                         <h:message id="mensagemErroAplicacoes" class="mensagemErro" for="aplicacoes1"/><br/>
@@ -1031,6 +1052,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Dificuldades Esperadas -->
                                     <div class="col-md-12 espaco">
                                         <b>Dificuldades esperadas*</b><br/>
                                         <h:message id="mensagemErroDificuldades" class="mensagemErro" for="dificuldadesEsperadas1"/><br/>
@@ -1072,6 +1095,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Interação entre empresa e Universidade -->
                                     <div class="col-md-12 espaco">
                                         <b>Interação entre empresa e Universidade* </b><br/>
                                         <h:message id="mensagemErroInteracao" class="mensagemErro" for="interacaoEmpresaUniversidade1"/><br/>
@@ -1112,6 +1137,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Interação entre empresa, comunidade e governo -->
                                     <div class="col-md-12 espaco">
                                         <b>Interação entre empresa, comunidade e governo* </b><br/>
                                         <h:message id="mensagemErroInteracaoEmpresa" class="mensagemErro" for="interacaoEmpresaComunidadeGoverno1"/><br/>
@@ -1152,6 +1179,8 @@
 
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Infra-estrutura necessária para o desenvolvimento e produção -->
                                     <div class="col-md-12 espaco">
                                         <b>Infra-estrutura necessária para o desenvolvimento e produção*</b><br/>
                                         <h:message id="mensagemErroInfraestrutura" class="mensagemErro" for="infraestrutura1"/><br/>
@@ -1193,7 +1222,6 @@
                                         <br/>
                                     </div>
 
-
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4" align="center">
                                         <p:commandButton id="botaoSalvar4" 
@@ -1229,7 +1257,8 @@
                                         <h4>Aviso</h4>
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
-
+                                    
+                                    <!-- Campo Descrição da participação acionária -->
                                     <div class="col-md-12 espaco">
                                         <b>Descrição da participação acionária* </b><br/>
                                         <h:message id="mensagemErroDescricao" class="mensagemErro" for="participacaoAcionaria1"/><br/>
@@ -1269,6 +1298,8 @@
                                         <h:message class="mensagemErro" for="participacaoAcionaria"/>
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Potencial de geração de emprego e renda -->
                                     <div class="col-md-12 espaco">
                                         <b>Potencial de geração de emprego e renda* </b><br/>
                                         <h:message id="mensagemErroPotencial" class="mensagemErro" for="potencialEmprego1"/><br/>
@@ -1309,7 +1340,6 @@
                                         <br/>
                                     </div>
 
-
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4 text-center">
                                         <p:commandButton id="botaoSalvar5" 
@@ -1347,6 +1377,7 @@
                                         <p>Campos com bordas em <label style="color: red">vermelho</label> apresentam comentários (sugestões ou observações) do Gerente de Relacionamento, clique no botão "Comentário do Avaliador" para visualizá-lo.</p>
                                     </h:panelGroup>
 
+                                    <!-- Campo Fontes de receita -->
                                     <div class="col-md-12 espaco">
                                         <b>Fontes de receita* <p:commandLink value="(?)" title="Ajuda com preenchimento" actionListener="#{ajudaview.showMessage('fontesDeReceita')}"></p:commandLink></b><br/>
                                         <h:message id="mensagemErroFontes" class="mensagemErro" for="fontesDeReceita1"/><br/>
@@ -1387,6 +1418,8 @@
                                         <h:message class="mensagemErro" for="fontesDeReceita"/>
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Estrutura de custos -->
                                     <div class="col-md-12 espaco">
                                         <b>Estrutura de custos*</b><br/>
                                         <h:message id="mensagemErroEstruturaCustos" class="mensagemErro" for="estruturaCustos1"/><br/>
@@ -1427,6 +1460,8 @@
                                         <h:message class="mensagemErro" for="estruturaCustos"/>
                                         <br/>
                                     </div>
+                                    
+                                    <!-- Campo Investimento inicial -->
                                     <div class="col-md-12 espaco">
                                         <b>Investimento inicial*</b><br/>
                                         <h:message id="mensagemErroInvestimentoInicial" class="mensagemErro" for="investimentoInicial1"/><br/>
@@ -1466,7 +1501,8 @@
                                         <h:message class="mensagemErro" for="investimentoInicial"/>
                                         <br/>
                                     </div>
-
+                                    
+                                    <!-- Campo Custos Fixos -->
                                     <h:panelGroup id="panelCustoFixo" class="col-md-12">
                                         <b>Custos fixos*</b><br/>
                                         Salários, Aluguel...
@@ -1685,11 +1721,13 @@
                                         <br/>
                                         <br/>
                                         <br/>
+                                        
                                     </h:panelGroup>
 
                                     <!-- =========================================================================================================================== -->
                                     <!-- =========================================================================================================================== -->                                 
-
+                                    
+                                    <!-- Campo Custos Variaveis -->
                                     <h:panelGroup id="panelCustoVariavel" class="col-md-12">
                                         <br/>
                                         <b>Custos variáveis* </b>
@@ -1910,8 +1948,9 @@
                                         <br/>
                                     </h:panelGroup>
 
-                                    <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->                                 
-
+                                    <!-- =========================================================================================================================== -->
+                                    <!-- =========================================================================================================================== -->                                 
+                                   
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4 text-center">
                                         <p:commandButton id="botaoSalvar6" 

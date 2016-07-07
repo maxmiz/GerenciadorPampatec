@@ -449,7 +449,7 @@
                                                          class="form-control semResize" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.segmentoClientes}"
-                                                         rows="5"
+                                                         rows="3"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_segmento formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroSegmento"
@@ -467,7 +467,7 @@
                                                          class="form-control semResize" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.propostaValor}"
-                                                         rows="5"
+                                                         rows="6"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_proposta formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroProposta"
@@ -486,7 +486,7 @@
                                                          class="form-control semResize" 
                                                          onblur="verificaNegocio()"
                                                          value="#{projetoBean.projeto.negocio.atividadesChaves}"
-                                                         rows="5"
+                                                         rows="6"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_atividades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAtividades"
@@ -551,7 +551,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          value="#{projetoBean.projeto.analiseemprego.parceriasChaves}"
                                                          id="parceriasChaves"
-                                                         rows="5"
+                                                         rows="6"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroParcerias"
@@ -567,7 +567,7 @@
                                         Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
 
                                         <h:inputTextarea class="form-control semResize"
-                                                         rows="5"
+                                                         rows="6"
                                                          onblur="verificaAnaliseMercado()"
                                                          id="canais"  value="#{projetoBean.projeto.analiseemprego.canais}">
                                             <f:ajax execute="@form"
@@ -586,7 +586,7 @@
                                                          onblur="verificaAnaliseMercado()"
                                                          id="recursosPrincipais"
                                                          value="#{projetoBean.projeto.analiseemprego.recursosPrincipais}"
-                                                         rows="5"
+                                                         rows="6"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_recursos formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroRecursos"
@@ -686,7 +686,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.tecnologiaProcessos}"
                                                          id="tecnologiaProcessos"
-                                                         rows="5"
+                                                         rows="2"
                                                          > 
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_estagio formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroTecnologias"
@@ -705,7 +705,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.potencialInovacaoTecnologica}"
                                                          id="potencialInovacaoTecnologica"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                                          
                                             <f:ajax execute="@form"
@@ -725,7 +725,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.aplicacoes}"
                                                          id="aplicacoes"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAplicacoes"
@@ -744,7 +744,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.dificuldadesEsperadas}"
                                                          id="dificuldadesEsperadas"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroDificuldades"
@@ -763,7 +763,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaUniversidade}"
                                                          id="interacaoEmpresaUniversidade"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoUniversidade"
@@ -782,7 +782,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno}"
                                                          id="interacaoEmpresaComunidadeGoverno"
-                                                         rows="5"
+                                                         rows="3"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoGoverno"
@@ -801,7 +801,7 @@
                                                          onblur="verificarProdutoServico()"
                                                          value="#{projetoBean.projeto.produtoouservico.infraestrutura}"
                                                          id="infraestrutura"
-                                                         rows="5"
+                                                         rows="3"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisa_infra formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroEstrututura"
@@ -847,7 +847,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.participacaoacionaria}" 
                                                          id="participacaoAcionaria"
-                                                         rows="5"
+                                                         rows="3"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAcionaria"
@@ -864,7 +864,7 @@
                                                          onblur="verificaGestaoPessoas()"
                                                          value="#{projetoBean.projeto.potencialEmprego}"
                                                          id="potencialEmprego"
-                                                         rows="5"
+                                                         rows="3"
                                                          >
                                             <f:ajax execute="@form"
                                                     render="form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroPotencialEmprego"
@@ -910,7 +910,7 @@
                                                          class="form-control semResize"
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.fontesReceita}"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                             <f:ajax execute="@form"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -927,7 +927,7 @@
                                                          class="form-control semResize" 
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.estruturaCusto}"
-                                                         rows="5"
+                                                         rows="6"
                                                          >
                                             <f:ajax execute="@form"
                                                     event="change" onevent="funcaoAjaxSalvo"
@@ -946,7 +946,7 @@
                                                          class="form-control semResize"  
                                                          onblur="verificaPlanoFinanceiro()"
                                                          value="#{projetoBean.projeto.planofinanceiro.investimentoInicial}"
-                                                         rows="5"
+                                                         rows="4"
                                                          >
                                             <f:ajax execute="@form"
                                                     event="change" onevent="funcaoAjaxSalvo"
