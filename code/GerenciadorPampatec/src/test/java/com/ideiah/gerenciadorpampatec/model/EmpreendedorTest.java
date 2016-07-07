@@ -625,7 +625,7 @@ public class EmpreendedorTest {
         notificacao.setVisualizado(true);
         ns.add(notificacao);
         instance.setNotificacoes(ns);
-        int expResult = ns.size();
+        int expResult = ns.size()-1;
         int result = instance.getQuantidadeDeNotificacoes();
         assertEquals(expResult, result);
     }
