@@ -14,14 +14,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Rodrigo
- */
 public class ProdutoouservicoTest {
 
     int id = 1;
-    String estagioEvolucao = "estagio";
+    String estagioEvolucao = "Outro:";
     String tecnologiaProcessos = "tecnologia";
     String potencialInovacaoTecnologica = "potencial";
     String aplicacoes = "aplicacoes";
