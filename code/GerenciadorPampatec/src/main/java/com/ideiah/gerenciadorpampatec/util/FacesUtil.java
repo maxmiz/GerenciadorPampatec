@@ -9,6 +9,9 @@ import javax.faces.context.FacesContext;
  * @author Pedro
  */
 public class FacesUtil {
+
+    public FacesUtil() {
+    }
     
     
     
@@ -109,7 +112,11 @@ public class FacesUtil {
      * @return valor convertido
      */
     public static String removeCaracteres(String valor) {
+                if (valor == null) {
+                    return "";
+                } else {
             return valor.replaceAll("\\D", "");
+                }
         
     }
 
