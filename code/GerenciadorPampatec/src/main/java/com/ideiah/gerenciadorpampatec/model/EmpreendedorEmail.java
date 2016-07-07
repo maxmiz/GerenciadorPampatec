@@ -5,9 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.ideiah.gerenciadorpampatec.dao.EmpreendedorDao;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
-import static com.ideiah.gerenciadorpampatec.model.Empreendedor.getEmpreededorDao;
 
 /**
  *
