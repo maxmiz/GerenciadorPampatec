@@ -16,6 +16,8 @@ public class ComparadorCriacaoUtil implements Comparator<Projeto>{
 
     @Override
     public int compare(Projeto o1, Projeto o2) {
+        if(o1.getDataCriacao()== null || o2.getDataCriacao()== null)
+            return 0;
         return o1.getDataCriacao().compareTo(o2.getDataCriacao());
     }
     

@@ -16,6 +16,8 @@ public class ComparadorAvaliacaoUtil implements Comparator<Projeto>{
 
     @Override
     public int compare(Projeto o1, Projeto o2) {
+        if(o1.getDataAvaliacao()== null || o2.getDataAvaliacao()== null)
+            return 0;
         return o1.getDataAvaliacao().compareTo(o2.getDataAvaliacao());
     }
     
