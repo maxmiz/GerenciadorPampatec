@@ -5,16 +5,14 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
-import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -22,34 +20,35 @@ import org.junit.Ignore;
  */
 public class ComentarioProjetoTest {
 
+    // <editor-fold defaultstate="collapsed" desc="Variáveis para os testes.">
     private final String testeTextoGigante;
-        String textoSegmentoCliente                   = "Teste do histórico de comentário Segmento de Cliente.";
-        String textoPropostaValor                     = "Teste do histórico de comentário Proposta Valor.";
-        String textoAtividadesChave                   = "Teste do histórico de comentário Atividades Chave.";
-        String textoRelacoesCliente                   = "Teste do histórico de comentário Relações com Cliente.";
-        String textoParceriasChave                    = "Teste do histórico de comentário Parcerias Chave.";
-        String textoCanais                            = "Teste do histórico de comentário Canais.";
-        String textoRecursosPrincipais                = "Teste do histórico de comentário Recursos Principais.";
-        String textoConcorrentes                      = "Teste do histórico de comentário Concorrencias.";
-        String textoEstagioEvolucao                   = "Teste do histórico de comentário Estagio de Evolução.";
-        String textoTecnologiaProcessos               = "Teste do histórico de comentário Tecnologia de Processos.";
-        String textoPotencialInovacaoTecnologica      = "Teste do histórico de comentário Potencial de Inovação Tecnologica.";
-        String textoAplicacoes                        = "Teste do histórico de comentário Aplicações.";
-        String textoDificuldadesEsperadas             = "Teste do histórico de comentário Dificuldades Esperadas.";
-        String textoInteracaoEmpresaUniversidade      = "Teste do histórico de comentário Interação entre Empresa e Universidade.";
-        String textoInteracaoEmpresaComunidadeGoverno = "Teste do histórico de comentário Interação entreEmpresa, Comunidade e Governo.";
-        String textoInfraestrutura                    = "Teste do histórico de comentário Infraestrutura.";
-        String textoParticipacaoAcionaria             = "Teste do histórico de comentátio Participação Acionaria.";
-        String textoPotencialEmprego                  = "Teste do histórico de comentátio Potencial de Emprego.";
-        String textoFonteReceita                      = "Teste do histórico de comentátio Fontes de Receita.";
-        String textoEstruturaCusto                    = "Teste do histórico de comentátio Estrutura de Cutos.";
-        String textoInvestimentoInicial               = "Teste do histórico de comentátio Investimento Inicial.";
-        String textoCustoFixo                         = "Teste do histórico de comentátio Custos Fixos.";
-        String textoCustovariavel                     = "Teste do histórico de comentátio Custos variáveis.";
-    
+    String textoSegmentoCliente = "Teste do histórico de comentário Segmento de Cliente.";
+    String textoPropostaValor = "Teste do histórico de comentário Proposta Valor.";
+    String textoAtividadesChave = "Teste do histórico de comentário Atividades Chave.";
+    String textoRelacoesCliente = "Teste do histórico de comentário Relações com Cliente.";
+    String textoParceriasChave = "Teste do histórico de comentário Parcerias Chave.";
+    String textoCanais = "Teste do histórico de comentário Canais.";
+    String textoRecursosPrincipais = "Teste do histórico de comentário Recursos Principais.";
+    String textoConcorrentes = "Teste do histórico de comentário Concorrencias.";
+    String textoEstagioEvolucao = "Teste do histórico de comentário Estagio de Evolução.";
+    String textoTecnologiaProcessos = "Teste do histórico de comentário Tecnologia de Processos.";
+    String textoPotencialInovacaoTecnologica = "Teste do histórico de comentário Potencial de Inovação Tecnologica.";
+    String textoAplicacoes = "Teste do histórico de comentário Aplicações.";
+    String textoDificuldadesEsperadas = "Teste do histórico de comentário Dificuldades Esperadas.";
+    String textoInteracaoEmpresaUniversidade = "Teste do histórico de comentário Interação entre Empresa e Universidade.";
+    String textoInteracaoEmpresaComunidadeGoverno = "Teste do histórico de comentário Interação entreEmpresa, Comunidade e Governo.";
+    String textoInfraestrutura = "Teste do histórico de comentário Infraestrutura.";
+    String textoParticipacaoAcionaria = "Teste do histórico de comentátio Participação Acionaria.";
+    String textoPotencialEmprego = "Teste do histórico de comentátio Potencial de Emprego.";
+    String textoFonteReceita = "Teste do histórico de comentátio Fontes de Receita.";
+    String textoEstruturaCusto = "Teste do histórico de comentátio Estrutura de Cutos.";
+    String textoInvestimentoInicial = "Teste do histórico de comentátio Investimento Inicial.";
+    String textoCustoFixo = "Teste do histórico de comentátio Custos Fixos.";
+    String textoCustovariavel = "Teste do histórico de comentátio Custos variáveis.";
+    // </editor-fold>
 
     public ComentarioProjetoTest() {
-
+        // <editor-fold defaultstate="collapsed" desc="Texto Gigante para os testes!">
         testeTextoGigante = "https://pt.wikipedia.org/wiki/Teste_de_software Teste de software\n"
                 + "Origem: Wikipédia, a enciclopédia livre.\n"
                 + "O teste do software é a investigação do software a fim de fornecer informações sobre sua qualidade em relação ao contexto em que ele deve operar. Isso inclui o processo de utilizar o produto para encontrar seus defeitos.\n"
@@ -167,6 +166,7 @@ public class ComentarioProjetoTest {
                 + "A comunidade do teste de software usa o termo teste gama de forma sarcástica referindo-se aos produtos que são mal testados e são entregues aos usuários finais para que estes encontrem os defeitos já em fase de produção.\n"
                 + "Candidato a lançamento\n"
                 + "Ultimamente, e principalmente na comunidade de software livre, é comum utilizar o termo candidato a lançamento (release candidate) para indicar uma versão que é candidata a ser a versão final, em função da quantidade de erros encontrados. Tais versões são um passo além do teste beta, sendo divulgadas para toda a comunidade.";
+        // </editor-fold>
     }
 
     @BeforeClass
@@ -186,7 +186,29 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testConstrutorComentarioProjeto() {
+        System.out.println("testConstrutorComentarioProjeto");
+        Integer idcomentario = Integer.MIN_VALUE;
+        ComentarioProjeto instance = new ComentarioProjeto(idcomentario);
+        assertNotNull(instance);
+    }
+
+    /**
+     */
+    @Test
+    public void testConstrutorComentarioProjeto2() {
+        System.out.println("testConstrutorComentarioProjeto2");
+        Integer idcomentario = Integer.MIN_VALUE;
+        ComentarioProjeto instance = new ComentarioProjeto(idcomentario,
+                textoCanais, textoParticipacaoAcionaria, textoPotencialEmprego,
+                textoAplicacoes);
+        assertNotNull(instance);
+    }
+
+    /**
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentario1() {
@@ -198,8 +220,8 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
-     * preechido.
+     * Teste se o texto do comentário é encontrado quando está com o texto
+     * preenchido.
      */
     @Test
     public void testRetornarTextoComentario2() {
@@ -212,7 +234,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -227,7 +249,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -242,7 +264,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -258,7 +280,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentario6() {
@@ -298,7 +320,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -312,7 +334,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -327,7 +349,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -342,7 +364,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -358,7 +380,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPropostavalor6() {
@@ -395,7 +417,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -409,7 +431,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -424,7 +446,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -439,7 +461,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -455,7 +477,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave6() {
@@ -492,7 +514,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -506,7 +528,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -521,7 +543,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -536,7 +558,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -552,7 +574,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente6() {
@@ -589,7 +611,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -603,7 +625,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -618,7 +640,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -633,7 +655,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -649,7 +671,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave6() {
@@ -691,7 +713,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -705,7 +727,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -720,7 +742,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -735,7 +757,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -751,7 +773,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCanais6() {
@@ -793,7 +815,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -807,7 +829,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -822,7 +844,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -837,7 +859,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -853,7 +875,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais6() {
@@ -895,7 +917,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -909,7 +931,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -924,7 +946,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -939,7 +961,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -955,7 +977,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes6() {
@@ -997,7 +1019,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1011,7 +1033,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1026,7 +1048,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1041,7 +1063,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1057,7 +1079,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao6() {
@@ -1099,7 +1121,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1113,7 +1135,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1128,7 +1150,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1143,7 +1165,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1159,7 +1181,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos6() {
@@ -1201,7 +1223,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1215,7 +1237,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1230,7 +1252,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1245,7 +1267,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1261,7 +1283,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao6() {
@@ -1303,7 +1325,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1317,7 +1339,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1332,7 +1354,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1347,7 +1369,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1363,7 +1385,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes6() {
@@ -1405,7 +1427,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1419,7 +1441,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1434,7 +1456,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1449,7 +1471,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1465,7 +1487,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioDificuldades6() {
@@ -1507,7 +1529,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1521,7 +1543,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1536,7 +1558,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1551,7 +1573,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1567,7 +1589,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade6() {
@@ -1609,7 +1631,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1623,7 +1645,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1638,7 +1660,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1653,7 +1675,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1669,7 +1691,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa6() {
@@ -1712,7 +1734,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1726,7 +1748,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1741,7 +1763,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1756,7 +1778,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1772,7 +1794,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura6() {
@@ -1814,7 +1836,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1828,7 +1850,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1843,7 +1865,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1858,7 +1880,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1874,7 +1896,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria6() {
@@ -1916,7 +1938,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1930,7 +1952,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1945,7 +1967,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1960,7 +1982,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1976,7 +1998,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego6() {
@@ -2018,7 +2040,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2032,7 +2054,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2047,7 +2069,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2062,7 +2084,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2078,7 +2100,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita6() {
@@ -2120,7 +2142,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2134,7 +2156,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2149,7 +2171,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2164,7 +2186,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2180,7 +2202,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos6() {
@@ -2222,7 +2244,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2236,7 +2258,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2251,7 +2273,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2266,7 +2288,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2282,7 +2304,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial6() {
@@ -2324,7 +2346,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2338,7 +2360,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2353,7 +2375,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2368,7 +2390,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2384,7 +2406,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo6() {
@@ -2426,7 +2448,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2440,7 +2462,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2455,7 +2477,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2470,7 +2492,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2486,7 +2508,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel6() {
@@ -2512,5 +2534,1286 @@ public class ComentarioProjetoTest {
         String expResult = testeTextoGigante;
         String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of populandoVariaveisComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testPopulandoVariaveisComentario() {
+        System.out.println("populandoVariaveisComentario");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.populandoVariaveisComentario();
+    }
+
+    /**
+     * Test of todasConsideracoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testTodasConsideracoes() {
+        System.out.println("todasConsideracoes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setConsideracoes("");
+        instance.setConsideracoesPersonalizadas("");
+        String expResult = instance.getConsideracoes() + "\n" + instance.getConsideracoesPersonalizadas();
+        String result = instance.todasConsideracoes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of verificaCampos method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testVerificaCampos() {
+        System.out.println("verificaCampos");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        int expResult = 0;
+        int result = instance.verificaCampos();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getTextocomentarios method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetTextocomentarios() {
+        System.out.println("getTextocomentarios");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Set<Textocomentario> expResult = null;
+        instance.setTextocomentarios(expResult);
+        Set<Textocomentario> result = instance.getTextocomentarios();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setTextocomentarios method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetTextocomentarios() {
+        System.out.println("setTextocomentarios");
+        Set<Textocomentario> textocomentarios = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextocomentarios(textocomentarios);
+    }
+
+    /**
+     * Test of retornaTextoComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornaTextoComentario() {
+        System.out.println("retornaTextoComentario");
+        int tipo = 0;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = null;
+        String result = instance.retornaTextoComentario(tipo);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarTextoComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarTextoComentario() {
+        System.out.println("retornarTextoComentario");
+        int tipo = 0;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        Textocomentario result = instance.retornarTextoComentario(tipo);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarSegmentosClientes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarSegmentosClientes() {
+        System.out.println("retornarSegmentosClientes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarSegmentosClientes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarPropostaValor method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarPropostaValor() {
+        System.out.println("retornarPropostaValor");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarPropostaValor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarAtividadesChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarAtividadesChave() {
+        System.out.println("retornarAtividadesChave");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarAtividadesChave();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarRelacoesClientes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarRelacoesClientes() {
+        System.out.println("retornarRelacoesClientes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarRelacoesClientes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarParceriasChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarParceriasChave() {
+        System.out.println("retornarParceriasChave");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarParceriasChave();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarCanais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarCanais() {
+        System.out.println("retornarCanais");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarCanais();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarRecursosPrincipais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarRecursosPrincipais() {
+        System.out.println("retornarRecursosPrincipais");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarRecursosPrincipais();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarConcorrentes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarConcorrentes() {
+        System.out.println("retornarConcorrentes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarConcorrentes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarEstagioEvolucao method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarEstagioEvolucao() {
+        System.out.println("retornarEstagioEvolucao");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarEstagioEvolucao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarTecnologiaProcesso method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarTecnologiaProcesso() {
+        System.out.println("retornarTecnologiaProcesso");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarTecnologiaProcesso();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarPotencialInovacaoTecnologia method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarPotencialInovacaoTecnologia() {
+        System.out.println("retornarPotencialInovacaoTecnologia");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarPotencialInovacaoTecnologia();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarAplicacoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarAplicacoes() {
+        System.out.println("retornarAplicacoes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarAplicacoes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarDifilcudadesEsperadas method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarDifilcudadesEsperadas() {
+        System.out.println("retornarDifilcudadesEsperadas");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarDifilcudadesEsperadas();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarInteracaoEmpresaUniversidade method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarInteracaoEmpresaUniversidade() {
+        System.out.println("retornarInteracaoEmpresaUniversidade");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarInteracaoEmpresaUniversidade();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarInteracaoEmpresaComunidadeGoverno method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarInteracaoEmpresaComunidadeGoverno() {
+        System.out.println("retornarInteracaoEmpresaComunidadeGoverno");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarInteracaoEmpresaComunidadeGoverno();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarInfraEstrutura method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarInfraEstrutura() {
+        System.out.println("retornarInfraEstrutura");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarInfraEstrutura();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarParticipacaoAcionaria method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarParticipacaoAcionaria() {
+        System.out.println("retornarParticipacaoAcionaria");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarParticipacaoAcionaria();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarPotencialEmprego method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarPotencialEmprego() {
+        System.out.println("retornarPotencialEmprego");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarPotencialEmprego();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarFontesReceitas method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarFontesReceitas() {
+        System.out.println("retornarFontesReceitas");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarFontesReceitas();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarEstruturaCustos method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarEstruturaCustos() {
+        System.out.println("retornarEstruturaCustos");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarEstruturaCustos();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarInvestimentoInicial method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarInvestimentoInicial() {
+        System.out.println("retornarInvestimentoInicial");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarInvestimentoInicial();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarCustosFixos method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarCustosFixos() {
+        System.out.println("retornarCustosFixos");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarCustosFixos();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of retornarCustosVariaveis method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testRetornarCustosVariaveis() {
+        System.out.println("retornarCustosVariaveis");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        String result = instance.retornarCustosVariaveis();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of atualizaTodosOsTextoComentario method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testAtualizaTodosOsTextoComentario() {
+        System.out.println("atualizaTodosOsTextoComentario");
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textoComent = new Textocomentario();
+
+        instance.setAplicacoes(textoComent);
+        instance.setAtividadeChave(textoComent);
+        instance.setCanais(textoComent);
+        instance.setConcorrentes(textoComent);
+        instance.setCustoFixo(textoComent);
+        instance.setCustoVariavel(textoComent);
+        instance.setDificuldadesEsperadas(textoComent);
+        instance.setEstagioEvolucao(textoComent);
+        instance.setEstruturaCusto(textoComent);
+        instance.setFontesReceita(textoComent);
+        instance.setInfraestrutura(textoComent);
+        instance.setInteracaoEmpresaComunidadeGoverno(textoComent);
+        instance.setInteracaoEmpresaUniversidade(textoComent);
+        instance.setInvestimentoInicial(textoComent);
+        instance.setParceriasChave(textoComent);
+        instance.setParticipacaoAcionaria(textoComent);
+        instance.setPotencialEmprego(textoComent);
+        instance.setPotencialInovacaoTecnologica(textoComent);
+        instance.setPropostaValor(textoComent);
+        instance.setRecursosPrincipais(textoComent);
+        instance.setRelacionamentoCliente(textoComent);
+        instance.setSegmentosClientes(textoComent);
+        instance.setTecnologiaProcessos(textoComent);
+
+        instance.atualizaTodosOsTextoComentario(gerente);
+    }
+
+    /**
+     * Test of atualizarTextoComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testAtualizarTextoComentario() {
+        System.out.println("atualizarTextoComentario");
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario textoComent = new Textocomentario();
+
+        instance.setAplicacoes(textoComent);
+        instance.setAtividadeChave(textoComent);
+        instance.setCanais(textoComent);
+        instance.setConcorrentes(textoComent);
+        instance.setCustoFixo(textoComent);
+        instance.setCustoVariavel(textoComent);
+        instance.setDificuldadesEsperadas(textoComent);
+        instance.setEstagioEvolucao(textoComent);
+        instance.setEstruturaCusto(textoComent);
+        instance.setFontesReceita(textoComent);
+        instance.setInfraestrutura(textoComent);
+        instance.setInteracaoEmpresaComunidadeGoverno(textoComent);
+        instance.setInteracaoEmpresaUniversidade(textoComent);
+        instance.setInvestimentoInicial(textoComent);
+        instance.setParceriasChave(textoComent);
+        instance.setParticipacaoAcionaria(textoComent);
+        instance.setPotencialEmprego(textoComent);
+        instance.setPotencialInovacaoTecnologica(textoComent);
+        instance.setPropostaValor(textoComent);
+        instance.setRecursosPrincipais(textoComent);
+        instance.setRelacionamentoCliente(textoComent);
+        instance.setSegmentosClientes(textoComent);
+        instance.setTecnologiaProcessos(textoComent);
+
+        instance.atualizarTextoComentario(gerente, textoComent);
+    }
+
+    /**
+     * Test of setTextoComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetTextoComentario_int_String() {
+        System.out.println("setTextoComentario");
+        int tipo = 0;
+        String texto = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(tipo, texto);
+    }
+
+    /**
+     * Test of setTextoComentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetTextoComentario_int_GerenteRelacionamento() {
+        System.out.println("setTextoComentario");
+        int tipo = 0;
+        GerenteRelacionamento gerenteRelacionamento = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentario(tipo, gerenteRelacionamento);
+    }
+
+    /**
+     * Test of setTextoComentarioDataAlteracao method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetTextoComentarioDataAlteracao() {
+        System.out.println("setTextoComentarioDataAlteracao");
+        int tipo = 0;
+        Date dataAlteracao = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentarioDataAlteracao(tipo, dataAlteracao);
+    }
+
+    /**
+     * Test of setTextoComentarioDataSubmissao method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetTextoComentarioDataSubmissao() {
+        System.out.println("setTextoComentarioDataSubmissao");
+        int tipo = 0;
+        Date dataSubmissao = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTextoComentarioDataSubmissao(tipo, dataSubmissao);
+    }
+
+    /**
+     * Test of getIdcomentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetIdcomentario() {
+        System.out.println("getIdcomentario");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = null;
+        instance.setIdcomentario(expResult);
+        Integer result = instance.getIdcomentario();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setIdcomentario method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetIdcomentario() {
+        System.out.println("setIdcomentario");
+        Integer idcomentario = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setIdcomentario(idcomentario);
+    }
+
+    /**
+     * Test of getNome method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetNome() {
+        System.out.println("getNome");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setNome(expResult);
+        String result = instance.getNome();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setNome method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetNome() {
+        System.out.println("setNome");
+        String nome = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setNome(nome);
+    }
+
+    /**
+     * Test of getParticipacaoacionaria method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetParticipacaoacionaria() {
+        System.out.println("getParticipacaoacionaria");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setParticipacaoacionaria(expResult);
+        String result = instance.getParticipacaoacionaria();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setParticipacaoacionaria method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetParticipacaoacionaria() {
+        System.out.println("setParticipacaoacionaria");
+        String participacaoacionaria = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setParticipacaoacionaria(participacaoacionaria);
+    }
+
+    /**
+     * Test of getPotencialemprego method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetPotencialemprego() {
+        System.out.println("getPotencialemprego");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setPotencialemprego(expResult);
+        String result = instance.getPotencialemprego();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setPotencialemprego method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetPotencialemprego() {
+        System.out.println("setPotencialemprego");
+        String potencialemprego = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setPotencialemprego(potencialemprego);
+    }
+
+    /**
+     * Test of getConsideracoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetConsideracoes() {
+        System.out.println("getConsideracoes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setConsideracoes(expResult);
+        String result = instance.getConsideracoes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setConsideracoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetConsideracoes() {
+        System.out.println("setConsideracoes");
+        String consideracoes = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setConsideracoes(consideracoes);
+    }
+
+    /**
+     * Test of getProjeto method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetProjeto() {
+        System.out.println("getProjeto");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Projeto expResult = null;
+        instance.setProjeto(expResult);
+        Projeto result = instance.getProjeto();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setProjeto method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetProjeto() {
+        System.out.println("setProjeto");
+        Projeto projeto = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setProjeto(projeto);
+    }
+
+    /**
+     * Test of getStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatus() {
+        System.out.println("getStatus");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = null;
+        instance.setStatus(expResult);
+        Integer result = instance.getStatus();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatus2() {
+        System.out.println("getStatus2");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = 1; // Em andamento
+        instance.setStatus(expResult);
+        Integer result = instance.getStatus();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatus3() {
+        System.out.println("getStatus3");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = 2; // Finalizado
+        instance.setStatus(expResult);
+        Integer result = instance.getStatus();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetStatus() {
+        System.out.println("setStatus");
+        Integer status = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setStatus(status);
+    }
+
+    /**
+     * Test of getStatusString method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatusString() {
+        System.out.println("getStatusString");
+        int status = 0;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setStatus(status);
+        String result = instance.getStatusString(status);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getConsideracoesPersonalizadas method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testGetConsideracoesPersonalizadas() {
+        System.out.println("getConsideracoesPersonalizadas");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        String expResult = "";
+        instance.setConsideracoesPersonalizadas(expResult);
+        String result = instance.getConsideracoesPersonalizadas();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setConsideracoesPersonalizadas method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetConsideracoesPersonalizadas() {
+        System.out.println("setConsideracoesPersonalizadas");
+        String consideracoesPersonalizadas = "";
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setConsideracoesPersonalizadas(consideracoesPersonalizadas);
+    }
+
+    /**
+     * Test of getSegmentosClientes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetSegmentosClientes() {
+        System.out.println("getSegmentosClientes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = new Textocomentario();
+        instance.setSegmentosClientes(expResult);
+        Textocomentario result = instance.getSegmentosClientes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setSegmentosClientes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetSegmentosClientes() {
+        System.out.println("setSegmentosClientes");
+        Textocomentario segmentosClientes = new Textocomentario();
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setSegmentosClientes(segmentosClientes);
+    }
+
+    /**
+     * Test of getPropostaValor method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetPropostaValor() {
+        System.out.println("getPropostaValor");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setPropostaValor(expResult);
+        Textocomentario result = instance.getPropostaValor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setPropostaValor method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetPropostaValor() {
+        System.out.println("setPropostaValor");
+        Textocomentario propostaValor = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setPropostaValor(propostaValor);
+    }
+
+    /**
+     * Test of getAtividadeChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetAtividadeChave() {
+        System.out.println("getAtividadeChave");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setAtividadeChave(expResult);
+        Textocomentario result = instance.getAtividadeChave();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setAtividadeChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetAtividadeChave() {
+        System.out.println("setAtividadeChave");
+        Textocomentario atividadeChave = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setAtividadeChave(atividadeChave);
+    }
+
+    /**
+     * Test of getRelacionamentoCliente method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetRelacionamentoCliente() {
+        System.out.println("getRelacionamentoCliente");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setRelacionamentoCliente(expResult);
+        Textocomentario result = instance.getRelacionamentoCliente();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRelacionamentoCliente method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetRelacionamentoCliente() {
+        System.out.println("setRelacionamentoCliente");
+        Textocomentario relacionamentoCliente = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setRelacionamentoCliente(relacionamentoCliente);
+    }
+
+    /**
+     * Test of getParceriasChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetParceriasChave() {
+        System.out.println("getParceriasChave");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setParceriasChave(expResult);
+        Textocomentario result = instance.getParceriasChave();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setParceriasChave method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetParceriasChave() {
+        System.out.println("setParceriasChave");
+        Textocomentario parceriasChave = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setParceriasChave(parceriasChave);
+    }
+
+    /**
+     * Test of getCanais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetCanais() {
+        System.out.println("getCanais");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setCanais(expResult);
+        Textocomentario result = instance.getCanais();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setCanais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetCanais() {
+        System.out.println("setCanais");
+        Textocomentario canais = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setCanais(canais);
+    }
+
+    /**
+     * Test of getRecursosPrincipais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetRecursosPrincipais() {
+        System.out.println("getRecursosPrincipais");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setRecursosPrincipais(expResult);
+        Textocomentario result = instance.getRecursosPrincipais();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRecursosPrincipais method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetRecursosPrincipais() {
+        System.out.println("setRecursosPrincipais");
+        Textocomentario recursosPrincipais = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setRecursosPrincipais(recursosPrincipais);
+    }
+
+    /**
+     * Test of getConcorrentes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetConcorrentes() {
+        System.out.println("getConcorrentes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        Textocomentario result = instance.getConcorrentes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setConcorrentes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetConcorrentes() {
+        System.out.println("setConcorrentes");
+        Textocomentario concorrentes = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setConcorrentes(concorrentes);
+    }
+
+    /**
+     * Test of getEstagioEvolucao method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetEstagioEvolucao() {
+        System.out.println("getEstagioEvolucao");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setEstagioEvolucao(expResult);
+        Textocomentario result = instance.getEstagioEvolucao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setEstagioEvolucao method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetEstagioEvolucao() {
+        System.out.println("setEstagioEvolucao");
+        Textocomentario estagioEvolucao = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setEstagioEvolucao(estagioEvolucao);
+    }
+
+    /**
+     * Test of getTecnologiaProcessos method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetTecnologiaProcessos() {
+        System.out.println("getTecnologiaProcessos");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setTecnologiaProcessos(expResult);
+        Textocomentario result = instance.getTecnologiaProcessos();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setTecnologiaProcessos method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetTecnologiaProcessos() {
+        System.out.println("setTecnologiaProcessos");
+        Textocomentario tecnologiaProcessos = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setTecnologiaProcessos(tecnologiaProcessos);
+    }
+
+    /**
+     * Test of getPotencialInovacaoTecnologica method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testGetPotencialInovacaoTecnologica() {
+        System.out.println("getPotencialInovacaoTecnologica");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setPotencialInovacaoTecnologica(expResult);
+        Textocomentario result = instance.getPotencialInovacaoTecnologica();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setPotencialInovacaoTecnologica method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetPotencialInovacaoTecnologica() {
+        System.out.println("setPotencialInovacaoTecnologica");
+        Textocomentario potencialInovacaoTecnologica = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setPotencialInovacaoTecnologica(potencialInovacaoTecnologica);
+    }
+
+    /**
+     * Test of getAplicacoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetAplicacoes() {
+        System.out.println("getAplicacoes");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setAplicacoes(expResult);
+        Textocomentario result = instance.getAplicacoes();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setAplicacoes method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetAplicacoes() {
+        System.out.println("setAplicacoes");
+        Textocomentario aplicacoes = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setAplicacoes(aplicacoes);
+    }
+
+    /**
+     * Test of getDificuldadesEsperadas method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetDificuldadesEsperadas() {
+        System.out.println("getDificuldadesEsperadas");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setDificuldadesEsperadas(expResult);
+        Textocomentario result = instance.getDificuldadesEsperadas();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setDificuldadesEsperadas method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetDificuldadesEsperadas() {
+        System.out.println("setDificuldadesEsperadas");
+        Textocomentario dificuldadesEsperadas = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setDificuldadesEsperadas(dificuldadesEsperadas);
+    }
+
+    /**
+     * Test of getInteracaoEmpresaUniversidade method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testGetInteracaoEmpresaUniversidade() {
+        System.out.println("getInteracaoEmpresaUniversidade");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setInteracaoEmpresaUniversidade(expResult);
+        Textocomentario result = instance.getInteracaoEmpresaUniversidade();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setInteracaoEmpresaUniversidade method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetInteracaoEmpresaUniversidade() {
+        System.out.println("setInteracaoEmpresaUniversidade");
+        Textocomentario interacaoEmpresaUniversidade = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setInteracaoEmpresaUniversidade(interacaoEmpresaUniversidade);
+    }
+
+    /**
+     * Test of getInteracaoEmpresaComunidadeGoverno method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testGetInteracaoEmpresaComunidadeGoverno() {
+        System.out.println("getInteracaoEmpresaComunidadeGoverno");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setInteracaoEmpresaComunidadeGoverno(expResult);
+        Textocomentario result = instance.getInteracaoEmpresaComunidadeGoverno();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setInteracaoEmpresaComunidadeGoverno method, of class
+     * ComentarioProjeto.
+     */
+    @Test
+    public void testSetInteracaoEmpresaComunidadeGoverno() {
+        System.out.println("setInteracaoEmpresaComunidadeGoverno");
+        Textocomentario interacaoEmpresaComunidadeGoverno = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setInteracaoEmpresaComunidadeGoverno(interacaoEmpresaComunidadeGoverno);
+    }
+
+    /**
+     * Test of getInfraestrutura method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetInfraestrutura() {
+        System.out.println("getInfraestrutura");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setInfraestrutura(expResult);
+        Textocomentario result = instance.getInfraestrutura();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setInfraestrutura method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetInfraestrutura() {
+        System.out.println("setInfraestrutura");
+        Textocomentario infraestrutura = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setInfraestrutura(infraestrutura);
+    }
+
+    /**
+     * Test of getParticipacaoAcionaria method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetParticipacaoAcionaria() {
+        System.out.println("getParticipacaoAcionaria");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setParticipacaoAcionaria(expResult);
+        Textocomentario result = instance.getParticipacaoAcionaria();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setParticipacaoAcionaria method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetParticipacaoAcionaria() {
+        System.out.println("setParticipacaoAcionaria");
+        Textocomentario participacaoAcionaria = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setParticipacaoAcionaria(participacaoAcionaria);
+    }
+
+    /**
+     * Test of getPotencialEmprego method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetPotencialEmprego() {
+        System.out.println("getPotencialEmprego");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setPotencialEmprego(expResult);
+        Textocomentario result = instance.getPotencialEmprego();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setPotencialEmprego method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetPotencialEmprego() {
+        System.out.println("setPotencialEmprego");
+        Textocomentario potencialEmprego = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setPotencialEmprego(potencialEmprego);
+    }
+
+    /**
+     * Test of getFontesReceita method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetFontesReceita() {
+        System.out.println("getFontesReceita");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setFontesReceita(expResult);
+        Textocomentario result = instance.getFontesReceita();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setFontesReceita method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetFontesReceita() {
+        System.out.println("setFontesReceita");
+        Textocomentario fontesReceita = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setFontesReceita(fontesReceita);
+    }
+
+    /**
+     * Test of getEstruturaCusto method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetEstruturaCusto() {
+        System.out.println("getEstruturaCusto");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setEstruturaCusto(expResult);
+        Textocomentario result = instance.getEstruturaCusto();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setEstruturaCusto method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetEstruturaCusto() {
+        System.out.println("setEstruturaCusto");
+        Textocomentario estruturaCusto = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setEstruturaCusto(estruturaCusto);
+    }
+
+    /**
+     * Test of getInvestimentoInicial method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetInvestimentoInicial() {
+        System.out.println("getInvestimentoInicial");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setInvestimentoInicial(expResult);
+        Textocomentario result = instance.getInvestimentoInicial();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setInvestimentoInicial method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetInvestimentoInicial() {
+        System.out.println("setInvestimentoInicial");
+        Textocomentario investimentoInicial = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setInvestimentoInicial(investimentoInicial);
+    }
+
+    /**
+     * Test of getCustoFixo method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetCustoFixo() {
+        System.out.println("getCustoFixo");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setCustoFixo(expResult);
+        Textocomentario result = instance.getCustoFixo();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setCustoFixo method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetCustoFixo() {
+        System.out.println("setCustoFixo");
+        Textocomentario custoFixo = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setCustoFixo(custoFixo);
+    }
+
+    /**
+     * Test of getCustoVariavel method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetCustoVariavel() {
+        System.out.println("getCustoVariavel");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Textocomentario expResult = null;
+        instance.setCustoVariavel(expResult);
+        Textocomentario result = instance.getCustoVariavel();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setCustoVariavel method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testSetCustoVariavel() {
+        System.out.println("setCustoVariavel");
+        Textocomentario custoVariavel = null;
+        ComentarioProjeto instance = new ComentarioProjeto();
+        instance.setCustoVariavel(custoVariavel);
     }
 }

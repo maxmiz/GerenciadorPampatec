@@ -6,6 +6,8 @@
 package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -158,7 +160,7 @@ public class EmailUtilTest {
         empreendedor.setNome(null);
         empreendedor.setEmail(null);
         String projetoNome = null;
-        
+
         EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
 
@@ -175,7 +177,7 @@ public class EmailUtilTest {
         empreendedor.setNome("");
         empreendedor.setEmail("");
         String projetoNome = "";
-       
+
         EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
 
@@ -192,11 +194,10 @@ public class EmailUtilTest {
         empreendedor.setNome("Dev Empreendedor");
         empreendedor.setEmail("ideiahdev@gmail.com");
         String projetoNome = "Ideiah Dev Testes";
-        
+
         EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
     }
-    
-    
+
     /**
      * Test of mandarEmailAvaliacao method, of class EmailUtil.
      * <p>
@@ -210,6 +211,59 @@ public class EmailUtilTest {
         empreendedor.setEmail("vitor@gerente.com");
         String projetoNome = "Ideiah Dev Testes";
         EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
+    }
+
+    /**
+     * Test of enviaEmailParaGerentes method, of class EmailUtil.
+     */
+    @Test
+    public void testEnviaEmailParaGerentes() {
+        System.out.println("enviaEmailParaGerentes");
+        String projetoNome = null;
+        String statusProjeto = null;
+        ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
+        EmailUtil.enviaEmailParaGerentes(projetoNome, statusProjeto, listaDeGerentes);
+    }
+
+    /**
+     * Test of enviaEmailParaGerentes method, of class EmailUtil.
+     */
+    @Test
+    public void testEnviaEmailParaGerentes2() {
+        System.out.println("enviaEmailParaGerentes2");
+        String projetoNome = "";
+        String statusProjeto = "";
+        ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
+        EmailUtil.enviaEmailParaGerentes(projetoNome, statusProjeto, listaDeGerentes);
+    }
+
+    /**
+     * Test of enviaEmailParaGerentes method, of class EmailUtil.
+     */
+    @Ignore
+    public void testEnviaEmailParaGerentes3() {
+        System.out.println("enviaEmailParaGerentes3");
+        String projetoNome = "Ideiah Dev Testes";
+        String statusProjeto = "Aceito para Avaliação";
+
+        ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
+        GerenteRelacionamento gr = new GerenteRelacionamento();
+        GerenteRelacionamento gr2 = new GerenteRelacionamento();
+        GerenteRelacionamento gr3 = new GerenteRelacionamento();
+
+        gr.setEmail("teste@gerente.com");
+        gr.setNome("Gerente Teste 01");
+        gr2.setEmail("teste2@gerente.com");
+        gr2.setNome("Gerente Teste 02");
+        gr3.setEmail("teste3@gerente.com");
+        gr3.setNome("Gerente Teste 03");
+
+        listaDeGerentes.add(gr);
+        listaDeGerentes.add(gr2);
+        listaDeGerentes.add(gr3);
+        
+        EmailUtil.enviaEmailParaGerentes(projetoNome,
+                statusProjeto, listaDeGerentes);
     }
 
 }
