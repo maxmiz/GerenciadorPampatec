@@ -69,7 +69,7 @@ public class ComparadorCriacaoUtilTest {
         o1.setDataCriacao(new Date());
         Date data = new Date();
         data.setHours(8);
-        o2.setDataCriacao(new Date());
+        o2.setDataCriacao(data);
         ComparadorCriacaoUtil instance = new ComparadorCriacaoUtil();
         int expResult = 0;
         int result = instance.compare(o1, o2);
