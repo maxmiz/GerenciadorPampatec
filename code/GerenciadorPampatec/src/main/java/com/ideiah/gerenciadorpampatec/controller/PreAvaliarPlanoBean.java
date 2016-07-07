@@ -301,9 +301,7 @@ public class PreAvaliarPlanoBean implements Serializable {
         
         for (Object objeto : projeto.getEmpreendedores()) {
             Empreendedor empreendedor = (Empreendedor) objeto;
-            String nomeEmpreendedor = empreendedor.getNome();
-            String email = empreendedor.getEmail();
-            EmailUtil.mandarEmailAvaliacao(nomeEmpreendedor, nomeProjeto, email);
+            EmailUtil.mandarEmailAvaliacao(empreendedor, nomeProjeto);
         }
         } catch (Exception e) {
                     Logger.getLogger(PreAvaliarPlanoBean.class.getName()).log(Level.SEVERE, null, e);

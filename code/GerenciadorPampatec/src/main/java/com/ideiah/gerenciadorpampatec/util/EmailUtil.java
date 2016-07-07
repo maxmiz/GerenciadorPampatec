@@ -5,6 +5,7 @@ package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.dao.EmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmailSystemConfig;
+import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -42,18 +43,17 @@ public class EmailUtil {
      * Método responsável por enviar email ao empreendedor quando o projeto
      * associado a ele foi avaliado.</P>
      *
-     * @param empreendedorNome
+     * @param empreendedor
      * @param projetoNome
-     * @param email
+     * 
      */
-    public synchronized static void mandarEmailAvaliacao(String empreendedorNome,
-            String projetoNome, String email) {
+    public synchronized static void mandarEmailAvaliacao(Empreendedor empreendedor,
+            String projetoNome) {
 
-        if (empreendedorNome != null
-                && projetoNome != null
-                && email != null) {
-            if (!email.isEmpty()
-                    && !empreendedorNome.isEmpty()
+        if (empreendedor != null
+                && projetoNome != null) {
+            if (!empreendedor.getEmail().isEmpty()
+                    && !empreendedor.getNome().isEmpty()
                     && !projetoNome.isEmpty()) {
 
                 emailHtml = new HtmlEmail();
@@ -64,7 +64,7 @@ public class EmailUtil {
                             new DefaultAuthenticator(getAuthEmail(), getAuthPassphrase())
                     );
                     emailHtml.setSSLOnConnect(true);
-                    emailHtml.addTo(email);
+                    emailHtml.addTo(empreendedor.getEmail());
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
 
@@ -83,7 +83,7 @@ public class EmailUtil {
                             + "			<h1>Boas notícias!</h1>\n"
                             + "			<form>\n"
                             + "				<div style=\"margin-bottom: 15px;\">\n"
-                            + "					<a>Olá <strong>" + empreendedorNome + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi pré-avaliado e está a sua disposição.\n"
+                            + "					<a>Olá <strong>" + empreendedor.getNome() + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi pré-avaliado e está a sua disposição.\n"
                             + "							<br/>\n"
                             + "							<br/>Para acessar o sistema gerenciador de projetos, clique na opção abaixo.</a>\n"
                             + "							<br/>\n"
