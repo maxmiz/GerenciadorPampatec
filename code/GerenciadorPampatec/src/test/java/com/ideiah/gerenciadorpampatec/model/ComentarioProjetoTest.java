@@ -186,7 +186,29 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     */
+    @Test
+    public void testConstrutorComentarioProjeto() {
+        System.out.println("testConstrutorComentarioProjeto");
+        Integer idcomentario = Integer.MIN_VALUE;
+        ComentarioProjeto instance = new ComentarioProjeto(idcomentario);
+        assertNotNull(instance);
+    }
+
+    /**
+     */
+    @Test
+    public void testConstrutorComentarioProjeto2() {
+        System.out.println("testConstrutorComentarioProjeto2");
+        Integer idcomentario = Integer.MIN_VALUE;
+        ComentarioProjeto instance = new ComentarioProjeto(idcomentario,
+                textoCanais, textoParticipacaoAcionaria, textoPotencialEmprego,
+                textoAplicacoes);
+        assertNotNull(instance);
+    }
+
+    /**
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentario1() {
@@ -198,8 +220,8 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
-     * preechido.
+     * Teste se o texto do comentário é encontrado quando está com o texto
+     * preenchido.
      */
     @Test
     public void testRetornarTextoComentario2() {
@@ -212,7 +234,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -227,7 +249,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -242,7 +264,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -258,7 +280,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentario6() {
@@ -298,7 +320,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -312,7 +334,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -327,7 +349,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -342,7 +364,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -358,7 +380,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPropostavalor6() {
@@ -395,7 +417,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -409,7 +431,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -424,7 +446,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -439,7 +461,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -455,7 +477,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave6() {
@@ -492,7 +514,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -506,7 +528,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -521,7 +543,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -536,7 +558,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -552,7 +574,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente6() {
@@ -589,7 +611,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -603,7 +625,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -618,7 +640,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -633,7 +655,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -649,7 +671,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave6() {
@@ -691,7 +713,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -705,7 +727,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -720,7 +742,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -735,7 +757,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -751,7 +773,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCanais6() {
@@ -793,7 +815,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -807,7 +829,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -822,7 +844,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -837,7 +859,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -853,7 +875,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais6() {
@@ -895,7 +917,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -909,7 +931,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -924,7 +946,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -939,7 +961,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -955,7 +977,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes6() {
@@ -997,7 +1019,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1011,7 +1033,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1026,7 +1048,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1041,7 +1063,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1057,7 +1079,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao6() {
@@ -1099,7 +1121,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1113,7 +1135,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1128,7 +1150,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1143,7 +1165,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1159,7 +1181,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos6() {
@@ -1201,7 +1223,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1215,7 +1237,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1230,7 +1252,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1245,7 +1267,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1261,7 +1283,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao6() {
@@ -1303,7 +1325,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1317,7 +1339,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1332,7 +1354,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1347,7 +1369,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1363,7 +1385,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes6() {
@@ -1405,7 +1427,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1419,7 +1441,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1434,7 +1456,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1449,7 +1471,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1465,7 +1487,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioDificuldades6() {
@@ -1507,7 +1529,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1521,7 +1543,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1536,7 +1558,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1551,7 +1573,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1567,7 +1589,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade6() {
@@ -1609,7 +1631,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1623,7 +1645,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1638,7 +1660,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1653,7 +1675,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1669,7 +1691,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa6() {
@@ -1712,7 +1734,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1726,7 +1748,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1741,7 +1763,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1756,7 +1778,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1772,7 +1794,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura6() {
@@ -1814,7 +1836,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1828,7 +1850,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1843,7 +1865,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1858,7 +1880,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1874,7 +1896,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria6() {
@@ -1916,7 +1938,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -1930,7 +1952,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -1945,7 +1967,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -1960,7 +1982,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -1976,7 +1998,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego6() {
@@ -2018,7 +2040,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2032,7 +2054,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2047,7 +2069,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2062,7 +2084,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2078,7 +2100,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita6() {
@@ -2120,7 +2142,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2134,7 +2156,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2149,7 +2171,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2164,7 +2186,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2180,7 +2202,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos6() {
@@ -2222,7 +2244,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2236,7 +2258,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2251,7 +2273,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2266,7 +2288,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2282,7 +2304,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial6() {
@@ -2324,7 +2346,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2338,7 +2360,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2353,7 +2375,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2368,7 +2390,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2384,7 +2406,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo6() {
@@ -2426,7 +2448,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com o texto
+     * Teste se o texto do comentário é encontrado quando está com o texto
      * preechido.
      */
     @Test
@@ -2440,7 +2462,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * alteração preenchida.
      */
     @Test
@@ -2455,7 +2477,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a data de
+     * Teste se o texto do comentário é encontrado quando está com a data de
      * submissão preenchida.
      */
     @Test
@@ -2470,7 +2492,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado quando está com a o gerente
+     * Teste se o texto do comentário é encontrado quando está com a o gerente
      * preenchido
      */
     @Test
@@ -2486,7 +2508,7 @@ public class ComentarioProjetoTest {
     }
 
     /**
-     * Teste se o texto do comentário é cncontrado.
+     * Teste se o texto do comentário é encontrado.
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel6() {
@@ -2889,7 +2911,7 @@ public class ComentarioProjetoTest {
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textoComent = new Textocomentario();
-        
+
         instance.setAplicacoes(textoComent);
         instance.setAtividadeChave(textoComent);
         instance.setCanais(textoComent);
@@ -2913,7 +2935,7 @@ public class ComentarioProjetoTest {
         instance.setRelacionamentoCliente(textoComent);
         instance.setSegmentosClientes(textoComent);
         instance.setTecnologiaProcessos(textoComent);
-        
+
         instance.atualizaTodosOsTextoComentario(gerente);
     }
 
@@ -2924,10 +2946,9 @@ public class ComentarioProjetoTest {
     public void testAtualizarTextoComentario() {
         System.out.println("atualizarTextoComentario");
         GerenteRelacionamento gerente = new GerenteRelacionamento();
-        Textocomentario textocomentario = new Textocomentario();
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textoComent = new Textocomentario();
-        
+
         instance.setAplicacoes(textoComent);
         instance.setAtividadeChave(textoComent);
         instance.setCanais(textoComent);
@@ -2951,8 +2972,8 @@ public class ComentarioProjetoTest {
         instance.setRelacionamentoCliente(textoComent);
         instance.setSegmentosClientes(textoComent);
         instance.setTecnologiaProcessos(textoComent);
-        
-        instance.atualizarTextoComentario(gerente, textocomentario);
+
+        instance.atualizarTextoComentario(gerente, textoComent);
     }
 
     /**
@@ -3157,6 +3178,32 @@ public class ComentarioProjetoTest {
         System.out.println("getStatus");
         ComentarioProjeto instance = new ComentarioProjeto();
         Integer expResult = null;
+        instance.setStatus(expResult);
+        Integer result = instance.getStatus();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatus2() {
+        System.out.println("getStatus2");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = 1; // Em andamento
+        instance.setStatus(expResult);
+        Integer result = instance.getStatus();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getStatus method, of class ComentarioProjeto.
+     */
+    @Test
+    public void testGetStatus3() {
+        System.out.println("getStatus3");
+        ComentarioProjeto instance = new ComentarioProjeto();
+        Integer expResult = 2; // Finalizado
         instance.setStatus(expResult);
         Integer result = instance.getStatus();
         assertEquals(expResult, result);

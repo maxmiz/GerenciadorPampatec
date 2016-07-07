@@ -39,6 +39,15 @@ public class FacesUtilTest {
     /**
      * Test of addFeedbackSaveSuccess method, of class FacesUtil.
      */
+    @Test
+    public void testConstrutorFacesUtil() {
+        FacesUtil fu = new FacesUtil();
+        assertNotNull(fu);
+    }    
+    
+    /**
+     * Test of addFeedbackSaveSuccess method, of class FacesUtil.
+     */
     @Ignore
     public void testAddFeedbackSaveSuccess() {
         String idComponente = "";
