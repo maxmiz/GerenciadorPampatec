@@ -6,7 +6,9 @@
 package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -66,10 +68,10 @@ public class ComparadorSubmissaoComentarioUtilTest {
         Textocomentario o2 = new Textocomentario();
         
         
-        Date data = new Date();
-        data.setHours(8);
+        GregorianCalendar data = new GregorianCalendar(
+                1500, Calendar.FEBRUARY, 12);
         o1.setDataSubmissao(new Date());
-        o2.setDataSubmissao(data);
+        o2.setDataSubmissao(data.getGregorianChange());
         ComparadorSubmissaoComentarioUtil instance = new ComparadorSubmissaoComentarioUtil();
         int expResult = 0;
         int result = instance.compare(o1, o2);
