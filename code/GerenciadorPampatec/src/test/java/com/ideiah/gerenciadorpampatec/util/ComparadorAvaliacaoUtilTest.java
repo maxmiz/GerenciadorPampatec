@@ -6,7 +6,9 @@
 package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.model.Projeto;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -66,9 +68,9 @@ public class ComparadorAvaliacaoUtilTest {
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
         o1.setDataAvaliacao(new Date());
-        Date data = new Date();
-        data.setHours(8);
-        o2.setDataAvaliacao(data);
+        GregorianCalendar data = new GregorianCalendar(
+                1500, Calendar.FEBRUARY, 12);
+        o2.setDataAvaliacao(data.getGregorianChange());
         ComparadorAvaliacaoUtil instance = new ComparadorAvaliacaoUtil();
         int expResult = 0;
         int result = instance.compare(o1, o2);

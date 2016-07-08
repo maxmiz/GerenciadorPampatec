@@ -80,7 +80,7 @@ public class ComparadorEnvioUtilTest {
 
         Date date = new Date();
         GregorianCalendar date2 = new GregorianCalendar(
-                2015, Calendar.FEBRUARY, 12);
+                1500, Calendar.FEBRUARY, 12);
         o1.setDataEnvio(date);
         o2.setDataEnvio(date2.getGregorianChange());
 
