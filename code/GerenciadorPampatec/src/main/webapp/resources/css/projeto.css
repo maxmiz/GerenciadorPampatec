@@ -879,3 +879,17 @@ Adicionar Comentário e Histórico de comentários
 th.textoCentralizado{
     text-align: center;
 }
+
+.carregando{
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    position: absolute;
+    text-align: center;
+    margin-top: 125px;
+}
+
+.invisivel{
+    display: none;
+}
