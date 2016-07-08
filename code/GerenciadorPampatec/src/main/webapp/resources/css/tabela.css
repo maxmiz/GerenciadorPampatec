@@ -23,7 +23,7 @@ and open the template in the editor.
     background-image: none;
 }
 .ui-datatable {
-    font: normal 12px/150% Arial, Helvetica, sans-serif;
+    font: normal 14px/150% Arial, Helvetica, sans-serif;
           background: #fff;
           overflow: hidden;
           border: 1px solid #00A859;
@@ -42,16 +42,12 @@ and open the template in the editor.
     color:#FFFFFF; 
     text-shadow: none;
     font-size: 15px; 
-    font-weight:normal; 
-    border-left: 1px solid #FFFFFF;
+    font-weight:normal;
 } 
-.ui-datatable thead th:first-child {
-    border: none;
-}
 .ui-datatable tbody td {
     color: #000000;
     border-left: 1px solid #C6FFC2;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
 }
 .ui-datatable tbody .alt td {
@@ -105,6 +101,9 @@ and open the template in the editor.
     color: #FFFFFF;
     background: none;
     background-color:#36752D;
+}
+.ui-state-default{
+    box-shadow: none;
 }
 
 

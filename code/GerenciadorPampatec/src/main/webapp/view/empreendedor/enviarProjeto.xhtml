@@ -1186,7 +1186,7 @@
                                 <h:message id="mensagemErroEquipe" class="mensagemErro" for="autocomplete"/>
                             </h:panelGroup>
                             <br/><br/>
-                            <p:dataTable id="tabelaEmpreendedores" var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" class="tabelaEmpreendedores" value="#{projetoBean.projeto.empreendedores}">
+                            <p:dataTable id="tabelaEmpreendedores" var="empreendedor" rowKey="#{empreendedor.idEmpreendedor}" value="#{projetoBean.projeto.empreendedores}">
                                 <p:column headerText="E-mail">
                                     <h:outputText value="#{empreendedor.email}" />
                                     <!--<h:outputText value="" />-->

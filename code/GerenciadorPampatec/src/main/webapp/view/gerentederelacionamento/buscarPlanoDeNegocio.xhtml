@@ -250,10 +250,10 @@
                                       filterMatchMode="exact"
                                       >
                                 <f:facet name="filter">
-                                    <p:selectOneMenu onchange="PF('TabelaNegocios').filter()">
+                                    <h:selectOneMenu style="color: black" onchange="PF('TabelaNegocios').filter()">
                                         <f:selectItem itemLabel="Todos" itemValue="#{null}" noSelectionOption="true"/>
                                         <f:selectItems value="#{buscaProjetoGerenteDeRelacionamentosBean.listaStatusProjeto}"/>
-                                    </p:selectOneMenu>
+                                    </h:selectOneMenu>
                                 </f:facet>
                                 <h:outputText value="#{projeto.getStatusString(projeto.status)}"></h:outputText>
                             </p:column>
