@@ -89,6 +89,9 @@
         <!-- Fim Notificação erro ao submeter.. -->
 
         <!--FIM NOTIFICAÇÕES -->
+        
+        
+        
 
         <!-- Início do menu superior -->
         <h:form id="locovelho">
@@ -151,9 +154,13 @@
             function infoSalvar() {
                 $("#modalInfoSalvar").modal();
             }
-
+            
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
+            }
+            
+            function exibeCarregando(){
+                document.getElementById("carregando").setAttribute("class", "carregando");
             }
 
             var myEvent = window.attachEvent || window.addEventListener;
@@ -207,14 +214,21 @@
             </div>
             -->
             <!-- Fim do Modal de informação do botão Salvar -->
+            
+            
 
+            
             <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
             <div class="modal fade" id="modalInfoDeEnvio" role="dialog" >
                 <div class="modal-dialog">
 
                     <!-- Conteúdo do Modal -->
                     <div class="modal-dialog">
+                        <div id="carregando" class="invisivel">
+                            <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                        </div>
                         <div class="modal-content">
+                            
                             <div class="modal-header fundoVerde">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Terminar Pré-Avaliação</h4>
@@ -228,10 +242,14 @@
                                         title="Voltar para a avaliação do plano de negócio.">Voltar para a edição</button>
                                 <h:commandButton class="btn btn-success" 
                                                  value="Confirmar Envio" 
-                                                 title="Terminar a avaliação do plano de negócio">
-                                    <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}" 
+                                                 title="Terminar a avaliação do plano de negócio"
+                                                 onclick="exibeCarregando()">
+                                    <f:ajax listener="#{preAvaliarPlanoBean.terminarPreAvaliacao()}"
+                                            render="carregando"
                                             execute="@form"/>
                                 </h:commandButton>
+                                <!-- Modal para exibiçao de feedback ao carregar -->
+                                
                             </div>
                         </div>
                     </div>
