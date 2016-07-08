@@ -251,7 +251,7 @@ public class EmailUtilTest {
         GerenteRelacionamento gr2 = new GerenteRelacionamento();
         GerenteRelacionamento gr3 = new GerenteRelacionamento();
 
-        gr.setEmail("teste@gerente.com");
+        gr.setEmail("teste1@gerente.com");
         gr.setNome("Gerente Teste 01");
         gr2.setEmail("teste2@gerente.com");
         gr2.setNome("Gerente Teste 02");
@@ -261,7 +261,7 @@ public class EmailUtilTest {
         listaDeGerentes.add(gr);
         listaDeGerentes.add(gr2);
         listaDeGerentes.add(gr3);
-        
+
         EmailUtil.enviaEmailParaGerentes(projetoNome,
                 statusProjeto, listaDeGerentes);
     }

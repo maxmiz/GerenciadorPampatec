@@ -6,13 +6,10 @@
 package com.ideiah.gerenciadorpampatec.dao;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
-import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Usuario;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,18 +87,6 @@ public class DaoTest {
         instance.excluir(result.getIdUsuario(), Usuario.class);
     }
 
-//    /**
-//     * Teste de alterar um objeto; Tenta alterar um objeto que não está salvo no
-//     * banco.
-//     */
-//    @Test
-//    public void testUpdateNegativo() {
-//
-//        Usuario empreendedor = new Empreendedor();
-//        Usuario result = (Usuario) instance.update(empreendedor);
-//        assertNull(result);
-//    }
-
     /**
      * Teste de excluir um objeto da dao que passa um int e a classe como
      * parametros. é criado um objeto empreendedor e salvo no banco de dados
@@ -121,12 +106,11 @@ public class DaoTest {
 
     /**
      * Teste de excluir um objeto da dao que não existe passa um int e a classe
-     * como parametros. é setado uma id que não existe e chama o excluir por
+     * como parâmetros. é setado uma id que não existe e chama o excluir por
      * aquele id o método retorna falso pois não existe o objeto
      */
     @Test
     public void testExcluirNegativo() {
-
         Usuario usuario = new Empreendedor();
         usuario.setIdUsuario(10000000);
         boolean result = instance.excluir(usuario.getIdUsuario(), Empreendedor.class);
@@ -152,12 +136,11 @@ public class DaoTest {
 
     /**
      * Teste de excluir um objeto da dao que não existe, passa uma String e a
-     * classe como parametros. é setado uma id que não existe e chama o excluir
+     * classe como parâmetros. é setado uma id que não existe e chama o excluir
      * por aquele id o método retorna falso pois não existe o objeto
      */
     @Test
     public void testExcluir2Negativo() {
-
         Usuario usuario = new Empreendedor();
         usuario.setIdUsuario(10000000);
         String id = String.valueOf(usuario.getIdUsuario());
@@ -173,7 +156,6 @@ public class DaoTest {
      */
     @Test
     public void testBuscarObjetos() {
-
         Usuario usuario1 = new Empreendedor();
         usuario1 = (Usuario) instance.salvar(usuario1);
         Usuario usuario2 = new Empreendedor();
@@ -192,7 +174,7 @@ public class DaoTest {
 
     /**
      * Testa o método de buscar objetos com critérios. Primeiro cria objetos no
-     * banco com status diferentes para garantir que o banco esteja preenchdi.
+     * banco com status diferentes para garantir que o banco esteja preenchido.
      * Depois busca os objetos com um critério definido. Depois se os objetos
      * retornados respeitam os critérios estabelecidos. Depois apaga os
      * registros criados.
@@ -226,7 +208,6 @@ public class DaoTest {
      */
     @Test
     public void testeBuscarObjetoCriteriaINT() {
-
         Projeto projeto = new Projeto();
         projeto.setStatus(1);
         projeto = (Projeto) instance.salvar(projeto);
@@ -237,18 +218,17 @@ public class DaoTest {
 
         instance.excluir(projeto.getIdProjeto(), Projeto.class);
     }
-    
+
     /**
-     * teste que executa o método modificador da sessão.     * 
+     * teste que executa o método modificador da sessão. *
      */
     @Test
-    public void testSetSession(){
-        
-        Session session;        
-        session = HibernateUtil.getSessionFactory().openSession();        
+    public void testSetSession() {
+        Session session;
+        session = HibernateUtil.getSessionFactory().openSession();
         instance.setSession(session);
-        
-        Session session2 = instance.getSession();        
-        assertEquals(session2, session);        
+
+        Session session2 = instance.getSession();
+        assertEquals(session2, session);
     }
 }

@@ -33,14 +33,11 @@ public class HibernateUtilTest {
     /**
      * Test of getSessionFactory method, of class HibernateUtil.
      */
-    @Ignore
+    @Test
     public void testGetSessionFactory() {
         System.out.println("getSessionFactory");
         SessionFactory expResult = null;
         SessionFactory result = HibernateUtil.getSessionFactory();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }
