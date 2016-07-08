@@ -8,7 +8,8 @@ var clock;
 
 /**
  * <p>Função ainda em implementaçao, não utilizar!</p>
- * 
+ * Irá chamar um relógio no canto da página para iniciar uma contágem regressiva.
+ * Ao chegar a "0" era finalizar a sessão.
  * @returns {undefined}
  */
 function sessionCountdown() {

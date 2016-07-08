@@ -232,25 +232,6 @@ function mostra_vertical_pre_avaliacao() {
 }
 
 /**
- * @description Função que bloqueia todos os campos da tela Enviar Projeto. Para o empreendedor apenas poder visualizar e não editar.
- * @returns {undefined}
- */
-function bloquearCampos() {
-    var d = document.getElementById('myTabContent').getElementsByTagName('input');
-    var botaoOutro = document.getElementById('formulario_cadastro_projeto:estagioDeEvolucao');
-    botaoOutro.disabled = "true";
-
-    for (var i = 0; i < d.length; i++) {
-        d[i].disabled = "true";
-    }
-    var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
-    for (var i = 0; i < d2.length; i++) {
-        d2[i].disabled = "true";
-    }
-}
-
-
-/**
  * @description Função para alternar entre as DIVs
  * @param {type} referencia
  * @returns {undefined}
@@ -312,7 +293,12 @@ function retornarCorOriginalBotao() {
     objetoBotaoAnterior.setAttribute("class", classeBotaoAnterior);
 }
 
-
+/**
+ * Como Empreendedor
+ * É chamado no body da página (ao caregar a página)
+ * verifica a existencia de comentários em todos os campos dentro das abas
+ * Se houver, os metodos das Abas mudam a cor das Abas.
+ */
 function verificaComentariosRevisar() {
 
     verificaComentarioNegocioRevisar();
@@ -323,6 +309,12 @@ function verificaComentariosRevisar() {
 
 }
 
+/**
+ * Como Gerente
+ * É chamado no body da página (ao caregar a página)
+ * verifica a existencia de comentários em todos os campos dentro das abas
+ * Se houver, os metodos das Abas mudam a cor das Abas.
+ */
 function verificaComentariosPreAvaliar() {
 
     verificaComentarioNegocioPreAvaliar();
@@ -333,6 +325,12 @@ function verificaComentariosPreAvaliar() {
 
 }
 
+/**
+ * Como Empreendedor
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Negocio
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioNegocioRevisar() {
 
     var comentarioSegmentoDeClientes = document.getElementById("formulario_resubmeterplano:segmentoDeClientes3");
@@ -348,6 +346,12 @@ function verificaComentarioNegocioRevisar() {
     mudarCorLista(listaCampos, tabNegocio, "Negócio");
 }
 
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Negocio
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioNegocioPreAvaliar() {
 
     var comentarioSegmentoDeClientes = document.getElementById("formulario_comentarpreavalizar:segmentoDeCliente2");
@@ -363,7 +367,12 @@ function verificaComentarioNegocioPreAvaliar() {
     mudarCorListaPreAvaliar(listaCampos, tabNegocio, "Negócio");
 }
 
-
+/**
+ * Como Empreendedor
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Analise de Mercado
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioAnaliseMercadoRevisar() {
 
     var comentarioRelacoComClientes = document.getElementById("formulario_resubmeterplano:relacaoClientes3");
@@ -383,6 +392,12 @@ function verificaComentarioAnaliseMercadoRevisar() {
     mudarCorLista(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Analise de Mercado
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioAnaliseMercadoPreAvaliar() {
 
     var comentarioRelacaoComClientes = document.getElementById("formulario_comentarpreavalizar:relacaoClientes2");
@@ -402,6 +417,12 @@ function verificaComentarioAnaliseMercadoPreAvaliar() {
     mudarCorListaPreAvaliar(listaCampos, tabAnaliseMercado, "Análise de Mercado");
 }
 
+/**
+ * Como Empreendedor
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Protudo e Serviço
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioProdutoServicoRevisar() {
 
     var comentarioEstagioEvolucao = document.getElementById("formulario_resubmeterplano:estagioEvolucao3");
@@ -426,6 +447,12 @@ function verificaComentarioProdutoServicoRevisar() {
     mudarCorLista(listaCampos, tabProdutoServico, "Produto ou Serviço");
 }
 
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Protudo e Serviço
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioProdutoServicoPreAvaliar() {
 
     var comentarioEstagioEvolucao = document.getElementById("formulario_comentarpreavalizar:estagioEvolucao2");
@@ -451,6 +478,12 @@ function verificaComentarioProdutoServicoPreAvaliar() {
     mudarCorListaPreAvaliar(listaCampos, tabProdutoServico, "Produto ou Serviço");
 }
 
+/**
+ * Como Empreendedor
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Gestão de Pessoas
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioGestaoPessoasRevisar() {
 
     var comentarioParticipacaoAcionaria = document.getElementById("formulario_resubmeterplano:participacaoAcionaria3");
@@ -464,6 +497,12 @@ function verificaComentarioGestaoPessoasRevisar() {
     mudarCorLista(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
+/**
+ * Como gerente
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Gestão de Pessoas
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioGestaoPessoasPreAvaliar() {
 
     var comentarioParticipacaoAcionaria = document.getElementById("formulario_comentarpreavalizar:participacaoAcionaria2");
@@ -477,6 +516,12 @@ function verificaComentarioGestaoPessoasPreAvaliar() {
     mudarCorListaPreAvaliar(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
 }
 
+/**
+ * Como Empreendedor
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Plano Financeiro
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioPlanoFinanceiroRevisar() {
 
     var comentarioFontesDeReceita = document.getElementById("formulario_resubmeterplano:fontesDeReceita3");
@@ -496,6 +541,12 @@ function verificaComentarioPlanoFinanceiroRevisar() {
     mudarCorLista(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos dos comentarios dos campos
+ * verifica a existencia de comentários em  campos dentro da aba Plano Financeiro
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
 function verificaComentarioPlanoFinanceiroPreAvaliar() {
 
     var comentarioFontesDeReceita = document.getElementById("formulario_comentarpreavalizar:fontesDeReceita2");
@@ -515,6 +566,14 @@ function verificaComentarioPlanoFinanceiroPreAvaliar() {
     mudarCorListaPreAvaliar(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
 }
 
+/**
+ * Método Usado pelos métodos de Aba (Ex: verificaNegocio)
+ * para mudar a cor e o icone das Abas
+ * @param {type} listaCampos
+ * @param {type} tab
+ * @param {type} nomeCampo
+ * @returns {undefined}
+ */
 function mudarCorLista(listaCampos, tab, nomeCampo) {
     var flagCompleto = false;
     for (var i = 0; i < listaCampos.length; i++) {
@@ -580,10 +639,6 @@ function funcaoAjaxSalvoAtualizandoAbas(data) {
     }
 }
 
-function atualizaTimeOutSessao(){
-    
-}
-
 /**
  * @description Metodo que exibe ou esconde os campos de mostrar comentarios do historico na realizar pré-avaliação
  * @param {type} idCampo
@@ -607,37 +662,33 @@ function mostrarFeedBackHistorico(idCampo, idDiv) {
 }
 
 /**
- * @description Metodo que exibe ou esconde os campos do botao adicionar comentarios na realizar pré-avaliação
- * alem de mudar o botao ao clicar nele ("+ Adicionar Comentario" ou "- Fechar Comentario") 
- * @param {type} idCampo
+ * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
+ * @param {type} id
  * @param {type} idBotao
- * @param {type} idUltimaAlteracao
  * @returns {undefined}
  */
-function mostrarFeedBack(idCampo,idBotao, idUltimaAlteracao) {
+
+function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
     var campo = document.getElementById(idCampo);
     var botao = document.getElementById(idBotao);
-    var alteracao = document.getElementById(idUltimaAlteracao);
+    var alteracao = document.getElementById(idAlteracao);
     if ($(campo).hasClass("form-control campoFeedBackOn")) {
-        
         $(campo).fadeOut(900);
         campo.setAttribute("class", "form-control campoFeedBack");
-        
+        //botao.setAttribute("class", "botaoBaseComentario botaoVerde");
+		//    botao.setAttribute("value", "Fechar Comentário");
+		//    botao.setAttribute("icon", "fa fa-minus");
         alteracao.setAttribute("class","campoFeedBack");
-        
-	
-        //  botao.setAttribute("value", "Fechar Comentário");
-	//  botao.setAttribute("icon", "fa fa-minus");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
-        
+        //botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
         alteracao.setAttribute("class","campoFeedBackOn");
-        
-        //  botao.setAttribute("value", "Adicionar Comentário");
-	//  botao.setAttribute("icon", "fa fa-plus");
+        //   botao.setAttribute("value", "Adicionar Comentário");
+		//   botao.setAttribute("icon", "fa fa-plus");
     }
-	
+}
+
 /**
  * Seta um tempo para exibir a mensagem de término da sessão.
  * @returns {undefined}
@@ -664,5 +715,4 @@ function mostraMensagemFimSessao() {
         window.location.href = "/GerenciadorPampatec/loginEmpreendedor.jsf";
     });
 
-}
 }
