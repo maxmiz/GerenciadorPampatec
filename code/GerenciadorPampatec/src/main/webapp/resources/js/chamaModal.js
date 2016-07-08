@@ -3,7 +3,6 @@
  * @author Claudio Davi
  * 
  */
-
  function chamaModal( nomeModal) {
                     $(nomeModal).modal();
             };

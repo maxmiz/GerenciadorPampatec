@@ -40,7 +40,8 @@ function mostrarMensagemCampoObrigatorio() {
 }
 
 /**
- * Junta duas lista disponibilizadas
+ * método usado para juntar 2 listas
+ *  disponibilizadas pelo método mostrarMensagemCampoObrigatorio.
  * @param {Array} array1
  * @param {Array} array2
  * @returns {undefined}

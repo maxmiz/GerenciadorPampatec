@@ -250,7 +250,8 @@ function percorrerTrs(listaTr) {
 
 
 /**
- * @description text
+ * @description Método usado em métodos das Abas (Ex: verificaNegocio)
+ * para mudar a cor e o icone das abas.
  * @param {type} listaCampos
  * @param {type} tab
  * @param {type} nomeCampo
@@ -330,29 +331,6 @@ function verificarPreenchimentoRadioButton() {
 }
 
 /**
- * @description text
- * @param {type} listaComponentes
- * @param {type} pai
- * @param {type} contador
- * @returns {undefined}
- */
-function percorrerArvoreObejetos(listaComponentes, pai, contador) {
-    for (var i = 0; i < pai.children.length; i++) {
-        if (pai.children[i].tagName === listaComponentes[contador]) {
-            console.log("Nome da tag" + pai.children[i].tagName);
-            console.log("Nome procurado" + listaComponentes[contador]);
-            console.log(pai.children[i].className);
-            if (contador === 5 && pai.children[i].className === "ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active") {
-                console.log("DEEEEUUUUUUUUU");
-            }
-            contador++;
-            percorrerArvoreObejetos(listaComponentes, pai.children[i], contador);
-        }
-    }
-}
-
-
-/**
  * @description Exibe a modal para confirmação de salvamento
  * @returns {undefined}
  */
@@ -375,35 +353,6 @@ function infoSalvarEquipe() {
 function confirmacaoDeEnvio() {
     $("#modalInfoDeEnvio").modal();
 }
-
-/**
- * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
- * @param {type} id
- * @param {type} idBotao
- * @returns {undefined}
- */
-
-function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
-    var campo = document.getElementById(idCampo);
-    var botao = document.getElementById(idBotao);
-    var alteracao = document.getElementById(idAlteracao);
-    if ($(campo).hasClass("form-control campoFeedBackOn")) {
-        $(campo).fadeOut(900);
-        campo.setAttribute("class", "form-control campoFeedBack");
-        //botao.setAttribute("class", "botaoBaseComentario botaoVerde");
-		//    botao.setAttribute("value", "Fechar Comentário");
-		//    botao.setAttribute("icon", "fa fa-minus");
-        alteracao.setAttribute("class","campoFeedBack");
-    } else {
-        $(campo).fadeIn(900);
-        campo.setAttribute("class", "form-control campoFeedBackOn");
-        //botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
-        alteracao.setAttribute("class","campoFeedBackOn");
-        //   botao.setAttribute("value", "Adicionar Comentário");
-		//   botao.setAttribute("icon", "fa fa-plus");
-    }
-}
-
 
 /**
  * @description 
@@ -703,7 +652,6 @@ function carregaPagina() {
     }
 }
 
-
 /**
  * @description Função que exibe o menu vertical referente a etapa de elaboração
  * @returns {undefined}
@@ -720,48 +668,6 @@ function mostra_vertical_elaboracao() {
     divFormalizacao.setAttribute("class", "esconder-div");
     var divIncubacao = document.getElementById("vertical_etapa_incubacao");
     divIncubacao.setAttribute("class", "esconder-div");
-}
-
-
-
-/**
- * @description Função que exibe o menu vertical referente a etapa de pré avaliação
- * @returns {undefined}
- */
-function mostra_vertical_pre_avaliacao() {
-
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "esconder-div");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "esconder-div");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "esconder-div");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "esconder-div");
-
-
-}
-
-/**
- * @description Função que exibe o menu vertical referente a etapa de Avaliação
- * @returns {undefined}
- */
-function mostra_avaliacao() {
-
-    var divElaboracao = document.getElementById("vertical_etapa_elaboracao");
-    divElaboracao.setAttribute("class", "esconder-div");
-    var divPreAvaliacao = document.getElementById("vertical_etapa_pre_avaliacao");
-    divPreAvaliacao.setAttribute("class", "esconder-div");
-    var divAvaliacao = document.getElementById("vertical_etapa_avaliacao");
-    divAvaliacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
-    var divFormalizacao = document.getElementById("vertical_etapa_formalizacao");
-    divFormalizacao.setAttribute("class", "esconder-div");
-    var divIncubacao = document.getElementById("vertical_etapa_incubacao");
-    divIncubacao.setAttribute("class", "esconder-div");
-
 }
 
 /**
@@ -802,25 +708,6 @@ function mostra_incubacao() {
     divIncubacao.setAttribute("class", "col-md-2 text-center bounceInLeft animated estiloDivVertical noprint");
 
 }
-
-/**
- * @description Função que bloqueia todos os campos da tela Enviar Projeto. Para o empreendedor apenas poder visualizar e não editar.
- * @returns {undefined}
- */
-function bloquearCampos() {
-    var d = document.getElementById('myTabContent').getElementsByTagName('input');
-    var botaoOutro = document.getElementById('formulario_cadastro_projeto:estagioDeEvolucao');
-    botaoOutro.disabled = "true";
-
-    for (var i = 0; i < d.length; i++) {
-        d[i].disabled = "true";
-    }
-    var d2 = document.getElementById('myTabContent').getElementsByTagName('textarea');
-    for (var i = 0; i < d2.length; i++) {
-        d2[i].disabled = "true";
-    }
-}
-
 
 /**
  * @description Função para alternar entre as DIVs
