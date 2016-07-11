@@ -16,8 +16,8 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
@@ -29,7 +29,7 @@ import javax.faces.bean.ManagedBean;
  * @since 16-06-2016
  */
 @ManagedBean
-@ApplicationScoped
+@RequestScoped
 public class SystemAccessBean implements Serializable {
 
     private String user;
