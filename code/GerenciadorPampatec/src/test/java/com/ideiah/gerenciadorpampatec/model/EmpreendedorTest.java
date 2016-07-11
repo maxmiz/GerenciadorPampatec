@@ -110,7 +110,7 @@ public class EmpreendedorTest {
     /**
      * Test of getEmpreededorDao method, of class Empreendedor.
      */
-    @Test
+    @Ignore
     public void testGetEmpreededorDao() {
         System.out.println("getEmpreededorDao");
         EmpreendedorDao result = Empreendedor.getEmpreededorDao();
@@ -145,7 +145,7 @@ public class EmpreendedorTest {
     /**
      * Test of getProjetoDao method, of class Empreendedor.
      */
-    @Test
+    @Ignore
     public void testGetProjetoDao() {
         System.out.println("getProjetoDao");
         ProjetoDao result = Empreendedor.getProjetoDao();
