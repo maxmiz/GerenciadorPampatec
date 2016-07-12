@@ -24,7 +24,19 @@
             @media print { 
                 .noprint { display:none; } 
         </style>
-
+        
+        <script>
+            /**
+             * Metodo sendo chamado no "a" de "esqueci a senha"
+             * Para trazer o campo do EMAIL dentro do modal sempre vazio  
+             * @returns {undefined}
+             */
+            function limpaCampoEsqueciSenha(){
+                document.getElementById("formularioRecuperarSenha:email").value = "";
+            }
+    
+        </script>
+        
         </h:head>
         <h:body>
             <div class="row">
@@ -114,7 +126,7 @@
                                 </h:inputSecret>
                             </div> 
                             <div class="col-md-12" title="Recupere sua senha">
-                                <a rel="modal" data-toggle="modal" href="#myModal">Esqueci minha senha</a>
+                                <a rel="modal" data-toggle="modal" href="#myModal" onclick="limpaCampoEsqueciSenha()">Esqueci minha senha</a>
                                 <br/>
                             </div> 
                             <div class="col-md-1 modal-footer" align="left">
