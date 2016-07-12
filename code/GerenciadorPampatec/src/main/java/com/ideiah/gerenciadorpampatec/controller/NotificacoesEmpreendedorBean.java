@@ -151,7 +151,7 @@ public class NotificacoesEmpreendedorBean implements Observer, Serializable {
     public String getNotificacaoLink() {
 
         // FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/paginaBuscaPlanoDeNegocio.jsf");
-        String link = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf";
+        String link = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf";
         return link;
 
     }

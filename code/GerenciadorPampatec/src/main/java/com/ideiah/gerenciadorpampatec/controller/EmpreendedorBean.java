@@ -154,7 +154,7 @@ public class EmpreendedorBean implements Serializable{
             empreendedor.atualizarEmpreendedor(empreendedor);
 
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("faces/loginEmpreendedor.jsf");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
 
             } catch (IOException ex) {
                 Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,7 +198,7 @@ public class EmpreendedorBean implements Serializable{
                         empreendedor.setBairro(null);
                         empreendedor.setComplemento(null);
                         empreendedor.setExperiencia(null);
-                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/faces/view/empreendedor/homeEmpreendedor.jsf");
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/view/empreendedor/homeEmpreendedor.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }

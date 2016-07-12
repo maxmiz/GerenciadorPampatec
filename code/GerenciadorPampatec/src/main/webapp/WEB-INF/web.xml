@@ -73,7 +73,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <!--<welcome-file>faces/view/cadastroEmpreendedor.jsf</welcome-file>-->
         <welcome-file>loginEmpreendedor.jsf</welcome-file>
     </welcome-file-list>
     <filter>
