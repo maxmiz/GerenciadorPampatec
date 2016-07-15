@@ -19,89 +19,155 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 public class ProjetoTest {
-    
+
     public ProjetoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * teste executa o método de dalvar um projeto já existente
-     * primeiro é criado um projeto e depois editado
+     * teste executa o método de dalvar um projeto já existente primeiro é
+     * criado um projeto e depois editado
      */
     @Ignore
     public void testSalvarProjetoExistente() {
-        
+
         Projeto instance = new Projeto();
         Projeto projeto = new Projeto();
         ProjetoDao dao = new ProjetoDao();
-        
+
         projeto = (Projeto) dao.salvar(projeto);
         projeto.setEdital("Edital 123");
         instance.SalvarProjetoExistente(projeto);
         String edital = projeto.getEdital();
-        
+
         Projeto projeto2 = (Projeto) dao.buscarObjetoCriteria("edital", edital, Projeto.class);
-        
+
         assertEquals(projeto, projeto2);
+
+        dao.excluir(projeto.getIdProjeto(), Projeto.class);
+    }
+    
+    /**
+     * Test Constructor
+     */
+    @Test
+    public void testProjeto() {
+        Integer idProjeto = 1;
+        Analiseemprego analiseemprego = new Analiseemprego();
+        Negocio negocio = new Negocio();
+        Planofinanceiro planofinanceiro = new Planofinanceiro();
+        Produtoouservico produtoouservico = new Produtoouservico();
+        String participacaoacionaria = "part";
+
+        Projeto instance = new Projeto(idProjeto, analiseemprego, 
+                negocio, planofinanceiro, produtoouservico, 
+                participacaoacionaria);
+        assertNotNull(instance);
+    }
+    /**
+     * Test Constructor
+     */
+    @Test
+    public void testProjeto2() {
+
+        Integer idProjeto = 1;
+        Analiseemprego analiseemprego = new Analiseemprego();
+        Negocio negocio = new Negocio();
+        Planofinanceiro planofinanceiro = new Planofinanceiro();
+        Produtoouservico produtoouservico = new Produtoouservico();
+        String participacaoacionaria = "part";
+        Date dataEnvio = new Date();
+        Integer status = 1;
+        Set empreendedores = new HashSet(0);
+        empreendedores.add(new Empreendedor());
+        Date dataCriacao = new Date();
+        GerenteRelacionamento gerenteRelacionamento = new GerenteRelacionamento();        
         
-        dao.excluir(projeto.getIdProjeto(), Projeto.class);       
+        Projeto instance = new Projeto(idProjeto, analiseemprego, 
+                negocio, planofinanceiro, produtoouservico, 
+                participacaoacionaria, dataEnvio, status, participacaoacionaria, 
+                empreendedores, participacaoacionaria, participacaoacionaria,
+                dataCriacao, gerenteRelacionamento);
+
+        assertNotNull(instance);
+    }
+    
+    /**
+     * Test of formatarDataEnvio method, of class Projeto.
+     */
+    @Test
+    public void testFormatarDataEnvio() {
+        System.out.println("formatarDataEnvio");
+        Projeto instance = new Projeto();
+        Date expResult = new Date();
+        instance.setDataEnvio(new Date());
+        String result = instance.formatarDataEnvio();
+        assertNotSame(expResult, result);
     }
 
     /**
      * Test of formatarDataEnvio method, of class Projeto.
      */
-    @Ignore
-    public void testFormatarDataEnvio() {
+    @Test
+    public void testFormatarDataEnvio2() {
         System.out.println("formatarDataEnvio");
         Projeto instance = new Projeto();
-        String expResult = "";
+        String expResult = "Plano não enviado";
+        instance.setDataEnvio(null);
         String result = instance.formatarDataEnvio();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of formatarDataAvaliacao method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testFormatarDataAvaliacao() {
-        System.out.println("formatarDataAvaliacao");
         Projeto instance = new Projeto();
-        String expResult = "";
+        Date expResult = new Date();
+        instance.setDataAvaliacao(new Date());
+        String result = instance.formatarDataAvaliacao();
+        assertNotSame(expResult, result);
+    }
+
+    /**
+     * Test of formatarDataAvaliacao method, of class Projeto.
+     */
+    @Test
+    public void testFormatarDataAvaliacao2() {
+        Projeto instance = new Projeto();
+        String expResult = "Plano não avaliado";
+        instance.setDataAvaliacao(null);
         String result = instance.formatarDataAvaliacao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of mudarStatus method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testMudarStatus() {
         System.out.println("mudarStatus");
         Integer status = null;
         Projeto instance = new Projeto();
         instance.mudarStatus(status);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+
     /**
      * Test of buscarProjetoPorStatus method, of class Projeto.
      */
@@ -112,32 +178,44 @@ public class ProjetoTest {
         ArrayList<Projeto> expResult = null;
         ArrayList<Projeto> result = Projeto.buscarProjetoPorStatus(status);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of retornaListaEmpreendedores method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testRetornaListaEmpreendedores() {
         System.out.println("retornaListaEmpreendedores");
         Projeto instance = new Projeto();
-        ArrayList<Empreendedor> expResult = null;
+        Set empreendedors = new HashSet(0);
+        Empreendedor e = new Empreendedor();
+        Empreendedor e2 = new Empreendedor();
+        Empreendedor e3 = new Empreendedor();
+        Empreendedor e4 = new Empreendedor();
+        empreendedors.add(e);
+        empreendedors.add(e2);
+        empreendedors.add(e3);
+        empreendedors.add(e4);
+        instance.setEmpreendedores(empreendedors);
+
+        ArrayList<Empreendedor> expResult = new ArrayList<>();
+        expResult.add(e);
+        expResult.add(e2);
+        expResult.add(e3);
+        expResult.add(e4);
+
         ArrayList<Empreendedor> result = instance.retornaListaEmpreendedores();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**
      * Test of verificaSubmetido method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificaSubmetido() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.SUBMETIDO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificaSubmetido();
         assertEquals(expResult, result);
     }
@@ -145,11 +223,11 @@ public class ProjetoTest {
     /**
      * Test of verificaReSubmetido method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificaReSubmetido() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.RESUBMETIDO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificaReSubmetido();
         assertEquals(expResult, result);
     }
@@ -157,11 +235,11 @@ public class ProjetoTest {
     /**
      * Test of verificaEmPreAvaliacao method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificaEmPreAvaliacao() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.EM_PRE_AVALIACAO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificaEmPreAvaliacao();
         assertEquals(expResult, result);
     }
@@ -169,11 +247,11 @@ public class ProjetoTest {
     /**
      * Test of verificarSendoAvaliado method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificarSendoAvaliado() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.SENDO_AVALIADO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificarSendoAvaliado();
         assertEquals(expResult, result);
     }
@@ -181,11 +259,11 @@ public class ProjetoTest {
     /**
      * Test of verificarNecessitaAvaliacao method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificarNecessitaAvaliacao() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.NECESSITA_MELHORIA);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificarNecessitaAvaliacao();
         assertEquals(expResult, result);
     }
@@ -193,11 +271,11 @@ public class ProjetoTest {
     /**
      * Test of verificarRevisando method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificarRevisando() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.REVISANDO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificarRevisando();
         assertEquals(expResult, result);
     }
@@ -205,11 +283,11 @@ public class ProjetoTest {
     /**
      * Test of verificarAceitoParaAvaliacao method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificarAceitoParaAvaliacao() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.ACEITO_PARA_AVALIACAO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificarAceitoParaAvaliacao();
         assertEquals(expResult, result);
     }
@@ -217,14 +295,14 @@ public class ProjetoTest {
     /**
      * Test of verificarReprovado method, of class Projeto.
      */
-    @Ignore
+    @Test
     public void testVerificarReprovado() {
         Projeto instance = new Projeto();
         instance.setStatus(Projeto.REPROVADO);
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.verificarReprovado();
         assertEquals(expResult, result);
-    } 
+    }
 
     /**
      * Test of getIdProjeto method, of class Projeto.
@@ -246,7 +324,7 @@ public class ProjetoTest {
         Projeto instance = new Projeto();
         instance.setIdProjeto(idProjeto);
         assertEquals(idProjeto, instance.getIdProjeto());
-        
+
     }
 
     /**
@@ -403,10 +481,8 @@ public class ProjetoTest {
         assertEquals(dataAvaliacao, instance.getDataAvaliacao());
     }
 
-    
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Elaboração
+     * Test of getStatusString method, of class Projeto. case Elaboração
      */
     @Test
     public void testGetStatusString() {
@@ -419,8 +495,7 @@ public class ProjetoTest {
     }
 
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Sendo Avaliado
+     * Test of getStatusString method, of class Projeto. case Sendo Avaliado
      */
     @Test
     public void testGetStatusString2() {
@@ -431,9 +506,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Submetido
+     * Test of getStatusString method, of class Projeto. case Submetido
      */
     @Test
     public void testGetStatusString3() {
@@ -444,9 +519,10 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Aceito para Avaliação
+     * Test of getStatusString method, of class Projeto. case Aceito para
+     * Avaliação
      */
     @Test
     public void testGetStatusString4() {
@@ -457,9 +533,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Necessita Melhoria
+     * Test of getStatusString method, of class Projeto. case Necessita Melhoria
      */
     @Test
     public void testGetStatusString5() {
@@ -470,9 +546,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Em Formalização
+     * Test of getStatusString method, of class Projeto. case Em Formalização
      */
     @Test
     public void testGetStatusString6() {
@@ -483,9 +559,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Incubação
+     * Test of getStatusString method, of class Projeto. case Incubação
      */
     @Test
     public void testGetStatusString7() {
@@ -496,9 +572,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Reprovado
+     * Test of getStatusString method, of class Projeto. case Reprovado
      */
     @Test
     public void testGetStatusString8() {
@@ -509,9 +585,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Em Pré-Avaliação
+     * Test of getStatusString method, of class Projeto. case Em Pré-Avaliação
      */
     @Test
     public void testGetStatusString9() {
@@ -522,9 +598,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Ressubmetido
+     * Test of getStatusString method, of class Projeto. case Ressubmetido
      */
     @Test
     public void testGetStatusString10() {
@@ -535,9 +611,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * case Necessita Melhoria
+     * Test of getStatusString method, of class Projeto. case Necessita Melhoria
      */
     @Test
     public void testGetStatusString11() {
@@ -548,9 +624,9 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of getStatusString method, of class Projeto.
-     * Status nao presente
+     * Test of getStatusString method, of class Projeto. Status nao presente
      */
     @Test
     public void testGetStatusString12() {
@@ -561,14 +637,7 @@ public class ProjetoTest {
         String result = instance.getStatusString(status);
         assertEquals(expResult, result);
     }
-    
-    
 
-    
-    
-    
-    
-    
     /**
      * Test of getStatus method, of class Projeto.
      */
@@ -579,6 +648,7 @@ public class ProjetoTest {
         instance.setStatus(status);
         assertEquals(status, instance.getStatus());
     }
+
     /**
      * Test of setStatus method, of class Projeto.
      */
@@ -682,7 +752,7 @@ public class ProjetoTest {
         Projeto instance = new Projeto();
         instance.setEdital(edital);
         assertEquals(edital, instance.getEdital());
-        
+
     }
 
     /**
