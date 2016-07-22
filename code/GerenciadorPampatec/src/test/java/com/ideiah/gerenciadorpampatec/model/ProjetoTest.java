@@ -18,6 +18,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
+/**
+ * 
+ * @author unipampa
+ */
 public class ProjetoTest {
 
     public ProjetoTest() {
@@ -40,7 +44,7 @@ public class ProjetoTest {
     }
 
     /**
-     * teste executa o método de dalvar um projeto já existente primeiro é
+     * teste executa o método de salvar um projeto já existente primeiro é
      * criado um projeto e depois editado
      */
     @Ignore
