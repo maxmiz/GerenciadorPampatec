@@ -71,7 +71,7 @@ public class Projeto implements java.io.Serializable {
         this.produtoouservico = produtoouservico;
         this.participacaoacionaria = participacaoacionaria;
         contAcesso = 0;
-        pegaObserver();
+//        pegaObserver();
         statusTemp = 99;
     }
 
@@ -91,7 +91,7 @@ public class Projeto implements java.io.Serializable {
         this.edital = edital;
         this.dataCriacao = dataCriacao;
         this.gerenteRelacionamento = gerenteDeRelacionamento;
-        pegaObserver();
+//        pegaObserver();
         contAcesso = 0;
         statusTemp = 99;
     }
