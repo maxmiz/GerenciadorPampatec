@@ -35,7 +35,7 @@ public class HibernateUtilTest {
      */
     @Test
     public void testGetSessionFactory() {
-        System.out.println("getSessionFactory");
+        
         SessionFactory expResult = null;
         SessionFactory result = HibernateUtil.getSessionFactory();
         assertEquals(expResult, result);

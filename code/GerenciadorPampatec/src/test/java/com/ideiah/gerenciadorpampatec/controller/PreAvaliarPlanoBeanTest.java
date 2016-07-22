@@ -66,10 +66,7 @@ public class PreAvaliarPlanoBeanTest {
      */
     @Test
     public void testBuscarComentarioProjeto() {
-        System.out.println("buscar Comentario do Projeto");
         instance.buscarComentarioProjeto(projeto);
-        System.out.println("intance nome projeto: " + instance.getComentarioProjeto());
-
         assertEquals(comentarioProjeto.getIdcomentario(), instance.getComentarioProjeto().getIdcomentario());
     }
 
@@ -94,8 +91,6 @@ public class PreAvaliarPlanoBeanTest {
      */
     @Test
     public void testMudaStatusProjetoParaSendoAvaliadoFalse() {
-        System.out.println(projeto.getStatusString(projeto.getStatus()));
-
         //int statusProjeto = Projeto.SUBMETIDO;
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
 
@@ -105,12 +100,8 @@ public class PreAvaliarPlanoBeanTest {
 
     @Test
     public void testMudaStatusProjetoParaSendoAvaliadoTrue() {
-        System.out.println(projeto.getStatusString(projeto.getStatus()));
-
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
-
         assertTrue("Verifica se o status do projeto é: Sendo Avaliado deve ser True", Projeto.SENDO_AVALIADO == instance.getProjeto().getStatus());
-
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
     }
 
@@ -121,9 +112,7 @@ public class PreAvaliarPlanoBeanTest {
     @Test
     public void testMudaStatusProjetoParaEmPreAvaliacaoTrue() {
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
-
-        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
-
+        projeto.getStatusString(projeto.getStatus());
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
 
         //assertTrue("Verifica se o status do projeto é: Em Pre Avaliação Deve ser True", Projeto.SUBMETIDO == projeto.getStatus());
@@ -132,9 +121,7 @@ public class PreAvaliarPlanoBeanTest {
     @Test
     public void testMudaStatusProjetoParaEmPreAvaliacaoFalse() {
         instance.mudaStatusProjetoParaSendoAvaliado(projeto);
-
-        System.out.println("Modificação de Sendo Avaliado para Pre Avaliacao" + projeto.getStatusString(projeto.getStatus()));
-
+        projeto.getStatusString(projeto.getStatus());
         instance.mudaStatusProjetoParaEmPreAvaliacao(projeto);
 
         assertFalse("Verifica se o status do projeto é: Em Pre Avaliação, Deve ser falso", Projeto.SENDO_AVALIADO == projeto.getStatus());

@@ -87,7 +87,7 @@ public class FacesUtilTest {
      */
     @Ignore
     public void testAddErrorMessage_String_String() {
-        System.out.println("addErrorMessage");
+        
         String message = "";
         String idComponente = "";
         FacesUtil.addErrorMessage(message, idComponente);

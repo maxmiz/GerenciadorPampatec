@@ -46,7 +46,7 @@ public class ComparadorCriacaoUtilTest {
      */
     @Test
     public void testCompare() {
-        System.out.println("ComparadorCriacaoUtil");
+        
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
         
@@ -64,7 +64,7 @@ public class ComparadorCriacaoUtilTest {
      */
     @Test
     public void testCompare2() {
-        System.out.println("ComparadorCriacaoUtil2");
+        
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
         

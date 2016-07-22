@@ -46,7 +46,7 @@ public class ComparadorAvaliacaoUtilTest {
      */
     @Test
     public void testCompare() {
-        System.out.println("ComparadorAvaliacaoUtil");
+        
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
         
@@ -64,7 +64,7 @@ public class ComparadorAvaliacaoUtilTest {
      */
     @Test
     public void testCompare2() {
-        System.out.println("ComparadorAvaliacaoUtil2");
+        
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
         o1.setDataAvaliacao(new Date());

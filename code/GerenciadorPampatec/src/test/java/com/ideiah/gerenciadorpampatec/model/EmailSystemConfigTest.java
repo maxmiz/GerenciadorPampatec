@@ -42,7 +42,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testConstrturEmailSystemConfig() {
-        System.out.println("getEmail");
+        
         String authEmail = "";
         String authPassphrase = "";
         EmailSystemConfig instance = new EmailSystemConfig(authEmail, authPassphrase);
@@ -54,7 +54,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testGetEmail() {
-        System.out.println("getEmail");
+        
         EmailSystemConfig instance = new EmailSystemConfig();
         String expResult = "";
         instance.setEmail(expResult);
@@ -67,7 +67,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testSetEmail() {
-        System.out.println("setEmail");
+        
         String aAuthEmail = "";
         EmailSystemConfig instance = new EmailSystemConfig();
         instance.setEmail(aAuthEmail);
@@ -78,7 +78,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testGetPassphrase() {
-        System.out.println("getPassphrase");
+        
         EmailSystemConfig instance = new EmailSystemConfig();
         String expResult = "";
         instance.setPassphrase(expResult);
@@ -91,7 +91,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testSetPassphrase() {
-        System.out.println("setPassphrase");
+        
         String aAuthPassphrase = "";
         EmailSystemConfig instance = new EmailSystemConfig();
         instance.setPassphrase(aAuthPassphrase);
@@ -102,7 +102,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testGetId_systememail() {
-        System.out.println("getId_systememail");
+        
         EmailSystemConfig instance = new EmailSystemConfig();
         Integer expResult = null;
         instance.setId_systememail(expResult);
@@ -115,7 +115,7 @@ public class EmailSystemConfigTest {
      */
     @Test
     public void testSetId_systememail() {
-        System.out.println("setId_systememail");
+        
         Integer id_systememail = null;
         EmailSystemConfig instance = new EmailSystemConfig();
         instance.setId_systememail(id_systememail);

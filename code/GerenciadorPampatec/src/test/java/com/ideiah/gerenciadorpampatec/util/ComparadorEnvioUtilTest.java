@@ -51,7 +51,7 @@ public class ComparadorEnvioUtilTest {
      */
     @Test
     public void testCompare() {
-        System.out.println("Compare_EqualsDate");
+        
 
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();
@@ -73,7 +73,7 @@ public class ComparadorEnvioUtilTest {
      */
     @Test
     public void testCompare2() {
-        System.out.println("Compare_NotSame");
+        
 
         Projeto o1 = new Projeto();
         Projeto o2 = new Projeto();

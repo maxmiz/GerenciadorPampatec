@@ -51,7 +51,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testConstrutorEmailUtil() {
-        System.out.println("testConstrutorEmailUtil");
+        
         EmailUtil result = new EmailUtil();
         assertNotNull(result);
     }
@@ -64,7 +64,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testMandarEmailConcluirCadastro() {
-        System.out.println("mandarEmailConcluirCadastro_Null");
+        
         String empreendedorNome = null;
         String projetoNome = null;
         String email = null;
@@ -80,7 +80,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testMandarEmailConcluirCadastro2() {
-        System.out.println("mandarEmailConcluirCadastro_StringVazia");
+        
         String empreendedorNome = "";
         String projetoNome = "";
         String email = "";
@@ -95,7 +95,7 @@ public class EmailUtilTest {
      */
     @Ignore
     public void testMandarEmailConcluirCadastro3() {
-        System.out.println("mandarEmailConcluirCadastro_EnvioEmail");
+        
         String empreendedorNome = "Ideiah Dev Tests";
         String projetoNome = "Projeto Email Teste";
         String email = "ideiahdev@gmail.com";
@@ -112,7 +112,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviarEmailRecuperarSenha() {
-        System.out.println("enviarEmailRecuperarSenha_Null");
+        
         String email = null;
         String idUnico = null;
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
@@ -127,7 +127,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviarEmailRecuperarSenha2() {
-        System.out.println("enviarEmailRecuperarSenha_StringVazia");
+        
         String email = "";
         String idUnico = "";
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
@@ -141,7 +141,7 @@ public class EmailUtilTest {
      */
     @Ignore
     public void testEnviarEmailRecuperarSenha3() {
-        System.out.println("enviarEmailRecuperarSenha_EnvioEmail");
+        
         String email = "ideiahdev@gmail.com";
         String idUnico = "1";
         EmailUtil.enviarEmailRecuperarSenha(email, idUnico);
@@ -155,7 +155,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testMandarEmailAvaliacao() {
-        System.out.println("mandarEmailAvaliacao_Null");
+        
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setNome(null);
         empreendedor.setEmail(null);
@@ -172,7 +172,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testMandarEmailAvaliacao2() {
-        System.out.println("mandarEmailAvaliacao_StringVazia");
+        
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setNome("");
         empreendedor.setEmail("");
@@ -189,7 +189,7 @@ public class EmailUtilTest {
      */
     @Ignore
     public void testMandarEmailAvaliacao3() {
-        System.out.println("mandarEmailAvaliacao");
+        
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setNome("Dev Empreendedor");
         empreendedor.setEmail("ideiahdev@gmail.com");
@@ -205,7 +205,7 @@ public class EmailUtilTest {
      */
     @Ignore
     public void testMandarEmailAvaliacao4() {
-        System.out.println("mandarEmailAvaliacao");
+        
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setNome("Dev Empreendedor");
         empreendedor.setEmail("vitor@gerente.com");
@@ -218,7 +218,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviaEmailParaGerentes() {
-        System.out.println("enviaEmailParaGerentes");
+        
         String projetoNome = null;
         String statusProjeto = null;
         ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
@@ -230,7 +230,7 @@ public class EmailUtilTest {
      */
     @Test
     public void testEnviaEmailParaGerentes2() {
-        System.out.println("enviaEmailParaGerentes2");
+        
         String projetoNome = "";
         String statusProjeto = "";
         ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
@@ -242,7 +242,7 @@ public class EmailUtilTest {
      */
     @Ignore
     public void testEnviaEmailParaGerentes3() {
-        System.out.println("enviaEmailParaGerentes3");
+        
         String projetoNome = "Ideiah Dev Testes";
         String statusProjeto = "Aceito para Avaliação";
 

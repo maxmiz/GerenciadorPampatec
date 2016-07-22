@@ -46,7 +46,7 @@ public class ComparadorSubmissaoComentarioUtilTest {
      */
     @Test
     public void testCompare() {
-        System.out.println("compare");
+        
         Textocomentario o1 = new Textocomentario();
         Textocomentario o2 = new Textocomentario();
         o1.setDataSubmissao(null);
@@ -63,7 +63,7 @@ public class ComparadorSubmissaoComentarioUtilTest {
      */
     @Test
     public void testCompare2() {
-        System.out.println("compare");
+        
         Textocomentario o1 = new Textocomentario();
         Textocomentario o2 = new Textocomentario();
         

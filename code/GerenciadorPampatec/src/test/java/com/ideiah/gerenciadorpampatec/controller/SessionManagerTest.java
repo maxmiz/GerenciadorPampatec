@@ -59,7 +59,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetCreateSession() {
-        System.out.println("getCreateSession");
+        
         HttpSession expResult = null;
         assertNotSame(expResult, mockedSession);
     }
@@ -69,7 +69,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetSession() {
-        System.out.println("getSession");
+        
         HttpSession expResult = null;
         HttpSession result = SessionManager.getSession();
         assertNotSame(expResult, result);
@@ -80,7 +80,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetFacesContext() {
-        System.out.println("getFacesContext");
+        
         FacesContext expResult = null;
         FacesContext result = SessionManager.getFacesContext();
         assertEquals(expResult, result);
@@ -91,7 +91,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetAttribute() {
-        System.out.println("getAttribute");
+        
         String attribute = "";
         Object expResult = null;
         Object result = SessionManager.getAttribute(attribute);
@@ -103,7 +103,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetAttributeNames() {
-        System.out.println("getAttributeNames");
+        
         Enumeration<String> expResult = null;
         Enumeration<String> result = SessionManager.getAttributeNames();
         assertEquals(expResult, result);
@@ -114,7 +114,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testGetMaxInactiveInterval() {
-        System.out.println("getMaxInactiveInterval");
+        
         int expResult = 0;
         int result = SessionManager.getMaxInactiveInterval();
         assertEquals(expResult, result);
@@ -125,7 +125,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testRemoveAttribute() {
-        System.out.println("removeAttribute");
+        
         String string = "";
         SessionManager.removeAttribute(string);
     }
@@ -135,7 +135,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testRenovaSessaoUsuario() {
-        System.out.println("renovaSessaoUsuario");
+        
         SessionManager.renovaSessaoUsuario();
     }
 
@@ -144,7 +144,7 @@ public class SessionManagerTest {
      */
     @Test
     public void testFinalizaSessao() {
-        System.out.println("finalizaSessao");
+        
         SessionManager.finalizaSessao();
     }
 }

@@ -278,7 +278,7 @@ public class PlanofinanceiroTest {
      */
     @Test
     public void testGetCusto() {
-        System.out.println("getCusto");
+        
         Planofinanceiro instance = new Planofinanceiro();
         Set<Custo> expResult = null;
         instance.setCusto(expResult);
@@ -291,7 +291,7 @@ public class PlanofinanceiroTest {
      */
     @Test
     public void testSetCusto() {
-        System.out.println("getCusto");
+        
         Planofinanceiro instance = new Planofinanceiro();
         Set<Custo> expResult = null;
         instance.setCusto(expResult);

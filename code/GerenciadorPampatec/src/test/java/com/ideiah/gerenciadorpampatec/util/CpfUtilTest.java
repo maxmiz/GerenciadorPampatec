@@ -42,7 +42,7 @@ public class CpfUtilTest {
      */
     @Test
     public void testIsValidCPF() {
-        System.out.println("isValidCPF_false");
+        
         String cpf = "";
         boolean expResult = false;
         boolean result = CpfUtil.isValidCPF(cpf);
@@ -52,7 +52,7 @@ public class CpfUtilTest {
     
     @Test
     public void testIsValidCPF2() {
-        System.out.println("isValidCPF_true");
+        
         String cpf = "97198244505";
         boolean expResult = true;
         boolean result = CpfUtil.isValidCPF(cpf);
@@ -61,7 +61,7 @@ public class CpfUtilTest {
     
     @Test
     public void testIsValidCPF3() {
-        System.out.println("isValidCPF_false");
+        
         String cpf = "97192244505";
         boolean expResult = false;
         boolean result = CpfUtil.isValidCPF(cpf);
@@ -70,7 +70,7 @@ public class CpfUtilTest {
     
     @Test
     public void testIsValidCPF4() {
-        System.out.println("isValidCPF_false");
+        
         String cpf = null;
         boolean expResult = false;
         boolean result = CpfUtil.isValidCPF(cpf);
@@ -79,7 +79,7 @@ public class CpfUtilTest {
     
      @Test
     public void testIsValidCPF5() {
-        System.out.println("isValidCPF_false");
+        
         String cpf = "41238192389383283233";
         boolean expResult = false;
         boolean result = CpfUtil.isValidCPF(cpf);
@@ -92,7 +92,7 @@ public class CpfUtilTest {
         
         CpfUtil cpf2 = new CpfUtil();
         
-        System.out.println("isValidCPF_false");
+        
         String cpf = "11111111111";
         boolean expResult = false;
         boolean result = CpfUtil.isValidCPF(cpf);

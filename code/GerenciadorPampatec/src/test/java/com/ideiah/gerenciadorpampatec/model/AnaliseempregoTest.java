@@ -80,7 +80,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetIdAnaliseEmprego() {
-        System.out.println("getIdAnaliseEmprego");
         Analiseemprego instance = new Analiseemprego();
         int expResult = 0;
         int result = instance.getIdAnaliseEmprego();
@@ -92,7 +91,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetIdAnaliseEmprego() {
-        System.out.println("setIdAnaliseEmprego");
         int idAnaliseEmprego = 0;
         Analiseemprego instance = new Analiseemprego();
         instance.setIdAnaliseEmprego(idAnaliseEmprego);
@@ -103,7 +101,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetRelacoesClientes() {
-        System.out.println("getRelacoesClientes");
         Analiseemprego instance = new Analiseemprego();
         String expResult = "";
         instance.setRelacoesClientes(expResult);
@@ -116,7 +113,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetRelacoesClientes() {
-        System.out.println("setRelacoesClientes");
         String relacoesClientes = "";
         Analiseemprego instance = new Analiseemprego();
         instance.setRelacoesClientes(relacoesClientes);
@@ -127,7 +123,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetParceriasChaves() {
-        System.out.println("getParceriasChaves");
         Analiseemprego instance = new Analiseemprego();
         String expResult = "";
         instance.setParceriasChaves(expResult);
@@ -140,7 +135,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetParceriasChaves() {
-        System.out.println("setParceriasChaves");
         String parceriasChaves = "";
         Analiseemprego instance = new Analiseemprego();
         instance.setParceriasChaves(parceriasChaves);
@@ -151,7 +145,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetCanais() {
-        System.out.println("getCanais");
         Analiseemprego instance = new Analiseemprego();
         String expResult = "";
         instance.setCanais(expResult);
@@ -164,7 +157,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetCanais() {
-        System.out.println("setCanais");
         String expResult = "";
         Analiseemprego instance = new Analiseemprego();
         instance.setCanais(expResult);
@@ -175,7 +167,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetRecursosPrincipais() {
-        System.out.println("getRecursosPrincipais");
         Analiseemprego instance = new Analiseemprego();
         String expResult = "";
         instance.setRecursosPrincipais(expResult);
@@ -188,7 +179,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetRecursosPrincipais() {
-        System.out.println("setRecursosPrincipais");
         String expResult = "";
         Analiseemprego instance = new Analiseemprego();
         instance.setRecursosPrincipais(expResult);
@@ -199,7 +189,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetConcorrentes() {
-        System.out.println("getConcorrentes");
         Analiseemprego instance = new Analiseemprego();
         String expResult = "";
         instance.setConcorrentes(expResult);
@@ -212,7 +201,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetConcorrentes() {
-        System.out.println("setConcorrentes");
         String expResult = "";
         Analiseemprego instance = new Analiseemprego();
         instance.setConcorrentes(expResult);
@@ -223,7 +211,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testGetProjetos() {
-        System.out.println("getProjetos");
         Analiseemprego instance = new Analiseemprego();
         Set expResult = null;
         instance.setProjetos(expResult);
@@ -236,7 +223,6 @@ public class AnaliseempregoTest {
      */
     @Test
     public void testSetProjetos() {
-        System.out.println("setProjetos");
         Set expResult = null;
         Analiseemprego instance = new Analiseemprego();
         instance.setProjetos(expResult);

@@ -112,7 +112,7 @@ public class ProjetoTest {
      */
     @Test
     public void testFormatarDataEnvio() {
-        System.out.println("formatarDataEnvio");
+        
         Projeto instance = new Projeto();
         Date expResult = new Date();
         instance.setDataEnvio(new Date());
@@ -125,9 +125,9 @@ public class ProjetoTest {
      */
     @Test
     public void testFormatarDataEnvio2() {
-        System.out.println("formatarDataEnvio");
+        
         Projeto instance = new Projeto();
-        String expResult = "Plano não enviado";
+        String expResult = "Plano não enviado.";
         instance.setDataEnvio(null);
         String result = instance.formatarDataEnvio();
         assertEquals(expResult, result);
@@ -162,7 +162,7 @@ public class ProjetoTest {
      */
     @Test
     public void testMudarStatus() {
-        System.out.println("mudarStatus");
+        
         Integer status = null;
         Projeto instance = new Projeto();
         instance.mudarStatus(status);
@@ -173,7 +173,7 @@ public class ProjetoTest {
      */
     @Ignore
     public void testBuscarProjetoPorStatus() {
-        System.out.println("buscarProjetoPorStatus");
+        
         int status = 0;
         ArrayList<Projeto> expResult = null;
         ArrayList<Projeto> result = Projeto.buscarProjetoPorStatus(status);
@@ -185,7 +185,7 @@ public class ProjetoTest {
      */
     @Test
     public void testRetornaListaEmpreendedores() {
-        System.out.println("retornaListaEmpreendedores");
+        
         Projeto instance = new Projeto();
         Set empreendedors = new HashSet(0);
         Empreendedor e = new Empreendedor();
@@ -687,7 +687,7 @@ public class ProjetoTest {
      */
     @Test
     public void testGetEmpreendedores() {
-        System.out.println("setEmpreendedores");
+        
         Set<Empreendedor> empreendedores = new HashSet();
         Empreendedor empreendedor = new Empreendedor();
         empreendedores.add(empreendedor);
@@ -701,7 +701,7 @@ public class ProjetoTest {
      */
     @Test
     public void testSetEmpreendedores() {
-        System.out.println("setEmpreendedores");
+        
         Set<Empreendedor> empreendedores = new HashSet();
         Empreendedor empreendedor = new Empreendedor();
         empreendedores.add(empreendedor);

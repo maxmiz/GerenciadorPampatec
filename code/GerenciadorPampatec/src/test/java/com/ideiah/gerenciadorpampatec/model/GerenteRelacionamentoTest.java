@@ -46,7 +46,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testConstrutorGerenteRelacionamento() {
-        System.out.println("getIdgerente_relacionamento");
+        
         int idgerente_relacionamento = 0;
         String senha = "";
         String nome = "";
@@ -62,7 +62,7 @@ public class GerenteRelacionamentoTest {
      */
     @Ignore
     public void testGetGerenteDao() {
-        System.out.println("getGerenteDao");
+        
         GerenteDao expResult = null;
         GerenteDao result = GerenteRelacionamento.getGerenteDao();
         assertEquals(expResult, result);
@@ -74,7 +74,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetIdgerente_relacionamento() {
-        System.out.println("getIdgerente_relacionamento");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         int expResult = 0;
         instance.setIdgerente_relacionamento(expResult);
@@ -88,7 +88,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetIdgerente_relacionamento() {
-        System.out.println("setIdgerente_relacionamento");
+        
         int idgerente_relacionamento = 0;
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setIdgerente_relacionamento(idgerente_relacionamento);
@@ -99,7 +99,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetSenha() {
-        System.out.println("getSenha");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         String expResult = "";
         instance.setSenha(expResult);
@@ -112,7 +112,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetSenha() {
-        System.out.println("setSenha");
+        
         String senha = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setSenha(senha);
@@ -123,7 +123,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetNome() {
-        System.out.println("getNome");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         String expResult = "";
         instance.setNome(expResult);
@@ -136,7 +136,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetNome() {
-        System.out.println("setNome");
+        
         String nome = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setNome(nome);
@@ -147,7 +147,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetEmail() {
-        System.out.println("getEmail");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         String expResult = "";
         instance.setEmail(expResult);
@@ -160,7 +160,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetEmail() {
-        System.out.println("setEmail");
+        
         String email = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setEmail(email);
@@ -171,7 +171,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetCpf() {
-        System.out.println("getCpf");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         String expResult = "";
         instance.setCpf(expResult);
@@ -184,7 +184,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetCpf() {
-        System.out.println("setCpf");
+        
         String cpf = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setCpf(cpf);
@@ -195,7 +195,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testGetProjetos() {
-        System.out.println("getProjetos");
+        
         GerenteRelacionamento instance = new GerenteRelacionamento();
         Set<Notificacao> expResult = null;
         instance.setProjetos(expResult);
@@ -208,7 +208,7 @@ public class GerenteRelacionamentoTest {
      */
     @Test
     public void testSetProjetos() {
-        System.out.println("setProjetos");
+        
         Set<Notificacao> projetos = null;
         GerenteRelacionamento instance = new GerenteRelacionamento();
         instance.setProjetos(projetos);
@@ -219,7 +219,7 @@ public class GerenteRelacionamentoTest {
      */
     @Ignore
     public void testBuscarPorEmail() {
-        System.out.println("buscarPorEmail");
+        
         String user = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         GerenteRelacionamento expResult = null;
@@ -232,7 +232,7 @@ public class GerenteRelacionamentoTest {
      */
     @Ignore
     public void testBuscarPorCpf() {
-        System.out.println("buscarPorCpf");
+        
         String user = "";
         GerenteRelacionamento instance = new GerenteRelacionamento();
         GerenteRelacionamento expResult = null;

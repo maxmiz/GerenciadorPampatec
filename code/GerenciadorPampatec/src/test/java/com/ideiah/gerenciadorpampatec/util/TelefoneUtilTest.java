@@ -47,7 +47,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testConstrutorTelefoneUtil() {
-        System.out.println("testConstrutorTelefoneUtil");
+        
         TelefoneUtil result = new TelefoneUtil();
         assertNotNull(result);
     }
@@ -60,7 +60,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone() {
-        System.out.println("removeParentesesTelefone_Null");
+        
         String telefone = null;
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -75,7 +75,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone2() {
-        System.out.println("removeParentesesTelefone_StringVazia");
+        
         String telefone = "";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -91,7 +91,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone3() {
-        System.out.println("removeParentesesTelefone_EspacoTracoParenteses");
+        
         String telefone = "(55) 5555-5555";
         String expResult = "5555555555";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -107,7 +107,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone4() {
-        System.out.println("removeParentesesTelefone_EspacoParenteses");
+        
         String telefone = "(55) 55555555";
         String expResult = "5555555555";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -123,7 +123,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone5() {
-        System.out.println("removeParentesesTelefone_LetrasEspacoTracoParenteses");
+        
         String telefone = "(ABC) ABCD-EFGH";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);
@@ -139,7 +139,7 @@ public class TelefoneUtilTest {
      */
     @Test
     public void testRemoveParentesesTelefone6() {
-        System.out.println("removeParentesesTelefone_CaracteresEspeciais");
+        
         String telefone = "(:<<) }+_%-'!@#";
         String expResult = "";
         String result = TelefoneUtil.removeParentesesTelefone(telefone);

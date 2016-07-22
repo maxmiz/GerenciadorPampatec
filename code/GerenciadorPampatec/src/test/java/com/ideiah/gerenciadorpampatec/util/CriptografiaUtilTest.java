@@ -46,7 +46,7 @@ public class CriptografiaUtilTest {
      */
     @Test
     public void testConstrutorCriptografiaUtil() {
-        System.out.println("testConstrutorCriptografiaUtil");
+        
         CriptografiaUtil expResult = new CriptografiaUtil();
         assertNotNull(expResult);
 
@@ -59,7 +59,7 @@ public class CriptografiaUtilTest {
      */
     @Test
     public void testMd52() {
-        System.out.println("md5_StringVazia");
+        
         String senha = "";
         String expResult = "";
         String result = CriptografiaUtil.md5(senha);
@@ -73,7 +73,7 @@ public class CriptografiaUtilTest {
      */
     @Test
     public void testMd53() {
-        System.out.println("md5");
+        
         String senha = "123456";
         String expResult = "e10adc3949ba59abbe56e057f20f883e".toUpperCase();
         String result = CriptografiaUtil.md5(senha);
@@ -88,7 +88,7 @@ public class CriptografiaUtilTest {
      */
     @Test
     public void testMd54() {
-        System.out.println("md5_NotSame");
+        
         String senha = "123456";
         String expResult = "";
         String result = CriptografiaUtil.md5(senha);

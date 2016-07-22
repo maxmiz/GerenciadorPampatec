@@ -189,7 +189,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testConstrutorComentarioProjeto() {
-        System.out.println("testConstrutorComentarioProjeto");
         Integer idcomentario = Integer.MIN_VALUE;
         ComentarioProjeto instance = new ComentarioProjeto(idcomentario);
         assertNotNull(instance);
@@ -199,7 +198,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testConstrutorComentarioProjeto2() {
-        System.out.println("testConstrutorComentarioProjeto2");
         Integer idcomentario = Integer.MIN_VALUE;
         ComentarioProjeto instance = new ComentarioProjeto(idcomentario,
                 textoCanais, textoParticipacaoAcionaria, textoPotencialEmprego,
@@ -212,7 +210,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario1() {
-        System.out.println("testRetornarTextoComentarioVazio");
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
@@ -225,7 +222,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.SEGMENTO_CLIENTE, "Texto");
         String expResult = "Texto";
@@ -239,7 +235,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.SEGMENTO_CLIENTE, date);
@@ -254,7 +249,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.SEGMENTO_CLIENTE, date);
@@ -269,7 +263,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario5() {
-        System.out.println("testRetornarTextoComentarioGerente");
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -284,7 +277,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario6() {
-        System.out.println("testRetornarTextoComentarioNull");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
         textocomentario.setTexto(null);
@@ -299,7 +291,6 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentario7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
         textocomentario.setTexto(testeTextoGigante);
@@ -312,7 +303,6 @@ public class ComentarioProjetoTest {
      * teste se o texto do comentario Proposta valor é encontrado.
      */
     public void testRetornarTextoComentarioPropostaValor() {
-        System.out.println("testRetornarTextoComentarioVazio");
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
@@ -325,7 +315,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPropostaValor2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.PROPOSTA_VALOR, "Texto");
         String expResult = "Texto";
@@ -339,7 +328,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPropostavalor3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.PROPOSTA_VALOR, date);
@@ -354,7 +342,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPropostaValor4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.PROPOSTA_VALOR, date);
@@ -369,7 +356,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPropostavalor5() {
-        System.out.println("testRetornarTextoComentarioGerente");
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -384,7 +370,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPropostavalor6() {
-        System.out.println("testRetornarTextoComentarioNull");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PROPOSTA_VALOR);
         textocomentario.setTexto(null);
@@ -399,7 +384,6 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioPropostavalor7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PROPOSTA_VALOR);
         textocomentario.setTexto(testeTextoGigante);
@@ -409,7 +393,6 @@ public class ComentarioProjetoTest {
     }
 
     public void testRetornarTextoComentarioAtividadesChave1() {
-        System.out.println("testRetornarTextoComentarioVazio");
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
@@ -422,7 +405,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.ATIVIDADES_CHAVE, "Texto");
         String expResult = "Texto";
@@ -436,7 +418,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.ATIVIDADES_CHAVE, date);
@@ -451,7 +432,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.ATIVIDADES_CHAVE, date);
@@ -466,7 +446,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave5() {
-        System.out.println("testRetornarTextoComentarioGerente");
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -481,7 +460,6 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAtividadesChave6() {
-        System.out.println("testRetornarTextoComentarioNull");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
         textocomentario.setTexto(null);
@@ -496,7 +474,6 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoAtividadesChave7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
         textocomentario.setTexto(testeTextoGigante);
@@ -506,7 +483,6 @@ public class ComentarioProjetoTest {
     }
 
     public void testRetornarTextoComentarioRelacaoCliente1() {
-        System.out.println("testRetornarTextoComentarioVazio");
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
@@ -519,7 +495,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.RELACOES_CLIENTE, "Texto");
         String expResult = "Texto";
@@ -533,7 +509,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.RELACOES_CLIENTE, date);
@@ -548,7 +524,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.RELACOES_CLIENTE, date);
@@ -563,7 +539,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -578,7 +554,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRelacaoCliente6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.RELACOES_CLIENTE);
         textocomentario.setTexto(null);
@@ -593,7 +569,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoRelacaoCliente7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.RELACOES_CLIENTE);
         textocomentario.setTexto(testeTextoGigante);
@@ -603,7 +579,7 @@ public class ComentarioProjetoTest {
     }
 
     public void testRetornarTextoComentarioParceriasChave1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
@@ -616,7 +592,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.PARCERIAS_CHAVE, "Texto");
         String expResult = "Texto";
@@ -630,7 +606,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.PARCERIAS_CHAVE, date);
@@ -645,7 +621,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.PARCERIAS_CHAVE, date);
@@ -660,7 +636,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParceiasChave5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -675,7 +651,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParceriasChave6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARCERIAS_CHAVE);
         textocomentario.setTexto(null);
@@ -690,7 +666,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioParceriasChave7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARCERIAS_CHAVE);
         textocomentario.setTexto(testeTextoGigante);
@@ -705,7 +681,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCanais1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.CANAIS);
@@ -718,7 +694,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCanais2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.CANAIS, "Texto");
         String expResult = "Texto";
@@ -732,7 +708,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCanais3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.CANAIS, date);
@@ -747,7 +723,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCanais4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.CANAIS, date);
@@ -762,7 +738,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCanais5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -777,7 +753,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCanais6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CANAIS);
         textocomentario.setTexto(null);
@@ -792,7 +768,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCanais7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
         textocomentario.setTexto(testeTextoGigante);
@@ -807,7 +783,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioRecursosPrincipais1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
@@ -820,7 +796,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS, "Texto");
         String expResult = "Texto";
@@ -834,7 +810,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.RECURSOS_PRINCIPAIS, date);
@@ -849,7 +825,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.RECURSOS_PRINCIPAIS, date);
@@ -864,7 +840,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -879,7 +855,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioRecursosPrincipais6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
         textocomentario.setTexto(null);
@@ -894,7 +870,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioRecusosPrincipais7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
         textocomentario.setTexto(testeTextoGigante);
@@ -909,7 +885,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioConcorrentes1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.CONCORRENTES);
@@ -922,7 +898,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.CONCORRENTES, "Texto");
         String expResult = "Texto";
@@ -936,7 +912,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.CONCORRENTES, date);
@@ -951,7 +927,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.CONCORRENTES, date);
@@ -966,7 +942,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -981,7 +957,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioConcorrentes6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CONCORRENTES);
         textocomentario.setTexto(null);
@@ -996,7 +972,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioConcorrentes7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CONCORRENTES);
         textocomentario.setTexto(testeTextoGigante);
@@ -1011,7 +987,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioEstagioEvolucao1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
@@ -1024,7 +1000,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO, "Texto");
         String expResult = "Texto";
@@ -1038,7 +1014,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.ESTAGIO_EVOLUCAO, date);
@@ -1053,7 +1029,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.ESTAGIO_EVOLUCAO, date);
@@ -1068,7 +1044,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1083,7 +1059,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstagioEvolucao6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
         textocomentario.setTexto(null);
@@ -1098,7 +1074,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioEstagioEvolucao7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
         textocomentario.setTexto(testeTextoGigante);
@@ -1113,7 +1089,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioTecnologiaProcessos1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
@@ -1126,7 +1102,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS, "Texto");
         String expResult = "Texto";
@@ -1140,7 +1116,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.TECNOLOGIA_PROCESSOS, date);
@@ -1155,7 +1131,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.TECNOLOGIA_PROCESSOS, date);
@@ -1170,7 +1146,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1185,7 +1161,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioTecnologiaProcessos6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
         textocomentario.setTexto(null);
@@ -1200,7 +1176,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioTecnologiaProcessos7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
         textocomentario.setTexto(testeTextoGigante);
@@ -1215,7 +1191,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioPotencialInovacao1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
@@ -1228,7 +1204,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA, "Texto");
         String expResult = "Texto";
@@ -1242,7 +1218,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA, date);
@@ -1257,7 +1233,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA, date);
@@ -1272,7 +1248,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1287,7 +1263,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialInovacao6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
         textocomentario.setTexto(null);
@@ -1302,7 +1278,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioPotencialInovacao7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
         textocomentario.setTexto(testeTextoGigante);
@@ -1317,7 +1293,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioAplicacoes1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.APLICACOES);
@@ -1330,7 +1306,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.APLICACOES, "Texto");
         String expResult = "Texto";
@@ -1344,7 +1320,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.APLICACOES, date);
@@ -1359,7 +1335,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.APLICACOES, date);
@@ -1374,7 +1350,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1389,7 +1365,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioAplicacoes6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.APLICACOES);
         textocomentario.setTexto(null);
@@ -1404,7 +1380,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioAplicacoes7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.APLICACOES);
         textocomentario.setTexto(testeTextoGigante);
@@ -1419,7 +1395,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioDificuldades1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
@@ -1432,7 +1408,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioDificuldades2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS, "Texto");
         String expResult = "Texto";
@@ -1446,7 +1422,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioDificuldades3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.DIFICULDADES_ESPERADAS, date);
@@ -1461,7 +1437,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioDificuldades4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.DIFICULDADES_ESPERADAS, date);
@@ -1476,7 +1452,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioDificuldades5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1491,7 +1467,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioDificuldades6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
         textocomentario.setTexto(null);
@@ -1506,7 +1482,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioDificuldades7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
         textocomentario.setTexto(testeTextoGigante);
@@ -1521,7 +1497,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
@@ -1534,7 +1510,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, "Texto");
         String expResult = "Texto";
@@ -1548,7 +1524,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, date);
@@ -1563,7 +1539,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE, date);
@@ -1578,7 +1554,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1593,7 +1569,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
         textocomentario.setTexto(null);
@@ -1608,7 +1584,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInteracaoEmpresaUniversidade7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
         textocomentario.setTexto(testeTextoGigante);
@@ -1623,7 +1599,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInteracaoEmpresa1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
@@ -1636,7 +1612,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO, "Texto");
         String expResult = "Texto";
@@ -1650,7 +1626,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO, date);
@@ -1665,7 +1641,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO, date);
@@ -1680,7 +1656,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1695,7 +1671,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInteracaoEmpresa6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
         textocomentario.setTexto(null);
@@ -1710,7 +1686,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInteracaoEmpresa7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
         textocomentario.setTexto(testeTextoGigante);
@@ -1726,7 +1702,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInfraEstrutura1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
@@ -1739,7 +1715,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.INFRAESTRUTURA, "Texto");
         String expResult = "Texto";
@@ -1753,7 +1729,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.INFRAESTRUTURA, date);
@@ -1768,7 +1744,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.INFRAESTRUTURA, date);
@@ -1783,7 +1759,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1798,7 +1774,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInfraEstrutura6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
         textocomentario.setTexto(null);
@@ -1813,7 +1789,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInfraEstrutura7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INFRAESTRUTURA);
         textocomentario.setTexto(testeTextoGigante);
@@ -1828,7 +1804,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioParticipacaoAcionaria1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
@@ -1841,7 +1817,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA, "Texto");
         String expResult = "Texto";
@@ -1855,7 +1831,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.PARTICIPACAO_ACIONARIA, date);
@@ -1870,7 +1846,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.PARTICIPACAO_ACIONARIA, date);
@@ -1885,7 +1861,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -1900,7 +1876,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioParticipacaoAcionaria6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
         textocomentario.setTexto(null);
@@ -1915,7 +1891,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioParticipacaoAcionaria7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
         textocomentario.setTexto(testeTextoGigante);
@@ -1930,7 +1906,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioPotencialEmprego1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
@@ -1943,7 +1919,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.POTENCIAL_EMPREGO, "Texto");
         String expResult = "Texto";
@@ -1957,7 +1933,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.POTENCIAL_EMPREGO, date);
@@ -1972,7 +1948,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.POTENCIAL_EMPREGO, date);
@@ -1987,7 +1963,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2002,7 +1978,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioPotencialEmprego6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
         textocomentario.setTexto(null);
@@ -2017,7 +1993,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioPotencialEmprego7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
         textocomentario.setTexto(testeTextoGigante);
@@ -2032,7 +2008,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioFontesReceita1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.FONTES_RECEITA);
@@ -2045,7 +2021,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.FONTES_RECEITA, "Texto");
         String expResult = "Texto";
@@ -2059,7 +2035,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.FONTES_RECEITA, date);
@@ -2074,7 +2050,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.FONTES_RECEITA, date);
@@ -2089,7 +2065,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2104,7 +2080,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioFontesReceita6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
         textocomentario.setTexto(null);
@@ -2119,7 +2095,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioFontesReceita7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.FONTES_RECEITA);
         textocomentario.setTexto(testeTextoGigante);
@@ -2134,7 +2110,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioEstruturaCustos1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
@@ -2147,7 +2123,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.ESTRUTURA_CUSTO, "Texto");
         String expResult = "Texto";
@@ -2161,7 +2137,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.ESTRUTURA_CUSTO, date);
@@ -2176,7 +2152,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.ESTRUTURA_CUSTO, date);
@@ -2191,7 +2167,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2206,7 +2182,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioEstruturaCustos6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
         textocomentario.setTexto(null);
@@ -2221,7 +2197,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioEstruturaCustos7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
         textocomentario.setTexto(testeTextoGigante);
@@ -2236,7 +2212,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInvestimentoInicial1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
@@ -2249,7 +2225,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.INVESTIMENTO_INICIAL, "Texto");
         String expResult = "Texto";
@@ -2263,7 +2239,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.INVESTIMENTO_INICIAL, date);
@@ -2278,7 +2254,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.INVESTIMENTO_INICIAL, date);
@@ -2293,7 +2269,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2308,7 +2284,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioInvestimentoInicial6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
         textocomentario.setTexto(null);
@@ -2323,7 +2299,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioInvestimentoInicial7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
         textocomentario.setTexto(testeTextoGigante);
@@ -2338,7 +2314,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCustoFixo1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
@@ -2351,7 +2327,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.CUSTOS_FIXOS, "Texto");
         String expResult = "Texto";
@@ -2365,7 +2341,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.CUSTOS_FIXOS, date);
@@ -2380,7 +2356,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.CUSTOS_FIXOS, date);
@@ -2395,7 +2371,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2410,7 +2386,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoFixo6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
         textocomentario.setTexto(null);
@@ -2425,7 +2401,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCustoFixo7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_FIXOS);
         textocomentario.setTexto(testeTextoGigante);
@@ -2440,7 +2416,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCustoVariavel1() {
-        System.out.println("testRetornarTextoComentarioVazio");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
@@ -2453,7 +2429,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel2() {
-        System.out.println("testRetornarTextoComentarioPreechido");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextoComentario(Textocomentario.CUSTOS_VARIAVEIS, "Texto");
         String expResult = "Texto";
@@ -2467,7 +2443,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel3() {
-        System.out.println("testRetornarTextoComentarioDataAlteracaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataAlteracao(Textocomentario.CUSTOS_VARIAVEIS, date);
@@ -2482,7 +2458,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel4() {
-        System.out.println("testRetornarTextoComentarioDataSubmissaoPreechida");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Date date = new Date();
         instance.setTextoComentarioDataSubmissao(Textocomentario.CUSTOS_VARIAVEIS, date);
@@ -2497,7 +2473,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel5() {
-        System.out.println("testRetornarTextoComentarioGerente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         gerente.setIdgerente_relacionamento(2);
@@ -2512,7 +2488,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentarioCustoVariavel6() {
-        System.out.println("testRetornarTextoComentarioNull");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
         textocomentario.setTexto(null);
@@ -2527,7 +2503,7 @@ public class ComentarioProjetoTest {
      * </p>
      */
     public void testRetornarTextoComentarioCustoVariavel7() {
-        System.out.println("testComentarioGiganteSegmentaoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textocomentario = instance.retornarTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
         textocomentario.setTexto(testeTextoGigante);
@@ -2541,7 +2517,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testPopulandoVariaveisComentario() {
-        System.out.println("populandoVariaveisComentario");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.populandoVariaveisComentario();
     }
@@ -2551,7 +2527,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testTodasConsideracoes() {
-        System.out.println("todasConsideracoes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setConsideracoes("");
         instance.setConsideracoesPersonalizadas("");
@@ -2565,7 +2541,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testVerificaCampos() {
-        System.out.println("verificaCampos");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         int expResult = 0;
         int result = instance.verificaCampos();
@@ -2577,7 +2553,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetTextocomentarios() {
-        System.out.println("getTextocomentarios");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Set<Textocomentario> expResult = null;
         instance.setTextocomentarios(expResult);
@@ -2590,7 +2566,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTextocomentarios() {
-        System.out.println("setTextocomentarios");
+        
         Set<Textocomentario> textocomentarios = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTextocomentarios(textocomentarios);
@@ -2601,7 +2577,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornaTextoComentario() {
-        System.out.println("retornaTextoComentario");
+        
         int tipo = 0;
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = null;
@@ -2614,7 +2590,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTextoComentario() {
-        System.out.println("retornarTextoComentario");
+        
         int tipo = 0;
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
@@ -2627,7 +2603,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarSegmentosClientes() {
-        System.out.println("retornarSegmentosClientes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarSegmentosClientes();
@@ -2639,7 +2615,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarPropostaValor() {
-        System.out.println("retornarPropostaValor");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarPropostaValor();
@@ -2651,7 +2627,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarAtividadesChave() {
-        System.out.println("retornarAtividadesChave");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarAtividadesChave();
@@ -2663,7 +2639,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarRelacoesClientes() {
-        System.out.println("retornarRelacoesClientes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarRelacoesClientes();
@@ -2675,7 +2651,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarParceriasChave() {
-        System.out.println("retornarParceriasChave");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarParceriasChave();
@@ -2687,7 +2663,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarCanais() {
-        System.out.println("retornarCanais");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarCanais();
@@ -2699,7 +2675,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarRecursosPrincipais() {
-        System.out.println("retornarRecursosPrincipais");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarRecursosPrincipais();
@@ -2711,7 +2687,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarConcorrentes() {
-        System.out.println("retornarConcorrentes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarConcorrentes();
@@ -2723,7 +2699,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarEstagioEvolucao() {
-        System.out.println("retornarEstagioEvolucao");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarEstagioEvolucao();
@@ -2735,7 +2711,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarTecnologiaProcesso() {
-        System.out.println("retornarTecnologiaProcesso");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarTecnologiaProcesso();
@@ -2748,7 +2724,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarPotencialInovacaoTecnologia() {
-        System.out.println("retornarPotencialInovacaoTecnologia");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarPotencialInovacaoTecnologia();
@@ -2760,7 +2736,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarAplicacoes() {
-        System.out.println("retornarAplicacoes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarAplicacoes();
@@ -2772,7 +2748,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarDifilcudadesEsperadas() {
-        System.out.println("retornarDifilcudadesEsperadas");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarDifilcudadesEsperadas();
@@ -2785,7 +2761,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarInteracaoEmpresaUniversidade() {
-        System.out.println("retornarInteracaoEmpresaUniversidade");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarInteracaoEmpresaUniversidade();
@@ -2798,7 +2774,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarInteracaoEmpresaComunidadeGoverno() {
-        System.out.println("retornarInteracaoEmpresaComunidadeGoverno");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarInteracaoEmpresaComunidadeGoverno();
@@ -2810,7 +2786,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarInfraEstrutura() {
-        System.out.println("retornarInfraEstrutura");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarInfraEstrutura();
@@ -2822,7 +2798,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarParticipacaoAcionaria() {
-        System.out.println("retornarParticipacaoAcionaria");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarParticipacaoAcionaria();
@@ -2834,7 +2810,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarPotencialEmprego() {
-        System.out.println("retornarPotencialEmprego");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarPotencialEmprego();
@@ -2846,7 +2822,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarFontesReceitas() {
-        System.out.println("retornarFontesReceitas");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarFontesReceitas();
@@ -2858,7 +2834,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarEstruturaCustos() {
-        System.out.println("retornarEstruturaCustos");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarEstruturaCustos();
@@ -2870,7 +2846,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarInvestimentoInicial() {
-        System.out.println("retornarInvestimentoInicial");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarInvestimentoInicial();
@@ -2882,7 +2858,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarCustosFixos() {
-        System.out.println("retornarCustosFixos");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarCustosFixos();
@@ -2894,7 +2870,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testRetornarCustosVariaveis() {
-        System.out.println("retornarCustosVariaveis");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         String result = instance.retornarCustosVariaveis();
@@ -2907,7 +2883,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testAtualizaTodosOsTextoComentario() {
-        System.out.println("atualizaTodosOsTextoComentario");
+        
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textoComent = new Textocomentario();
@@ -2944,7 +2920,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testAtualizarTextoComentario() {
-        System.out.println("atualizarTextoComentario");
+        
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario textoComent = new Textocomentario();
@@ -2981,7 +2957,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTextoComentario_int_String() {
-        System.out.println("setTextoComentario");
+        
         int tipo = 0;
         String texto = "";
         ComentarioProjeto instance = new ComentarioProjeto();
@@ -2993,7 +2969,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTextoComentario_int_GerenteRelacionamento() {
-        System.out.println("setTextoComentario");
+        
         int tipo = 0;
         GerenteRelacionamento gerenteRelacionamento = null;
         ComentarioProjeto instance = new ComentarioProjeto();
@@ -3006,7 +2982,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTextoComentarioDataAlteracao() {
-        System.out.println("setTextoComentarioDataAlteracao");
+        
         int tipo = 0;
         Date dataAlteracao = null;
         ComentarioProjeto instance = new ComentarioProjeto();
@@ -3019,7 +2995,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTextoComentarioDataSubmissao() {
-        System.out.println("setTextoComentarioDataSubmissao");
+        
         int tipo = 0;
         Date dataSubmissao = null;
         ComentarioProjeto instance = new ComentarioProjeto();
@@ -3031,7 +3007,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetIdcomentario() {
-        System.out.println("getIdcomentario");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Integer expResult = null;
         instance.setIdcomentario(expResult);
@@ -3044,7 +3020,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetIdcomentario() {
-        System.out.println("setIdcomentario");
+        
         Integer idcomentario = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setIdcomentario(idcomentario);
@@ -3055,7 +3031,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetNome() {
-        System.out.println("getNome");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         instance.setNome(expResult);
@@ -3068,7 +3044,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetNome() {
-        System.out.println("setNome");
+        
         String nome = "";
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setNome(nome);
@@ -3079,7 +3055,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetParticipacaoacionaria() {
-        System.out.println("getParticipacaoacionaria");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         instance.setParticipacaoacionaria(expResult);
@@ -3092,7 +3068,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetParticipacaoacionaria() {
-        System.out.println("setParticipacaoacionaria");
+        
         String participacaoacionaria = "";
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setParticipacaoacionaria(participacaoacionaria);
@@ -3103,7 +3079,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetPotencialemprego() {
-        System.out.println("getPotencialemprego");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         instance.setPotencialemprego(expResult);
@@ -3116,7 +3092,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetPotencialemprego() {
-        System.out.println("setPotencialemprego");
+        
         String potencialemprego = "";
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setPotencialemprego(potencialemprego);
@@ -3127,7 +3103,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetConsideracoes() {
-        System.out.println("getConsideracoes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         instance.setConsideracoes(expResult);
@@ -3140,7 +3116,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetConsideracoes() {
-        System.out.println("setConsideracoes");
+        
         String consideracoes = "";
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setConsideracoes(consideracoes);
@@ -3151,7 +3127,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetProjeto() {
-        System.out.println("getProjeto");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Projeto expResult = null;
         instance.setProjeto(expResult);
@@ -3164,7 +3140,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetProjeto() {
-        System.out.println("setProjeto");
+        
         Projeto projeto = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setProjeto(projeto);
@@ -3175,7 +3151,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetStatus() {
-        System.out.println("getStatus");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Integer expResult = null;
         instance.setStatus(expResult);
@@ -3188,7 +3164,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetStatus2() {
-        System.out.println("getStatus2");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Integer expResult = 1; // Em andamento
         instance.setStatus(expResult);
@@ -3201,7 +3177,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetStatus3() {
-        System.out.println("getStatus3");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Integer expResult = 2; // Finalizado
         instance.setStatus(expResult);
@@ -3214,7 +3190,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetStatus() {
-        System.out.println("setStatus");
+        
         Integer status = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setStatus(status);
@@ -3225,7 +3201,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetStatusString() {
-        System.out.println("getStatusString");
+        
         int status = 0;
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
@@ -3240,7 +3216,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetConsideracoesPersonalizadas() {
-        System.out.println("getConsideracoesPersonalizadas");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         String expResult = "";
         instance.setConsideracoesPersonalizadas(expResult);
@@ -3254,7 +3230,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetConsideracoesPersonalizadas() {
-        System.out.println("setConsideracoesPersonalizadas");
+        
         String consideracoesPersonalizadas = "";
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setConsideracoesPersonalizadas(consideracoesPersonalizadas);
@@ -3265,7 +3241,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetSegmentosClientes() {
-        System.out.println("getSegmentosClientes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = new Textocomentario();
         instance.setSegmentosClientes(expResult);
@@ -3278,7 +3254,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetSegmentosClientes() {
-        System.out.println("setSegmentosClientes");
+        
         Textocomentario segmentosClientes = new Textocomentario();
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setSegmentosClientes(segmentosClientes);
@@ -3289,7 +3265,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetPropostaValor() {
-        System.out.println("getPropostaValor");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setPropostaValor(expResult);
@@ -3302,7 +3278,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetPropostaValor() {
-        System.out.println("setPropostaValor");
+        
         Textocomentario propostaValor = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setPropostaValor(propostaValor);
@@ -3313,7 +3289,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetAtividadeChave() {
-        System.out.println("getAtividadeChave");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setAtividadeChave(expResult);
@@ -3326,7 +3302,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetAtividadeChave() {
-        System.out.println("setAtividadeChave");
+        
         Textocomentario atividadeChave = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setAtividadeChave(atividadeChave);
@@ -3337,7 +3313,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetRelacionamentoCliente() {
-        System.out.println("getRelacionamentoCliente");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setRelacionamentoCliente(expResult);
@@ -3350,7 +3326,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetRelacionamentoCliente() {
-        System.out.println("setRelacionamentoCliente");
+        
         Textocomentario relacionamentoCliente = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setRelacionamentoCliente(relacionamentoCliente);
@@ -3361,7 +3337,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetParceriasChave() {
-        System.out.println("getParceriasChave");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setParceriasChave(expResult);
@@ -3374,7 +3350,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetParceriasChave() {
-        System.out.println("setParceriasChave");
+        
         Textocomentario parceriasChave = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setParceriasChave(parceriasChave);
@@ -3385,7 +3361,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetCanais() {
-        System.out.println("getCanais");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setCanais(expResult);
@@ -3398,7 +3374,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetCanais() {
-        System.out.println("setCanais");
+        
         Textocomentario canais = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setCanais(canais);
@@ -3409,7 +3385,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetRecursosPrincipais() {
-        System.out.println("getRecursosPrincipais");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setRecursosPrincipais(expResult);
@@ -3422,7 +3398,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetRecursosPrincipais() {
-        System.out.println("setRecursosPrincipais");
+        
         Textocomentario recursosPrincipais = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setRecursosPrincipais(recursosPrincipais);
@@ -3433,7 +3409,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetConcorrentes() {
-        System.out.println("getConcorrentes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         Textocomentario result = instance.getConcorrentes();
@@ -3445,7 +3421,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetConcorrentes() {
-        System.out.println("setConcorrentes");
+        
         Textocomentario concorrentes = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setConcorrentes(concorrentes);
@@ -3456,7 +3432,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetEstagioEvolucao() {
-        System.out.println("getEstagioEvolucao");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setEstagioEvolucao(expResult);
@@ -3469,7 +3445,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetEstagioEvolucao() {
-        System.out.println("setEstagioEvolucao");
+        
         Textocomentario estagioEvolucao = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setEstagioEvolucao(estagioEvolucao);
@@ -3480,7 +3456,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetTecnologiaProcessos() {
-        System.out.println("getTecnologiaProcessos");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setTecnologiaProcessos(expResult);
@@ -3493,7 +3469,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetTecnologiaProcessos() {
-        System.out.println("setTecnologiaProcessos");
+        
         Textocomentario tecnologiaProcessos = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setTecnologiaProcessos(tecnologiaProcessos);
@@ -3505,7 +3481,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetPotencialInovacaoTecnologica() {
-        System.out.println("getPotencialInovacaoTecnologica");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setPotencialInovacaoTecnologica(expResult);
@@ -3519,7 +3495,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetPotencialInovacaoTecnologica() {
-        System.out.println("setPotencialInovacaoTecnologica");
+        
         Textocomentario potencialInovacaoTecnologica = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setPotencialInovacaoTecnologica(potencialInovacaoTecnologica);
@@ -3530,7 +3506,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetAplicacoes() {
-        System.out.println("getAplicacoes");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setAplicacoes(expResult);
@@ -3543,7 +3519,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetAplicacoes() {
-        System.out.println("setAplicacoes");
+        
         Textocomentario aplicacoes = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setAplicacoes(aplicacoes);
@@ -3554,7 +3530,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetDificuldadesEsperadas() {
-        System.out.println("getDificuldadesEsperadas");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setDificuldadesEsperadas(expResult);
@@ -3567,7 +3543,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetDificuldadesEsperadas() {
-        System.out.println("setDificuldadesEsperadas");
+        
         Textocomentario dificuldadesEsperadas = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setDificuldadesEsperadas(dificuldadesEsperadas);
@@ -3579,7 +3555,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetInteracaoEmpresaUniversidade() {
-        System.out.println("getInteracaoEmpresaUniversidade");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setInteracaoEmpresaUniversidade(expResult);
@@ -3593,7 +3569,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetInteracaoEmpresaUniversidade() {
-        System.out.println("setInteracaoEmpresaUniversidade");
+        
         Textocomentario interacaoEmpresaUniversidade = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setInteracaoEmpresaUniversidade(interacaoEmpresaUniversidade);
@@ -3605,7 +3581,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetInteracaoEmpresaComunidadeGoverno() {
-        System.out.println("getInteracaoEmpresaComunidadeGoverno");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setInteracaoEmpresaComunidadeGoverno(expResult);
@@ -3619,7 +3595,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetInteracaoEmpresaComunidadeGoverno() {
-        System.out.println("setInteracaoEmpresaComunidadeGoverno");
+        
         Textocomentario interacaoEmpresaComunidadeGoverno = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setInteracaoEmpresaComunidadeGoverno(interacaoEmpresaComunidadeGoverno);
@@ -3630,7 +3606,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetInfraestrutura() {
-        System.out.println("getInfraestrutura");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setInfraestrutura(expResult);
@@ -3643,7 +3619,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetInfraestrutura() {
-        System.out.println("setInfraestrutura");
+        
         Textocomentario infraestrutura = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setInfraestrutura(infraestrutura);
@@ -3654,7 +3630,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetParticipacaoAcionaria() {
-        System.out.println("getParticipacaoAcionaria");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setParticipacaoAcionaria(expResult);
@@ -3667,7 +3643,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetParticipacaoAcionaria() {
-        System.out.println("setParticipacaoAcionaria");
+        
         Textocomentario participacaoAcionaria = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setParticipacaoAcionaria(participacaoAcionaria);
@@ -3678,7 +3654,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetPotencialEmprego() {
-        System.out.println("getPotencialEmprego");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setPotencialEmprego(expResult);
@@ -3691,7 +3667,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetPotencialEmprego() {
-        System.out.println("setPotencialEmprego");
+        
         Textocomentario potencialEmprego = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setPotencialEmprego(potencialEmprego);
@@ -3702,7 +3678,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetFontesReceita() {
-        System.out.println("getFontesReceita");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setFontesReceita(expResult);
@@ -3715,7 +3691,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetFontesReceita() {
-        System.out.println("setFontesReceita");
+        
         Textocomentario fontesReceita = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setFontesReceita(fontesReceita);
@@ -3726,7 +3702,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetEstruturaCusto() {
-        System.out.println("getEstruturaCusto");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setEstruturaCusto(expResult);
@@ -3739,7 +3715,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetEstruturaCusto() {
-        System.out.println("setEstruturaCusto");
+        
         Textocomentario estruturaCusto = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setEstruturaCusto(estruturaCusto);
@@ -3750,7 +3726,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetInvestimentoInicial() {
-        System.out.println("getInvestimentoInicial");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setInvestimentoInicial(expResult);
@@ -3763,7 +3739,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetInvestimentoInicial() {
-        System.out.println("setInvestimentoInicial");
+        
         Textocomentario investimentoInicial = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setInvestimentoInicial(investimentoInicial);
@@ -3774,7 +3750,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetCustoFixo() {
-        System.out.println("getCustoFixo");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setCustoFixo(expResult);
@@ -3787,7 +3763,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetCustoFixo() {
-        System.out.println("setCustoFixo");
+        
         Textocomentario custoFixo = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setCustoFixo(custoFixo);
@@ -3798,7 +3774,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testGetCustoVariavel() {
-        System.out.println("getCustoVariavel");
+        
         ComentarioProjeto instance = new ComentarioProjeto();
         Textocomentario expResult = null;
         instance.setCustoVariavel(expResult);
@@ -3811,7 +3787,7 @@ public class ComentarioProjetoTest {
      */
     @Test
     public void testSetCustoVariavel() {
-        System.out.println("setCustoVariavel");
+        
         Textocomentario custoVariavel = null;
         ComentarioProjeto instance = new ComentarioProjeto();
         instance.setCustoVariavel(custoVariavel);

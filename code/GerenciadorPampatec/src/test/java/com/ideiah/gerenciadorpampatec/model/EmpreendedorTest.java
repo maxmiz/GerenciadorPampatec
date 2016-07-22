@@ -49,7 +49,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testConstrutorEmpreededor() {
-        System.out.println("testConstrutorEmpreededor");
+        
         String nome = "";
         String cpf = "";
         String formacao = "";
@@ -70,7 +70,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testConstrutorEmpreededor2() {
-        System.out.println("testConstrutorEmpreededor2");
+        
         String nome = "";
         String cpf = "";
         String formacao = "";
@@ -90,7 +90,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testConstrutorEmpreededor3() {
-        System.out.println("testConstrutorEmpreededor3");
+        
         String nome = "";
         String cpf = "";
         String formacao = "";
@@ -112,7 +112,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testGetEmpreededorDao() {
-        System.out.println("getEmpreededorDao");
+        
         EmpreendedorDao result = Empreendedor.getEmpreededorDao();
         assertNotNull(result);
 
@@ -123,7 +123,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetIdUnico() {
-        System.out.println("setIdUnico");
+        
         String idUnico = "";
         Empreendedor instance = new Empreendedor();
         instance.setIdUnico(idUnico);
@@ -134,7 +134,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetIdUnico() {
-        System.out.println("getIdUnico");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setIdUnico(expResult);
@@ -147,7 +147,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testGetProjetoDao() {
-        System.out.println("getProjetoDao");
+        
         ProjetoDao result = Empreendedor.getProjetoDao();
         assertNotNull(result);
     }
@@ -157,7 +157,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testRetornaStatus() {
-        System.out.println("retornaStatus");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "Cadastro Incompleto";
         String result = instance.retornaStatus();
@@ -169,7 +169,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testRetornaStatus2() {
-        System.out.println("retornaStatus2");
+        
         Empreendedor instance = new Empreendedor();
         instance.setCpf("000.000.000-00");
         String expResult = "Cadastro Completo";
@@ -182,7 +182,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testRetornaTipoEmpreendedor() {
-        System.out.println("retornaTipoEmpreendedor");
+        
         Empreendedor empreendedorCorrespondente = new Empreendedor();
         Empreendedor instance = new Empreendedor();
         String expResult = "Empreendedor Correspondente";
@@ -195,7 +195,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testRetornaTipoEmpreendedor2() {
-        System.out.println("retornaTipoEmpreendedor2");
+        
         Empreendedor empreendedorCorrespondente = new Empreendedor();
         empreendedorCorrespondente.setIdUsuario(10);
         Empreendedor instance = new Empreendedor();
@@ -210,7 +210,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testVerificaTipoEmpreendedor() {
-        System.out.println("verificaTipoEmpreendedor");
+        
         Empreendedor empreendedorCorrespondente = new Empreendedor();
         String idUnico = "1003";
         empreendedorCorrespondente.setIdUnico(idUnico);
@@ -225,7 +225,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetFormacao() {
-        System.out.println("getFormacao");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setFormacao(expResult);
@@ -238,7 +238,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetFormacao() {
-        System.out.println("setFormacao");
+        
         String formacao = "";
         Empreendedor instance = new Empreendedor();
         instance.setFormacao(formacao);
@@ -249,7 +249,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetExperiencia() {
-        System.out.println("getExperiencia");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setExperiencia(expResult);
@@ -262,7 +262,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetExperiencia() {
-        System.out.println("setExperiencia");
+        
         String experiencia = "";
         Empreendedor instance = new Empreendedor();
         instance.setExperiencia(experiencia);
@@ -273,7 +273,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetProjetos() {
-        System.out.println("getProjetos");
+        
         Empreendedor instance = new Empreendedor();
         Set expResult = null;
         instance.setProjetos(expResult);
@@ -286,7 +286,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testSetProjetos() {
-        System.out.println("setProjetos");
+        
         Set projetos = null;
         Empreendedor instance = new Empreendedor();
         instance.setProjetos(projetos);
@@ -297,7 +297,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testRetornarEmpreendedores() {
-        System.out.println("retornarEmpreendedores");
+        
         List<Empreendedor> expResult = null;
         List<Empreendedor> result = Empreendedor.retornarEmpreendedores();
         assertEquals(expResult, result);
@@ -308,7 +308,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testEnviarProjeto() {
-        System.out.println("enviarProjeto");
+        
         Projeto projeto = null;
         Empreendedor instance = new Empreendedor();
         int expResult = 0;
@@ -321,7 +321,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testVerificaDadosEmpreendedores() {
-        System.out.println("verificaDadosEmpreendedores");
+        
         Empreendedor instance = new Empreendedor();
         Projeto projeto = new Projeto();
         Set empreendedores = new HashSet(0);
@@ -337,7 +337,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testVerificaDadosEmpreendedores2() {
-        System.out.println("verificaDadosEmpreendedores2");
+        
         Empreendedor instance = new Empreendedor();
         instance.setCpf("");
         Projeto projeto = new Projeto();
@@ -354,7 +354,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testVerificaDadosEmpreendedor() {
-        System.out.println("verificaDadosEmpreendedor");
+        
         Empreendedor empreendedor = new Empreendedor();
         String cpf = null;
         boolean expResult = false;
@@ -368,7 +368,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testBuscarPorEmail() {
-        System.out.println("buscarPorEmail");
+        
         String user = "";
         Empreendedor instance = new Empreendedor();
         Empreendedor expResult = null;
@@ -381,7 +381,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testBuscarPorCpf() {
-        System.out.println("buscarPorCpf");
+        
         String user = "";
         Empreendedor instance = new Empreendedor();
         Empreendedor expResult = null;
@@ -394,7 +394,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testRealizarCadastro() {
-        System.out.println("realizarCadastro");
+        
         Empreendedor instance = new Empreendedor();
         instance.realizarCadastro();
     }
@@ -404,7 +404,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testBuscaEmpreendedores() {
-        System.out.println("buscaEmpreendedores");
+        
         ArrayList<Empreendedor> expResult = null;
         ArrayList<Empreendedor> result = Empreendedor.buscaEmpreendedores();
         assertEquals(expResult, result);
@@ -415,7 +415,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetNumero() {
-        System.out.println("getNumero");
+        
         Empreendedor instance = new Empreendedor();
         Integer expResult = null;
         instance.setNumero(expResult);
@@ -428,7 +428,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetNumero() {
-        System.out.println("setNumero");
+        
         Integer numero = null;
         Empreendedor instance = new Empreendedor();
         instance.setNumero(numero);
@@ -439,7 +439,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetComplemento() {
-        System.out.println("getComplemento");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setComplemento(expResult);
@@ -452,7 +452,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetComplemento() {
-        System.out.println("setComplemento");
+        
         String complemento = "";
         Empreendedor instance = new Empreendedor();
         instance.setComplemento(complemento);
@@ -463,7 +463,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetBairro() {
-        System.out.println("getBairro");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setBairro(expResult);
@@ -476,7 +476,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetBairro() {
-        System.out.println("setBairro");
+        
         String bairro = "";
         Empreendedor instance = new Empreendedor();
         instance.setBairro(bairro);
@@ -487,7 +487,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetRua() {
-        System.out.println("getRua");
+        
         Empreendedor instance = new Empreendedor();
         String expResult = "";
         instance.setRua(expResult);
@@ -500,7 +500,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetRua() {
-        System.out.println("setRua");
+        
         String rua = "";
         Empreendedor instance = new Empreendedor();
         instance.setRua(rua);
@@ -511,7 +511,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testDeletarEmpreendedor() {
-        System.out.println("deletarEmpreendedor");
+        
         Empreendedor empreendedor = null;
         Empreendedor instance = new Empreendedor();
         boolean expResult = false;
@@ -524,7 +524,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testVerificarProjetoHasEmpreendedor() {
-        System.out.println("verificarProjetoHasEmpreendedor");
+        
         Empreendedor empreendedor = null;
         Empreendedor instance = new Empreendedor();
         boolean expResult = false;
@@ -537,7 +537,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testVerificaProjetoEmpreendedor() {
-        System.out.println("verificaProjetoEmpreendedor");
+        
         Empreendedor empreendedor = null;
         Projeto proj = null;
         Empreendedor instance = new Empreendedor();
@@ -551,7 +551,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testBuscaEmpreendedorID() {
-        System.out.println("buscaEmpreendedorID");
+        
         String id = "";
         Empreendedor expResult = null;
         Empreendedor result = Empreendedor.buscaEmpreendedorID(id);
@@ -563,7 +563,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testBuscaPorEmail() {
-        System.out.println("buscaPorEmail");
+        
         String email = "";
         Empreendedor expResult = null;
         Empreendedor result = Empreendedor.buscaPorEmail(email);
@@ -575,7 +575,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetNotificacoes() {
-        System.out.println("getNotificacoes");
+        
         Empreendedor instance = new Empreendedor();
         Set<Notificacao> expResult = new HashSet<>();
 
@@ -589,7 +589,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testSetNotificacoes() {
-        System.out.println("setNotificacoes");
+        
         Set<Notificacao> notificacoes = null;
         Empreendedor instance = new Empreendedor();
         instance.setNotificacoes(notificacoes);
@@ -600,7 +600,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetQuantidadeDeNotificacoes() {
-        System.out.println("getQuantidadeDeNotificacoes");
+        
         Empreendedor instance = new Empreendedor();
         Set<Notificacao> ns;
         ns = new HashSet<>();
@@ -617,7 +617,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetQuantidadeDeNotificacoes2() {
-        System.out.println("getQuantidadeDeNotificacoes2");
+        
         Empreendedor instance = new Empreendedor();
         Set<Notificacao> ns;
         ns = new HashSet<>();
@@ -635,7 +635,7 @@ public class EmpreendedorTest {
      */
     @Test
     public void testGetDescricaoDasNotificacoes() {
-        System.out.println("getDescricaoDasNotificacoes");
+        
         Empreendedor instance = new Empreendedor();
         Set<Notificacao> ns = new HashSet<>();
         Notificacao notificacao = new Notificacao();
@@ -652,7 +652,7 @@ public class EmpreendedorTest {
      */
     @Ignore
     public void testRemoveCustoProjeto() {
-        System.out.println("removeCustoProjeto");
+        
         Custo custo = null;
         Empreendedor instance = new Empreendedor();
         instance.removeCustoProjeto(custo);

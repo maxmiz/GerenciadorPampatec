@@ -44,7 +44,7 @@ public class NegocioTest {
      */
     @Test
     public void testGetIdNegocio() {
-        System.out.println("getIdNegocio");
+        
         Negocio instance = new Negocio();
         int expResult = 0;
         int result = instance.getIdNegocio();
@@ -56,7 +56,7 @@ public class NegocioTest {
      */
     @Test
     public void testConstrutorNegocio() {
-        System.out.println("getIdNegocio");
+        
         int idNegocio = 0;
         String segmentoClientes = "";
         String propostaValor = "";
@@ -72,7 +72,7 @@ public class NegocioTest {
      */
     @Test
     public void testConstrutorNegocio2() {
-        System.out.println("getIdNegocio");
+        
         String segmentoClientes = "";
         String propostaValor = "";
         String atividadesChaves = "";
@@ -87,7 +87,7 @@ public class NegocioTest {
      */
     @Test
     public void testSetIdNegocio() {
-        System.out.println("setIdNegocio");
+        
         int idNegocio = 0;
         Negocio instance = new Negocio();
         instance.setIdNegocio(idNegocio);
@@ -98,7 +98,7 @@ public class NegocioTest {
      */
     @Test
     public void testGetSegmentoClientes() {
-        System.out.println("getSegmentoClientes");
+        
         Negocio instance = new Negocio();
         String expResult = "";
         instance.setSegmentoClientes(expResult);
@@ -111,7 +111,7 @@ public class NegocioTest {
      */
     @Test
     public void testSetSegmentoClientes() {
-        System.out.println("setSegmentoClientes");
+        
         Negocio instance = new Negocio();
         String segmentoClientes = "";
         instance.setSegmentoClientes(segmentoClientes);
@@ -122,7 +122,7 @@ public class NegocioTest {
      */
     @Test
     public void testGetPropostaValor() {
-        System.out.println("getPropostaValor");
+        
         Negocio instance = new Negocio();
         String expResult = "";
         instance.setPropostaValor(expResult);
@@ -135,7 +135,7 @@ public class NegocioTest {
      */
     @Test
     public void testSetPropostaValor() {
-        System.out.println("setPropostaValor");
+        
         String propostaValor = "";
         Negocio instance = new Negocio();
         instance.setPropostaValor(propostaValor);
@@ -146,7 +146,7 @@ public class NegocioTest {
      */
     @Test
     public void testGetAtividadesChaves() {
-        System.out.println("getAtividadesChaves");
+        
         Negocio instance = new Negocio();
         String expResult = "";
         instance.setAtividadesChaves(expResult);
@@ -159,7 +159,7 @@ public class NegocioTest {
      */
     @Test
     public void testSetAtividadesChaves() {
-        System.out.println("setAtividadesChaves");
+        
         String atividadesChaves = "";
         Negocio instance = new Negocio();
         instance.setAtividadesChaves(atividadesChaves);
@@ -170,7 +170,7 @@ public class NegocioTest {
      */
     @Test
     public void testGetProjetos() {
-        System.out.println("getProjetos");
+        
         Negocio instance = new Negocio();
         Set expResult = null;
         instance.setProjetos(expResult);
@@ -183,7 +183,7 @@ public class NegocioTest {
      */
     @Test
     public void testSetProjetos() {
-        System.out.println("setProjetos");
+        
         Set projetos = null;
         Negocio instance = new Negocio();
         instance.setProjetos(projetos);

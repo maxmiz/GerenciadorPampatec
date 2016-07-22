@@ -43,7 +43,7 @@ public class UserBeanTest {
      */
     @Ignore
     public void testRetornaNomeLogado() {
-        System.out.println("retornaNomeLogado");
+        
         UserBean instance = new UserBean();
         String expResult = "";
         String result = instance.retornaNomeLogado();
@@ -55,7 +55,7 @@ public class UserBeanTest {
      */
     @Ignore
     public void testTempoMaximoSessao() {
-        System.out.println("tempoMaximoSessao");
+        
         UserBean instance = new UserBean();
         int expResult = 0;
         int result = instance.tempoMaximoSessao();
@@ -67,7 +67,7 @@ public class UserBeanTest {
      */
     @Ignore
     public void testFinalizaSessao() {
-        System.out.println("finalizaSessao");
+        
         UserBean instance = new UserBean();
         instance.finalizaSessao();
     }
@@ -77,7 +77,7 @@ public class UserBeanTest {
      */
     @Test
     public void testMudarUser() {
-        System.out.println("MudarUser");
+        
         String user = "";
         UserBean.MudarUser(user);
     }
@@ -87,7 +87,7 @@ public class UserBeanTest {
      */
     @Test
     public void testMudarSenha() {
-        System.out.println("MudarSenha");
+        
         String senha = "";
         UserBean.MudarSenha(senha);
     }
@@ -97,7 +97,7 @@ public class UserBeanTest {
      */
     @Test
     public void testGetNome() {
-        System.out.println("getNome");
+        
         UserBean instance = new UserBean();
         String expResult = "";
         instance.setNome(expResult);
@@ -110,7 +110,7 @@ public class UserBeanTest {
      */
     @Test
     public void testSetUser() {
-        System.out.println("setUser");
+        
         String user = "";
         UserBean instance = new UserBean();
         instance.setUser(user);
@@ -121,7 +121,7 @@ public class UserBeanTest {
      */
     @Test
     public void testGetUser() {
-        System.out.println("getUser");
+        
         UserBean instance = new UserBean();
         String expResult = "";
         instance.setUser(expResult);
@@ -134,7 +134,7 @@ public class UserBeanTest {
      */
     @Test
     public void testMudarNome() {
-        System.out.println("MudarNome");
+        
         String nome = "";
         UserBean instance = new UserBean();
         instance.MudarNome(nome);
@@ -145,7 +145,7 @@ public class UserBeanTest {
      */
     @Test
     public void testGetSenha() {
-        System.out.println("getSenha");
+        
         UserBean instance = new UserBean();
         String expResult = "";
         instance.setSenha(expResult);
@@ -158,7 +158,7 @@ public class UserBeanTest {
      */
     @Test
     public void testSetSenha() {
-        System.out.println("setSenha");
+        
         String senha = "";
         UserBean instance = new UserBean();
         instance.setSenha(senha);
@@ -169,7 +169,7 @@ public class UserBeanTest {
      */
     @Test
     public void testSetNome() {
-        System.out.println("setNome");
+        
         String nome = "";
         UserBean instance = new UserBean();
         instance.setNome(nome);

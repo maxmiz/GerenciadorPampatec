@@ -187,7 +187,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetIdProdutoOuServico() {
-        System.out.println("getIdProdutoOuServico");
+        
         Produtoouservico instance = new Produtoouservico();
         int expResult = 0;
         instance.setIdProdutoOuServico(expResult);
@@ -200,7 +200,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetIdProdutoOuServico() {
-        System.out.println("setIdProdutoOuServico");
+        
         int idProdutoOuServico = 0;
         Produtoouservico instance = new Produtoouservico();
         instance.setIdProdutoOuServico(idProdutoOuServico);
@@ -211,7 +211,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetEstagioEvolucao() {
-        System.out.println("getEstagioEvolucao");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setEstagioEvolucao(expResult);
@@ -224,7 +224,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetEstagioEvolucao() {
-        System.out.println("setEstagioEvolucao");
+        
         String estagioEvolucao = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setEstagioEvolucao(estagioEvolucao);
@@ -235,7 +235,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetTecnologiaProcessos() {
-        System.out.println("getTecnologiaProcessos");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setTecnologiaProcessos(expResult);
@@ -248,7 +248,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetTecnologiaProcessos() {
-        System.out.println("setTecnologiaProcessos");
+        
         String tecnologiaProcessos = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setTecnologiaProcessos(tecnologiaProcessos);
@@ -260,7 +260,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetPotencialInovacaoTecnologica() {
-        System.out.println("getPotencialInovacaoTecnologica");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setPotencialInovacaoTecnologica(expResult);
@@ -274,7 +274,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetPotencialInovacaoTecnologica() {
-        System.out.println("setPotencialInovacaoTecnologica");
+        
         String potencialInovacaoTecnologica = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setPotencialInovacaoTecnologica(potencialInovacaoTecnologica);
@@ -285,7 +285,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetAplicacoes() {
-        System.out.println("getAplicacoes");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setAplicacoes(expResult);
@@ -298,7 +298,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetAplicacoes() {
-        System.out.println("setAplicacoes");
+        
         String aplicacoes = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setAplicacoes(aplicacoes);
@@ -309,7 +309,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetDificuldadesEsperadas() {
-        System.out.println("getDificuldadesEsperadas");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setDificuldadesEsperadas(expResult);
@@ -322,7 +322,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetDificuldadesEsperadas() {
-        System.out.println("setDificuldadesEsperadas");
+        
         String dificuldadesEsperadas = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setDificuldadesEsperadas(dificuldadesEsperadas);
@@ -334,7 +334,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetInteracaoEmpresaUniversidade() {
-        System.out.println("getInteracaoEmpresaUniversidade");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setInteracaoEmpresaUniversidade(expResult);
@@ -348,7 +348,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetInteracaoEmpresaUniversidade() {
-        System.out.println("setInteracaoEmpresaUniversidade");
+        
         String interacaoEmpresaUniversidade = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setInteracaoEmpresaUniversidade(interacaoEmpresaUniversidade);
@@ -360,7 +360,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetInteracaoEmpresaComunidadeGoverno() {
-        System.out.println("getInteracaoEmpresaComunidadeGoverno");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setInteracaoEmpresaComunidadeGoverno(expResult);
@@ -374,7 +374,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetInteracaoEmpresaComunidadeGoverno() {
-        System.out.println("setInteracaoEmpresaComunidadeGoverno");
+        
         String interacaoEmpresaComunidadeGoverno = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setInteracaoEmpresaComunidadeGoverno(interacaoEmpresaComunidadeGoverno);
@@ -385,7 +385,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetInfraestrutura() {
-        System.out.println("getInfraestrutura");
+        
         Produtoouservico instance = new Produtoouservico();
         String expResult = "";
         instance.setInfraestrutura(expResult);
@@ -398,7 +398,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetInfraestrutura() {
-        System.out.println("setInfraestrutura");
+        
         String infraestrutura = "";
         Produtoouservico instance = new Produtoouservico();
         instance.setInfraestrutura(infraestrutura);
@@ -409,7 +409,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testGetProjetos() {
-        System.out.println("getProjetos");
+        
         Produtoouservico instance = new Produtoouservico();
         Set expResult = null;
         instance.setProjetos(expResult);
@@ -422,7 +422,7 @@ public class ProdutoouservicoTest {
      */
     @Test
     public void testSetProjetos() {
-        System.out.println("setProjetos");
+        
         Set projetos = null;
         Produtoouservico instance = new Produtoouservico();
         instance.setProjetos(projetos);

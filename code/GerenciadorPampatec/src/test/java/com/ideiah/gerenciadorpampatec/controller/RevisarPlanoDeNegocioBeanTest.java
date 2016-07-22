@@ -54,7 +54,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testVerificaExistenciaComentarioProjeto() {
-        System.out.println("verificaExistenciaComentarioProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
 //        instance.setSessionBean(sb);
         Projeto projetoSelecionado = new Projeto();
@@ -69,7 +69,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusSendoAvaliado() {
-        System.out.println("verificaStatusSendoAvaliado");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -82,7 +82,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusAceitoAvaliacao() {
-        System.out.println("verificaStatusAceitoAvaliacao");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -95,7 +95,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusRevisando() {
-        System.out.println("verificaStatusRevisando");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -108,7 +108,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusSubmetido() {
-        System.out.println("verificaStatusSubmetido");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -121,7 +121,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusReSubmetido() {
-        System.out.println("verificaStatusReSubmetido");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -134,7 +134,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusEmPreAvaliacao() {
-        System.out.println("verificaStatusEmPreAvaliacao");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -147,7 +147,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificaStatusNecessitaMelhoria() {
-        System.out.println("verificaStatusNecessitaMelhoria");
+        
         Projeto projetoSelecionado = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
@@ -160,7 +160,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testRetornaStatusProjeto() {
-        System.out.println("retornaStatusProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.retornaStatusProjeto();
@@ -172,7 +172,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testRetornaResultadoAvaliacao() {
-        System.out.println("retornaResultadoAvaliacao");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = "";
         String result = instance.retornaResultadoAvaliacao();
@@ -184,7 +184,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testMudaStatusRedirecionaInicio() {
-        System.out.println("mudaStatusRedirecionaInicio");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.mudaStatusRedirecionaInicio();
     }
@@ -194,7 +194,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testSalvarRevisaoProjeto() {
-        System.out.println("salvarRevisaoProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.salvarRevisaoProjeto();
     }
@@ -204,7 +204,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testVerificarCampos() {
-        System.out.println("verificarCampos");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.verificarCampos();
@@ -216,7 +216,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testTerminarRevisaoProjeto() {
-        System.out.println("terminarRevisaoProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.terminarRevisaoProjeto();
     }
@@ -226,7 +226,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testRedirecionaPaginaAvaliacao() {
-        System.out.println("redirecionaPaginaAvaliacao");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.redirecionaPaginaAvaliacao();
     }
@@ -236,7 +236,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testExibeCampoOutro() {
-        System.out.println("exibeCampoOutro");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
         boolean result = instance.exibeCampoOutro();
@@ -248,7 +248,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testCaucularProjecaoCustoFixo() {
-        System.out.println("caucularProjecaoCustoFixo");
+        
         Custo custo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.caucularProjecaoCustoFixo(custo);
@@ -259,7 +259,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testCaucularProjecaoCustoVariavel() {
-        System.out.println("caucularProjecaoCustoVariavel");
+        
         Custo custo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.caucularProjecaoCustoVariavel(custo);
@@ -270,7 +270,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testOnRowEdit() {
-        System.out.println("onRowEdit");
+        
         RowEditEvent event = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.onRowEdit(event);
@@ -281,7 +281,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testOnRowCancel() {
-        System.out.println("onRowCancel");
+        
         RowEditEvent event = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.onRowCancel(event);
@@ -292,7 +292,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testDeletarLinha() {
-        System.out.println("deletarLinha");
+        
         Custo custo = new Custo();
         custo.setTipo(Custo.CUSTO_FIXO);
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
@@ -304,7 +304,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testDeletarLinha2() {
-        System.out.println("deletarLinha");
+        
         Custo custo = new Custo();
         custo.setTipo(Custo.CUSTO_VARIAVEL);
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
@@ -316,7 +316,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testAdicionarLinhaFixo() {
-        System.out.println("adicionarLinhaFixo");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.adicionarLinhaFixo();
     }
@@ -326,7 +326,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testAdicionarLinhaVariavel() {
-        System.out.println("adicionarLinhaVariavel");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.adicionarLinhaVariavel();
     }
@@ -336,7 +336,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testCalcularValorColunaCustoFixo() {
-        System.out.println("calcularValorColunaCustoFixo");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.calcularValorColunaCustoFixo();
@@ -348,7 +348,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testCalcularValorColunaCustoVariavel() {
-        System.out.println("calcularValorColunaCustoVariavel");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.calcularValorColunaCustoVariavel();
@@ -360,7 +360,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetProjeto() {
-        System.out.println("getProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         Projeto expResult = null;
         Projeto result = instance.getProjeto();
@@ -372,7 +372,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetProjeto() {
-        System.out.println("setProjeto");
+        
         Projeto projeto = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setProjeto(projeto);
@@ -383,7 +383,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetComentarioProjeto() {
-        System.out.println("getComentarioProjeto");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         ComentarioProjeto expResult = null;
         ComentarioProjeto result = instance.getComentarioProjeto();
@@ -395,7 +395,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetComentarioProjeto() {
-        System.out.println("setComentarioProjeto");
+        
         ComentarioProjeto comentarioProjeto = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setComentarioProjeto(comentarioProjeto);
@@ -406,7 +406,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testGetLoginBean() {
-        System.out.println("getLoginBean");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
 //        RedirectManager expResult = null;
 //        RedirectManager result = instance.getLoginBean();
@@ -419,7 +419,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetLoginBean() {
-        System.out.println("setLoginBean");
+        
         RedirectManager loginBean = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
 //        instance.setLoginBean(loginBean);
@@ -430,7 +430,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetEstagioEvolucao() {
-        System.out.println("getEstagioEvolucao");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = "";
         instance.setEstagioEvolucao(expResult);
@@ -443,7 +443,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetEstagioEvolucao() {
-        System.out.println("setEstagioEvolucao");
+        
         String estagioEvolucao = "";
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setEstagioEvolucao(estagioEvolucao);
@@ -454,7 +454,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetEstagioEvolucaoOutro() {
-        System.out.println("getEstagioEvolucaoOutro");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = "";
         instance.setEstagioEvolucaoOutro(expResult);
@@ -467,7 +467,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetEstagioEvolucaoOutro() {
-        System.out.println("setEstagioEvolucaoOutro");
+        
         String estagioEvolucaoOutro = "";
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setEstagioEvolucaoOutro(estagioEvolucaoOutro);
@@ -478,7 +478,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetListaCustoFixo() {
-        System.out.println("getListaCustoFixo");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         List<Custo> expResult = null;
         List<Custo> result = instance.getListaCustoFixo();
@@ -490,7 +490,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetListaCustoFixo() {
-        System.out.println("setListaCustoFixo");
+        
         List<Custo> listaCustoFixo = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setListaCustoFixo(listaCustoFixo);
@@ -501,7 +501,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetListaCustoVariavel() {
-        System.out.println("getListaCustoVariavel");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         List<Custo> expResult = null;
         List<Custo> result = instance.getListaCustoVariavel();
@@ -513,7 +513,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetListaCustoVariavel() {
-        System.out.println("setListaCustoVariavel");
+        
         List<Custo> listaCustoVariavel = null;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setListaCustoVariavel(listaCustoVariavel);
@@ -524,7 +524,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testGetSomatorioFixo() {
-        System.out.println("getSomatorioFixo");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.getSomatorioFixo();
@@ -536,7 +536,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetSomatorioFixo() {
-        System.out.println("setSomatorioFixo");
+        
         int somatorioFixo = 0;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setSomatorioFixo(somatorioFixo);
@@ -547,7 +547,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testGetSomatorioVariavel() {
-        System.out.println("getSomatorioVariavel");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         int expResult = 0;
         int result = instance.getSomatorioVariavel();
@@ -559,7 +559,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetSomatorioVariavel() {
-        System.out.println("setSomatorioVariavel");
+        
         int somatorioVariavel = 0;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setSomatorioVariavel(somatorioVariavel);
@@ -570,7 +570,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testAtualizarProjetoSessao() {
-        System.out.println("atualizarProjetoSessao");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.atualizarProjetoSessao();
     }
@@ -580,7 +580,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Ignore
     public void testPegaValorDropDown() {
-        System.out.println("pegaValorDropDown");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         String expResult = null;
         String result = instance.pegaValorDropDown();
@@ -592,7 +592,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testIsSalvou() {
-        System.out.println("isSalvou");
+        
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         boolean expResult = false;
         instance.setSalvou(expResult);
@@ -605,7 +605,7 @@ public class RevisarPlanoDeNegocioBeanTest {
      */
     @Test
     public void testSetSalvou() {
-        System.out.println("setSalvou");
+        
         boolean salvou = false;
         RevisarPlanoDeNegocioBean instance = new RevisarPlanoDeNegocioBean();
         instance.setSalvou(salvou);

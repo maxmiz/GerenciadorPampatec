@@ -42,7 +42,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testConstrutorNotificacao() {
-        System.out.println("getIdNotificacao");
+        
         int idNotificacao = 0;
         Empreendedor empreendedor = new Empreendedor();
         Notificacao instance = new Notificacao(idNotificacao, empreendedor);
@@ -54,7 +54,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testConstrutorNotificacao2() {
-        System.out.println("getIdNotificacao");
+        
         int idNotificacao = 0;
         String descricao = "";
         Empreendedor empreendedor = new Empreendedor();
@@ -67,7 +67,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testGetIdNotificacao() {
-        System.out.println("getIdNotificacao");
+        
         Notificacao instance = new Notificacao();
         int expResult = 0;
         instance.setIdNotificacao(expResult);
@@ -80,7 +80,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testSetIdNotificacao() {
-        System.out.println("setIdNotificacao");
+        
         int idNotificacao = 0;
         Notificacao instance = new Notificacao();
         instance.setIdNotificacao(idNotificacao);
@@ -91,7 +91,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testGetDescricao() {
-        System.out.println("getDescricao");
+        
         Notificacao instance = new Notificacao();
         String expResult = "";
         instance.setDescricao(expResult);
@@ -104,7 +104,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testSetDescricao() {
-        System.out.println("setDescricao");
+        
         String descricao = "";
         Notificacao instance = new Notificacao();
         instance.setDescricao(descricao);
@@ -115,7 +115,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testGetEmpreendedor() {
-        System.out.println("getEmpreendedor");
+        
         Notificacao instance = new Notificacao();
         Empreendedor expResult = new Empreendedor();
         instance.setEmpreendedor(expResult);
@@ -128,7 +128,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testSetEmpreendedor() {
-        System.out.println("setEmpreendedor");
+        
         Empreendedor empreendedor = null;
         Notificacao instance = new Notificacao();
         instance.setEmpreendedor(empreendedor);
@@ -139,7 +139,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testIsVisualizado() {
-        System.out.println("isVisualizado");
+        
         Notificacao instance = new Notificacao();
         boolean expResult = false;
         instance.setVisualizado(expResult);
@@ -152,7 +152,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testSetVisualizado() {
-        System.out.println("setVisualizado");
+        
         boolean visualizado = false;
         Notificacao instance = new Notificacao();
         instance.setVisualizado(visualizado);
@@ -163,7 +163,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testGetLink() {
-        System.out.println("getLink");
+        
         Notificacao instance = new Notificacao();
         String expResult = "";
         instance.setLink(expResult);
@@ -176,7 +176,7 @@ public class NotificacaoTest {
      */
     @Test
     public void testSetLink() {
-        System.out.println("setLink");
+        
         String link = "";
         Notificacao instance = new Notificacao();
         instance.setLink(link);

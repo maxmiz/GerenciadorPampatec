@@ -50,7 +50,7 @@ public class SystemAccessBeanTest {
      */
     @Ignore
     public void testSubmit() {
-        System.out.println("submit");
+        
         SystemAccessBean instance = new SystemAccessBean();
         instance.submit();
     }
@@ -60,7 +60,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSoContemNumeros() {
-        System.out.println("soContemNumeros");
+        
         String texto = "1234567890";
         boolean expResult = false;
         boolean result = SystemAccessBean.soContemNumeros(texto);
@@ -72,7 +72,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSoContemNumeros2() {
-        System.out.println("soContemNumeros");
+        
         String texto = "Teste com Letras";
         boolean expResult = false;
         boolean result = SystemAccessBean.soContemNumeros(texto);
@@ -84,7 +84,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSoContemNumeros3() {
-        System.out.println("soContemNumeros");
+        
         String texto = null;
         boolean expResult = false;
         boolean result = SystemAccessBean.soContemNumeros(texto);
@@ -96,7 +96,7 @@ public class SystemAccessBeanTest {
      */
     @Ignore
     public void testFazLogout() {
-        System.out.println("fazLogout");
+        
         when(SessionManager.getCreateSession()).thenReturn(mockedSession);
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         mockedSession.setAttribute("gerente", gerente);
@@ -108,7 +108,7 @@ public class SystemAccessBeanTest {
      */
     @Ignore
     public void testRecuperarSenha() {
-        System.out.println("recuperarSenha");
+        
         SystemAccessBean instance = new SystemAccessBean();
         instance.setEmailRecuperarSenha("vitor@gerente.com");
         instance.recuperarSenha();
@@ -119,7 +119,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetUser() {
-        System.out.println("getUser");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = "";
         instance.setUser(expResult);
@@ -132,7 +132,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetUser2() {
-        System.out.println("getUser");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = null;
         String result;
@@ -146,7 +146,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSetUser() {
-        System.out.println("setUser");
+        
         String aUser = "";
         SystemAccessBean instance = new SystemAccessBean();
         instance.setUser(aUser);
@@ -157,7 +157,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetPassphrase() {
-        System.out.println("getPassphrase");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = "";
         instance.setPassphrase(expResult);        
@@ -170,7 +170,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetPassphrase2() {
-        System.out.println("getPassphrase");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = null;
         String result = instance.getPassphrase();
@@ -183,7 +183,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSetPassphrase() {
-        System.out.println("setPassphrase");
+        
         String aSenha = "";
         SystemAccessBean instance = new SystemAccessBean();
         instance.setPassphrase(aSenha);
@@ -194,7 +194,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetNome() {
-        System.out.println("getNome");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = null;
         String result = instance.getNome();
@@ -206,7 +206,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetNome2() {
-        System.out.println("getNome");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = "";
         instance.setNome(expResult);
@@ -219,7 +219,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSetNome() {
-        System.out.println("setNome");
+        
         String nome = "";
         SystemAccessBean instance = new SystemAccessBean();
         instance.setNome(nome);
@@ -230,7 +230,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testGetEmailRecuperarSenha() {
-        System.out.println("getEmailRecuperarSenha");
+        
         SystemAccessBean instance = new SystemAccessBean();
         String expResult = "";
         String result = instance.getEmailRecuperarSenha();
@@ -242,7 +242,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSetEmailRecuperarSenha() {
-        System.out.println("setEmailRecuperarSenha");
+        
         String emailRecuperarSenha = "";
         SystemAccessBean instance = new SystemAccessBean();
         instance.setEmailRecuperarSenha(emailRecuperarSenha);
@@ -253,7 +253,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testVerificaCadastroIncompleto() {
-        System.out.println("verificaCadastroIncompleto");
+        
         SystemAccessBean instance = new SystemAccessBean();
         boolean expResult = false;
         boolean result = instance.verificaCadastroIncompleto();
@@ -265,7 +265,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testVerificaCadastroIncompleto2() {
-        System.out.println("verificaCadastroIncompleto");
+        
         SystemAccessBean instance = new SystemAccessBean();
         boolean expResult = true;
         instance.setCadastroIncompleto(true);
@@ -279,7 +279,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testIsCadastroIncompleto() {
-        System.out.println("isCadastroIncompleto");
+        
         SystemAccessBean instance = new SystemAccessBean();
         boolean expResult = false;
         boolean result = instance.isCadastroIncompleto();
@@ -291,7 +291,7 @@ public class SystemAccessBeanTest {
      */
     @Test
     public void testSetCadastroIncompleto() {
-        System.out.println("setCadastroIncompleto");
+        
         boolean cadastroIncompleto = false;
         SystemAccessBean instance = new SystemAccessBean();
         instance.setCadastroIncompleto(cadastroIncompleto);

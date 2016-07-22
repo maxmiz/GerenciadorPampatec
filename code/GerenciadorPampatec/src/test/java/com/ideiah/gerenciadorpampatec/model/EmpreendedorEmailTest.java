@@ -44,7 +44,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testConstrutorEmpreededorEmail() {
-        System.out.println("getEmpreededorEmailDao");
+        
         String idEmpreendedorEmail = "";
         String tipo = "";
         Empreendedor empreendedor = new Empreendedor();
@@ -58,7 +58,7 @@ public class EmpreendedorEmailTest {
      */
     @Ignore
     public void testGetEmpreededorEmailDao() {
-        System.out.println("getEmpreededorEmailDao");
+        
         EmpreendedorEmailDao expResult = null;
         EmpreendedorEmailDao result = EmpreendedorEmail.getEmpreededorEmailDao();
         assertEquals(expResult, result);
@@ -69,7 +69,7 @@ public class EmpreendedorEmailTest {
      */
     @Ignore
     public void testSalvarEmpreendedorEmail() {
-        System.out.println("salvarEmpreendedorEmail");
+        
         EmpreendedorEmail empreendedorEmail = null;
         EmpreendedorEmail instance = new EmpreendedorEmail();
         EmpreendedorEmail expResult = null;
@@ -82,7 +82,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testGetIdEmpreendedorEmail() {
-        System.out.println("getIdEmpreendedorEmail");
+        
         EmpreendedorEmail instance = new EmpreendedorEmail();
         String expResult = "1";
         instance.setIdEmpreendedorEmail(expResult);
@@ -95,7 +95,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testSetIdEmpreendedorEmail() {
-        System.out.println("setIdEmpreendedorEmail");
+        
         String idEmpreendedorEmail = "";
         EmpreendedorEmail instance = new EmpreendedorEmail();
         instance.setIdEmpreendedorEmail(idEmpreendedorEmail);
@@ -106,7 +106,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testGetTipo() {
-        System.out.println("getTipo");
+        
         EmpreendedorEmail instance = new EmpreendedorEmail();
         String expResult = "";
         instance.setTipo(expResult);
@@ -119,7 +119,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testSetTipo() {
-        System.out.println("setTipo");
+        
         String tipo = "";
         EmpreendedorEmail instance = new EmpreendedorEmail();
         instance.setTipo(tipo);
@@ -130,7 +130,7 @@ public class EmpreendedorEmailTest {
      */
     @Ignore
     public void testBuscaEmpreendedorMailID() {
-        System.out.println("buscaEmpreendedorMailID");
+        
         String id = "";
         EmpreendedorEmail expResult = null;
         EmpreendedorEmail result = EmpreendedorEmail.buscaEmpreendedorMailID(id);
@@ -142,7 +142,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testGetEmpreendedor() {
-        System.out.println("getEmpreendedor");
+        
         EmpreendedorEmail instance = new EmpreendedorEmail();
         Empreendedor expResult = new Empreendedor();
         instance.setEmpreendedor(expResult);
@@ -155,7 +155,7 @@ public class EmpreendedorEmailTest {
      */
     @Test
     public void testSetEmpreendedor() {
-        System.out.println("setEmpreendedor");
+        
         Empreendedor empreendedor = null;
         EmpreendedorEmail instance = new EmpreendedorEmail();
         instance.setEmpreendedor(empreendedor);
@@ -166,7 +166,7 @@ public class EmpreendedorEmailTest {
      */
     @Ignore
     public void testApagarDoBanco() {
-        System.out.println("apagarDoBanco");
+        
         EmpreendedorEmail empreendedorEmail = null;
         EmpreendedorEmail instance = new EmpreendedorEmail();
         instance.apagarDoBanco(empreendedorEmail);
