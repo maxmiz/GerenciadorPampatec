@@ -19,8 +19,8 @@ import org.hibernate.HibernateException;
 public class ProjetoDao extends Dao implements Serializable {
 
     public ProjetoDao() {
-    }
-    
+        
+    }    
     
 //<editor-fold defaultstate="collapsed" desc="Salvar">
 
@@ -56,10 +56,6 @@ public class ProjetoDao extends Dao implements Serializable {
         return (Projeto) buscarObjeto(codigo, Projeto.class);
     }
     
-    public Projeto buscarPorStatus(int status) {
-        return (Projeto) buscarObjetoCriteriaINT("status", status, Projeto.class);
-    }
-    
     public ArrayList<Projeto> buscarListaProjetoPorStatus(int status){
         
         ArrayList<Projeto> listaDeProjeto = new ArrayList<>();
@@ -71,8 +67,6 @@ public class ProjetoDao extends Dao implements Serializable {
     
     
     public boolean verificaEmpreendedor(Empreendedor empreendedor, Projeto projeto) {
-//        Projeto[] listaOriginal = (Projeto[]) empreendedor.getProjetos().toArray();
-//        ArrayList<Projeto> listaOriginal = (ArrayList<Projeto>) empreendedor.getProjetos().toArray();
 
         for (Object obj : empreendedor.getProjetos().toArray()) {
             Projeto proj = (Projeto) obj;
@@ -82,10 +76,6 @@ public class ProjetoDao extends Dao implements Serializable {
         }
         return true;
     }
-    
-    public BigInteger retornarUltimoId(){
-        return (BigInteger) getSession().createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult();
-    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Deletar">
@@ -93,4 +83,5 @@ public class ProjetoDao extends Dao implements Serializable {
         return excluir(codigo, Projeto.class);
     }
 //</editor-fold>
+    
 }
