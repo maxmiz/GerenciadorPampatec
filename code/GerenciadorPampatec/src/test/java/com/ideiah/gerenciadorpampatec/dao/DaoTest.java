@@ -20,7 +20,7 @@ import org.junit.Ignore;
  *
  * @author Peterson
  */
-
+@Ignore
 public class DaoTest {
 
     private static final int CODIGO_EMPREENDEDOR = 99999999;
