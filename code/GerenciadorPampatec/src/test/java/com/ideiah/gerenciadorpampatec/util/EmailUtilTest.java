@@ -87,6 +87,8 @@ public class EmailUtilTest {
         String idUnico = "";
         EmailUtil.mandarEmailConcluirCadastro(empreendedorNome, projetoNome, email, idUnico);
     }
+    
+    
 
     /**
      * Test of mandarEmailConcluirCadastro method, of class EmailUtil.
@@ -176,6 +178,40 @@ public class EmailUtilTest {
         Empreendedor empreendedor = new Empreendedor();
         empreendedor.setNome("");
         empreendedor.setEmail("");
+        String projetoNome = "";
+
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
+    }
+    
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para validar se o método evita a tentativa de envio de email com
+     * todos os campos vazios.</p>
+     */
+    @Test
+    public void testMandarEmailAvaliacaoNomeVazio() {
+        
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome("");
+        empreendedor.setEmail("ideiahdev@gmail.com");
+        String projetoNome = "Projeto 123";
+
+        EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
+    }
+    
+    /**
+     * Test of mandarEmailAvaliacao method, of class EmailUtil.
+     * <p>
+     * Teste para validar se o método evita a tentativa de envio de email com
+     * todos os campos vazios.</p>
+     */
+    @Test
+    public void testMandarEmailAvaliacaoProjetoVazio() {
+        
+        Empreendedor empreendedor = new Empreendedor();
+        empreendedor.setNome("Fulano");
+        empreendedor.setEmail("ideiahdev@gmail.com");
         String projetoNome = "";
 
         EmailUtil.mandarEmailAvaliacao(empreendedor, projetoNome);
