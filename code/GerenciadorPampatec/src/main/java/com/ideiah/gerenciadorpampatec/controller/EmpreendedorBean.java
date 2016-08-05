@@ -19,6 +19,7 @@ import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedProperty;
@@ -107,7 +108,12 @@ public class EmpreendedorBean implements Serializable{
                 empreendedor.setBairro(bairro);
                 empreendedor.setComplemento(complemento);
                 empreendedor.setExperiencia(experiencia);
-
+                
+                //gera id unico para o empreendedor, para ser usado na confirmacao de email.
+                empreendedor.setIdUnico(geraIdUnico());
+                EmailUtil.mandarEmailConfirmacao(nome, email, empreendedor.getIdUnico());
+                
+                
                 if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
 //                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
@@ -141,7 +147,18 @@ public class EmpreendedorBean implements Serializable{
             }
         }
     }
-
+    
+    /**
+     * Gera um id Unico para usar na verificacao de email
+     * @return idUnico
+     */
+    private String geraIdUnico() {
+        String idUnico;
+                idUnico = UUID.randomUUID().toString();  
+        return idUnico;
+    }
+    
+  
     /**
      * Método para salvar a nova senha do usuário a partir da recuperação pelo
      * link submetido para o email
