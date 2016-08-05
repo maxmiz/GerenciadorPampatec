@@ -127,16 +127,22 @@ public class SystemAccessBean implements Serializable {
             }
             senha = CriptografiaUtil.md5(senha);
             if (empreendedor.getSenha().equals(senha)) {
-                FacesUtil.addSuccessMessage("Logado");
+                if (empreendedor.getIdUnico() == null) {
 
-                SessionManager.getCreateSession().setAttribute("empreendedor", empreendedor);
+                    FacesUtil.addSuccessMessage("Logado");
 
-                this.setNome(empreendedor.getNome());
-                try {
-                    RedirectManager.getInicioEmpreendedor();
-                    return true;
-                } catch (Exception ex) {
-                    Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
+                    SessionManager.getCreateSession().setAttribute("empreendedor", empreendedor);
+
+                    this.setNome(empreendedor.getNome());
+                    try {
+                        RedirectManager.getInicioEmpreendedor();
+                        return true;
+                    } catch (Exception ex) {
+                        Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    FacesUtil.addErrorMessage(" Cadastro não confirmado! Verifique seu e-mail! ", "formularioDeLogin:botaoLogin");
+                    return false;
                 }
             } else {
                 FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
