@@ -19,20 +19,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Pedro
- */
-public class CompletarCadastroFilter implements Filter {
+public class VerificarEmailFilter implements Filter {
 
     private static final boolean debug = true;
-
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
     private FilterConfig filterConfig = null;
 
-    public CompletarCadastroFilter() {
+    public VerificarEmailFilter() {
+
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -45,21 +38,23 @@ public class CompletarCadastroFilter implements Filter {
 
     }
 
-    /**
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
-     */
+    @Override
+    public void init(FilterConfig fc) throws ServletException {
+
+        this.filterConfig = filterConfig;
+        if (filterConfig != null) {
+            if (debug) {
+                log("VerificarEmailFilter:Initializing filter");
+            }
+        }
+
+    }
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
-            throws IOException, ServletException {
-        
-        Empreendedor emp,emp2;
+            FilterChain chain) throws IOException, ServletException {
+
+        Empreendedor emp, emp2;
         HttpSession session = ((HttpServletRequest) request).getSession();
         String id = request.getParameter("id");
         emp = Empreendedor.buscaEmpreendedorID(id);
@@ -67,51 +62,22 @@ public class CompletarCadastroFilter implements Filter {
         if (emp != null) {
             session.removeAttribute("empreendedor");
             session.setAttribute("empreendedor", emp);
-            request.getRequestDispatcher("/terminarCadastroEmpreendedor.jsf").forward(request, response);
-        }else if((emp2 !=  null)){
-            if(emp2.getIdUnico() != null){
-                request.getRequestDispatcher("/terminarCadastroEmpreendedor.jsf").forward(request, response);
-            }else{
+            request.getRequestDispatcher("/verificarEmail.jsf").forward(request, response);
+        } else if ((emp2 != null)) {
+            if (emp2.getIdUnico() != null) {
+                request.getRequestDispatcher("/verificarEmail.jsf").forward(request, response);
+            } else {
                 request.getRequestDispatcher("/loginEmpreendedor.jsf").forward(request, response);
             }
-        }
-        else{
+        } else {
             request.getRequestDispatcher("/loginEmpreendedor.jsf").forward(request, response);
         }
+
     }
 
-    /**
-     * Return the filter configuration object for this filter.
-     */
-    public FilterConfig getFilterConfig() {
-        return (this.filterConfig);
-    }
-
-    /**
-     * Set the filter configuration object for this filter.
-     *
-     * @param filterConfig The filter configuration object
-     */
-    public void setFilterConfig(FilterConfig filterConfig) {
-        this.filterConfig = filterConfig;
-    }
-
-    /**
-     * Destroy method for this filter
-     */
+    @Override
     public void destroy() {
-    }
-
-    /**
-     * Init method for this filter
-     */
-    public void init(FilterConfig filterConfig) {
-        this.filterConfig = filterConfig;
-        if (filterConfig != null) {
-            if (debug) {
-                log("CompletarCadastroFilter:Initializing filter");
-            }
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -120,9 +86,9 @@ public class CompletarCadastroFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("CompletarCadastroFilter()");
+            return ("VerificarEmailFilter()");
         }
-        StringBuffer sb = new StringBuffer("CompletarCadastroFilter(");
+        StringBuffer sb = new StringBuffer("VerificarEmailFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

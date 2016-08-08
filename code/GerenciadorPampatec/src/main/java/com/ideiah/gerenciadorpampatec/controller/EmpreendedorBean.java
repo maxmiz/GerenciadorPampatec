@@ -115,7 +115,7 @@ public class EmpreendedorBean implements Serializable{
                 
                 
                 if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
-                    FacesUtil.addSuccessMessage("Cadastro realizado com sucesso!", "formularioCadastro:botaoEnviar");
+                    FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "formularioCadastro:botaoEnviar");
 //                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
 //                        como nulos. Portanto, ele salva no banco depois limpa a tela. (só funciona com refresh)
 
@@ -137,7 +137,8 @@ public class EmpreendedorBean implements Serializable{
                         UserBean.MudarUser(empreendedor.getEmail());
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("view/empreendedor/homeEmpreendedor.jsf");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
+                        FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "loginEmpreendedor");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -215,7 +216,7 @@ public class EmpreendedorBean implements Serializable{
                         empreendedor.setBairro(null);
                         empreendedor.setComplemento(null);
                         empreendedor.setExperiencia(null);
-                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/view/empreendedor/homeEmpreendedor.jsf");
+                        FacesContext.getCurrentInstance().getExternalContext().dispatch("/loginEmpreendedor.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
