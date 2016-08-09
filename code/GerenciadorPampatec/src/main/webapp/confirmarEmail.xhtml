@@ -28,34 +28,40 @@
                 <h2>
                     <p>Confirmação de e-mail</p>
                 </h2>
-                <p>Um e-mail contendo instruções para confirmação foi enviado para <strong><h:outputText value="#{empreendedorBean.empreendedor.email}"></h:outputText></strong>, siga essas instruções e nós confirmaremos o seu e-mail.</p>
+                <p>Olá <strong><h:outputText value="#{empreendedorBean.empreendedor.nome}"></h:outputText></strong>, um e-mail contendo instruções para confirmação foi enviado para <strong><h:outputText value="#{empreendedorBean.empreendedor.email}"></h:outputText></strong>, siga essas instruções e nós confirmaremos o seu e-mail.</p>
 
                 <h:form id="formConfirmaEmail">
                    
-                        <p>Este não é o seu e-mail? Você pode altera-lo logo abaixo.</p>
-                        <div class="col-md-6" align="center">
-                        <div class="col-md-8" align="center">
-                        <h:message class="mensagemErro" for="email"/>
-                        <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
-                                     value="#{empreendedorBean.email}"
-                                     validatorMessage="Email Invalido">
-                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                        </p:inputText>
+                    <br/><p>Este <strong>não</strong> é o seu e-mail? Você pode altera-lo logo abaixo.</p>
+                   
+                    <div class="col-md-12" style="padding-left: 35%">
+                            <div class="col-md-5">
+                                <h:message class="mensagemErro" for="email"/>
+                                <p:inputText id="email" placeholder="email@email.com" class="form-control" 
+                                             value="#{empreendedorBean.email}"
+                                             required="true"
+                                             requiredMessage="Insira o email para alterar"
+                                             validatorMessage="Email Invalido">
+                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>
+                            </div>
+                            <div class="col-md-2">
+                                <p:commandButton id="botaoAtualizarEmail" 
+                                                 class="botaoBase botaoAzul" 
+                                                 title="Atualizar o seu e-mail" 
+                                                 value="Atualizar" 
+                                                 action="#{empreendedorBean.atualizaEmail()}"
+                                                 ajax="false">
+                                </p:commandButton>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                        <p:commandButton id="botaoAtualizarEmail" 
-                                         class="botaoBase botaoAzul" 
-                                         title="Atualizar o seu e-mail" 
-                                         value="Atualizar" 
-                                         action="#{empreendedorBean.atualizaEmail()}"
-                                         ajax="false">
-                        </p:commandButton>
-                    </div>
-                    </div>
-                        <p> Caso você ainda não tenha recebido o e-mail é possivel reenviar clicando <p:commandLink action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
-                  
-                    <div>
+                    <div class="col-md-12">
+                        <br/>
+                        <br/><p> Caso você ainda não tenha recebido o e-mail é possivel reenviar clicando <p:commandLink action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
                         <br/><br/>
+                    </div>
+                    <div>
+                        
                         <a  id="botaoLogin" 
                             class="aComoBotao"
                             href="/GerenciadorPampatec/loginEmpreendedor.jsf"
