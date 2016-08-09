@@ -49,6 +49,18 @@ public class RedirectManager implements Serializable {
             Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * <p>
+     * Método que redireciona para a página de confirmação de email.</p>
+     */
+    public static void getConfirmaEmail() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("confirmarEmail.jsf");
+        } catch (IOException ex) {
+            Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * <p>

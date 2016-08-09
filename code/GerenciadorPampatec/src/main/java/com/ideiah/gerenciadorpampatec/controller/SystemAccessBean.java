@@ -141,8 +141,10 @@ public class SystemAccessBean implements Serializable {
                         Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    FacesUtil.addErrorMessage(" Cadastro não confirmado! Verifique seu e-mail! ", "formularioDeLogin:botaoLogin");
-                    return false;
+                    SessionManager.getCreateSession().setAttribute("empreendedor", empreendedor);
+
+                    RedirectManager.getConfirmaEmail();
+                    return true;
                 }
             } else {
                 FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
