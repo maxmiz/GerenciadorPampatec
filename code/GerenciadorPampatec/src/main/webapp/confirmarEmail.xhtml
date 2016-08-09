@@ -14,38 +14,61 @@
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
         <h:outputScript library="js" name="bootstrap.js" />        
-        
+
         <title>Confirmação de e-mail</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        
+
         <main>
             <br/>
-        <div class="paginaErro well">
-            
-            
-            <h2>
-                <p>Confirmação de e-mail</p>
-            </h2>
-            <p>Um e-mail contendo instruções para confirmação lhe foi enviado. Siga essas instruções para terminar seu cadastro.</p>
-            
-            <h:form>
-                <div>
-                    <br/><br/>
-                    <a  id="botaoLogin" 
-                        class="aComoBotao"
-                        href="/GerenciadorPampatec/loginEmpreendedor.jsf"
-                        title="Redireciona para a página de login."
-                        style="padding: 8px 20px 8px 14px"
-                       >
-                        <i class="fa fa-sign-out"></i><strong>   Acesse sua conta</strong>
-                    </a>
-                </div>
-            </h:form>
-        </div>
-    </main>
-        
+            <div class="paginaErro well">
+
+
+                <h2>
+                    <p>Confirmação de e-mail</p>
+                </h2>
+                <p>Um e-mail contendo instruções para confirmação foi enviado para <strong><h:outputText value="#{empreendedorBean.empreendedor.email}"></h:outputText></strong>, siga essas instruções e nós confirmaremos o seu e-mail.</p>
+
+                <h:form id="formConfirmaEmail">
+                   
+                        <p>Este não é o seu e-mail? Você pode altera-lo logo abaixo.</p>
+                        <div class="col-md-6" align="center">
+                        <div class="col-md-8" align="center">
+                        <h:message class="mensagemErro" for="email"/>
+                        <p:inputText id="email" placeholder="ex: email@email.com" class="form-control" 
+                                     value="#{empreendedorBean.email}"
+                                     validatorMessage="Email Invalido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
+                        </div>
+                        <div class="col-md-2">
+                        <p:commandButton id="botaoAtualizarEmail" 
+                                         class="botaoBase botaoAzul" 
+                                         title="Atualizar o seu e-mail" 
+                                         value="Atualizar" 
+                                         action="#{empreendedorBean.atualizaEmail()}"
+                                         ajax="false">
+                        </p:commandButton>
+                    </div>
+                    </div>
+                        <p> Caso você ainda não tenha recebido o e-mail é possivel reenviar clicando <p:commandLink action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
+                  
+                    <div>
+                        <br/><br/>
+                        <a  id="botaoLogin" 
+                            class="aComoBotao"
+                            href="/GerenciadorPampatec/loginEmpreendedor.jsf"
+                            title="Redireciona para a página de login."
+                            style="padding: 8px 20px 8px 14px"
+                            >
+                            <i class="fa fa-sign-out"></i><strong>   Acesse sua conta</strong>
+                        </a>
+                    </div>
+                </h:form>
+            </div>
+        </main>
+
         <!-- Início do footer profissional em HTML5+CCS3  -->
         <footer class="rodapePaginaErro">
             <nav>
