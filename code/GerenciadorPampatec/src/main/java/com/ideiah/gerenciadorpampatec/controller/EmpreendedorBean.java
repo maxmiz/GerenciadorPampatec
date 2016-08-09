@@ -86,6 +86,17 @@ public class EmpreendedorBean implements Serializable {
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
+    public void atualizaEmail() {
+        if (empreendedor.buscarPorEmail(email) != null) {
+            FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
+        } else {
+            empreendedor.setEmail(email);
+            empreendedor.atualizarEmpreendedor(empreendedor);
+
+            EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+        }
+    }
+
     public void chamaCadastro() {
         empreendedor = new Empreendedor();
         empreendedor.setNome(nome);
@@ -136,7 +147,7 @@ public class EmpreendedorBean implements Serializable {
                         UserBean.MudarUser(empreendedor.getEmail());
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("loginEmpreendedor.jsf");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("confirmarEmail.jsf");
                         FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "loginEmpreendedor");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
