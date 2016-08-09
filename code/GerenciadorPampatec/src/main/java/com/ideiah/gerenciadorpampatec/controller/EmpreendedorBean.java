@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean(name = "empreendedorBean")
 @SessionScoped
-public class EmpreendedorBean implements Serializable{
+public class EmpreendedorBean implements Serializable {
 
     private String outcome = "LoginEmpreendedor";
     private String userInput = "";
@@ -54,7 +54,7 @@ public class EmpreendedorBean implements Serializable{
     private EmailUtil emailUtil;
     @ManagedProperty(value = "#{userBean}")
     private UserBean userBean;
-    
+
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
@@ -108,12 +108,11 @@ public class EmpreendedorBean implements Serializable{
                 empreendedor.setBairro(bairro);
                 empreendedor.setComplemento(complemento);
                 empreendedor.setExperiencia(experiencia);
-                
+
                 //gera id unico para o empreendedor, para ser usado na confirmacao de email.
                 empreendedor.setIdUnico(geraIdUnico());
                 EmailUtil.mandarEmailConfirmacao(nome, email, empreendedor.getIdUnico());
-                
-                
+
                 if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "formularioCadastro:botaoEnviar");
 //                        depois do processamento, aqui ele coloca os campos que vão ser recuperados para tela
@@ -148,18 +147,30 @@ public class EmpreendedorBean implements Serializable{
             }
         }
     }
-    
+
+    /**
+     * método que reenvia e-mail para o empreededor
+     */
+    public void reenviaEmail() {
+
+        HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+
+        EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+    }
+
     /**
      * Gera um id Unico para usar na verificacao de email
+     *
      * @return idUnico
      */
     private String geraIdUnico() {
         String idUnico;
-                idUnico = UUID.randomUUID().toString();  
+        idUnico = UUID.randomUUID().toString();
         return idUnico;
     }
-    
-  
+
     /**
      * Método para salvar a nova senha do usuário a partir da recuperação pelo
      * link submetido para o email
