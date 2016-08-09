@@ -47,6 +47,10 @@
         <url-pattern>/terminarCadastroEmpreendedor.jsf</url-pattern>
     </filter-mapping>
     <filter-mapping>
+        <filter-name>VerificarEmailFilter</filter-name>
+        <url-pattern>/verificarEmail.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>RecuperarSenhaFilter</filter-name>
         <url-pattern>/recuperarSenha.jsf</url-pattern>
     </filter-mapping>
@@ -79,10 +83,10 @@
         <filter-name>CompletarCadastroFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.CompletarCadastroFilter</filter-class>
     </filter>
-<!--    <filter>
+    <filter>
         <filter-name>VerificarEmailFilter</filter-name>
         <filter-class>com.ideiah.gerenciadorpampatec.controller.VerificarEmailFilter</filter-class>
-    </filter>-->
+    </filter>
     
     <!--
     Mapeamento para tratar as exceções geradas quandoa Sessão é finalizada.
