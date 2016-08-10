@@ -86,14 +86,20 @@ public class EmpreendedorBean implements Serializable {
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
 
+    /**
+     * metodo que atualiza o e-mail do empreendedor
+     */
     public void atualizaEmail() {
+        
         if (empreendedor.buscarPorEmail(email) != null) {
             FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
         } else {
             empreendedor.setEmail(email);
-            empreendedor.atualizarEmpreendedor(empreendedor);
-
-            EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+            if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
+                EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                FacesUtil.addSuccessMessage("E-mail Atualizado com sucesso!", "formReenviaEmail:linkEmail");
+            }
+            
         }
     }
 
@@ -148,7 +154,6 @@ public class EmpreendedorBean implements Serializable {
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
                         session.setAttribute("empreendedor", empreendedor);
                         FacesContext.getCurrentInstance().getExternalContext().redirect("confirmarEmail.jsf");
-                        FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "loginEmpreendedor");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -168,7 +173,10 @@ public class EmpreendedorBean implements Serializable {
 
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
 
-        EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+        if (EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
+            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
+        }
+
     }
 
     /**

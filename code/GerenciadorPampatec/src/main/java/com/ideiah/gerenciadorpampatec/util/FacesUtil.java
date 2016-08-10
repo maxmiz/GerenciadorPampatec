@@ -44,7 +44,7 @@ public class FacesUtil {
     public static void addSuccessMessage(String message, String idComponente) {
         FacesContext.getCurrentInstance().addMessage(idComponente,
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        message, message));
+                        "Operação realizada com sucesso!", message));
     }
 
     /**
@@ -67,7 +67,7 @@ public class FacesUtil {
     public static void addErrorMessage(String message, String idComponente) {
         FacesContext.getCurrentInstance().addMessage(idComponente,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                        message, message));
+                        "Erro!", message));
     }
 
     /**

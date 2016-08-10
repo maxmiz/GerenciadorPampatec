@@ -347,8 +347,9 @@ public class EmailUtil {
      * @param empreendedorNome
      * @param email
      * @param idUnico
+     * @return 
      */
-    public static void mandarEmailConfirmacao(String empreendedorNome,
+    public static boolean mandarEmailConfirmacao(String empreendedorNome,
             String email, String idUnico) {
         if (empreendedorNome != null && email != null && idUnico != null) {
             if (!empreendedorNome.isEmpty() && !email.isEmpty() && !idUnico.isEmpty()) {
@@ -400,12 +401,15 @@ public class EmailUtil {
                     emailHtml.setHtmlMsg(msg.toString());
 
                     emailHtml.send();
+                    
+                    return true;
 
                 } catch (EmailException ex) {
                     Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
                 }
-            }
-        }
+            } 
+        } return true;
     }
 
     /**
