@@ -21,22 +21,36 @@
     <h:body>
 
         <main>
-            <br/>
+            
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+            <p:dialog style="margin-left: 40%; margin-top: 20%" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <h:graphicImage library="images" 
+                                    name="ajax-loader6.gif" 
+                                    alt="Carregando"/>
+            </p:dialog>
+            <br/><br/><br/>
             <div class="paginaErro well">
 
 
                 <h2>
                     <p>Confirmação de e-mail</p>
                 </h2>
-                <p>Olá <strong><h:outputText value="#{empreendedorBean.empreendedor.nome}"></h:outputText></strong>, um e-mail contendo instruções para confirmação foi enviado para <strong><h:outputText value="#{empreendedorBean.empreendedor.email}"></h:outputText></strong>, siga essas instruções e nós confirmaremos o seu e-mail.</p>
-
+                <br/>
+                <p>Olá <strong><h:outputText value="#{empreendedorBean.empreendedor.nome}"></h:outputText></strong>, um e-mail contendo instruções para confirmação foi enviado para <strong><h:outputText value="#{empreendedorBean.empreendedor.email}"></h:outputText></strong>. <br/>Siga essas instruções e nós confirmaremos o seu e-mail.</p>
+                <br/>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6"><hr></hr></div>
+                    <div class="col-md-2"></div>
+                    <br/>
                 <h:form id="formConfirmaEmail">
+                    
+                    
 
-                    <br/><p>Este <strong>não</strong> é o seu e-mail? Você pode altera-lo logo abaixo.</p>
-
-                    <div class="col-md-12" style="padding-left: 35%">
+                    <div class="col-md-12" style="padding-left: 35%; text-align: left" >
+                        <p> Este <strong>não</strong> é o seu e-mail? Você pode altera-lo logo abaixo.</p>
                         <div class="col-md-5">
-                            <h:message class="mensagemErro" for="email"/>
+                            
                             <p:inputText id="email" placeholder="email@email.com" class="form-control" 
                                          value="#{empreendedorBean.email}"
                                          required="true"
@@ -44,6 +58,7 @@
                                          validatorMessage="Email Invalido">
                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             </p:inputText>
+                            <h:message class="mensagemErro" for="email"/>
                         </div>
                         <div class="col-md-2">
                             <p:commandButton id="botaoAtualizarEmail" 
@@ -59,10 +74,11 @@
 
                 <h:form id="formReenviaEmail">
                     <div class="col-md-12">
-                        <h:message class="mensagemSucesso" for="linkEmail"/>
+                        <h:message class="mensagemSucesso" style="margin-right: 16.5%" for="linkEmail"/>
+                        
                         <br/>
                         <br/><p> Caso você ainda não tenha recebido o e-mail é possivel reenviar clicando 
-                            <p:commandLink  id="linkEmail" update=":formReenviaEmail" action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
+                            <p:commandLink  id="linkEmail" update=":formReenviaEmail formConfirmaEmail" action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
                         <br/><br/>
                     </div>
                     <div>
