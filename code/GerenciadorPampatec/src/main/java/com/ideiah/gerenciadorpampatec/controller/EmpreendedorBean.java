@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.ideiah.gerenciadorpampatec.dao.EmpreendedorEmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.util.CpfUtil;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
@@ -106,6 +107,7 @@ public class EmpreendedorBean implements Serializable {
 
     public void chamaCadastro() {
         empreendedor = new Empreendedor();
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
         empreendedor.setNome(nome);
         cpf = FacesUtil.removeCaracteres(cpf);
         if (empreendedor.buscarPorCpf(cpf) != null) {
@@ -113,7 +115,7 @@ public class EmpreendedorBean implements Serializable {
         } else {
             empreendedor.setCpf(cpf);
             empreendedor.setFormacao(formacao);
-            if (empreendedor.buscarPorEmail(email) != null) {
+            if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
                 FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
             } else if (CpfUtil.isValidCPF(cpf) == false) {
                 FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
