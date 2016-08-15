@@ -57,7 +57,7 @@ public class EmpreendedorBean implements Serializable {
 
     public EmpreendedorBean() {
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
+        this.empreendedor = (Empreendedor) session.getAttribute("empreendedorIncompleto");
         if (empreendedor != null) {
             empreendedor.getEmail();
         }
@@ -98,6 +98,7 @@ public class EmpreendedorBean implements Serializable {
             if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
                 EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
                 FacesUtil.addSuccessMessage("E-mail Atualizado com sucesso!", "formReenviaEmail:linkEmail");
+                email = null;
             }
             
         }
@@ -152,7 +153,7 @@ public class EmpreendedorBean implements Serializable {
                         UserBean.MudarSenha(empreendedor.getSenha());
                         UserBean.MudarUser(empreendedor.getEmail());
                         empreendedor = empreendedor.buscarPorEmail(empreendedor.getEmail());
-                        session.setAttribute("empreendedor", empreendedor);
+                        session.setAttribute("empreendedorIncompleto", empreendedor);
                         FacesContext.getCurrentInstance().getExternalContext().redirect("confirmarEmail.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
