@@ -98,8 +98,8 @@ public class EmpreendedorBean implements Serializable {
             empreendedor.setEmail(email);
             if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
                 EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
-                FacesUtil.addSuccessMessage("E-mail Atualizado com sucesso!", "formReenviaEmail:linkEmail");
-                email = null;
+                FacesUtil.addSuccessMessage("E-mail atualizado com sucesso!", "formReenviaEmail:linkEmail");
+                email = "";
             }
             
         }
@@ -177,7 +177,7 @@ public class EmpreendedorBean implements Serializable {
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
 
         if (EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
-            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
+//            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
         }
 
     }
