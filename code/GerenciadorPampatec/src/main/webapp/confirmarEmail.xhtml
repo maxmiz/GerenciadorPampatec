@@ -6,21 +6,44 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <f:facet name="last">
+            <h:outputStylesheet library="css" name="animation.css"  />
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />            
             <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+            <h:outputStylesheet library="css" name="ns-default.css"/>
+            <h:outputStylesheet library="css" name="ns-style-growl.css"/>
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
-        <h:outputScript library="js" name="bootstrap.js" />        
+        <h:outputScript library="js" name="bootstrap.js" /> 
+        <h:outputScript library="js" name="mensagemFeedBack.js" />
 
+        <script>
+            function exibeMensagem(){
+                var mensagem = document.getElementById("notificacaoSalvo");
+                mensagem.setAttribute("class","ns-box ns-growl notSalvo ns-type-notice ns-show animated");
+            }
+        </script>
+        
         <title>Confirmação de e-mail</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
 
         <main>
+            <!-- Notificação Plano salvo com sucesso. -->
+            <h:panelGroup layout="block" id="mensagemSalvamento">
+                <!--ns-box ns-growl notSalvo ns-type-notice ns-show animated -->
+                <h:panelGroup id="notificacaoSalvo" layout="block" style="position: fixed; left: 40%;" class="invisivel">
+                    <div>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <p style="padding-left: 15%; margin-top: -17%;">O e-mail foi reenviado com sucesso!</p>
+                        <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
+                    </div>
+                </h:panelGroup>
+            </h:panelGroup>
+            <!-- Fim Notificação Plano salvo com sucesso. -->
             
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
  
@@ -51,10 +74,10 @@
                         <p> Este <strong>não</strong> é o seu e-mail? Você pode altera-lo logo abaixo.</p>
                         <div class="col-md-5">
                             
-                            <p:inputText id="email" placeholder="email@email.com" class="form-control" 
+                            <p:inputText id="email" placeholder="email@email.com" class="form-control" style="padding: 10px 18px;"
                                          value="#{empreendedorBean.email}"
                                          required="true"
-                                         requiredMessage="Insira o email para alterar"
+                                         requiredMessage="Insira o email para atualizar"
                                          validatorMessage="Email Invalido">
                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             </p:inputText>
@@ -65,20 +88,26 @@
                                              class="botaoBase botaoAzul" 
                                              title="Atualizar o seu e-mail" 
                                              value="Atualizar" 
-                                             action="#{empreendedorBean.atualizaEmail()}"
-                                             ajax="false">
+                                             action="#{empreendedorBean.atualizaEmail()}" 
+                                             onclick="PF('statusDialog').show()"
+                                             
+                                             ajax="false"> 
                             </p:commandButton>
                         </div>
                     </div>
                 </h:form>
 
                 <h:form id="formReenviaEmail">
+                   
                     <div class="col-md-12">
-                        <h:message class="mensagemSucesso" style="margin-right: 16.5%" for="linkEmail"/>
-                        
+                        <h:message class="mensagemSucesso" style="margin-right: 7.5%" for="linkEmail" >
+                            
+                        </h:message>
                         <br/>
                         <br/><p> Caso você ainda não tenha recebido o e-mail é possivel reenviar clicando 
-                            <p:commandLink  id="linkEmail" update=":formReenviaEmail formConfirmaEmail" action="#{empreendedorBean.reenviaEmail()}">aqui</p:commandLink>.</p>
+                            <p:commandLink  id="linkEmail" update=":formReenviaEmail formConfirmaEmail" action="#{empreendedorBean.reenviaEmail()}" onsuccess="exibeMensagem(),funcaoAjaxSalvoPrimeFaces()">aqui
+                            </p:commandLink>.</p>
+                       
                         <br/><br/>
                     </div>
                     <div>
