@@ -22,7 +22,7 @@ import javax.faces.bean.RequestScoped;
 /**
  *
  * <p>
- * Classe responsÃ¡vel por gerenciar o acesso dos usuÃ¡rios ao sistema.
+ * Classe responsável por gerenciar o acesso dos usuários ao sistema.
  * </p>
  *
  * @author unipampa
@@ -43,8 +43,8 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * MÃ©todo que executa a chamada para verificar a existÃªncia do usuÃ¡rio que
-     * estÃ¡ realizando Login no sistema.</p>
+     * Método que executa a chamada para verificar a existência do usuário que
+     * está realizando Login no sistema.</p>
      */
     public void submit() {
         try {
@@ -53,17 +53,17 @@ public class SystemAccessBean implements Serializable {
             }
         } catch (Exception e) {
             System.out.println("Origem: " + this.getClass().getName()
-                    + ":: \t ExceÃ§Ã£o inesperada" + e);
+                    + ":: \t Exceção inesperada" + e);
         }
     }
 
     /**
      * <p>
-     * MÃ©todo que realiza o login do Gerente no sistema.</p>
+     * Método que realiza o login do Gerente no sistema.</p>
      *
      * @param user
      * @param senha
-     * @return <code>True</code> caso o usuÃ¡rio exista e seja um gerente,
+     * @return <code>True</code> caso o usuário exista e seja um gerente,
      * <code>False</code> para todos os demais casos.
      */
     private boolean loginGerente(String user, String senha) {
@@ -74,7 +74,7 @@ public class SystemAccessBean implements Serializable {
                 if (CpfUtil.isValidCPF(user)) {
                     gerente = gerente.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 gerente = gerente.buscarPorEmail(user);
@@ -93,11 +93,11 @@ public class SystemAccessBean implements Serializable {
                 }
 
             } else {
-                FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
         }
         return false;
@@ -105,11 +105,11 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * MÃ©todo que realiza o login do empreendedor no sistema.</p>
+     * Método que realiza o login do empreendedor no sistema.</p>
      *
      * @param user
      * @param senha
-     * @return <code>True</code> caso o usuÃ¡rio exista e seja empreendedor,
+     * @return <code>True</code> caso o usuário exista e seja empreendedor,
      * <code>False</code> para todos os demais casos.
      */
     private boolean loginEmpreendedor(String user, String senha) {
@@ -120,7 +120,7 @@ public class SystemAccessBean implements Serializable {
                 if (CpfUtil.isValidCPF(user)) {
                     empreendedor = empreendedor.buscarPorCpf(user);
                 } else {
-                    FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+                    FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 }
             } else {
                 empreendedor = empreendedor.buscarPorEmail(user);
@@ -141,16 +141,17 @@ public class SystemAccessBean implements Serializable {
                         Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    SessionManager.getCreateSession().setAttribute("empreendedorIncompleto", empreendedor);
+                    SessionManager.getCreateSession().setAttribute("empreendedor", empreendedor);
+
                     RedirectManager.getConfirmaEmail();
                     return true;
                 }
             } else {
-                FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+                FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
                 return false;
             }
         } catch (NullPointerException nullpointer) {
-            FacesUtil.addErrorMessage(" UsuÃ¡rio ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
+            FacesUtil.addErrorMessage(" Usuário ou Senha incorreto(s) ", "formularioDeLogin:botaoLogin");
             return false;
         }
         return false;
@@ -158,10 +159,10 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Verifica se a <code>String</code> contem apenas nÃºmeros.<p>
+     * Verifica se a <code>String</code> contem apenas números.<p>
      *
      * @param texto
-     * @return <code>True</code> caso existam apenas nÃºmeros na frase, e
+     * @return <code>True</code> caso existam apenas números na frase, e
      * <code>False</code> para todos os demais casos.
      */
     public static boolean soContemNumeros(String texto) {
@@ -178,9 +179,9 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * MÃ©todo que realiza logout do sistema, garantindo o status correto do
-     * projeto, finalizando a sessÃ£o do usuÃ¡rio e chamando o mÃ©todo para
-     * redirecionar para a pÃ¡gina inicial do sistema.</p>
+     * Método que realiza logout do sistema, garantindo o status correto do
+     * projeto, finalizando a sessão do usuário e chamando o método para
+     * redirecionar para a página inicial do sistema.</p>
      *
      */
     public static void fazLogout() {
@@ -192,11 +193,11 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * MÃ©todo para recuperaÃ§Ã£o de senha do usuÃ¡rio. Envia um email para o
+     * Método para recuperação de senha do usuário. Envia um email para o
      * destino inserido (email) com um link para alterar a senha. Cria um novo
-     * empreendedorEmail e seta os valores com tipo (recuperaÃ§Ã£o de senha),
+     * empreendedorEmail e seta os valores com tipo (recuperação de senha),
      * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
-     * inserido e gera um idUnico que Ã© setado no campo de id do
+     * inserido e gera um idUnico que é setado no campo de id do
      * empreendedorEmail.</p>
      *
      */
@@ -226,10 +227,10 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Retorna o valor da variÃ¡vel <code>user</code> para manipulaÃ§Ã£o no sistema
+     * Retorna o valor da variável <code>user</code> para manipulação no sistema
      * de login.</p>
      *
-     * @return O valor da variÃ¡vel <code>user</code> do tipo
+     * @return O valor da variável <code>user</code> do tipo
      * <code>String</code>.
      */
     public String getUser() {
@@ -238,7 +239,7 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Define o valor da variÃ¡vel <code>user</code> para manipulaÃ§Ã£o no sistema
+     * Define o valor da variável <code>user</code> para manipulação no sistema
      * de login.</p>
      *
      * @param aUser
@@ -249,10 +250,10 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Retorna o valor da variÃ¡vel <code>passphrase</code> para manipulaÃ§Ã£o no
+     * Retorna o valor da variável <code>passphrase</code> para manipulação no
      * sistema de login.</p>
      *
-     * @return O valor da variÃ¡vel <code>passphrase</code> do tipo
+     * @return O valor da variável <code>passphrase</code> do tipo
      * <code>String</code>.
      */
     public String getPassphrase() {
@@ -261,7 +262,7 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Define o valor da variÃ¡vel <code>passphrase</code> para manipulaÃ§Ã£o no
+     * Define o valor da variável <code>passphrase</code> para manipulação no
      * sistema de login.</p>
      *
      * @param aSenha
@@ -288,7 +289,7 @@ public class SystemAccessBean implements Serializable {
 
     /**
      * <p>
-     * Verifica se o empreendedor estÃ¡ com o cadastro completo.</p>
+     * Verifica se o empreendedor está com o cadastro completo.</p>
      *
      * @return
      */
