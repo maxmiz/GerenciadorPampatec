@@ -10,6 +10,7 @@ import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
 import com.ideiah.gerenciadorpampatec.model.Analiseemprego;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Negocio;
 import com.ideiah.gerenciadorpampatec.model.Planofinanceiro;
 import com.ideiah.gerenciadorpampatec.model.Produtoouservico;
@@ -255,8 +256,14 @@ public class ProjetoBean implements Serializable {
      * Adiciona o Empreendedor ao projeto.
      */
     public void adicionarEmpreendedor() {
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
         if (emailEmpreendedor.equals("")) {
             FacesUtil.addErrorMessage("Adicione um email valido para cadastrar um novo empreendedor", "formEquipe:autocomplete");
+        } 
+        
+        else if(gerente.buscarPorEmail(emailEmpreendedor) != null){
+           FacesUtil.addErrorMessage("Este usuário não está disponível para ser adicionado à sua equipe", "formEquipe:autocomplete");
+
         } else {
 
             boolean existe = false;
