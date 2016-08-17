@@ -141,7 +141,7 @@ public class SystemAccessBean implements Serializable {
                         Logger.getLogger(SystemAccessBean.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    SessionManager.getCreateSession().setAttribute("empreendedor", empreendedor);
+                    SessionManager.getCreateSession().setAttribute("empreendedorIncompleto", empreendedor);
 
                     RedirectManager.getConfirmaEmail();
                     return true;
@@ -209,19 +209,19 @@ public class SystemAccessBean implements Serializable {
         } else if (empreendedor != null) {
             if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
                 cadastroIncompleto = true;
-                FacesUtil.addErrorMessage("Alguem j\u00e1 adicionou voc\u00ea ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha");
+                FacesUtil.addErrorMessage("Alguém já adicionou você ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha");
             } else {
                 String idUnico = UUID.randomUUID().toString();
                 EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
                 empreendedorEmail.setEmpreendedor(empreendedor);
                 empreendedorEmail.setIdEmpreendedorEmail(idUnico);
-                empreendedorEmail.setTipo("Recupera\u00e7\u00e3o de Senha");
+                empreendedorEmail.setTipo("Recuperação de Senha");
                 empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
                 EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-                FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instru\u00e7\u00f5es para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+                FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
             }
         } else {
-            FacesUtil.addErrorMessage("O e-mail inserido n\u00e3o est\u00e1 cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+            FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
         }
     }
 

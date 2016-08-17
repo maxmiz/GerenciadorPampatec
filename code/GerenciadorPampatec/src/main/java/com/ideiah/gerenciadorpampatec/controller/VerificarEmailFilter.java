@@ -58,15 +58,15 @@ public class VerificarEmailFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         String id = request.getParameter("id");
         emp = Empreendedor.buscaEmpreendedorID(id);
-        emp2 = (Empreendedor) session.getAttribute("empreendedor");
+        emp2 = (Empreendedor) session.getAttribute("empreendedorIncompleto");
         if (emp != null) {
-            session.removeAttribute("empreendedor");
-            session.setAttribute("empreendedor", emp);
+            session.removeAttribute("empreendedorIncompleto");
+            session.setAttribute("empreendedorIncompleto", emp);
             
             emp.setIdUnico(null);
             
             emp.atualizarEmpreendedor(emp);
-            //INCOMPLETO 
+            
             request.getRequestDispatcher("/verificarEmail.jsf").forward(request, response);
         } else if ((emp2 != null)) {
             if (emp2.getIdUnico() != null) {
@@ -86,7 +86,7 @@ public class VerificarEmailFilter implements Filter {
 
     @Override
     public void destroy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

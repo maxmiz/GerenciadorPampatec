@@ -174,7 +174,7 @@ public class EmpreendedorBean implements Serializable {
 
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 
-        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedor");
+        Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedorIncompleto");
 
         if (EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
 //            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
@@ -241,14 +241,18 @@ public class EmpreendedorBean implements Serializable {
                         getUserBean().setNome(nome);
                         UserBean.MudarSenha(empreendedor.getSenha());
                         UserBean.MudarUser(empreendedor.getEmail());
-                        session.setAttribute("empreendedor", empreendedor);
-                        empreendedor.setTelefone(null);
-                        empreendedor.setSenha(CriptografiaUtil.md5(null));
-                        empreendedor.setRua(null);
-                        empreendedor.setNumero(Integer.parseInt(null));
-                        empreendedor.setBairro(null);
-                        empreendedor.setComplemento(null);
-                        empreendedor.setExperiencia(null);
+                        session.setAttribute("empreendedorIncompleto", empreendedor);
+                        nome = null;
+                        cpf = null;
+                        rua = null;
+                        email = null;
+                        senhaInput = null;
+                        telefone = null;
+                        numero = null;
+                        bairro = null;
+                        complemento = null;
+                        experiencia = null;
+                        formacao = null;
                         FacesContext.getCurrentInstance().getExternalContext().dispatch("/loginEmpreendedor.jsf");
                     } catch (IOException ex) {
                         Logger.getLogger(EmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
