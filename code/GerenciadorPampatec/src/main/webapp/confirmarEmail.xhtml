@@ -112,15 +112,15 @@
                     </div>
                     <div>
 
-                        <a  id="botaoLogin" 
-                            onclick="#{userBean.finalizaSessao()}"
-                            class="aComoBotao"
-                            href="/GerenciadorPampatec/loginEmpreendedor.jsf"
+                        <p:button id="botaoLogin"
+                            class="botaoBase botaoVerde"
                             title="Redireciona para a página de login."
-                            style="padding: 8px 20px 8px 14px"
+                            value="Acesse sua conta"
+                            outcome="loginEmpreendedor.jsf"
+                            icon="fa fa-sign-out"
                             >
-                            <i class="fa fa-sign-out"></i><strong>   Acesse sua conta</strong>
-                        </a>
+                           
+                        </p:button>
                     </div>
                 </h:form>
             </div>
