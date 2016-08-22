@@ -5,12 +5,14 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
+import static com.ideiah.gerenciadorpampatec.controller.SessionManager.getFacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -173,5 +175,60 @@ public class RedirectManager implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(RedirectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+        
+    /**
+     * <p>
+     * Método para recuperar o url da pagina do sistema.
+     * poderá ser usado em links enviados por email
+     * ex.: http://localhost:8080/GerenciadorPampatec/confirmarEmail.jsf
+     * ESSE MÉTODO DEVERÁ SER ALTERADO DE ACORDO COM O URL DO SISTEMA
+     * </p>
+     * @return URL
+     */
+    
+    public static String getURL(){
+        String URL;
+        HttpServletRequest request = (HttpServletRequest) getFacesContext().getExternalContext().getRequest();
+        URL = request.getRequestURL().toString();
+        
+        return URL;
+    }
+    
+    /**
+     * <p>
+     * Método para recuperar o url absoluto do sistema.
+     * poderá ser usado em links enviados por email
+     * ex.: http://localhost:8080/GerenciadorPampatec/  (é importante o / no final do link).
+     * ESSE MÉTODO DEVERÁ SER ALTERADO DE ACORDO COM O URL DO SISTEMA
+     * </p>
+     * @return baseURL
+     */
+    
+    public static String getBaseURL(){
+        
+        HttpServletRequest request = (HttpServletRequest) getFacesContext().getExternalContext().getRequest();
+        String URL = request.getRequestURL().toString();
+        String baseURL = URL.substring(0, URL.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+        
+        return baseURL;
+    }
+    
+    /**
+     * <p>
+     * Método para recuperar o patch do sistema.
+     * poderá ser usado em links enviados por email
+     * ex.: /GerenciadorPampatec
+     * </p>
+     * @return patchURL
+     */
+    
+    public static String getPatchURL(){
+        
+        HttpServletRequest request = (HttpServletRequest) getFacesContext().getExternalContext().getRequest();
+        String patchURL = request.getContextPath();
+        
+        return patchURL;
     }
 }
