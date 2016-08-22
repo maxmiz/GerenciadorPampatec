@@ -3,6 +3,8 @@
  */
 package com.ideiah.gerenciadorpampatec.util;
 
+import com.ideiah.gerenciadorpampatec.controller.RedirectManager;
+import com.ideiah.gerenciadorpampatec.controller.SessionManager;
 import com.ideiah.gerenciadorpampatec.dao.EmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmailSystemConfig;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
@@ -93,7 +95,7 @@ public class EmailUtil {
                             + "                                                 background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; "
                             + "                                                 line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; "
                             + "                                                 user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" "
-                            + "                                                 href=\"http://localhost:8080/GerenciadorPampatec\">\n"
+                            + "                                                 href=\"" + RedirectManager.getBaseURL() + "\">\n"
                             + "								<strong>Acessar o sistema</strong>\n"
                             + "							</a>\n"
                             + "				</div>\n"
@@ -175,7 +177,7 @@ public class EmailUtil {
                                 + "                                                     background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; "
                                 + "                                                     line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; "
                                 + "                                                     user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" "
-                                + "                                                     href=\"http://localhost:8080/GerenciadorPampatec\">\n"
+                                + "                                                     href=\"" + RedirectManager.getBaseURL() + "\">\n"
                                 + "								<strong>Acessar o sistema</strong>\n"
                                 + "							</a>\n"
                                 + "				</div>\n"
@@ -244,7 +246,7 @@ public class EmailUtil {
                             + "        <form class=\"form-horizontal\">\n"
                             + "            <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
                             + "                <a>Olá!</a><br/><br/><a>Verificamos que você esqueceu a sua senha. Por favor, <strong>clique na opção a baixo</strong> para redefinir uma nova senha e continuar.</a><br/><br/>\n"
-                            + "                 <a class=\"btn btn-success focus\" href=\"http://localhost:8080/GerenciadorPampatec/recuperarSenha.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Redefinir minha senha</strong></a>\n"
+                            + "                 <a class=\"btn btn-success focus\" href=\"" + RedirectManager.getBaseURL() + "recuperarSenha.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Redefinir minha senha</strong></a>\n"
                             + "                    </div>\n"
                             + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
                             + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
@@ -313,7 +315,7 @@ public class EmailUtil {
                             + "                        como sócio em seu novo projeto.\n"
                             + "                        <br/><br/>Para que você possa utilizar o Sistema de Gerenciamento de Projetos do \n"
                             + "                        PampaTec é necessário confirmar o seu e-mail e realizar o seu cadastro.\n"
-                            + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"http://localhost:8080/GerenciadorPampatec/terminarCadastroEmpreendedor.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
+                            + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"" + RedirectManager.getBaseURL() + "terminarCadastroEmpreendedor.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
                             + "                    </div>\n"
                             + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
                             + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
@@ -365,7 +367,7 @@ public class EmailUtil {
                     emailHtml.addTo(email);
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
-
+                    
                     StringBuffer msg = new StringBuffer();
 
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
@@ -383,7 +385,7 @@ public class EmailUtil {
                             + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
                             + "                        <a>Olá, " + empreendedorNome + "!</a><br/><br/>"
                             + "                        Você se cadastrou no Sistema de gerenciamento de projetos do PampaTec, mas nós ainda precisamos verificar seu e-mail.\n"
-                            + "                        <br/><br/>Para confirmar o seu email clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"http://localhost:8080/GerenciadorPampatec/verificarEmail.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Confirmar o email</strong></a>\n"
+                            + "                        <br/><br/>Para confirmar o seu email clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"" + RedirectManager.getBaseURL() + "verificarEmail.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Confirmar o email</strong></a>\n"
                             + "                    </div>\n"
                             + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
                             + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
