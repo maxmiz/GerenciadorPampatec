@@ -118,7 +118,7 @@ public class Projeto implements java.io.Serializable {
     }
     
         public String formatarDataEnvio() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         if (getDataEnvio() != null) {
             return formato.format(getDataEnvio());
         } else {
@@ -132,9 +132,10 @@ public class Projeto implements java.io.Serializable {
      * @return dataAvaliacao
      */
     public String formatarDataAvaliacao() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         if (getDataAvaliacao() != null) {
             return formato.format(getDataAvaliacao());
+          
         } else {
             return "Plano não avaliado";
         }

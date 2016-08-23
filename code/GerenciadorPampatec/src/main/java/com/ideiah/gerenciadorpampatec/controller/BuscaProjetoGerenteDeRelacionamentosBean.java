@@ -49,7 +49,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         projetoDao = new ProjetoDao();
         this.atualizaListaProjetosTodos();
         listaStatusProjeto = new ArrayList<>();
-        
+
         //Adicionando os Status para o Filtro na tabela
         listaStatusProjeto.add("Sendo Avaliado");
         listaStatusProjeto.add("Submetido");
@@ -366,9 +366,10 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
 
     /**
      * <p>
-     * Usa a classe Collection pra arrumar a lista por ordem de alteração
-     * e envio, com o mais novo alterado em cima, seguido dos mais novos 
-     * enviados. A lista é reordenada separadamente e reordenada
+     * Usa a classe Collection pra arrumar a lista por ordem de alteração e
+     * envio, com o mais novo alterado em cima, seguido dos mais novos enviados.
+     * A lista é reordenada separadamente e reordenada
+     *
      * @param lista Não retorna lista, ele ordena dentro dela mesma.
      * </p>
      */
@@ -392,7 +393,7 @@ public class BuscaProjetoGerenteDeRelacionamentosBean implements Serializable {
         Collections.reverse(avaliados);
 
         lista.clear();
-        
+
         lista.addAll(avaliados);
         lista.addAll(naoavaliados);
 
