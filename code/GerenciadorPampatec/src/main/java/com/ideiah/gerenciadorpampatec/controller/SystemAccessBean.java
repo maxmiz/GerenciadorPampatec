@@ -218,7 +218,7 @@ public class SystemAccessBean implements Serializable {
                 empreendedorEmail.setTipo("Recuperação de Senha");
                 empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
                 EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-                FacesUtil.addSuccessMessage("Um e-mail foi enviado para a sua caixa de e-mail contendo as instruções para recuperar sua senha de acesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+                FacesUtil.addSuccessMessage("Um e-mail para redefinição de senha foi reenviado com sucesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
             }
         } else {
             FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
