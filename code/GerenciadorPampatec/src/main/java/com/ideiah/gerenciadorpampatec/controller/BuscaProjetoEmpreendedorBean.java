@@ -207,7 +207,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     }
 
     public String formatarDataCriacao(Projeto projeto) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         if (projeto.getDataCriacao() != null) {
             return formato.format(projeto.getDataCriacao());
         } else {
@@ -216,7 +216,7 @@ public class BuscaProjetoEmpreendedorBean implements Serializable {
     }
 
     public String formatarDataEnvio(Projeto projeto) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         if (projeto.getDataEnvio() != null) {
             return formato.format(projeto.getDataEnvio());
         } else {
