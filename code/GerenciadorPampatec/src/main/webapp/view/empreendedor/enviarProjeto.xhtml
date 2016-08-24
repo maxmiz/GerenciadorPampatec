@@ -67,7 +67,10 @@
              */
             function exibeCarregando(){
                 document.getElementById("carregando").setAttribute("class", "carregando");
-            }            
+            }
+            function exibeCarregando2(){
+                document.getElementById("carregando2").setAttribute("class", "carregando");
+            }
         </script>
 
         <!-- Classe para 'dizer' o que não será impresso da página, para isto
@@ -355,8 +358,11 @@
                             à etapa de definição de Equipe e adicionar ou remover empreendedores do seu projeto.<br/><br/>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição da Equipe</button>
-                            <h:commandButton action="#{projetoBean.atualizaStatus()}" type="submit" class="btn btn-success" value="Salvar Equipe"></h:commandButton>
+                            <div id="carregando2" class="invisivel">
+                                <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                            </div>
+                            <button type="button" class="btn btn-default" title="Voltar para edição de equipe" data-dismiss="modal">Voltar para Equipe</button>
+                            <h:commandButton action="#{projetoBean.atualizaStatus()}" onclick="exibeCarregando2()" type="submit" title="Salvar edição de equipe" class="btn btn-success" value="Salvar Equipe"></h:commandButton>
                         </div>
                     </div>
                 </div>
