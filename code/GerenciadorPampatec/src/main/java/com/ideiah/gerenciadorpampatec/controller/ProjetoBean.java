@@ -204,12 +204,10 @@ public class ProjetoBean implements Serializable {
     public void enviarEmailCadastro(Empreendedor empreendedor, Projeto projeto) {
         String idUnico;
         if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
-            if (empreendedor.getIdUnico() == null) {
                 idUnico = UUID.randomUUID().toString();
                 EmailUtil.mandarEmailConcluirCadastro(empreendedorSession.getNome(), projeto.getNome(), empreendedor.getEmail(), idUnico);
                 empreendedor.setIdUnico(idUnico);
                 empreendedor.atualizarEmpreendedor(empreendedor);
-            }
         }
     }
 
