@@ -215,7 +215,7 @@ public class EmailUtil {
      * @param email
      * @param idUnico
      */
-    public static void enviarEmailRecuperarSenha(String email, String idUnico) {
+    public synchronized static void enviarEmailRecuperarSenha(String email, String idUnico) {
         if (email != null && idUnico != null) {
             if (!email.isEmpty() && !idUnico.isEmpty()) {
 
@@ -279,7 +279,7 @@ public class EmailUtil {
      * @param email
      * @param idUnico
      */
-    public static void mandarEmailConcluirCadastro(String empreendedorNome,
+    public synchronized static void mandarEmailConcluirCadastro(String empreendedorNome,
             String projetoNome, String email, String idUnico) {
         if (empreendedorNome != null && projetoNome != null && email != null && idUnico != null) {
             if (!empreendedorNome.isEmpty() && !projetoNome.isEmpty() && !email.isEmpty() && !idUnico.isEmpty()) {
@@ -351,7 +351,7 @@ public class EmailUtil {
      * @param idUnico
      * @return 
      */
-    public static boolean mandarEmailConfirmacao(String empreendedorNome,
+    public synchronized static boolean mandarEmailConfirmacao(String empreendedorNome,
             String email, String idUnico) {
         if (empreendedorNome != null && email != null && idUnico != null) {
             if (!empreendedorNome.isEmpty() && !email.isEmpty() && !idUnico.isEmpty()) {
@@ -421,7 +421,7 @@ public class EmailUtil {
      *
      * @return o email do sistema do tipo <code>String</code>.
      */
-    private static String getAuthEmail() {
+    private  static String getAuthEmail() {
         EmailDao emailDao = new EmailDao();
         ArrayList<EmailSystemConfig> buscarTodosEmailsSystema;
         buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
