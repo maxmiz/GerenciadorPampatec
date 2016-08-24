@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <f:facet name="last">
             <h:outputStylesheet library="css" name="animation.css"  />
@@ -29,7 +30,7 @@
         <title>Confirmação de e-mail</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
+    <h:body onload="funcaoAjaxSalvoPrimeFaces()">
 
         <main>
             <!-- Notificação Plano salvo com sucesso. -->
@@ -44,6 +45,21 @@
                 </h:panelGroup>
             </h:panelGroup>
             <!-- Fim Notificação Plano salvo com sucesso. -->
+            
+            <!-- Notificação erro ao submeter. -->
+                <h:panelGroup layout="block" id="mensagemErroSubmissao">
+                    <ui:repeat value="#{facesContext.getMessageList('formReenviaEmail:linkEmail')}" var="message">
+                        <h:panelGroup id="notificacaoErroSubmissao" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
+                            <div>
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <h:message style="padding-left: 15%; margin-top: -17%;" for="formReenviaEmail:linkEmail"/>
+                                <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
+
+                <!-- Fim Notificação erro ao submeter.. -->
             
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
  
@@ -100,9 +116,7 @@
                 <h:form id="formReenviaEmail">
                    
                     <div class="col-md-12">
-                        <h:message class="mensagemSucesso" style="margin-right: 7.5%" for="linkEmail" >
-                            
-                        </h:message>
+                        
                         <br/>
                         <br/><p> Caso você ainda não tenha recebido o e-mail é possível reenviar clicando 
                             <p:commandLink  id="linkEmail" update=":formReenviaEmail formConfirmaEmail" action="#{empreendedorBean.reenviaEmail()}" onsuccess="exibeMensagem(),funcaoAjaxSalvoPrimeFaces()">aqui
