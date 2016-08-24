@@ -60,6 +60,14 @@
                 // O metodo é chamado no sweetAlert somente para ativar um controle remoto
                 // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
             }
+            /**
+             * <p> método usado para exibir o gif carregando no modal de confirmação de
+             * envio para pre-avaliação </p>
+             * @returns {undefined}
+             */
+            function exibeCarregando(){
+                document.getElementById("carregando").setAttribute("class", "carregando");
+            }            
         </script>
 
         <!-- Classe para 'dizer' o que não será impresso da página, para isto
@@ -319,9 +327,12 @@
                             Você tem certeza que deseja submeter?<br/><br/>
                         </div>
                         <div class="modal-footer">
+                            <div id="carregando" class="invisivel">
+                                <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                            </div>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
 
-                            <h:commandButton action="#{projetoBean.enviarProjeto()}" type="submit" class="btn btn-success" value="Submeter Plano de Negócio"></h:commandButton>
+                            <h:commandButton action="#{projetoBean.enviarProjeto()}" onclick="exibeCarregando()" type="submit" class="btn btn-success" value="Submeter Plano de Negócio"></h:commandButton>
 
                         </div>
                     </div>

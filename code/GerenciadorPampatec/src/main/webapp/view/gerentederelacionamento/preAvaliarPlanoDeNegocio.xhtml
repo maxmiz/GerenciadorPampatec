@@ -158,7 +158,8 @@
             function confirmacaoDeEnvio() {
                 $("#modalInfoDeEnvio").modal();
             }
-            
+            // método usado para exibir o gif carregando no modal de confirmação de
+            // envio da pre-avaliação
             function exibeCarregando(){
                 document.getElementById("carregando").setAttribute("class", "carregando");
             }
@@ -224,9 +225,7 @@
 
                     <!-- Conteúdo do Modal -->
                     <div class="modal-dialog">
-                        <div id="carregando" class="invisivel">
-                            <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
-                        </div>
+                        
                         <div class="modal-content">
                             
                             <div class="modal-header fundoVerde">
@@ -237,6 +236,9 @@
                                 Ao clicar no botão <strong><u>Confirmar Envio</u></strong> a sua avaliação do Plano de Negócio será enviada para o <strong>Empreendedor</strong>. Após enviar o Plano de Negócio, este <strong>não poderá mais ser editado</strong>.
                             </div>
                             <div class="modal-footer">
+                                <div id="carregando" class="invisivel">
+                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                </div>
                                 <button type="button" class="btn btn-default" 
                                         data-dismiss="modal"
                                         title="Voltar para a avaliação do plano de negócio.">Voltar para a edição</button>
