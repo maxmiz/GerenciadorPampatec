@@ -47,7 +47,7 @@ public class EmailUtil {
      *
      * @param empreendedor
      * @param projetoNome
-     * 
+     *
      */
     public synchronized static void mandarEmailAvaliacao(Empreendedor empreendedor,
             String projetoNome) {
@@ -234,27 +234,36 @@ public class EmailUtil {
                     StringBuffer msg = new StringBuffer();
 
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
-                    msg.append("<html lang=\"pt-br\">\n"
-                            + "  <head>\n"
-                            + "    <meta charset=\"utf-8\"/>\n"
-                            + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
-                            + "  </head>\n"
-                            + "            <div class=\"col-md-4\"></div>\n"
-                            + "  <body style=\"margin: 0;padding-top: 10px\"><div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "    <div class=\"col-md-4 text-center well\" style=\"text-align: center;width: 66.333333%;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 2px solid #3FB618;border-radius: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)\">\n"
-                            + "        <h1 class=\"fonteBranca\">Alterar Senha</h1>\n"
-                            + "        <form class=\"form-horizontal\">\n"
-                            + "            <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
-                            + "                <a>Olá!</a><br/><br/><a>Verificamos que você esqueceu a sua senha. Por favor, <strong>clique na opção a baixo</strong> para redefinir uma nova senha e continuar.</a><br/><br/>\n"
-                            + "                 <a class=\"btn btn-success focus\" href=\"" + RedirectManager.getBaseURL() + "recuperarSenha.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Redefinir minha senha</strong></a>\n"
-                            + "                    </div>\n"
-                            + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
-                            + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
-                            + "                         <img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width:80px;height:45px;\">\n"
-                            + "                     </div>\n"
-                            + "        </form></div>\n"
-                            + "    <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "\n"
+                    msg.append("<!DOCTYPE html>\n"
+                            + "<html lang=\"pt-br\">\n"
+                            + "	<head>\n"
+                            + "		<meta charset=\"utf-8\"/>\n"
+                            + "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
+                            + "    </head>\n"
+                            + "    <body style=\"margin: 0;padding-top: 10px;\">                    \n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<div style=\"text-align: center; width: 70%; min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #f5f5f5; border: 2px solid #3FB618; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\">\n"
+                            + "			<h1>Alterar Senha</h1>\n"
+                            + "			<form>\n"
+                            + "				<div style=\"margin-bottom: 15px;\">\n"
+                            + "					<a>Verificamos que você esqueceu a sua senha.\n"
+                            + "							<br/>\n"
+                            + "							<br/>Por favor, <strong>clique na opção a baixo</strong> para redefinir uma nova senha e continuar.</a>\n"
+                            + "							<br/>\n"
+                            + "							<br/>\n"
+                            + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"" + RedirectManager.getBaseURL() + "recuperarSenha.jsf?id=" + idUnico +  "\">"
+                            + "								<strong>Redefinir minha senha</strong>\n"
+                            + "							</a>\n"
+                            + "				</div>\n"
+                            + "			</form>\n"
+                            + "			<div style=\"padding: 10px; overflow: auto; border-top: 1px solid #e5e5e5;\">\n"
+                            + "				<img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width: 100px;height: 65px;float: left;\"/>\n"
+                            + "				\n"
+                            + "				<img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width: 100px;height: 65px;float: right;\"/> \n"
+                            + "			</div>\n"
+                            + "		</div>\n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<!-- CSS embutido in line -->               \n"
                             + "    </body>\n"
                             + "</html>");
                     // </editor-fold>
@@ -299,34 +308,37 @@ public class EmailUtil {
                     StringBuffer msg = new StringBuffer();
 
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
-                    msg.append("<html lang=\"pt-br\">\n"
-                            + "  <head>\n"
-                            + "    <meta charset=\"utf-8\"/>\n"
-                            + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
-                            + "  </head>\n"
-                            + "  <body background=\"resources/imagens/21.jpg\" style=\"margin: 0;padding-top: 10px\">\n"
-                            + "\n"
-                            + "        <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "        <div class=\"col-md-4 text-center well\" style=\"text-align: center;width: 66.333333%;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 2px solid #3FB618;border-radius: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)\">\n"
-                            + "            <h1 class=\"fonteBranca\">Concluir cadastro</h1>\n"
-                            + "            <form class=\"form-horizontal\">\n"
-                            + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
-                            + "                        <a>Olá!</a><br/><br/><a>O empreendedor <strong>" + empreendedorNome + "</strong> adicionou você\n"
-                            + "                        como sócio em seu novo projeto.\n"
-                            + "                        <br/><br/>Para que você possa utilizar o Sistema de Gerenciamento de Projetos do \n"
-                            + "                        PampaTec é necessário confirmar o seu e-mail e realizar o seu cadastro.\n"
-                            + "                        <br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"" + RedirectManager.getBaseURL() + "terminarCadastroEmpreendedor.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Realizar o meu cadastro</strong></a>\n"
-                            + "                    </div>\n"
-                            + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
-                            + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
-                            + "                         <img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width:80px;height:45px;\">\n"
-                            + "                      </div>\n"
-                            + "        </form></div>\n"
-                            + "        <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "\n"
-                            + "        <!-- CSS embutido in line -->\n"
-                            + "\n"
-                            + "        </body>\n"
+                    msg.append("<!DOCTYPE html>\n"
+                            + "<html lang=\"pt-br\">\n"
+                            + "	<head>\n"
+                            + "		<meta charset=\"utf-8\"/>\n"
+                            + "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
+                            + "    </head>\n"
+                            + "    <body style=\"margin: 0;padding-top: 10px;\">                    \n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<div style=\"text-align: center; width: 70%; min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #f5f5f5; border: 2px solid #3FB618; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\">\n"
+                            + "			<h1>Concluir cadastro</h1>\n"
+                            + "			<form>\n"
+                            + "				<div style=\"margin-bottom: 15px;\">\n"
+                            + "					<a>Olá!</a><br/><a>O empreendedor <strong>" + empreendedorNome + "</strong> adicionou você como sócio em seu novo projeto.\n"
+                            + "                            <br/>Para que você possa utilizar o Sistema de Gerenciamento de Projetos do PampaTec é necessário confirmar o seu e-mail e realizar o seu cadastro.\n"
+                            + "							<br/><br/>Para realizar o seu cadastro clique na opção abaixo.</a>\n"
+                            + "							<br/>\n"
+                            + "							<br/>\n"
+                            + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"" + RedirectManager.getBaseURL() + "terminarCadastroEmpreendedor.jsf?id=" + idUnico + "\n"
+                            + "								<strong>Redefinir minha senha</strong>\n"
+                            + "							</a>\n"
+                            + "				</div>\n"
+                            + "			</form>\n"
+                            + "			<div style=\"padding: 10px; overflow: auto; border-top: 1px solid #e5e5e5;\">\n"
+                            + "				<img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width: 100px;height: 65px;float: left;\"/>\n"
+                            + "				\n"
+                            + "				<img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width: 100px;height: 65px;float: right;\"/> \n"
+                            + "			</div>\n"
+                            + "		</div>\n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<!-- CSS embutido in line -->               \n"
+                            + "    </body>\n"
                             + "</html>");
                     // </editor-fold>
 
@@ -340,8 +352,7 @@ public class EmailUtil {
             }
         }
     }
-    
-    
+
     /**
      * <p>
      * Envio de email para confirmacao de email.</p>
@@ -349,7 +360,7 @@ public class EmailUtil {
      * @param empreendedorNome
      * @param email
      * @param idUnico
-     * @return 
+     * @return
      */
     public synchronized static boolean mandarEmailConfirmacao(String empreendedorNome,
             String email, String idUnico) {
@@ -367,51 +378,58 @@ public class EmailUtil {
                     emailHtml.addTo(email);
                     emailHtml.setFrom(getAuthEmail(), "Ideiah Developer");
                     emailHtml.setSubject("PampaTec - Gerenciador de Projetos");
-                    
+
                     StringBuffer msg = new StringBuffer();
 
                     // <editor-fold defaultstate="collapsed" desc="Mensagem do Email">
-                    msg.append("<html lang=\"pt-br\">\n"
-                            + "  <head>\n"
-                            + "    <meta charset=\"utf-8\"/>\n"
-                            + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
-                            + "  </head>\n"
-                            + "  <body background=\"resources/imagens/21.jpg\" style=\"margin: 0;padding-top: 10px\">\n"
-                            + "\n"
-                            + "        <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "        <div class=\"col-md-4 text-center well\" style=\"text-align: center;width: 66.333333%;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 2px solid #3FB618;border-radius: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)\">\n"
-                            + "            <h1 class=\"fonteBranca\">Confirmar email</h1>\n"
-                            + "            <form class=\"form-horizontal\">\n"
-                            + "                    <div class=\"form-group\" style=\"margin-bottom: 15px\">\n"
-                            + "                        <a>Olá, " + empreendedorNome + "!</a><br/><br/>"
-                            + "                        Você se cadastrou no Sistema de gerenciamento de projetos do PampaTec, mas nós ainda precisamos verificar seu e-mail.\n"
-                            + "                        <br/><br/>Para confirmar o seu email clique na opção abaixo.</a><br/><br/><a class=\"btn btn-success\" href=\"" + RedirectManager.getBaseURL() + "verificarEmail.jsf?id=" + idUnico + " \"  style=\"color: #fff;background-color: #3fb618;border-color: #3fb618;display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 10px 18px;font-size: 15px;line-height: 1.428571;border-radius: 0;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none\"><strong>Confirmar o email</strong></a>\n"
-                            + "                    </div>\n"
-                            + "                     <div class=\"footer\" style=\"padding: 20px;text-align: center;border-top: 1px solid #e5e5e5\">\n"
-                            + "                         <img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width:80px;height:45px;\"/>\n"
-                            + "                         <img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width:80px;height:45px;\">\n"
-                            + "                      </div>\n"
-                            + "        </form></div>\n"
-                            + "        <div class=\"col-md-4\" style=\"width: 66.333333%\"/>\n"
-                            + "\n"
-                            + "        <!-- CSS embutido in line -->\n"
-                            + "\n"
-                            + "        </body>\n"
+                    msg.append("<!DOCTYPE html>\n"
+                            + "<html lang=\"pt-br\">\n"
+                            + "	<head>\n"
+                            + "		<meta charset=\"utf-8\"/>\n"
+                            + "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n"
+                            + "    </head>\n"
+                            + "    <body style=\"margin: 0;padding-top: 10px;\">                    \n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<div style=\"text-align: center; width: 70%; min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #f5f5f5; border: 2px solid #3FB618; border-radius: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\">\n"
+                            + "			<h1>Confirmar email</h1>\n"
+                            + "			<form>\n"
+                            + "				<div style=\"margin-bottom: 15px;\">\n"
+                            + "					<a>\n"
+                            + "                            <br/>Olá, " + empreendedorNome + "!</a><br/>\n"
+                            + "                            Você se cadastrou no Sistema de gerenciamento de projetos do PampaTec, mas nós ainda precisamos verificar seu e-mail.\n"
+                            + "                            <br/><br/>Para confirmar o seu email clique na opção abaixo.</a>\n"
+                            + "							<br/>\n"
+                            + "							<br/>\n"
+                            + "							<a style=\"display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; padding: 10px 18px; font-size: 15px; line-height: 1.42857143; border-radius: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; color: #ffffff; background-color: #3fb618; border-color: #3fb618;\" href=\"" + RedirectManager.getBaseURL() + "verificarEmail.jsf?id=" + idUnico + " \">\n"
+                            + "								<strong>Redefinir minha senha</strong>\n"
+                            + "							</a>\n"
+                            + "				</div>\n"
+                            + "			</form>\n"
+                            + "			<div style=\"padding: 10px; overflow: auto; border-top: 1px solid #e5e5e5;\">\n"
+                            + "				<img src=\"http://i.imgur.com/4c1IDDR.jpg\" alt=\"Logotipo da Unipampa\" style=\"width: 100px;height: 65px;float: left;\"/>\n"
+                            + "				\n"
+                            + "				<img src=\"http://i.imgur.com/g9hBPAV.jpg\" alt=\"Logotipo do PampaTec\" style=\"width: 100px;height: 65px;float: right;\"/> \n"
+                            + "			</div>\n"
+                            + "		</div>\n"
+                            + "		<div style=\"width: 15%;\"></div>\n"
+                            + "		<!-- CSS embutido in line -->               \n"
+                            + "    </body>\n"
                             + "</html>");
                     // </editor-fold>
 
                     emailHtml.setHtmlMsg(msg.toString());
 
                     emailHtml.send();
-                    
+
                     return true;
 
                 } catch (EmailException ex) {
                     Logger.getLogger(EmailUtil.class.getName()).log(Level.SEVERE, null, ex);
                     return false;
                 }
-            } 
-        } return true;
+            }
+        }
+        return true;
     }
 
     /**
@@ -421,7 +439,7 @@ public class EmailUtil {
      *
      * @return o email do sistema do tipo <code>String</code>.
      */
-    private  static String getAuthEmail() {
+    private static String getAuthEmail() {
         EmailDao emailDao = new EmailDao();
         ArrayList<EmailSystemConfig> buscarTodosEmailsSystema;
         buscarTodosEmailsSystema = emailDao.buscarTodosEmailsSystema();
