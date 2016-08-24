@@ -33,7 +33,7 @@
     <h:body onload="funcaoAjaxSalvoPrimeFaces()">
 
         <main>
-            <!-- Notificação Plano salvo com sucesso. -->
+            <!-- Notificação para reenvio de email de confirmação de cadastro (gamb by pedro). -->
             <h:panelGroup layout="block" id="mensagemSalvamento">
                 <!--ns-box ns-growl notSalvo ns-type-notice ns-show animated -->
                 <h:panelGroup id="notificacaoSalvo" layout="block" style="position: fixed; left: 40%;" class="invisivel">
@@ -46,7 +46,7 @@
             </h:panelGroup>
             <!-- Fim Notificação Plano salvo com sucesso. -->
             
-            <!-- Notificação erro ao submeter. -->
+            <!-- Notificação para atualização e reenvio de email de confirmação de cadastro (gamb by pedro). -->
                 <h:panelGroup layout="block" id="mensagemErroSubmissao">
                     <ui:repeat value="#{facesContext.getMessageList('formReenviaEmail:linkEmail')}" var="message">
                         <h:panelGroup id="notificacaoErroSubmissao" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
