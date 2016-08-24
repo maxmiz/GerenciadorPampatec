@@ -886,8 +886,9 @@ th.textoCentralizado{
     z-index: 1000;
     background-color: transparent;
     position: absolute;
-    text-align: center;
-    margin-top: 125px;
+    text-align: left;
+    padding-left: 190px;
+    padding-top: 7px;
 }
 
 .invisivel{
