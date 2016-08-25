@@ -91,8 +91,8 @@ public class EmpreendedorBean implements Serializable {
      * metodo que atualiza o e-mail do empreendedor
      */
     public void atualizaEmail() {
-        
-        if (empreendedor.buscarPorEmail(email) != null) {
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+        if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
             FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
         } else {
             empreendedor.setEmail(email);
