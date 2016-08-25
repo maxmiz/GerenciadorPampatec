@@ -198,10 +198,13 @@ public class EmpreendedorBean implements Serializable {
      * link submetido para o email
      */
     public void terminarRecuperacaoDeSenha() {
+        
+        empreendedor = (Empreendedor) session.getAttribute("empreendedor");
 
         if (empreendedor != null) {
 
             this.empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
+            empreendedor.setIdUnico(null);
             empreendedor.atualizarEmpreendedor(empreendedor);
 
             try {
