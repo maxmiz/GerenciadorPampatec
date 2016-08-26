@@ -4,7 +4,6 @@
 package com.ideiah.gerenciadorpampatec.util;
 
 import com.ideiah.gerenciadorpampatec.controller.RedirectManager;
-import com.ideiah.gerenciadorpampatec.controller.SessionManager;
 import com.ideiah.gerenciadorpampatec.dao.EmailDao;
 import com.ideiah.gerenciadorpampatec.model.EmailSystemConfig;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
@@ -85,7 +84,7 @@ public class EmailUtil {
                             + "			<h1>Boas notícias!</h1>\n"
                             + "			<form>\n"
                             + "				<div style=\"margin-bottom: 15px;\">\n"
-                            + "					<a>Olá <strong>" + empreendedor.getNome() + "</strong>! Notificamos que o projeto <strong><i>" + projetoNome + "</i></strong> foi pré-avaliado e está a sua disposição.\n"
+                            + "					<a>Olá <strong>" + empreendedor.getNome() + "</strong>! Notificamos que o projeto <strong>" + projetoNome + "</strong> foi pré-avaliado e está a sua disposição.\n"
                             + "							<br/>\n"
                             + "							<br/>Para acessar o sistema gerenciador de projetos, clique na opção abaixo.</a>\n"
                             + "							<br/>\n"
@@ -129,11 +128,13 @@ public class EmailUtil {
      * é submetido, ressubmetido e etc.</P>
      *
      * @param listaDeGerentes
+     * @param empreendedorNome
      * @param statusProjeto
+     * @param submissaoData
      * @param projetoNome
      */
-    public synchronized static void enviaEmailParaGerentes(String projetoNome,
-            String statusProjeto, ArrayList<GerenteRelacionamento> listaDeGerentes) {
+    public synchronized static void enviaEmailParaGerentes(String projetoNome, String empreendedorNome,
+            String submissaoData, String submissaoHora, String statusProjeto, ArrayList<GerenteRelacionamento> listaDeGerentes) {
 
         if (projetoNome != null && listaDeGerentes != null) {
             if (!projetoNome.isEmpty() && !listaDeGerentes.isEmpty()) {
@@ -167,7 +168,7 @@ public class EmailUtil {
                                 + "			<h1>Plano de negócio disponível para avaliação!</h1>\n"
                                 + "			<form>\n"
                                 + "				<div style=\"margin-bottom: 15px;\">\n"
-                                + "					<a>Olá <strong>" + listaDeGerentes.get(i).getNome() + "</strong>! Notificamos que Plano de Negócio chamado <strong><i>" + projetoNome + "</i></strong> atualizou seu status para " + statusProjeto + ".\n"
+                                + "					<a>Olá <strong>" + listaDeGerentes.get(i).getNome() + "</strong>! Notificamos que Plano de Negócio chamado <strong>" + projetoNome + "</strong>, do empreendedor <strong>"+ empreendedorNome +"</strong>, <br/>atualizou seu status para <strong>" + statusProjeto + "</strong> em <strong>"+ submissaoData +"</strong> às <strong>"+ submissaoHora +"</strong>.\n"
                                 + "							<br/>\n"
                                 + "							<br/>Para acessar o sistema Gerenciador Pampatec, clique na opção abaixo.</a>\n"
                                 + "							<br/>\n"
