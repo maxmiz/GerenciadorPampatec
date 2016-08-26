@@ -257,8 +257,9 @@ public class EmailUtilTest {
         
         String projetoNome = null;
         String statusProjeto = null;
+        String nomeEmpreendedor = "", data = "", hora="";
         ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
-        EmailUtil.enviaEmailParaGerentes(projetoNome, statusProjeto, listaDeGerentes);
+        EmailUtil.enviaEmailParaGerentes(projetoNome, nomeEmpreendedor, data, hora, statusProjeto, listaDeGerentes);
     }
 
     /**
@@ -269,8 +270,9 @@ public class EmailUtilTest {
         
         String projetoNome = "";
         String statusProjeto = "";
+        String nome = "-", data = "-", hora="-";
         ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
-        EmailUtil.enviaEmailParaGerentes(projetoNome, statusProjeto, listaDeGerentes);
+        EmailUtil.enviaEmailParaGerentes(projetoNome, nome, data, hora, statusProjeto, listaDeGerentes);
     }
 
     /**
@@ -281,6 +283,7 @@ public class EmailUtilTest {
         
         String projetoNome = "Ideiah Dev Testes";
         String statusProjeto = "Aceito para Avaliação";
+        String nome = "-", data = "-", hora="-";
 
         ArrayList<GerenteRelacionamento> listaDeGerentes = new ArrayList<>();
         GerenteRelacionamento gr = new GerenteRelacionamento();
@@ -298,7 +301,7 @@ public class EmailUtilTest {
         listaDeGerentes.add(gr2);
         listaDeGerentes.add(gr3);
 
-        EmailUtil.enviaEmailParaGerentes(projetoNome,
+        EmailUtil.enviaEmailParaGerentes(projetoNome, nome, data, hora,
                 statusProjeto, listaDeGerentes);
     }
 
