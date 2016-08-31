@@ -39,6 +39,7 @@ public class EditarEmpreendedorBean implements Serializable {
     private String complemento;
     private String senha;
     private String novaSenha;
+    private boolean salvou;
     @ManagedProperty(value = "#{userBean}")
     private UserBean userBean;
 
@@ -59,6 +60,7 @@ public class EditarEmpreendedorBean implements Serializable {
         this.complemento = empreendedor.getComplemento();
         this.numero = String.valueOf(empreendedor.getNumero());
         this.experiencia = empreendedor.getExperiencia();
+        salvou = false;
 
     }
 
@@ -245,11 +247,12 @@ public class EditarEmpreendedorBean implements Serializable {
                 }
 
                 if (passou) {
-                    try {
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
-                    } catch (IOException ex) {
-                        Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    salvou = true;
+//                    try {
+//                        FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                 }
             } else {
                 FacesUtil.addErrorMessage("Atualização de cadastro não realizada!", "formularioCadastro:botaoEnviar");
@@ -280,5 +283,19 @@ public class EditarEmpreendedorBean implements Serializable {
 
     public void setUserBean(UserBean userBean) {
         this.userBean = userBean;
+    }
+
+    /**
+     * @return the salvou
+     */
+    public boolean isSalvou() {
+        return salvou;
+    }
+
+    /**
+     * @param salvou the salvou to set
+     */
+    public void setSalvou(boolean salvou) {
+        this.salvou = salvou;
     }
 }

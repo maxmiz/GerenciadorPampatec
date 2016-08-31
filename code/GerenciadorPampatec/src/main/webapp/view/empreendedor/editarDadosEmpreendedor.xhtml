@@ -6,10 +6,14 @@
       xmlns:p="http://primefaces.org/ui"> 
     <h:head>
         <f:facet name="last">
+            <h:outputStylesheet library="css" name="animation.css"  />
             <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
+            <h:outputStylesheet library="css" name="font-awesome.min.css"/>
             <h:outputStylesheet library="css" name="outro.css"  />
-            <h:outputStylesheet library="css" name="sweetalert.css" />            
+            <h:outputStylesheet library="css" name="sweetalert.css" /> 
+            <h:outputStylesheet library="css" name="ns-default.css"/>
+            <h:outputStylesheet library="css" name="ns-style-growl.css"/>
         </f:facet>
 
         <h:outputScript library="js" name="jquery-2.2.2.min.js" />     
@@ -17,7 +21,9 @@
         <h:outputScript library="js" name="js.js"/>
         <h:outputScript library="js" name="formulario.js"/>        
         <h:outputScript library="js" name="sweetalert.min.js" />  
-        <h:outputScript library="js" name="sessionManager.js"/> 
+        <h:outputScript library="js" name="sessionManager.js"/>
+        <h:outputScript library="js" name="mensagemFeedBack.js" />
+        <h:outputScript library="js" name="bootstrap.js" /> 
 
         <title>Editar dados cadastrais</title>
 
@@ -45,9 +51,23 @@
                 // O metodo é chamado no sweetAlert somente para ativar um controle remoto
                 // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
             }
+
         </script>
     </h:head>
-    <h:body>
+    <h:body onload="timeoutMensagemFeedBack(SALVO);">
+        
+        <!-- Notificação para reenvio de email de confirmação de cadastro (gamb by pedro). -->
+            <h:panelGroup layout="block" id="mensagemSalvamento">
+                <!--ns-box ns-growl notSalvo ns-type-notice ns-show animated -->
+                <h:panelGroup id="notificacaoSalvo" rendered="#{editarEmpreendedorBean.salvou}" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
+                    <div>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <p style="padding-left: 15%; margin-top: -17%;">Cadastro atualizado com sucesso!</p>
+                        <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
+                    </div>
+                </h:panelGroup>
+            </h:panelGroup>
+            <!-- Fim Notificação Plano salvo com sucesso. -->
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
@@ -353,7 +373,7 @@
                         <p:button id="botaoVoltar"
                                   class="botaoBase botaoPreto" 
                                   title="Cancelar a edição e voltar para o início." 
-                                  value="Cancelar edição"
+                                  value="Voltar"
                                   outcome="homeEmpreendedor.jsf"
                                   >
                         </p:button>                        
@@ -372,6 +392,7 @@
                         function confirmacaoDeEnvio() {
                             $("#modalInfoDeEnvio").modal();
                         }
+                        
                     </script>
 
                     <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
@@ -389,9 +410,10 @@
                                 <div class="modal-footer">
                                     <div class="col-md-12"> 
 
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+                                        <button id="botaoFechaModal" type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
 
-                                        <h:commandButton class="btn btn-success" value="Confirmar edição" action="#{editarEmpreendedorBean.finalizarEdicao()}"></h:commandButton>
+                                        <h:commandButton class="btn btn-success" onclick="fechaModal('#botaoFechaModal')" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
+                                        </h:commandButton>
 
                                     </div>
                                 </div>
