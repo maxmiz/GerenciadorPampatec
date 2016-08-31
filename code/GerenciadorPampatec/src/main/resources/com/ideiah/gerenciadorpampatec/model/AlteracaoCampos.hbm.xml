@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+  
+<hibernate-mapping>
+    <class name="com.ideiah.gerenciadorpampatec.model.AlteracaoCampos" table="alteracao_dos_campos" catalog="gerenciadorpampatec" optimistic-lock="version">
+        <id name="idalteracao_dos_campos" type="int">
+            <column name="idalteracao_dos_campos" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empreendedor" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select">
+            <column name="empreendedor_usuario_id_usuario"/>
+        </many-to-one>
+        <property name="texto" type="string">
+            <column name="texto" length="65535" />
+        </property>
+        <property name="dataAlteracao" type="timestamp">
+            <column name="dataAlteracao" length="19" />
+        </property>
+        <property name="tipo" type="java.lang.Integer">
+            <column name="tipo" />
+        </property>
+        <set name="comentarioprojetos" table="alteracao_has_projeto" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="alteracao_dos_campos_idalteracao_dos_campos" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.ComentarioProjeto">
+                <column name="comentarioprojeto_idcomentario" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
