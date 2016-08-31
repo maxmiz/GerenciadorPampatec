@@ -81,6 +81,7 @@ public class ProjetoBean implements Serializable {
         //INICIANDO VARIÁVEIS DE APOIO PARA DELETAR CUSTOS DA TABELA;
         custoFixoSelecionado = new Custo();
         custoVariavelSelecionado = new Custo();
+    
     }
 
     /**
