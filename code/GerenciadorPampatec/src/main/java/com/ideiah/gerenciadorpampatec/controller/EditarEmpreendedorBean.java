@@ -2,11 +2,14 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.EmpreendedorEmail;
+import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.util.CriptografiaUtil;
+import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.TelefoneUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -214,6 +217,8 @@ public class EditarEmpreendedorBean implements Serializable {
      */
     public void finalizarEdicao() {
 
+        GerenteRelacionamento gerente = new GerenteRelacionamento();
+
         senha = CriptografiaUtil.md5(senha);
 
         if (empreendedor.getSenha().equals(senha)) {
@@ -227,13 +232,33 @@ public class EditarEmpreendedorBean implements Serializable {
             numeroTelefone = String.valueOf(telefone);
             empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(numeroTelefone));
             empreendedor.setFormacao(formacao);
-            empreendedor.setEmail(email);
+
+            boolean emailok = false;
+            //verifica se o usuario alterou o email para um email que não esteja cadastrado no sistema
+            //se sim, o email é alterado e o id unico é setado
+            if (!empreendedor.getEmail().equals(email)) {
+                if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
+                    FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
+                    
+                } else {
+                    //gera id unico para o empreendedor, para ser usado na confirmacao de email.
+                    empreendedor.setIdUnico(geraIdUnico());
+                    empreendedor.setEmail(email);
+                    //envia email para confirmação pois o email foi alterado laga laga vem comigo vem contigo
+                    EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                    emailok = true;
+                }
+            }
+            
+            else{
+                emailok = true;
+            }
 
             if (!novaSenha.isEmpty()) {
                 empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
             }
             boolean passou = false;
-            if (empreendedor.atualizarEmpreendedor(empreendedor) != null) {
+            if (emailok && empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                 try {
                     getUserBean().setNome(nome);
                     UserBean.MudarSenha(empreendedor.getSenha());
@@ -263,7 +288,7 @@ public class EditarEmpreendedorBean implements Serializable {
         }
 
     }
-
+    
     public void cancelarEdicao() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
@@ -297,5 +322,16 @@ public class EditarEmpreendedorBean implements Serializable {
      */
     public void setSalvou(boolean salvou) {
         this.salvou = salvou;
+    }
+    
+    /**
+     * Gera um id Unico para usar na verificacao de email
+     *
+     * @return idUnico
+     */
+    private String geraIdUnico() {
+        String idUnico;
+        idUnico = UUID.randomUUID().toString();
+        return idUnico;
     }
 }
