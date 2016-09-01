@@ -5,12 +5,10 @@
  */
 package com.ideiah.gerenciadorpampatec.dao;
 
+import com.ideiah.gerenciadorpampatec.model.AlteracaoCampos;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
-import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.hibernate.HibernateException;
 
 /**
@@ -39,6 +37,15 @@ public class ComentarioDao extends Dao implements Serializable{
      */
     public Textocomentario  salvarTextoComentario(Textocomentario comentario){
         return (Textocomentario) super.salvar(comentario);
+    }
+    
+    /**
+     * Salva a alteracao campo no banco.
+     * @param alteracao comentário a se salvar
+     * @return true se foi salvo
+     */
+    public AlteracaoCampos  salvarAlteracaoCampos(AlteracaoCampos alteracao){
+        return (AlteracaoCampos) super.salvar(alteracao);
     }
     
     public ComentarioProjeto salvarRetornandoComentarioProjeto(ComentarioProjeto comentarioProjeto) {
