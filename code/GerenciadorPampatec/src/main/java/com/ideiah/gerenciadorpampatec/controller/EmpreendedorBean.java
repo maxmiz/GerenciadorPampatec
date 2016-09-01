@@ -95,6 +95,8 @@ public class EmpreendedorBean implements Serializable {
         if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
             FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
         } else {
+             //gera id unico para o empreendedor, para ser usado na confirmacao de email.
+            empreendedor.setIdUnico(geraIdUnico());
             empreendedor.setEmail(email);
             if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
                 EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
