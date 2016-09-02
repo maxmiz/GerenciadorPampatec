@@ -33,7 +33,15 @@
                 <column name="comentarioprojeto_idcomentario" not-null="true" />
             </key>
             <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.Textocomentario">
-                <column name="textocomentario_idtextocomentario" not-null="true" />
+                <column name="textocomentario_idtextocomentario" not-null="false" />
+            </many-to-many>
+        </set>        
+        <set name="alteracaocampos" table="alteracao_has_projeto" inverse="false" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="comentarioprojeto_idcomentario" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.ideiah.gerenciadorpampatec.model.AlteracaoCampos">
+                <column name="alteracao_dos_campos_idalteracao_dos_campos" not-null="false" />
             </many-to-many>
         </set>
     </class>

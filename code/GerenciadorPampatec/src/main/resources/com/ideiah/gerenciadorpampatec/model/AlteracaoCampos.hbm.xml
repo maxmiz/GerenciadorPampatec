@@ -10,7 +10,7 @@
             <column name="idalteracao_dos_campos" />
             <generator class="identity" />
         </id>
-        <many-to-one name="Empreendedor" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select">
+        <many-to-one name="empreendedor" class="com.ideiah.gerenciadorpampatec.model.Empreendedor" fetch="select">
             <column name="empreendedor_usuario_id_usuario"/>
         </many-to-one>
         <property name="texto" type="string">

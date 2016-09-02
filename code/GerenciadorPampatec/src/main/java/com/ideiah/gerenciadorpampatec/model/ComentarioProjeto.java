@@ -29,7 +29,7 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Projeto projeto;
     private Integer status;
     private String consideracoesPersonalizadas;
-    private Set<Textocomentario> textocomentarios = new HashSet();   
+    private Set<Textocomentario> textocomentarios = new HashSet();
     private Textocomentario segmentosClientes;
     private Textocomentario propostaValor;
     private Textocomentario atividadeChave;
@@ -54,6 +54,31 @@ public class ComentarioProjeto implements java.io.Serializable {
     private Textocomentario custoFixo;
     private Textocomentario custoVariavel;
 
+    private Set<AlteracaoCampos> alteracaocampos = new HashSet();
+    private AlteracaoCampos segmentosClientes_alteracao;
+    private AlteracaoCampos propostaValor_alteracao;
+    private AlteracaoCampos atividadeChave_alteracao;
+    private AlteracaoCampos relacionamentoCliente_alteracao;
+    private AlteracaoCampos parceriasChave_alteracao;
+    private AlteracaoCampos canais_alteracao;
+    private AlteracaoCampos recursosPrincipais_alteracao;
+    private AlteracaoCampos concorrentes_alteracao;
+    private AlteracaoCampos estagioEvolucao_alteracao;
+    private AlteracaoCampos tecnologiaProcessos_alteracao;
+    private AlteracaoCampos potencialInovacaoTecnologica_alteracao;
+    private AlteracaoCampos aplicacoes_alteracao;
+    private AlteracaoCampos dificuldadesEsperadas_alteracao;
+    private AlteracaoCampos interacaoEmpresaUniversidade_alteracao;
+    private AlteracaoCampos interacaoEmpresaComunidadeGoverno_alteracao;
+    private AlteracaoCampos infraestrutura_alteracao;
+    private AlteracaoCampos participacaoAcionaria_alteracao;
+    private AlteracaoCampos potencialEmprego_alteracao;
+    private AlteracaoCampos fontesReceita_alteracao;
+    private AlteracaoCampos estruturaCusto_alteracao;
+    private AlteracaoCampos investimentoInicial_alteracao;
+    private AlteracaoCampos custoFixo_alteracao;
+    private AlteracaoCampos custoVariavel_alteracao;
+
     public ComentarioProjeto() {
         nome = "";
         participacaoacionaria = "";
@@ -62,11 +87,13 @@ public class ComentarioProjeto implements java.io.Serializable {
         consideracoesPersonalizadas = "";
         status = EM_ANDAMENTO;
         adicionaListaComentario();
+        adicionaListaAlteracaoCampos();
     }
 
     public ComentarioProjeto(int idcomentario) {
         this.idcomentario = idcomentario;
         textocomentarios = new HashSet();
+        alteracaocampos = new HashSet();
     }
 
     public ComentarioProjeto(int idcomentario, String nome, String participacaoacionaria, String potencialemprego, String consideracoes) {
@@ -76,14 +103,48 @@ public class ComentarioProjeto implements java.io.Serializable {
         this.potencialemprego = potencialemprego;
         this.consideracoes = consideracoes;
         textocomentarios = new HashSet();
+        alteracaocampos = new HashSet();
     }
 
     /**
      * <p>
-     * Método que popula as variáveis dos comentários, 
-     * que que essas possam ser utilizadas na interface da aplicação. </p>
+     * Método que popula as variáveis dos comentários, que que essas possam ser
+     * utilizadas na interface da aplicação. </p>
+     */
+    public void populandoVariaveisAlteracoesCampos() {
+
+        segmentosClientes_alteracao = retornarAlteracaoCampos(AlteracaoCampos.SEGMENTO_CLIENTE);
+        propostaValor_alteracao = retornarAlteracaoCampos(AlteracaoCampos.PROPOSTA_VALOR);
+        atividadeChave_alteracao = retornarAlteracaoCampos(AlteracaoCampos.ATIVIDADES_CHAVE);
+        relacionamentoCliente_alteracao = retornarAlteracaoCampos(AlteracaoCampos.RELACOES_CLIENTE);
+        parceriasChave_alteracao = retornarAlteracaoCampos(AlteracaoCampos.PARCERIAS_CHAVE);
+        canais_alteracao = retornarAlteracaoCampos(AlteracaoCampos.CANAIS);
+        recursosPrincipais_alteracao = retornarAlteracaoCampos(AlteracaoCampos.RECURSOS_PRINCIPAIS);
+        concorrentes_alteracao = retornarAlteracaoCampos(AlteracaoCampos.CONCORRENTES);
+        estagioEvolucao_alteracao = retornarAlteracaoCampos(AlteracaoCampos.ESTAGIO_EVOLUCAO);
+        tecnologiaProcessos_alteracao = retornarAlteracaoCampos(AlteracaoCampos.TECNOLOGIA_PROCESSOS);
+        potencialInovacaoTecnologica_alteracao = retornarAlteracaoCampos(AlteracaoCampos.POTENCIAL_INOVACAO_TECNOLOGICA);
+        aplicacoes_alteracao = retornarAlteracaoCampos(AlteracaoCampos.APLICACOES);
+        dificuldadesEsperadas_alteracao = retornarAlteracaoCampos(AlteracaoCampos.DIFICULDADES_ESPERADAS);
+        interacaoEmpresaUniversidade_alteracao = retornarAlteracaoCampos(AlteracaoCampos.INTERACAO_EMPRESA_UNIVERSIDADE);
+        interacaoEmpresaComunidadeGoverno_alteracao = retornarAlteracaoCampos(AlteracaoCampos.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
+        infraestrutura_alteracao = retornarAlteracaoCampos(AlteracaoCampos.INFRAESTRUTURA);
+        participacaoAcionaria_alteracao = retornarAlteracaoCampos(AlteracaoCampos.PARTICIPACAO_ACIONARIA);
+        potencialEmprego_alteracao = retornarAlteracaoCampos(AlteracaoCampos.POTENCIAL_EMPREGO);
+        fontesReceita_alteracao = retornarAlteracaoCampos(AlteracaoCampos.FONTES_RECEITA);
+        estruturaCusto_alteracao = retornarAlteracaoCampos(AlteracaoCampos.ESTRUTURA_CUSTO);
+        investimentoInicial_alteracao = retornarAlteracaoCampos(AlteracaoCampos.INVESTIMENTO_INICIAL);
+        custoFixo_alteracao = retornarAlteracaoCampos(AlteracaoCampos.CUSTOS_FIXOS);
+        custoVariavel_alteracao = retornarAlteracaoCampos(AlteracaoCampos.CUSTOS_VARIAVEIS);
+    }
+
+    /**
+     * <p>
+     * Método que popula as variáveis das alterações, que que essas possam ser
+     * utilizadas na interface da aplicação. </p>
      */
     public void populandoVariaveisComentario() {
+        
         segmentosClientes = retornarTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
         propostaValor = retornarTextoComentario(Textocomentario.PROPOSTA_VALOR);
         atividadeChave = retornarTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
@@ -117,7 +178,8 @@ public class ComentarioProjeto implements java.io.Serializable {
      * <p>
      * Retorna a quantidade de campos comentário vazios
      * </p>
-     * @return 
+     *
+     * @return
      */
     public int verificaCampos() {
         int FLAG = 0;
@@ -218,20 +280,6 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
 
     /**
-     * @return the textocomentarios
-     */
-    public Set<Textocomentario> getTextocomentarios() {
-        return textocomentarios;
-    }
-
-    /**
-     * @param textocomentarios the textocomentarios to set
-     */
-    public void setTextocomentarios(Set<Textocomentario> textocomentarios) {
-        this.textocomentarios = textocomentarios;
-    }
-
-    /**
      * Retorna o texto do comentário segundo seu tipo (segmento de cliente,
      * proposta de valor, etc..)
      *
@@ -266,173 +314,18 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
 
     /**
-     * @return Retorna o valor do comentário relacionado ao segmento de
-     * clientes.
+     * Retorna o objeto alteracao campos
+     *
+     * @param tipo tipo para se retornar
+     * @return objeto encontrado
      */
-    public String retornarSegmentosClientes() {
-        return retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao proposta de valor.
-     */
-    public String retornarPropostaValor() {
-        return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao atividades chaves.
-     */
-    public String retornarAtividadesChave() {
-        return retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao relações de
-     * clientes.
-     */
-    public String retornarRelacoesClientes() {
-        return retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao parcerias chaves.
-     */
-    public String retornarParceriasChave() {
-        return retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao canais.
-     */
-    public String retornarCanais() {
-        return retornaTextoComentario(Textocomentario.CANAIS);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a recursos principais.
-     */
-    public String retornarRecursosPrincipais() {
-        return retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a concorrentes.
-     */
-    public String retornarConcorrentes() {
-        return retornaTextoComentario(Textocomentario.CONCORRENTES);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a estagio de evolução.
-     */
-    public String retornarEstagioEvolucao() {
-        return retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a tecnologia e
-     * processos.
-     */
-    public String retornarTecnologiaProcesso() {
-        return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao potencial em
-     * inovação e tecnologia..
-     */
-    public String retornarPotencialInovacaoTecnologia() {
-        return retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a aplicações.
-     */
-    public String retornarAplicacoes() {
-        return retornaTextoComentario(Textocomentario.APLICACOES);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a difilcudades
-     * esperadas.
-     */
-    public String retornarDifilcudadesEsperadas() {
-        return retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a interacao entre a
-     * empresa e universidade.
-     */
-    public String retornarInteracaoEmpresaUniversidade() {
-        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a interacao entre a
-     * empresa, a comunidade e o governo.
-     */
-    public String retornarInteracaoEmpresaComunidadeGoverno() {
-        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a infraestrutura.
-     */
-    public String retornarInfraEstrutura() {
-        return retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a participacao
-     * acionário.
-     */
-    public String retornarParticipacaoAcionaria() {
-        return retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado o potencial de emprego.
-     */
-    public String retornarPotencialEmprego() {
-        return retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a fontes de receitas.
-     */
-    public String retornarFontesReceitas() {
-        return retornaTextoComentario(Textocomentario.FONTES_RECEITA);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado a estrutura de custos..
-     */
-    public String retornarEstruturaCustos() {
-        return retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao investimento
-     * inicial.
-     */
-    public String retornarInvestimentoInicial() {
-        return retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao custos fixos.
-     */
-    public String retornarCustosFixos() {
-        return retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
-    }
-
-    /**
-     * @return Retorna o valor do comentário relacionado ao custos variáveis.
-     */
-    public String retornarCustosVariaveis() {
-        return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+    public AlteracaoCampos retornarAlteracaoCampos(int tipo) {
+        for (AlteracaoCampos objetoAlteracaoCampos : alteracaocampos) {
+            if (objetoAlteracaoCampos.getTipo() == tipo) {
+                return objetoAlteracaoCampos;
+            }
+        }
+        return null;
     }
 
     /**
@@ -451,9 +344,24 @@ public class ComentarioProjeto implements java.io.Serializable {
     }
 
     /**
+     * Cria uma alteração de campos do empreendedor
+     *
+     * @param tipo tipo do comentário a ser criado
+     * @return comentário criado
+     */
+    private AlteracaoCampos criaAlteracaoCampos(int tipo) {
+
+        AlteracaoCampos alteracao = new AlteracaoCampos();
+        alteracao.setTipo(tipo);
+        alteracao.setTexto("");
+        return alteracao;
+    }
+    
+    /**
      * Faz a inicialização dos campos de comentários.
      */
     private void adicionaListaComentario() {
+        
         textocomentarios.add(criaTextoComentario(Textocomentario.SEGMENTO_CLIENTE));
         textocomentarios.add(criaTextoComentario(Textocomentario.PROPOSTA_VALOR));
         textocomentarios.add(criaTextoComentario(Textocomentario.ATIVIDADES_CHAVE));
@@ -480,12 +388,44 @@ public class ComentarioProjeto implements java.io.Serializable {
 
     }
     
+     /**
+     * Faz a inicialização dos campos de comentários.
+     */
+    private void adicionaListaAlteracaoCampos() {
+        
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.SEGMENTO_CLIENTE));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.PROPOSTA_VALOR));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.ATIVIDADES_CHAVE));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.RELACOES_CLIENTE));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.PARCERIAS_CHAVE));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.CANAIS));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.RECURSOS_PRINCIPAIS));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.CONCORRENTES));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.ESTAGIO_EVOLUCAO));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.TECNOLOGIA_PROCESSOS));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.POTENCIAL_INOVACAO_TECNOLOGICA));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.APLICACOES));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.DIFICULDADES_ESPERADAS));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.INTERACAO_EMPRESA_UNIVERSIDADE));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.INFRAESTRUTURA));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.PARTICIPACAO_ACIONARIA));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.POTENCIAL_EMPREGO));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.FONTES_RECEITA));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.ESTRUTURA_CUSTO));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.INVESTIMENTO_INICIAL));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.CUSTOS_FIXOS));
+        alteracaocampos.add(criaAlteracaoCampos(AlteracaoCampos.CUSTOS_VARIAVEIS));
+
+    }
+
     /**
      * Atualiza todos os campos da lista de textoComentários com o valor de seus
      * campos de texto comentário.
+     *
      * @param gerente
      */
-    public void atualizaTodosOsTextoComentario(GerenteRelacionamento gerente){
+    public void atualizaTodosOsTextoComentario(GerenteRelacionamento gerente) {
         atualizarTextoComentario(gerente, segmentosClientes);
         atualizarTextoComentario(gerente, propostaValor);
         atualizarTextoComentario(gerente, atividadeChave);
@@ -493,43 +433,46 @@ public class ComentarioProjeto implements java.io.Serializable {
         atualizarTextoComentario(gerente, parceriasChave);
         atualizarTextoComentario(gerente, canais);
         atualizarTextoComentario(gerente, recursosPrincipais);
-        atualizarTextoComentario(gerente,concorrentes);
-        atualizarTextoComentario(gerente,estagioEvolucao);
-        atualizarTextoComentario(gerente,tecnologiaProcessos);
-        atualizarTextoComentario(gerente,potencialInovacaoTecnologica);
-        atualizarTextoComentario(gerente,aplicacoes);
-        atualizarTextoComentario(gerente,dificuldadesEsperadas);
-        atualizarTextoComentario(gerente,interacaoEmpresaUniversidade);
-        atualizarTextoComentario(gerente,interacaoEmpresaComunidadeGoverno);
-        atualizarTextoComentario(gerente,infraestrutura);
-        atualizarTextoComentario(gerente,participacaoAcionaria);
-        atualizarTextoComentario(gerente,potencialEmprego);
-        atualizarTextoComentario(gerente,fontesReceita);
-        atualizarTextoComentario(gerente,estruturaCusto);
-        atualizarTextoComentario(gerente,investimentoInicial);
-        atualizarTextoComentario(gerente,custoFixo);
-        atualizarTextoComentario(gerente,custoVariavel);
+        atualizarTextoComentario(gerente, concorrentes);
+        atualizarTextoComentario(gerente, estagioEvolucao);
+        atualizarTextoComentario(gerente, tecnologiaProcessos);
+        atualizarTextoComentario(gerente, potencialInovacaoTecnologica);
+        atualizarTextoComentario(gerente, aplicacoes);
+        atualizarTextoComentario(gerente, dificuldadesEsperadas);
+        atualizarTextoComentario(gerente, interacaoEmpresaUniversidade);
+        atualizarTextoComentario(gerente, interacaoEmpresaComunidadeGoverno);
+        atualizarTextoComentario(gerente, infraestrutura);
+        atualizarTextoComentario(gerente, participacaoAcionaria);
+        atualizarTextoComentario(gerente, potencialEmprego);
+        atualizarTextoComentario(gerente, fontesReceita);
+        atualizarTextoComentario(gerente, estruturaCusto);
+        atualizarTextoComentario(gerente, investimentoInicial);
+        atualizarTextoComentario(gerente, custoFixo);
+        atualizarTextoComentario(gerente, custoVariavel);
     }
-    
+
     /**
      * Procura um texto comentário em uma lista e atualiza ele com o texto
      * comentário fornecido.
+     *
      * @param gerente
      * @param textocomentario
      */
     public void atualizarTextoComentario(GerenteRelacionamento gerente, Textocomentario textocomentario) {
-            for (Textocomentario textocomentarioLaco : textocomentarios) {
-                if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
-                    Date data = new Date(System.currentTimeMillis());
-                    
-                    textocomentarioLaco.setTexto(textocomentario.getTexto());
-                    textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
-                    textocomentarioLaco.setDataAlteracao(data);
-                    textocomentarioLaco.setGerenteRelacionamento(gerente);
-                    break;
-                }
+        
+        for (Textocomentario textocomentarioLaco : textocomentarios) {
+            if (Objects.equals(textocomentario.getTipo(), textocomentarioLaco.getTipo())) {
+                Date data = new Date(System.currentTimeMillis());
+
+                textocomentarioLaco.setTexto(textocomentario.getTexto());
+                textocomentarioLaco.setDataSubmissao(textocomentario.getDataSubmissao());
+                textocomentarioLaco.setDataAlteracao(data);
+                textocomentarioLaco.setGerenteRelacionamento(gerente);
+                break;
             }
+        }
     }
+
     /**
      * Muda o texto de um TextoComentário dependendo do tipo.
      *
@@ -1000,5 +943,381 @@ public class ComentarioProjeto implements java.io.Serializable {
      */
     public void setCustoVariavel(Textocomentario custoVariavel) {
         this.custoVariavel = custoVariavel;
+    }
+
+    public Set<AlteracaoCampos> getAlteracaocampos() {
+        return alteracaocampos;
+    }
+
+    public void setAlteracaocampos(Set<AlteracaoCampos> alteracaocampos) {
+        this.alteracaocampos = alteracaocampos;
+    }
+
+    public AlteracaoCampos getSegmentosClientes_alteracao() {
+        return segmentosClientes_alteracao;
+    }
+
+    public void setSegmentosClientes_alteracao(AlteracaoCampos segmentosClientes_alteracao) {
+        this.segmentosClientes_alteracao = segmentosClientes_alteracao;
+    }
+
+    public AlteracaoCampos getPropostaValor_alteracao() {
+        return propostaValor_alteracao;
+    }
+
+    public void setPropostaValor_alteracao(AlteracaoCampos propostaValor_alteracao) {
+        this.propostaValor_alteracao = propostaValor_alteracao;
+    }
+
+    public AlteracaoCampos getAtividadeChave_alteracao() {
+        return atividadeChave_alteracao;
+    }
+
+    public void setAtividadeChave_alteracao(AlteracaoCampos atividadeChave_alteracao) {
+        this.atividadeChave_alteracao = atividadeChave_alteracao;
+    }
+
+    public AlteracaoCampos getRelacionamentoCliente_alteracao() {
+        return relacionamentoCliente_alteracao;
+    }
+
+    public void setRelacionamentoCliente_alteracao(AlteracaoCampos relacionamentoCliente_alteracao) {
+        this.relacionamentoCliente_alteracao = relacionamentoCliente_alteracao;
+    }
+
+    public AlteracaoCampos getParceriasChave_alteracao() {
+        return parceriasChave_alteracao;
+    }
+
+    public void setParceriasChave_alteracao(AlteracaoCampos parceriasChave_alteracao) {
+        this.parceriasChave_alteracao = parceriasChave_alteracao;
+    }
+
+    public AlteracaoCampos getCanais_alteracao() {
+        return canais_alteracao;
+    }
+
+    public void setCanais_alteracao(AlteracaoCampos canais_alteracao) {
+        this.canais_alteracao = canais_alteracao;
+    }
+
+    public AlteracaoCampos getRecursosPrincipais_alteracao() {
+        return recursosPrincipais_alteracao;
+    }
+
+    public void setRecursosPrincipais_alteracao(AlteracaoCampos recursosPrincipais_alteracao) {
+        this.recursosPrincipais_alteracao = recursosPrincipais_alteracao;
+    }
+
+    public AlteracaoCampos getConcorrentes_alteracao() {
+        return concorrentes_alteracao;
+    }
+
+    public void setConcorrentes_alteracao(AlteracaoCampos concorrentes_alteracao) {
+        this.concorrentes_alteracao = concorrentes_alteracao;
+    }
+
+    public AlteracaoCampos getEstagioEvolucao_alteracao() {
+        return estagioEvolucao_alteracao;
+    }
+
+    public void setEstagioEvolucao_alteracao(AlteracaoCampos estagioEvolucao_alteracao) {
+        this.estagioEvolucao_alteracao = estagioEvolucao_alteracao;
+    }
+
+    public AlteracaoCampos getTecnologiaProcessos_alteracao() {
+        return tecnologiaProcessos_alteracao;
+    }
+
+    public void setTecnologiaProcessos_alteracao(AlteracaoCampos tecnologiaProcessos_alteracao) {
+        this.tecnologiaProcessos_alteracao = tecnologiaProcessos_alteracao;
+    }
+
+    public AlteracaoCampos getPotencialInovacaoTecnologica_alteracao() {
+        return potencialInovacaoTecnologica_alteracao;
+    }
+
+    public void setPotencialInovacaoTecnologica_alteracao(AlteracaoCampos potencialInovacaoTecnologica_alteracao) {
+        this.potencialInovacaoTecnologica_alteracao = potencialInovacaoTecnologica_alteracao;
+    }
+
+    public AlteracaoCampos getAplicacoes_alteracao() {
+        return aplicacoes_alteracao;
+    }
+
+    public void setAplicacoes_alteracao(AlteracaoCampos aplicacoes_alteracao) {
+        this.aplicacoes_alteracao = aplicacoes_alteracao;
+    }
+
+    public AlteracaoCampos getDificuldadesEsperadas_alteracao() {
+        return dificuldadesEsperadas_alteracao;
+    }
+
+    public void setDificuldadesEsperadas_alteracao(AlteracaoCampos dificuldadesEsperadas_alteracao) {
+        this.dificuldadesEsperadas_alteracao = dificuldadesEsperadas_alteracao;
+    }
+
+    public AlteracaoCampos getInteracaoEmpresaUniversidade_alteracao() {
+        return interacaoEmpresaUniversidade_alteracao;
+    }
+
+    public void setInteracaoEmpresaUniversidade_alteracao(AlteracaoCampos interacaoEmpresaUniversidade_alteracao) {
+        this.interacaoEmpresaUniversidade_alteracao = interacaoEmpresaUniversidade_alteracao;
+    }
+
+    public AlteracaoCampos getInteracaoEmpresaComunidadeGoverno_alteracao() {
+        return interacaoEmpresaComunidadeGoverno_alteracao;
+    }
+
+    public void setInteracaoEmpresaComunidadeGoverno_alteracao(AlteracaoCampos interacaoEmpresaComunidadeGoverno_alteracao) {
+        this.interacaoEmpresaComunidadeGoverno_alteracao = interacaoEmpresaComunidadeGoverno_alteracao;
+    }
+
+    public AlteracaoCampos getInfraestrutura_alteracao() {
+        return infraestrutura_alteracao;
+    }
+
+    public void setInfraestrutura_alteracao(AlteracaoCampos infraestrutura_alteracao) {
+        this.infraestrutura_alteracao = infraestrutura_alteracao;
+    }
+
+    public AlteracaoCampos getParticipacaoAcionaria_alteracao() {
+        return participacaoAcionaria_alteracao;
+    }
+
+    public void setParticipacaoAcionaria_alteracao(AlteracaoCampos participacaoAcionaria_alteracao) {
+        this.participacaoAcionaria_alteracao = participacaoAcionaria_alteracao;
+    }
+
+    public AlteracaoCampos getPotencialEmprego_alteracao() {
+        return potencialEmprego_alteracao;
+    }
+
+    public void setPotencialEmprego_alteracao(AlteracaoCampos potencialEmprego_alteracao) {
+        this.potencialEmprego_alteracao = potencialEmprego_alteracao;
+    }
+
+    public AlteracaoCampos getFontesReceita_alteracao() {
+        return fontesReceita_alteracao;
+    }
+
+    public void setFontesReceita_alteracao(AlteracaoCampos fontesReceita_alteracao) {
+        this.fontesReceita_alteracao = fontesReceita_alteracao;
+    }
+
+    public AlteracaoCampos getEstruturaCusto_alteracao() {
+        return estruturaCusto_alteracao;
+    }
+
+    public void setEstruturaCusto_alteracao(AlteracaoCampos estruturaCusto_alteracao) {
+        this.estruturaCusto_alteracao = estruturaCusto_alteracao;
+    }
+
+    public AlteracaoCampos getInvestimentoInicial_alteracao() {
+        return investimentoInicial_alteracao;
+    }
+
+    public void setInvestimentoInicial_alteracao(AlteracaoCampos investimentoInicial_alteracao) {
+        this.investimentoInicial_alteracao = investimentoInicial_alteracao;
+    }
+
+    public AlteracaoCampos getCustoFixo_alteracao() {
+        return custoFixo_alteracao;
+    }
+
+    public void setCustoFixo_alteracao(AlteracaoCampos custoFixo_alteracao) {
+        this.custoFixo_alteracao = custoFixo_alteracao;
+    }
+
+    public AlteracaoCampos getCustoVariavel_alteracao() {
+        return custoVariavel_alteracao;
+    }
+
+    public void setCustoVariavel_alteracao(AlteracaoCampos custoVariavel_alteracao) {
+        this.custoVariavel_alteracao = custoVariavel_alteracao;
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao segmento de
+     * clientes.
+     */
+    public String retornarSegmentosClientes() {
+        return retornaTextoComentario(Textocomentario.SEGMENTO_CLIENTE);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao proposta de valor.
+     */
+    public String retornarPropostaValor() {
+        return retornaTextoComentario(Textocomentario.PROPOSTA_VALOR);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao atividades chaves.
+     */
+    public String retornarAtividadesChave() {
+        return retornaTextoComentario(Textocomentario.ATIVIDADES_CHAVE);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao relações de
+     * clientes.
+     */
+    public String retornarRelacoesClientes() {
+        return retornaTextoComentario(Textocomentario.RELACOES_CLIENTE);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao parcerias chaves.
+     */
+    public String retornarParceriasChave() {
+        return retornaTextoComentario(Textocomentario.PARCERIAS_CHAVE);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao canais.
+     */
+    public String retornarCanais() {
+        return retornaTextoComentario(Textocomentario.CANAIS);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a recursos principais.
+     */
+    public String retornarRecursosPrincipais() {
+        return retornaTextoComentario(Textocomentario.RECURSOS_PRINCIPAIS);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a concorrentes.
+     */
+    public String retornarConcorrentes() {
+        return retornaTextoComentario(Textocomentario.CONCORRENTES);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a estagio de evolução.
+     */
+    public String retornarEstagioEvolucao() {
+        return retornaTextoComentario(Textocomentario.ESTAGIO_EVOLUCAO);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a tecnologia e
+     * processos.
+     */
+    public String retornarTecnologiaProcesso() {
+        return retornaTextoComentario(Textocomentario.TECNOLOGIA_PROCESSOS);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao potencial em
+     * inovação e tecnologia..
+     */
+    public String retornarPotencialInovacaoTecnologia() {
+        return retornaTextoComentario(Textocomentario.POTENCIAL_INOVACAO_TECNOLOGICA);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a aplicações.
+     */
+    public String retornarAplicacoes() {
+        return retornaTextoComentario(Textocomentario.APLICACOES);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a difilcudades
+     * esperadas.
+     */
+    public String retornarDifilcudadesEsperadas() {
+        return retornaTextoComentario(Textocomentario.DIFICULDADES_ESPERADAS);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a interacao entre a
+     * empresa e universidade.
+     */
+    public String retornarInteracaoEmpresaUniversidade() {
+        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_UNIVERSIDADE);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a interacao entre a
+     * empresa, a comunidade e o governo.
+     */
+    public String retornarInteracaoEmpresaComunidadeGoverno() {
+        return retornaTextoComentario(Textocomentario.INTERACAO_EMPRESA_COMUNIDADE_GOVERNO);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a infraestrutura.
+     */
+    public String retornarInfraEstrutura() {
+        return retornaTextoComentario(Textocomentario.INFRAESTRUTURA);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a participacao
+     * acionário.
+     */
+    public String retornarParticipacaoAcionaria() {
+        return retornaTextoComentario(Textocomentario.PARTICIPACAO_ACIONARIA);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado o potencial de emprego.
+     */
+    public String retornarPotencialEmprego() {
+        return retornaTextoComentario(Textocomentario.POTENCIAL_EMPREGO);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a fontes de receitas.
+     */
+    public String retornarFontesReceitas() {
+        return retornaTextoComentario(Textocomentario.FONTES_RECEITA);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado a estrutura de custos..
+     */
+    public String retornarEstruturaCustos() {
+        return retornaTextoComentario(Textocomentario.ESTRUTURA_CUSTO);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao investimento
+     * inicial.
+     */
+    public String retornarInvestimentoInicial() {
+        return retornaTextoComentario(Textocomentario.INVESTIMENTO_INICIAL);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao custos fixos.
+     */
+    public String retornarCustosFixos() {
+        return retornaTextoComentario(Textocomentario.CUSTOS_FIXOS);
+    }
+
+    /**
+     * @return Retorna o valor do comentário relacionado ao custos variáveis.
+     */
+    public String retornarCustosVariaveis() {
+        return retornaTextoComentario(Textocomentario.CUSTOS_VARIAVEIS);
+    }
+
+    /**
+     * @return the textocomentarios
+     */
+    public Set<Textocomentario> getTextocomentarios() {
+        return textocomentarios;
+    }
+
+    /**
+     * @param textocomentarios the textocomentarios to set
+     */
+    public void setTextocomentarios(Set<Textocomentario> textocomentarios) {
+        this.textocomentarios = textocomentarios;
     }
 }
