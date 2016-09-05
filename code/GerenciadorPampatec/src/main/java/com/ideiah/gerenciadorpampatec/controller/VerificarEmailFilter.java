@@ -60,16 +60,18 @@ public class VerificarEmailFilter implements Filter {
         emp = Empreendedor.buscaEmpreendedorID(id);
         emp2 = (Empreendedor) session.getAttribute("empreendedorIncompleto");
         if (emp != null) {
-            session.removeAttribute("empreendedorIncompleto");
-            session.setAttribute("empreendedorIncompleto", emp);
-            
-            emp.setIdUnico(null);
-            
-            emp.atualizarEmpreendedor(emp);
-            
-            request.getRequestDispatcher("/verificarEmail.jsf").forward(request, response);
+            if (emp.getIdUnico().equals(id)) {
+                session.removeAttribute("empreendedorIncompleto");
+                session.setAttribute("empreendedorIncompleto", emp);
+
+                emp.setIdUnico(null);
+
+                emp.atualizarEmpreendedor(emp);
+
+                request.getRequestDispatcher("/verificarEmail.jsf").forward(request, response);
+            }
         } else if ((emp2 != null)) {
-            if (emp2.getIdUnico() != null) {
+            if (emp2.getIdUnico().equals(id)) {
                  emp2.setIdUnico(null);
             
                 emp2.atualizarEmpreendedor(emp2);

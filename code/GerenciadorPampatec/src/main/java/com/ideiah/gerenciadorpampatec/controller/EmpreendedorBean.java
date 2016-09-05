@@ -100,6 +100,7 @@ public class EmpreendedorBean implements Serializable {
             empreendedor.setEmail(email);
             if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
                 EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                session.setAttribute("empreendedorIncompleto", empreendedor);
                 FacesUtil.addSuccessMessage("E-mail atualizado e reenviado com sucesso!", "formReenviaEmail:linkEmail");
                 email = "";
             }
