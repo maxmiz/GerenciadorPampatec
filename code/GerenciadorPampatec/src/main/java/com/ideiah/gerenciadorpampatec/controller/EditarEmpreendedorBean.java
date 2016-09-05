@@ -239,19 +239,15 @@ public class EditarEmpreendedorBean implements Serializable {
             if (!empreendedor.getEmail().equals(email)) {
                 if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
                     FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
-                    
-                } else {
-                    //gera id unico para o empreendedor, para ser usado na confirmacao de email.
-                    empreendedor.setIdUnico(geraIdUnico());
-                    empreendedor.setEmail(email);
-                    //envia email para confirmação pois o email foi alterado laga laga vem comigo vem contigo
-                    EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                } else{
                     emailok = true;
+                    empreendedor.setEmail(email);
+                    empreendedor.setIdUnico(geraIdUnico());   
                 }
-            }
-            
-            else{
+            } else {
                 emailok = true;
+                empreendedor.setEmail(email);
+                empreendedor.setIdUnico(geraIdUnico());   
             }
 
             if (!novaSenha.isEmpty()) {
@@ -260,11 +256,16 @@ public class EditarEmpreendedorBean implements Serializable {
             boolean passou = false;
             if (emailok && empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                 try {
+                                     
                     getUserBean().setNome(nome);
                     UserBean.MudarSenha(empreendedor.getSenha());
                     UserBean.MudarUser(empreendedor.getEmail());
                     session.setAttribute("empreendedor", empreendedor);
                     passou = true;
+
+                    //envia email para confirmação pois o email foi alterado laga laga vem comigo vem contigo
+                    EmailUtil.mandarEmailConfirmacaoEdicao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                    SystemAccessBean.fazLogout();
                 } catch (NullPointerException e) {
                     System.out.println("Ocorreu um erro ao substituir o empreendedor na sessão" + this.getClass().getName());
                     FacesUtil.addErrorMessage("Cadastro não realizado! Ocorreu um ao tentar salvar as informações", "formularioCadastro:botaoEnviar");
@@ -288,7 +289,7 @@ public class EditarEmpreendedorBean implements Serializable {
         }
 
     }
-    
+
     public void cancelarEdicao() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
@@ -323,7 +324,7 @@ public class EditarEmpreendedorBean implements Serializable {
     public void setSalvou(boolean salvou) {
         this.salvou = salvou;
     }
-    
+
     /**
      * Gera um id Unico para usar na verificacao de email
      *

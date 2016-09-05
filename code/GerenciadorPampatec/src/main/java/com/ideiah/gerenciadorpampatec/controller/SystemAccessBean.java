@@ -185,9 +185,9 @@ public class SystemAccessBean implements Serializable {
      *
      */
     public static void fazLogout() {
+        
         ProjectSatusManager.tratamentoStatusSendoAvaliado();
         SessionManager.finalizaSessao();
-
         RedirectManager.getLogout();
     }
 
