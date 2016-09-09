@@ -5,15 +5,14 @@
  */
 package com.ideiah.gerenciadorpampatec.controller;
 
-import com.ideiah.gerenciadorpampatec.dao.GerenteDao;
+import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import com.ideiah.gerenciadorpampatec.model.AlteracaoCampos;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Custo;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
-import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
-import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import com.ideiah.gerenciadorpampatec.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -84,6 +82,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         }
         if (comentarioProjeto != null) {
             comentarioProjeto.populandoVariaveisComentario();
+            comentarioProjeto.populandoVariaveisAlteracoesCampos();
         }
     }
 
@@ -354,6 +353,34 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+    }
+    
+    /**
+     * <p>
+     * Método para salvar o projeto e as alterações dos campos do plano no histórico de comentários.
+     * Em cada alteração de campo efetuada, essa alteração é salva e o plano também. É tóis!
+     * </p>
+     * @param alteracao
+     * @param texto
+     */
+    public void salvarAlteracaoCampo(AlteracaoCampos alteracao, String texto) {
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.getProdutoouservico().setEstagioEvolucao(pegaValorDropDown());
+        projeto.setStatus(Projeto.REVISANDO);
+        projetoDao.salvar(projeto);
+        salvou = true;
+
+        ComentarioDao comentDao = new ComentarioDao();
+        comentarioProjeto.atualizarTextoAlteracao(alteracao, texto, empreendedorSession);
+        comentDao.salvar(comentarioProjeto);
+        
+        /**
+         * Para exibir a mensagem de salvo com sucesso.
+         */
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
+        FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+        
     }
 
     /**
