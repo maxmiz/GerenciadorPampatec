@@ -494,7 +494,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.segmentosClientes_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.negocio.segmentoClientes)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -534,7 +536,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                      
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.propostaValor_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.negocio.propostaValor)}"/>                                      
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -572,7 +576,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>                                       
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.atividadeChave_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.negocio.atividadesChaves)}"/>                                  
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -648,7 +654,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.relacionamentoCliente_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.analiseemprego.relacoesClientes)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -689,7 +697,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.parceriasChave_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.analiseemprego.parceriasChaves)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -731,7 +741,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.canais_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.analiseemprego.canais)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -773,7 +785,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.recursosPrincipais_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.analiseemprego.recursosPrincipais)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -814,7 +828,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.concorrentes_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.analiseemprego.concorrentes)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -897,7 +913,9 @@
                                                 <f:ajax execute="@form" 
                                                         render="formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:mensagemSalvamento formulario_resubmeterplano:campoOutro1" 
                                                         event="change" onevent="funcaoAjaxSalvo"
-                                                        listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                        listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                    revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao_alteracao, 
+                                                                revisarPlanoDeNegocioBean.estagioEvolucao)}"/>
                                             </h:selectOneMenu>
                                             <br/>
                                             <div>
@@ -911,7 +929,9 @@
                                                         <f:ajax execute="@form" 
                                                             render="formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagemSalvamento" 
                                                             event="change" onevent="funcaoAjaxSalvo"
-                                                            listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                            listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                    revisarPlanoDeNegocioBean.comentarioProjeto.estagioEvolucao_alteracao, 
+                                                                revisarPlanoDeNegocioBean.estagioEvolucaoOutro)}"/>
                                                     </p:inputTextarea>
                                             </div>
                                         </h:panelGroup>
@@ -955,7 +975,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.tecnologiaProcessos_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.tecnologiaProcessos)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -997,7 +1019,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.potencialInovacaoTecnologica_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.potencialInovacaoTecnologica)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1039,7 +1063,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.aplicacoes_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.aplicacoes)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1081,7 +1107,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.dificuldadesEsperadas_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.dificuldadesEsperadas)}"/>
 
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
@@ -1124,7 +1152,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaUniversidade_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaUniversidade)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1166,7 +1196,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.interacaoEmpresaComunidadeGoverno)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1208,7 +1240,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.infraestrutura_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.produtoouservico.infraestrutura)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -1286,7 +1320,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.participacaoAcionaria_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.participacaoacionaria)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde"
@@ -1327,7 +1363,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.potencialEmprego_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.potencialEmprego)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1406,7 +1444,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.fontesReceita_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.planofinanceiro.fontesReceita)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1448,7 +1488,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.estruturaCusto_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.planofinanceiro.estruturaCusto)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
@@ -1489,7 +1531,9 @@
                                             <f:ajax execute="@form" 
                                                     render="formulario_resubmeterplano:mensagemSalvamento" 
                                                     event="change" onevent="funcaoAjaxSalvo"
-                                                    listener="#{revisarPlanoDeNegocioBean.salvarRevisaoProjeto()}"/>
+                                                    listener="#{revisarPlanoDeNegocioBean.salvarAlteracaoCampo(
+                                                                revisarPlanoDeNegocioBean.comentarioProjeto.investimentoInicial_alteracao, 
+                                                                revisarPlanoDeNegocioBean.projeto.planofinanceiro.investimentoInicial)}"/>
                                         </h:inputTextarea>
                                         <div class="col-md-12 espaco">
                                             <p:commandButton class="botaoBaseComentario botaoVerde" 
