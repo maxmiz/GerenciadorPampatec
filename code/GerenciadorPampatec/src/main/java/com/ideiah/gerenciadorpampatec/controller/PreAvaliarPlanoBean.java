@@ -7,11 +7,13 @@ package com.ideiah.gerenciadorpampatec.controller;
 
 import com.ideiah.gerenciadorpampatec.dao.ComentarioDao;
 import com.ideiah.gerenciadorpampatec.dao.ProjetoDao;
+import com.ideiah.gerenciadorpampatec.model.AlteracaoCampos;
 import com.ideiah.gerenciadorpampatec.model.ComentarioProjeto;
 import com.ideiah.gerenciadorpampatec.model.Empreendedor;
 import com.ideiah.gerenciadorpampatec.model.GerenteRelacionamento;
 import com.ideiah.gerenciadorpampatec.model.Projeto;
 import com.ideiah.gerenciadorpampatec.model.Textocomentario;
+import com.ideiah.gerenciadorpampatec.util.ComparadorAlteracaoUtil;
 import com.ideiah.gerenciadorpampatec.util.ComparadorSubmissaoComentarioUtil;
 import com.ideiah.gerenciadorpampatec.util.EmailUtil;
 import java.io.Serializable;
@@ -514,7 +516,7 @@ public class PreAvaliarPlanoBean implements Serializable {
     }
 
     
-        /**
+    /**
      * <p>Método que retorna o histórico de comentários do projeto.</p>
      * 
      * @param tipoComentario
@@ -547,6 +549,75 @@ public class PreAvaliarPlanoBean implements Serializable {
         sortByAlteration(historicoComentarios);        
         
         return historicoComentarios;
+    }
+    
+    /**
+     * <p>Método que retorna o histórico de alteraceos dos campos projeto.</p>
+     * 
+     * @param tipoAlteracao
+     * @return A lista de alteracoes com status histórico.
+     */
+    public ArrayList<AlteracaoCampos> historicoDeAlteracao(int tipoAlteracao) {
+        ArrayList<AlteracaoCampos> historicoAlteracoes = new ArrayList<>();
+
+        /**
+         * Laço que varre a lista de alteracoes do projeto, 
+         * filtrando apenas aqueles que contem o status histórico.
+         */
+        for (ComentarioProjeto objetoComentarioprojeto : projeto.getComentarioProjeto()) {
+            if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.HISTORICO) {
+                /**
+                 * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto,
+                 * buscando o tipo do texto recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
+                 */
+                
+                
+                for (AlteracaoCampos alteracaocampo : objetoComentarioprojeto.getAlteracaocampos()) {
+                    //se o texto é do tipo recebido por parametro e o texto não é vazio, ele é adicionado na lista de comentários
+                    if (alteracaocampo.getTipo() == tipoAlteracao && alteracaocampo.getTexto() != null) {
+                        historicoAlteracoes.add(alteracaocampo);
+                    }
+                }
+            }
+        }
+        //Lista ordenada por data, do mais recente ao mais antigo
+        sortByAlterationDate(historicoAlteracoes);
+        
+        return historicoAlteracoes;
+    }
+    
+    /**
+     * <p>
+     * Método para ordenar a lista de histórico de alteracoes dos campos por data de alteração
+     * ordenados do mais recente ao mais antigo
+     * </p>
+     * @param lista 
+     */
+    private void sortByAlterationDate (ArrayList<AlteracaoCampos> lista){
+        Collections.sort(lista, new ComparadorAlteracaoUtil());
+        Collections.reverse(lista);
+    }
+    
+    /**
+     * Método que avalia se um campo foi alterado após a avaliação do gerente de relacionamentos
+     * @param tipoAlteracao
+     * @return alterado sim ou não
+     */
+    public boolean CampoFoiAlterado(int tipoAlteracao){
+        ArrayList<AlteracaoCampos> historicoAlteracoes = new ArrayList<>();
+        AlteracaoCampos alteracao = new AlteracaoCampos();
+        
+        historicoAlteracoes = historicoDeAlteracao(tipoAlteracao);
+        
+        if(historicoAlteracoes != null) {
+            alteracao = historicoAlteracoes.get(0);
+            
+            if (!alteracao.getTexto().equals("")){
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     /**

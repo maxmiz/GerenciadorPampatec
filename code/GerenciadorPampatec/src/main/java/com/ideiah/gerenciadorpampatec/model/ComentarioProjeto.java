@@ -472,11 +472,36 @@ public class ComentarioProjeto implements java.io.Serializable {
             }
         }
     }
+    
+    
+    /**
+     * Procura um texto comentário em uma lista e atualiza ele com o texto
+     * comentário fornecido.
+     *
+     * @param alteracao
+     * @param texto
+     * @param empreendedor
+     */
+    public void atualizarTextoAlteracao(AlteracaoCampos alteracao, String texto, Empreendedor empreendedor) {
+        if (alteracao != null) {
+            for (AlteracaoCampos alteracaoLaco : alteracaocampos) {
+                if (Objects.equals(alteracao.getTipo(), alteracaoLaco.getTipo())) {
+                    Date data = new Date(System.currentTimeMillis());
+
+                    alteracaoLaco.setTexto(texto);
+                    alteracaoLaco.setData_alteracao(data);
+                    alteracaoLaco.setEmpreendedor(empreendedor);
+
+                    break;
+                }
+            }
+        }
+    }
 
     /**
-     * Muda o texto de um TextoComentário dependendo do tipo.
+     * Muda o texto de uma alteracaoCampo dependendo do tipo.
      *
-     * @param tipo tipo do comentário
+     
      * @param texto texto para se colocar.
      */
     public void setTextoComentario(int tipo, String texto) {
