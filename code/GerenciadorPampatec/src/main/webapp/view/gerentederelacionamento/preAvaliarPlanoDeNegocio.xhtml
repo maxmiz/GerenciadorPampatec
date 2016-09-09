@@ -382,7 +382,14 @@
                                                      rows="3"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoSegmento">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioSegmento" 
@@ -395,8 +402,8 @@
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoSegmentoDeCliente', 'separacaoHistoricoSegmento')">
                                         </p:commandButton>
-
                                     </div>
+                                    
                                     <div class="has-success col-md-12 espaco">
                                         
                                         <h:panelGroup id="alteracaoSegmento">
@@ -468,7 +475,14 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoProposta">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                     <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioProposta" 
@@ -481,7 +495,7 @@
                                                 rendered="#{not empty preAvaliarPlanoBean.historicoDeComentarios(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}"
                                                 type="button" icon="fa fa-bars" value="Histórico de Comentários"
                                                 onclick="mostrarFeedBackHistorico('formulario_comentarpreavalizar:historicoPropostaDeValor', 'separacaoHistoricoProposta')">
-                                        </p:commandButton>    
+                                        </p:commandButton> 
                                     </div>
                                     <div class="has-success col-md-12 espaco">
                                         <h:panelGroup id="alteracaoProposta">
@@ -553,7 +567,14 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoAtividades">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioAtividades" 
@@ -669,7 +690,14 @@
                                                      rows="5"
                                                      >                 
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoRelacoes">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioRelacao" 
@@ -753,7 +781,14 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoParcerias">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioParceria" 
@@ -839,7 +874,14 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoCanais">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioCanais" 
@@ -922,7 +964,14 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoRecursosPrincipais">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                        <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioRecursos" 
@@ -1004,6 +1053,13 @@
                                                      rows="6"
                                                      >
                                     </h:inputTextarea>
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoConcorrentes">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
                                     <div class="col-md-12 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
@@ -1121,7 +1177,14 @@
                                                      rows="2"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoEvolucao">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioEstagio" 
@@ -1204,7 +1267,14 @@
                                                      rows="2"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoTecnologia">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioTecnologia" 
@@ -1288,7 +1358,14 @@
                                                      rows="4"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoPotencialInovacao">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioPotencial" 
@@ -1371,7 +1448,14 @@
                                                      rows="4"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoAplicacoes">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioAplicacao" 
@@ -1454,7 +1538,14 @@
                                                      rows="4"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoDificuldades">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioDificuldades" 
@@ -1536,7 +1627,14 @@
                                                      style="cursor: not-allowed"
                                                      rows="4">
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoInteracaoUniversidade">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioInteracaoUniversidade" 
@@ -1619,7 +1717,14 @@
                                                      rows="3"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoInteracaoGoverno">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioInteracaoComunidade" 
@@ -1702,7 +1807,14 @@
                                                      rows="3"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoInfra">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioInfraEstrutura" 
@@ -1821,7 +1933,14 @@
                                                      rows="3"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoParticipacao">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioDescricao" 
@@ -1906,7 +2025,14 @@
                                                      rows="3"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoPotencialEmprego">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioPotencialRenda" 
@@ -2028,7 +2154,14 @@
                                                      rows="4"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoFontes">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioFontes" 
@@ -2113,7 +2246,14 @@
                                                      >
 
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoEstruturaCustos">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioEstruturaCustos" 
@@ -2198,7 +2338,14 @@
                                                      rows="4"
                                                      >
                                     </h:inputTextarea>
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoInvestimentoInicial">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioInvestimentoInicial" 
@@ -2295,8 +2442,14 @@
                                         </p:column>
 
                                     </p:dataTable>
-                                    
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoCustoFixo">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou esta tabela desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioCustosFixos" 
@@ -2389,8 +2542,14 @@
                                         </p:column>
 
                                     </p:dataTable>
-
-                                    <div class="col-md-12 espaco">
+                                    <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
+                                        <h:panelGroup id="alteracaoCampoCustoVariavel">
+                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}" class="campoAlterado">
+                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou esta tabela desde a última avaliação
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-7 espaco">
                                         <p:commandButton class="botaoBaseComentario botaoVerde" 
                                                 title="Inserir comentário" 
                                                 id="adicionarComentarioCustosVariaveis" 
