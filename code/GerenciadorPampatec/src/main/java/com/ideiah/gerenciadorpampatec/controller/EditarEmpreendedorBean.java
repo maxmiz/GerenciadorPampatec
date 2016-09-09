@@ -47,6 +47,7 @@ public class EditarEmpreendedorBean implements Serializable {
     private UserBean userBean;
 
     public EditarEmpreendedorBean() {
+        
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         this.empreendedor = (Empreendedor) session.getAttribute("empreendedor");
         if (empreendedor != null) {
@@ -218,6 +219,8 @@ public class EditarEmpreendedorBean implements Serializable {
     public void finalizarEdicao() {
 
         GerenteRelacionamento gerente = new GerenteRelacionamento();
+        boolean emailok = false;
+        boolean novoEmail = false;
 
         senha = CriptografiaUtil.md5(senha);
 
@@ -233,57 +236,45 @@ public class EditarEmpreendedorBean implements Serializable {
             empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(numeroTelefone));
             empreendedor.setFormacao(formacao);
 
-            boolean emailok = false;
             //verifica se o usuario alterou o email para um email que não esteja cadastrado no sistema
             //se sim, o email é alterado e o id unico é setado
             if (!empreendedor.getEmail().equals(email)) {
                 if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
                     FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
-                } else{
+                } else {
                     emailok = true;
+                    novoEmail = true;
                     empreendedor.setEmail(email);
-                    empreendedor.setIdUnico(geraIdUnico());   
+                    empreendedor.setIdUnico(geraIdUnico());
                 }
             } else {
                 emailok = true;
-                empreendedor.setEmail(email);
-                empreendedor.setIdUnico(geraIdUnico());   
             }
-
             if (!novaSenha.isEmpty()) {
                 empreendedor.setSenha(CriptografiaUtil.md5(novaSenha));
             }
-            boolean passou = false;
+
             if (emailok && empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                 try {
-                                     
+
                     getUserBean().setNome(nome);
                     UserBean.MudarSenha(empreendedor.getSenha());
                     UserBean.MudarUser(empreendedor.getEmail());
                     session.setAttribute("empreendedor", empreendedor);
-                    passou = true;
+                    salvou = true;
 
-                    //envia email para confirmação pois o email foi alterado laga laga vem comigo vem contigo
-                    EmailUtil.mandarEmailConfirmacaoEdicao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
-                    SystemAccessBean.fazLogout();
+                    if (novoEmail) {
+                        //envia email para confirmação pois o email foi alterado laga laga vem comigo vem contigo
+                        EmailUtil.mandarEmailConfirmacaoEdicao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
+                        SystemAccessBean.fazLogoutEdicao();
+                    }
                 } catch (NullPointerException e) {
                     System.out.println("Ocorreu um erro ao substituir o empreendedor na sessão" + this.getClass().getName());
                     FacesUtil.addErrorMessage("Cadastro não realizado! Ocorreu um ao tentar salvar as informações", "formularioCadastro:botaoEnviar");
-                    passou = false;
-                }
-
-                if (passou) {
-                    salvou = true;
-//                    try {
-//                        FacesContext.getCurrentInstance().getExternalContext().redirect("homeEmpreendedor.jsf");
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(EditarEmpreendedorBean.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
                 }
             } else {
                 FacesUtil.addErrorMessage("Atualização de cadastro não realizada!", "formularioCadastro:botaoEnviar");
             }
-
         } else {
             FacesUtil.addErrorMessage("Senha incorreta", "formularioCadastro:senhaAtual");
         }

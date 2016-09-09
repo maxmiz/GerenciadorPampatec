@@ -190,6 +190,20 @@ public class SystemAccessBean implements Serializable {
         SessionManager.finalizaSessao();
         RedirectManager.getLogout();
     }
+    
+    /**
+     * <p>
+     * Método que realiza logout do sistema, garantindo o status correto do
+     * projeto, finalizando a sessão do usuário e chamando o método para
+     * redirecionar para a página inicial do sistema.</p>
+     *
+     */
+    public static void fazLogoutEdicao() {
+        
+        ProjectSatusManager.tratamentoStatusSendoAvaliado();
+        SessionManager.finalizaSessao();
+        RedirectManager.getLogoutEdicao();
+    }
 
     /**
      * <p>

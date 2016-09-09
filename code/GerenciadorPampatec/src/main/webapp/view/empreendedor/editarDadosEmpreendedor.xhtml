@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
     <h:head>
         <f:facet name="last">
             <h:outputStylesheet library="css" name="animation.css"  />
@@ -31,6 +32,7 @@
 
         <script>
             var tempoMaxSessao = #{userBean.tempoMaximoSessao()};
+            var emailOriginal = '#{editarEmpreendedorBean.email}';
 
             /**
              * 
@@ -55,19 +57,19 @@
         </script>
     </h:head>
     <h:body onload="timeoutMensagemFeedBack(SALVO);">
-        
-        <!-- Notificação para reenvio de email de confirmação de cadastro (gamb by pedro). -->
-            <h:panelGroup layout="block" id="mensagemSalvamento">
-                <!--ns-box ns-growl notSalvo ns-type-notice ns-show animated -->
-                <h:panelGroup id="notificacaoSalvo" rendered="#{editarEmpreendedorBean.salvou}" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
-                    <div>
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        <p style="padding-left: 15%; margin-top: -17%;">Cadastro atualizado com sucesso!</p>
-                        <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
-                    </div>
-                </h:panelGroup>
+
+        <!-- Notificação para edição de cadastro (fora e-mail) (gamb by pedro). -->
+        <h:panelGroup  layout="block" id="mensagemSalvamento">
+            <!--ns-box ns-growl notSalvo ns-type-notice ns-show animated -->
+            <h:panelGroup id="notificacaoSalvo"  rendered="#{editarEmpreendedorBean.salvou}" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
+                <div>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <p style="padding-left: 15%; margin-top: -17%;">Cadastro atualizado com sucesso!</p>
+                    <span id="closeFeedBack" class="ns-close" onclick="fecharMensagemFeedBackSalvo();"></span>
+                </div>
             </h:panelGroup>
-            <!-- Fim Notificação Plano salvo com sucesso. -->
+        </h:panelGroup>
+        <!-- Fim Notificação Plano salvo com sucesso. -->
 
         <!-- Início do menu superior -->
         <h:form id="menuSuperior">
@@ -182,6 +184,24 @@
                 <legend>Dados do cadastro</legend>
 
                 <h:form id="formularioCadastro">
+                    
+                    <!-- Notificação para edição de cadastro(incluindo e-mail) (gamb by pedro). -->
+                    <h:panelGroup layout="block" id="mensagemErroSubmissao">
+                        <ui:repeat value="#{facesContext.getMessageList('formularioCadastro:botaoConfirmar')}" var="message">
+                            <h:panelGroup id="notificacaoErroSubmissao" layout="block" style="position: fixed; left: 40%;" class="ns-box ns-growl notSalvo ns-type-notice ns-show animated">
+                                <div>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <h:message style="padding-left: 15%; margin-top: -17%;" for="formularioCadastro:botaoConfirmar"/>
+                                    <h:commandButton id="finalizaEdicao" value="Continuar">
+                                        <f:ajax execute="@form" event="click"  listener="#{editarEmpreendedorBean.fazLogout()}"/>
+                                    </h:commandButton> 
+                                </div>
+                            </h:panelGroup>
+                        </ui:repeat>
+                    </h:panelGroup>
+                    <!-- Fim Notificação Plano salvo com sucesso. -->
+
+
                     <div class="col-md-6" title="Digite seu nome completo">
 
                         <!--                             <div class="col-lg-8">
@@ -312,7 +332,7 @@
                                          required="true"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          value="#{editarEmpreendedorBean.email}"
-                                         validatorMessage="Email Invalido">
+                                         validatorMessage="Email Invalido" onchange="edicaoEmail1(this)">
                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             </p:inputText>
 
@@ -393,7 +413,22 @@
                             $("#modalInfoDeEnvio").modal();
                         }
                         
+                        function edicaoEmail1(email){
+                            var idmensagem;
+                            
+                            idmensagem = document.getElementById('textoConfirmaEdicao');
+                            
+                            if(emailOriginal != email.value){
+                                idmensagem.innerHTML = "<strong>Você está alterando o seu e-mail para <i>" + email.value +
+                                    " </i>e será redirecionado para página inicial. <br/>Você tem certeza que deseja encerrar a edição? </strong>";
+                            }else{
+                                idmensagem.innerHTML = "<strong>Você tem certeza que deseja encerrar a edição?</strong>";
+                            }
+                        }
+
                     </script>
+                    
+                    
 
                     <!-- Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO -->
                     <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
@@ -404,7 +439,7 @@
                                 <div class="modal-header fundoVerde">
                                     <button type="button" class="close" data-dismiss="modal">×</button>
                                 </div>
-                                <div class="modal-body">
+                                <div id="textoConfirmaEdicao" class="modal-body">
                                     <strong>Você tem certeza que deseja encerrar a edição?</strong>
                                 </div>
                                 <div class="modal-footer">
@@ -412,7 +447,7 @@
 
                                         <button id="botaoFechaModal" type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
 
-                                        <h:commandButton class="btn btn-success" onclick="fechaModal('#botaoFechaModal')" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
+                                        <h:commandButton id="botaoConfirmar" class="btn btn-success" onclick="fechaModal('#botaoFechaModal')" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
                                         </h:commandButton>
 
                                     </div>
@@ -420,6 +455,33 @@
                             </div>
                         </div>
                     </div>
+                    
+<!--                     Modal com a Informação do botão ENVIAR PARA AVALIAÇÃO 
+                    <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+                        <div class="modal-dialog">
+
+                             Conteúdo do Modal 
+                            <div class="modal-content">
+                                <div class="modal-header fundoVerde">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div id="textoConfirmaEdicao" class="modal-body">
+                                    <strong>Você está alterando seu e-mail para <strong><h:outputText value="#{editarEmpreendedorBean.email}"/></strong>. 
+                                        Você tem certeza que deseja encerrar a edição?</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-12"> 
+
+                                        <button id="botaoFechaModal" type="button" class="btn btn-default" data-dismiss="modal">Voltar para a edição</button>
+
+                                        <h:commandButton id="botaoConfirmar" class="btn btn-success" onclick="fechaModal('#botaoFechaModal')" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
+                                        </h:commandButton>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
                 </h:form>
             </div>
 
