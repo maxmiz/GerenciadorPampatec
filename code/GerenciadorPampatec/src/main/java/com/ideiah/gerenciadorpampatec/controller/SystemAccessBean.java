@@ -142,7 +142,7 @@ public class SystemAccessBean implements Serializable {
                     }
                 } else {
                     SessionManager.getCreateSession().setAttribute("empreendedorIncompleto", empreendedor);
-
+                    
                     RedirectManager.getConfirmaEmail();
                     return true;
                 }

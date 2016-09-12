@@ -24,6 +24,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpSession;
  * @author AugustoCesar
  */
 @ManagedBean(name = "empreendedorBean")
-@SessionScoped
+@ViewScoped
 public class EmpreendedorBean implements Serializable {
 
     private String outcome = "LoginEmpreendedor";
@@ -86,11 +87,12 @@ public class EmpreendedorBean implements Serializable {
 
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
-
-    /**
+    
+       /**
      * metodo que atualiza o e-mail do empreendedor
      */
     public void atualizaEmail() {
+        
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
             FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
