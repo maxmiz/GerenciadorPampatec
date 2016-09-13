@@ -568,12 +568,12 @@ public class PreAvaliarPlanoBean implements Serializable {
             if (objetoComentarioprojeto.getStatus() == ComentarioProjeto.HISTORICO) {
                 /**
                  * Laço que varre a lista de texto comentários, de cada objeto comentário do projeto,
-                 * buscando o tipo do texto recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
+                 * buscando o tipo da alteração recebido por parâmetro (Exemplo: Segmento de Clientes, tipo = 1).
                  */
                 
                 
                 for (AlteracaoCampos alteracaocampo : objetoComentarioprojeto.getAlteracaocampos()) {
-                    //se o texto é do tipo recebido por parametro e o texto não é vazio, ele é adicionado na lista de comentários
+                    //se a alteracao é do tipo recebido por parametro e o texto não é vazio, ele é adicionado na lista de comentários
                     if (alteracaocampo.getTipo() == tipoAlteracao && alteracaocampo.getTexto() != null) {
                         historicoAlteracoes.add(alteracaocampo);
                     }
@@ -603,23 +603,21 @@ public class PreAvaliarPlanoBean implements Serializable {
      * @param tipoAlteracao
      * @return alterado sim ou não
      */
-    public boolean CampoFoiAlterado(int tipoAlteracao){
+    public boolean CampoFoiAlterado(int tipoAlteracao) {
         ArrayList<AlteracaoCampos> historicoAlteracoes = new ArrayList<>();
         AlteracaoCampos alteracao = new AlteracaoCampos();
-        
+
         historicoAlteracoes = historicoDeAlteracao(tipoAlteracao);
-        
-        if(historicoAlteracoes != null) {
+
+        if (!historicoAlteracoes.isEmpty()) {
             alteracao = historicoAlteracoes.get(0);
-            
-            if (!alteracao.getTexto().equals("")){
+            if (!alteracao.getTexto().equals("")) {
                 return true;
             }
         }
-        
         return false;
     }
-    
+
     /**
      * <p>
      * Método para ordenar a lista de histórico ordenados por data de alteração
