@@ -5,6 +5,7 @@
  */
 package com.ideiah.gerenciadorpampatec.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author unipampa
  */
-public class AlteracaoCampos {
+public class AlteracaoCampos implements Serializable{
     
     private Integer idalteracao_dos_campos;
     private Empreendedor empreendedor;
@@ -48,7 +49,9 @@ public class AlteracaoCampos {
     public static final int CUSTOS_VARIAVEIS = 23;
 
     public AlteracaoCampos() {
+        Date data = new Date(System.currentTimeMillis());
         this.texto = "";
+        this.setData_alteracao(data);
     }
     
     
