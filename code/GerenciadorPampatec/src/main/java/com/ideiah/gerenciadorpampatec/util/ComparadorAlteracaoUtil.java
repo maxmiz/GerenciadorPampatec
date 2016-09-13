@@ -19,18 +19,7 @@ public class ComparadorAlteracaoUtil implements Comparator<AlteracaoCampos>{
         if(o1 == null || o2 == null){
             return 0;
         }
-        //retorna o objeto que contém data como sendo o maior
-        if(o1.getData_alteracao() != null && o2.getData_alteracao() == null){
-            return -1;
-        }
-        //retorna o objeto que contém data como sendo o maior
-        if(o1.getData_alteracao() == null && o2.getData_alteracao() != null){
-            return 1;
-        }
         
-        if(o1.getData_alteracao() == null && o2.getData_alteracao() == null){
-            return 0;
-        }
         //se os dois objetos contém data, é retornado como maior o que tem data mais recente
         return o1.getData_alteracao().compareTo(o2.getData_alteracao());
     }
