@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +46,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
     private Empreendedor empreendedorSession;
     private List<Custo> listaCustoFixo;
     private List<Custo> listaCustoVariavel;
+    ArrayList<Custo> custos;
     private int somatorioFixo;
     private int somatorioVariavel;
     private boolean salvou;
@@ -55,8 +57,10 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
     @PostConstruct
     private void init() {
         ProjetoDao projetoDao = new ProjetoDao();
+        custos = new ArrayList<>();
         projeto = (Projeto) SessionManager.getAttribute("projetoSelecionado");
         projeto = projetoDao.buscar(projeto.getIdProjeto());
+        copiaCustosFixos();
         empreendedorSession = (Empreendedor) SessionManager.getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
@@ -83,6 +87,13 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         if (comentarioProjeto != null) {
             comentarioProjeto.populandoVariaveisComentario();
             comentarioProjeto.populandoVariaveisAlteracoesCampos();
+        }
+    }
+
+    public void copiaCustosFixos() {
+
+        for (Custo custo : projeto.getPlanofinanceiro().getCusto()) {
+            custos.add(custo);
         }
     }
 
@@ -134,6 +145,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
      */
     private ArrayList<Custo> converteSetParaArrayListdeCusto(Set<Custo> setCusto) {
         ArrayList<Custo> arrayCusto = new ArrayList<>();
+
         for (Custo custoSet : setCusto) {
             arrayCusto.add(custoSet);
         }
@@ -354,12 +366,14 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
     }
-    
+
     /**
      * <p>
-     * Método para salvar o projeto e as alterações dos campos do plano no histórico de comentários.
-     * Em cada alteração de campo efetuada, essa alteração é salva e o plano também. É tóis!
+     * Método para salvar o projeto e as alterações dos campos do plano no
+     * histórico de comentários. Em cada alteração de campo efetuada, essa
+     * alteração é salva e o plano também. É tóis!
      * </p>
+     *
      * @param alteracao
      * @param texto
      */
@@ -373,14 +387,14 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         ComentarioDao comentDao = new ComentarioDao();
         comentarioProjeto.atualizarTextoAlteracao(alteracao, texto, empreendedorSession);
         comentDao.salvar(comentarioProjeto);
-        
+
         /**
          * Para exibir a mensagem de salvo com sucesso.
          */
         FacesMessage msg;
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:tituloMensagem", msg);
-        
+
     }
 
     /**
@@ -423,6 +437,46 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
                 break;
         }
         return valorEstagioEvolucao;
+    }
+
+    public void salvarAlteracaoCampoTabela(AlteracaoCampos alteracao, Custo custo) {
+
+        salvou = true;
+        String texto = "";
+
+        for (int i = 0; i < custos.size(); i++) {
+
+            if (Objects.equals(custos.get(i).getIdCusto(), custo.getIdCusto())) {
+
+                if (!custos.get(i).getDescricao().equalsIgnoreCase(custo.getDescricao())) {
+
+                    texto += "Foi alterado a descricao da linha" + (i + 1) + "\n";
+
+                }
+                if (!Objects.equals(custos.get(i).getTotal(), custo.getTotal())) {
+
+                    texto += "Foi alterado o custo da linha" + (i + 1);
+                }
+            }
+        }
+
+        ComentarioDao comentDao = new ComentarioDao();
+        ProjetoDao projetoDao = new ProjetoDao();
+        projeto.getProdutoouservico().setEstagioEvolucao(pegaValorDropDown());
+        projeto.setStatus(Projeto.REVISANDO);
+        projetoDao.salvar(projeto);
+        comentarioProjeto.atualizarTextoAlteracaoTabela(alteracao, texto, empreendedorSession);
+        comentDao.salvar(comentarioProjeto);
+
+        /**
+         * Para exibir a mensagem de salvo com sucesso.
+         */
+        FacesMessage msg;
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteraÃ§Ã£o foi salva com sucesso.");
+
+        FacesContext.getCurrentInstance()
+                .addMessage("formulario_resubmeterplano:tituloMensagem", msg);
+
     }
 
     /**
@@ -554,13 +608,13 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 
             projetoDao.salvar(comentarioProjeto);
             projetoDao.salvar(projeto);
-            
+
             EmailManager.enviaEmailParaGerentes(projeto);
-            
+
             getBuscarPlanoDeNegocio();
         }
     }
-    
+
     /**
      * <p>
      * Redireciona para a página de lista de Planos de Negócio.
@@ -641,6 +695,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
      * tabela.</p>
      *
      * @param event
+     * @param alteracao
      */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg;
@@ -650,6 +705,8 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         salvou = true;
 
+        AlteracaoCampos alteracao = comentarioProjeto.getCustoFixo_alteracao();
+        salvarAlteracaoCampoTabela(alteracao, custo);
         calcularValorColunaCustoVariavel();
         calcularValorColunaCustoFixo();
 
@@ -856,7 +913,6 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 //    public void setLoginBean(RedirectManager loginBean) {
 //        this.loginBean = loginBean;
 //    }
-
     public String getEstagioEvolucao() {
         return estagioEvolucao;
     }
