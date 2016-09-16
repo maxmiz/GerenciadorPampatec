@@ -63,7 +63,7 @@ public class Planofinanceiro implements java.io.Serializable {
      *
      * @return listaDeCustosVariaveis
      */
-    public ArrayList retornaListaCustosVariaveis() {
+    public ArrayList<Custo> retornaListaCustosVariaveis() {
 
         ArrayList<Custo> listaDeCustosVariaveis = new ArrayList<Custo>();
 

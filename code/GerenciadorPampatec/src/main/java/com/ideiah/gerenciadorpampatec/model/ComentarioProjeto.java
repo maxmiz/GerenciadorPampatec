@@ -483,9 +483,12 @@ public class ComentarioProjeto implements java.io.Serializable {
      * @param empreendedor
      */
     public void atualizarTextoAlteracao(AlteracaoCampos alteracao, String texto, Empreendedor empreendedor) {
+        
         if (alteracao != null) {
+            
             for (AlteracaoCampos alteracaoLaco : alteracaocampos) {
                 if (Objects.equals(alteracao.getTipo(), alteracaoLaco.getTipo())) {
+                    
                     Date data = new Date(System.currentTimeMillis());
 
                     alteracaoLaco.setTexto(texto);
@@ -498,32 +501,6 @@ public class ComentarioProjeto implements java.io.Serializable {
         }
     }
     
-     /**
-     * Procura um texto comentário em uma lista e atualiza ele com o texto
-     * comentário fornecido.
-     *
-     * @param alteracao
-     * @param texto
-     * @param empreendedor
-     */
-    public void atualizarTextoAlteracaoTabela(AlteracaoCampos alteracao, String texto, Empreendedor empreendedor) {
-        if (alteracao != null) {
-            for (AlteracaoCampos alteracaoLaco : alteracaocampos) {
-                if (Objects.equals(alteracao.getTipo(), alteracaoLaco.getTipo())) {
-                    
-                    
-                    Date data = new Date(System.currentTimeMillis());
-
-                    alteracaoLaco.setTexto(texto);
-                    alteracaoLaco.setData_alteracao(data);
-                    alteracaoLaco.setEmpreendedor(empreendedor);
-
-                    break;
-                }
-            }
-        }
-    }
-
     /**
      * Muda o texto de uma alteracaoCampo dependendo do tipo.
      *
