@@ -159,7 +159,7 @@
                     <!-- Conteúdo do Modal -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="close" data-dismiss="modal" onclick="PF('statusDialog').hide()" aria-hidden="true">×</button>
                             <h4 class="modal-title">Recuperação de senha</h4>
                         </div>
                         <div class="modal-body">
@@ -189,7 +189,7 @@
 
                                     <p:dialog widgetVar="statusDialog" 
                                               style="margin-left: -80%; margin-top: -45%" 
-                                              modal="true" 
+                                              modal="true"
                                               draggable="false" 
                                               closable="false" 
                                               resizable="false" 
