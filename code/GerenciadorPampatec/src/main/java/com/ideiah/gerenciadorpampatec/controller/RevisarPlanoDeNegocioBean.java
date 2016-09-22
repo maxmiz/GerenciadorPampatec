@@ -494,12 +494,18 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
          * Para exibir a mensagem de salvo com sucesso.
          */
         FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteraÃ§Ã£o foi salva com sucesso.");
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
 
         FacesContext.getCurrentInstance()
                 .addMessage("formulario_resubmeterplano:tituloMensagem", msg);
 
     }
+    
+    public void salvaAlteracaoTabela (AlteracaoCampos alteracao){
+        salvarAlteracaoCampo(alteracao, "Esta tabela foi alterada");
+    }
+    
+    
 
     /**
      * método que salva as aterações realizadas na tabela e custos variáveis
@@ -545,7 +551,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
          * Para exibir a mensagem de salvo com sucesso.
          */
         FacesMessage msg;
-        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteraÃ§Ã£o foi salva com sucesso.");
+        msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Sua alteração foi salva com sucesso.");
 
         FacesContext.getCurrentInstance()
                 .addMessage("formulario_resubmeterplano:tituloMensagem", msg);
