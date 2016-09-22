@@ -217,7 +217,8 @@
                                      requiredMessage="Insira o seu nome antes de enviar" 
                                      required="true" 
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{editarEmpreendedorBean.nome}">
+                                     value="#{editarEmpreendedorBean.nome}"
+                                     maxlength="100">
 
                         </p:inputText>
 
@@ -265,7 +266,8 @@
                                      requiredMessage="Insira o logradouro do seu endereço"
                                      required="true"
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{editarEmpreendedorBean.rua}">
+                                     value="#{editarEmpreendedorBean.rua}"
+                                     maxlength="100">
                         </p:inputText>
 
 
@@ -279,7 +281,8 @@
                                      required="true" 
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                      value="#{editarEmpreendedorBean.numero}"
-                                     validatorMessage="Número invalido">
+                                     validatorMessage="Número invalido"
+                                     maxlength="9">
                             <f:validateRegex pattern="[0-9]*" />
                         </p:inputText>
 
@@ -293,7 +296,8 @@
                                      requiredMessage="Insira o bairro do seu endereço"
                                      required="true"
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{editarEmpreendedorBean.bairro}">
+                                     value="#{editarEmpreendedorBean.bairro}"
+                                     maxlength="100">
                         </p:inputText>
 
 
@@ -301,7 +305,8 @@
                     <div class="col-md-6" title="Digite o complemento do seu endereço">
                         Complemento<p:inputText class="form-control" 
                                                 placeholder="ex: sala 13"
-                                                value="#{editarEmpreendedorBean.complemento}">
+                                                value="#{editarEmpreendedorBean.complemento}"
+                                                maxlength="45">
                         </p:inputText>
                         <br/>
                     </div>
@@ -332,7 +337,8 @@
                                          required="true"
                                          styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                          value="#{editarEmpreendedorBean.email}"
-                                         validatorMessage="Email Invalido" onchange="edicaoEmail1(this)">
+                                         validatorMessage="Email Invalido" onchange="edicaoEmail1(this)"
+                                         maxlength="45">
                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             </p:inputText>
 
@@ -343,10 +349,12 @@
                                                      placeholder="Digite sua senha" onchange="precisaSalvar = true;"
                                                      requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
                                                      required="true"
+                                                     
                                                      feedback="false"
                                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                      value="#{editarEmpreendedorBean.senha}"
-                                                     validatorMessage="Você deve fornecer sua senha atual"></p:password>
+                                                     validatorMessage="Você deve fornecer sua senha atual"
+                                                     maxlength="100"></p:password>
                             <h:message class="mensagemErro" for="senhaAtual"/>
                         </div>
                         <div class="col-md-6"></div>
@@ -365,7 +373,8 @@
                                                    inline="true"
                                                    styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                                    value="#{editarEmpreendedorBean.novaSenha}"
-                                                   match="senhaConfig" validatorMessage="Senhas não conferem"></p:password>
+                                                   match="senhaConfig" validatorMessage="Senhas não conferem"
+                                                   maxlength="100"></p:password>
                             <h:message class="mensagemErro" for="senhaNova"/>
 
                         </div> 
@@ -378,7 +387,8 @@
                                                            required="false"
                                                            style=""
                                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
-                                                           value="#{editarEmpreendedorBean.novaSenha}"></p:password>
+                                                           value="#{editarEmpreendedorBean.novaSenha}"
+                                                           maxlength="100"></p:password>
                             <h:message class="mensagemErro" for="senhaNova"/>
                             <br/>
                         </div> 
@@ -402,7 +412,8 @@
                                          title="Finalizar edição do perfil" 
                                          type="button" 
                                          class="botaoBase botaoVerde" 
-                                         onclick="confirmacaoDeEnvio()" 
+                                         onclick="confirmacaoDeEnvio()"
+                                         
                                          value="Finalizar edição">
                         </p:commandButton>
                         <h:message for="botaoFinalizarEdicao"></h:message>
