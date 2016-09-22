@@ -1233,12 +1233,12 @@
                             <br/>
                             <p:commandButton id="botaoSalvar1" 
                                              class="botaoBase botaoVerde" 
-                                             title="Salvar Equipe" 
+                                             title="Confirmar equipe, salvar e prosseguir" 
                                              rendered="#{(projetoBean.projeto.getStatus() == 0) || (projetoBean.projeto.getStatus() == 8)}" 
                                              icon="fa fa-save" 
                                              disabled="#{projetoBean.verificaElaboracao()}" 
                                              onclick="infoSalvarEquipe()" 
-                                             value="Salvar Equipe"
+                                             value="Salvar e prosseguir"
                                              >
                             </p:commandButton>
                             <h:message for="botaoSalvar1"></h:message>
