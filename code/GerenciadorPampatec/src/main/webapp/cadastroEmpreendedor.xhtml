@@ -46,7 +46,8 @@
                                      requiredMessage="Insira o seu nome antes de enviar" 
                                      required="true" 
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{empreendedorBean.nome}">
+                                     value="#{empreendedorBean.nome}"
+                                     maxlength="100">
 
                         </p:inputText>
 
@@ -106,7 +107,8 @@
                                      requiredMessage="Insira o logradouro do seu endereço"
                                      required="true"
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{empreendedorBean.rua}">
+                                     value="#{empreendedorBean.rua}"
+                                     maxlength="100">
                         </p:inputText>
 
 
@@ -120,7 +122,8 @@
                                      required="true" 
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                      value="#{empreendedorBean.numero}"
-                                     validatorMessage="Número invalido">
+                                     validatorMessage="Número invalido"
+                                     maxlength="9">
                             <f:validateRegex pattern="[0-9]*" />
                         </p:inputText>
 
@@ -134,7 +137,8 @@
                                      requiredMessage="Insira o bairro do seu endereço"
                                      required="true"
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
-                                     value="#{empreendedorBean.bairro}">
+                                     value="#{empreendedorBean.bairro}"
+                                     maxlength="100">
                         </p:inputText>
 
 
@@ -142,7 +146,8 @@
                     <div class="col-md-6" title="Digite o complemento do seu endereço">
                         Complemento<p:inputText class="form-control" 
                                                 placeholder="ex: sala 13"
-                                                value="#{empreendedorBean.complemento}">
+                                                value="#{empreendedorBean.complemento}"
+                                                maxlength="45">
                         </p:inputText>
                         <br/>
                     </div>
@@ -157,7 +162,8 @@
                                      required="true"
                                      styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                      value="#{empreendedorBean.email}"
-                                     validatorMessage="Email Invalido">
+                                     validatorMessage="Email Invalido"
+                                     maxlength="45">
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         </p:inputText>
 
@@ -175,7 +181,8 @@
                                     feedback="true"
                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                     value="#{empreendedorBean.senhaInput}"
-                                    match="senhaConfig" validatorMessage="Senha deve ser igual"></p:password>
+                                    match="senhaConfig" validatorMessage="Senha deve ser igual"
+                                    maxlength="100"></p:password>
 
                     </div> 
                     <div class="col-md-6" title="Digite novamente a sua senha para confirmação">
@@ -186,7 +193,8 @@
                                     requiredMessage="Confirme sua senha"
                                     required="true"
                                     styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
-                                    value="#{empreendedorBean.senhaInput}"></p:password>
+                                    value="#{empreendedorBean.senhaInput}"
+                                    maxlength="100"></p:password>
                         <br/>
                     </div> 
 
