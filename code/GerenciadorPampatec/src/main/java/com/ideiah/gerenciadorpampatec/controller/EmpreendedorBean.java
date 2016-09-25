@@ -87,26 +87,26 @@ public class EmpreendedorBean implements Serializable {
 
         return empreendedor.verificaProjetoEmpreendedor(emp, projeto);
     }
-    
-       /**
+
+    /**
      * metodo que atualiza o e-mail do empreendedor
      */
     public void atualizaEmail() {
-        
+
         GerenteRelacionamento gerente = new GerenteRelacionamento();
         if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
             FacesUtil.addErrorMessage("Email já cadastrado!", "formConfirmaEmail:email");
         } else {
-             //gera id unico para o empreendedor, para ser usado na confirmacao de email.
+            //gera id unico para o empreendedor, para ser usado na confirmacao de email.
             empreendedor.setIdUnico(geraIdUnico());
             empreendedor.setEmail(email);
-            if(empreendedor.atualizarEmpreendedor(empreendedor) != null){
+            if (empreendedor.atualizarEmpreendedor(empreendedor) != null) {
                 EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico());
                 session.setAttribute("empreendedorIncompleto", empreendedor);
                 FacesUtil.addSuccessMessage("E-mail atualizado e reenviado com sucesso!", "formReenviaEmail:linkEmail");
                 email = "";
             }
-            
+
         }
     }
 
@@ -123,7 +123,7 @@ public class EmpreendedorBean implements Serializable {
             if (empreendedor.buscarPorEmail(email) != null || gerente.buscarPorEmail(email) != null) {
                 FacesUtil.addErrorMessage("Email já cadastrado!", "formularioCadastro:email");
             } else if (CpfUtil.isValidCPF(cpf) == false) {
-                FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
+                FacesUtil.addErrorMessage("CPF inválido!", "formularioCadastro:cpf");
             } else {
                 empreendedor.setEmail(email);
                 empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
@@ -136,7 +136,7 @@ public class EmpreendedorBean implements Serializable {
 
                 //gera id unico para o empreendedor, para ser usado na confirmacao de email.
                 empreendedor.setIdUnico(geraIdUnico());
-                EmailUtil.mandarEmailConfirmacaoNew(nome, email, empreendedor.getIdUnico());
+                EmailUtil.mandarEmailConfirmacao(nome, email, empreendedor.getIdUnico());
 
                 if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "formularioCadastro:botaoEnviar");
@@ -172,16 +172,17 @@ public class EmpreendedorBean implements Serializable {
         }
     }
 
+    
+    
     /**
      * método que reenvia e-mail para o empreededor
      */
     public void reenviaEmail() {
-
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedorIncompleto");
 
-        if (EmailUtil.mandarEmailConfirmacaoNew(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
+        if (EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
 //            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
         }
 
@@ -203,7 +204,7 @@ public class EmpreendedorBean implements Serializable {
      * link submetido para o email
      */
     public void terminarRecuperacaoDeSenha() {
-        
+
         empreendedor = (Empreendedor) session.getAttribute("empreendedor");
 
         if (empreendedor != null) {
@@ -231,7 +232,7 @@ public class EmpreendedorBean implements Serializable {
             empreendedor.setCpf(cpf);
             empreendedor.setFormacao(formacao);
             if (CpfUtil.isValidCPF(cpf) == false) {
-                FacesUtil.addErrorMessage("CPF invalido!", "formularioCadastro:cpf");
+                FacesUtil.addErrorMessage("CPF inválido!", "formularioCadastro:cpf");
             } else {
                 empreendedor.setTelefone(TelefoneUtil.removeParentesesTelefone(telefone));
                 empreendedor.setSenha(CriptografiaUtil.md5(senhaInput));
