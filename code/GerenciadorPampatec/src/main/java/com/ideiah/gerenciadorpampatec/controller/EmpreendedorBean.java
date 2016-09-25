@@ -136,7 +136,7 @@ public class EmpreendedorBean implements Serializable {
 
                 //gera id unico para o empreendedor, para ser usado na confirmacao de email.
                 empreendedor.setIdUnico(geraIdUnico());
-                EmailUtil.mandarEmailConfirmacaoNew(nome, email, empreendedor.getIdUnico());
+                EmailUtil.mandarEmailConfirmacao(nome, email, empreendedor.getIdUnico());
 
                 if (empreendedor.cadastrarEmpreendedor(empreendedor) != null) {
                     FacesUtil.addSuccessMessage("Cadastro realizado com sucesso! Verifique seu E-mail!", "formularioCadastro:botaoEnviar");
@@ -181,7 +181,7 @@ public class EmpreendedorBean implements Serializable {
 
         Empreendedor empreendedor = (Empreendedor) sessao.getAttribute("empreendedorIncompleto");
 
-        if (EmailUtil.mandarEmailConfirmacaoNew(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
+        if (EmailUtil.mandarEmailConfirmacao(empreendedor.getNome(), empreendedor.getEmail(), empreendedor.getIdUnico())) {
 //            FacesUtil.addSuccessMessage("E-mail reenviado!", "formReenviaEmail:linkEmail");
         }
 
