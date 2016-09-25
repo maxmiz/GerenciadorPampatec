@@ -37,8 +37,12 @@ public class SystemAccessBean implements Serializable {
     private String nome;
     private String emailRecuperarSenha;
     boolean cadastroIncompleto;
+    private boolean recuperarSenha;
+    private boolean emailEnviado;
 
     public SystemAccessBean() {
+        recuperarSenha = false;
+        emailEnviado = false;
     }
 
     /**
@@ -142,7 +146,7 @@ public class SystemAccessBean implements Serializable {
                     }
                 } else {
                     SessionManager.getCreateSession().setAttribute("empreendedorIncompleto", empreendedor);
-                    
+
                     RedirectManager.getConfirmaEmail();
                     return true;
                 }
@@ -185,12 +189,12 @@ public class SystemAccessBean implements Serializable {
      *
      */
     public static void fazLogout() {
-        
+
         ProjectSatusManager.tratamentoStatusSendoAvaliado();
         SessionManager.finalizaSessao();
         RedirectManager.getLogout();
     }
-    
+
     /**
      * <p>
      * Método que realiza logout do sistema, garantindo o status correto do
@@ -199,7 +203,7 @@ public class SystemAccessBean implements Serializable {
      *
      */
     public static void fazLogoutEdicao() {
-        
+
         ProjectSatusManager.tratamentoStatusSendoAvaliado();
         SessionManager.finalizaSessao();
         RedirectManager.getLogoutEdicao();
@@ -213,29 +217,38 @@ public class SystemAccessBean implements Serializable {
      * idEmpreendedor (chave estrangeira = ID do empreendedor que possui o email
      * inserido e gera um idUnico que é setado no campo de id do
      * empreendedorEmail.</p>
-     *
      */
     public void recuperarSenha() {
         Empreendedor empreendedor;
-        empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
-        if (emailRecuperarSenha == null || emailRecuperarSenha.equals("")) {
-            FacesUtil.addErrorMessage("Insira um email!", "formularioRecuperarSenha:botaoRecuperarSenha");
-        } else if (empreendedor != null) {
-            if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
-                cadastroIncompleto = true;
-                FacesUtil.addErrorMessage("Alguém já adicionou você ao plano ", "formularioRecuperarSenha:botaoRecuperarSenha");
+        if (recuperarSenha) {
+            if (emailRecuperarSenha == null || emailRecuperarSenha.equals("")) {
+                emailEnviado = false;
+                FacesUtil.addErrorMessage("Insira um email!", "formularioRecuperarSenha:email");
             } else {
-                String idUnico = UUID.randomUUID().toString();
-                EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
-                empreendedorEmail.setEmpreendedor(empreendedor);
-                empreendedorEmail.setIdEmpreendedorEmail(idUnico);
-                empreendedorEmail.setTipo("Recuperação de Senha");
-                empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
-                EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
-                FacesUtil.addSuccessMessage("Um e-mail para redefinição de senha foi reenviado com sucesso.", "formularioRecuperarSenha:botaoRecuperarSenha");
+                empreendedor = Empreendedor.buscaPorEmail(emailRecuperarSenha);
+                if (empreendedor != null) {
+                    if (!Empreendedor.verificaDadosEmpreendedor(empreendedor)) {
+                        cadastroIncompleto = true;
+                        emailEnviado = true;
+                        EmailUtil.mandarEmailConcluirCadastro("Acesse o sistema para visualizar", "Acesse o sistema para visualizar", empreendedor.getEmail(), empreendedor.getIdUnico());
+                        FacesUtil.addSuccessMessage("Usuário pré-cadastrado. O e-mail para completar o cadastro foi reenviado com sucesso. ", "formularioRecuperarSenha:email");
+                    } else {
+                        String idUnico = UUID.randomUUID().toString();
+                        EmpreendedorEmail empreendedorEmail = new EmpreendedorEmail();
+                        empreendedorEmail.setEmpreendedor(empreendedor);
+                        empreendedorEmail.setIdEmpreendedorEmail(idUnico);
+                        empreendedorEmail.setTipo("Recuperação de Senha");
+                        empreendedorEmail.salvarEmpreendedorEmail(empreendedorEmail);
+                        emailEnviado = true;
+                        EmailUtil.enviarEmailRecuperarSenha(emailRecuperarSenha, idUnico);
+                        FacesUtil.addSuccessMessage("Um e-mail para redefinição de senha foi reenviado com sucesso.", "formularioRecuperarSenha:email");
+                    }
+                } else {
+                    emailEnviado = false;
+                    FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:email");
+                }
             }
-        } else {
-            FacesUtil.addErrorMessage("O e-mail inserido não está cadastrado!", "formularioRecuperarSenha:botaoRecuperarSenha");
+            recuperarSenha = false;
         }
     }
 
@@ -299,6 +312,7 @@ public class SystemAccessBean implements Serializable {
 
     public void setEmailRecuperarSenha(String emailRecuperarSenha) {
         this.emailRecuperarSenha = emailRecuperarSenha;
+        recuperarSenha = true;
     }
 
     /**
@@ -323,4 +337,21 @@ public class SystemAccessBean implements Serializable {
     public void setCadastroIncompleto(boolean cadastroIncompleto) {
         this.cadastroIncompleto = cadastroIncompleto;
     }
+
+    public boolean isRecuperarSenha() {
+        return recuperarSenha;
+    }
+
+    public void setRecuperarSenha(boolean recuperarSenha) {
+        this.recuperarSenha = recuperarSenha;
+    }
+
+    public boolean isEmailEnviado() {
+        return emailEnviado;
+    }
+
+    public void setEmailEnviado(boolean emailEnviado) {
+        this.emailEnviado = emailEnviado;
+    }
+
 }

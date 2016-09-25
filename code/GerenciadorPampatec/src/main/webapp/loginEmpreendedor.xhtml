@@ -7,10 +7,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <f:facet name="last">
-            <h:outputStylesheet library="css" name="bootstrap.css"  />
             <h:outputStylesheet library="css" name="login.css"  />
             <h:outputStylesheet library="css" name="projeto.css"  />
             <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+            <h:outputStylesheet library="css" name="animation.css"  />
+            <h:outputStylesheet library="css" name="bootstrap.css"  />
+            <h:outputStylesheet library="css" name="outro.css"  />
+            <h:outputStylesheet library="css" name="sweetalert.css" /> 
+            <h:outputStylesheet library="css" name="ns-default.css"/>
+            <h:outputStylesheet library="css" name="ns-style-growl.css"/>
         </f:facet>
 
         <h:outputScript library="js" name="bootstrap-3.3.6.min.js"/>            
@@ -21,20 +26,27 @@
         <style>
             @media print { 
                 .noprint { display:none; } 
-        </style>
-        
-        <script>
-            /**
-             * Metodo sendo chamado no "a" de "esqueci a senha"
-             * Para trazer o campo do EMAIL dentro do modal sempre vazio  
-             * @returns {undefined}
-             */
-            function limpaCampoEsqueciSenha(){
-                document.getElementById("formularioRecuperarSenha:email").value = "";
-            }
-    
-        </script>
-        
+            </style>
+
+            <script>
+                /**
+                 * Metodo sendo chamado no "a" de "esqueci a senha"
+                 * Para trazer o campo do EMAIL dentro do modal sempre vazio  
+                 * @returns {undefined}
+                 */
+                function limpaCampoEsqueciSenha() {
+                    document.getElementById("formularioRecuperarSenha:email").value = "";
+                }
+                function exibeCarregando2() {
+                    document.getElementById("carregando2").setAttribute("class", "carregando");
+
+                }
+                function escondeCarregando2() {
+                    document.getElementById("carregando2").setAttribute("class", "invisivel");
+
+                }
+            </script>
+
         </h:head>
         <h:body>
             <div class="row">
@@ -93,16 +105,13 @@
                     </div>
                 </div>
 
-                
+
                 <div class="col-md-4 form-horizontal well bs-component" style="margin-left: 1%">
                     <h1>Acesse sua conta</h1>
                     <hr></hr>
                     <div id="empreendedorLogin">
                         <h:form id="formularioDeLogin">
-                            <h:message for="botaoRecuperarSenha" 
-                                       errorClass="mensagemErro" 
-                                       infoClass="mensagemSucesso" 
-                                       id="mensagemErro"/>
+
                             <div class="mensagemErroLogin">
                                 <h:message for="botaoLogin" 
                                            errorClass="erro" 
@@ -156,68 +165,71 @@
             <!-- Modal de Recuperação de Senha -->
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Conteúdo do Modal -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" onclick="PF('statusDialog').hide()" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Recuperação de senha</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h:form id="formularioRecuperarSenha">
+                    <h:form id="formularioRecuperarSenha">
+
+                        <!-- Conteúdo do Modal -->
+                        <div class="modal-content panel-success">
+                            <div class="modal-header fundoVerde">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Esqueceu sua Senha?</h4>
+                            </div>
+                            <div class="modal-body">
                                 <fieldset>
                                     <div class="col-md-12">
-                                        E-mail
-                                        <h:message errorClass="mensagemErro" infoClass="mensagemSucesso"
-                                                    for="formularioRecuperarSenha:botaoRecuperarSenha" 
-                                                    id="teste2"/>
-                                        <h:panelGroup id="painelCadastroIncompleto" 
-                                                      rendered="#{systemAccessBean.verificaCadastroIncompleto()}">
-                                            <p>Alguém já adicionou você ao plano <a href="#">Clique Aqui</a>
-                                                para completar o seu cadastro.
-                                            </p>
-                                        </h:panelGroup>
+                                        Insira seu e-mail utilizado para Login para que possamos encaminhar as instruções para recuperação de senha.
+
                                         <p:inputText class="form-control" 
                                                      placeholder="Insira o seu e-mail" 
-                                                     id="email" 
-                                                     value="#{systemAccessBean.emailRecuperarSenha}"></p:inputText>
+                                                     id="email"
+                                                     required="true"
+                                                     requiredMessage="Digite um e-mail"
+                                                     validatorMessage="Digite um e-mail válido"
+                                                     rendered="#{!systemAccessBean.emailEnviado}"
+                                                     value="#{systemAccessBean.emailRecuperarSenha}">
+                                            <f:validateRegex
+                                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></p:inputText>
+                                        <h:message errorClass="mensagemErro" infoClass="mensagemSucesso"
+                                                   for="formularioRecuperarSenha:email" 
+                                                   id="teste2"/>
                                         <br/>
 
                                     </div>
+                                    <hr></hr>
 
-                                    <p:ajaxStatus onstart="PF('statusDialog').show()" 
-                                                  onsuccess="PF('statusDialog').hide()" />
 
-                                    <p:dialog widgetVar="statusDialog" 
-                                              style="margin-left: -80%; margin-top: -45%" 
-                                              modal="true"
-                                              draggable="false" 
-                                              closable="false" 
-                                              resizable="false" 
-                                              showHeader="false">
-                                        <p:graphicImage url="http://i.imgur.com/XGw5fjp.gif" />
-                                    </p:dialog>
-
-                                    <div class="text-right col-md-12"> 
-                                        <div class="col-md-10">
-                                            <button type="button" 
-                                                    class="btn btn-default" 
-                                                    data-dismiss="modal">Voltar</button>
-                                        </div>
-
-                                        <h:commandButton id="botaoRecuperarSenha"
-                                                         class="btn btn-success" 
-                                                         value="Enviar" 
-                                                         action="#{systemAccessBean.recuperarSenha()}">
-                                            <f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
-                                                    formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/>
-                                        </h:commandButton>
-
-                                    </div>
+                                    <!--                                    <div class="text-right col-md-12"> 
+                                                                            <div class="col-md-10">
+                                                                                <button type="button" 
+                                                                                        class="btn btn-default" 
+                                                                                        data-dismiss="modal">Voltar</button>
+                                                                            </div>
+                                    
+                                                                            <h:commandButton id="botaoRecuperarSenha"
+                                                                                             class="btn btn-success" 
+                                                                                             value="Enviar" 
+                                                                                             action="#{systemAccessBean.recuperarSenha()}" onclick="exibeCarregando2()">
+                                                                                <f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
+                                                                                        formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/>
+                                                                            </h:commandButton>
+                                    
+                                                                        </div>-->
                                 </fieldset>
-                            </h:form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!--                                <div id="carregando2" class="invisivel">
+                                                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                                                </div>-->
+                                <button type="button" class="btn btn-default" title="Voltar" data-dismiss="modal">Cancelar</button>
+                                <h:commandButton id="botaoRecuperarSenha" action="#{systemAccessBean.recuperarSenha()}" title="Enviar" class="btn btn-success" value="Enviar Instruções">
+                                    <f:ajax execute="@form" render="formularioRecuperarSenha:teste2 formularioRecuperarSenha:email"/>
+                                </h:commandButton>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Fim do Conteúdo do Modal -->
+                        <!-- Fim do Conteúdo do Modal -->
+
+                    </h:form>
+
                 </div>
             </div>
             <!-- Fim do Modal de Recuperação de Senha -->
