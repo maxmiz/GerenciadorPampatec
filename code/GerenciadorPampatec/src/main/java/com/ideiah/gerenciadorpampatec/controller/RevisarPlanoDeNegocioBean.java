@@ -52,6 +52,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
     private int somatorioFixo;
     private int somatorioVariavel;
     private boolean salvou;
+    private boolean deletou;
 
     public RevisarPlanoDeNegocioBean() {
     }
@@ -66,7 +67,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         projeto = projetoDao.buscar(projeto.getIdProjeto());
         copiaProjeto();
         copiaCustosFixos();
-        copiaCustosVariaveis();        
+        copiaCustosVariaveis();
         empreendedorSession = (Empreendedor) SessionManager.getAttribute("empreendedor");
         recuperaComentarioProjeto();
         setEstagioEvolucao(verificaEstagioEvolucao());
@@ -486,14 +487,16 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarAlteracaoCampoTabelaCustosFixos(AlteracaoCampos alteracao, Custo custo) {
 
-      
         String texto = "";
 
-        //verifica se foi excluída uma linha e já atualizar na cópia da lista de custos
-        if (custos.size() > projeto.getPlanofinanceiro().retornaListaCustosFixos().size()) {
+        //verifica se foi excluída uma linha e atualizar na cópia da lista de custos
+        if (custos.size() > projeto.getPlanofinanceiro().retornaListaCustosFixos().size()) {            
             texto = "Foi excluída uma linha da tabela" + "";
-            int id = custos.indexOf(custo);
-            custos.remove(id);
+            for (int i = 0; i < custos.size(); i++) {
+                if (custos.get(i).getIdCusto().equals(custo.getIdCusto())) {
+                custos.remove(custos.get(i));
+                }
+            }
         }
         //verifica se foi add uma linha e já atualiza na cópia da lista de custos
         if (custos.size() < projeto.getPlanofinanceiro().retornaListaCustosFixos().size()) {
@@ -546,32 +549,40 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
      */
     public void salvarAlteracaoCampoTabelaCustosVariaveis(AlteracaoCampos alteracao, Custo custo) {
 
-        salvou = true;
         String texto = "";
 
-        if (custosVariaveis.size() != projeto.getPlanofinanceiro().retornaListaCustosVariaveis().size()) {
-            texto = "Foi adicionada ou excluída uma linha da tabela";
-
-        } else {
-
+        //verifica se foi excluída uma linha e já atualizar na cópia da lista de custos
+        if (custosVariaveis.size() > projeto.getPlanofinanceiro().retornaListaCustosVariaveis().size()) {
+            texto = "Foi excluída uma linha da tabela" + "";
             for (int i = 0; i < custosVariaveis.size(); i++) {
+                if (custosVariaveis.get(i).getIdCusto().equals(custo.getIdCusto())) {
+                    custosVariaveis.remove(custosVariaveis.get(i));
+                }
+            }
 
-                if (Objects.equals(custosVariaveis.get(i).getIdCusto(), custo.getIdCusto())) {
+        }
+        //verifica se foi add uma linha e já atualiza na cópia da lista de custos
+        if (custosVariaveis.size() < projeto.getPlanofinanceiro().retornaListaCustosVariaveis().size()) {
+            texto = "Foi adicionada uma linha da tabela" + "";
+            custosVariaveis.add(custo);
+        }
+        //itera pela lista de custos para verificar se houve modificações na descrição e/ou no valor
+        for (int i = 0; i < custosVariaveis.size(); i++) {
 
-                    if (!custosVariaveis.get(i).getDescricao().equalsIgnoreCase(custo.getDescricao())) {
+            if (Objects.equals(custosVariaveis.get(i).getIdCusto(), custo.getIdCusto())) {
 
-                        texto += "Foi alterado a descricao da linha" + (i + 1) + "\n";
-
-                    }
-                    if (!Objects.equals(custosVariaveis.get(i).getTotal(), custo.getTotal())) {
-
-                        texto += "Foi alterado o custo da linha" + (i + 1);
-                    }
+                if (!custosVariaveis.get(i).getDescricao().equalsIgnoreCase(custo.getDescricao())) {
+                    texto += "Foi alterado a descricao da linha" + (i + 1) + "\n";
+                }
+                if (!Objects.equals(custosVariaveis.get(i).getTotal(), custo.getTotal())) {
+                    texto += "Foi alterado o custo da linha" + (i + 1);
                 }
             }
         }
+
         ComentarioDao comentDao = new ComentarioDao();
         ProjetoDao projetoDao = new ProjetoDao();
+
         projeto.getProdutoouservico().setEstagioEvolucao(pegaValorDropDown());
         projeto.setStatus(Projeto.REVISANDO);
         projetoDao.salvar(projeto);
@@ -586,7 +597,6 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 
         FacesContext.getCurrentInstance()
                 .addMessage("formulario_resubmeterplano:tituloMensagem", msg);
-
     }
 
     /**
@@ -762,13 +772,6 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         if (projetoCopia.getPlanofinanceiro().getInvestimentoInicial().equalsIgnoreCase(texto) && tipo == 21) {
             return true;
         }
-        if (tipo == 22) {
-            return true;
-        }
-        if (tipo == 23) {
-            return true;
-        }
-
         return false;
     }
 
@@ -918,8 +921,6 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
 
         ProjetoDao projetoDao = new ProjetoDao();
         projetoDao.salvar(custo);
-        
-        
 
     }
 
@@ -953,10 +954,11 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
         if (custo.getTipo() == Custo.CUSTO_VARIAVEL) {
+            Custo custo3 = custo;
             deletarCustoVariavel(custo);
             calcularValorColunaCustoVariavel();
             AlteracaoCampos alteracao = comentarioProjeto.getCustoVariavel_alteracao();
-            salvarAlteracaoCampoTabelaCustosFixos(alteracao, custo);
+            salvarAlteracaoCampoTabelaCustosVariaveis(alteracao, custo3);
             msg = new FacesMessage("Custo variavel DELETADO");
             FacesContext.getCurrentInstance().addMessage("formulario_resubmeterplano:mensagensFeed", msg);
         }
@@ -1061,12 +1063,12 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
      * @param custoFixo
      */
     private void deletarCustoFixo(Custo custoFixo) {
+
         ProjetoDao daoProj = new ProjetoDao();
         listaCustoFixo.remove(custoFixo);
         empreendedorSession.removeCustoProjeto(custoFixo);
         projeto = daoProj.buscar(projeto.getIdProjeto());
         atualizarProjetoSessao();
-
         preencheListaCusto();
     }
 
