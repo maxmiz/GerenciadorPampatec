@@ -595,7 +595,8 @@ function mudarCorLista(listaCampos, tab, nomeCampo) {
 }
 
 function mudarCorListaPreAvaliar(listaCampos, tab, nomeCampo) {
-    var flagCompleto = false;
+    
+    var flagCompleto = true;
     for (var i = 0; i < listaCampos.length; i++) {
         if (verificaPreenchimentoComentario(listaCampos[i])) {
             flagCompleto = false;
@@ -635,6 +636,7 @@ function verificaPreenchimentoComentario(campo) {
 function funcaoAjaxSalvoAtualizandoAbas(data) {
     if (data.status === "success") {
         verificaComentariosPreAvaliar();
+        verificaAlteracoesPreAvaliar();
         funcaoAjaxSalvo(data);
     }
 }
@@ -663,12 +665,13 @@ function mostrarFeedBackHistorico(idCampo, idDiv) {
 
 /**
  * @description Metodo que exibe ou esconde os campos de adicionar comentarios na realizar pré-avaliação
- * @param {type} id
+ * @param {type} idCampo
  * @param {type} idBotao
+ * @param {type} idAlteracao
  * @returns {undefined}
  */
 
-function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
+function mostrarFeedBack(idCampo, idBotao, idAlteracao) {
     var campo = document.getElementById(idCampo);
     var botao = document.getElementById(idBotao);
     var alteracao = document.getElementById(idAlteracao);
@@ -678,12 +681,12 @@ function mostrarFeedBack(idCampo,idBotao, idAlteracao) {
         //botao.setAttribute("class", "botaoBaseComentario botaoVerde");
 		//    botao.setAttribute("value", "Fechar Comentário");
 		//    botao.setAttribute("icon", "fa fa-minus");
-        alteracao.setAttribute("class","campoFeedBack");
+        //alteracao.setAttribute("class","campoFeedBack");
     } else {
         $(campo).fadeIn(900);
         campo.setAttribute("class", "form-control campoFeedBackOn");
         //botao.setAttribute("class", "botaoBaseComentario botaoVerdeMarcado");
-        alteracao.setAttribute("class","campoFeedBackOn");
+        //alteracao.setAttribute("class","campoFeedBackOn");
         //   botao.setAttribute("value", "Adicionar Comentário");
 		//   botao.setAttribute("icon", "fa fa-plus");
     }

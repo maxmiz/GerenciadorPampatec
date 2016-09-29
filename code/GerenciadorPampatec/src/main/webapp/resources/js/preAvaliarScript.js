@@ -168,7 +168,7 @@ function verificaAlteracoesPlanoFinanceiroPreAvaliar() {
  */
 function mudarCorListaPreAvaliarAlteracoes(listaCampos, tab, nomeCampo) {
 
-    var flagCompleto = false;
+    var flagCompleto = true;
     
         if (listaCampos.length === 0) {
             flagCompleto = true;
@@ -177,12 +177,9 @@ function mudarCorListaPreAvaliarAlteracoes(listaCampos, tab, nomeCampo) {
             flagCompleto = false;        
     }
 
-    if (flagCompleto) {
-        tab.innerHTML = nomeCampo;
-        tab.style.color = "#2780e3";
-    } else {
+    if(!flagCompleto) {
         tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
-        tab.style.color = "red";
+        tab.style.color = "orange";
     }
 }
 
