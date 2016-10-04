@@ -709,6 +709,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
     public boolean verificarAlteracaoCampos(String texto, int tipo) {
 
         if (!projetoCopia.getNegocio().getSegmentoClientes().equalsIgnoreCase(texto) && tipo == 1) {
+            
             return true;
         }
         if (!projetoCopia.getNegocio().getPropostaValor().equalsIgnoreCase(texto) && tipo == 2) {
