@@ -58,7 +58,7 @@
             }
         </script>
     </h:head>
-    <h:body onload="mostrarMensagemCampoObrigatorio(); verificaComentariosPreAvaliar()">
+    <h:body onload="mostrarMensagemCampoObrigatorio(); verificaComentariosPreAvaliar(); verificaAlteracoesPreAvaliar();">
         <!-- NOTIFICAÇÕES -->
 
         <!-- Notificação Plano salvo com sucesso. -->
@@ -384,8 +384,8 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoSegmento">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}" class="campoAlterado">
-                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            <h:panelGroup class="negocioAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.tipo)}">
+                                                <i id="alteracaoSegmento" class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
                                     </div>
@@ -423,8 +423,7 @@
                                                          cols="50" onchange="mostrarMensagemCampoObrigatorio();"
                                                          rows="5" id="segmentoDeCliente2"
                                                          value="#{preAvaliarPlanoBean.comentarioProjeto.segmentosClientes.texto}">
-                                            <f:ajax execute="@form"
-                                                    
+                                            <f:ajax execute="@form"                                                   
                                                     render="formulario_comentarpreavalizar:alteracaoSegmento 
                                                     formulario_comentarpreavalizar:segmentoDeCliente2 
                                                     formulario_comentarpreavalizar:segmentoDeClientes 
@@ -477,7 +476,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoProposta">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="negocioAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.propostaValor.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -569,7 +568,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoAtividades">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="negocioAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.atividadeChave.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -692,8 +691,8 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoRelacoes">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}" class="campoAlterado">
-                                                 <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
+                                            <h:panelGroup class="analiseMercadoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.relacionamentoCliente.tipo)}">
+                                                <i id="alteracaoRelacoes" class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
                                     </div>
@@ -783,7 +782,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoParcerias">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="analiseMercadoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.parceriasChave.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -876,7 +875,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoCanais">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="analiseMercadoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.canais.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -966,7 +965,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoRecursosPrincipais">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="analiseMercadoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.recursosPrincipais.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1055,7 +1054,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoConcorrentes">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="analiseMercadoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.concorrentes.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1179,7 +1178,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoEvolucao">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estagioEvolucao.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1269,7 +1268,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoTecnologia">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.tecnologiaProcessos.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1360,7 +1359,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoPotencialInovacao">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialInovacaoTecnologica.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1450,7 +1449,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoAplicacoes">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.aplicacoes.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1540,7 +1539,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoDificuldades">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.dificuldadesEsperadas.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1629,7 +1628,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoInteracaoUniversidade">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaUniversidade.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1719,7 +1718,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoInteracaoGoverno">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.interacaoEmpresaComunidadeGoverno.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1809,7 +1808,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoInfra">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="produtoServicoAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.infraestrutura.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -1935,7 +1934,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoParticipacao">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="gestaoPessoasAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.participacaoAcionaria.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2027,7 +2026,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoPotencialEmprego">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="gestaoPessoasAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.potencialEmprego.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2156,7 +2155,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoFontes">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="planoFinanceiroAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.fontesReceita.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2248,7 +2247,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoEstruturaCustos">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="planoFinanceiroAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.estruturaCusto.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2340,7 +2339,7 @@
                                     </h:inputTextarea>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoInvestimentoInicial">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="planoFinanceiroAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.investimentoInicial.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou este campo desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2444,7 +2443,7 @@
                                     </p:dataTable>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoCustoFixo">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="planoFinanceiroAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoFixo.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou esta tabela desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>
@@ -2544,7 +2543,7 @@
                                     </p:dataTable>
                                     <div class="col-md-5" style="text-align: right; float: right; margin: -2px;">
                                         <h:panelGroup id="alteracaoCampoCustoVariavel">
-                                            <h:panelGroup rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}" class="campoAlterado">
+                                            <h:panelGroup class="planoFinanceiroAlteracao campoAlterado" rendered="#{preAvaliarPlanoBean.CampoFoiAlterado(preAvaliarPlanoBean.comentarioProjeto.custoVariavel.tipo)}">
                                                  <i class="fa fa-edit" style="color: red "></i> O empreendedor editou esta tabela desde a última avaliação
                                             </h:panelGroup>
                                         </h:panelGroup>

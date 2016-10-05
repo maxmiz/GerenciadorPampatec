@@ -72,6 +72,118 @@ function verificaPreechimentoRadioButton() {
 }
 
 
+/**
+ * Como Gerente
+ * É chamado no body da página (ao caregar a página)
+ * verifica a existencia de comentários em todos os campos dentro das abas
+ * Se houver, os metodos das Abas mudam a cor das Abas.
+ */
+function verificaAlteracoesPreAvaliar() {
+
+    verificaAlteracoesNegocioPreAvaliar();
+    verificaAlteracoesAnaliseMercadoPreAvaliar();
+    verificaAlteracoesProdutoServicoPreAvaliar();
+    verificaAlteracoesGestaoPessoasPreAvaliar();
+    verificaAlteracoesPlanoFinanceiroPreAvaliar();
+
+}
+
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos das alterações dos campos
+ * verifica a existencia de alterações em  campos dentro da aba Negocio
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
+function verificaAlteracoesNegocioPreAvaliar() {
+
+    var tabNegocio = document.getElementById("tabNegocio");
+    var listaCampos = document.getElementsByClassName("negocioAlteracao");
+
+    mudarCorListaPreAvaliarAlteracoes(listaCampos, tabNegocio, "Negócio");
+}
+
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos das alterações dos campos
+ * verifica a existencia de alterações em  campos dentro da aba Analise de Mercado
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
+function verificaAlteracoesAnaliseMercadoPreAvaliar() {
+
+    var tabAnaliseMercado = document.getElementById("tabAnaliseMercado");
+    var listaCampos = document.getElementsByClassName("analiseMercadoAlteracao");
+
+    mudarCorListaPreAvaliarAlteracoes(listaCampos, tabAnaliseMercado, "Análise de Mercado");
+}
+
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos das alterações dos campos
+ * verifica a existencia de alterações em  campos dentro da aba Produto ou Serviço
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
+function verificaAlteracoesProdutoServicoPreAvaliar() {
+
+    var tabProdutoServico = document.getElementById("tabProdutoServico");
+    var listaCampos = document.getElementsByClassName("produtoServicoAlteracao");
+
+    mudarCorListaPreAvaliarAlteracoes(listaCampos, tabProdutoServico, "Produto ou Serviço");
+}
+
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos das alterações dos campos
+ * verifica a existencia de alterações em  campos dentro da aba Gestão de Pessoas
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
+function verificaAlteracoesGestaoPessoasPreAvaliar() {
+
+
+    var tabGestaoPessoas = document.getElementById("tabGestaoPessoas");
+    var listaCampos = document.getElementsByClassName("gestaoPessoasAlteracao");
+
+    mudarCorListaPreAvaliarAlteracoes(listaCampos, tabGestaoPessoas, "Gestão de Pessoas");
+}
+
+/**
+ * Como Gerente
+ * Preenche uma lista contendo os elementos das alterações dos campos
+ * verifica a existencia de alterações em  campos dentro da aba Plano Financeiro
+ * Se houver, o metodo mudarCorLista muda a cor da Aba.
+ */
+function verificaAlteracoesPlanoFinanceiroPreAvaliar() {
+
+    var tabPlanoFinanceiro = document.getElementById("tabPlanoFinanceiro");
+    var listaCampos = document.getElementsByClassName("planoFinanceiroAlteracao");
+    mudarCorListaPreAvaliarAlteracoes(listaCampos, tabPlanoFinanceiro, "Plano Financeiro");
+}
+
+/**
+ * método que se houver alterações em uma determinada aba
+ * muda de cor a mesma para vermelho
+ * @param {type} listaCampos
+ * @param {type} tab
+ * @param {type} nomeCampo
+ * @returns {undefined}
+ */
+function mudarCorListaPreAvaliarAlteracoes(listaCampos, tab, nomeCampo) {
+
+    var flagCompleto = true;
+    
+        if (listaCampos.length === 0) {
+            flagCompleto = true;
+          
+        } else {
+            flagCompleto = false;        
+    }
+
+    if(!flagCompleto) {
+        tab.innerHTML = nomeCampo + " <i id='idIconContato' class='fa fa-comment-o'></i>";
+        tab.style.color = "orange";
+    }
+}
+
+
 
 
 
