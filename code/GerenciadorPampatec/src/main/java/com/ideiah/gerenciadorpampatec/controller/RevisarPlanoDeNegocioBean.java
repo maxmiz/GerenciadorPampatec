@@ -770,7 +770,7 @@ public class RevisarPlanoDeNegocioBean implements Serializable {
         if (!projetoCopia.getPlanofinanceiro().getEstruturaCusto().equalsIgnoreCase(texto) && tipo == 20) {
             return true;
         }
-        if (projetoCopia.getPlanofinanceiro().getInvestimentoInicial().equalsIgnoreCase(texto) && tipo == 21) {
+        if (!projetoCopia.getPlanofinanceiro().getInvestimentoInicial().equalsIgnoreCase(texto) && tipo == 21) {
             return true;
         }
         return false;
