@@ -183,10 +183,8 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-10 form-horizontal well bs-component">
-
             <h1>Atualize seus dados</h1>
             <div id="empreendedorLogin">
-
                 <legend>Dados do cadastro</legend>
 
                 <h:form id="formularioCadastro">
@@ -353,7 +351,6 @@
                                         requiredMessage="Insira sua senha atual para atualizar seus dados de cadastro."
                                         required="true"
                                         feedback="false"
-                                        onkeypress="handle(event)" 
                                         styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"
                                         value="#{editarEmpreendedorBean.senha}"
                                         validatorMessage="Você deve fornecer sua senha atual"></p:password>
@@ -387,7 +384,6 @@
                                                            requiredMessage="Confirme sua nova senha"
                                                            required="false"
                                                            style=""
-                                                           onkeypress="handle(event)" 
                                                            styleClass="#{not component.valid ? 'form-control campoInvalido' : 'form-control'}"  
                                                            value="#{editarEmpreendedorBean.novaSenha}"></p:password>
                             <h:message class="mensagemErro" for="senhaNova"/>
@@ -411,7 +407,6 @@
                                          type="button" 
                                          class="botaoBase botaoVerde" 
                                          onclick="confirmacaoDeEnvio()" 
-                                         onkeypress="handle(event)" 
                                          value="Finalizar edição"
                                          icon="fa fa-save">
                         </p:commandButton>
@@ -436,19 +431,7 @@
                             }
                         }
 
-                        function handle(e) {
-                            if (e.keyCode === 13) {
-                                
-                                confirmacaoDeEnvio();
-                                //editarEmpreendedorBean.finalizarEdicao();
-                            }
-                        }
-
-
-
-
-
-                    </script>   
+                    </script>
 
 
 
@@ -472,11 +455,7 @@
                                     </div>
                                     <div class="col-md-12"> 
                                         <button id="botaoFechaModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        <h:commandButton id="botaoConfirmar" 
-                                                         class="btn btn-success" 
-                                                         onclick="exibeCarregando3()" 
-                                                         action="#{editarEmpreendedorBean.finalizarEdicao()}"  
-                                                         value="Confirmar edição">
+                                        <h:commandButton id="botaoConfirmar" class="btn btn-success" onclick="exibeCarregando3()" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
                                         </h:commandButton>
                                     </div>
                                 </div>
@@ -510,9 +489,7 @@
                                                 </div>
                                             </div>
                                         </div>-->
-
                 </h:form>
-
             </div>
 
         </div>
