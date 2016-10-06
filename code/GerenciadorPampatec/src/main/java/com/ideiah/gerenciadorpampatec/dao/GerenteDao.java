@@ -36,8 +36,8 @@ public class GerenteDao extends Dao{
       * 
      * @return a lista inteira de gerentes de Relacionamento 
      */
-    public ArrayList<?> buscarTodosGerente() {
-        return  buscarObjetos(GerenteRelacionamento.class);
+    public ArrayList<GerenteRelacionamento> buscarTodosGerente() {
+        return (ArrayList<GerenteRelacionamento>) buscarObjetos(GerenteRelacionamento.class);
 
     }
 }
