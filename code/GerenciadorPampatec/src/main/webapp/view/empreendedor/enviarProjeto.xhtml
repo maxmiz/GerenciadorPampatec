@@ -69,6 +69,10 @@
                 document.getElementById("carregando").setAttribute("class", "carregando");
                 document.getElementById("botaoFecharModalEnviar").disabled = true;
             }
+            function exibeCarregando1() {
+                document.getElementById("carregando1").setAttribute("class", "carregando");
+                document.getElementById("salvarprojeto").disabled = true;
+            }
             function exibeCarregando2() {
                 document.getElementById("carregando2").setAttribute("class", "carregando");
                 document.getElementById("botaoFecharModalSalvarEquipe").disabled = true;
@@ -308,10 +312,16 @@
                                 para que você possa retornar e acabar de preenchê-los em outro momento.<br/><br/>
                             </div>
                             <div class="modal-footer">
+                                
+                                <p>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Voltar para edição</button>
-
-                                <h:commandButton action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio"></h:commandButton>
-
+                                        
+                                <h:commandButton id="salvarprojeto" action="#{projetoBean.salvarProjeto()}" type="submit" class="btn btn-success" value="Salvar Plano de Negócio" onclick="exibeCarregando1()"></h:commandButton>
+                                    
+                                    <div id="carregando1" class="invisivel">
+                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                </div>
+                                </p><br />    
                             </div>
                         </div>
                     </div>

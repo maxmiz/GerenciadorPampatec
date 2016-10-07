@@ -22,6 +22,19 @@
                 .noprint { display:none; } 
             </style>
 
+            <script>
+                
+                function exibeCarregando() {
+                    document.getElementById("carregando").setAttribute("class", "carregando");
+                    document.getElementById("botaoLogin").disabled = true;
+
+                }
+                function escondeCarregando2() {
+                    document.getElementById("carregando").setAttribute("class", "invisivel");
+
+                }
+            </script>
+            
 
         </h:head>
         <h:body>
@@ -215,13 +228,18 @@
                                 </p:button>
                             </div>
                             <div class="col-md-8 modal-footer">
+                                
+                                 <div id="carregando" class="invisivel">
+                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                </div>
+                                
                                 <p:commandButton id="botaoEnviar" 
                                                  class="botaoBase botaoVerde" 
                                                  title="Enviar os dados para a realização do Cadastro" 
                                                  value="Finalizar Cadastro" 
                                                  icon="fa fa-paper-plane-o"
                                                  action="#{empreendedorBean.chamaCadastro()}"
-                                                 onclick="PF('statusDialog').show()" 
+                                                 onclick="exibeCarregando()" 
                                                  ajax="false">
                                 </p:commandButton>
                             </div>

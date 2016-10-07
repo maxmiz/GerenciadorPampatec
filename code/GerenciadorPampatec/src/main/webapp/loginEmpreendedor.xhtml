@@ -37,8 +37,13 @@
                 function limpaCampoEsqueciSenha() {
                     document.getElementById("formularioRecuperarSenha:email").value = "";
                 }
+                function exibeCarregando1() {
+                    document.getElementById("carregando1").setAttribute("class", "carregando");
+                    document.getElementById("botaoContinuaCadastro").disabled = true;
+                }
                 function exibeCarregando2() {
                     document.getElementById("carregando2").setAttribute("class", "carregando");
+                    document.getElementById("botaoLogin").disabled = true;
 
                 }
                 function escondeCarregando2() {
@@ -91,6 +96,9 @@
                             </div>                       
 
                             <div class="col-md-5 modal-footer text-center" align="left">
+                                 <div id="carregando1" class="invisivel">
+                                                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                 </div>
                                 <p:commandButton id="botaoContinuaCadastro" 
                                                  class="botaoBase botaoVerde"
                                                  icon="fa fa-user"
@@ -98,7 +106,8 @@
                                                  title="Cadastre-se para começar" 
                                                  value="Cadastrar" 
                                                  action="cadastroEmpreendedor.jsf" 
-                                                 ajax="false">
+                                                 ajax="false"
+                                                 onclick="exibeCarregando1()">
                                 </p:commandButton>
                             </div>
                         </h:form>
@@ -144,6 +153,9 @@
                             <div class="col-md-5 modal-footer" align="center">
                             </div>
                             <div class="col-md-5 modal-footer" align="center">
+                               <div id="carregando2" class="invisivel">
+                                    <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
+                                </div>
                                 <p:commandButton id="botaoLogin" 
                                                  class="botaoBase botaoVerde"
                                                  icon="fa fa-sign-in"
@@ -151,7 +163,7 @@
                                                  style="padding: 5px 12px"
                                                  value="Acessar" 
                                                  action="#{systemAccessBean.submit()}"
-                                                 ajax="false">
+                                                 onclick="exibeCarregando2()">
                                 </p:commandButton>
                             </div>
 
@@ -217,11 +229,11 @@
 
                             </div>
                             <div class="modal-footer">
-                                <!--                                <div id="carregando2" class="invisivel">
+                                                                <div id="carregando2" class="invisivel">
                                                                     <h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/>
-                                                                </div>-->
+                                                                </div>
                                 <button type="button" class="btn btn-default" title="Voltar" data-dismiss="modal">Cancelar</button>
-                                <h:commandButton id="botaoRecuperarSenha" action="#{systemAccessBean.recuperarSenha()}" title="Enviar" class="btn btn-success" value="Enviar Instruções">
+                                <h:commandButton id="botaoRecuperarSenha" action="#{systemAccessBean.recuperarSenha()}" title="Enviar" class="btn btn-success" value="Enviar Instruções" onclick="exibeCarregando2()">
                                     <f:ajax execute="@form" render="formularioRecuperarSenha:teste2 formularioRecuperarSenha:email"/>
                                 </h:commandButton>
                             </div>

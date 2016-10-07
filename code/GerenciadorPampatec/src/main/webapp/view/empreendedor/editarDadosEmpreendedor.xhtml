@@ -53,6 +53,13 @@
                 // O metodo é chamado no sweetAlert somente para ativar um controle remoto
                 // esse controle remote aciona um metodo para invalidar a sessão quando o "bah!" é chamado.
             }
+            
+            function exibeCarregando() {
+                    document.getElementById("carregando").setAttribute("class", "carregando");
+                    document.getElementById("botaoConfirmar").disabled = true;
+
+                }
+            
 
             function exibeCarregando3() {
                 document.getElementById("carregando1").setAttribute("class", "carregando");
@@ -455,7 +462,7 @@
                                     </div>
                                     <div class="col-md-12"> 
                                         <button id="botaoFechaModal" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        <h:commandButton id="botaoConfirmar" class="btn btn-success" onclick="exibeCarregando3()" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
+                                        <h:commandButton id="botaoConfirmar" class="btn btn-success" onclick="exibeCarregando()" action="#{editarEmpreendedorBean.finalizarEdicao()}"  value="Confirmar edição">
                                         </h:commandButton>
                                     </div>
                                 </div>
