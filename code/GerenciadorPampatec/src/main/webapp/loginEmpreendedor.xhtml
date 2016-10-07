@@ -29,31 +29,31 @@
             </style>
 
             <script>
-                /**
-                 * Metodo sendo chamado no "a" de "esqueci a senha"
-                 * Para trazer o campo do EMAIL dentro do modal sempre vazio  
-                 * @returns {undefined}
-                 */
+               
                 function limpaCampoEsqueciSenha() {
                     document.getElementById("formularioRecuperarSenha:email").value = "";
                 }
                 function exibeCarregando1() {
                     document.getElementById("carregando1").setAttribute("class", "carregando");
                     document.getElementById("botaoContinuaCadastro").disabled = true;
+                    teste =false;
                 }
                 function exibeCarregando2() {
                     document.getElementById("carregando2").setAttribute("class", "carregando");
                     document.getElementById("botaoLogin").disabled = true;
-
+                    teste = false;
                 }
-                function escondeCarregando2() {
+                function escondeCarregando() {
+                    document.getElementById("carregando1").setAttribute("class", "invisivel");
                     document.getElementById("carregando2").setAttribute("class", "invisivel");
-
+                    document.getElementById("botaoLogin").disabled = false;
+                    document.getElementById("botaoContinuaCadastro").disabled = false;
                 }
             </script>
 
         </h:head>
-        <h:body>
+    <h:body onunload="escondeCarregando()">
+            
             <div class="row">
                 <br/><br/>
                 <div class="col-md-2"></div>
