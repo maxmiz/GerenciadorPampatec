@@ -8,7 +8,7 @@
     <property name="hibernate.connection.username">ideiah</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.connection.password">ideiah123</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.hbm2ddl.auto" value="update"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Planofinanceiro.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Projeto.hbm.xml"/>
     <mapping resource="com/ideiah/gerenciadorpampatec/model/Usuario.hbm.xml"/>
